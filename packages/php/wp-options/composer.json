@@ -1,0 +1,16 @@
+{
+    "name": "wpsocio/wp-options",
+    "description": "Easy solution to handle WP plugin or theme options",
+    "type": "library",
+    "license": "GPL3",
+	"autoload": {
+		"files": [
+			"WPOptions.php"
+		]
+	},
+    "authors": [
+        {
+            "name": "WP Socio"
+        }
+    ]
+}

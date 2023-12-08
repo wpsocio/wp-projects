@@ -1,0 +1,31 @@
+# NPM #
+##########
+# Ignore all directories called node_modules in current folder and any subfolders.
+node_modules/
+
+# Composer #
+vendor/
+build/
+
+# Ignore all directories in root
+/*/
+# Except for these
+!/.vscode/
+!/bin/
+!/packages/
+!/plugins/
+!/tools/
+
+# Ignore all plugins because there may be other plugins installed
+/plugins/*/
+# Except for the ones in this repo
+!/plugins/wp-test-plugin/
+
+# Build tools/IDEs
+.rollup.cache/
+tsconfig.tsbuildinfo
+.idea/
+
+# Misc
+.env
+temp/

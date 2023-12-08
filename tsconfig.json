@@ -1,0 +1,30 @@
+{
+	"compilerOptions": {
+		"allowJs": true,
+		"composite": true,
+		"declaration": true,
+		"declarationMap": true,
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"incremental": true,
+		"inlineSources": false,
+		"isolatedModules": true,
+		"lib": ["ESNext"],
+		"module": "NodeNext",
+		"moduleResolution": "NodeNext",
+		"newLine": "lf",
+		"noEmit": true,
+		"noUnusedLocals": false,
+		"noUnusedParameters": false,
+		"preserveWatchOutput": true,
+		"resolveJsonModule": true,
+		"skipLibCheck": true,
+		"sourceMap": true,
+		"strict": true,
+		"target": "ESNext"
+	},
+	"exclude": ["**/node_modules", "**/dist", "**/vendor"],
+	"ts-node": {
+		"esm": true
+	}
+}

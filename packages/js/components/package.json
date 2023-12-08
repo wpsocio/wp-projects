@@ -1,0 +1,26 @@
+{
+	"name": "@wpsocio/components",
+	"version": "1.0.0",
+	"private": true,
+	"license": "GPL-3.0",
+	"type": "module",
+	"module": "index.ts",
+  "source": "index.ts",
+	"exports": {
+		".": {
+      "import": "./index.ts"
+    },
+		"./*": {
+			"import": "./*/index.tsx"
+		}
+	},
+	"dependencies": {
+		"@wordpress/components": "^25.12.0",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0"
+	},
+	"devDependencies": {
+		"@types/react": "^18.2.37",
+		"@types/react-dom": "^18.2.15"
+	}
+}

@@ -1,0 +1,26 @@
+import { useState } from 'react';
+import { useDebounce } from '@wordpress/compose';
+import { Button } from '@wpsocio/components/button';
+
+function App() {
+	const [count, setCount] = useState(0);
+
+	useDebounce(() => {
+		console.log('debounce');
+	});
+
+	return (
+		<>
+			<h1>Main</h1>
+			<div className="card">
+				<Button onClick={() => setCount((count) => count + 1)}>count is {count}</Button>
+				<p>
+					Edit <code>src/App.tsx</code> and save to test HMR!
+				</p>
+			</div>
+			<p className="read-the-docs">Click on the Vite and React logos to learn more!!!</p>
+		</> 
+	);
+}
+
+export default App;

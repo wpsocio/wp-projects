@@ -1,0 +1,29 @@
+{
+	"name": "@wpsocio/dev",
+	"version": "1.0.0",
+	"private": true,
+	"bin": {
+		"vite": "./node_modules/vite/bin/vite.js"
+	},
+	"type": "module",
+	"exports": {
+		".": "./dist/index.js",
+		"./vite": "./dist/vite.js"
+	},
+	"scripts": {
+		"xpreinstall": "pnpm run build",
+		"build": "pnpm tsc"
+	},
+	"devDependencies": {
+		"@kucrut/vite-for-wp": "^0.8.0",
+		"@types/node": "^20.10.0",
+		"@vitejs/plugin-react": "^4.2.0",
+		"esbuild": "^0.19.8",
+		"rollup": "^4.5.2",
+		"rollup-plugin-external-globals": "^0.9.1",
+		"sass": "^1.69.5",
+		"typescript": "^5.2.2",
+		"vite": "^5.0.0",
+		"vite-plugin-external": "^4.0.1"
+	}
+}
