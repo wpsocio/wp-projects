@@ -14,9 +14,7 @@
 		{
 			"type": "composer",
 			"url": "https://wpackagist.org",
-			"only": [
-				"wpackagist-plugin/*"
-			]
+			"only": ["wpackagist-plugin/*"]
 		}
 	],
 	"require": {
@@ -24,9 +22,7 @@
 	},
 	"extra": {
 		"installer-paths": {
-			"temp/{$name}/": [
-				"wpackagist-plugin/cmb2"
-			]
+			"temp/{$name}/": ["wpackagist-plugin/cmb2"]
 		}
 	},
 	"config": {

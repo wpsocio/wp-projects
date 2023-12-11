@@ -6,7 +6,7 @@ import { createLinkCommand, createUnlinkCommand } from './commands/link.js';
  * The main entrypoint for the CLI.
  */
 export async function cli() {
-	let parser = yargs(hideBin(process.argv));
+	const parser = yargs(hideBin(process.argv));
 
 	parser.scriptName('wpsocio');
 

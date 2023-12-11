@@ -3,13 +3,18 @@ import chalk from 'chalk';
 
 export const DEFAULT_MESSAGES = {
 	linkAreadyExists: 'Symlink at "{symlinkPath}" already exists. ✅',
-	dirAlreadyExists: 'Warning: Failed to create symlink. Directory already exists: "{symlinkPath}"\n',
-	dirDoesNotExist: 'Error: Failed to create symlink. Directory does not exist: "{realPath}"\n',
-	creatLinkSuccess: 'Successfully created a symlink at "{symlinkPath}" pointing to "{realPath}" ✅\n',
+	dirAlreadyExists:
+		'Warning: Failed to create symlink. Directory already exists: "{symlinkPath}"\n',
+	dirDoesNotExist:
+		'Error: Failed to create symlink. Directory does not exist: "{realPath}"\n',
+	creatLinkSuccess:
+		'Successfully created a symlink at "{symlinkPath}" pointing to "{realPath}" ✅\n',
 	createLinkError: 'Error creating symlink at "{symlinkPath}"',
 	removeLinkError: 'Failed to remove symlink at "{symlinkPath}"',
-	removeLinkSuccess: 'Removed symlink at "{symlinkPath}" pointing to "{realPath}" ✅\n',
-	linkDoesNotExist: 'Failed to remove symlink. Symlink does not exist: "{symlinkPath}"\n',
+	removeLinkSuccess:
+		'Removed symlink at "{symlinkPath}" pointing to "{realPath}" ✅\n',
+	linkDoesNotExist:
+		'Failed to remove symlink. Symlink does not exist: "{symlinkPath}"\n',
 };
 
 type Messages = Partial<typeof DEFAULT_MESSAGES>;
@@ -25,7 +30,12 @@ export class SymlinkManager {
 	#validateRealPath: boolean;
 	#messages: Messages;
 
-	constructor({ validateRealPath = true, symlinkPath = '', realPath = '', messages = DEFAULT_MESSAGES } = {}) {
+	constructor({
+		validateRealPath = true,
+		symlinkPath = '',
+		realPath = '',
+		messages = DEFAULT_MESSAGES,
+	} = {}) {
 		this.#validateRealPath = validateRealPath;
 		this.#symlinkPath = symlinkPath;
 		this.#realPath = realPath;
@@ -33,8 +43,11 @@ export class SymlinkManager {
 	}
 
 	private init(
-		{ symlinkPath = this.#symlinkPath, realPath = this.#realPath }: BaseArgs = {},
-		{ needsRealPath = true } = {}
+		{
+			symlinkPath = this.#symlinkPath,
+			realPath = this.#realPath,
+		}: BaseArgs = {},
+		{ needsRealPath = true } = {},
 	) {
 		this.#symlinkPath = symlinkPath;
 		this.#realPath = realPath;
@@ -65,9 +78,14 @@ export class SymlinkManager {
 
 	private getMessage(
 		type: keyof typeof DEFAULT_MESSAGES,
-		{ symlinkPath = this.#symlinkPath, realPath = this.#realPath }: BaseArgs = {}
+		{
+			symlinkPath = this.#symlinkPath,
+			realPath = this.#realPath,
+		}: BaseArgs = {},
 	) {
-		return this.#messages[type]?.replace('{symlinkPath}', symlinkPath).replace('{realPath}', realPath);
+		return this.#messages[type]
+			?.replace('{symlinkPath}', symlinkPath)
+			.replace('{realPath}', realPath);
 	}
 
 	public createSymlink(args: BaseArgs = {}) {
@@ -86,7 +104,7 @@ export class SymlinkManager {
 			fs.symlinkSync(this.#realPath, this.#symlinkPath, 'junction');
 			return chalk.green(this.getMessage('creatLinkSuccess'));
 		} catch (error) {
-			return chalk.red(this.getMessage('createLinkError'), error, `\n`);
+			return chalk.red(this.getMessage('createLinkError'), error, '\n');
 		}
 	}
 
@@ -105,9 +123,11 @@ export class SymlinkManager {
 			const linkTarget = fs.readlinkSync(this.#symlinkPath);
 
 			fs.unlinkSync(this.#symlinkPath);
-			return chalk.green(this.getMessage('removeLinkSuccess', { realPath: linkTarget }));
+			return chalk.green(
+				this.getMessage('removeLinkSuccess', { realPath: linkTarget }),
+			);
 		} catch (error) {
-			return chalk.red(this.getMessage('removeLinkError'), error, `\n`);
+			return chalk.red(this.getMessage('removeLinkError'), error, '\n');
 		}
 	}
 }

@@ -1,12 +1,12 @@
-import { wp_globals } from '@kucrut/vite-for-wp/utils';
-import { build as esBuild, Plugin as EsBuildPlugin } from 'esbuild';
 import fs from 'node:fs';
 import path from 'node:path';
+import { wp_globals } from '@kucrut/vite-for-wp/utils';
+import { Plugin as EsBuildPlugin, build as esBuild } from 'esbuild';
 import { InputOption, InputOptions, PluginContext } from 'rollup';
-import { ResolvedConfig, Plugin as VitePlugin } from 'vite';
+import { Plugin as VitePlugin, ResolvedConfig } from 'vite';
 
 export const IMPORTS_TO_IGNORE =
-  /\.(css|less|sass|scss|styl|stylus|pcss|postcss|sss)(?:$|\?)/
+	/\.(css|less|sass|scss|styl|stylus|pcss|postcss|sss)(?:$|\?)/;
 
 export type ExtractDepsOptions = {
 	input?: InputOption;
@@ -31,7 +31,7 @@ export async function extractExternalDeps(
 		normalizePath,
 		outDir,
 		plugins = [],
-	}: ExtractDepsOptions
+	}: ExtractDepsOptions,
 ) {
 	const dependencies: Record<string, string[]> = {};
 
@@ -73,26 +73,31 @@ export async function extractExternalDeps(
 									namespace: 'external-deps',
 								}));
 
-								build.onLoad({ filter: /.*/, namespace: 'external-deps' }, (args) => {
-									dependencies[entry].push(normalizePath ? normalizePath(args.path) : args.path);
-									return {
-										contents: `exports.ok = true;`,
-										loader: 'js',
-									};
-								});
+								build.onLoad(
+									{ filter: /.*/, namespace: 'external-deps' },
+									(args) => {
+										dependencies[entry].push(
+											normalizePath ? normalizePath(args.path) : args.path,
+										);
+										return {
+											contents: 'exports.ok = true;',
+											loader: 'js',
+										};
+									},
+								);
 
 								build.onLoad({ filter: IMPORTS_TO_IGNORE }, () => {
 									return {
 										contents: '',
 										loader: 'empty',
 									};
-								})
+								});
 							},
 						},
 						...plugins,
 					],
 				});
-			})
+			}),
 		);
 
 		const source = JSON.stringify(dependencies);
