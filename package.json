@@ -11,6 +11,7 @@
 		"dev": "turbo dev",
 		"build": "turbo build",
 		"typecheck": "turbo typecheck",
+		"lint": "pnpm run lint:js",
 		"lint:js": "biome lint ./",
 		"lint-fix:js": "biome format ./ --write"
 	},
