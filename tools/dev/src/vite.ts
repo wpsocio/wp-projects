@@ -1,4 +1,4 @@
-import { v4wp, V4wpOptions } from '@kucrut/vite-for-wp';
+import { V4wpOptions, v4wp } from '@kucrut/vite-for-wp';
 import { wp_scripts } from '@kucrut/vite-for-wp/plugins';
 import react from '@vitejs/plugin-react';
 import { UserConfig, defineConfig } from 'vite';

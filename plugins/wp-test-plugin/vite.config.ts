@@ -7,5 +7,5 @@ export default defineConfig(
 			login: 'src/js/login/index.tsx',
 		},
 		outDir: 'src/assets/build',
-	})
+	}),
 );

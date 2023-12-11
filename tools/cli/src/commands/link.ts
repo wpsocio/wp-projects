@@ -1,7 +1,11 @@
 import chalk from 'chalk';
 import { Argv, CommandModule } from 'yargs';
 import { InferBuilderOptions } from '../types.js';
-import { getAllProjects, getRealPath, getSymlinkPath } from '../utils/projects.js';
+import {
+	getAllProjects,
+	getRealPath,
+	getSymlinkPath,
+} from '../utils/projects.js';
 import { SymlinkManager } from '../utils/symlinks.js';
 
 const WP_CONTENT_DIR = process.env.WP_CONTENT_DIR;
@@ -17,8 +21,7 @@ function createBuilder(action: 'link' | 'unlink') {
 				coerce(projects: Array<string>) {
 					// Comma gets converted to space by yargs
 					return projects
-						.map((project) => project.split(/\s+/))
-						.flat(1)
+						.flatMap((project) => project.split(/\s+/))
 						.map((part) => part.trim())
 						.filter(Boolean);
 				},
@@ -29,19 +32,29 @@ function createBuilder(action: 'link' | 'unlink') {
 				default: WP_CONTENT_DIR,
 			})
 			.option('all', {
-				describe: `${action.charAt(0).toUpperCase() + action.slice(1)} all projects.`,
+				describe: `${
+					action.charAt(0).toUpperCase() + action.slice(1)
+				} all projects.`,
 				type: 'boolean',
 			});
 	};
 }
 
-export type LinkArgs = InferBuilderOptions<ReturnType<ReturnType<typeof createBuilder>>>;
+export type LinkArgs = InferBuilderOptions<
+	ReturnType<ReturnType<typeof createBuilder>>
+>;
 
-function assertWpContentDir(args: LinkArgs): asserts args is LinkArgs & { wpContentDir: string } {
+function assertWpContentDir(
+	args: LinkArgs,
+): asserts args is LinkArgs & { wpContentDir: string } {
 	if (!args['wp-content-dir']) {
-		console.log(chalk.red('Please provide a valid WordPress content directory.'));
 		console.log(
-			chalk('You can set it using the --wp-content-dir option or the WP_CONTENT_DIR environment variable.')
+			chalk.red('Please provide a valid WordPress content directory.'),
+		);
+		console.log(
+			chalk(
+				'You can set it using the --wp-content-dir option or the WP_CONTENT_DIR environment variable.',
+			),
 		);
 
 		process.exit(1);
