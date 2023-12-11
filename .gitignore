@@ -9,6 +9,7 @@ vendor/
 # Ignore all directories in root
 /*/
 # Except for these
+!/.github/
 !/.vscode/
 !/bin/
 !/packages/
