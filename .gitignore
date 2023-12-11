@@ -5,7 +5,6 @@ node_modules/
 
 # Composer #
 vendor/
-build/
 
 # Ignore all directories in root
 /*/
@@ -25,7 +24,10 @@ build/
 .rollup.cache/
 tsconfig.tsbuildinfo
 .idea/
+.turbo/
 
 # Misc
+build/
+dist/
 .env
 temp/
