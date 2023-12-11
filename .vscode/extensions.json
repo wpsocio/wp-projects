@@ -2,6 +2,6 @@
 	"recommendations": [
 		"wongjn.php-sniffer",
 		"bmewburn.vscode-intelephense-client",
-		"biomejs.biome",
+		"biomejs.biome"
 	]
 }
