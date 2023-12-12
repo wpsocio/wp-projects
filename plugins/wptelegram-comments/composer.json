@@ -1,22 +1,19 @@
 {
-	"name": "wpsocio/wp-test-plugin",
-	"version": "1.0.0",
-	"description": "",
-	"require-dev": {
-		"wp-coding-standards/wpcs": "^3.0",
-		"wpackagist-plugin/cmb2": ">=2.9.0"
-	},
+	"name": "wpsocio/wptelegram-comments",
+	"description": "Use Telegram Comments widget for your WordPress posts or pages.",
 	"scripts": {
 		"lint": "\"vendor/bin/phpcs\" --standard=phpcs.xml --extensions=php src/",
 		"lint:skip-warnings": "\"vendor/bin/phpcs\" --standard=phpcs.xml --extensions=php -n src/",
 		"lint:fix": "\"vendor/bin/phpcbf\" --standard=phpcs.xml --extensions=php src/"
 	},
+	"require": {
+		"kucrut/vite-for-wp": "^0.8.0",
+		"wpsocio/wp-options": "dev-main"
+	},
+	"require-dev": {
+		"wp-coding-standards/wpcs": "^3.0"
+	},
 	"repositories": [
-		{
-			"type": "composer",
-			"url": "https://wpackagist.org",
-			"only": ["wpackagist-plugin/*"]
-		},
 		{
 			"type": "path",
 			"url": "../../packages/php/wp-options",
@@ -25,18 +22,8 @@
 			}
 		}
 	],
-	"require": {
-		"kucrut/vite-for-wp": "^0.8.0",
-		"wpsocio/wp-options": "dev-main"
-	},
-	"extra": {
-		"installer-paths": {
-			"temp/{$name}/": ["wpackagist-plugin/cmb2"]
-		}
-	},
 	"config": {
 		"allow-plugins": {
-			"composer/installers": false,
 			"dealerdirect/phpcodesniffer-composer-installer": false
 		}
 	}

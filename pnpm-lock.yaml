@@ -32,6 +32,9 @@ importers:
       '@wordpress/components':
         specifier: ^25.12.0
         version: 25.13.0(@types/react@18.2.38)(react-dom@18.2.0)(react@18.2.0)
+      '@wpsocio/helpers':
+        specifier: workspace:*
+        version: link:../helpers
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -39,6 +42,28 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
     devDependencies:
+      '@types/react':
+        specifier: ^18.2.37
+        version: 18.2.38
+      '@types/react-dom':
+        specifier: ^18.2.15
+        version: 18.2.17
+
+  packages/js/helpers:
+    dependencies:
+      '@wordpress/components':
+        specifier: ^25.12.0
+        version: 25.13.0(@types/react@18.2.38)(react-dom@18.2.0)(react@18.2.0)
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+    devDependencies:
+      '@types/jquery':
+        specifier: ^3.5.29
+        version: 3.5.29
       '@types/react':
         specifier: ^18.2.37
         version: 18.2.38
@@ -85,6 +110,46 @@ importers:
       typescript:
         specifier: ^5.2.2
         version: 5.3.2
+
+  plugins/wptelegram-comments:
+    dependencies:
+      '@wordpress/components':
+        specifier: ^25.12.0
+        version: 25.13.0(@types/react@18.2.38)(react-dom@18.2.0)(react@18.2.0)
+      '@wordpress/element':
+        specifier: ^5.24.0
+        version: 5.24.0
+      '@wordpress/i18n':
+        specifier: ^4.47.0
+        version: 4.47.0
+      '@wpsocio/components':
+        specifier: workspace:*
+        version: link:../../packages/js/components
+      '@wpsocio/helpers':
+        specifier: workspace:*
+        version: link:../../packages/js/helpers
+    devDependencies:
+      '@types/jquery':
+        specifier: ^3.5.29
+        version: 3.5.29
+      '@types/react':
+        specifier: ^18.2.37
+        version: 18.2.38
+      '@types/react-dom':
+        specifier: ^18.2.15
+        version: 18.2.17
+      '@wpsocio/dev':
+        specifier: workspace:*
+        version: link:../../tools/dev
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      typescript:
+        specifier: ^5.2.2
+        version: 5.3.3
 
   tools/cli:
     devDependencies:
@@ -1686,6 +1751,12 @@ packages:
     resolution: {integrity: sha512-9VZUA5omXBfn+hDxFjUDu1FOJTBM3LmvqfDey+Z6Aa8B8/JmF5SMj6FBrjfgJ/Q3YXOZd3qyTDfJyMZSs/wCUA==}
     dev: false
 
+  /@types/jquery@3.5.29:
+    resolution: {integrity: sha512-oXQQC9X9MOPRrMhPHHOsXqeQDnWeCDT3PelUIg/Oy8FAbzSZtFHRjc7IpbfFVmpLtJ+UOoywpRsuO5Jxjybyeg==}
+    dependencies:
+      '@types/sizzle': 2.3.8
+    dev: true
+
   /@types/mousetrap@1.6.15:
     resolution: {integrity: sha512-qL0hyIMNPow317QWW/63RvL1x5MVMV+Ru3NaY9f/CuEpCqrmb7WeuK2071ZY5hczOnm38qExWM2i2WtkXLSqFw==}
     dev: false
@@ -1723,6 +1794,10 @@ packages:
 
   /@types/scheduler@0.16.8:
     resolution: {integrity: sha512-WZLiwShhwLRmeV6zH+GkbOFT6Z6VklCItrDioxUnv+u4Ll+8vKeFySoFyK/0ctcRpOmwAicELfmys1sDc/Rw+A==}
+
+  /@types/sizzle@2.3.8:
+    resolution: {integrity: sha512-0vWLNK2D5MT9dg0iOo8GlKguPAU02QjmZitPEsXRuJXU/OGIOt9vT9Fc26wtYuavLxtO45v9PGleoL9Z0k1LHg==}
+    dev: true
 
   /@types/yargs-parser@21.0.3:
     resolution: {integrity: sha512-I4q9QU9MQv4oEOz4tAHJtNz1cwuLxn2F3xcc2iV5WdqLPpUnj30aUuxt1mAxYTG+oe8CZMV/+6rU4S4gRDzqtQ==}
@@ -1769,7 +1844,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.23.4
       '@wordpress/dom-ready': 3.46.0
-      '@wordpress/i18n': 4.46.0
+      '@wordpress/i18n': 4.47.0
     dev: false
 
   /@wordpress/a11y@3.47.0:
@@ -2370,7 +2445,7 @@ packages:
     engines: {node: '>=12'}
     dependencies:
       '@babel/runtime': 7.23.4
-      '@wordpress/i18n': 4.46.0
+      '@wordpress/i18n': 4.47.0
       change-case: 4.1.2
     dev: false
 
@@ -2508,7 +2583,7 @@ packages:
       '@wordpress/deprecated': 3.46.0
       '@wordpress/element': 5.24.0
       '@wordpress/escape-html': 2.46.0
-      '@wordpress/i18n': 4.46.0
+      '@wordpress/i18n': 4.47.0
       '@wordpress/keycodes': 3.46.0
       memize: 2.1.0
       react: 18.2.0

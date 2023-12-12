@@ -1,0 +1,26 @@
+.wpsocio-plugin-header {
+    &__logo {
+        height: 2rem;
+        width: 2rem;
+    }
+
+    .components-card-header {
+        justify-content: start;
+        padding-block: 0.5rem;
+        padding-inline: 1rem;
+    }
+
+    &__title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        display: inline-block;
+        margin: 0;
+
+    }
+
+    &__version {
+        font-size: 80%;
+        font-style: italic;
+        color: #718096;
+    }
+}
