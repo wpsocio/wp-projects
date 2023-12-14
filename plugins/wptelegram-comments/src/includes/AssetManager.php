@@ -25,12 +25,11 @@ use Kucrut\Vite;
  */
 class AssetManager extends BaseClass {
 
-	const ADMIN_SETTINGS_ENTRY = 'js/settings/index.tsx';
+	const ADMIN_SETTINGS_ENTRY = 'js/settings/index.ts';
 
 	const ASSET_ENTRIES = [
 		'admin-settings' => [
-			'entry'    => self::ADMIN_SETTINGS_ENTRY,
-			'css-deps' => [ 'wp-components' ],
+			'entry' => self::ADMIN_SETTINGS_ENTRY,
 		],
 	];
 

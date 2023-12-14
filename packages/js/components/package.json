@@ -15,13 +15,17 @@
 		}
 	},
 	"dependencies": {
-		"@wordpress/components": "^25.12.0",
-		"@wpsocio/helpers": "workspace:*",
-		"react": "^18.2.0",
-		"react-dom": "^18.2.0"
+		"@wpsocio/adapters": "workspace:*",
+		"@wpsocio/services": "workspace:*",
+		"@wpsocio/icons": "workspace:*",
+		"@wpsocio/utilities": "workspace:*",
+		"@wpsocio/form": "workspace:*",
+		"@wpsocio/i18n": "workspace:*"
 	},
 	"devDependencies": {
-		"@types/react": "^18.2.37",
-		"@types/react-dom": "^18.2.15"
+		"@types/react": "^18.2.45",
+		"@types/react-dom": "^18.2.17",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0"
 	}
 }

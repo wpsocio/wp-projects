@@ -12,17 +12,25 @@ export function createViteConfig(options: V4wpOptions): UserConfig {
 			assetsDir: 'dist',
 		},
 		plugins: [
+			react(),
 			v4wp(options),
 			wp_scripts(),
-			react({
-				jsxRuntime: 'classic',
-			}),
 			{
 				name: 'override-config',
 				config: () => ({
 					build: {
 						// ensure that manifest.json is not in ".vite/" folder
 						manifest: 'manifest.json',
+						rollupOptions: {
+							output: {
+								/**
+								 * Ensure that external globals work correctly
+								 *
+								 * @see https://github.com/vitejs/vite-plugin-react/issues/3
+								 */
+								format: 'iife',
+							},
+						},
 					},
 				}),
 			},
