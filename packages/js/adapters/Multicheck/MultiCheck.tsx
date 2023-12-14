@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import {
 	Checkbox,
 	CheckboxGroup,
@@ -6,6 +5,7 @@ import {
 	Stack,
 	StackProps,
 } from '@chakra-ui/react';
+import { useMemo } from 'react';
 
 import type { OptionsType } from '../types';
 
@@ -13,7 +13,7 @@ export interface MultiCheckProps extends CheckboxGroupProps {
 	name?: string;
 	options?: OptionsType;
 	isInline?: boolean;
-	ref?: any;
+	ref?: unknown;
 }
 
 const dir: StackProps['direction'] = ['column', 'row'];

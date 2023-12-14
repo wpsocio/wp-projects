@@ -1,5 +1,5 @@
 export const buildShortCodeFromAtts = (
-	attributes: Record<string, any>,
+	attributes: Record<string, unknown>,
 	allowedAtts: Array<string>,
 	shrotcode: string,
 ): string => {
@@ -7,7 +7,7 @@ export const buildShortCodeFromAtts = (
 		.filter((att) => attributes?.[att])
 		.map((att) => `${att}="${attributes[att]}"`);
 
-	const atts = attsKV.length ? ' ' + attsKV.join(' ') : '';
+	const atts = attsKV.length ? ` ${attsKV.join(' ')}` : '';
 
 	return `[${shrotcode} ${atts}]`;
 };

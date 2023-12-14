@@ -7,7 +7,7 @@ const createI18n = wpI18n.createI18n;
 // create i18n instance with translation data and text domain
 const i18n = createI18n?.() || wpI18n;
 
-export const setLocaleData = (data: any, domain: string) => {
+export const setLocaleData = (data: wpI18n.LocaleData, domain: string) => {
 	TEXT_DOMAIN = domain;
 	i18n.setLocaleData(data, domain);
 };

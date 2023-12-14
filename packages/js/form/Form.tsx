@@ -14,6 +14,7 @@ export interface FormProps<FormValues extends AnyObject>
 
 declare global {
 	interface Window {
+		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 		__WP_RHF_FORMS__: Record<string, UseFormReturn<any>>;
 	}
 }

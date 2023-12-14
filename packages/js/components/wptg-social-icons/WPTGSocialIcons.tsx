@@ -1,4 +1,4 @@
-import { Box, Stack, StackItem, Text, Link } from '@wpsocio/adapters';
+import { Box, Link, Stack, StackItem, Text } from '@wpsocio/adapters';
 import { __, sprintf } from '@wpsocio/i18n';
 import { insertScript } from '@wpsocio/utilities';
 import { useEffect } from 'react';
@@ -36,7 +36,7 @@ export const WPTGSocialIcons: React.FC<WPTGSocialIconsProps> = ({
 					data-size="small"
 					data-show-faces="false"
 					data-share="false"
-				></Box>
+				/>
 			</StackItem>
 			<StackItem className="wptelegram-social-icons__icon">
 				<Box

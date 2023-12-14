@@ -52,7 +52,7 @@ export const useDisplayFeedback = (): DF => {
 		({ [FORM_ERROR]: formError, ...errors }, submitError) => {
 			if (submitError || formError) {
 				const title = submitError ?? formError;
-				displayError({ title, status: 'warning' });
+				displayError({ title: title as string, status: 'warning' });
 			}
 			displayErrors(errors);
 		},

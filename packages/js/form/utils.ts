@@ -16,7 +16,8 @@ export const evaluateFieldConditions = (
 		?.map(({ field, compare, value: val }) => {
 			const complexKey = getComplexKey(field);
 
-			const result = formData[complexKey];
+			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+			const result = formData[complexKey] as any;
 			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 			const value = val as any;
 

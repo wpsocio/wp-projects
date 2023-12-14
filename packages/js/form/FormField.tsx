@@ -1,5 +1,5 @@
-import type { FormFieldProps, DataShape, FieldType } from './types';
 import { Field, Group, Repeatable } from './fields';
+import type { DataShape, FieldType, FormFieldProps } from './types';
 
 export const FormField = <
 	TFieldType extends FieldType,
@@ -13,6 +13,7 @@ export const FormField = <
 		throw new Error('fieldType is required');
 	}
 
+	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 	const { isRepeatable, ...rest } = props as any;
 
 	if (isRepeatable) {

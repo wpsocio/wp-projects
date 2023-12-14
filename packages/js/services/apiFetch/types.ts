@@ -1,11 +1,12 @@
 export interface BaseApiUtilArgs {
 	setInProgress?: (state: boolean) => void;
-	setResult?: (result: any) => void;
+	setResult?: (result: unknown) => void;
 	setResultType?: (resultType: ResultType) => void;
 }
 
 export type ResultType = 'SUCCESS' | 'ERROR';
 
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 export type TestResult<T = any> = {
 	// e.g. {[id]: result}
 	[key: string]: T;

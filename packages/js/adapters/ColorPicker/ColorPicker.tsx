@@ -5,7 +5,7 @@ type HexColorPickerProps = React.ComponentProps<typeof HexColorPicker>;
 export interface ColorPickerProps
 	extends Partial<Omit<HexColorPickerProps, 'color'>> {
 	value?: string;
-	ref?: any;
+	ref?: unknown;
 }
 
 export const ColorPicker: React.FC<ColorPickerProps> = ({

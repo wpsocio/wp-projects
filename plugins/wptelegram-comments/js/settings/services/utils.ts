@@ -3,6 +3,8 @@ import type { DataShape } from './types';
 /**
  * Prepare default values from REST API schema
  */
+
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 export const prepDefaultValues = (data: any) => {
 	const attributes = data.attributes ? JSON.stringify(data.attributes) : '';
 

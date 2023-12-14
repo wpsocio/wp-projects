@@ -1,14 +1,18 @@
-/* eslint-disable */
 // @ts-nocheck
 
 /**
  * The code is copied from @wordpress/element as is
  */
 
-import { createElement, cloneElement, Fragment, isValidElement } from 'react';
+import { Fragment, cloneElement, createElement, isValidElement } from 'react';
 
-/** @typedef {import('./react').WPElement} WPElement */
+/**
+ * Object containing a React element.
+ *
+ * @typedef {import('react').ReactElement} Element
+ */
 
+// biome-ignore lint/style/useSingleVarDeclarator: <explanation>
 let indoc, offset, output, stack;
 
 /**
@@ -33,17 +37,17 @@ const tokenizer = /<(\/)?(\w+)\s*(\/)?>/g;
  *
  * @typedef Frame
  *
- * @property {WPElement}   element            A parent element which may still have
- * @property {number}      tokenStart         Offset at which parent element first
- *                                            appears.
- * @property {number}      tokenLength        Length of string marking start of parent
- *                                            element.
- * @property {number}      [prevOffset]       Running offset at which parsing should
- *                                            continue.
- * @property {number}      [leadingTextStart] Offset at which last closing element
- *                                            finished, used for finding text between
- *                                            elements.
- * @property {WPElement[]} children           Children.
+ * @property {Element}   element            A parent element which may still have
+ * @property {number}    tokenStart         Offset at which parent element first
+ *                                          appears.
+ * @property {number}    tokenLength        Length of string marking start of parent
+ *                                          element.
+ * @property {number}    [prevOffset]       Running offset at which parsing should
+ *                                          continue.
+ * @property {number}    [leadingTextStart] Offset at which last closing element
+ *                                          finished, used for finding text between
+ *                                          elements.
+ * @property {Element[]} children           Children.
  */
 
 /**
@@ -53,17 +57,17 @@ const tokenizer = /<(\/)?(\w+)\s*(\/)?>/g;
  * parsed.
  *
  * @private
- * @param {WPElement} element            A parent element which may still have
- *                                       nested children not yet parsed.
- * @param {number}    tokenStart         Offset at which parent element first
- *                                       appears.
- * @param {number}    tokenLength        Length of string marking start of parent
- *                                       element.
- * @param {number}    [prevOffset]       Running offset at which parsing should
- *                                       continue.
- * @param {number}    [leadingTextStart] Offset at which last closing element
- *                                       finished, used for finding text between
- *                                       elements.
+ * @param {Element} element            A parent element which may still have
+ *                                     nested children not yet parsed.
+ * @param {number}  tokenStart         Offset at which parent element first
+ *                                     appears.
+ * @param {number}  tokenLength        Length of string marking start of parent
+ *                                     element.
+ * @param {number}  [prevOffset]       Running offset at which parsing should
+ *                                     continue.
+ * @param {number}  [leadingTextStart] Offset at which last closing element
+ *                                     finished, used for finding text between
+ *                                     elements.
  *
  * @return {Frame} The stack frame tracking parse progress.
  */
@@ -105,11 +109,11 @@ function createFrame(
  * }
  * ```
  *
- * @param {string} interpolatedString The interpolation string to be parsed.
- * @param {Object} conversionMap      The map used to convert the string to
- *                                    a react element.
+ * @param {string}                  interpolatedString The interpolation string to be parsed.
+ * @param {Record<string, Element>} conversionMap      The map used to convert the string to
+ *                                                     a react element.
  * @throws {TypeError}
- * @return {WPElement}  A wp element.
+ * @return {Element}  A wp element.
  */
 export const createInterpolateElement = (interpolatedString, conversionMap) => {
 	indoc = interpolatedString;
@@ -120,7 +124,7 @@ export const createInterpolateElement = (interpolatedString, conversionMap) => {
 
 	if (!isValidConversionMap(conversionMap)) {
 		throw new TypeError(
-			'The conversionMap provided is not valid. It must be an object with values that are WPElements',
+			'The conversionMap provided is not valid. It must be an object with values that are React Elements',
 		);
 	}
 
@@ -134,7 +138,7 @@ export const createInterpolateElement = (interpolatedString, conversionMap) => {
  * Validate conversion map.
  *
  * A map is considered valid if it's an object and every value in the object
- * is a WPElement
+ * is a React Element
  *
  * @private
  *
@@ -219,13 +223,16 @@ function proceed(conversionMap) {
 
 			// Otherwise we're nested and we have to close out the current
 			// block and add it as a innerBlock to the parent.
+			// biome-ignore lint/correctness/noSwitchDeclarations: <explanation>
 			const stackTop = stack.pop();
+			// biome-ignore lint/correctness/noSwitchDeclarations: <explanation>
 			const text = indoc.substr(
 				stackTop.prevOffset,
 				startOffset - stackTop.prevOffset,
 			);
 			stackTop.children.push(text);
 			stackTop.prevOffset = startOffset + tokenLength;
+			// biome-ignore lint/correctness/noSwitchDeclarations: <explanation>
 			const frame = createFrame(
 				stackTop.element,
 				stackTop.tokenStart,

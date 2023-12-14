@@ -36,7 +36,12 @@ export const useLocalStorage = <D extends AnyObject>(
 	);
 
 	const getItem = useCallback<LocalStorage<D>['getItem']>(
-		(itemKey, defaultValue) => getData()?.[itemKey] || defaultValue,
+		(itemKey, defaultValue) => {
+			const value = getData()?.[itemKey];
+
+			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+			return (value ?? defaultValue) as any;
+		},
 		[getData],
 	);
 

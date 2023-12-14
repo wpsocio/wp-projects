@@ -1,4 +1,4 @@
-let data: any = {};
+let data: Record<string, string> = {};
 
 class ModuleStorage implements Storage {
 	/**
