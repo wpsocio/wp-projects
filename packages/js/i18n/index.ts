@@ -20,7 +20,12 @@ export const _n = (single: string, plural: string, number: number): string => {
 	return i18n._n(single, plural, number, TEXT_DOMAIN);
 };
 
-export const _nx = (single: string, plural: string, number: number, context: string): string => {
+export const _nx = (
+	single: string,
+	plural: string,
+	number: number,
+	context: string,
+): string => {
 	return i18n._nx(single, plural, number, context, TEXT_DOMAIN);
 };
 

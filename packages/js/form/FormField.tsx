@@ -1,8 +1,11 @@
 import type { FormFieldProps, DataShape, FieldType } from './types';
 import { Field, Group, Repeatable } from './fields';
 
-export const FormField = <TFieldType extends FieldType, TDataShape extends DataShape>(
-	props: FormFieldProps<TFieldType, TDataShape>
+export const FormField = <
+	TFieldType extends FieldType,
+	TDataShape extends DataShape,
+>(
+	props: FormFieldProps<TFieldType, TDataShape>,
 ): JSX.Element => {
 	const { fieldType } = props;
 

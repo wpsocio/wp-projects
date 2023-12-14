@@ -4,7 +4,13 @@ export * from './FormField';
 export * from './types';
 export { useFieldError } from './hooks';
 
-export { useForm, useFieldArray, useFormContext, useWatch, useFormState } from 'react-hook-form';
+export {
+	useForm,
+	useFieldArray,
+	useFormContext,
+	useWatch,
+	useFormState,
+} from 'react-hook-form';
 
 export type {
 	SubmitErrorHandler,

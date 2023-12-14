@@ -8,7 +8,8 @@ import {
 	NumberInputStepper,
 } from '@chakra-ui/react';
 
-export interface NumberInputProps extends Omit<ChakraNumberInputProps, 'onChange'> {
+export interface NumberInputProps
+	extends Omit<ChakraNumberInputProps, 'onChange'> {
 	// fix the mess created by react-hook-form and chakra
 	onChange?: React.ChangeEventHandler<HTMLInputElement>;
 	onChangeValue?: (valueAsString: string, valueAsNumber: number) => void;
@@ -25,5 +26,5 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
 				</NumberInputStepper>
 			</ChakraNumberInput>
 		);
-	}
+	},
 );

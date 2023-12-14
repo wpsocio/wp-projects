@@ -43,8 +43,12 @@ export const Modal: React.FC<ModalProps> = ({
 		return null;
 	}
 
-	const cancelButton = cancelButtonProps && <Button mr={3} {...cancelButtonProps} />;
-	const submitButton = submitButtonProps && <Button variantColor='blue' {...submitButtonProps} />;
+	const cancelButton = cancelButtonProps && (
+		<Button mr={3} {...cancelButtonProps} />
+	);
+	const submitButton = submitButtonProps && (
+		<Button variantColor="blue" {...submitButtonProps} />
+	);
 	const defaultFooterNode = (cancelButton || submitButton) && (
 		<>
 			{cancelButton}
@@ -62,12 +66,21 @@ export const Modal: React.FC<ModalProps> = ({
 	);
 
 	return (
-		<ChakraModal closeOnOverlayClick={isClosable} isCentered isOpen={isOpen} {...props}>
+		<ChakraModal
+			closeOnOverlayClick={isClosable}
+			isCentered
+			isOpen={isOpen}
+			{...props}
+		>
 			<ModalOverlay>
-				<ModalContent role='alertdialog' className={className}>
+				<ModalContent role="alertdialog" className={className}>
 					<ModalHeader>{title}</ModalHeader>
 
-					{closeButton ? closeButton : <ModalCloseButton isDisabled={!isClosable} />}
+					{closeButton ? (
+						closeButton
+					) : (
+						<ModalCloseButton isDisabled={!isClosable} />
+					)}
 
 					<ModalBody className={bodyClassName}>{children || content}</ModalBody>
 

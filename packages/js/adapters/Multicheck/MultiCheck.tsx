@@ -1,5 +1,11 @@
 import { useMemo } from 'react';
-import { Checkbox, CheckboxGroup, CheckboxGroupProps, Stack, StackProps } from '@chakra-ui/react';
+import {
+	Checkbox,
+	CheckboxGroup,
+	CheckboxGroupProps,
+	Stack,
+	StackProps,
+} from '@chakra-ui/react';
 
 import type { OptionsType } from '../types';
 
@@ -12,7 +18,12 @@ export interface MultiCheckProps extends CheckboxGroupProps {
 
 const dir: StackProps['direction'] = ['column', 'row'];
 
-export const MultiCheck: React.FC<MultiCheckProps> = ({ children, options, isInline, ...restProps }) => {
+export const MultiCheck: React.FC<MultiCheckProps> = ({
+	children,
+	options,
+	isInline,
+	...restProps
+}) => {
 	const childNodes = useMemo(() => {
 		return options?.map(({ label, value, ...rest }, index) => {
 			return (
@@ -25,15 +36,16 @@ export const MultiCheck: React.FC<MultiCheckProps> = ({ children, options, isInl
 
 	// make sure the value is array
 	const value = useMemo(
-		() => (restProps.value === undefined ? restProps.value : restProps.value || []),
-		[restProps.value]
+		() =>
+			restProps.value === undefined ? restProps.value : restProps.value || [],
+		[restProps.value],
 	);
 
 	const direction = isInline ? dir : 'column';
 
 	return (
 		<CheckboxGroup {...restProps} value={value}>
-			<Stack direction={direction} spacing='0.5em'>
+			<Stack direction={direction} spacing="0.5em">
 				{childNodes || children}
 			</Stack>
 		</CheckboxGroup>
