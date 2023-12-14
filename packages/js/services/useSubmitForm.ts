@@ -1,8 +1,8 @@
-import type { SubmitHandler, UseFormReturn } from '@wpsocio/form';
 import { __ } from '@wpsocio/i18n';
 import { GetErrorMessage, strToPath } from '@wpsocio/utilities';
 import { last } from 'ramda';
 import { useCallback, useEffect, useRef } from 'react';
+import type { SubmitHandler, UseFormReturn } from 'react-hook-form';
 import { fetchAPI } from './apiFetch';
 import { useDisplayFeedback } from './useDisplayFeedback';
 

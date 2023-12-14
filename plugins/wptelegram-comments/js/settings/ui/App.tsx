@@ -1,5 +1,6 @@
-import { Cols75x25, SubmitBar } from '@wpsocio/components';
+import { Cols75x25 } from '@wpsocio/components';
 import { Form, useForm, yupResolver } from '@wpsocio/form';
+import { SubmitBar } from '@wpsocio/form-components';
 import { useMemo } from 'react';
 import { ROOT_ID } from '../constants';
 import {

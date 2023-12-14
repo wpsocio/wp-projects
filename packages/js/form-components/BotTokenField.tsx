@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
-import { __ } from '@wpsocio/i18n';
 import { FormField, useFormContext, useWatch } from '@wpsocio/form';
+import { __ } from '@wpsocio/i18n';
 
 import { useBotTokenTest } from './useBotTokenTest';
 

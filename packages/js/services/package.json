@@ -8,7 +8,6 @@
 	"dependencies": {
 		"@chakra-ui/toast": "^7.0.2",
 		"@wordpress/api-fetch": "6.45.0",
-		"@wpsocio/form": "workspace:*",
 		"@wpsocio/i18n": "workspace:*",
 		"@wpsocio/utilities": "workspace:*",
 		"ramda": "^0.29.1",
@@ -20,6 +19,7 @@
 		"@types/ramda": "^0.29.9",
 		"@types/react": "^18.2.45",
 		"@types/wordpress__api-fetch": "3.23.1",
+		"react-hook-form": "^7.49.2",
 		"react": "^18.2.0"
 	}
 }

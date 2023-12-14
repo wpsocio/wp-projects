@@ -75,9 +75,6 @@ importers:
       '@wpsocio/adapters':
         specifier: workspace:*
         version: link:../adapters
-      '@wpsocio/form':
-        specifier: workspace:*
-        version: link:../form
       '@wpsocio/i18n':
         specifier: workspace:*
         version: link:../i18n
@@ -159,6 +156,37 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
 
+  packages/js/form-components:
+    dependencies:
+      '@wpsocio/adapters':
+        specifier: workspace:*
+        version: link:../adapters
+      '@wpsocio/components':
+        specifier: workspace:*
+        version: link:../components
+      '@wpsocio/form':
+        specifier: workspace:*
+        version: link:../form
+      '@wpsocio/i18n':
+        specifier: workspace:*
+        version: link:../i18n
+      '@wpsocio/icons':
+        specifier: workspace:*
+        version: link:../icons
+      '@wpsocio/services':
+        specifier: workspace:*
+        version: link:../services
+      '@wpsocio/utilities':
+        specifier: workspace:*
+        version: link:../utilities
+    devDependencies:
+      '@types/react':
+        specifier: ^18.2.45
+        version: 18.2.45
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+
   packages/js/i18n:
     dependencies:
       '@wordpress/i18n':
@@ -186,9 +214,6 @@ importers:
       '@wordpress/api-fetch':
         specifier: 6.45.0
         version: 6.45.0
-      '@wpsocio/form':
-        specifier: workspace:*
-        version: link:../form
       '@wpsocio/i18n':
         specifier: workspace:*
         version: link:../i18n
@@ -220,6 +245,9 @@ importers:
       react:
         specifier: ^18.2.0
         version: 18.2.0
+      react-hook-form:
+        specifier: ^7.49.2
+        version: 7.49.2(react@18.2.0)
 
   packages/js/utilities:
     dependencies:
@@ -278,6 +306,9 @@ importers:
       '@wpsocio/form':
         specifier: workspace:*
         version: link:../../packages/js/form
+      '@wpsocio/form-components':
+        specifier: workspace:*
+        version: link:../../packages/js/form-components
       '@wpsocio/i18n':
         specifier: workspace:*
         version: link:../../packages/js/i18n
@@ -3314,7 +3345,6 @@ packages:
       react: ^16.8.0 || ^17 || ^18
     dependencies:
       react: 18.2.0
-    dev: false
 
   /react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}

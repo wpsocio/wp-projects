@@ -1,7 +1,7 @@
 {
-	"name": "@wpsocio/components",
-	"version": "1.0.0",
+	"name": "@wpsocio/form-components",
 	"private": true,
+	"version": "1.0.0",
 	"license": "GPL-3.0",
 	"type": "module",
 	"module": "index.ts",
@@ -14,16 +14,16 @@
 		}
 	},
 	"dependencies": {
+		"@wpsocio/components": "workspace:*",
 		"@wpsocio/adapters": "workspace:*",
-		"@wpsocio/services": "workspace:*",
+		"@wpsocio/form": "workspace:*",
 		"@wpsocio/icons": "workspace:*",
+		"@wpsocio/services": "workspace:*",
 		"@wpsocio/utilities": "workspace:*",
 		"@wpsocio/i18n": "workspace:*"
 	},
 	"devDependencies": {
 		"@types/react": "^18.2.45",
-		"@types/react-dom": "^18.2.17",
-		"react": "^18.2.0",
-		"react-dom": "^18.2.0"
+		"react": "^18.2.0"
 	}
 }

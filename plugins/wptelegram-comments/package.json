@@ -30,6 +30,7 @@
 		"@wpsocio/components": "workspace:*",
 		"@wpsocio/services": "workspace:*",
 		"@wpsocio/form": "workspace:*",
+		"@wpsocio/form-components": "workspace:*",
 		"@wpsocio/i18n": "workspace:*",
 		"@wpsocio/utilities": "workspace:*",
 		"yup": "^1.3.2"

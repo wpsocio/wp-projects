@@ -1,5 +1,5 @@
-import { __ } from '@wpsocio/i18n';
 import { Box, Text } from '@wpsocio/adapters';
+import { __ } from '@wpsocio/i18n';
 import type { ResultType } from '@wpsocio/services';
 
 interface RenderTestResultProps {

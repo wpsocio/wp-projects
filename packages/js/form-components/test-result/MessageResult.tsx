@@ -1,4 +1,4 @@
-import { Flex, Box, Text } from '@wpsocio/adapters';
+import { Box, Flex, Text } from '@wpsocio/adapters';
 import { __ } from '@wpsocio/i18n';
 import type { TestResult, TestResultType } from '@wpsocio/services';
 
