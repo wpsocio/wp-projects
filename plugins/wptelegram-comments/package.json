@@ -21,6 +21,7 @@
 	"scripts": {
 		"dev": "vite --port=5000",
 		"build": "vite build",
+		"lint:php": "composer run lint",
 		"preview": "vite preview"
 	},
 	"dependencies": {

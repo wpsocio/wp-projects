@@ -8,6 +8,10 @@
 			"outputs": ["dist/**"],
 			"dependsOn": ["^build"]
 		},
+		"lint:php": {
+			"cache": false,
+			"dependsOn": ["^lint:php"]
+		},
 		"typecheck": {
 			"cache": false,
 			"dependsOn": ["^typecheck"]
