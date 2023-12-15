@@ -1,41 +1,36 @@
+// @ts-check
 import fs from 'node:fs';
 import path from 'node:path';
 import { wp_globals } from '@kucrut/vite-for-wp/utils';
-import { Plugin as EsBuildPlugin, build as esBuild } from 'esbuild';
-import { InputOption, InputOptions, PluginContext } from 'rollup';
-import { Plugin as VitePlugin, ResolvedConfig } from 'vite';
+import { build as esBuild } from 'esbuild';
 
 export const IMPORTS_TO_IGNORE =
 	/\.(css|less|sass|scss|styl|stylus|pcss|postcss|sss)(?:$|\?)/;
 
-export type ExtractDepsOptions = {
-	input?: InputOption;
-	externalDeps: Array<string>;
-	normalizePath?: (path: string) => string;
-	outDir: string;
-	fileName?: string;
-	isProduction?: boolean;
-	plugins?: Array<EsBuildPlugin>;
-};
-
 /**
  * Extract dependencies
+ *
+ * @param {import('./types.js').ExtractDepsOptions} options
+ * @this {import('rollup').PluginContext}
  */
-export async function extractExternalDeps(
-	this: PluginContext,
-	{
-		externalDeps = [],
-		fileName = 'dependencies.json',
-		input,
-		isProduction = true,
-		normalizePath,
-		outDir,
-		plugins = [],
-	}: ExtractDepsOptions,
-) {
-	const dependencies: Record<string, string[]> = {};
+export async function extractExternalDeps({
+	externalDeps = [],
+	fileName = 'dependencies.json',
+	input,
+	isProduction = true,
+	normalizePath,
+	outDir,
+	plugins = [],
+}) {
+	/**
+	 * @type {Record<string, string[]>}
+	 */
+	const dependencies = {};
 
-	const entries: Array<string> = [];
+	/**
+	 * @type {Array<string>}
+	 */
+	const entries = [];
 
 	if (typeof input === 'string') {
 		entries.push(input);
@@ -110,22 +105,34 @@ export async function extractExternalDeps(
 	}
 }
 
-export const extractExternalDepsPlugin = (): VitePlugin => {
-	let config: ResolvedConfig;
+/**
+ *
+ * @returns {import('vite').Plugin}
+ */
+export const extractExternalDepsPlugin = () => {
+	/**
+	 * @type {import('vite').ResolvedConfig}
+	 */
+	let config;
 
 	return {
 		name: 'extract-external-deps',
 		configResolved(resolvedConfig) {
 			config = resolvedConfig;
 		},
-		buildStart: async function (this: PluginContext, options: InputOptions) {
+		/**
+		 *
+		 * @param {import('rollup').InputOptions} options
+		 * @this {import('rollup').PluginContext}
+		 */
+		buildStart: async function (options) {
 			const externals = wp_globals();
 
 			extractExternalDeps.call(this, {
 				externalDeps: Object.keys(externals),
 				input: options.input,
 				isProduction: config.isProduction,
-				normalizePath: (path: string) => path.replace(/^@wordpress\//, 'wp-'),
+				normalizePath: (path) => path.replace(/^@wordpress\//, 'wp-'),
 				outDir: path.resolve(path.join(config.build.outDir)),
 			});
 		},
