@@ -44,7 +44,15 @@ register_deactivation_hook( __FILE__, 'deactivate_wptelegram_login' );
 add_filter(
 	'script_loader_tag',
 	function ( $tag, $handle, $src ) {
-		if ( 'wptelegram_login-admin-settings' !== $handle ) {
+
+		$entries = implode(
+			'|',
+			array_keys(
+				\WPTelegram\Login\includes\AssetManager::ASSET_ENTRIES
+			)
+		);
+
+		if ( ! preg_match( "/^wptelegram_login-($entries)$/", $handle ) ) {
 			return $tag;
 		}
 

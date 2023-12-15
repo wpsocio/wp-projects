@@ -44,12 +44,12 @@ class AssetManager extends BaseClass {
 		'web-app-login'  => [
 			'entry'         => self::WEB_APP_LOGIN_ENTRY,
 			'external-deps' => [
-				self::WEB_APP_SCRIPT_HANDLE => 'https://telegram.org/js/telegram-web-app.js',
+				self::WEB_APP_EXTERNAL_SCRIPT_HANDLE => 'https://telegram.org/js/telegram-web-app.js',
 			],
 		],
 	];
 
-	const WEB_APP_SCRIPT_HANDLE = 'wptelegram-login-web-app-script';
+	const WEB_APP_EXTERNAL_SCRIPT_HANDLE = 'wptelegram-login-web-app-script';
 
 	const WPTELEGRAM_MENU_HANDLE = 'wptelegram-menu';
 
@@ -86,7 +86,7 @@ class AssetManager extends BaseClass {
 						true
 					);
 				}
-				$dependencies = array_merge( $assets->get_dependencies( $entry ), $data['external-deps'] );
+				$dependencies = array_merge( $assets->get_dependencies( $entry ), array_keys( $data['external-deps'] ) );
 			} else {
 				$dependencies = $assets->get_dependencies( $entry );
 			}
@@ -389,7 +389,7 @@ class AssetManager extends BaseClass {
 	 * @since    1.10.4
 	 */
 	public function enqueue_public_scripts() {
-		if ( ! isset( $_SERVER['QUERY_STRING'] ) ) {
+		if ( empty( $_SERVER['QUERY_STRING'] ) ) {
 			return;
 		}
 
@@ -410,7 +410,7 @@ class AssetManager extends BaseClass {
 			[$handle] = $this->registered_handles[ self::WEB_APP_LOGIN_ENTRY ]['scripts'];
 
 			// This should not be needed, but it doesn't seem to work without loading the dependency.
-			wp_enqueue_script( self::WEB_APP_SCRIPT_HANDLE );
+			wp_enqueue_script( self::WEB_APP_EXTERNAL_SCRIPT_HANDLE );
 			wp_enqueue_script( $handle );
 
 			$redirect_to       = esc_url( $query_params['redirect_to'] );
