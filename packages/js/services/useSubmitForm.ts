@@ -2,18 +2,20 @@ import { __ } from '@wpsocio/i18n';
 import { GetErrorMessage, strToPath } from '@wpsocio/utilities';
 import { last } from 'ramda';
 import { useCallback, useEffect, useRef } from 'react';
-import type { SubmitHandler, UseFormReturn } from 'react-hook-form';
+import type {
+	FieldValues,
+	SubmitHandler,
+	UseFormReturn,
+} from 'react-hook-form';
 import { fetchAPI } from './apiFetch';
 import { useDisplayFeedback } from './useDisplayFeedback';
 
-type DataShape = Record<string, unknown>;
-
-interface SubmitFormProps<FD extends DataShape> {
+interface SubmitFormProps<FD extends FieldValues> {
 	displayFeedback?: boolean;
 	form?: UseFormReturn<FD>;
 	formatErrors?: (errors: unknown) => unknown;
 	getErrorMessage: GetErrorMessage<Exclude<keyof FD, number | symbol>>;
-	normalizeData?: (values: unknown) => unknown;
+	normalizeData?: (values: FD) => unknown;
 	path: string; // WP REST API path
 	prepDefaultValues?: (values: unknown) => unknown;
 	resetForm?: boolean;
@@ -22,7 +24,7 @@ interface SubmitFormProps<FD extends DataShape> {
 
 const defaultFormatCb = (v: unknown) => v;
 
-export const useSubmitForm = <FD extends DataShape>({
+export const useSubmitForm = <FD extends FieldValues>({
 	displayFeedback = true,
 	form,
 	formatErrors = defaultFormatCb,

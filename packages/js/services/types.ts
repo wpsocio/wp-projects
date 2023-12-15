@@ -1,13 +1,5 @@
 import type { AnyObject } from '@wpsocio/utilities';
 
-export interface Plugins {
-	wptelegram: unknown;
-	wptelegram_login: unknown;
-	wptelegram_widget: unknown;
-	wptelegram_comments: unknown;
-	wptelegram_pro: unknown;
-}
-
 export interface ApiData {
 	admin_url?: string;
 	ajax_url?: string;
@@ -41,9 +33,9 @@ export interface PluginInfo {
 }
 
 export interface BaseDOMData<A extends BaseAssetsData | undefined = AnyObject> {
-	api?: ApiData;
+	api: ApiData;
 	assets: A;
-	i18n?: I18nData;
+	i18n: I18nData;
 	pluginInfo: PluginInfo;
 	cache?: AnyObject;
 }
@@ -57,10 +49,6 @@ declare global {
 	interface Window {
 		// its value must be set by every domain on init
 		'X-WP-Nonce': string;
-		wptelegram: unknown;
-		wptelegram_login: unknown;
-		wptelegram_widget: unknown;
-		wptelegram_comments: unknown;
-		wptelegram_pro: unknown;
+		[key: string]: BaseDOMData;
 	}
 }

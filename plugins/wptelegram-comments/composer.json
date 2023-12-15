@@ -8,7 +8,7 @@
 	},
 	"require": {
 		"kucrut/vite-for-wp": "^0.8.0",
-		"wpsocio/wp-options": "dev-main"
+		"wpsocio/wp-utils": "dev-main"
 	},
 	"require-dev": {
 		"wp-coding-standards/wpcs": "^3.0"
@@ -16,9 +16,9 @@
 	"repositories": [
 		{
 			"type": "path",
-			"url": "../../packages/php/wp-options",
+			"url": "../../packages/php/wp-utils",
 			"options": {
-				"symlink": false
+				"symlink": true
 			}
 		}
 	],

@@ -2,8 +2,6 @@ import $ from 'jquery';
 
 import { setLocaleData } from '@wpsocio/i18n';
 
-import type { Plugins } from './types';
-
 export const cleanup = (removeSiblingsOf = '', disableFormCSS = true) => {
 	const id = removeSiblingsOf?.replace(/^#?/, '#');
 	$(() => {
@@ -16,8 +14,7 @@ export const cleanup = (removeSiblingsOf = '', disableFormCSS = true) => {
 	});
 };
 
-export const setI18nData = (plugin: keyof Plugins, domain: string) => {
-	//@ts-ignore
+export const setI18nData = (plugin: string, domain: string) => {
 	const i18nData = window[plugin].i18n;
 	setLocaleData(i18nData, domain);
 };

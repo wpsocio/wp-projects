@@ -12,6 +12,7 @@ const fieldLabels = {
 export const getFieldLabel = fieldLabelGetter(fieldLabels);
 
 export const validationSchema = yup.object({
+	attributes: yup.string(),
 	code: yup
 		.string()
 		.required(() => getErrorMessage('code', 'required'))
@@ -19,6 +20,10 @@ export const validationSchema = yup.object({
 			message: () => getErrorMessage('code', 'invalid'),
 			excludeEmptyString: true,
 		}),
+	exclude: yup.string(),
+	post_types: yup.array().of(yup.string()),
 });
+
+export type DataShape = ReturnType<typeof validationSchema.validateSync>;
 
 export const getErrorMessage = getFormErrorMessage(fieldLabels);

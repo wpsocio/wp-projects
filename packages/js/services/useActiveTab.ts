@@ -1,6 +1,5 @@
 import { useCallback, useMemo } from 'react';
 
-import type { Plugins } from './types';
 import { useLocalStorage } from './useLocalStorage';
 
 export interface ActiveTab {
@@ -11,7 +10,7 @@ export interface ActiveTab {
 const DEFAULT_KEY = 'mainActiveTab';
 
 export const useActiveTab = (
-	plugin: keyof Plugins,
+	plugin: string,
 	tabKey = DEFAULT_KEY,
 ): ActiveTab => {
 	const { getItem, setItem } = useLocalStorage(plugin, {});

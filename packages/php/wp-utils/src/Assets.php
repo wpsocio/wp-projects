@@ -1,24 +1,18 @@
 <?php
 /**
- * Handles the options access of the plugin
- *
- * Parts of this code are copied from https://github.com/eventespresso/event-espresso-core
+ * Handles the dependencies for the built assets.
  *
  * @link       https://wpsocio.com
- * @since      1.1.0
  *
- * @package    WPTelegram\Comments
- * @subpackage WPTelegram\Comments\includes
+ * @package WPSocio\WPUtils
  */
 
-namespace WPTelegram\Comments\includes;
+namespace WPSocio\WPUtils;
 
 /**
- * Allows an easy access to plugin options/settings
- * which are in the form of an array
+ * Easily access the dependencies for the built assets.
  *
- * @package    WPTelegram\Comments
- * @subpackage WPTelegram\Comments\includes
+ * @package    WPSocio\WPUtils
  * @author     WP Socio
  */
 class Assets {

@@ -1,0 +1,18 @@
+{
+	"extends": "../../tsconfig.json",
+	"compilerOptions": {
+		"lib": [
+			"DOM",
+			"DOM.Iterable",
+			"ESNext"
+		],
+		"jsx": "preserve",
+		"moduleResolution": "Bundler",
+		"module": "ESNext",
+		"noEmit": true,
+	},
+	"include": [
+		"js",
+		"vite.config.ts",
+	]
+}

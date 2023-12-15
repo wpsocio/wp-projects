@@ -15,10 +15,10 @@ export const useOnSubmit = (
 
 	const path = `${rest_namespace}/settings`;
 
-	// @ts-ignore
 	const submitForm = useSubmitForm<DataShape>({
 		form,
 		path,
+		// @ts-ignore
 		getErrorMessage: getErrorMessage,
 		normalizeData,
 		prepDefaultValues,

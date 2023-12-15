@@ -1,0 +1,26 @@
+{
+	"name": "wpsocio/wptelegram-login",
+	"version": "1.10.7",
+	"description": "Let the users login to your website with their Telegram and make it simple for them to get connected and let them receive their email notifications on Telegram.",
+	"require": {
+		"kucrut/vite-for-wp": "^0.8.0",
+		"wpsocio/wp-utils": "dev-main"
+	},
+	"require-dev": {
+		"wp-coding-standards/wpcs": "^3.0"
+	},
+	"repositories": [
+		{
+			"type": "path",
+			"url": "../../packages/php/wp-utils",
+			"options": {
+				"symlink": true
+			}
+		}
+	],
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": false
+		}
+	}
+}
