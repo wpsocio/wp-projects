@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import { Button } from '@wordpress/components';
-// import { store } from '@wordpress/block-editor';
 
 function App() {
 	const [count, setCount] = useState(0);
@@ -10,12 +8,9 @@ function App() {
 		<>
 			<h1>Login</h1>
 			<div className="card">
-				<Button
-					variant="primary"
-					onClick={() => setCount((count) => count + 1)}
-				>
+				<button type="button" onClick={() => setCount((count) => count + 1)}>
 					count is {count}
-				</Button>
+				</button>
 				<p>
 					Edit <code>src/App.tsx</code> and save to test HMR!!!
 				</p>

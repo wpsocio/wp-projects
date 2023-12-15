@@ -1,0 +1,16 @@
+{
+	"name": "@wpsocio/icons",
+	"version": "1.0.0",
+	"private": true,
+	"license": "GPL-3.0",
+	"type": "module",
+	"module": "index.ts",
+	"sideEffects": false,
+	"dependencies": {
+		"@chakra-ui/icons": "^2.1.1"
+	},
+	"devDependencies": {
+		"@types/react": "^18.2.45",
+		"react": "^18.2.0"
+	}
+}

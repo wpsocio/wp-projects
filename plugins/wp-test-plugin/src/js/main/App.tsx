@@ -1,21 +1,15 @@
 import { useState } from 'react';
-import { useDebounce } from '@wordpress/compose';
-import { Button } from '@wpsocio/components/button';
 
 function App() {
 	const [count, setCount] = useState(0);
-
-	useDebounce(() => {
-		console.log('debounce');
-	});
 
 	return (
 		<>
 			<h1>Main</h1>
 			<div className="card">
-				<Button onClick={() => setCount((count) => count + 1)}>
+				<button type="button" onClick={() => setCount((count) => count + 1)}>
 					count is {count}
-				</Button>
+				</button>
 				<p>
 					Edit <code>src/App.tsx</code> and save to test HMR!
 				</p>

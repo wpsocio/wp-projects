@@ -1,0 +1,47 @@
+{
+	"name": "@wpsocio/wptelegram-comments",
+	"version": "1.1.9",
+	"title": "WP Telegram Comments",
+	"description": "Add comments to posts/pages on your WordPress website by using Telegram Comments Widget",
+	"private": true,
+	"license": "GPL-3.0",
+	"author": {
+		"name": "WP Socio",
+		"url": "https://wpsocio.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/wpsocio/wptelegram-comments"
+	},
+	"bugs": {
+		"url": "https://github.com/wpsocio/wptelegram-comments/issues"
+	},
+	"keywords": ["telegram", "comments", "discuss", "social", "widget"],
+	"type": "module",
+	"scripts": {
+		"dev": "vite --port=5000",
+		"build": "vite build",
+		"lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+		"preview": "vite preview"
+	},
+	"browserslist": [">1%", "last 2 versions", "Firefox ESR", "not ie < 9"],
+	"dependencies": {
+		"@wpsocio/adapters": "workspace:*",
+		"@wpsocio/components": "workspace:*",
+		"@wpsocio/services": "workspace:*",
+		"@wpsocio/form": "workspace:*",
+		"@wpsocio/form-components": "workspace:*",
+		"@wpsocio/i18n": "workspace:*",
+		"@wpsocio/utilities": "workspace:*",
+		"yup": "^1.3.2"
+	},
+	"devDependencies": {
+		"@types/jquery": "^3.5.29",
+		"@types/react": "^18.2.37",
+		"@types/react-dom": "^18.2.15",
+		"@wpsocio/dev": "workspace:*",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"typescript": "^5.2.2"
+	}
+}
