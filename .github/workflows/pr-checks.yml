@@ -55,7 +55,7 @@ jobs:
           tools: phpcs
 
       - name: Lint
-      run: pnpm lint:php
+        run: "pnpm lint:php"
 
   js-lint-build:
     name: "JS: Lint, Build and Test"
@@ -97,7 +97,7 @@ jobs:
         run: pnpm install
 
       - name: Lint
-        run: pnpm lint:js
+        run: "pnpm lint:js"
 
       - name: Typecheck
         run: pnpm typecheck
