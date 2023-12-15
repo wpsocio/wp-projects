@@ -13,14 +13,16 @@
 		"typecheck": "turbo typecheck",
 		"lint": "pnpm run lint:js",
 		"lint:js": "biome lint ./",
-		"lint-fix:js": "biome format ./ --write"
+		"lint-fix:js": "biome format ./ --write",
+		"upgrade-all": "pnpm -r exec pnpm ncu -u"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.4.1",
 		"@wpsocio/cli": "workspace:*",
 		"dotenv": "^16.3.1",
-		"ts-node": "^10.9.1",
-		"turbo": "^1.11.1",
+		"npm-check-updates": "^16.14.12",
+		"ts-node": "^10.9.2",
+		"turbo": "^1.11.2",
 		"typescript": "^5.3.3"
 	}
 }
