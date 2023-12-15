@@ -56,7 +56,7 @@ add_filter(
 			return $tag;
 		}
 
-		$processor = new WP_HTML_Tag_Processor($tag );
+		$processor = new WP_HTML_Tag_Processor( $tag );
 
 		$script_fount = false;
 
