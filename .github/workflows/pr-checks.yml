@@ -54,6 +54,9 @@ jobs:
           php-version: ${{ matrix.php-versions }}
           tools: phpcs
 
+      - name: Lint
+      run: pnpm lint:php
+
   js-lint-build:
     name: "JS: Lint, Build and Test"
     timeout-minutes: 15
@@ -94,7 +97,7 @@ jobs:
         run: pnpm install
 
       - name: Lint
-        run: pnpm lint
+        run: pnpm lint:js
 
       - name: Typecheck
         run: pnpm typecheck
