@@ -13,7 +13,8 @@
 		"typecheck": "turbo typecheck",
 		"lint": "pnpm run lint:js",
 		"lint:js": "biome lint ./",
-		"lint-fix:js": "biome format ./ --write",
+		"lint:php": "turbo run lint:php",
+		"lint:js:fix": "biome format ./ --write",
 		"upgrade-all": "pnpm -r exec pnpm ncu -u"
 	},
 	"devDependencies": {

@@ -1,10 +1,10 @@
 import { PropsWithChildren, useEffect, useState } from 'react';
 
-import type { BaseDOMData, Plugins } from './types';
+import type { BaseDOMData } from './types';
 
 export interface WithDOMDataProps<Data extends BaseDOMData> {
 	data: Data;
-	plugin: keyof Plugins;
+	plugin: string;
 }
 
 export const WithDOMData = <Data extends BaseDOMData>({

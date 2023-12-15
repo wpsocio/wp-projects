@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a4b3dcc7a447eb1d784c5dc574990951",
+    "content-hash": "b2d4ea68700379ed7f53dd72a422135c",
     "packages": [
         {
             "name": "kucrut/vite-for-wp",
@@ -46,18 +46,18 @@
             "time": "2023-11-15T04:30:52+00:00"
         },
         {
-            "name": "wpsocio/wp-options",
+            "name": "wpsocio/wp-utils",
             "version": "dev-main",
             "dist": {
                 "type": "path",
-                "url": "../../packages/php/wp-options",
-                "reference": "3d7c4e92c7ad205008569d8853bb27f36ea195e0"
+                "url": "../../packages/php/wp-utils",
+                "reference": "0ac4b821b0276f2c57bc9753136db1f4441c0eb2"
             },
             "type": "library",
             "autoload": {
-                "files": [
-                    "WPOptions.php"
-                ]
+                "psr-4": {
+                    "WPSocio\\WPUtils\\": "src/"
+                }
             },
             "license": [
                 "GPL3"
@@ -69,7 +69,7 @@
             ],
             "description": "Easy solution to handle WP plugin or theme options",
             "transport-options": {
-                "symlink": false,
+                "symlink": true,
                 "relative": true
             }
         }
@@ -469,7 +469,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "wpsocio/wp-options": 20
+        "wpsocio/wp-utils": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

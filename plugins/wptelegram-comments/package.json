@@ -21,10 +21,10 @@
 	"scripts": {
 		"dev": "vite --port=5000",
 		"build": "vite build",
-		"lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-		"preview": "vite preview"
+		"lint:php": "composer run lint",
+		"preview": "vite preview",
+		"setup": "composer install"
 	},
-	"browserslist": [">1%", "last 2 versions", "Firefox ESR", "not ie < 9"],
 	"dependencies": {
 		"@wpsocio/adapters": "workspace:*",
 		"@wpsocio/components": "workspace:*",

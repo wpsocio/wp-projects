@@ -11,7 +11,7 @@ export { defineConfig };
 /**
  *
  * @param {import('@kucrut/vite-for-wp').V4wpOptions} options
- * @returns  {import('vite').UserConfig}
+ * @returns {import('vite').UserConfig}
  */
 export function createViteConfig(options) {
 	return {

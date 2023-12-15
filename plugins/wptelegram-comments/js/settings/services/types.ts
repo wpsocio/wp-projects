@@ -1,9 +1,12 @@
-import type { OptionsType } from '@wpsocio/adapters';
+import type { SimpleOptionsType } from '@wpsocio/adapters';
 import type {
 	BaseAssetsData,
 	BaseDOMData,
 	BasePluginData,
 } from '@wpsocio/services';
+import { DataShape } from './fields';
+
+export type { DataShape };
 
 export interface WPTelegramCommentsData
 	extends BaseDOMData<AssetsData>,
@@ -14,10 +17,10 @@ export interface AssetsData extends BaseAssetsData {
 }
 
 export interface UiData {
-	post_types: OptionsType;
+	post_types: SimpleOptionsType;
 }
 
-export interface DataShape {
+export interface DataShape_Backup {
 	attributes?: string;
 	code: string;
 	exclude?: string;

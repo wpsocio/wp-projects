@@ -27,6 +27,12 @@ const dummyDOMData: WPTelegramCommentsData = {
 			{ value: 'product', label: 'Product (product)' },
 		],
 	},
+	i18n: {
+		'': {
+			domain: '',
+			lang: 'en',
+		},
+	},
 };
 
 export const Main = () => (

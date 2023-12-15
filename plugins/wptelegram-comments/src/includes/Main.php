@@ -16,6 +16,8 @@ namespace WPTelegram\Comments\includes;
 
 use WPTelegram\Comments\admin\Admin;
 use WPTelegram\Comments\shared\Shared;
+use WPSocio\WPUtils\Assets;
+use WPSocio\WPUtils\Options;
 
 /**
  * The core plugin class.

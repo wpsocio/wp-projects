@@ -1,3 +1,10 @@
+export type SimpleOptionProps = {
+	value: string;
+	label: string;
+};
+
+export type SimpleOptionsType = Array<SimpleOptionProps>;
+
 export interface OptionProps<Value = string | number, Label = React.ReactNode> {
 	value?: Value;
 	label?: Label;

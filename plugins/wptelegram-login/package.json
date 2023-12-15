@@ -1,0 +1,52 @@
+{
+	"name": "@wpsocio/wptelegram-login",
+	"title": "WP Telegram Login",
+	"version": "1.10.7",
+	"description": "Let the users login to your website with their Telegram and make it simple for them to get connected and let them receive their email notifications on Telegram.",
+	"private": true,
+	"license": "GPL-3.0",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/wpsocio/wptelegram-login"
+	},
+	"author": {
+		"name": "WP Socio",
+		"url": "https://wpsocio.com"
+	},
+	"bugs": {
+		"url": "https://github.com/wpsocio/wptelegram-login/issues"
+	},
+	"type": "module",
+	"scripts": {
+		"dev": "vite --port=5003",
+		"build": "vite build",
+		"lint:php": "composer run lint",
+		"preview": "vite preview",
+		"setup": "composer install"
+	},
+	"dependencies": {
+		"@wordpress/block-editor": "^12.16.0",
+		"@wordpress/blocks": "^12.25.0",
+		"@wordpress/components": "^25.14.0",
+		"@wordpress/element": "^5.25.0",
+		"@wpsocio/adapters": "workspace:*",
+		"@wpsocio/components": "workspace:*",
+		"@wpsocio/form": "workspace:*",
+		"@wpsocio/form-components": "workspace:*",
+		"@wpsocio/i18n": "workspace:*",
+		"@wpsocio/services": "workspace:*",
+		"@wpsocio/utilities": "workspace:*",
+		"yup": "^1.3.3"
+	},
+	"devDependencies": {
+		"@types/jquery": "^3.5.29",
+		"@types/react": "^18.2.45",
+		"@types/react-dom": "^18.2.17",
+		"@types/wordpress__block-editor": "^11.5.8",
+		"@types/wordpress__blocks": "^12.5.13",
+		"@wpsocio/dev": "workspace:*",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"typescript": "^5.3.3"
+	}
+}

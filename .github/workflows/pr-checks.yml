@@ -7,8 +7,58 @@ on:
     types: [opened, synchronize]
 
 jobs:
-  build:
-    name: Lint, Build and Test
+  php-lint:
+    name: "PHP: Lint"
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-versions: ["7.4", "8.1", "8.2", "8.3"]
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          run_install: false
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: |
+            .turbo
+            ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          tools: phpcs
+
+      - name: Lint
+        run: "pnpm lint:php"
+
+  js-lint-build:
+    name: "JS: Lint, Build and Test"
     timeout-minutes: 15
     runs-on: ubuntu-latest
 
@@ -47,7 +97,7 @@ jobs:
         run: pnpm install
 
       - name: Lint
-        run: pnpm lint
+        run: "pnpm lint:js"
 
       - name: Typecheck
         run: pnpm typecheck

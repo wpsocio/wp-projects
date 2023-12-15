@@ -33,6 +33,8 @@ class AssetManager extends BaseClass {
 		],
 	];
 
+	const WPTELEGRAM_MENU_HANDLE = 'wptelegram-menu';
+
 	/**
 	 * The registered handles.
 	 *
@@ -69,7 +71,7 @@ class AssetManager extends BaseClass {
 
 		if ( ! defined( 'WPTELEGRAM_LOADED' ) ) {
 			wp_register_style(
-				'wptelegram-menu',
+				self::WPTELEGRAM_MENU_HANDLE,
 				$assets->url( sprintf( '/static/css/admin-menu%s.css', wp_scripts_get_suffix() ) ),
 				[],
 				$this->plugin()->version(),
@@ -87,7 +89,7 @@ class AssetManager extends BaseClass {
 	public function enqueue_admin_styles( $hook_suffix ) {
 
 		if ( ! defined( 'WPTELEGRAM_LOADED' ) ) {
-			wp_enqueue_style( 'wptelegram-menu' );
+			wp_enqueue_style( self::WPTELEGRAM_MENU_HANDLE );
 		}
 
 		// Load only on settings page.

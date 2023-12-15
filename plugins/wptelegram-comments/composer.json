@@ -2,13 +2,13 @@
 	"name": "wpsocio/wptelegram-comments",
 	"description": "Use Telegram Comments widget for your WordPress posts or pages.",
 	"scripts": {
-		"lint": "\"vendor/bin/phpcs\" --standard=phpcs.xml --extensions=php src/",
-		"lint:skip-warnings": "\"vendor/bin/phpcs\" --standard=phpcs.xml --extensions=php -n src/",
-		"lint:fix": "\"vendor/bin/phpcbf\" --standard=phpcs.xml --extensions=php src/"
+		"lint": "\"vendor/bin/phpcs\" --standard=../../phpcs.xml --extensions=php src/ dev.php",
+		"lint:skip-warnings": "\"vendor/bin/phpcs\" --standard=../../phpcs.xml --extensions=php -n src/ dev.php",
+		"lint:fix": "\"vendor/bin/phpcbf\" --standard=../../phpcs.xml --extensions=php src/ dev.php"
 	},
 	"require": {
 		"kucrut/vite-for-wp": "^0.8.0",
-		"wpsocio/wp-options": "dev-main"
+		"wpsocio/wp-utils": "dev-main"
 	},
 	"require-dev": {
 		"wp-coding-standards/wpcs": "^3.0"
@@ -16,9 +16,9 @@
 	"repositories": [
 		{
 			"type": "path",
-			"url": "../../packages/php/wp-options",
+			"url": "../../packages/php/wp-utils",
 			"options": {
-				"symlink": false
+				"symlink": true
 			}
 		}
 	],
