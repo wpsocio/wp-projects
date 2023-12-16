@@ -5,9 +5,9 @@ import { useData } from './useData';
 export const useInit = () => {
 	const { api } = useData();
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
 		botApi.setApiData(api);
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return;

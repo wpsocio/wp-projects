@@ -17,7 +17,8 @@ export const useOnSubmit = (
 	const submitForm = useSubmitForm<DataShape>({
 		form,
 		path,
-		getErrorMessage: getErrorMessage as any,
+		// @ts-ignore
+		getErrorMessage: getErrorMessage,
 		resetForm: true,
 	});
 

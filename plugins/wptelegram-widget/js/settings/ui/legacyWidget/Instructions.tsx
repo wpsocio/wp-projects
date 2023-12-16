@@ -43,13 +43,13 @@ export const Instructions: React.FC = () => {
 					</ListItem>
 					<ListItem>
 						{createInterpolateElement(
-							__('Copy the token and paste into the Bot Token field below.') +
-								' ' +
-								sprintf(
-									/* translators: %s application name */
-									__('For ease, use %s'),
-									'<Link />',
-								),
+							`${__(
+								'Copy the token and paste into the Bot Token field below.',
+							)} ${sprintf(
+								/* translators: %s application name */
+								__('For ease, use %s'),
+								'<Link />',
+							)}`,
 							{
 								Link: (
 									<Link href="https://desktop.telegram.org" isExternal>
