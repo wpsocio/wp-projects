@@ -8,13 +8,13 @@
 			"outputs": ["dist/**"],
 			"dependsOn": ["^build"]
 		},
-		"setup": {
+		"setup:prod": {
 			"cache": false,
 			"dependsOn": ["^setup:prod"]
 		},
 		"lint:php": {
 			"cache": false,
-			"dependsOn": ["setup", "^lint:php"]
+			"dependsOn": ["setup:prod", "^lint:php"]
 		},
 		"typecheck": {
 			"cache": false,
