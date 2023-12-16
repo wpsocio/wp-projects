@@ -22,7 +22,8 @@
 		"build": "vite build",
 		"lint:php": "composer run lint",
 		"preview": "vite preview",
-		"setup": "composer install"
+		"setup:prod": "composer config vendor-dir src/vendor && composer install --no-dev",
+		"setup:dev": "composer config vendor-dir --unset && composer install"
 	},
 	"dependencies": {
 		"@wordpress/block-editor": "^12.16.0",
