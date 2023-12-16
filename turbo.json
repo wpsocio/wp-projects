@@ -10,7 +10,7 @@
 		},
 		"setup": {
 			"cache": false,
-			"dependsOn": ["^setup"]
+			"dependsOn": ["^setup:prod"]
 		},
 		"lint:php": {
 			"cache": false,
