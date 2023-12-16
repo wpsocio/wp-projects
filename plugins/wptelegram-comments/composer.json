@@ -25,6 +25,7 @@
 	"config": {
 		"allow-plugins": {
 			"dealerdirect/phpcodesniffer-composer-installer": false
-		}
+		},
+		"vendor-dir": "vendor"
 	}
 }
