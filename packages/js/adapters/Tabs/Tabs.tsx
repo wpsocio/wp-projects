@@ -19,8 +19,8 @@ export interface TabItem extends TabItemProps {
 
 export interface TabsProps extends Partial<ChakraTabsProps> {
 	items: Array<TabItem>;
-	renderTab?: (props: TabItemProps) => JSX.Element;
-	renderPanel?: (props: TabItemProps) => JSX.Element;
+	renderTab?: (props: TabItemProps) => React.ReactNode;
+	renderPanel?: (props: TabItemProps) => React.ReactNode;
 }
 
 export const Tabs: React.FC<TabsProps> = ({

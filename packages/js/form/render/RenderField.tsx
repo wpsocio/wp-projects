@@ -19,7 +19,7 @@ export type TRenderField = <
 	TDataShape extends DataShape,
 >(
 	props: RenderFieldProps<TFieldType, TDataShape>,
-) => JSX.Element;
+) => React.ReactNode;
 
 export const RenderField: TRenderField = forwardRef<
 	unknown,

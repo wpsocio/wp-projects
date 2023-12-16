@@ -1,0 +1,31 @@
+{
+	"name": "wptelegram/widget",
+	"version": "2.1.11",
+	"description": "Display the Telegram Public Channel or Group Feed in a WordPress widget or anywhere you want using a shortcode.",
+	"scripts": {
+		"lint": "\"vendor/bin/phpcs\" --standard=../../phpcs.xml --extensions=php src/ dev.php",
+		"lint:skip-warnings": "\"vendor/bin/phpcs\" --standard=../../phpcs.xml --extensions=php -n src/ dev.php",
+		"lint:fix": "\"vendor/bin/phpcbf\" --standard=../../phpcs.xml --extensions=php src/ dev.php"
+	},
+	"require": {
+		"kucrut/vite-for-wp": "^0.8.0",
+		"wpsocio/wp-utils": "dev-main"
+	},
+	"require-dev": {
+		"wp-coding-standards/wpcs": "^3.0"
+	},
+	"repositories": [
+		{
+			"type": "path",
+			"url": "../../packages/php/wp-utils",
+			"options": {
+				"symlink": true
+			}
+		}
+	],
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": false
+		}
+	}
+}

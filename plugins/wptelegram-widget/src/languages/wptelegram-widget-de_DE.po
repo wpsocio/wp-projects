@@ -1,0 +1,569 @@
+# Copyright (C) 2019 WPTelegram
+msgid ""
+msgstr ""
+"Project-Id-Version: WPTelegram Widget 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/wpsocio/wptelegram-widget\n"
+"POT-Creation-Date: 2023-12-07 11:54:14+00:00\n"
+"PO-Revision-Date: 2021-02-22 14:31+0530\n"
+"Last-Translator: \n"
+"Language-Team: WPTelegram\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.2\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"X-Poedit-KeywordsList: __;_e;_x;esc_attr__;esc_attr_e;esc_html__;esc_html_e\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: assets\n"
+
+#: admin/Admin.php:58 includes/Utils.php:279 includes/Utils.php:280
+msgid "WP Telegram"
+msgstr ""
+
+#: admin/Admin.php:84
+msgid "Telegram Widget"
+msgstr "Telegram Widget"
+
+#: includes/AssetManager.php:196
+msgid ""
+"With this plugin, you can let the users widget to your website with their "
+"Telegram and make it simple for them to get connected."
+msgstr ""
+
+#: includes/Requirements.php:121
+msgid "This plugin is not compatible with your website configuration."
+msgstr ""
+
+#: includes/Requirements.php:123
+msgid "Missing requirements"
+msgstr ""
+
+#. translators: %s: Version number
+#: includes/Requirements.php:136
+msgid "Current version: %s"
+msgstr ""
+
+#. translators: %s: Version number
+#: includes/Requirements.php:144
+msgid "Minimum required version: %s"
+msgstr ""
+
+#. translators: %s: comma separated list of missing extensions
+#: includes/Requirements.php:162
+msgid "Missing PHP extensions: %s"
+msgstr ""
+
+#: includes/Requirements.php:173
+msgid ""
+"Please contact your hosting provider to ensure the above requirements are "
+"met."
+msgstr ""
+
+#: languages/wptelegram-widget-js-translations.php:6
+msgid "Widget Options"
+msgstr "Widget-Optionen"
+
+#: languages/wptelegram-widget-js-translations.php:10
+#: shared/widgets/Ajax.php:127
+msgid "Username"
+msgstr ""
+
+#: languages/wptelegram-widget-js-translations.php:14
+#: shared/widgets/Ajax.php:129
+msgid "Channel username."
+msgstr ""
+
+#: languages/wptelegram-widget-js-translations.php:17
+#: shared/widgets/Ajax.php:129
+msgid "Leave empty for default."
+msgstr ""
+
+#: languages/wptelegram-widget-js-translations.php:22
+#: shared/widgets/Ajax.php:133 shared/widgets/Legacy.php:131
+msgid "Widget Width"
+msgstr "Widget-Breite"
+
+#: languages/wptelegram-widget-js-translations.php:26
+#: shared/widgets/Ajax.php:138
+msgid "Widget Height"
+msgstr "Widget-Höhe"
+
+#: languages/wptelegram-widget-js-translations.php:30
+msgid "Telegram Channel Ajax Feed"
+msgstr "Telegram Ajax-Feed des Channels"
+
+#: languages/wptelegram-widget-js-translations.php:35
+#: shared/widgets/Legacy.php:136
+msgid "Author Photo"
+msgstr "Foto des Verfassers anzeigen"
+
+#: languages/wptelegram-widget-js-translations.php:39
+#: shared/widgets/Legacy.php:144
+msgid "Number of Messages"
+msgstr "Anzahl Nachrichten anzeigen"
+
+#: languages/wptelegram-widget-js-translations.php:43
+msgid "Telegram Channel Feed"
+msgstr "Telegram Channel Feed"
+
+#: languages/wptelegram-widget-js-translations.php:46
+msgid "Button details"
+msgstr ""
+
+#: languages/wptelegram-widget-js-translations.php:50
+#: shared/widgets/JoinChannel.php:117
+msgid "Channel Link"
+msgstr ""
+
+#: languages/wptelegram-widget-js-translations.php:54
+#: shared/widgets/JoinChannel.php:122
+msgid "Button text"
+msgstr ""
+
+#: languages/wptelegram-widget-js-translations.php:57
+msgid "Join Telegram Channel"
+msgstr ""
+
+#: languages/wptelegram-widget-js-translations.php:60
+msgid "Options"
+msgstr "Optionen"
+
+#: languages/wptelegram-widget-js-translations.php:63
+msgid "Edit URL"
+msgstr "URL bearbeiten"
+
+#: languages/wptelegram-widget-js-translations.php:66
+msgid "Telegram post URL"
+msgstr "Beitrags-URL von Telegram"
+
+#: languages/wptelegram-widget-js-translations.php:69
+msgid "Loading…"
+msgstr "Wird geladen..."
+
+#: languages/wptelegram-widget-js-translations.php:72
+msgid "Embed"
+msgstr "Einbetten"
+
+#: languages/wptelegram-widget-js-translations.php:75
+msgid "Telegram Single Post"
+msgstr "einzelner Telegram-Beitrag"
+
+#: languages/wptelegram-widget-js-translations.php:78
+msgid "Text color"
+msgstr ""
+
+#: languages/wptelegram-widget-js-translations.php:81
+msgid "Host blocks Telegram"
+msgstr "Anbieter blockiert Telegram"
+
+#: languages/wptelegram-widget-js-translations.php:84
+msgid "Google Script URL"
+msgstr "Google Script URL"
+
+#: languages/wptelegram-widget-js-translations.php:87
+msgid "Add to post types"
+msgstr ""
+
+#: languages/wptelegram-widget-js-translations.php:90
+msgid "Position"
+msgstr ""
+
+#: languages/wptelegram-widget-js-translations.php:93
+msgid "Priority"
+msgstr ""
+
+#: languages/wptelegram-widget-js-translations.php:96
+msgid "Open in new tab"
+msgstr ""
+
+#: languages/wptelegram-widget-js-translations.php:99
+msgid "Bot Token"
+msgstr "Bot Token"
+
+#: languages/wptelegram-widget-js-translations.php:102
+msgid "Background color"
+msgstr ""
+
+#: languages/wptelegram-widget-js-translations.php:108
+msgid "Get LIVE support on Telegram"
+msgstr "Erhalte LIVE-Support über Telegram"
+
+#: languages/wptelegram-widget-js-translations.php:111
+msgid "Ajax Widget"
+msgstr "Ajax Widget"
+
+#: languages/wptelegram-widget-js-translations.php:114
+msgid "Legacy Widget"
+msgstr "Abgekündigtes Widget"
+
+#: languages/wptelegram-widget-js-translations.php:117
+msgid "Join Link"
+msgstr ""
+
+#: languages/wptelegram-widget-js-translations.php:120
+msgid "Advanced"
+msgstr ""
+
+#: languages/wptelegram-widget-js-translations.php:123
+msgid "Whether your host blocks Telegram."
+msgstr ""
+
+#: languages/wptelegram-widget-js-translations.php:126
+msgid "The requests to Telegram will be sent via your Google Script."
+msgstr "Die Anfragen an Telegram werden über dein Google Script versendet."
+
+#: languages/wptelegram-widget-js-translations.php:129
+msgid "See this tutorial"
+msgstr "Tutorial anzeigen"
+
+#: languages/wptelegram-widget-js-translations.php:132
+msgid ""
+"Ajax widget is a beautiful scrollable widget which only supports channels."
+msgstr ""
+
+#: languages/wptelegram-widget-js-translations.php:135
+msgid ""
+"This is the default username, you can override it in widgets and shortcodes."
+msgstr ""
+
+#: languages/wptelegram-widget-js-translations.php:140
+#: shared/widgets/Ajax.php:134
+msgid "or"
+msgstr "oder"
+
+#: languages/wptelegram-widget-js-translations.php:143
+#: shared/widgets/Ajax.php:29
+msgid "WP Telegram Ajax Widget"
+msgstr "WP Telegram Ajax Widget"
+
+#: languages/wptelegram-widget-js-translations.php:146
+msgid "Before content"
+msgstr ""
+
+#: languages/wptelegram-widget-js-translations.php:149
+msgid "After content"
+msgstr ""
+
+#: languages/wptelegram-widget-js-translations.php:152
+msgid "Join link can be automatically added to posts."
+msgstr ""
+
+#: languages/wptelegram-widget-js-translations.php:155
+msgid "Priority with respect to adjacent items."
+msgstr ""
+
+#: languages/wptelegram-widget-js-translations.php:158
+msgid "Whether to open the join link in new tab."
+msgstr ""
+
+#: languages/wptelegram-widget-js-translations.php:161
+#: shared/widgets/JoinChannel.php:27
+msgid "WP Telegram Join Channel"
+msgstr ""
+
+#: languages/wptelegram-widget-js-translations.php:164
+msgid ""
+"To make sure the updates are pulled in time, it is recommended to set up a "
+"cron on your hosting server that hits the below URL every five minutes or so."
+msgstr ""
+"Um sicherzustellen, das die Aktualisierungen durchgeführt werden, wird "
+"empfohlen, einen Cronjob auf dem Webserver zu erstellen, der die folgende "
+"URL beispielsweise alle 5 Minuten aufruft."
+
+#. translators: 1 command name, 2 bot name
+#: languages/wptelegram-widget-js-translations.php:168
+msgid "Create a Bot by sending %1$s command to %2$s."
+msgstr "Einen Bot erstellen, indem der Befehl %1$s an den %2$s geschickt wird"
+
+#: languages/wptelegram-widget-js-translations.php:171
+msgid "After completing the steps %s will provide you the Bot Token."
+msgstr ""
+"Der %s fragt nach Bezeichnung und Benutzername des neuen Bot und teilt im "
+"Anschluss das API-Token des Bot mit."
+
+#: languages/wptelegram-widget-js-translations.php:174
+msgid "Copy the token and paste into the Bot Token field below."
+msgstr ""
+"Das API-Token des Bot kopieren und in das unten stehende Feld \"Bot API-"
+"Token\" einfügen."
+
+#. translators: %s application name
+#: languages/wptelegram-widget-js-translations.php:178
+msgid "For ease, use %s"
+msgstr "Zur einfachen Eingabe empfehlen wir %s"
+
+#: languages/wptelegram-widget-js-translations.php:181
+msgid "Telegram Desktop"
+msgstr ""
+
+#: languages/wptelegram-widget-js-translations.php:184
+msgid "Add the Bot as Administrator to your Channel/Group."
+msgstr ""
+"Der Bot muss nun als Administrator zu einem Channel oder einer Gruppe "
+"hinzugefügt warden."
+
+#: languages/wptelegram-widget-js-translations.php:187
+msgid "Send a test message to see if we did it right."
+msgstr ""
+
+#: languages/wptelegram-widget-js-translations.php:190
+msgid "For groups, disable group privacy for the bot."
+msgstr ""
+
+#. translators: 1 command name, 2 bot name, 3 site url
+#: languages/wptelegram-widget-js-translations.php:194
+msgid "Send %1$s command to %2$s."
+msgstr ""
+
+#: languages/wptelegram-widget-js-translations.php:197
+msgid "Choose your bot."
+msgstr ""
+
+#: languages/wptelegram-widget-js-translations.php:200
+msgid "Select \"Disable\"."
+msgstr ""
+
+#: languages/wptelegram-widget-js-translations.php:203
+msgid "Tip!"
+msgstr "Hinweis:"
+
+#: languages/wptelegram-widget-js-translations.php:206
+msgid "Updates are pulled every five minutes if someone visits your website."
+msgstr ""
+"Aktualisierungen werden alle 5 Minuten durchgeführt, wenn jemand die Website "
+"besucht."
+
+#: languages/wptelegram-widget-js-translations.php:209
+#: shared/widgets/Legacy.php:138
+msgid "Auto"
+msgstr "Automatisch"
+
+#: languages/wptelegram-widget-js-translations.php:212
+#: shared/widgets/Legacy.php:139
+msgid "Always show"
+msgstr "Immer anzeigen"
+
+#: languages/wptelegram-widget-js-translations.php:215
+#: shared/widgets/Legacy.php:140
+msgid "Always hide"
+msgstr "Immer verbergen"
+
+#: languages/wptelegram-widget-js-translations.php:218
+msgid ""
+"Legacy widget is a full height widget which supports both channels and "
+"groups."
+msgstr ""
+
+#: languages/wptelegram-widget-js-translations.php:221
+#: shared/widgets/Legacy.php:147
+msgid "Number of messages to display in the widget."
+msgstr "Anzahl der Nachrichten, die im Widget angezeigt werden sollen."
+
+#: languages/wptelegram-widget-js-translations.php:224
+#: shared/widgets/Legacy.php:27
+msgid "WP Telegram Legacy Widget"
+msgstr "WP Telegram abgekündigtes Widget"
+
+#: languages/wptelegram-widget-js-translations.php:227
+msgid "Channel or group username."
+msgstr ""
+
+#: languages/wptelegram-widget-js-translations.php:230
+msgid "Please read the instructions above."
+msgstr "Bitte die obenstehende Anleitung beachten."
+
+#: languages/wptelegram-widget-js-translations.php:233
+msgid "No"
+msgstr ""
+
+#: languages/wptelegram-widget-js-translations.php:236
+msgid "Yes"
+msgstr ""
+
+#: languages/wptelegram-widget-js-translations.php:239
+msgid "INSTRUCTIONS!"
+msgstr "ANLEITUNG:"
+
+#: languages/wptelegram-widget-js-translations.php:242
+#, fuzzy
+msgid "Click here for instructions."
+msgstr "Bitte die obenstehende Anleitung beachten."
+
+#: languages/wptelegram-widget-js-translations.php:245
+msgid "Do you like %s?"
+msgstr "Gefällt dir %s?"
+
+#: languages/wptelegram-widget-js-translations.php:248
+msgid "Write a review"
+msgstr ""
+
+#: languages/wptelegram-widget-js-translations.php:251
+msgid "Need help?"
+msgstr "Hilfe benötigt?"
+
+#: languages/wptelegram-widget-js-translations.php:254
+msgid "Save Changes"
+msgstr ""
+
+#: languages/wptelegram-widget-js-translations.php:257
+msgid "Members Count:"
+msgstr "Anzahl Mitglieder:"
+
+#: languages/wptelegram-widget-js-translations.php:260
+#, fuzzy
+msgid "Result:"
+msgstr "Testresultat:"
+
+#: languages/wptelegram-widget-js-translations.php:263
+msgid "Test Result:"
+msgstr "Testresultat:"
+
+#: languages/wptelegram-widget-js-translations.php:266
+msgid "Follow %s"
+msgstr "Folge %s"
+
+#: languages/wptelegram-widget-js-translations.php:269
+msgid "Join %s"
+msgstr "Tritt %s bei"
+
+#. translators: 1, 2 Menu names
+#: languages/wptelegram-widget-js-translations.php:273
+msgid "Goto %1$s and click/drag %2$s and place it where you want it to be."
+msgstr ""
+"Im Menüpunkt %1$s kann das %2$s an die passende Stelle im Theme positioniert "
+"werden."
+
+#: languages/wptelegram-widget-js-translations.php:276
+msgid "Appearance"
+msgstr "Design"
+
+#: languages/wptelegram-widget-js-translations.php:279
+msgid "Widgets"
+msgstr "Widgets"
+
+#: languages/wptelegram-widget-js-translations.php:282
+msgid ""
+"Alternately, you can use the below shortcode or the block available in block "
+"editor."
+msgstr ""
+"Alternativ kannst du folgenden Shortcode verwenden oder den Block im "
+"Blockeditor."
+
+#: languages/wptelegram-widget-js-translations.php:285
+msgid "Inside page or post content:"
+msgstr "Auf einer Seite oder in einem Beitrag:"
+
+#: languages/wptelegram-widget-js-translations.php:288
+msgid "Inside the theme templates"
+msgstr "Direkt in einem Theme-Template:"
+
+#: languages/wptelegram-widget-js-translations.php:291
+msgid "Widget Info"
+msgstr "Widget-Infos"
+
+#: languages/wptelegram-widget-js-translations.php:295
+msgid "Please wait…"
+msgstr "Bitte warten..."
+
+#: languages/wptelegram-widget-js-translations.php:298
+msgid "Test Token"
+msgstr "Test Token"
+
+#: languages/wptelegram-widget-js-translations.php:301
+msgid "Send Test"
+msgstr "Sende Test"
+
+#: languages/wptelegram-widget-js-translations.php:304
+msgid "Add"
+msgstr ""
+
+#: languages/wptelegram-widget-js-translations.php:307
+msgid "Something went wrong"
+msgstr ""
+
+#: languages/wptelegram-widget-js-translations.php:310
+msgid "Could not connect"
+msgstr "Verbindung konnte nicht hergestellt werden"
+
+#: languages/wptelegram-widget-js-translations.php:313
+msgid "Error:"
+msgstr ""
+
+#: languages/wptelegram-widget-js-translations.php:316
+msgid ""
+"A message will be sent to the Channel/Group/Chat. You can modify the text "
+"below"
+msgstr ""
+"Eine Nachricht wird an die chat_ids gesendet. Du kannst den Text im "
+"Folgenden ändern"
+
+#: languages/wptelegram-widget-js-translations.php:319
+msgid "This is a test message"
+msgstr "Das ist eine Testnachricht"
+
+#: languages/wptelegram-widget-js-translations.php:322
+msgid "Success"
+msgstr "Erfolgreich"
+
+#: languages/wptelegram-widget-js-translations.php:325
+msgid "Lets fix these errors first."
+msgstr ""
+
+#: languages/wptelegram-widget-js-translations.php:328
+msgid "Changes saved successfully."
+msgstr "Die Änderungen wurden erfolgreich gespeichert."
+
+#: languages/wptelegram-widget-js-translations.php:331
+msgid "Invalid %s"
+msgstr "Ungültig: %s"
+
+#: languages/wptelegram-widget-js-translations.php:334
+msgid "%s required."
+msgstr "%s wird benötigt."
+
+#: languages/wptelegram-widget-js-translations.php:337
+msgid "Changes could not be saved."
+msgstr "Die Änderungen konnten nicht gespeichert werden."
+
+#: shared/Shared.php:207
+msgid "Every 5 Minutes"
+msgstr "Alle 5 Minuten"
+
+#: shared/widgets/Ajax.php:31
+msgid ""
+"Display the Telegram Public Channel Feed in an ajax widget with infinite "
+"scroll."
+msgstr ""
+"Den Telegram Public Channel Feed in einem AJAX-Widget mit Endlos-Scrollen "
+"anzeigen"
+
+#: shared/widgets/Ajax.php:123 shared/widgets/JoinChannel.php:113
+#: shared/widgets/Legacy.php:127
+msgid "Title"
+msgstr "Titel"
+
+#: shared/widgets/JoinChannel.php:29
+msgid "Invite users to join your Telegram channel or group by using a button."
+msgstr ""
+
+#: shared/widgets/Legacy.php:29
+msgid "Display the Telegram Public Channel or Group Feed in a widget"
+msgstr ""
+"Zeigt einen öffentlichen Telegram Channel oder Gruppen-Feed in einem Widget "
+"an"
+
+#~ msgid "WP Telegram Widget"
+#~ msgstr "WP Telegram Widget"
+
+#~ msgid ""
+#~ "Display the Telegram Public Channel or Group Feed in a WordPress widget "
+#~ "or anywhere you want using a shortcode."
+#~ msgstr ""
+#~ "Zeigt einen öffentlichen Telegram Channel oder Gruppen-Feed in einem "
+#~ "Widget oder per Shortcode an beliebiger Stelle an."
+
+#~ msgid "Test result:"
+#~ msgstr "Testresultat:"

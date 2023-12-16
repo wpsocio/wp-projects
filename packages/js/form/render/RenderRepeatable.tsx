@@ -29,7 +29,7 @@ export const RenderRepeatable = <
 	TDataShape extends DataShape,
 >(
 	props: RenderRepeatableProps<TFieldType, TDataShape>,
-): JSX.Element => {
+): React.ReactNode => {
 	const {
 		addButtonLabel,
 		after,

@@ -25,7 +25,7 @@ export const Form = <FormValues extends AnyObject>({
 	as: As = 'form',
 	id,
 	...rest
-}: PropsWithChildren<FormProps<FormValues>>): JSX.Element => {
+}: PropsWithChildren<FormProps<FormValues>>): React.ReactNode => {
 	useEffect(() => {
 		window.__WP_RHF_FORMS__ = { ...window.__WP_RHF_FORMS__, [id]: form };
 	}, [form, id]);

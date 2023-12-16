@@ -6,7 +6,7 @@ export const FormField = <
 	TDataShape extends DataShape,
 >(
 	props: FormFieldProps<TFieldType, TDataShape>,
-): JSX.Element => {
+): React.ReactNode => {
 	const { fieldType } = props;
 
 	if (!fieldType) {

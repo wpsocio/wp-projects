@@ -26,6 +26,9 @@
 		"setup:dev": "composer config vendor-dir --unset && composer install"
 	},
 	"dependencies": {
+		"yup": "^1.3.3"
+	},
+	"devDependencies": {
 		"@wordpress/block-editor": "^12.16.0",
 		"@wordpress/blocks": "^12.25.0",
 		"@wordpress/components": "^25.14.0",
@@ -37,16 +40,12 @@
 		"@wpsocio/i18n": "workspace:*",
 		"@wpsocio/services": "workspace:*",
 		"@wpsocio/utilities": "workspace:*",
-		"yup": "^1.3.3"
-	},
-	"devDependencies": {
 		"@types/jquery": "^3.5.29",
 		"@types/react": "^18.2.45",
 		"@types/react-dom": "^18.2.17",
 		"@types/wordpress__block-editor": "^11.5.8",
 		"@types/wordpress__blocks": "^12.5.13",
 		"@wpsocio/dev": "workspace:*",
-		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"typescript": "^5.3.3"
 	}
