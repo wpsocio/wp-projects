@@ -8,6 +8,10 @@
 			"outputs": ["dist/**"],
 			"dependsOn": ["^build"]
 		},
+		"setup:dev": {
+			"cache": false,
+			"dependsOn": ["^setup:dev"]
+		},
 		"setup:prod": {
 			"cache": false,
 			"dependsOn": ["^setup:prod", "^setup:dev"]
