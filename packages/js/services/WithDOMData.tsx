@@ -11,7 +11,7 @@ export const WithDOMData = <Data extends BaseDOMData>({
 	children,
 	data,
 	plugin,
-}: PropsWithChildren<WithDOMDataProps<Data>>): JSX.Element => {
+}: PropsWithChildren<WithDOMDataProps<Data>>): React.ReactNode => {
 	const [isDataSet, setIsDataSet] = useState(false);
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {

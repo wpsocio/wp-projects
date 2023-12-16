@@ -22,6 +22,7 @@ vendor/
 !/plugins/wp-test-plugin/
 !/plugins/wptelegram-comments/
 !/plugins/wptelegram-login/
+!/plugins/wptelegram-widget/
 
 # Build tools/IDEs
 .rollup.cache/

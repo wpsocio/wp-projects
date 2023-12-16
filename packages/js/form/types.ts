@@ -29,10 +29,11 @@ export type CommonFieldProps<
 	info?: string;
 	isDisabled?: boolean;
 	isRequired?: boolean;
-	valueAsNumber?: boolean;
 	label?: React.ReactNode;
 	name: FieldPath<TDataShape>;
 	options?: OptionsType;
+	placeholder?: string;
+	valueAsNumber?: boolean;
 };
 
 export type RepeatableValue<T = unknown> = { value?: T; id?: string };

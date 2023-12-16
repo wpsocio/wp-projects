@@ -12,7 +12,6 @@
 namespace WPTelegram\Login\includes;
 
 use WPTelegram\Login\includes\restApi\SettingsController;
-use ReflectionClass;
 use Kucrut\Vite;
 
 /**
@@ -36,7 +35,10 @@ class AssetManager extends BaseClass {
 			'entry' => self::ADMIN_SETTINGS_ENTRY,
 		],
 		'blocks'         => [
-			'entry' => self::BLOCKS_ENTRY,
+			'entry'    => self::BLOCKS_ENTRY,
+			'css-deps' => [
+				'wp-components',
+			],
 		],
 		'wp-login'       => [
 			'entry' => self::WP_LOGIN_ENTRY,
