@@ -110,10 +110,10 @@ if ( ! class_exists( __NAMESPACE__ . '\Response', false ) ) :
 		 *
 		 * @since   1.0.0
 		 *
-		 * @param Request $request The original request that returned this response.
-		 * @param array   $raw_response The original response from wp_remote_post.
+		 * @param Request $request      The original request that returned this response.
+		 * @param mixed   $raw_response The original response from wp_remote_post.
 		 */
-		public function __construct( $request, $raw_response ) {
+		public function __construct( Request $request, $raw_response ) {
 
 			$this->set_properties( $raw_response );
 
@@ -129,7 +129,7 @@ if ( ! class_exists( __NAMESPACE__ . '\Response', false ) ) :
 		 *
 		 * @since   1.0.0
 		 *
-		 * @param array $raw_response The original response from wp_remote_post.
+		 * @param mixed $raw_response The original response from wp_remote_post.
 		 * @return void
 		 */
 		public function set_properties( $raw_response ) {
@@ -171,7 +171,7 @@ if ( ! class_exists( __NAMESPACE__ . '\Response', false ) ) :
 		 *
 		 * @since   1.0.0
 		 *
-		 * @return null|int
+		 * @return null|integer
 		 */
 		public function get_response_code() {
 			return $this->response_code;
@@ -182,7 +182,7 @@ if ( ! class_exists( __NAMESPACE__ . '\Response', false ) ) :
 		 *
 		 * @since   1.0.0
 		 *
-		 * @return bool
+		 * @return boolean
 		 */
 		public function is_valid_json() {
 			return $this->valid_json;
@@ -271,6 +271,8 @@ if ( ! class_exists( __NAMESPACE__ . '\Response', false ) ) :
 		 * Converts raw API response to proper decoded response.
 		 *
 		 * @since   1.0.0
+		 *
+		 * @return boolean
 		 */
 		public function decode_body() {
 			$this->decoded_body = json_decode( $this->body, true );

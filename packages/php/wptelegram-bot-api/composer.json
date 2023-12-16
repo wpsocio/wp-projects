@@ -1,12 +1,10 @@
 {
-	"name": "wpsocio/wp-utils",
-	"description": "Easy solution to handle WP plugin or theme options",
+	"name": "wptelegram/bot-api",
 	"type": "library",
-	"license": "GPL3",
+	"license": "GPL-3.0-or-later",
+	"description": "Telegram Bot API library for WordPress.",
 	"autoload": {
-		"psr-4": {
-			"WPSocio\\WPUtils\\": "src/"
-		}
+		"files": ["autoload-wp.php"]
 	},
 	"authors": [
 		{
@@ -15,7 +13,6 @@
 	],
 	"scripts": {
 		"lint": "\"vendor/bin/phpcs\" --standard=../../../phpcs.xml --extensions=php src/",
-
 		"lint:skip-warnings": "\"vendor/bin/phpcs\" --standard=../../../phpcs.xml --extensions=php -n src/",
 		"lint:fix": "\"vendor/bin/phpcbf\" --standard=../../../phpcs.xml --extensions=php src/"
 	},

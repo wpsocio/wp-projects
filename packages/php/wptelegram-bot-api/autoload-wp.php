@@ -22,14 +22,12 @@
 // Namespace doesn't really matter here.
 namespace WPTelegram\BotAPI;
 
-use WPTelegram\BotAPI\restApi\RESTAPIController;
-
 // If this file is called directly, abort.
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
 
-if ( ! class_exists( __NAMESPACE__ . '\WPLoader_1_2_7', false ) ) {
+if ( ! class_exists( __NAMESPACE__ . '\WPLoader_1_3_3', false ) ) {
 	/**
 	 * Handles checking for and loading the newest version of the library
 	 *
@@ -46,7 +44,7 @@ if ( ! class_exists( __NAMESPACE__ . '\WPLoader_1_2_7', false ) ) {
 	 * @license   GPL-3.0+
 	 * @link      https://t.me/WPTelegram
 	 */
-	class WPLoader_1_2_7 {
+	class WPLoader_1_3_3 {
 
 		/**
 		 * Current version number
@@ -54,7 +52,7 @@ if ( ! class_exists( __NAMESPACE__ . '\WPLoader_1_2_7', false ) ) {
 		 * @var   string
 		 * @since 1.2.7
 		 */
-		const VERSION = '1.2.7';
+		const VERSION = '1.3.3';
 
 		/**
 		 * Current version hook priority.
@@ -63,20 +61,20 @@ if ( ! class_exists( __NAMESPACE__ . '\WPLoader_1_2_7', false ) ) {
 		 * @var   int
 		 * @since 1.2.7
 		 */
-		const PRIORITY = 9978;
+		const PRIORITY = 9974;
 
 		/**
-		 * Single instance of the WPLoader_1_2_7 object
+		 * Single instance of the WPLoader_1_3_3 object
 		 *
-		 * @var WPLoader_1_2_7
+		 * @var WPLoader_1_3_3
 		 */
 		private static $instance = null;
 
 		/**
-		 * Creates/returns the single instance WPLoader_1_2_7 object
+		 * Creates/returns the single instance WPLoader_1_3_3 object
 		 *
 		 * @since  1.2.7
-		 * @return WPLoader_1_2_7 Single instance object
+		 * @return WPLoader_1_3_3 Single instance object
 		 */
 		public static function initiate() {
 			if ( null === self::$instance ) {
@@ -107,6 +105,8 @@ if ( ! class_exists( __NAMESPACE__ . '\WPLoader_1_2_7', false ) ) {
 		 * WPTELEGRAM_BOT_API_VERSION constant is set at this point.
 		 *
 		 * @since  1.2.7
+		 *
+		 * @return void
 		 */
 		public function init() {
 			if ( defined( 'WPTELEGRAM_BOT_API_LOADED' ) ) {
@@ -123,13 +123,13 @@ if ( ! class_exists( __NAMESPACE__ . '\WPLoader_1_2_7', false ) ) {
 			}
 
 			if ( ! defined( 'WPTELEGRAM_BOT_API_DIR' ) ) {
-				define( 'WPTELEGRAM_BOT_API_DIR', dirname( __FILE__ ) );
+				define( 'WPTELEGRAM_BOT_API_DIR', __DIR__ );
 			}
 
 			// Now kick off the class autoloader.
 			spl_autoload_register( [ __CLASS__, 'autoload_classes' ] );
 
-			add_action( 'rest_api_init', [ RESTAPIController::class, 'init' ] );
+			add_action( 'rest_api_init', [ \WPTelegram\BotAPI\restApi\RESTAPIController::class, 'init' ] );
 		}
 
 		/**
@@ -137,8 +137,10 @@ if ( ! class_exists( __NAMESPACE__ . '\WPLoader_1_2_7', false ) ) {
 		 *
 		 * @since  1.2.7
 		 * @param  string $class_name Name of the class being requested.
+		 *
+		 * @return void
 		 */
-		public static function autoload_classes( $class_name ) {
+		public static function autoload_classes( string $class_name ) {
 			$namespace = 'WPTelegram\BotAPI';
 
 			if ( 0 !== strpos( $class_name, $namespace ) ) {
@@ -153,5 +155,5 @@ if ( ! class_exists( __NAMESPACE__ . '\WPLoader_1_2_7', false ) ) {
 			include_once $path;
 		}
 	}
-	WPLoader_1_2_7::initiate();
+	WPLoader_1_3_3::initiate();
 }

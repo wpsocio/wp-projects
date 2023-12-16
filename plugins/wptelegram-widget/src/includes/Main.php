@@ -207,9 +207,11 @@ class Main {
 		require_once $this->dir( '/includes/helper-functions.php' );
 
 		/**
-		 * The class responsible for loading \WPTelegram\BotAPI library
+		 * Composer autoloader.
+		 *
+		 * The directory is relative to the plugin root.
 		 */
-		require_once $this->dir( '/includes/bot-api/autoload-wp.php' );
+		require_once dirname( WPTELEGRAM_WIDGET_MAIN_FILE ) . '/vendor/autoload.php';
 	}
 
 	/**

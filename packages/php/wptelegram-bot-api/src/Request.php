@@ -54,9 +54,9 @@ if ( ! class_exists( __NAMESPACE__ . '\Request', false ) ) :
 		/**
 		 * Creates a new Request
 		 *
-		 * @param string|null $bot_token The API token.
+		 * @param string|null $bot_token  The API token.
 		 * @param string|null $api_method The API method name.
-		 * @param array|null  $params The method params.
+		 * @param array|null  $params     The method params.
 		 */
 		public function __construct( $bot_token = null, $api_method = null, array $params = [] ) {
 			$this->set_bot_token( $bot_token );
@@ -73,7 +73,7 @@ if ( ! class_exists( __NAMESPACE__ . '\Request', false ) ) :
 		 *
 		 * @return Request
 		 */
-		public function set_bot_token( $bot_token ) {
+		public function set_bot_token( string $bot_token ) {
 			$this->bot_token = $bot_token;
 
 			return $this;
@@ -97,9 +97,9 @@ if ( ! class_exists( __NAMESPACE__ . '\Request', false ) ) :
 		 *
 		 * @param string $api_method The API method name.
 		 *
-		 * @return Request
+		 * @return Request The current request.
 		 */
-		public function set_api_method( $api_method ) {
+		public function set_api_method( string $api_method ) {
 			$this->api_method = $api_method;
 			return $this;
 		}

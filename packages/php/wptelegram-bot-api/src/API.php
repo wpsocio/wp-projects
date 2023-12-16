@@ -33,7 +33,7 @@ if ( ! class_exists( __NAMESPACE__ . '\API', false ) ) :
 		 * @var string Pattern.
 		 * @since 1.2.3
 		 */
-		const BOT_TOKEN_PATTERN = '[0-9]{9,11}:[\w-]{35}';
+		const BOT_TOKEN_PATTERN = '[0-9]{9,11}:[a-zA-Z0-9_-]{35}';
 
 		/**
 		 * Regular expression to match Telegram bot token.
@@ -81,9 +81,9 @@ if ( ! class_exists( __NAMESPACE__ . '\API', false ) ) :
 		/**
 		 * Instantiates a new WPTelegram\BotAPI object.
 		 *
-		 * @param string $bot_token   The Telegram Bot API Access Token.
+		 * @param string $bot_token The Telegram Bot API Access Token.
 		 */
-		public function __construct( $bot_token = null ) {
+		public function __construct( string $bot_token = '' ) {
 			$this->bot_token = $bot_token;
 
 			$this->client = new Client();
@@ -95,12 +95,12 @@ if ( ! class_exists( __NAMESPACE__ . '\API', false ) ) :
 		 *
 		 * @since 1.0.0
 		 *
-		 * @param string $id   The ID of the instance, usually the plugin slug.
-		 * @param string $bot_token   The Telegram Bot API Access Token.
+		 * @param string $id        The ID of the instance, usually the plugin slug.
+		 * @param string $bot_token The Telegram Bot API Access Token.
 		 *
 		 * @return API Single instance object
 		 */
-		public static function get_instance( $id = '', $bot_token = null ) {
+		public static function get_instance( string $id = '', string $bot_token = '' ) {
 			if ( ! isset( self::$instances[ $id ] ) ) {
 				self::$instances[ $id ] = new self( $bot_token );
 			}
@@ -111,11 +111,11 @@ if ( ! class_exists( __NAMESPACE__ . '\API', false ) ) :
 		 * Magic Method to handle all API calls.
 		 *
 		 * @param string $method Telegram API method name.
-		 * @param array  $args The method args.
+		 * @param array  $args   The method args.
 		 *
 		 * @return mixed|string
 		 */
-		public function __call( $method, $args ) {
+		public function __call( string $method, array $args ) {
 			if ( ! empty( $args ) ) {
 				$args = $args[0];
 			}
@@ -127,9 +127,11 @@ if ( ! class_exists( __NAMESPACE__ . '\API', false ) ) :
 		 *
 		 * @since  1.0.0
 		 *
-		 * @param string $bot_token  The Telegram Bot API Access Token.
+		 * @param string $bot_token The Telegram Bot API Access Token.
+		 *
+		 * @return void
 		 */
-		public function set_bot_token( $bot_token ) {
+		public function set_bot_token( string $bot_token ) {
 			$this->bot_token = $bot_token;
 		}
 
@@ -179,10 +181,10 @@ if ( ! class_exists( __NAMESPACE__ . '\API', false ) ) :
 		 * @param array $params The message args.
 		 * @return Response
 		 */
-		//phpcs:ignore -- snake case
-		public function sendMessage( $params ) {
-
-			if ( mb_strlen( $params['text'], 'UTF-8' ) > 4096 ) {
+		public function sendMessage( array $params ) {
+			// If text is longer than 4096 characters, split it into multiple messages.
+			// We will do it only if parse_mode is not set, otherwise splitting may break the formatting.
+			if ( empty( $params['parse_mode'] ) && mb_strlen( $params['text'], 'UTF-8' ) > 4096 ) {
 				// break text after every 4096th character and preserve words.
 				preg_match_all( '/.{1,4095}(?:\s|$)/su', $params['text'], $matches );
 				foreach ( $matches[0] as $text ) {
@@ -201,11 +203,11 @@ if ( ! class_exists( __NAMESPACE__ . '\API', false ) ) :
 		 * @since  1.0.0
 		 *
 		 * @param string $api_method The method name.
-		 * @param array  $params The message args.
-		 * @return Response
+		 * @param array  $params     The message args.
+		 *
+		 * @return Response The response object.
 		 */
-		//phpcs:ignore -- snake case
-		private function sendRequest( $api_method, $params ) {
+		private function sendRequest( string $api_method, array $params ) {
 
 			if ( ! $this->get_bot_token() ) {
 				return new WP_Error( 'invalid_bot_token', 'Bot Token is required to make a request' );
@@ -238,8 +240,8 @@ if ( ! class_exists( __NAMESPACE__ . '\API', false ) ) :
 		/**
 		 * Check if the response is successful
 		 *
-		 * @param Response $res The API response.
-		 * @return bool
+		 * @param mixed $res The API response.
+		 * @return boolean
 		 */
 		public function is_success( $res = null ) {
 
@@ -257,10 +259,10 @@ if ( ! class_exists( __NAMESPACE__ . '\API', false ) ) :
 		 * Instantiates a new Request
 		 *
 		 * @param string $api_method The method name.
-		 * @param array  $params The message args.
+		 * @param array  $params     The message args.
 		 * @return Request
 		 */
-		private function request( $api_method, array $params = [] ) {
+		private function request( string $api_method, array $params = [] ) {
 			return new Request(
 				$this->get_bot_token(),
 				$api_method,

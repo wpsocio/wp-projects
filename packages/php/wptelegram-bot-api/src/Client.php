@@ -54,7 +54,7 @@ if ( ! class_exists( __NAMESPACE__ . '\Client', false ) ) :
 		 *
 		 * @return array
 		 */
-		public function prepare_request( $request ) {
+		public function prepare_request( Request $request ) {
 			$url = $this->get_base_url() . $request->get_bot_token() . '/' . $request->get_api_method();
 
 			return apply_filters(
@@ -72,20 +72,17 @@ if ( ! class_exists( __NAMESPACE__ . '\Client', false ) ) :
 		 *
 		 * @since  1.0.0
 		 *
-		 * @param Request $request
+		 * @param Request $request The request instance.
 		 *
 		 * @return WP_Error|Response
 		 */
-		// phpcs:ignore -- snake case
-		public function sendRequest( $request ) {
+		public function sendRequest( Request $request ) {
 			list( $url, $params ) = $this->prepare_request( $request );
 
 			$args = [
-				'timeout'   => 20, // seconds.
-				'blocking'  => true,
-				'headers'   => [ 'wptelegram_bot' => true ],
-				'body'      => $params,
-				'sslverify' => true,
+				'timeout' => 20, // seconds.
+				'headers' => [ 'wptelegram_bot' => true ],
+				'body'    => $params,
 			];
 
 			foreach ( $args as $argument => $value ) {
@@ -96,8 +93,10 @@ if ( ! class_exists( __NAMESPACE__ . '\Client', false ) ) :
 
 			$args = apply_filters( 'wptelegram_bot_api_remote_post_args', $args, $request );
 
+			$remote_request = empty( $params ) ? 'wp_remote_get' : 'wp_remote_post';
+
 			// send the request.
-			$raw_response = wp_remote_post( $url, $args );
+			$raw_response = $remote_request( $url, $args );
 
 			if ( ! is_wp_error( $raw_response ) ) {
 				return $this->get_response( $request, $raw_response );
@@ -111,12 +110,12 @@ if ( ! class_exists( __NAMESPACE__ . '\Client', false ) ) :
 		 *
 		 * @since  1.0.0
 		 *
-		 * @param Request $request The request instance.
-		 * @param array   $raw_response The response.
+		 * @param Request $request      The request instance.
+		 * @param mixed   $raw_response The response.
 		 *
 		 * @return Response
 		 */
-		protected function get_response( $request, $raw_response ) {
+		protected function get_response( Request $request, $raw_response ) {
 			return new Response( $request, $raw_response );
 		}
 	}

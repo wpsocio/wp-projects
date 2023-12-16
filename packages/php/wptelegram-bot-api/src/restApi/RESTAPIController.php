@@ -47,6 +47,8 @@ class RESTAPIController extends RESTBaseController {
 	 * Register the routes.
 	 *
 	 * @since 1.2.2
+	 *
+	 * @return void
 	 */
 	public function register_routes() {
 
@@ -71,9 +73,9 @@ class RESTAPIController extends RESTBaseController {
 	 *
 	 * @param WP_REST_Request $request WP REST API request.
 	 *
-	 * @return bool
+	 * @return boolean
 	 */
-	public function permissions_for_request( $request ) {
+	public function permissions_for_request( WP_REST_Request $request ) {
 		$permission = current_user_can( 'manage_options' );
 
 		return apply_filters( 'wptelegram_bot_api_rest_permission', $permission, $request );
@@ -85,6 +87,8 @@ class RESTAPIController extends RESTBaseController {
 	 * @since 1.2.2
 	 *
 	 * @param WP_REST_Request $request WP REST API request.
+	 *
+	 * @return WP_REST_Response The response.
 	 */
 	public function handle_request( WP_REST_Request $request ) {
 
@@ -153,8 +157,10 @@ class RESTAPIController extends RESTBaseController {
 	 * @param mixed           $value   Value of the param.
 	 * @param WP_REST_Request $request WP REST API request.
 	 * @param string          $key     Param key.
+	 *
+	 * @return boolean
 	 */
-	public static function validate_param( $value, WP_REST_Request $request, $key ) {
+	public static function validate_param( $value, WP_REST_Request $request, string $key ) {
 		switch ( $key ) {
 			case 'bot_token':
 				$pattern = API::BOT_TOKEN_REGEX;
@@ -172,8 +178,10 @@ class RESTAPIController extends RESTBaseController {
 	 * @param mixed           $value   Value of the param.
 	 * @param WP_REST_Request $request WP REST API request.
 	 * @param string          $key     Param key.
+	 *
+	 * @return mixed
 	 */
-	public static function sanitize_params( $value, WP_REST_Request $request, $key ) {
+	public static function sanitize_params( $value, WP_REST_Request $request, string $key ) {
 		$safe_value = self::sanitize_input( $value );
 
 		return apply_filters( 'wptelegram_bot_api_rest_sanitize_params', $safe_value, $value, $request, $key );
@@ -185,6 +193,8 @@ class RESTAPIController extends RESTBaseController {
 	 * @since 1.2.4
 	 *
 	 * @param mixed $input Value of the param.
+	 *
+	 * @return mixed
 	 */
 	public static function sanitize_input( $input ) {
 		$raw_input = $input;

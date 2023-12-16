@@ -20,6 +20,7 @@ vendor/
 /plugins/*/
 # Except for the ones in this repo
 !/plugins/wp-test-plugin/
+!/plugins/wptelegram-bot-api/
 !/plugins/wptelegram-comments/
 !/plugins/wptelegram-login/
 !/plugins/wptelegram-widget/
