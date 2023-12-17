@@ -189,13 +189,6 @@ class Main {
 	 * @access   private
 	 */
 	private function load_dependencies() {
-
-		/**
-		 * Composer autoloader.
-		 *
-		 * The directory is relative to the plugin root.
-		 */
-		require_once dirname( WPTELEGRAM_COMMENTS_MAIN_FILE ) . '/vendor/autoload.php';
 	}
 
 	/**

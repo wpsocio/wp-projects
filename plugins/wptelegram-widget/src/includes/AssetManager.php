@@ -14,7 +14,6 @@ namespace WPTelegram\Widget\includes;
 use WPTelegram\Widget\shared\shortcodes\LegacyWidget;
 use WPTelegram\Widget\includes\restApi\RESTController;
 use WPTelegram\Widget\includes\restApi\SettingsController;
-use ReflectionClass;
 use Kucrut\Vite;
 
 /**

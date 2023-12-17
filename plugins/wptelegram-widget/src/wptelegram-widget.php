@@ -43,6 +43,7 @@ define( 'WPTELEGRAM_WIDGET_URL', untrailingslashit( plugins_url( '', __FILE__ ) 
  * Include autoloader.
  */
 require WPTELEGRAM_WIDGET_DIR . '/autoload.php';
+require_once dirname( WPTELEGRAM_WIDGET_MAIN_FILE ) . '/vendor/autoload.php';
 
 /**
  * The code that runs during plugin activation.
@@ -81,13 +82,13 @@ function WPTG_Widget() { // phpcs:ignore WordPress.NamingConventions.ValidFuncti
 	return \WPTelegram\Widget\includes\Main::instance();
 }
 
-use WPTelegram\Widget\includes\Requirements;
+$requirements = new \WPTelegram\Widget\includes\Requirements( WPTELEGRAM_COMMENTS_MAIN_FILE );
 
-if ( Requirements::satisfied() ) {
+if ( $requirements->satisfied() ) {
 	// Fire.
 	WPTG_Widget()->init();
 
 	define( 'WPTELEGRAM_WIDGET_LOADED', true );
 } else {
-	add_filter( 'after_plugin_row_' . WPTELEGRAM_WIDGET_BASENAME, [ Requirements::class, 'display_requirements' ] );
+	add_filter( 'after_plugin_row_' . WPTELEGRAM_WIDGET_BASENAME, [ $requirements, 'display_requirements' ] );
 }

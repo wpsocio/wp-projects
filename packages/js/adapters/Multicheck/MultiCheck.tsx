@@ -5,7 +5,7 @@ import {
 	Stack,
 	StackProps,
 } from '@chakra-ui/react';
-import { useMemo } from 'react';
+import { useId, useMemo } from 'react';
 
 import type { OptionsType } from '../types';
 
@@ -24,15 +24,21 @@ export const MultiCheck: React.FC<MultiCheckProps> = ({
 	isInline,
 	...restProps
 }) => {
+	const id = useId();
 	const childNodes = useMemo(() => {
 		return options?.map(({ label, value, ...rest }, index) => {
 			return (
-				<Checkbox value={value} {...rest} key={`${value}${index}`}>
+				<Checkbox
+					value={value}
+					id={id + value}
+					{...rest}
+					key={`${value}${index}`}
+				>
 					{label}
 				</Checkbox>
 			);
 		});
-	}, [options]);
+	}, [options, id]);
 
 	// make sure the value is array
 	const value = useMemo(

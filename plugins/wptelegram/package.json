@@ -1,0 +1,61 @@
+{
+	"name": "@wpsocio/wptelegram",
+	"title": "WP Telegram",
+	"version": "4.0.14",
+	"description": "Integrate your WordPress site perfectly with Telegram with full control.",
+	"private": true,
+	"license": "GPL-3.0",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/wpsocio/wptelegram"
+	},
+	"author": {
+		"name": "WP Socio",
+		"url": "https://wpsocio.com"
+	},
+	"bugs": {
+		"url": "https://github.com/wpsocio/wptelegram/issues"
+	},
+	"type": "module",
+	"scripts": {
+		"dev": "vite --port=5003",
+		"build": "vite build",
+		"lint:php": "composer run lint",
+		"preview": "vite preview",
+		"setup:prod": "composer config vendor-dir src/vendor && composer install --no-dev",
+		"setup:dev": "composer config vendor-dir --unset && composer install"
+	},
+	"dependencies": {
+		"ramda": "^0.29.1",
+		"yup": "^1.3.3"
+	},
+	"devDependencies": {
+		"@types/jquery": "^3.5.29",
+		"@types/ramda": "^0.29.9",
+		"@types/react": "^18.2.45",
+		"@types/react-dom": "^18.2.17",
+		"@types/wordpress__edit-post": "^7.5.6",
+		"@types/wordpress__editor": "^13.6.7",
+		"@types/wordpress__media-utils": "^4.14.4",
+		"@wordpress/components": "^25.14.0",
+		"@wordpress/data": "^9.18.0",
+		"@wordpress/edit-post": "^7.25.0",
+		"@wordpress/editor": "^13.25.0",
+		"@wordpress/element": "^5.25.0",
+		"@wordpress/media-utils": "^4.39.0",
+		"@wordpress/plugins": "^6.16.0",
+		"@wpsocio/adapters": "workspace:*",
+		"@wpsocio/components": "workspace:*",
+		"@wpsocio/dev": "workspace:*",
+		"@wpsocio/form": "workspace:*",
+		"@wpsocio/form-components": "workspace:*",
+		"@wpsocio/i18n": "workspace:*",
+		"@wpsocio/icons": "workspace:*",
+		"@wpsocio/services": "workspace:*",
+		"@wpsocio/shared-wptelegram-ui": "workspace:*",
+		"@wpsocio/utilities": "workspace:*",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"typescript": "^5.3.3"
+	}
+}

@@ -207,13 +207,6 @@ class Main {
 		* Helper functions
 		*/
 		require_once $this->dir( '/includes/helper-functions.php' );
-
-		/**
-		 * Composer autoloader.
-		 *
-		 * The directory is relative to the plugin root.
-		 */
-		require_once dirname( WPTELEGRAM_LOGIN_MAIN_FILE ) . '/vendor/autoload.php';
 	}
 
 	/**

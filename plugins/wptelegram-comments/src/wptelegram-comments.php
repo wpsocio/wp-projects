@@ -43,6 +43,7 @@ define( 'WPTELEGRAM_COMMENTS_URL', untrailingslashit( plugins_url( '', __FILE__ 
  * Include autoloader.
  */
 require WPTELEGRAM_COMMENTS_DIR . '/autoload.php';
+require_once dirname( WPTELEGRAM_COMMENTS_MAIN_FILE ) . '/vendor/autoload.php';
 
 /**
  * The code that runs during plugin activation.
@@ -79,13 +80,13 @@ function WPTG_Comments() { // phpcs:ignore WordPress.NamingConventions.ValidFunc
 	return \WPTelegram\Comments\includes\Main::instance();
 }
 
-use WPTelegram\Comments\includes\Requirements;
+$requirements = new \WPTelegram\Comments\includes\Requirements( WPTELEGRAM_COMMENTS_MAIN_FILE );
 
-if ( Requirements::satisfied() ) {
+if ( $requirements->satisfied() ) {
 	// Fire.
 	WPTG_Comments()->init();
 
 	define( 'WPTELEGRAM_COMMENTS_LOADED', true );
 } else {
-	add_filter( 'after_plugin_row_' . WPTELEGRAM_COMMENTS_BASENAME, [ Requirements::class, 'display_requirements' ] );
+	add_filter( 'after_plugin_row_' . WPTELEGRAM_COMMENTS_BASENAME, [ $requirements, 'display_requirements' ] );
 }

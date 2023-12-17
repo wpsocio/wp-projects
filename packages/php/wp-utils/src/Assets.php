@@ -83,9 +83,6 @@ class Assets {
 	public function set_dependencies_filepath( $dependencies_path = '' ) {
 		$dependencies_path = $dependencies_path ? $dependencies_path : $this->build_path( '/' . self::DEPS_FILE_NAME );
 
-		if ( ! is_readable( $dependencies_path ) ) {
-			throw new \Exception( 'Dependencies file not found or is not readable: ' . esc_html( $dependencies_path ) );
-		}
 		$this->dependencies_path = $dependencies_path;
 	}
 
@@ -95,12 +92,22 @@ class Assets {
 	 * @return void
 	 */
 	private function load_dependencies() {
-		if ( null === $this->dependencies ) {
-			// phpcs:ignore
-			$dependencies  = json_decode( file_get_contents( $this->dependencies_path ), true );
-
-			$this->dependencies = $dependencies ? $dependencies : [];
+		if ( null !== $this->dependencies ) {
+			return;
 		}
+
+		if ( ! $this->dependencies_path || ! is_readable( $this->dependencies_path ) ) {
+			// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+			error_log( 'Dependencies file not found or is not readable: ' . esc_html( $this->dependencies_path ) );
+
+			$this->dependencies = [];
+
+			return;
+		}
+
+		$dependencies = json_decode( file_get_contents( $this->dependencies_path ), true );
+
+		$this->dependencies = $dependencies ? $dependencies : [];
 	}
 
 	/**
