@@ -1,5 +1,5 @@
-import { sprintf, __ } from '@wpsocio/i18n';
 import { FormField } from '@wpsocio/form';
+import { __, sprintf } from '@wpsocio/i18n';
 import { prefixName } from '@wpsocio/utilities';
 
 import { getFieldLabel } from '../../services';
@@ -63,6 +63,7 @@ export const PHPProxy: React.FC<CommonProps> = ({ prefix }) => {
 			<FormField
 				name={prefixName('proxy_username', prefix)}
 				fieldType="text"
+				autoComplete="off"
 				description={__('Leave empty if not required.')}
 				label={getFieldLabel('proxy_username')}
 				maxWidth="300px"
@@ -71,6 +72,7 @@ export const PHPProxy: React.FC<CommonProps> = ({ prefix }) => {
 				name={prefixName('proxy_password', prefix)}
 				fieldType="text"
 				type="password"
+				autoComplete="off"
 				description={__('Leave empty if not required.')}
 				label={getFieldLabel('proxy_password')}
 				maxWidth="300px"
