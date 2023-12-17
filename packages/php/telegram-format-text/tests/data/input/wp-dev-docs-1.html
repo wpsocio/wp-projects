@@ -1,0 +1,301 @@
+<main id="main" class="site-main" role="main">
+
+		
+			
+    <article id="post-1401" class="post-1401 wp-parser-function type-wp-parser-function status-publish hentry wp-parser-source-file-wp-includes_post-template-php wp-parser-package-template wp-parser-package-wordpress wp-parser-since-0-71 wp-parser-since-4-5-0">
+    
+        
+        
+        <h1>get_the_excerpt( <span class="arg-type">int|WP_Post</span>&nbsp;<span class="arg-name">$post</span>&nbsp;=&nbsp;<span class="arg-default">null</span>&nbsp;): <span class="return-type">string</span></h1>
+    
+        <section class="summary">
+            <p>Retrieves the post excerpt.</p>
+        </section>
+    
+    
+        
+        <div class="table-of-contents"><h2>Contents</h2><ul class="items"><li><a href="#parameters">Parameters</a></li>
+    <li><a href="#return">Return</a></li>
+    <li><a href="#source">Source</a></li>
+    <li><a href="#hooks">Hooks</a></li>
+    <li><a href="#related">Related</a>
+    <ul>
+    <li><a href="#uses">Uses</a></li>
+    <li><a href="#used-by">Used By</a>
+    </li></ul></li>
+    <li><a href="#changelog">Changelog</a></li>
+    <li><a href="#user-contributed-notes">User Contributed Notes</a></li></ul>
+    </div>
+        <hr>
+        <section class="parameters">
+            <header class="toc-header"><h2 id="parameters" class="toc-heading" tabindex="-1"><a href="#parameters" class="dashicons-before dashicons-admin-links">Parameters</a></h2></header>
+            <dl>
+                                                    <dt>
+                            <code>$post</code>
+                                                        <span class="type"><span class="int">int</span>|<span class="WP_Post"><a href="https://developer.wordpress.org/reference/classes/wp_post/" rel="class">WP_Post</a></span></span>
+                                                                                <span class="required">Optional</span>
+                                                </dt>
+                                    <dd>
+                        <div class="desc">
+                                                                                        <span class="description"> Post ID or <a href="https://developer.wordpress.org/reference/classes/wp_post/" rel="class">WP_Post</a> object. Default is global $post.</span>
+                                                                            </div>
+                                                <p class="default">Default: <code>null</code></p>
+                                        </dd>
+                        </dl>
+        </section>
+        <hr>
+        <section class="return">
+            <header class="toc-header"><p class="toc-jump"><a href="#top">Top ↑</a></p><h2 id="return" class="toc-heading" tabindex="-1"><a href="#return" class="dashicons-before dashicons-admin-links">Return</a></h2></header>
+            <p><span class="return-type">string</span> Post excerpt.</p>
+        </section>
+        <hr>
+        <section class="source-content">
+            <header class="toc-header"><p class="toc-jump"><a href="#top">Top ↑</a></p><h2 id="source" class="toc-heading" tabindex="-1"><a href="#source" class="dashicons-before dashicons-admin-links">Source</a></h2></header>
+            <p>
+                File: <code>wp-includes/post-template.php</code>.
+                <a href="https://developer.wordpress.org/reference/files/wp-includes/post-template.php/">View all references</a>		</p>
+    
+                        <div class="wporg-developer-code-block"><div class="wp-code-block-button-container"><button>Copy</button><button aria-expanded="true">Collapse code</button></div><pre class="wp-block-code line-numbers language-php" data-start="408" aria-label="Function source code" tabindex="0" style="counter-reset: linenumber 407; height: 593.167px;"><code lang="php" class="language-php"><span class="token php language-php"><span class="token keyword">function</span> <span class="token function-definition function">get_the_excerpt</span><span class="token punctuation">(</span> <span class="token variable">$post</span> <span class="token operator">=</span> <span class="token constant">null</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span> <span class="token function">is_bool</span><span class="token punctuation">(</span> <span class="token variable">$post</span> <span class="token punctuation">)</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">_deprecated_argument</span><span class="token punctuation">(</span> <span class="token constant">__FUNCTION__</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'2.3.0'</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    
+        <span class="token variable">$post</span> <span class="token operator">=</span> <span class="token function">get_post</span><span class="token punctuation">(</span> <span class="token variable">$post</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span> <span class="token keyword">empty</span><span class="token punctuation">(</span> <span class="token variable">$post</span> <span class="token punctuation">)</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token string single-quoted-string">''</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    
+        <span class="token keyword">if</span> <span class="token punctuation">(</span> <span class="token function">post_password_required</span><span class="token punctuation">(</span> <span class="token variable">$post</span> <span class="token punctuation">)</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token function">__</span><span class="token punctuation">(</span> <span class="token string single-quoted-string">'There is no excerpt because this is a protected post.'</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    
+        <span class="token comment">/**
+         * Filters the retrieved post excerpt.
+         *
+         * @since 1.2.0
+         * @since 4.5.0 Introduced the `$post` parameter.
+         *
+         * @param string  $post_excerpt The post excerpt.
+         * @param WP_Post $post         Post object.
+         */</span>
+        <span class="token keyword">return</span> <span class="token function">apply_filters</span><span class="token punctuation">(</span> <span class="token string single-quoted-string">'get_the_excerpt'</span><span class="token punctuation">,</span> <span class="token variable">$post</span><span class="token operator">-&gt;</span><span class="token property">post_excerpt</span><span class="token punctuation">,</span> <span class="token variable">$post</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+                <p class="source-code-links">
+                    <span><a href="https://core.trac.wordpress.org/browser/tags/6.1/src/wp-includes/post-template.php#L408">View on Trac</a></span>
+                    <span><a href="https://github.com/WordPress/wordpress-develop/blob/6.1/src/wp-includes/post-template.php#L408-L432">View on GitHub</a></span>
+                </p>
+                </section>
+        <hr>
+        <section class="hooks">
+            <header class="toc-header"><p class="toc-jump"><a href="#top">Top ↑</a></p><h2 id="hooks" class="toc-heading" tabindex="-1"><a href="#hooks" class="dashicons-before dashicons-admin-links">Hooks</a></h2></header>
+            <article class="hooks">
+    
+                            <dl>
+                    <dt class="signature-highlight">
+                        <a href="https://developer.wordpress.org/reference/hooks/get_the_excerpt/" style="text-decoration: none">
+                            <span class="hook-func">apply_filters</span>( 'get_the_excerpt',  <nobr><span class="arg-type">string</span> <span class="arg-name">$post_excerpt</span></nobr>,  <nobr><span class="arg-type">WP_Post</span> <span class="arg-name">$post</span></nobr> )					</a>
+                    </dt>
+                    <dd class="hook-desc">
+                        <p>
+                            </p><p>Filters the retrieved post excerpt.</p>
+                        <p></p>
+                    </dd>
+                </dl>
+                        </article>
+        </section>
+            <hr>
+        <section class="related">
+            <header class="toc-header"><p class="toc-jump"><a href="#top">Top ↑</a></p><h2 id="related" class="toc-heading" tabindex="-1"><a href="#related" class="dashicons-before dashicons-admin-links">Related</a></h2></header>
+    
+                        <article class="uses">
+                    <header class="toc-header"><p class="toc-jump"><a href="#top">Top ↑</a></p><h3 id="uses" class="toc-heading" tabindex="-1"><a href="#uses" class="dashicons-before dashicons-admin-links">Uses</a></h3></header>
+                    <table id="uses-table" data-show="2">
+                        <caption class="screen-reader-text">Uses</caption>
+                        <thead>
+                            <tr>
+                                <th>Uses</th>
+                                <th class="related-desc">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                                    <tr>
+                                <td class="related-title">
+                                    <a href="https://developer.wordpress.org/reference/functions/post_password_required/">post_password_required()</a>
+                                    <span>wp-includes/post-template.php</span>
+                                </td>
+                                <td class="related-desc">
+                                    <p>Determines whether the post requires password and whether a correct password has been provided.</p>
+                                </td>
+                            </tr>
+                                                    <tr>
+                                <td class="related-title">
+                                    <a href="https://developer.wordpress.org/reference/functions/__/">__()</a>
+                                    <span>wp-includes/l10n.php</span>
+                                </td>
+                                <td class="related-desc">
+                                    <p>Retrieves the translation of $text.</p>
+                                </td>
+                            </tr>
+                                                    <tr style="display: none;">
+                                <td class="related-title">
+                                    <a href="https://developer.wordpress.org/reference/functions/_deprecated_argument/">_deprecated_argument()</a>
+                                    <span>wp-includes/functions.php</span>
+                                </td>
+                                <td class="related-desc">
+                                    <p>Marks a function argument as deprecated and inform when it has been used.</p>
+                                </td>
+                            </tr>
+                                                    <tr style="display: none;">
+                                <td class="related-title">
+                                    <a href="https://developer.wordpress.org/reference/functions/apply_filters/">apply_filters()</a>
+                                    <span>wp-includes/plugin.php</span>
+                                </td>
+                                <td class="related-desc">
+                                    <p>Calls the callback functions that have been added to a filter hook.</p>
+                                </td>
+                            </tr>
+                                                    <tr style="display: none;">
+                                <td class="related-title">
+                                    <a href="https://developer.wordpress.org/reference/functions/get_post/">get_post()</a>
+                                    <span>wp-includes/post.php</span>
+                                </td>
+                                <td class="related-desc">
+                                    <p>Retrieves post data given a post ID or post object.</p>
+                                </td>
+                            </tr>
+                                                </tbody><tbody>
+                    </tbody></table>
+    
+                                    <a href="#" class="show-more" style="display: inline;">Show 3 more uses</a>
+                    <a href="#" class="hide-more">Hide more uses</a>
+                                </article>
+            
+                        <hr>
+                <article class="used-by">
+                    <header class="toc-header"><p class="toc-jump"><a href="#top">Top ↑</a></p><h3 id="used-by" class="toc-heading" tabindex="-1"><a href="#used-by" class="dashicons-before dashicons-admin-links">Used By</a></h3></header>
+                    <table id="used-by-table" data-show="5">
+                        <caption class="screen-reader-text">Used By</caption>
+                        <thead>
+                            <tr>
+                                <th>Used By</th>
+                                <th class="related-desc">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                                    <tr>
+                                <td class="related-title">
+                                    <a href="https://developer.wordpress.org/reference/functions/the_excerpt_embed/">the_excerpt_embed()</a>
+                                        <span>wp-includes/embed.php</span>
+                                </td>
+                                <td class="related-desc">
+                                    <p>Displays the post excerpt for the embed template.</p>
+                                </td>
+                            </tr>
+                                                    <tr>
+                                <td class="related-title">
+                                    <a href="https://developer.wordpress.org/reference/classes/wp_posts_list_table/column_title/">WP_Posts_List_Table::column_title()</a>
+                                        <span>wp-admin/includes/class-wp-posts-list-table.php</span>
+                                </td>
+                                <td class="related-desc">
+                                    <p>Handles the title column output.</p>
+                                </td>
+                            </tr>
+                                                    <tr>
+                                <td class="related-title">
+                                    <a href="https://developer.wordpress.org/reference/functions/the_excerpt_rss/">the_excerpt_rss()</a>
+                                        <span>wp-includes/feed.php</span>
+                                </td>
+                                <td class="related-desc">
+                                    <p>Displays the post excerpt for the feed.</p>
+                                </td>
+                            </tr>
+                                                    <tr>
+                                <td class="related-title">
+                                    <a href="https://developer.wordpress.org/reference/functions/the_excerpt/">the_excerpt()</a>
+                                        <span>wp-includes/post-template.php</span>
+                                </td>
+                                <td class="related-desc">
+                                    <p>Displays the post excerpt.</p>
+                                </td>
+                            </tr>
+                                                </tbody><tbody>
+                    </tbody></table>
+    
+                                </article>
+                </section>
+            <hr>
+        <section class="changelog">
+            <header class="toc-header"><p class="toc-jump"><a href="#top">Top ↑</a></p><h2 id="changelog" class="toc-heading" tabindex="-1"><a href="#changelog" class="dashicons-before dashicons-admin-links">Changelog</a></h2></header>
+    
+            <table>
+                <caption class="screen-reader-text">Changelog</caption>
+                <thead>
+                    <tr>
+                        <th class="changelog-version">Version</th>
+                        <th class="changelog-desc">Description</th>
+                    </tr>
+                </thead>
+    
+                <tbody>
+                                        
+                        <tr>
+                            <td><a href="https://developer.wordpress.org/reference/since/4.5.0/" alt="WordPress 4.5.0">4.5.0</a></td>
+                            <td><span class="since-description">Introduced the <code>$post</code> parameter.</span></td>
+                        </tr>
+                                        
+                        <tr>
+                            <td><a href="https://developer.wordpress.org/reference/since/0.71/" alt="WordPress 0.71">0.71</a></td>
+                            <td>Introduced.</td>
+                        </tr>
+                                </tbody>
+            </table>
+        </section>
+    
+        <hr>
+        
+    <style>
+            .toc-header {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 48px !important;
+            }
+            .toc-jump {
+                text-align: right;
+                font-size: 0.75em;
+                order: 2;
+            }
+            .toc-heading a:first-of-type {
+                color: inherit;
+                font-weight: inherit;
+                margin-left: -32px;
+                text-decoration: none !important;
+            }
+            .toc-heading a:before {
+                vertical-align: middle;
+                /* icon is 20px wide in a 32px space, so add 12px horizontal margin. */
+                margin: -4px 8px 0 4px;
+            }
+            @media (max-width: 876px) {
+                .toc-heading a {
+                    margin-left: -20px;
+                }
+                .toc-heading a:before {
+                    /* icon is 14px wide in a 20px space, so add 6px horizontal margin. */
+                    margin: -2px 4px 0 2px;
+                    width: 14px;
+                    height: 14px;
+                    font-size: 14px;
+                }
+                .toc-heading a:first-of-type {
+                    margin-left: 0;
+                }
+            }
+        </style>
+    
+    
+    </article>
+    
+                
+            
+            </main>

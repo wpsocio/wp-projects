@@ -12,5 +12,21 @@
 		{
 			"name": "WP Socio"
 		}
-	]
+	],
+	"scripts": {
+		"lint": "\"vendor/bin/phpcs\" --standard=../../../phpcs.xml --extensions=php .",
+		"lint:skip-warnings": "\"vendor/bin/phpcs\" --standard=../../../phpcs.xml --extensions=php -n .",
+		"lint:fix": "\"vendor/bin/phpcbf\" --standard=../../../phpcs.xml --extensions=php .",
+		"test": "composer --version"
+	},
+	"require-dev": {
+		"wp-coding-standards/wpcs": "^3.0.1",
+		"pestphp/pest": "^1.22"
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": false,
+			"pestphp/pest-plugin": false
+		}
+	}
 }

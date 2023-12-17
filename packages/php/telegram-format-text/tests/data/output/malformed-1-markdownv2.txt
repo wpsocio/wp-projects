@@ -1,0 +1,7 @@
+📌*Something here
+
+Size: _XL_
+Color: _Red
+Price: $100
+
+You saved $50_*

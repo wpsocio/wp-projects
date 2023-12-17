@@ -16,19 +16,13 @@
 	"bugs": {
 		"url": "https://github.com/wpsocio/wptelegram-comments/issues"
 	},
-	"keywords": [
-		"telegram",
-		"comments",
-		"discuss",
-		"social",
-		"widget"
-	],
+	"keywords": ["telegram", "comments", "discuss", "social", "widget"],
 	"type": "module",
 	"scripts": {
 		"dev": "vite --port=5000",
 		"build": "vite build",
-		"lint:php": "composer run lint",
 		"preview": "vite preview",
+		"lint:php": "composer run lint",
 		"setup:prod": "composer config vendor-dir src/vendor && composer install --no-dev",
 		"setup:dev": "composer config vendor-dir --unset && composer install"
 	},

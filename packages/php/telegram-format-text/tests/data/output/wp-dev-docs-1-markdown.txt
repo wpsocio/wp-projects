@@ -1,0 +1,146 @@
+get\_the\_excerpt( int|WP\_Post $post = null ): string
+
+Retrieves the post excerpt.
+
+Contents
+
+- Parameters
+- Return
+- Source
+- Hooks
+- Related
+    ◦ Uses
+    ◦ Used By
+- Changelog
+- User Contributed Notes
+
+-------------
+
+Parameters
+
+`$post`
+int|[WP_Post](https://developer.wordpress.org/reference/classes/wp_post/)
+Optional
+
+Post ID or [WP_Post](https://developer.wordpress.org/reference/classes/wp_post/) object. Default is global $post.
+
+Default: `null`
+
+-------------
+
+Top ↑
+
+Return
+
+string Post excerpt.
+
+-------------
+
+Top ↑
+
+Source
+
+File: `wp-includes/post-template.php`.
+[View all references](https://developer.wordpress.org/reference/files/wp-includes/post-template.php/)
+
+CopyCollapse code
+```php
+function get_the_excerpt( $post = null ) {
+        if ( is_bool( $post ) ) {
+            _deprecated_argument( __FUNCTION__, '2.3.0' );
+        }
+    
+        $post = get_post( $post );
+        if ( empty( $post ) ) {
+            return '';
+        }
+    
+        if ( post_password_required( $post ) ) {
+            return __( 'There is no excerpt because this is a protected post.' );
+        }
+    
+        /**
+         * Filters the retrieved post excerpt.
+         *
+         * @since 1.2.0
+         * @since 4.5.0 Introduced the `$post` parameter.
+         *
+         * @param string  $post_excerpt The post excerpt.
+         * @param WP_Post $post         Post object.
+         */
+        return apply_filters( 'get_the_excerpt', $post->post_excerpt, $post );
+    }
+    
+```
+
+[View on Trac](https://core.trac.wordpress.org/browser/tags/6.1/src/wp-includes/post-template.php#L408)
+[View on GitHub](https://github.com/WordPress/wordpress-develop/blob/6.1/src/wp-includes/post-template.php#L408-L432)
+
+-------------
+
+Top ↑
+
+Hooks
+
+[apply_filters( 'get_the_excerpt',  string $post_excerpt,  WP_Post $post )](https://developer.wordpress.org/reference/hooks/get_the_excerpt/)
+
+Filters the retrieved post excerpt.
+
+-------------
+
+Top ↑
+
+Related
+
+Top ↑
+
+Uses
+
+Uses
+Uses | Description
+--------------------
+[post_password_required()](https://developer.wordpress.org/reference/functions/post_password_required/)
+wp-includes/post-template.php | Determines whether the post requires password and whether a correct password has been provided.
+--------------------
+[__()](https://developer.wordpress.org/reference/functions/__/)
+wp-includes/l10n.php | Retrieves the translation of $text.
+--------------------
+
+Show 3 more uses
+Hide more uses
+
+-------------
+
+Top ↑
+
+Used By
+
+Used By
+Used By | Description
+--------------------
+[the_excerpt_embed()](https://developer.wordpress.org/reference/functions/the_excerpt_embed/)
+wp-includes/embed.php | Displays the post excerpt for the embed template.
+--------------------
+[WP_Posts_List_Table::column_title()](https://developer.wordpress.org/reference/classes/wp_posts_list_table/column_title/)
+wp-admin/includes/class-wp-posts-list-table.php | Handles the title column output.
+--------------------
+[the_excerpt_rss()](https://developer.wordpress.org/reference/functions/the_excerpt_rss/)
+wp-includes/feed.php | Displays the post excerpt for the feed.
+--------------------
+[the_excerpt()](https://developer.wordpress.org/reference/functions/the_excerpt/)
+wp-includes/post-template.php | Displays the post excerpt.
+
+-------------
+
+Top ↑
+
+Changelog
+
+Changelog
+Version | Description
+--------------------
+[4.5.0](https://developer.wordpress.org/reference/since/4.5.0/) | Introduced the `$post` parameter.
+--------------------
+[0.71](https://developer.wordpress.org/reference/since/0.71/) | Introduced.
+
+-------------

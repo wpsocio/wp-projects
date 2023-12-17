@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "10381a3108082deaa6e262195138afd6",
+    "content-hash": "7cc9ce24cb0892f8630784264b462139",
     "packages": [
         {
             "name": "kucrut/vite-for-wp",
@@ -51,13 +51,27 @@
             "dist": {
                 "type": "path",
                 "url": "../../packages/php/wp-utils",
-                "reference": "0ac4b821b0276f2c57bc9753136db1f4441c0eb2"
+                "reference": "85811a5f4ca251b8864de463351924718574a1a5"
+            },
+            "require-dev": {
+                "wp-coding-standards/wpcs": "^3.0"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
                     "WPSocio\\WPUtils\\": "src/"
                 }
+            },
+            "scripts": {
+                "lint": [
+                    "\"vendor/bin/phpcs\" --standard=../../../phpcs.xml --extensions=php src/"
+                ],
+                "lint:skip-warnings": [
+                    "\"vendor/bin/phpcs\" --standard=../../../phpcs.xml --extensions=php -n src/"
+                ],
+                "lint:fix": [
+                    "\"vendor/bin/phpcbf\" --standard=../../../phpcs.xml --extensions=php src/"
+                ]
             },
             "license": [
                 "GPL3"
@@ -68,6 +82,64 @@
                 }
             ],
             "description": "Easy solution to handle WP plugin or theme options",
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
+            "name": "wpsocio/wptelegram-bot-api",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "../../packages/php/wptelegram-bot-api",
+                "reference": "adeca8e7b0a378a43f99e5c258462f26f4c0983a"
+            },
+            "require-dev": {
+                "wp-coding-standards/wpcs": "^3.0",
+                "z4kn4fein/php-semver": "^2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "autoload-wp.php"
+                ]
+            },
+            "scripts": {
+                "lint": [
+                    "\"vendor/bin/phpcs\" --standard=../../../phpcs.xml --extensions=php src/"
+                ],
+                "lint:skip-warnings": [
+                    "\"vendor/bin/phpcs\" --standard=../../../phpcs.xml --extensions=php -n src/"
+                ],
+                "lint:fix": [
+                    "\"vendor/bin/phpcbf\" --standard=../../../phpcs.xml --extensions=php src/"
+                ],
+                "test": [
+                    "\"vendor/bin/phpunit\" tests/"
+                ],
+                "release:major": [
+                    "composer run-script release -- --type=major"
+                ],
+                "release:minor": [
+                    "composer run-script release -- --type=minor"
+                ],
+                "release:patch": [
+                    "composer run-script release -- --type=patch"
+                ],
+                "release": [
+                    "@php bin/release.php"
+                ]
+            },
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "WP Socio"
+                }
+            ],
+            "description": "Telegram Bot API library for WordPress.",
             "transport-options": {
                 "symlink": true,
                 "relative": true
@@ -469,6 +541,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "wpsocio/wptelegram-bot-api": 20,
         "wpsocio/wp-utils": 20
     },
     "prefer-stable": false,

@@ -1,0 +1,7 @@
+*Test for italic being the only direct child of underline*
+
+In case of ambiguity between `italic` and `underline` entities `\_\_` is always greadily treated from left to right as beginning or end of `underline` entity, so instead of `\_\_\_italic underline\_\_\_` use `\_\_\_italic underline\_\\r\_\_`, where `\\r` is a character with code 13, which will be ignored\.
+
+__ _italic underline 1___
+
+___italic underline 2_ __

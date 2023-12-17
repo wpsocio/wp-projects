@@ -274,6 +274,12 @@ importers:
         specifier: ^18.2.45
         version: 18.2.45
 
+  packages/php/telegram-format-text: {}
+
+  packages/php/wp-utils: {}
+
+  packages/php/wptelegram-bot-api: {}
+
   plugins/wp-test-plugin:
     devDependencies:
       '@types/node':

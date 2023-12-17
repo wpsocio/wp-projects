@@ -1,0 +1,13 @@
+<b>Test for 0 as content</b>
+
+<b>0</b>, <b>0</b>
+<em>0</em>, <em>0 </em>
+<u>0</u>, <ins>0</ins>
+<s>0</s>, <strike>0</strike>, <del>0</del>
+<tg-spoiler>0</tg-spoiler>, <tg-spoiler>0</tg-spoiler>
+<b>bold <em>italic bold <s>italic bold strikethrough <tg-spoiler>italic bold strikethrough spoiler</tg-spoiler></s> <u>0</u></em> bold</b>
+<a href="http://www.example.com/">0</a>
+<a href="tg://user?id=123456789">0</a>
+<code>0</code>
+<pre>0</pre>
+<pre><code class="language-python">0</code></pre>

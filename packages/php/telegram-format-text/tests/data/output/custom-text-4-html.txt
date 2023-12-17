@@ -1,0 +1,3 @@
+<b>Escaping character test</b>
+
+<em>Any character with code between 1 and 126 inclusively can be escaped anywhere with a preceding '\' character, in which case it is treated as an ordinary character and not a part of the markup. This implies that '\' character usually must be escaped with a preceding '\' character.</em>

@@ -1,0 +1,146 @@
+get\_the\_excerpt\( int\|WP\_Post $post \= null \): string
+
+Retrieves the post excerpt\.
+
+Contents
+
+\- Parameters
+\- Return
+\- Source
+\- Hooks
+\- Related
+    ◦ Uses
+    ◦ Used By
+\- Changelog
+\- User Contributed Notes
+
+\-\-\-\-\-\-\-\-\-\-\-\-\-
+
+Parameters
+
+`$post`
+int\|[WP\_Post](https://developer.wordpress.org/reference/classes/wp_post/)
+Optional
+
+Post ID or [WP\_Post](https://developer.wordpress.org/reference/classes/wp_post/) object\. Default is global $post\.
+
+Default: `null`
+
+\-\-\-\-\-\-\-\-\-\-\-\-\-
+
+Top ↑
+
+Return
+
+string Post excerpt\.
+
+\-\-\-\-\-\-\-\-\-\-\-\-\-
+
+Top ↑
+
+Source
+
+File: `wp\-includes/post\-template\.php`\.
+[View all references](https://developer.wordpress.org/reference/files/wp-includes/post-template.php/)
+
+CopyCollapse code
+```php
+function get\_the\_excerpt\( $post \= null \) \{
+        if \( is\_bool\( $post \) \) \{
+            \_deprecated\_argument\( \_\_FUNCTION\_\_, '2\.3\.0' \);
+        \}
+    
+        $post \= get\_post\( $post \);
+        if \( empty\( $post \) \) \{
+            return '';
+        \}
+    
+        if \( post\_password\_required\( $post \) \) \{
+            return \_\_\( 'There is no excerpt because this is a protected post\.' \);
+        \}
+    
+        /\*\*
+         \* Filters the retrieved post excerpt\.
+         \*
+         \* @since 1\.2\.0
+         \* @since 4\.5\.0 Introduced the \`$post\` parameter\.
+         \*
+         \* @param string  $post\_excerpt The post excerpt\.
+         \* @param WP\_Post $post         Post object\.
+         \*/
+        return apply\_filters\( 'get\_the\_excerpt', $post\-\>post\_excerpt, $post \);
+    \}
+    
+```
+
+[View on Trac](https://core.trac.wordpress.org/browser/tags/6.1/src/wp-includes/post-template.php#L408)
+[View on GitHub](https://github.com/WordPress/wordpress-develop/blob/6.1/src/wp-includes/post-template.php#L408-L432)
+
+\-\-\-\-\-\-\-\-\-\-\-\-\-
+
+Top ↑
+
+Hooks
+
+[apply\_filters\( 'get\_the\_excerpt',  string $post\_excerpt,  WP\_Post $post \)](https://developer.wordpress.org/reference/hooks/get_the_excerpt/)
+
+Filters the retrieved post excerpt\.
+
+\-\-\-\-\-\-\-\-\-\-\-\-\-
+
+Top ↑
+
+Related
+
+Top ↑
+
+Uses
+
+Uses
+Uses \| Description
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
+[post\_password\_required\(\)](https://developer.wordpress.org/reference/functions/post_password_required/)
+wp\-includes/post\-template\.php \| Determines whether the post requires password and whether a correct password has been provided\.
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
+[\_\_\(\)](https://developer.wordpress.org/reference/functions/__/)
+wp\-includes/l10n\.php \| Retrieves the translation of $text\.
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
+
+Show 3 more uses
+Hide more uses
+
+\-\-\-\-\-\-\-\-\-\-\-\-\-
+
+Top ↑
+
+Used By
+
+Used By
+Used By \| Description
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
+[the\_excerpt\_embed\(\)](https://developer.wordpress.org/reference/functions/the_excerpt_embed/)
+wp\-includes/embed\.php \| Displays the post excerpt for the embed template\.
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
+[WP\_Posts\_List\_Table::column\_title\(\)](https://developer.wordpress.org/reference/classes/wp_posts_list_table/column_title/)
+wp\-admin/includes/class\-wp\-posts\-list\-table\.php \| Handles the title column output\.
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
+[the\_excerpt\_rss\(\)](https://developer.wordpress.org/reference/functions/the_excerpt_rss/)
+wp\-includes/feed\.php \| Displays the post excerpt for the feed\.
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
+[the\_excerpt\(\)](https://developer.wordpress.org/reference/functions/the_excerpt/)
+wp\-includes/post\-template\.php \| Displays the post excerpt\.
+
+\-\-\-\-\-\-\-\-\-\-\-\-\-
+
+Top ↑
+
+Changelog
+
+Changelog
+Version \| Description
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
+[4\.5\.0](https://developer.wordpress.org/reference/since/4.5.0/) \| Introduced the `$post` parameter\.
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
+[0\.71](https://developer.wordpress.org/reference/since/0.71/) \| Introduced\.
+
+\-\-\-\-\-\-\-\-\-\-\-\-\-

@@ -1,0 +1,7 @@
+<b>Test for italic being the only direct child of underline</b>
+
+In case of ambiguity between <code>italic</code> and <code>underline</code> entities <code>__</code> is always greadily treated from left to right as beginning or end of <code>underline</code> entity, so instead of <code>___italic underline___</code> use <code>___italic underline_\r__</code>, where <code>\r</code> is a character with code 13, which will be ignored.
+
+<u> <em>italic underline 1</em></u>
+
+<u><em>italic underline 2</em> </u>

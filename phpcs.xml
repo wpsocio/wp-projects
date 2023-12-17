@@ -38,4 +38,28 @@
 	<rule ref="Generic.Arrays.DisallowLongArraySyntax.Found">
 		<type>warning</type>
 	</rule>
+
+	<!-- Disable specific rules for PHP packages -->
+	<rule ref="WordPress.NamingConventions.ValidVariableName">
+		<exclude-pattern>*/packages/php/*</exclude-pattern>
+	</rule>
+
+	<rule ref="WordPress.NamingConventions.ValidFunctionName">
+		<exclude-pattern>*/packages/php/*</exclude-pattern>
+	</rule>
+
+	<rule ref="WordPress.WP.AlternativeFunctions">
+		<exclude-pattern>*/packages/php/*</exclude-pattern>
+	</rule>
+
+	<rule ref="WordPress.Security.EscapeOutput">
+		<exclude-pattern>*/packages/php/*</exclude-pattern>
+	</rule>
+
+	<!-- Disable function comment rule when {@inheritdoc} is present -->
+	<rule ref="Squiz.Commenting.FunctionComment">
+		<properties>
+			<property name="skipIfInheritdoc" value="true" />
+		</properties>
+	</rule>
 </ruleset>
