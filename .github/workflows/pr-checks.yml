@@ -59,6 +59,7 @@ jobs:
 
       - name: Test
         run: "pnpm test:php"
+        if: matrix.php-versions == '8.3'
 
   js-lint-build:
     name: "JS: Lint, Build and Test"
