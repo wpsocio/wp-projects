@@ -7,8 +7,8 @@ on:
     types: [opened, synchronize]
 
 jobs:
-  php-lint:
-    name: "PHP: Lint"
+  php-lint-test:
+    name: "PHP: Lint, Test"
     timeout-minutes: 15
     runs-on: ubuntu-latest
     strategy:
@@ -56,6 +56,9 @@ jobs:
 
       - name: Lint
         run: "pnpm lint:php"
+
+      - name: Test
+        run: "pnpm test:php"
 
   js-lint-build:
     name: "JS: Lint, Build and Test"
