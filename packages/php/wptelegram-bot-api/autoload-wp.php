@@ -6,7 +6,6 @@
  * @since             1.2.7
  * @package           WPTelegram\BotAPI
  *
- * @wordpress-plugin
  * Plugin Name:       WP Telegram Bot API
  * Plugin URI:        https://github.com/wpsocio/wptelegram-bot-api
  * Description:       ❌ DO NOT DELETE ❌ WP Loader for WP Telegram Bot API library.
@@ -19,7 +18,6 @@
  * Domain Path:       /languages
  */
 
-// Namespace doesn't really matter here.
 namespace WPTelegram\BotAPI;
 
 // If this file is called directly, abort.

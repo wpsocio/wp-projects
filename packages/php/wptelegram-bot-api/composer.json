@@ -1,5 +1,5 @@
 {
-	"name": "wptelegram/bot-api",
+	"name": "wpsocio/wptelegram-bot-api",
 	"type": "library",
 	"license": "GPL-3.0-or-later",
 	"description": "Telegram Bot API library for WordPress.",
@@ -12,11 +12,24 @@
 		}
 	],
 	"scripts": {
-		"lint": "\"vendor/bin/phpcs\" --standard=../../../phpcs.xml --extensions=php src/",
-		"lint:skip-warnings": "\"vendor/bin/phpcs\" --standard=../../../phpcs.xml --extensions=php -n src/",
-		"lint:fix": "\"vendor/bin/phpcbf\" --standard=../../../phpcs.xml --extensions=php src/"
+		"lint": "\"vendor/bin/phpcs\" --standard=../../../phpcs.xml --extensions=php .",
+		"lint:skip-warnings": "\"vendor/bin/phpcs\" --standard=../../../phpcs.xml --extensions=php -n .",
+		"lint:fix": "\"vendor/bin/phpcbf\" --standard=../../../phpcs.xml --extensions=php .",
+		"test": "composer --version",
+		"release:major": "composer run-script release -- --type=major",
+		"release:minor": "composer run-script release -- --type=minor",
+		"release:patch": "composer run-script release -- --type=patch",
+		"release": "@php bin/release.php"
 	},
 	"require-dev": {
-		"wp-coding-standards/wpcs": "^3.0"
+		"wp-coding-standards/wpcs": "^3.0",
+		"z4kn4fein/php-semver": "^2.0",
+		"pestphp/pest": "^1.22"
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": false,
+			"pestphp/pest-plugin": false
+		}
 	}
 }

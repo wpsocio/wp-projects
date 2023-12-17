@@ -9,7 +9,7 @@
 	},
 	"require": {
 		"kucrut/vite-for-wp": "^0.8.0",
-		"wptelegram/bot-api": "dev-main",
+		"wpsocio/wptelegram-bot-api": "dev-main",
 		"wpsocio/wp-utils": "dev-main"
 	},
 	"require-dev": {

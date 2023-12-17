@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "75e5f8156843e29471f95da46c335c94",
+    "content-hash": "7cc9ce24cb0892f8630784264b462139",
     "packages": [
         {
             "name": "kucrut/vite-for-wp",
@@ -88,15 +88,16 @@
             }
         },
         {
-            "name": "wptelegram/bot-api",
+            "name": "wpsocio/wptelegram-bot-api",
             "version": "dev-main",
             "dist": {
                 "type": "path",
                 "url": "../../packages/php/wptelegram-bot-api",
-                "reference": "13c36a76b030ec2cd62899c7fa4d744f7f04d107"
+                "reference": "adeca8e7b0a378a43f99e5c258462f26f4c0983a"
             },
             "require-dev": {
-                "wp-coding-standards/wpcs": "^3.0"
+                "wp-coding-standards/wpcs": "^3.0",
+                "z4kn4fein/php-semver": "^2.0"
             },
             "type": "library",
             "autoload": {
@@ -113,6 +114,21 @@
                 ],
                 "lint:fix": [
                     "\"vendor/bin/phpcbf\" --standard=../../../phpcs.xml --extensions=php src/"
+                ],
+                "test": [
+                    "\"vendor/bin/phpunit\" tests/"
+                ],
+                "release:major": [
+                    "composer run-script release -- --type=major"
+                ],
+                "release:minor": [
+                    "composer run-script release -- --type=minor"
+                ],
+                "release:patch": [
+                    "composer run-script release -- --type=patch"
+                ],
+                "release": [
+                    "@php bin/release.php"
                 ]
             },
             "license": [
@@ -525,7 +541,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "wptelegram/bot-api": 20,
+        "wpsocio/wptelegram-bot-api": 20,
         "wpsocio/wp-utils": 20
     },
     "prefer-stable": false,

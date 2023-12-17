@@ -1,4 +1,5 @@
 packages:
     - 'packages/js/*'
+    - 'packages/php/*' # Just for running PHP tests via turbo
     - 'plugins/*'
     - 'tools/*'
