@@ -22,7 +22,7 @@
 		"release": "@php bin/release.php"
 	},
 	"require-dev": {
-		"wp-coding-standards/wpcs": "^3.0",
+		"wp-coding-standards/wpcs": "^3.0.1",
 		"z4kn4fein/php-semver": "^2.0",
 		"pestphp/pest": "^1.22"
 	},
