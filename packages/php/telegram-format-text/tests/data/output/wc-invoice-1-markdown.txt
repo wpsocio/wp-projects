@@ -1,0 +1,34 @@
+Invoice for order #84
+--------------------
+Hi John,
+
+Here are the details of your order placed on July 3, 2022:
+
+Pay with cash upon delivery.
+
+\[Order #84] (July 3, 2022)
+
+Product | Quantity | Price
+--------------------
+Test Variable Product - M
+- *Size:*
+    M | 1 | $275.00
+--------------------
+Subtotal: | $275.00
+--------------------
+Payment method: | Cash on delivery
+--------------------
+Total: | $275.00
+
+Billing address
+
+John Doe
+Some Street
+Some Address
+Some state here
++123456789
+someone@example.com
+
+Thanks for using example.com!
+--------------------
+WP Test — Built with [WooCommerce](https://woocommerce.com)

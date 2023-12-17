@@ -1,0 +1,7 @@
+📌Something here
+
+Size: XL
+Color: Red
+Price: $100
+
+You saved $50

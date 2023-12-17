@@ -1,0 +1,131 @@
+The premium version of WP Telegram for absolute WordPress Telegram integration with powerful features.
+
+Below are the most prominent features of WP Telegram Pro. If you want to have a look at all the features of the plugin, <a href="https://wptelegram.pro/features">click here</a>.
+
+Pro Feature #1
+
+Multiple Bots
+
+You can add multiple bots to use for different modules and channels.
+
+For example, you can use one bot for Post to Telegram and another for notifications. You can even use separate bot for each channel
+
+Pro Feature #2
+
+Multiple Post to Telegram Instances
+
+You can create as many instances of Post to Telegram as you want and then configure them whatever way you want – based upon category, tag, author, post type, custom taxonomy etc.
+
+For example, you may want to send posts from Category A to Channel A and posts from Category B to Channel B and so on
+
+Pro Feature #3
+
+Multiple Message Templates
+
+Since you can create multiple instances of Post to Telegram, it also means that you can create specific templates based upon category, tag, author etc. and also specific template for specific channel.
+
+Pro Feature #4
+
+Custom Reaction and URL buttons
+
+You can add your own custom reaction and URL buttons with custom labels and links which can then be used in Post to Telegram messages.
+
+Pro Feature #5
+
+Awesome Inline keyboard
+
+You can add the existing or your custom buttons to messages whichever way you want. You can create multiple button rows and multiple buttons in a row.
+
+Pro Feature #6
+
+<b>Instant “Send to Telegram</b>”
+
+From WordPress post list table, you can select post(s) to directly send them to Telegram, without the need to edit and update the post.
+
+All features...
+
+General
+
+- Multiple Bots (as many as you want)
+- Processing of incoming bot updates
+- Easy to install and set up for the admin
+
+- Support for both long polling and webhook
+- Use only the module(s) you want/need
+- Fully customizable with actions and filters
+
+Post to Telegram
+
+Send posts automatically to Telegram when published or
+updated. You can send to a
+Telegram Channel, Group or private chat.
+
+- Multiple Instances (as many as you want).
+- Multiple Message Templates based upon category, tag, author, post type, custom taxonomy etc.
+- Inline keyboard for messages on Telegram.
+- Send posts instantly to Telegram from post list.
+- Filter posts by post, category, tag, author, custom post type, custom taxonomy etc.
+- Supports separate bot for each channel.
+- Supports Conditional logic for fields in Message Template
+
+- Multiple Channels/chats based upon category, tag, author, post type, custom taxonomy etc.
+- Built-in Reaction and URL buttons.
+- Custom (your own) Reaction and URL buttons.
+- Direct support for Advanced Custom Fields’ text fields.
+- Explicit support for WooCommerce product fields.
+- Supports sending featured image along with the text.
+- Messages can be delayed by a set duration.
+
+Private Notifications
+
+- Supports Multiple email to Telegram chat combinations.
+- Supports WooCommerce order notifications, Contact Form 7 and other plugin notifications.
+- Supports BB Press forum notifications.
+
+- Integrated with WP Telegram Login to let users connect their Telegram.
+- Supports email attachments along with text.
+- Supports separate bot for notifications.
+
+Proxy
+
+If your host blocks Telegram, you can use proxy to bypass
+the ban.
+
+- Supports proxy using Cloudflare worker, which supports file upload .
+- Supports proxy using Google Script.
+
+- Supports all proxies supported by PHP
+
+Pricing
+
+Single Site
+
+$49
+
+- For 1 website
+- Free updates for 1 year
+- 4 month premium support
+
+Up to 5 Sites
+
+$99
+
+- For 2 - 5 websites
+- Free updates for 1 year
+- 6 month premium support
+
+Up to 10 Sites
+
+$149
+
+- For 2 - 10 websites
+- Free updates for 1 year
+- 8 month premium support
+
+Up to 100 Sites
+
+$299
+
+- For 10 - 100 websites
+- Free updates for 1 year
+- 1 year premium support

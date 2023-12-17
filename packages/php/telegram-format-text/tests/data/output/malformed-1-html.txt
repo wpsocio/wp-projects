@@ -1,0 +1,7 @@
+📌<b>Something here
+
+Size: <em>XL</em>
+Color: <em>Red
+Price: $100
+
+You saved $50</em></b>

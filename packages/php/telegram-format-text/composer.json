@@ -1,0 +1,31 @@
+{
+	"name": "wpsocio/telegram-format-text",
+	"description": "HTML to Text converter/formatter for Telegram Bot API",
+	"license": "MIT",
+	"require-dev": {
+		"wp-coding-standards/wpcs": "^3.0.1",
+		"pestphp/pest": "^1.22"
+	},
+	"autoload": {
+		"psr-4": {
+			"WPSocio\\TelegramFormatText\\": "src/"
+		}
+	},
+	"scripts": {
+		"lint": "\"vendor/bin/phpcs\" --standard=../../../phpcs.xml --extensions=php .",
+		"lint:skip-warnings": "\"vendor/bin/phpcs\" --standard=../../../phpcs.xml --extensions=php -n .",
+		"lint:fix": "\"vendor/bin/phpcbf\" --standard=../../../phpcs.xml --extensions=php .",
+		"test": "\"vendor/bin/pest\"",
+		"release:major": "composer run-script release -- --type=major",
+		"release:minor": "composer run-script release -- --type=minor",
+		"release:patch": "composer run-script release -- --type=patch",
+		"release": "@php bin/release.php",
+		"snapshots": "@php bin/snapshots.php"
+	},
+	"config": {
+		"allow-plugins": {
+			"pestphp/pest-plugin": false,
+			"dealerdirect/phpcodesniffer-composer-installer": false
+		}
+	}
+}

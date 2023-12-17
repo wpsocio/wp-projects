@@ -1,0 +1,5 @@
+<b>Test for blockquote</b>
+
+<blockquote>
+In case of ambiguity between &gt; <code>italic</code> and <code>underline</code> entities <code>__</code> is always greadily treated from left to right as beginning or end of <code>underline</code> entity, so instead of <code>___italic underline___</code> use <code>___italic underline_\r__</code>, where <code>\r</code> is a character with code 13, which will be ignored.
+</blockquote>

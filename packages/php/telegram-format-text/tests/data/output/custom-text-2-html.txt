@@ -1,0 +1,14 @@
+📌<b>Code title here</b>
+
+<pre><code class="language-php">/* WP Telegram - use custom image from `'thumb_bg'` meta */
+add_filter( 'wptelegram_p2tg_post_data_featured_image_path_value', function ( $path, $post ) {
+
+    $new_path = get_attached_file( get_post_meta( $post->ID, 'thumb_bg', true ) );
+
+    return $new_path ?: $path;
+}, 10, 2 );
+/* WP Telegram - use custom image */</code></pre>
+
+🔗 <a href="https://example.com?test=ok)ji&quote=this%22thing">Some link [here]</a>
+
+🔴 @some_username

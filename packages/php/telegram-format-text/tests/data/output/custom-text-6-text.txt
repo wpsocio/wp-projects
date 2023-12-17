@@ -1,0 +1,3 @@
+Test for blockquote
+
+In case of ambiguity between > italic and underline entities __ is always greadily treated from left to right as beginning or end of underline entity, so instead of ___italic underline___ use ___italic underline_\r__, where \r is a character with code 13, which will be ignored.

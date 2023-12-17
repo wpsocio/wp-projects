@@ -1,0 +1,16 @@
+*bold*, *bold*
+_italic_, _italic_
+underline, underline
+strikethrough, strikethrough, strikethrough
+spoiler, spoiler
+*bold italic bold italic bold strikethrough italic bold strikethrough spoiler underline italic bold bold*
+[inline URL](http://www.example.com/)
+[inline mention of a user](tg://user?id=123456789)
+`inline fixed-width code`
+```
+pre-formatted fixed-width code block
+```
+
+```python
+pre-formatted fixed-width code block written in the Python programming language
+```

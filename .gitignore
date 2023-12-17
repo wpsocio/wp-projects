@@ -30,6 +30,7 @@ vendor/
 tsconfig.tsbuildinfo
 .idea/
 .turbo/
+.phpunit.result.cache
 
 # Misc
 build/
