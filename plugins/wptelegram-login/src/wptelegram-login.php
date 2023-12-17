@@ -53,6 +53,7 @@ if ( ! defined( 'WPTELEGRAM_USERNAME_META_KEY' ) ) {
  * Include autoloader.
  */
 require WPTELEGRAM_LOGIN_DIR . '/autoload.php';
+require_once dirname( WPTELEGRAM_LOGIN_MAIN_FILE ) . '/vendor/autoload.php';
 
 /**
  * The code that runs during plugin activation.
@@ -89,13 +90,13 @@ function WPTG_Login() { // phpcs:ignore WordPress.NamingConventions.ValidFunctio
 	return \WPTelegram\Login\includes\Main::instance();
 }
 
-use WPTelegram\Login\includes\Requirements;
+$requirements = new \WPTelegram\Login\includes\Requirements( WPTELEGRAM_LOGIN_MAIN_FILE );
 
-if ( Requirements::satisfied() ) {
+if ( $requirements->satisfied() ) {
 	// Fire.
 	WPTG_Login()->init();
 
 	define( 'WPTELEGRAM_LOGIN_LOADED', true );
 } else {
-	add_filter( 'after_plugin_row_' . WPTELEGRAM_LOGIN_BASENAME, [ Requirements::class, 'display_requirements' ] );
+	add_filter( 'after_plugin_row_' . WPTELEGRAM_LOGIN_BASENAME, [ $requirements, 'display_requirements' ] );
 }

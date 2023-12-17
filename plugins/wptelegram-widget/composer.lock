@@ -51,10 +51,11 @@
             "dist": {
                 "type": "path",
                 "url": "../../packages/php/wp-utils",
-                "reference": "85811a5f4ca251b8864de463351924718574a1a5"
+                "reference": "d72d694a1b4cbf8071e48629d7dea4b6540f3750"
             },
             "require-dev": {
-                "wp-coding-standards/wpcs": "^3.0"
+                "pestphp/pest": "^1.22",
+                "wp-coding-standards/wpcs": "^3.0.1"
             },
             "type": "library",
             "autoload": {
@@ -64,13 +65,16 @@
             },
             "scripts": {
                 "lint": [
-                    "\"vendor/bin/phpcs\" --standard=../../../phpcs.xml --extensions=php src/"
+                    "\"vendor/bin/phpcs\" --standard=../../../phpcs.xml --extensions=php ."
                 ],
                 "lint:skip-warnings": [
-                    "\"vendor/bin/phpcs\" --standard=../../../phpcs.xml --extensions=php -n src/"
+                    "\"vendor/bin/phpcs\" --standard=../../../phpcs.xml --extensions=php -n ."
                 ],
                 "lint:fix": [
-                    "\"vendor/bin/phpcbf\" --standard=../../../phpcs.xml --extensions=php src/"
+                    "\"vendor/bin/phpcbf\" --standard=../../../phpcs.xml --extensions=php ."
+                ],
+                "test": [
+                    "composer --version"
                 ]
             },
             "license": [
@@ -93,10 +97,11 @@
             "dist": {
                 "type": "path",
                 "url": "../../packages/php/wptelegram-bot-api",
-                "reference": "adeca8e7b0a378a43f99e5c258462f26f4c0983a"
+                "reference": "2d46e1dff8db9a68c792e1a734c0a75bd1b5f3c8"
             },
             "require-dev": {
-                "wp-coding-standards/wpcs": "^3.0",
+                "pestphp/pest": "^1.22",
+                "wp-coding-standards/wpcs": "^3.0.1",
                 "z4kn4fein/php-semver": "^2.0"
             },
             "type": "library",
@@ -107,16 +112,16 @@
             },
             "scripts": {
                 "lint": [
-                    "\"vendor/bin/phpcs\" --standard=../../../phpcs.xml --extensions=php src/"
+                    "\"vendor/bin/phpcs\" --standard=../../../phpcs.xml --extensions=php ."
                 ],
                 "lint:skip-warnings": [
-                    "\"vendor/bin/phpcs\" --standard=../../../phpcs.xml --extensions=php -n src/"
+                    "\"vendor/bin/phpcs\" --standard=../../../phpcs.xml --extensions=php -n ."
                 ],
                 "lint:fix": [
-                    "\"vendor/bin/phpcbf\" --standard=../../../phpcs.xml --extensions=php src/"
+                    "\"vendor/bin/phpcbf\" --standard=../../../phpcs.xml --extensions=php ."
                 ],
                 "test": [
-                    "\"vendor/bin/phpunit\" tests/"
+                    "composer --version"
                 ],
                 "release:major": [
                     "composer run-script release -- --type=major"

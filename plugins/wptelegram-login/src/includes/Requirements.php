@@ -18,65 +18,15 @@ namespace WPTelegram\Login\includes;
  * @subpackage WPTelegram\Login\includes
  * @author   WP Socio
  */
-class Requirements {
-
-	/**
-	 * Check if the requirements are satisfied.
-	 *
-	 * @since 1.10.2
-	 *
-	 * @return bool Whether the requirements are satisfied.
-	 */
-	public static function satisfied() {
-		$env_details = self::get_env_details();
-
-		return $env_details['satisfied'];
-	}
-
-	/**
-	 * Get the environment details.
-	 *
-	 * @since 1.10.2
-	 *
-	 * @return array The environment details.
-	 */
-	public static function get_env_details() {
-		if ( ! function_exists( 'get_plugin_data' ) ) {
-			require_once ABSPATH . 'wp-admin/includes/plugin.php';
-		}
-		$plugin_data = get_plugin_data( WPTELEGRAM_LOGIN_MAIN_FILE );
-
-		$data = [
-			'PHP' => [
-				'version' => PHP_VERSION,
-				'min'     => $plugin_data['RequiresPHP'],
-			],
-			'WP'  => [
-				'version' => get_bloginfo( 'version' ),
-				'min'     => $plugin_data['RequiresWP'],
-			],
-		];
-
-		$satisfied = true;
-
-		foreach ( $data as &$details ) {
-			$details['satisfied'] = version_compare( $details['version'], $details['min'], '>=' );
-
-			if ( $satisfied && ! $details['satisfied'] ) {
-				$satisfied = false;
-			}
-		}
-
-		return compact( 'data', 'satisfied' );
-	}
+class Requirements extends \WPSocio\WPUtils\Requirements {
 
 	/**
 	 * Display the requirements.
 	 *
 	 * @since 1.10.2
 	 */
-	public static function display_requirements() {
-		$env_details = self::get_env_details();
+	public function display_requirements() {
+		$env_details = $this->get_env_details();
 		?>
 		<tr class="plugin-update-tr">
 			<td colspan="5" class="plugin-update colspanchange">

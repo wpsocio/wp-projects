@@ -27,10 +27,6 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-if ( ! defined( 'WPTELEGRAM_DEV' ) ) {
-	define( 'WPTELEGRAM_DEV', true );
-}
-
 define( 'WPTELEGRAM_WIDGET_MAIN_FILE', __FILE__ );
 
 define( 'WPTELEGRAM_WIDGET_BASENAME', plugin_basename( WPTELEGRAM_WIDGET_MAIN_FILE ) );

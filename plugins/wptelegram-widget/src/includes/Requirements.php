@@ -18,54 +18,15 @@ namespace WPTelegram\Widget\includes;
  * @subpackage WPTelegram\Widget\includes
  * @author   WP Socio
  */
-class Requirements {
+class Requirements extends \WPSocio\WPUtils\Requirements {
 
 	/**
-	 * Check if the requirements are satisfied.
+	 * Sets the environment details.
 	 *
-	 * @since 2.1.9
-	 *
-	 * @return bool Whether the requirements are satisfied.
+	 * @return $this
 	 */
-	public static function satisfied() {
-		$env_details = self::get_env_details();
-
-		return $env_details['satisfied'];
-	}
-
-	/**
-	 * Get the environment details.
-	 *
-	 * @since 2.1.9
-	 *
-	 * @return array The environment details.
-	 */
-	public static function get_env_details() {
-		if ( ! function_exists( 'get_plugin_data' ) ) {
-			require_once ABSPATH . 'wp-admin/includes/plugin.php';
-		}
-		$plugin_data = get_plugin_data( WPTELEGRAM_WIDGET_MAIN_FILE );
-
-		$data = [
-			'PHP' => [
-				'version' => PHP_VERSION,
-				'min'     => $plugin_data['RequiresPHP'],
-			],
-			'WP'  => [
-				'version' => get_bloginfo( 'version' ),
-				'min'     => $plugin_data['RequiresWP'],
-			],
-		];
-
-		$satisfied = true;
-
-		foreach ( $data as &$details ) {
-			$details['satisfied'] = version_compare( $details['version'], $details['min'], '>=' );
-
-			if ( $satisfied && ! $details['satisfied'] ) {
-				$satisfied = false;
-			}
-		}
+	public function read_env() {
+		$data = parent::read_env();
 
 		$extensions = [];
 
@@ -75,14 +36,14 @@ class Requirements {
 
 			$extensions[ $extension ] = $loaded;
 
-			if ( $satisfied && ! $loaded ) {
-				$satisfied = false;
+			if ( $data['satisfied'] && ! $loaded ) {
+				$data['satisfied'] = false;
 			}
 		}
 
 		$data['PHP']['extensions'] = $extensions;
 
-		return compact( 'data', 'satisfied' );
+		return $data;
 	}
 
 	/**
@@ -92,8 +53,8 @@ class Requirements {
 	 *
 	 * @return array The missing PHP extensions.
 	 */
-	public static function get_missing_extensions() {
-		$env_details = self::get_env_details();
+	public function get_missing_extensions() {
+		$env_details = $this->get_env_details();
 
 		$missing = [];
 
@@ -111,8 +72,8 @@ class Requirements {
 	 *
 	 * @since 2.1.9
 	 */
-	public static function display_requirements() {
-		$env_details = self::get_env_details();
+	public function display_requirements() {
+		$env_details = $this->get_env_details();
 		?>
 		<tr class="plugin-update-tr">
 			<td colspan="5" class="plugin-update colspanchange">
@@ -150,7 +111,7 @@ class Requirements {
 								<?php
 							endif;
 						endforeach;
-						$missing_extensions = self::get_missing_extensions();
+						$missing_extensions = $this->get_missing_extensions();
 
 						if ( ! empty( $missing_extensions ) ) :
 							?>

@@ -1,0 +1,59 @@
+{
+	"name": "wpsocio/wptelegram",
+	"version": "4.0.14",
+	"description": "Integrate your WordPress site perfectly with Telegram with full control.",
+	"scripts": {
+		"lint": "\"vendor/bin/phpcs\" --standard=../../phpcs.xml --extensions=php src/ dev.php",
+		"lint:skip-warnings": "\"vendor/bin/phpcs\" --standard=../../phpcs.xml --extensions=php -n src/ dev.php",
+		"lint:fix": "\"vendor/bin/phpcbf\" --standard=../../phpcs.xml --extensions=php src/ dev.php"
+	},
+	"require": {
+		"kucrut/vite-for-wp": "^0.8.0",
+		"wpsocio/telegram-format-text": "dev-main",
+		"wpsocio/wptelegram-bot-api": "dev-main",
+		"wpsocio/wp-utils": "dev-main"
+	},
+	"require-dev": {
+		"wp-coding-standards/wpcs": "^3.0",
+		"wpackagist-plugin/cmb2": ">=2.9.0"
+	},
+	"repositories": [
+		{
+			"type": "composer",
+			"url": "https://wpackagist.org",
+			"only": ["wpackagist-plugin/*"]
+		},
+		{
+			"type": "path",
+			"url": "../../packages/php/telegram-format-text",
+			"options": {
+				"symlink": true
+			}
+		},
+		{
+			"type": "path",
+			"url": "../../packages/php/wp-utils",
+			"options": {
+				"symlink": true
+			}
+		},
+		{
+			"type": "path",
+			"url": "../../packages/php/wptelegram-bot-api",
+			"options": {
+				"symlink": true
+			}
+		}
+	],
+	"extra": {
+		"installer-paths": {
+			"temp/{$name}/": ["wpackagist-plugin/cmb2"]
+		}
+	},
+	"config": {
+		"allow-plugins": {
+			"composer/installers": false,
+			"dealerdirect/phpcodesniffer-composer-installer": false
+		}
+	}
+}

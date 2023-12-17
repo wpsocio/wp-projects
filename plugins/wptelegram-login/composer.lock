@@ -51,13 +51,31 @@
             "dist": {
                 "type": "path",
                 "url": "../../packages/php/wp-utils",
-                "reference": "0ac4b821b0276f2c57bc9753136db1f4441c0eb2"
+                "reference": "d72d694a1b4cbf8071e48629d7dea4b6540f3750"
+            },
+            "require-dev": {
+                "pestphp/pest": "^1.22",
+                "wp-coding-standards/wpcs": "^3.0.1"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
                     "WPSocio\\WPUtils\\": "src/"
                 }
+            },
+            "scripts": {
+                "lint": [
+                    "\"vendor/bin/phpcs\" --standard=../../../phpcs.xml --extensions=php ."
+                ],
+                "lint:skip-warnings": [
+                    "\"vendor/bin/phpcs\" --standard=../../../phpcs.xml --extensions=php -n ."
+                ],
+                "lint:fix": [
+                    "\"vendor/bin/phpcbf\" --standard=../../../phpcs.xml --extensions=php ."
+                ],
+                "test": [
+                    "composer --version"
+                ]
             },
             "license": [
                 "GPL3"
