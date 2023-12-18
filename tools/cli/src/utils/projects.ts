@@ -45,13 +45,13 @@ export function validateProject(project: string) {
 /**
  * Get the real path for a project
  */
-export function getRealPath(project: string) {
-	return path.join(ROOT_DIR, project);
+export function getRealPath(project: string, relativeTo = ROOT_DIR) {
+	return path.join(relativeTo, project);
 }
 
 /**
  * Get the symlink path for an item
  */
-export function getSymlinkPath(project: string, wpContentDir: string) {
-	return path.join(wpContentDir, project);
+export function getSymlinkPath(project: string, relativeTo: string) {
+	return path.join(relativeTo, project);
 }

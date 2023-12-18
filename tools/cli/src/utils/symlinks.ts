@@ -5,6 +5,8 @@ export const DEFAULT_MESSAGES = {
 	linkAreadyExists: 'Symlink at "{symlinkPath}" already exists. ✅',
 	dirAlreadyExists:
 		'Warning: Failed to create symlink. Directory already exists: "{symlinkPath}"\n',
+	linkIsDirectory:
+		'Warning: Cannot remove symlink at "{symlinkPath}" as it is a directory and not a symlink.\n',
 	dirDoesNotExist:
 		'Error: Failed to create symlink. Directory does not exist: "{realPath}"\n',
 	creatLinkSuccess:
@@ -112,7 +114,7 @@ export class SymlinkManager {
 		this.init(args);
 
 		if (this.dirExists(this.#symlinkPath)) {
-			return chalk.yellow(this.getMessage('dirAlreadyExists'));
+			return chalk.yellow(this.getMessage('linkIsDirectory'));
 		}
 
 		if (!this.symlinkExists()) {

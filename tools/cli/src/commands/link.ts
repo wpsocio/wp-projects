@@ -5,6 +5,7 @@ import {
 	getAllProjects,
 	getRealPath,
 	getSymlinkPath,
+	validateProject,
 } from '../utils/projects.js';
 import { SymlinkManager } from '../utils/symlinks.js';
 
@@ -44,7 +45,7 @@ export type LinkArgs = InferBuilderOptions<
 	ReturnType<ReturnType<typeof createBuilder>>
 >;
 
-function assertWpContentDir(
+function assertArgs(
 	args: LinkArgs,
 ): asserts args is LinkArgs & { wpContentDir: string } {
 	if (!args['wp-content-dir']) {
@@ -59,23 +60,32 @@ function assertWpContentDir(
 
 		process.exit(1);
 	}
+
+	if (!args.projects?.length && !args.all) {
+		console.log(chalk.red('Please provide a project.'));
+
+		process.exit(1);
+	}
 }
 
 export function createLinkCommand(): CommandModule<unknown, LinkArgs> {
 	return {
 		command: 'link [projects...]',
-		describe: 'Creates symlink for project(s).',
+		describe:
+			'Creates symlinks in the given wp-content directory for the project(s) in this monorepo.',
 		builder: createBuilder('link'),
 		async handler(argv) {
-			assertWpContentDir(argv);
+			assertArgs(argv);
 
 			const symlinkManager = new SymlinkManager();
 
-			if (argv.all) {
-				argv.projects = getAllProjects();
+			const projects = new Set(argv.all ? getAllProjects() : argv.projects);
+
+			for (const project of projects) {
+				validateProject(project);
 			}
 
-			for (const project of new Set(argv.projects)) {
+			for (const project of projects) {
 				const symlinkPath = getSymlinkPath(project, argv.wpContentDir);
 				const realPath = getRealPath(project);
 				const result = symlinkManager.createSymlink({ symlinkPath, realPath });
@@ -91,22 +101,27 @@ export function createLinkCommand(): CommandModule<unknown, LinkArgs> {
 export function createUnlinkCommand(): CommandModule<unknown, LinkArgs> {
 	return {
 		command: 'unlink [projects...]',
-		describe: 'Unlinks project(s).',
+		describe:
+			'Removes symlinks in the given wp-content directory created for the project(s) in this monorepo.',
 		builder: createBuilder('unlink'),
 		async handler(argv) {
-			assertWpContentDir(argv);
+			assertArgs(argv);
 
 			const symlinkManager = new SymlinkManager();
 
-			if (argv.all) {
-				argv.projects = getAllProjects();
+			const projects = new Set(argv.all ? getAllProjects() : argv.projects);
 
+			for (const project of projects) {
+				validateProject(project);
+			}
+
+			if (argv.all) {
 				symlinkManager.setMessages({
 					linkDoesNotExist: '',
 				});
 			}
 
-			for (const project of new Set(argv.projects)) {
+			for (const project of projects) {
 				const symlinkPath = getSymlinkPath(project, argv.wpContentDir);
 
 				const result = symlinkManager.removeSymlink({ symlinkPath });
