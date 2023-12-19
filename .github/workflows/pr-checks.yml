@@ -77,8 +77,7 @@ jobs:
 
       - name: Register ts-node
         shell: bash
-        run: |
-          echo 'NODE_OPTIONS="--loader ts-node/esm"' >> $GITHUB_ENV
+        run: node --loader ts-node/esm
 
       - uses: pnpm/action-setup@v2
         with:
