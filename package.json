@@ -10,7 +10,7 @@
 	"scripts": {
 		"dev": "turbo dev",
 		"build": "turbo build",
-		"build:all": "wpsocio build --all",
+		"build:all": "pnpm wpsocio build --all",
 		"typecheck": "turbo typecheck",
 		"lint": "pnpm run lint:js",
 		"lint:js": "biome lint ./",
