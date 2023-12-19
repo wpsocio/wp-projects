@@ -31,11 +31,6 @@
 		"**/vendor"
 	],
 	"ts-node": {
-		"compilerOptions": {
-			"module": "ESNext",
-			"esModuleInterop": true
-		},
-		"esm": true,
-		"swc": true
+		"esm": true
 	}
 }
