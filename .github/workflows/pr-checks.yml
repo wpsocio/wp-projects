@@ -39,9 +39,9 @@ jobs:
           path: |
             .turbo
             ${{ env.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-cache-${{ hashFiles('**/pnpm-hashed.lock') }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/package.json', '**/pnpm-hashed.lock') }}
           restore-keys: |
-            ${{ runner.os }}-pnpm-store-cache-
+            ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
         run: pnpm install
@@ -91,7 +91,7 @@ jobs:
           path: |
             .turbo
             ${{ env.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/package.json', '**/pnpm-hashed.lock') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
