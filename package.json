@@ -6,7 +6,6 @@
 	"keywords": [],
 	"author": "",
 	"license": "GPL-3.0",
-	"type": "module",
 	"scripts": {
 		"dev": "turbo dev",
 		"build": "turbo build",
