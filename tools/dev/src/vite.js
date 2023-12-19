@@ -3,7 +3,7 @@ import { v4wp } from '@kucrut/vite-for-wp';
 import { wp_scripts } from '@kucrut/vite-for-wp/plugins';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
-import { Plugin as importToCDN, autoComplete } from 'vite-plugin-cdn-import';
+import { Plugin as importToCDN } from 'vite-plugin-cdn-import';
 import { extractExternalDepsPlugin } from './extract-external-deps-plugin.js';
 
 export { defineConfig };
@@ -20,7 +20,7 @@ export function createViteConfig(options, buildOptions) {
 	return {
 		plugins: [
 			react(),
-			v4wp(options),
+			v4wp({ outDir: 'src/assets/build', ...options }),
 			wp_scripts(),
 			{
 				name: 'wpsocio:override-config',
@@ -43,7 +43,18 @@ export function createViteConfig(options, buildOptions) {
 				 *
 				 * @see https://github.com/vitejs/vite-plugin-react/issues/3
 				 */
-				modules: [autoComplete('react'), autoComplete('react-dom')],
+				modules: [
+					{
+						name: 'react',
+						var: 'React',
+						path: 'https://wpsocio.com',
+					},
+					{
+						name: 'react-dom',
+						var: 'ReactDOM',
+						path: 'https://wpsocio.com',
+					},
+				],
 			}),
 			extractExternalDepsPlugin(),
 		],

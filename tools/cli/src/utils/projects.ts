@@ -10,6 +10,15 @@ const GIT_IGNORE_PATH = path.join(ROOT_DIR, '.gitignore');
 
 const gitIgnoreContent = fs.readFileSync(GIT_IGNORE_PATH, 'utf8');
 
+export function getUntrackedProjects() {
+	const untracked = process.env.UNTRACKED_PROJECTS || '';
+
+	return untracked
+		.split(',')
+		.map((project) => project.trim())
+		.filter(Boolean);
+}
+
 export function projectDirectories(projectType: ProjectType) {
 	return fs
 		.readdirSync(path.join(ROOT_DIR, projectType), { withFileTypes: true })
@@ -17,11 +26,15 @@ export function projectDirectories(projectType: ProjectType) {
 			if (!dirent.isDirectory()) {
 				return false;
 			}
+
 			// We expect an entry like this in the .gitignore file:
 			// !/plugins/plugin-name/
 			const RE = new RegExp(`[^#]!/${projectType}/${dirent.name}/`);
 
-			return RE.test(gitIgnoreContent);
+			return (
+				RE.test(gitIgnoreContent) ||
+				getUntrackedProjects().includes(`${projectType}/${dirent.name}`)
+			);
 		})
 		.map((dirent) => `${projectType}/${dirent.name}`);
 }

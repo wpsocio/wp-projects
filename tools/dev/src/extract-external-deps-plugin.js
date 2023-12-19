@@ -14,6 +14,7 @@ export const IMPORTS_TO_IGNORE =
  * @this {import('rollup').PluginContext}
  */
 export async function extractExternalDeps({
+	absWorkingDir,
 	externalDeps = [],
 	fileName = 'dependencies.json',
 	input,
@@ -50,10 +51,18 @@ export async function extractExternalDeps({
 
 	try {
 		await Promise.all(
-			validEntries.map((entry) => {
+			validEntries.map((absoluteEntry) => {
+				// Make entry relative to working directory
+				const entry = path
+					.relative(absWorkingDir, absoluteEntry)
+					// Normalize the entry to posix style
+					.split(path.sep)
+					.join(path.posix.sep);
+
 				dependencies[entry] = [];
 
 				return esBuild({
+					absWorkingDir,
 					entryPoints: [entry],
 					outdir: './',
 					bundle: true,
@@ -95,7 +104,7 @@ export async function extractExternalDeps({
 			}),
 		);
 
-		const source = JSON.stringify(dependencies);
+		const source = JSON.stringify(dependencies, null, 2);
 		// emitFile is not available during dev mode
 		isProduction
 			? this.emitFile({ type: 'asset', fileName, source })
@@ -129,6 +138,7 @@ export const extractExternalDepsPlugin = () => {
 			const externals = wp_globals();
 
 			extractExternalDeps.call(this, {
+				absWorkingDir: config.root,
 				externalDeps: Object.keys(externals),
 				input: options.input,
 				isProduction: config.isProduction,
