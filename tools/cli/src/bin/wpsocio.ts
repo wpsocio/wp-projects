@@ -1,4 +1,5 @@
 #!/usr/bin/env ts-node
+
 import '../env.js'; // Load environment variables before anything else.
 
 import process from 'node:process';
