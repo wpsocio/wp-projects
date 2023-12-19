@@ -9,7 +9,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "turbo dev",
-		"build": "wpsocio build --all",
+		"build": "turbo build",
 		"build:all": "wpsocio build --all",
 		"typecheck": "turbo typecheck",
 		"lint": "pnpm run lint:js",
