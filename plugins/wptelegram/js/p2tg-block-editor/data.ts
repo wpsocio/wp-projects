@@ -1,5 +1,5 @@
 import { select as coreSelect, useDispatch, useSelect } from '@wordpress/data';
-import { EditorStoreDescriptor, store as editorStore } from '@wordpress/editor';
+import { store as editorStore } from '@wordpress/editor';
 import { useCallback } from '@wordpress/element';
 
 import { __KEY__ } from './constants';

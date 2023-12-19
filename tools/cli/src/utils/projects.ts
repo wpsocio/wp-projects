@@ -37,8 +37,12 @@ export function getAllProjects() {
 }
 
 export function validateProject(project: string) {
-	if (!getAllProjects().includes(project)) {
-		throw new Error(`Invalid project: ${project}`);
+	const info = fs.lstatSync(getRealPath(project, ROOT_DIR), {
+		throwIfNoEntry: false,
+	});
+
+	if (!info?.isDirectory()) {
+		throw new Error(`Invalid project: "${project}"`);
 	}
 }
 

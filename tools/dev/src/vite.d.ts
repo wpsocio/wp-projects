@@ -1,5 +1,8 @@
 import { V4wpOptions } from '@kucrut/vite-for-wp';
-import { UserConfig } from 'vite';
+import { BuildOptions, UserConfig } from 'vite';
 
-declare function createViteConfig(options: V4wpOptions): UserConfig;
+declare function createViteConfig(
+	options: V4wpOptions,
+	buildOptions?: BuildOptions,
+): UserConfig;
 declare function defineConfig(config: UserConfig): UserConfig;

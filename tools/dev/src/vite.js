@@ -9,23 +9,30 @@ import { extractExternalDepsPlugin } from './extract-external-deps-plugin.js';
 export { defineConfig };
 
 /**
+ * Create Vite config
  *
  * @param {import('@kucrut/vite-for-wp').V4wpOptions} options
+ * @param {import('vite').BuildOptions} [buildOptions]
+ *
  * @returns {import('vite').UserConfig}
  */
-export function createViteConfig(options) {
+export function createViteConfig(options, buildOptions) {
 	return {
 		plugins: [
 			react(),
 			v4wp(options),
 			wp_scripts(),
 			{
-				name: 'override-config',
+				name: 'wpsocio:override-config',
 				config: () => ({
 					build: {
+						// emptyOutDir: false,
+						// minify: false,
+						// cssCodeSplit: false,
+						assetsDir: 'dist',
 						// ensure that manifest.json is not in ".vite/" folder
 						manifest: 'manifest.json',
-						assetsDir: 'dist',
+						...buildOptions,
 					},
 				}),
 			},

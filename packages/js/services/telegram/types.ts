@@ -15,7 +15,11 @@ export interface TelegramApi {
 	getMe?: TelegramApiMethod;
 	getWebhookInfo?: TelegramApiMethod;
 	sendMessage?: TelegramApiMethod<SendTextMessageArgs>;
+	sendPhoto?: TelegramApiMethod;
+	sendVideo?: TelegramApiMethod;
+	sendAudio?: TelegramApiMethod;
 	setWebhook?: TelegramApiMethod;
+	sendDocument?: TelegramApiMethod;
 }
 
 export interface TelegramApiUtilBaseArgs extends BaseApiUtilArgs {
