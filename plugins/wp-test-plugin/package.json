@@ -6,7 +6,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite --port=5001",
-		"build": "wpsocio build plugins/wp-test-plugin",
+		"build": "pnpm wpsocio build plugins/wp-test-plugin",
 		"preview": "vite preview"
 	},
 	"dependencies": {},
