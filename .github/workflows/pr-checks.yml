@@ -75,10 +75,6 @@ jobs:
         with:
           node-version: 20
 
-      - name: Register ts-node
-        shell: bash
-        run: node --loader ts-node/esm
-
       - uses: pnpm/action-setup@v2
         with:
           version: 8
