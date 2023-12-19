@@ -20,7 +20,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite --port=5000",
-		"build": "vite build",
+		"build": "wpsocio build plugins/wptelegram-comments",
 		"preview": "vite preview",
 		"lint:php": "composer run lint",
 		"setup:prod": "composer config vendor-dir src/vendor && composer install --no-dev",

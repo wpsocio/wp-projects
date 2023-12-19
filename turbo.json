@@ -4,9 +4,10 @@
 		"dev": {
 			"cache": false
 		},
+		"build:all": {},
 		"build": {
-			"outputs": ["dist/**"],
-			"dependsOn": ["^build"]
+			"outputs": ["src/assets/build/**"],
+			"dependsOn": ["build:all"]
 		},
 		"lint:php": {
 			"cache": false,

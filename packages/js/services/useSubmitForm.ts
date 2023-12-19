@@ -109,7 +109,7 @@ export const useSubmitForm = <FD extends FieldValues>({
 				}
 
 				// if form is provided, set field errors
-				if (form) {
+				if (form?.setError) {
 					for (const [key, error] of Object.entries(errors)) {
 						// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 						form.setError(key as any, error as any);
@@ -135,7 +135,7 @@ export const useSubmitForm = <FD extends FieldValues>({
 			displayFeedback,
 			displaySubmitErrors,
 			displaySuccess,
-			form,
+			form?.setError,
 			formatErrors,
 			getErrorMessage,
 			normalizeData,
