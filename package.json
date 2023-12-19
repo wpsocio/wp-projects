@@ -21,13 +21,11 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.4.1",
-		"@types/node": "^20.10.4",
 		"@wpsocio/adapters": "workspace:*",
 		"@wpsocio/cli": "workspace:*",
 		"dotenv": "^16.3.1",
 		"npm-check-updates": "^16.14.12",
 		"ts-node": "^10.9.2",
-		"tslib": "^2.6.2",
 		"turbo": "^1.11.2",
 		"typescript": "^5.3.3"
 	}
