@@ -99,7 +99,9 @@ jobs:
         run: pnpm install
 
       - name: Register ts-node
-        run: node -r ts-node/register
+        shell: bash
+        run: |
+          echo 'NODE_OPTIONS="--loader ts-node/esm"' >> $GITHUB_ENV
 
       - name: Lint
         run: "pnpm lint:js"
