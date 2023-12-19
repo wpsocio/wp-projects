@@ -105,4 +105,4 @@ jobs:
         run: pnpm typecheck
 
       - name: Build
-        run: node --loader ts-node/esm && pnpm build
+        run: pnpm build
