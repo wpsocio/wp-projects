@@ -36,6 +36,7 @@
 		"@types/wordpress__blocks": "^12.5.13",
 		"@wordpress/block-editor": "^12.16.0",
 		"@wordpress/blocks": "^12.25.0",
+		"@wpsocio/cli": "workspace:*",
 		"@wordpress/components": "^25.14.0",
 		"@wordpress/element": "^5.25.0",
 		"@wordpress/url": "^3.49.0",
