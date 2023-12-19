@@ -105,4 +105,4 @@ jobs:
         run: pnpm typecheck
 
       - name: Build
-        run: pnpm build
+        run: pnpm run build --filter=@wpsocio/cli && pnpm build
