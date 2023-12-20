@@ -4,11 +4,11 @@
 	"private": true,
 	"type": "module",
 	"bin": {
-		"wpsocio": "./dist/bin/wpsocio.js"
+		"wpsocio": "./bootstrap.js"
 	},
 	"scripts": {
 		"build": "rimraf dist/ && tsc",
-		"preinstall": "pnpm run build",
+		"preinstall": "tsc",
 		"typecheck": "tsc --noEmit"
 	},
 	"devDependencies": {

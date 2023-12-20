@@ -4,10 +4,8 @@
 		"src"
 	],
 	"compilerOptions": {
-		"composite": false,
 		"outDir": "dist",
 		"rootDir": "src",
 		"noEmit": false,
-		"incremental": false
 	}
 }
