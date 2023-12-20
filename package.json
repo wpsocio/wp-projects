@@ -8,7 +8,7 @@
 	"license": "GPL-3.0",
 	"type": "module",
 	"scripts": {
-		"dev": "turbo dev",
+		"dev": "pnpm wpsocio watch --all",
 		"build": "turbo build",
 		"build:all": "pnpm wpsocio build --all",
 		"typecheck": "turbo typecheck",
