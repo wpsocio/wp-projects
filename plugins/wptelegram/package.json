@@ -19,7 +19,7 @@
 	},
 	"type": "module",
 	"scripts": {
-		"dev": "vite --port=5004",
+		"dev": "vite --port=5002",
 		"build": "pnpm wpsocio build plugins/wptelegram",
 		"lint:php": "composer run lint",
 		"preview": "vite preview",

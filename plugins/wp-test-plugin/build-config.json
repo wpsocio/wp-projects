@@ -1,6 +1,0 @@
-{
-	"input": {
-		"main": "src/js/main/index.tsx",
-		"login": "src/js/login/index.tsx"
-	}
-}

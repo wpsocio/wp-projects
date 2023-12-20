@@ -7,7 +7,7 @@
 		"wpsocio": "./bootstrap.js"
 	},
 	"scripts": {
-		"compile": "rimraf dist/ && tsc",
+		"compile": "rimraf dist/ tsconfig.tsbuildinfo && tsc",
 		"preinstall": "tsc",
 		"typecheck": "tsc --noEmit"
 	},
