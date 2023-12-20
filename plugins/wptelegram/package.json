@@ -7,14 +7,15 @@
 	"license": "GPL-3.0",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/wpsocio/wptelegram"
+		"url": "https://github.com/wpsocio/wp-plugins-dev",
+		"directory": "plugins/wptelegram"
 	},
 	"author": {
 		"name": "WP Socio",
 		"url": "https://wpsocio.com"
 	},
 	"bugs": {
-		"url": "https://github.com/wpsocio/wptelegram/issues"
+		"url": "https://github.com/wpsocio/wp-plugins-dev/issues"
 	},
 	"type": "module",
 	"scripts": {
