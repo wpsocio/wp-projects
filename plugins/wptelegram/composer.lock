@@ -47,7 +47,7 @@
         },
         {
             "name": "wpsocio/telegram-format-text",
-            "version": "dev-main",
+            "version": "dev-fix/php-lint",
             "dist": {
                 "type": "path",
                 "url": "../../packages/php/telegram-format-text",
@@ -103,7 +103,7 @@
         },
         {
             "name": "wpsocio/wp-utils",
-            "version": "dev-main",
+            "version": "dev-fix/php-lint",
             "dist": {
                 "type": "path",
                 "url": "../../packages/php/wp-utils",
@@ -149,7 +149,7 @@
         },
         {
             "name": "wpsocio/wptelegram-bot-api",
-            "version": "dev-main",
+            "version": "dev-fix/php-lint",
             "dist": {
                 "type": "path",
                 "url": "../../packages/php/wptelegram-bot-api",

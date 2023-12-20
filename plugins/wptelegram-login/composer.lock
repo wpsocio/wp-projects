@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "534e58d99ba06aafbd31291bcd02aa62",
+    "content-hash": "54be8d86a54fe3688908431ed5925544",
     "packages": [
         {
             "name": "kucrut/vite-for-wp",
@@ -47,7 +47,7 @@
         },
         {
             "name": "wpsocio/wp-utils",
-            "version": "dev-main",
+            "version": "dev-fix/php-lint",
             "dist": {
                 "type": "path",
                 "url": "../../packages/php/wp-utils",
