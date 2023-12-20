@@ -20,6 +20,10 @@ class ApiClient implements TelegramApi {
 	getWebhookInfo: TelegramApiMethod = undefined as unknown as TelegramApiMethod;
 	sendMessage: TelegramApiMethod = undefined as unknown as TelegramApiMethod;
 	setWebhook: TelegramApiMethod = undefined as unknown as TelegramApiMethod;
+	sendPhoto: TelegramApiMethod = undefined as unknown as TelegramApiMethod;
+	sendVideo: TelegramApiMethod = undefined as unknown as TelegramApiMethod;
+	sendAudio: TelegramApiMethod = undefined as unknown as TelegramApiMethod;
+	sendDocument: TelegramApiMethod = undefined as unknown as TelegramApiMethod;
 
 	constructor(botToken?: string) {
 		this.botToken = botToken || '';
@@ -88,8 +92,7 @@ class ApiClient implements TelegramApi {
 		options?: APIFetchOptions,
 	): Promise<T> => {
 		if (!this.botToken) {
-			console.error('Bot token is empty');
-			return {} as T;
+			throw new Error('Bot token is empty');
 		}
 
 		const fetchOptions: APIFetchOptions = {

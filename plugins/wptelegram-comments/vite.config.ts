@@ -1,10 +1,4 @@
 import { createViteConfig, defineConfig } from '@wpsocio/dev/vite';
+import config from './build-config.json';
 
-export default defineConfig(
-	createViteConfig({
-		input: {
-			settings: 'js/settings/index.ts',
-		},
-		outDir: 'src/assets/build',
-	}),
-);
+export default defineConfig(createViteConfig(config));

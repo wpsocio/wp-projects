@@ -5,7 +5,7 @@
 			"cache": false
 		},
 		"build": {
-			"outputs": ["dist/**"],
+			"outputs": ["src/assets/build/**"],
 			"dependsOn": ["^build"]
 		},
 		"lint:php": {

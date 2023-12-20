@@ -1,5 +1,6 @@
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
+import * as buildCommand from './commands/build.js';
 import { createLinkCommand, createUnlinkCommand } from './commands/link.js';
 
 /**
@@ -12,6 +13,8 @@ export async function cli() {
 
 	parser.command(createLinkCommand());
 	parser.command(createUnlinkCommand());
+
+	parser.command(buildCommand);
 
 	// Do it!
 	await parser.parse();

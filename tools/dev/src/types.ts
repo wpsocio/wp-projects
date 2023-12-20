@@ -5,6 +5,7 @@ export const IMPORTS_TO_IGNORE =
 	/\.(css|less|sass|scss|styl|stylus|pcss|postcss|sss)(?:$|\?)/;
 
 export type ExtractDepsOptions = {
+	absWorkingDir: string;
 	input?: InputOption;
 	externalDeps: Array<string>;
 	normalizePath?: (path: string) => string;

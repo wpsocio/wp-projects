@@ -29,8 +29,5 @@
 		"**/node_modules",
 		"**/dist",
 		"**/vendor"
-	],
-	"ts-node": {
-		"esm": true
-	}
+	]
 }

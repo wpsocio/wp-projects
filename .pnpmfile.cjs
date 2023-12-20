@@ -9,7 +9,7 @@ function afterAllResolved(lockfile) {
 	console.log('hashedContent', hashedContent);
 
 	require('fs').writeFileSync(
-		require('path').join(__dirname, 'pnpm-lock-hashed'),
+		require('path').join(__dirname, 'pnpm-hashed.lock'),
 		hashedContent,
 	);
 

@@ -11,16 +11,17 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/wpsocio/wptelegram-comments"
+		"url": "https://github.com/wpsocio/wp-plugins-dev",
+		"directory": "plugins/wptelegram-comments"
 	},
 	"bugs": {
-		"url": "https://github.com/wpsocio/wptelegram-comments/issues"
+		"url": "https://github.com/wpsocio/wp-plugins-dev/issues"
 	},
 	"keywords": ["telegram", "comments", "discuss", "social", "widget"],
 	"type": "module",
 	"scripts": {
 		"dev": "vite --port=5000",
-		"build": "vite build",
+		"build": "pnpm wpsocio build plugins/wptelegram-comments",
 		"preview": "vite preview",
 		"lint:php": "composer run lint",
 		"setup:prod": "composer config vendor-dir src/vendor && composer install --no-dev",
@@ -34,6 +35,7 @@
 		"@types/react": "^18.2.45",
 		"@types/react-dom": "^18.2.17",
 		"@wpsocio/adapters": "workspace:*",
+		"@wpsocio/cli": "workspace:*",
 		"@wpsocio/components": "workspace:*",
 		"@wpsocio/dev": "workspace:*",
 		"@wpsocio/form": "workspace:*",

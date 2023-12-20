@@ -7,19 +7,20 @@
 	"license": "GPL-3.0",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/wpsocio/wptelegram-login"
+		"url": "https://github.com/wpsocio/wp-plugins-dev",
+		"directory": "plugins/wptelegram-login"
 	},
 	"author": {
 		"name": "WP Socio",
 		"url": "https://wpsocio.com"
 	},
 	"bugs": {
-		"url": "https://github.com/wpsocio/wptelegram-login/issues"
+		"url": "https://github.com/wpsocio/wp-plugins-dev/issues"
 	},
 	"type": "module",
 	"scripts": {
 		"dev": "vite --port=5003",
-		"build": "vite build",
+		"build": "pnpm wpsocio build plugins/wptelegram-login",
 		"lint:php": "composer run lint",
 		"preview": "vite preview",
 		"setup:prod": "composer config vendor-dir src/vendor && composer install --no-dev",
@@ -39,6 +40,7 @@
 		"@wordpress/components": "^25.14.0",
 		"@wordpress/element": "^5.25.0",
 		"@wpsocio/adapters": "workspace:*",
+		"@wpsocio/cli": "workspace:*",
 		"@wpsocio/components": "workspace:*",
 		"@wpsocio/dev": "workspace:*",
 		"@wpsocio/form": "workspace:*",

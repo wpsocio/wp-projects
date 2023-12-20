@@ -72,7 +72,6 @@ export const RenderRepeatable = <
 						aria-label="Remove Item"
 						icon={<CloseIcon />}
 						isRound
-						// eslint-disable-next-line react-perf/jsx-no-new-function-as-prop
 						onClick={() => fieldArray.remove(index)}
 						size="sm"
 						variant="ghost"

@@ -6,7 +6,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite --port=5001",
-		"build": "vite build",
+		"build": "pnpm wpsocio build plugins/wp-test-plugin",
 		"preview": "vite preview"
 	},
 	"dependencies": {},
@@ -14,6 +14,7 @@
 		"@types/node": "^20.10.4",
 		"@types/react": "^18.2.45",
 		"@types/react-dom": "^18.2.17",
+		"@wpsocio/cli": "workspace:*",
 		"@wpsocio/dev": "workspace:*",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",

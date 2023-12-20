@@ -39,7 +39,7 @@ jobs:
           path: |
             .turbo
             ${{ env.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock-hashed') }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/package.json', '**/pnpm-hashed.lock') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
@@ -91,7 +91,7 @@ jobs:
           path: |
             .turbo
             ${{ env.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/package.json', '**/pnpm-hashed.lock') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
