@@ -22,7 +22,7 @@ jobs:
         # phpcs.xml excludes vendor by default, but we need it for lints
         run: |
           cat phpcs.xml
-          sed -i '+\<exclude-pattern\>*/vendor/*\</exclude-pattern\>+d' phpcs.xml
+          sed -i -e '/<exclude-pattern>\*\/vendor\/\*<\/exclude-pattern>/d' phpcs.xml
           cat phpcs.xml
 
       - name: Setup Node.js environment
