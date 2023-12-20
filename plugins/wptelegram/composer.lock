@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b67b449ef220bd698c24cd6098039604",
+    "content-hash": "7863d7032053d5f91a975400bec8e386",
     "packages": [
         {
             "name": "kucrut/vite-for-wp",
@@ -47,7 +47,7 @@
         },
         {
             "name": "wpsocio/telegram-format-text",
-            "version": "dev-main",
+            "version": "dev-fix/php-lint",
             "dist": {
                 "type": "path",
                 "url": "../../packages/php/telegram-format-text",
@@ -103,7 +103,7 @@
         },
         {
             "name": "wpsocio/wp-utils",
-            "version": "dev-main",
+            "version": "dev-fix/php-lint",
             "dist": {
                 "type": "path",
                 "url": "../../packages/php/wp-utils",
@@ -149,7 +149,7 @@
         },
         {
             "name": "wpsocio/wptelegram-bot-api",
-            "version": "dev-main",
+            "version": "dev-fix/php-lint",
             "dist": {
                 "type": "path",
                 "url": "../../packages/php/wptelegram-bot-api",

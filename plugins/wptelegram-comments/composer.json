@@ -8,7 +8,7 @@
 	},
 	"require": {
 		"kucrut/vite-for-wp": "^0.8.0",
-		"wpsocio/wp-utils": "dev-main"
+		"wpsocio/wp-utils": "@dev"
 	},
 	"require-dev": {
 		"wp-coding-standards/wpcs": "^3.0"
