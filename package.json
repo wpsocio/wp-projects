@@ -16,6 +16,7 @@
 		"lint:js": "biome lint ./",
 		"lint:php": "turbo run lint:php",
 		"lint:js:fix": "biome format ./ --write",
+		"setup": "pnpm install && turbo install",
 		"test:php": "turbo run test:php",
 		"upgrade-all": "pnpm -r exec pnpm ncu -u"
 	},

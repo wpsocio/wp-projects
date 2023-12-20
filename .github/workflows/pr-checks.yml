@@ -52,6 +52,13 @@ jobs:
           php-version: ${{ matrix.php-versions }}
           tools: phpcs
 
+      - name: Include production vendor
+        # phpcs.xml excludes vendor by default, but we need it for lints
+        run: |
+          cat phpcs.xml
+          sed -i 's/<exclude-pattern>[^<]+?vendor[^>]+?exclude-pattern>//g' phpcs.xml
+          cat phpcs.xml
+
       - name: Lint
         run: "pnpm lint:php"
 

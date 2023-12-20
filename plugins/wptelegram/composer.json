@@ -9,9 +9,9 @@
 	},
 	"require": {
 		"kucrut/vite-for-wp": "^0.8.0",
-		"wpsocio/telegram-format-text": "dev-main",
-		"wpsocio/wptelegram-bot-api": "dev-main",
-		"wpsocio/wp-utils": "dev-main"
+		"wpsocio/telegram-format-text": "@dev",
+		"wpsocio/wptelegram-bot-api": "@dev",
+		"wpsocio/wp-utils": "@dev"
 	},
 	"require-dev": {
 		"wp-coding-standards/wpcs": "^3.0",
