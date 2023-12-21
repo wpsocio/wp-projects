@@ -52,15 +52,14 @@ jobs:
           php-version: ${{ matrix.php-versions }}
           tools: phpcs
 
-      - name: Include production vendor
-        # phpcs.xml excludes vendor by default
-        # So we will install production dependencies in temp directory
-        # to include them in phpcs check
-        run: |
-          pnpm -r --parallel --filter "./plugins/**" exec "composer config vendor-dir temp && composer install --no-dev"
-
       - name: Lint
         run: "pnpm lint:php"
+
+      - name: Check syntax errors
+        run: |
+          pnpm -r --parallel --filter "./plugins/**" exec composer config vendor-dir temp"
+          pnpm -r --parallel --filter "./plugins/**" exec composer install --no-dev"
+          pnpm -r --parallel --filter "./plugins/**" exec "find . -path ./vendor -prune -false -o -type f -name '*.php' -print0 | xargs -0 -n1 -P$(nproc 2> /dev/null || sysctl -n hw.ncpu) php -l -n > /dev/null"
 
       - name: Test
         run: "pnpm test:php"
