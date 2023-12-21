@@ -52,10 +52,13 @@ jobs:
           php-version: ${{ matrix.php-versions }}
           tools: phpcs
 
-      # - name: Include production vendor
-      #   # phpcs.xml excludes vendor by default, but we need it for lints
-      #   run: |
-      #     sed -i -e '/<exclude-pattern>\*\/vendor\/\*<\/exclude-pattern>/d' phpcs.xml
+      - name: Check syntax errors
+        # For plugins, we need to check production dependencies as well
+        # So, let us install them in src/temp to avoid their exclusion inside vendor
+        run: |
+          pnpm -r --parallel --filter "./plugins/**" exec composer config vendor-dir src/temp
+          pnpm -r --parallel --filter "./plugins/**" exec composer install --no-dev
+          find ./plugins/*/src ./packages/php/*/src ! -path "*/vendor/*" ! -path "*/node_modules/*" -type f -name '*.php' -print0 | xargs -0 -n1 -P4 php -l -n | (! grep -v "No syntax errors detected" )
 
       - name: Lint
         run: "pnpm lint:php"
