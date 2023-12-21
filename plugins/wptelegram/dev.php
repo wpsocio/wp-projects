@@ -27,7 +27,7 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-define( 'WPTELEGRAM_MAIN_FILE', __FILE__ );
+define( 'WPTELEGRAM_MAIN_FILE', __FILE__ )
 
 define( 'WPTELEGRAM_BASENAME', plugin_basename( WPTELEGRAM_MAIN_FILE ) );
 
