@@ -61,9 +61,9 @@ jobs:
         run: |
           pnpm -r --parallel --filter "./plugins/**" exec composer config vendor-dir src/temp"
           pnpm -r --parallel --filter "./plugins/**" exec composer install --no-dev"
-          cat plugins/wptelegram/src/temp/kucrut/vite-for-wp/vite-for-wp.php
-          sed -i -e '/;/,/g' plugins/wptelegram/src/temp/kucrut/vite-for-wp/vite-for-wp.php
-          cat plugins/wptelegram/src/temp/kucrut/vite-for-wp/vite-for-wp.php
+          cat ./plugins/wptelegram/src/temp/kucrut/vite-for-wp/vite-for-wp.php
+          sed -i -e '/;/,/g' ./plugins/wptelegram/src/temp/kucrut/vite-for-wp/vite-for-wp.php
+          cat ./plugins/wptelegram/src/temp/kucrut/vite-for-wp/vite-for-wp.php
           find ./plugins/*/src ./packages/php/*/src ! -path "*/vendor/*" ! -path "*/node_modules/*" -type f -name '*.php' -print0 | xargs -0 -n1 -P4 php -l -n | (! grep -v "No syntax errors detected" )
 
       - name: Test
