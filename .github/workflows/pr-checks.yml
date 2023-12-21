@@ -59,7 +59,7 @@ jobs:
         run: |
           pnpm -r --parallel --filter "./plugins/**" exec composer config vendor-dir temp"
           pnpm -r --parallel --filter "./plugins/**" exec composer install --no-dev"
-          pnpm -r --parallel --filter "./plugins/**" exec find . -path ./vendor -prune -false -o -type f -name '*.php' -print0 | xargs -0 -n1 -P$(nproc 2> /dev/null || sysctl -n hw.ncpu) php -l -n > /dev/null
+          pnpm -r --parallel --filter "./plugins/**" exec find . -path ./vendor -prune -o -type f -name '*.php' -print0 | xargs -0 -n1 -P4 php -l -n | (! grep -v "No syntax errors detected" )
 
       - name: Test
         run: "pnpm test:php"
