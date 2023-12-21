@@ -38,5 +38,5 @@ $bot_api->sendPhoto( [
 
 ## Requirements
 
-- `PHP >= 7.2`
-- `WP >= 5.8`
+- `PHP >= 8.0`
+- `WP >= 6.3`

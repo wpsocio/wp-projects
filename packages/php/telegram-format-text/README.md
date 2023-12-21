@@ -36,4 +36,4 @@ $text = $converter->convert( $html );
 
 ## Requirements
 
-- `PHP >= 7.0`
+- `PHP >= 8.0`
