@@ -47,11 +47,11 @@
         },
         {
             "name": "wpsocio/wp-utils",
-            "version": "dev-fix/php-lint",
+            "version": "dev-add/cli-clean",
             "dist": {
                 "type": "path",
                 "url": "../../packages/php/wp-utils",
-                "reference": "d72d694a1b4cbf8071e48629d7dea4b6540f3750"
+                "reference": "1e6337bd50a16a647b8ec92758f891bbbd1398e0"
             },
             "require-dev": {
                 "pestphp/pest": "^1.22",
@@ -74,7 +74,7 @@
                     "\"vendor/bin/phpcbf\" --standard=../../../phpcs.xml --extensions=php ."
                 ],
                 "test": [
-                    "composer --version"
+                    "\"vendor/bin/pest\""
                 ]
             },
             "license": [

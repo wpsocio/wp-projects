@@ -8,17 +8,16 @@
 			"outputs": ["src/assets/build/**"],
 			"dependsOn": ["^build"]
 		},
+		"setup:php": {
+			"cache": false
+		},
 		"lint:php": {
-			"cache": false,
-			"dependsOn": ["setup:dev", "^lint:php"]
+			"cache": false
 		},
 		"test:php": {
 			"cache": false
 		},
-		"setup:dev": {
-			"cache": false
-		},
-		"setup:prod": {
+		"setup:php:prod": {
 			"dependsOn": ["^setup:prod"]
 		},
 		"typecheck": {

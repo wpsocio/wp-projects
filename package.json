@@ -14,6 +14,7 @@
 		"typecheck": "turbo typecheck",
 		"lint": "pnpm run lint:js",
 		"lint:js": "biome lint ./",
+		"setup:php": "turbo run setup:php --filter=./packages/php/* && turbo run setup:php --filter=./plugins/*",
 		"lint:php": "turbo run lint:php",
 		"lint:js:fix": "biome format ./ --write",
 		"test:php": "turbo run test:php",

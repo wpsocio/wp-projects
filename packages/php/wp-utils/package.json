@@ -6,6 +6,6 @@
 	"scripts": {
 		"lint:php": "composer run lint",
 		"test:php": "composer run test",
-		"setup:dev": "composer install --ignore-platform-reqs"
+		"setup:php": "composer install --ignore-platform-reqs"
 	}
 }

@@ -60,11 +60,14 @@ jobs:
           pnpm -r --parallel --filter "./plugins/**" exec composer install --no-dev
           find ./plugins/*/src ./packages/php/*/src ! -path "*/vendor/*" ! -path "*/node_modules/*" -type f -name '*.php' -print0 | xargs -0 -n1 -P4 php -l -n | (! grep -v "No syntax errors detected" )
 
+      - name: Setup
+        run: "pnpm run setup:php"
+
       - name: Lint
-        run: "pnpm lint:php"
+        run: "pnpm run lint:php"
 
       - name: Test
-        run: "pnpm test:php"
+        run: "pnpm run test:php"
         if: matrix.php-versions == '8.3'
 
   js-lint-build:

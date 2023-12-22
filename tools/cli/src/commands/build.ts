@@ -7,7 +7,7 @@ import { build } from 'vite';
 import { Argv } from 'yargs';
 import { InferBuilderOptions } from '../types.js';
 import {
-	getAllProjects,
+	getMonorepoProjects,
 	getRealPath,
 	validateProject,
 } from '../utils/projects.js';
@@ -40,7 +40,7 @@ export function builder(yargs: Argv) {
 type HandlerArgs = InferBuilderOptions<ReturnType<typeof builder>>;
 
 export async function handler(argv: HandlerArgs) {
-	const projects = new Set(argv.all ? getAllProjects() : argv.projects);
+	const projects = argv.all ? getMonorepoProjects() : new Set(argv.projects);
 
 	for (const project of projects) {
 		validateProject(project);
