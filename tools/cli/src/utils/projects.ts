@@ -6,55 +6,94 @@ export const PROJECT_TYPES = ['plugins'] as const;
 
 export type ProjectType = (typeof PROJECT_TYPES)[number];
 
+type ProjectStatus = 'ignored' | 'tracked' | 'connected';
+
+type IncludeOptions = {
+	[key in ProjectStatus]?: boolean;
+};
+
+type ProjectDetails = {
+	path: string;
+	status: ProjectStatus;
+};
+
 const GIT_IGNORE_PATH = path.join(ROOT_DIR, '.gitignore');
 
 const gitIgnoreContent = fs.readFileSync(GIT_IGNORE_PATH, 'utf8');
 
-export function getUntrackedProjects() {
-	const untracked = process.env.UNTRACKED_PROJECTS || '';
+const connectedProjects = (process.env.CONNECTED_PROJECTS || '')
+	.split(',')
+	.map((project) => project.trim())
+	.filter(Boolean);
 
-	return untracked
-		.split(',')
-		.map((project) => project.trim())
-		.filter(Boolean);
+function getProjectDetails(
+	dirent: fs.Dirent,
+	projectType: ProjectType,
+): ProjectDetails {
+	const projectPath = `${projectType}/${dirent.name}`;
+
+	// Connected is a subset of ignored, so we need to check for connected first
+	if (connectedProjects.includes(`${projectType}/${dirent.name}`)) {
+		return {
+			path: projectPath,
+			status: 'connected',
+		};
+	}
+
+	// For tracked projects, we expect an entry like this in the .gitignore file:
+	// !/plugins/plugin-name/, !themes/theme-name/
+	const RE = new RegExp(`[^#]!/${projectType}/${dirent.name}/`);
+
+	if (RE.test(gitIgnoreContent)) {
+		return {
+			path: projectPath,
+			status: 'tracked',
+		};
+	}
+
+	return {
+		path: projectPath,
+		status: 'ignored',
+	};
 }
 
-export function projectDirectories(projectType: ProjectType) {
+function getProjectDirectoriesByType(projectType: ProjectType) {
 	return fs
 		.readdirSync(path.join(ROOT_DIR, projectType), { withFileTypes: true })
-		.filter((dirent) => {
-			if (!dirent.isDirectory()) {
-				return false;
-			}
-
-			// We expect an entry like this in the .gitignore file:
-			// !/plugins/plugin-name/
-			const RE = new RegExp(`[^#]!/${projectType}/${dirent.name}/`);
-
-			return (
-				RE.test(gitIgnoreContent) ||
-				getUntrackedProjects().includes(`${projectType}/${dirent.name}`)
-			);
-		})
-		.map((dirent) => `${projectType}/${dirent.name}`);
+		.filter((dirent) => dirent.isDirectory());
 }
 
-export function getAllProjects() {
-	let projects: Array<string> = [];
+/**
+ * Get projects.
+ *
+ * By default, it returns all projects that are connected or tracked.
+ */
+export function getProjects(include: IncludeOptions) {
+	const projects = new Set<string>();
 
 	for (const projectType of PROJECT_TYPES) {
-		projects = projects.concat(projectDirectories(projectType));
+		for (const project of getProjectDirectoriesByType(projectType)) {
+			const projectDetails = getProjectDetails(project, projectType);
+
+			if (include[projectDetails.status]) {
+				projects.add(projectDetails.path);
+			}
+		}
 	}
 
 	return projects;
 }
 
-export function validateProject(project: string) {
-	const info = fs.lstatSync(getRealPath(project, ROOT_DIR), {
-		throwIfNoEntry: false,
-	});
+export function getMonorepoProjects() {
+	return getProjects({ connected: true, tracked: true });
+}
 
-	if (!info?.isDirectory()) {
+export function getAllProjects() {
+	return getProjects({ connected: true, tracked: true, ignored: true });
+}
+
+export function validateProject(project: string) {
+	if (getMonorepoProjects().has(project)) {
 		throw new Error(`Invalid project: "${project}"`);
 	}
 }

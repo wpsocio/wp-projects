@@ -2,7 +2,7 @@ import chalk from 'chalk';
 import { Argv, CommandModule } from 'yargs';
 import { InferBuilderOptions } from '../types.js';
 import {
-	getAllProjects,
+	getMonorepoProjects,
 	getRealPath,
 	getSymlinkPath,
 	validateProject,
@@ -79,7 +79,9 @@ export function createLinkCommand(): CommandModule<unknown, LinkArgs> {
 
 			const symlinkManager = new SymlinkManager();
 
-			const projects = new Set(argv.all ? getAllProjects() : argv.projects);
+			const projects = argv.all
+				? getMonorepoProjects()
+				: new Set(argv.projects);
 
 			for (const project of projects) {
 				validateProject(project);
@@ -109,7 +111,9 @@ export function createUnlinkCommand(): CommandModule<unknown, LinkArgs> {
 
 			const symlinkManager = new SymlinkManager();
 
-			const projects = new Set(argv.all ? getAllProjects() : argv.projects);
+			const projects = argv.all
+				? getMonorepoProjects()
+				: new Set(argv.projects);
 
 			for (const project of projects) {
 				validateProject(project);
