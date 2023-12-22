@@ -23,8 +23,8 @@
 		"build": "pnpm wpsocio build plugins/wptelegram",
 		"lint:php": "composer run lint",
 		"preview": "vite preview",
-		"setup:prod": "composer config vendor-dir src/vendor && composer install --no-dev",
-		"setup:dev": "composer config vendor-dir --unset && composer install"
+		"setup:php": "composer config vendor-dir --unset && composer install",
+		"setup:php:prod": "composer config vendor-dir src/vendor && composer install --no-dev"
 	},
 	"dependencies": {
 		"ramda": "^0.29.1",
