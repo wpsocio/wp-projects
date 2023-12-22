@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import chalk from 'chalk';
 import { ROOT_DIR } from './monorepo.js';
 
 export const PROJECT_TYPES = ['plugins'] as const;
@@ -93,8 +94,9 @@ export function getAllProjects() {
 }
 
 export function validateProject(project: string) {
-	if (getMonorepoProjects().has(project)) {
-		throw new Error(`Invalid project: "${project}"`);
+	if (!getMonorepoProjects().has(project)) {
+		console.error(chalk.red(`Invalid project: ${project}`));
+		process.exit(1);
 	}
 }
 
