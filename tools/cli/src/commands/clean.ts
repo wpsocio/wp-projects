@@ -53,8 +53,6 @@ export async function handler(argv: HandlerArgs) {
 
 	const toDelete = argv.include ? argv.include : await promptForClean(argv);
 
-	console.log({ toDelete });
-
 	const allFiles = await collectAllFiles(toDelete, argv);
 	const filesToDelete = collectCleanFiles(allFiles, toDelete);
 
@@ -79,8 +77,7 @@ async function cleanFiles(filesToDelete: Array<string>, argv: HandlerArgs) {
 	for (const file of filesToDelete) {
 		console.log(`Cleaning ${file}`);
 		try {
-			// fs.rmSync(file, { recursive: true, force: true });
-			console.log('>>>', file);
+			fs.rmSync(file, { recursive: true, force: true });
 		} catch (e) {
 			console.error(chalk.red((e as { message: string }).message));
 			process.exit(1);
@@ -93,8 +90,7 @@ async function cleanFiles(filesToDelete: Array<string>, argv: HandlerArgs) {
 	if (nodeModulesDirs.length) {
 		process.on('exit', () => {
 			for (const file of nodeModulesDirs) {
-				// fs.rmSync(file, { recursive: true, force: true });
-				console.log('>>>', file);
+				fs.rmSync(file, { recursive: true, force: true });
 			}
 		});
 	}
@@ -161,8 +157,6 @@ async function collectAllFiles(toDelete: Array<string>, argv: HandlerArgs) {
 	// So the above git commands won't work for nested git repos
 	const connectedProjects = getProjects({ connected: true });
 
-	console.log({ connectedProjects });
-
 	for (const project of connectedProjects) {
 		const files = child_process.execSync(
 			`git -C ${project} -c core.quotepath=off ls-files --exclude-standard --directory --ignored --other`,
@@ -172,7 +166,6 @@ async function collectAllFiles(toDelete: Array<string>, argv: HandlerArgs) {
 			.trim()
 			.split('\n')
 			.map((file) => `${project}/${file}`);
-		console.log({ connectedProjectFiles });
 
 		ignoredFileNames.push(...connectedProjectFiles);
 
@@ -191,7 +184,6 @@ async function collectAllFiles(toDelete: Array<string>, argv: HandlerArgs) {
 			project.replace(/\/?$/, '/'),
 		),
 	);
-	console.log({ filesToSkip: [...filesToSkip] });
 
 	for (const file of ignoredFileNames) {
 		if (filesToSkip.has(file) || file.endsWith('.env')) {
