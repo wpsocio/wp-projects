@@ -17,7 +17,7 @@
 		"lint": "\"vendor/bin/phpcs\" --standard=../../../phpcs.xml --extensions=php .",
 		"lint:skip-warnings": "\"vendor/bin/phpcs\" --standard=../../../phpcs.xml --extensions=php -n .",
 		"lint:fix": "\"vendor/bin/phpcbf\" --standard=../../../phpcs.xml --extensions=php .",
-		"test": "composer --version"
+		"test": "\"vendor/bin/pest\""
 	},
 	"require-dev": {
 		"wp-coding-standards/wpcs": "^3.0.1",

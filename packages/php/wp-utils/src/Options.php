@@ -21,6 +21,8 @@ use ArrayAccess;
  */
 class Options implements Iterator, ArrayAccess {
 
+	const ALL_KEY = '__all__';
+
 	/**
 	 * Plugin option key saved in the database
 	 *
@@ -64,6 +66,16 @@ class Options implements Iterator, ArrayAccess {
 	}
 
 	/**
+	 * Get the filter name for a given action type.
+	 *
+	 * @param string $action_type Action type.
+	 * @param string $key         Option key.
+	 */
+	protected function get_filter_name( string $action_type, string $key = '' ) {
+		return implode( '_', array_filter( [ strtolower( __CLASS__ ), $this->option_key, $action_type, $key ] ) );
+	}
+
+	/**
 	 * Checks if an option key exists.
 	 *
 	 * @param string $key Option key.
@@ -83,13 +95,13 @@ class Options implements Iterator, ArrayAccess {
 	 * @return mixed Option value
 	 */
 	public function get( string $key = '', $default = false ) {
-		if ( 'all' === $key || empty( $key ) ) {
+		if ( self::ALL_KEY === $key || empty( $key ) ) {
 			$value = $this->data;
 		} else {
 			$value = $this->exists( $key ) ? $this->data[ $key ] : $default;
 		}
 
-		return apply_filters( strtolower( __CLASS__ ) . "_{$this->option_key}_get_{$key}", $value, $default );
+		return apply_filters( $this->get_filter_name( 'get', $key ), $value, $default, $this->data );
 	}
 
 	/**
@@ -106,7 +118,7 @@ class Options implements Iterator, ArrayAccess {
 			return $this->get( $path, $default );
 		}
 
-		$value = $this->get( 'all' );
+		$value = $this->get( self::ALL_KEY );
 
 		if ( ! is_array( $value ) ) {
 			return $default;
@@ -120,7 +132,38 @@ class Options implements Iterator, ArrayAccess {
 			$value = $value[ $key ];
 		}
 
-		return apply_filters( strtolower( __CLASS__ ) . "_{$this->option_key}_get_path_{$path}", $value, $default );
+		return apply_filters( $this->get_filter_name( 'get_path', $path ), $value, $default, $this->data );
+	}
+
+	/**
+	 * Sets the option by nested path, with keys separated by dot.
+	 *
+	 * @param string $path   Path to update.
+	 * @param mixed  $value  Value.
+	 *
+	 * @return mixed Option value.
+	 */
+	public function set_path( string $path, $value ) {
+		// If it's not a nested path.
+		if ( false === strpos( $path, '.' ) ) {
+			return $this->set( $path, $value );
+		}
+
+		$item = &$this->data;
+
+		foreach ( explode( '.', $path ) as $key ) {
+			if ( ! isset( $item[ $key ] ) || ! is_array( $item[ $key ] ) ) {
+				$item[ $key ] = [];
+			}
+
+			$item = &$item[ $key ];
+		}
+
+		$item = $value;
+
+		$this->update_data();
+
+		return $this;
 	}
 
 	/**
@@ -135,12 +178,14 @@ class Options implements Iterator, ArrayAccess {
 
 		if ( ! empty( $this->option_key ) ) {
 
-			$this->data[ $key ] = apply_filters( strtolower( __CLASS__ ) . "_{$this->option_key}_set_{$key}", $value );
+			$this->data[ $key ] = apply_filters( $this->get_filter_name( 'set', $key ), $value, $this->data );
 
 			return $this->update_data();
 		}
 
-		$this->data[ $key ] = $value;
+		if ( $key ) {
+			$this->data[ $key ] = $value;
+		}
 
 		return $this;
 	}
@@ -151,6 +196,10 @@ class Options implements Iterator, ArrayAccess {
 	 * @param string $key Options array key.
 	 */
 	public function remove( string $key ) {
+
+		if ( ! $key ) {
+			return false;
+		}
 
 		unset( $this->data[ $key ] );
 
@@ -203,6 +252,9 @@ class Options implements Iterator, ArrayAccess {
 			if ( $this->store_as_json ) {
 				$data = json_decode( $data, true );
 			}
+
+			// Do not unslash data from the database.
+			$unslash = false;
 		}
 
 		if ( $unslash ) {
@@ -221,18 +273,19 @@ class Options implements Iterator, ArrayAccess {
 	public function update_data( bool $unslash = false ) {
 
 		// Make sure we have something to work upon.
-		if ( ! empty( $this->option_key ) ) {
-			$data = $this->get_data();
-			if ( $this->store_as_json ) {
-				$data = wp_json_encode( $data );
-			}
-			if ( $unslash ) {
-				$data = wp_unslash( $data );
-			}
-
-			return update_option( $this->option_key, $data );
+		if ( empty( $this->option_key ) ) {
+			return false;
 		}
-		return false;
+
+		$data = $this->get_data();
+		if ( $unslash ) {
+			$data = wp_unslash( $data );
+		}
+		if ( $this->store_as_json ) {
+			$data = wp_json_encode( $data );
+		}
+
+		return update_option( $this->option_key, $data );
 	}
 
 	/**
