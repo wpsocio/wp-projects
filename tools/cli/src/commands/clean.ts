@@ -212,7 +212,7 @@ async function confirmRemove(argv: HandlerArgs, filesToDelete: Array<string>) {
 
 	if (argv.all) {
 		confirmMessage =
-			'You everything? (node_modules, vendor, and git-ignored files?)';
+			'You want to nuke everything? (node_modules, vendor, and git-ignored files?)';
 	}
 	const response = await enquirer.prompt<{ confirm: boolean }>({
 		type: 'confirm',
