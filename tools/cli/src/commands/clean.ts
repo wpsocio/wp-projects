@@ -108,25 +108,38 @@ function collectCleanFiles(
 	allFiles: Record<string, Array<string>>,
 	toDelete: Array<string>,
 ) {
-	const filesToDelete = [];
+	let filesToDelete = new Set<string>();
 	for (const file of toDelete) {
 		switch (file) {
 			case 'node_modules':
-				filesToDelete.push(...allFiles.node_modules);
+				filesToDelete = new Set([...filesToDelete, ...allFiles.node_modules]);
 				break;
 			case 'composer.lock':
-				filesToDelete.push(...allFiles.composerLock);
+				filesToDelete = new Set([...filesToDelete, ...allFiles.composerLock]);
 				break;
 			case 'vendor':
-				filesToDelete.push(...allFiles.vendor);
+				filesToDelete = new Set([...filesToDelete, ...allFiles.vendor]);
 				break;
 			case 'ignored':
-				filesToDelete.push(...allFiles.other);
+				filesToDelete = new Set([...filesToDelete, ...allFiles.other]);
 				break;
 		}
 	}
 
-	return filesToDelete.filter(Boolean);
+	// Ensure that node_modules/ at root is deleted last.
+	if (filesToDelete.has('node_modules/')) {
+		filesToDelete.delete('node_modules/');
+		/**
+		 * TODO fix this
+		 *
+		 * Deletion of node_modules/ fails with this error on Windows:
+		 *
+		 * EPERM: operation not permitted, unlink '.pnpm\@rollup+rollup-win32-x64-msvc@4.9.1\node_modules\@rollup\rollup-win32-x64-msvc\rollup.win32-x64-msvc.node
+		 */
+		// filesToDelete.add('node_modules/');
+	}
+
+	return [...filesToDelete].filter(Boolean);
 }
 
 async function collectAllFiles(toDelete: Array<string>, argv: HandlerArgs) {
