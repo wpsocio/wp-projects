@@ -33,16 +33,33 @@ class Requirements {
 	 *
 	 * @var string
 	 */
-	private $plugin_main_file;
+	protected $plugin_main_file;
+
+	/**
+	 * The fallback data. Useful for older versions of WP
+	 * where 'RequiresPHP' and 'RequiresWP' are not available via get_plugin_data().
+	 *
+	 * @var array
+	 */
+	protected $fallback_data;
 
 	/**
 	 * Constructor.
 	 *
 	 * @param string $plugin_main_file The path to main plugin file.
+	 * @param array  $fallback_data    The fallback data.
+	 *
 	 * @return void
 	 */
-	public function __construct( $plugin_main_file ) {
+	public function __construct( $plugin_main_file, $fallback_data = [] ) {
 		$this->plugin_main_file = $plugin_main_file;
+		$this->fallback_data    = array_merge(
+			[
+				'RequiresPHP' => '7.0',
+				'RequiresWP'  => '5.3',
+			],
+			$fallback_data
+		);
 
 		$this->env_details = $this->read_env();
 	}
@@ -72,16 +89,20 @@ class Requirements {
 		if ( ! function_exists( 'get_plugin_data' ) ) {
 			require_once ABSPATH . 'wp-admin/includes/plugin.php';
 		}
-		$plugin_data = get_plugin_data( $this->plugin_main_file );
+
+		$plugin_data = array_merge(
+			$this->fallback_data,
+			get_plugin_data( $this->plugin_main_file )
+		);
 
 		$data = [
 			'PHP' => [
 				'version' => PHP_VERSION,
-				'min'     => isset( $plugin_data['RequiresPHP'] ) ? $plugin_data['RequiresPHP'] : '7.0',
+				'min'     => $plugin_data['RequiresPHP'],
 			],
 			'WP'  => [
 				'version' => get_bloginfo( 'version' ),
-				'min'     => isset( $plugin_data['RequiresWP'] ) ? $plugin_data['RequiresWP'] : '5.3',
+				'min'     => $plugin_data['RequiresWP'],
 			],
 		];
 
