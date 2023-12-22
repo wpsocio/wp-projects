@@ -2,11 +2,12 @@
  * Parts of this file are copied from the Jetpack CLI.
  */
 import child_process from 'node:child_process';
+import fs from 'node:fs';
 import chalk from 'chalk';
 import enquirer from 'enquirer';
 import { Argv } from 'yargs';
 import { InferBuilderOptions } from '../types.js';
-import { getAllProjects } from '../utils/projects.js';
+import { getAllProjects, getProjects } from '../utils/projects.js';
 
 export const command = 'clean [path] [include]';
 
@@ -146,15 +147,6 @@ async function collectAllFiles(toDelete: Array<string>, argv: HandlerArgs) {
 
 	const ignoredFileNames = ignoredFiles.toString().trim().split('\n');
 
-	// We do not want to delete any of the project directories in the monorepo.
-	const filesToSkip = new Set(
-		[...getAllProjects()].map((project) =>
-			// Ensure that the path ends with a slash.
-			project.replace(/\/?$/, '/'),
-		),
-	);
-	filesToSkip.add('.env');
-
 	// If we want to clean up a checked in composer.lock file, ls-files won't work and we have to filter the files manually.
 	if (toDelete.includes('composer.lock')) {
 		const files = child_process.execSync(
@@ -165,10 +157,44 @@ async function collectAllFiles(toDelete: Array<string>, argv: HandlerArgs) {
 		allFiles.composerLock.push(...composerLockFiles);
 	}
 
+	// It's possible that the connected project may be a git repo
+	// So the above git commands won't work for nested git repos
+	const connectedProjects = getProjects({ connected: true });
+
+	console.log({ connectedProjects });
+
+	for (const project of connectedProjects) {
+		const files = child_process.execSync(
+			`git -C ${project} -c core.quotepath=off ls-files --exclude-standard --directory --ignored --other`,
+		);
+		const connectedProjectFiles = files
+			.toString()
+			.trim()
+			.split('\n')
+			.map((file) => `${project}/${file}`);
+		console.log({ connectedProjectFiles });
+
+		ignoredFileNames.push(...connectedProjectFiles);
+
+		if (
+			toDelete.includes('composer.lock') &&
+			fs.existsSync(`${project}/composer.lock`)
+		) {
+			allFiles.composerLock.push(`${project}/composer.lock`);
+		}
+	}
+
+	// We do not want to delete any of the project directories in the monorepo.
+	const filesToSkip = new Set(
+		[...getAllProjects()].map((project) =>
+			// Ensure that the path ends with a slash.
+			project.replace(/\/?$/, '/'),
+		),
+	);
 	console.log({ filesToSkip: [...filesToSkip] });
 
 	for (const file of ignoredFileNames) {
-		if (filesToSkip.has(file)) {
+		if (filesToSkip.has(file) || file.endsWith('.env')) {
 			continue;
 		}
 		if (file.match(/(^|\/)node_modules\/$/)) {
