@@ -35,38 +35,3 @@ require plugin_dir_path( __FILE__ ) . 'src/wptelegram-comments.php';
 
 register_activation_hook( __FILE__, 'activate_wptelegram_comments' );
 register_deactivation_hook( __FILE__, 'deactivate_wptelegram_comments' );
-
-/**
- * Fix the bug in kucrut/vite-for-wp
- *
- * @see https://github.com/kucrut/vite-for-wp/issues/76
- */
-add_filter(
-	'script_loader_tag',
-	function ( $tag, $handle, $src ) {
-		if ( 'wptelegram_comments-admin-settings' !== $handle ) {
-			return $tag;
-		}
-
-		$processor = new WP_HTML_Tag_Processor( $tag );
-
-		$script_fount = false;
-
-		do {
-			$script_fount = $processor->next_tag( 'script' );
-
-			// Remove the type attribute from the inline script tag.
-			if ( $script_fount && $processor->get_attribute( 'src' ) !== $src ) {
-				$processor->remove_attribute( 'type' );
-			}
-		} while ( $processor->get_attribute( 'src' ) !== $src );
-
-		if ( $script_fount ) {
-			$processor->set_attribute( 'type', 'module' );
-		}
-
-		return $processor->get_updated_html();
-	},
-	20,
-	3
-);

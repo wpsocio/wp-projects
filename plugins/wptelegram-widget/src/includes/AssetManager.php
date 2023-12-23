@@ -14,7 +14,7 @@ namespace WPTelegram\Widget\includes;
 use WPTelegram\Widget\shared\shortcodes\LegacyWidget;
 use WPTelegram\Widget\includes\restApi\RESTController;
 use WPTelegram\Widget\includes\restApi\SettingsController;
-use Kucrut\Vite;
+use WPSocio\WPUtils\JsDependencies;
 
 /**
  * The assets manager of the plugin.
@@ -52,23 +52,17 @@ class AssetManager extends BaseClass {
 	const WPTELEGRAM_MENU_HANDLE = 'wptelegram-menu';
 
 	/**
-	 * The registered handles.
-	 *
-	 * @since x.y.z
-	 * @var   array $registered_handles The registered handles.
-	 */
-	private $registered_handles = [];
-
-	/**
 	 * Register the assets.
 	 *
 	 * @since    2.1.0
 	 */
 	public function register_assets() {
 
-		$assets = $this->plugin()->assets();
+		$build_dir = $this->plugin()->dir( '/assets/build' );
 
-		$build_dir = $assets->build_path();
+		$dependencies = new JsDependencies( $build_dir );
+
+		$assets = $this->plugin()->assets();
 
 		foreach ( self::ASSET_ENTRIES as $name => $data ) {
 			$entry    = $data['entry'];
@@ -76,19 +70,18 @@ class AssetManager extends BaseClass {
 
 			if ( ! empty( $data['internal-css-deps'] ) ) {
 				foreach ( $data['internal-css-deps'] as $css_entry ) {
-					if ( ! empty( $this->registered_handles[ $css_entry ]['styles'] ) ) {
-						$css_deps = array_merge( $css_deps, $this->registered_handles[ $css_entry ]['styles'] );
+
+					if ( $assets->is_registered( $css_entry, 'styles' ) ) {
+						$css_deps = array_merge( $css_deps, $assets->get_entry_handles( $css_entry, 'styles' ) );
 					}
 				}
 			}
-			$dependencies = $assets->get_dependencies( $entry );
 
-			$this->registered_handles[ $entry ] = Vite\register_asset(
-				$build_dir,
+			$assets->register_asset(
 				$entry,
 				[
 					'handle'           => $this->plugin()->name() . '-' . $name,
-					'dependencies'     => $dependencies,
+					'dependencies'     => $dependencies->get( $entry ),
 					'css-dependencies' => $css_deps,
 					'in-footer'        => $data['in-footer'] ?? true,
 				]
@@ -98,15 +91,15 @@ class AssetManager extends BaseClass {
 		if ( ! defined( 'WPTELEGRAM_LOADED' ) ) {
 			wp_register_style(
 				self::WPTELEGRAM_MENU_HANDLE,
-				$assets->url( sprintf( '/static/css/admin-menu%s.css', wp_scripts_get_suffix() ) ),
+				$this->plugin()->url( sprintf( '/assets/static/css/admin-menu%s.css', wp_scripts_get_suffix() ) ),
 				[],
 				$this->plugin()->version(),
 				'all'
 			);
 		}
 
-		if ( ! empty( $this->registered_handles[ self::BLOCKS_ENTRY ]['styles'] ) ) {
-			[$handle] = $this->registered_handles[ self::BLOCKS_ENTRY ]['styles'];
+		if ( $assets->is_registered( self::BLOCKS_ENTRY, 'styles' ) ) {
+			[$handle] = $assets->get_entry_handles( self::BLOCKS_ENTRY, 'styles' );
 
 			$style = sprintf(
 				':root {%1$s: %2$s;%3$s: %4$s}',
@@ -127,8 +120,10 @@ class AssetManager extends BaseClass {
 	 */
 	public function enqueue_public_styles() {
 
-		if ( ! empty( $this->registered_handles[ self::PUBLIC_WIDGET_ENTRY ]['styles'] ) ) {
-			[$handle] = $this->registered_handles[ self::PUBLIC_WIDGET_ENTRY ]['styles'];
+		$assets = $this->plugin()->assets();
+
+		if ( $assets->is_registered( self::PUBLIC_WIDGET_ENTRY, 'styles' ) ) {
+			[$handle] = $assets->get_entry_handles( self::PUBLIC_WIDGET_ENTRY, 'styles' );
 
 			wp_enqueue_style( $handle );
 		}
@@ -140,8 +135,11 @@ class AssetManager extends BaseClass {
 	 * @since    2.0.0
 	 */
 	public function enqueue_public_scripts() {
-		if ( ! empty( $this->registered_handles[ self::PUBLIC_WIDGET_ENTRY ]['scripts'] ) ) {
-			[$handle] = $this->registered_handles[ self::PUBLIC_WIDGET_ENTRY ]['scripts'];
+
+		$assets = $this->plugin()->assets();
+
+		if ( $assets->is_registered( self::PUBLIC_WIDGET_ENTRY, 'scripts' ) ) {
+			[$handle] = $assets->get_entry_handles( self::PUBLIC_WIDGET_ENTRY, 'scripts' );
 
 			wp_enqueue_script( $handle );
 		}
@@ -161,7 +159,8 @@ class AssetManager extends BaseClass {
 
 		// Load only on settings page.
 		if ( $this->is_settings_page( $hook_suffix ) ) {
-			$admin_styles = $this->registered_handles[ self::ADMIN_SETTINGS_ENTRY ]['styles'] ?? [];
+
+			$admin_styles = $this->plugin()->assets()->get_entry_handles( self::ADMIN_SETTINGS_ENTRY, 'styles' );
 
 			foreach ( $admin_styles as $handle ) {
 				wp_enqueue_style( $handle );
@@ -176,9 +175,10 @@ class AssetManager extends BaseClass {
 	 * @param string $hook_suffix The current admin page.
 	 */
 	public function enqueue_admin_scripts( $hook_suffix ) {
+		$assets = $this->plugin()->assets();
 		// Load only on settings page.
-		if ( $this->is_settings_page( $hook_suffix ) && ! empty( $this->registered_handles[ self::ADMIN_SETTINGS_ENTRY ]['scripts'] ) ) {
-			[$handle] = $this->registered_handles[ self::ADMIN_SETTINGS_ENTRY ]['scripts'];
+		if ( $this->is_settings_page( $hook_suffix ) && $assets->is_registered( self::ADMIN_SETTINGS_ENTRY, 'scripts' ) ) {
+			[$handle] = $assets->get_entry_handles( self::ADMIN_SETTINGS_ENTRY, 'scripts' );
 
 			wp_enqueue_script( $handle );
 
@@ -232,8 +232,8 @@ class AssetManager extends BaseClass {
 				'wp_rest_url'    => esc_url_raw( rest_url() ),
 			],
 			'assets'     => [
-				'logoUrl'   => $this->plugin()->assets()->url( '/static/icons/icon-128x128.png' ),
-				'tgIconUrl' => $this->plugin()->assets()->url( '/static/icons/tg-icon.svg' ),
+				'logoUrl'   => $this->plugin()->url( '/assets/static/icons/icon-128x128.png' ),
+				'tgIconUrl' => $this->plugin()->url( '/assets/static/icons/tg-icon.svg' ),
 			],
 			'uiData'     => [],
 			'i18n'       => Utils::get_jed_locale_data( 'wptelegram-widget' ),
@@ -306,8 +306,11 @@ class AssetManager extends BaseClass {
 	 * @since    2.0.0
 	 */
 	public function enqueue_block_editor_assets() {
-		if ( ! empty( $this->registered_handles[ self::BLOCKS_ENTRY ]['scripts'] ) ) {
-			[$handle] = $this->registered_handles[ self::BLOCKS_ENTRY ]['scripts'];
+
+		$assets = $this->plugin()->assets();
+
+		if ( $assets->is_registered( self::BLOCKS_ENTRY, 'scripts' ) ) {
+			[$handle] = $assets->get_entry_handles( self::BLOCKS_ENTRY, 'scripts' );
 
 			wp_enqueue_script( $handle );
 
@@ -315,7 +318,7 @@ class AssetManager extends BaseClass {
 
 			self::add_dom_data( $handle, $data );
 
-			$styles = $this->registered_handles[ self::BLOCKS_ENTRY ]['styles'] ?? [];
+			$styles = $assets->get_entry_handles( self::BLOCKS_ENTRY, 'styles' );
 
 			foreach ( $styles as $handle ) {
 				wp_enqueue_style( $handle );

@@ -15,7 +15,8 @@ use WPTelegram\Core\includes\restApi\RESTController;
 use WPTelegram\Core\includes\restApi\SettingsController;
 use DOMDocument;
 use DOMXPath;
-use Kucrut\Vite;
+use WPSocio\WPUtils\JsDependencies;
+use WPSocio\WPUtils\ViteAssets;
 
 /**
  * The assets manager of the plugin.
@@ -47,40 +48,26 @@ class AssetManager extends BaseClass {
 	const WPTELEGRAM_MENU_HANDLE = 'wptelegram-menu';
 
 	/**
-	 * The registered handles.
-	 *
-	 * @since x.y.z
-	 * @var   array $registered_handles The registered handles.
-	 */
-	private $registered_handles = [];
-
-	/**
-	 * Get the registered assets.
-	 */
-	public function get_registered_assets() {
-		return $this->registered_handles;
-	}
-
-	/**
 	 * Register the assets.
 	 *
 	 * @since    3.0.9
 	 */
 	public function register_assets() {
 
-		$assets = $this->plugin()->assets();
+		$build_dir = $this->plugin()->dir( '/assets/build' );
 
-		$build_dir = $assets->build_path();
+		$dependencies = new JsDependencies( $build_dir );
+
+		$assets = $this->plugin()->assets();
 
 		foreach ( self::ASSET_ENTRIES as $name => $data ) {
 			$entry = $data['entry'];
 
-			$this->registered_handles[ $entry ] = Vite\register_asset(
-				$build_dir,
+			$assets->register_asset(
 				$entry,
 				[
 					'handle'       => $this->plugin()->name() . '-' . $name,
-					'dependencies' => $assets->get_dependencies( $entry ),
+					'dependencies' => $dependencies->get( $entry ),
 					'in-footer'    => $data['in-footer'] ?? true,
 				]
 			);
@@ -88,7 +75,7 @@ class AssetManager extends BaseClass {
 
 		wp_register_style(
 			self::WPTELEGRAM_MENU_HANDLE,
-			$assets->url( sprintf( '/static/css/admin-menu%s.css', wp_scripts_get_suffix() ) ),
+			$this->plugin()->url( sprintf( '/assets/static/css/admin-menu%s.css', wp_scripts_get_suffix() ) ),
 			[],
 			$this->plugin()->version(),
 			'all'
@@ -126,7 +113,8 @@ class AssetManager extends BaseClass {
 
 		// Load only on settings page.
 		if ( $this->is_settings_page( $hook_suffix ) ) {
-			$admin_styles = $this->registered_handles[ self::ADMIN_SETTINGS_ENTRY ]['styles'] ?? [];
+
+			$admin_styles = $this->plugin()->assets()->get_entry_handles( self::ADMIN_SETTINGS_ENTRY, 'styles' );
 
 			foreach ( $admin_styles as $handle ) {
 				wp_enqueue_style( $handle );
@@ -142,9 +130,9 @@ class AssetManager extends BaseClass {
 	 */
 	public function enqueue_admin_scripts( $hook_suffix ) {
 		// Load only on settings page.
-		if ( $this->is_settings_page( $hook_suffix ) && ! empty( $this->registered_handles[ self::ADMIN_SETTINGS_ENTRY ]['scripts'] ) ) {
+		if ( $this->is_settings_page( $hook_suffix ) && $this->plugin()->assets()->is_registered( self::ADMIN_SETTINGS_ENTRY ) ) {
 
-			[$handle] = $this->registered_handles[ self::ADMIN_SETTINGS_ENTRY ]['scripts'];
+			[$handle] = $this->plugin()->assets()->get_entry_handles( self::ADMIN_SETTINGS_ENTRY );
 
 			wp_enqueue_script( $handle );
 
@@ -186,8 +174,8 @@ class AssetManager extends BaseClass {
 
 		if ( 'SETTINGS_PAGE' === $for ) {
 			$data['assets'] = [
-				'logoUrl'        => $this->plugin()->assets()->url( '/static/icons/icon-128x128.png' ),
-				'tgIconUrl'      => $this->plugin()->assets()->url( '/static/icons/tg-icon.svg' ),
+				'logoUrl'        => $this->plugin()->url( '/assets/static/icons/icon-128x128.png' ),
+				'tgIconUrl'      => $this->plugin()->url( '/assets/static/icons/tg-icon.svg' ),
 				'editProfileUrl' => get_edit_profile_url( get_current_user_id() ),
 				'p2tgLogUrl'     => Logger::get_log_url( 'p2tg' ),
 				'botApiLogUrl'   => Logger::get_log_url( 'bot-api' ),

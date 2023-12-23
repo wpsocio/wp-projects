@@ -72,7 +72,6 @@ class AjaxWidget {
 			if ( extension_loaded( 'mbstring' ) ) {
 				// fix the issue with Cyrillic characters.
 				$output = mb_convert_encoding( $output, 'UTF-8', mb_detect_encoding( $output ) );
-				$output = mb_convert_encoding( $output, 'HTML-ENTITIES', 'UTF-8' );
 			}
 
 			$output = self::customize_widget_output( $output );

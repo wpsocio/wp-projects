@@ -45,7 +45,6 @@ class SingleMessage {
 		if ( extension_loaded( 'mbstring' ) ) {
 			// fix the issue with Cyrillic characters.
 			$html = mb_convert_encoding( $html, 'UTF-8', mb_detect_encoding( $html ) );
-			$html = mb_convert_encoding( $html, 'HTML-ENTITIES', 'UTF-8' );
 		}
 
 		$dom = new DOMDocument();

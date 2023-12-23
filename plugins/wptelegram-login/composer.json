@@ -8,7 +8,6 @@
 		"lint:fix": "\"vendor/bin/phpcbf\" --standard=../../phpcs.xml --extensions=php src/ dev.php"
 	},
 	"require": {
-		"kucrut/vite-for-wp": "^0.8.0",
 		"wpsocio/wp-utils": "@dev"
 	},
 	"require-dev": {
