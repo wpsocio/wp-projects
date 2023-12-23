@@ -66,7 +66,7 @@ class Shared extends BaseClass {
 				 * The value returned by locate_template() is a path to file.
 				 * if either the child theme or the parent theme have overridden the template.
 				 */
-				if ( Utils::is_valid_template( $overridden_template ) ) {
+				if ( Utils::is_valid_theme_template( $overridden_template ) ) {
 					$template = $overridden_template;
 				}
 			} else {
