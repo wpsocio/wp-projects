@@ -426,4 +426,50 @@ class Helpers {
 
 		return home_url( $current_uri );
 	}
+
+	/**
+	 * Gets the current post type in the WordPress Admin
+	 *
+	 * @return string|NULL
+	 */
+	public static function get_current_post_type() {
+
+		global $post, $typenow, $pagenow, $current_screen;
+
+		// we have a post so we can just get the post type from that.
+		if ( $post && $post->post_type ) {
+			return $post->post_type;
+		}
+
+		// check the global $typenow - set in admin.php.
+		if ( $typenow ) {
+			return $typenow;
+		}
+
+		// check the global $current_screen object - set in screen.php.
+		if ( $current_screen && $current_screen->post_type ) {
+			return $current_screen->post_type;
+		}
+
+		// check the post_type query string.
+		$post_type = filter_input( INPUT_GET, 'post_type', FILTER_UNSAFE_RAW );
+
+		if ( $post_type ) {
+			return sanitize_key( $post_type );
+		}
+
+		// check if post ID is in query string.
+		$post_id = filter_input( INPUT_GET, 'post', FILTER_SANITIZE_NUMBER_INT );
+		if ( $post_id ) {
+			return get_post_type( (int) $post_id );
+		}
+
+		// lastly check if the page is edit.php or post-new.php.
+		if ( 'edit.php' === $pagenow || 'post-new.php' === $pagenow ) {
+			return 'post';
+		}
+
+		// we do not know the post type!
+		return null;
+	}
 }
