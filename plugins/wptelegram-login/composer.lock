@@ -4,57 +4,19 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "54be8d86a54fe3688908431ed5925544",
+    "content-hash": "d988c8d988c5dbc590de166a6a4ce42d",
     "packages": [
         {
-            "name": "kucrut/vite-for-wp",
-            "version": "v0.8.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/kucrut/vite-for-wp.git",
-                "reference": "bce4607bb57f4892da93492908caeb75ce2782a2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/kucrut/vite-for-wp/zipball/bce4607bb57f4892da93492908caeb75ce2782a2",
-                "reference": "bce4607bb57f4892da93492908caeb75ce2782a2",
-                "shasum": ""
-            },
-            "require-dev": {
-                "wp-coding-standards/wpcs": "^3.0"
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "vite-for-wp.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0-only"
-            ],
-            "authors": [
-                {
-                    "name": "Dzikri Aziz"
-                }
-            ],
-            "description": "Vite integration for WordPress plugins and themes development.",
-            "support": {
-                "issues": "https://github.com/kucrut/vite-for-wp/issues",
-                "source": "https://github.com/kucrut/vite-for-wp/tree/v0.8.0"
-            },
-            "time": "2023-11-15T04:30:52+00:00"
-        },
-        {
             "name": "wpsocio/wp-utils",
-            "version": "dev-add/cli-clean",
+            "version": "dev-main",
             "dist": {
                 "type": "path",
                 "url": "../../packages/php/wp-utils",
-                "reference": "1e6337bd50a16a647b8ec92758f891bbbd1398e0"
+                "reference": "ba55d0228449123c7a87cb9f8380c94378c539f2"
             },
             "require-dev": {
                 "pestphp/pest": "^1.22",
+                "php-stubs/wordpress-stubs": "^6.4",
                 "wp-coding-standards/wpcs": "^3.0.1"
             },
             "type": "library",

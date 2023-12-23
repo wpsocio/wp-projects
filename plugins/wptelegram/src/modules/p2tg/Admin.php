@@ -57,11 +57,10 @@ class Admin extends BaseClass {
 			&& did_action( 'cmb2_init' )
 			&& ! did_action( 'enqueue_block_editor_assets' )
 		) {
-			$registered_handles = AssetManager::instance()->get_registered_assets();
 
-			if ( ! empty( $registered_handles[ AssetManager::P2TG_CLASSIC_EDITOR_ENTRY ]['scripts'] ) ) {
+			if ( WPTG()->assets()->is_registered( AssetManager::P2TG_CLASSIC_EDITOR_ENTRY ) ) {
 
-				[$handle] = $registered_handles[ AssetManager::P2TG_CLASSIC_EDITOR_ENTRY ]['scripts'];
+				[$handle] = WPTG()->assets()->get_entry_handles( AssetManager::P2TG_CLASSIC_EDITOR_ENTRY );
 
 				wp_enqueue_script( $handle );
 			}
@@ -85,11 +84,9 @@ class Admin extends BaseClass {
 			return;
 		}
 
-		$registered_handles = AssetManager::instance()->get_registered_assets();
+		if ( WPTG()->assets()->is_registered( AssetManager::P2TG_BLOCK_EDITOR_ENTRY ) ) {
 
-		if ( ! empty( $registered_handles[ AssetManager::P2TG_BLOCK_EDITOR_ENTRY ]['scripts'] ) ) {
-
-			[$handle] = $registered_handles[ AssetManager::P2TG_BLOCK_EDITOR_ENTRY ]['scripts'];
+			[$handle] = WPTG()->assets()->get_entry_handles( AssetManager::P2TG_BLOCK_EDITOR_ENTRY );
 
 			wp_enqueue_script( $handle );
 

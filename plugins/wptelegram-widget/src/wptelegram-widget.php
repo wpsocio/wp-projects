@@ -82,7 +82,7 @@ function WPTG_Widget() { // phpcs:ignore WordPress.NamingConventions.ValidFuncti
 	return \WPTelegram\Widget\includes\Main::instance();
 }
 
-$requirements = new \WPTelegram\Widget\includes\Requirements( WPTELEGRAM_COMMENTS_MAIN_FILE );
+$requirements = new \WPTelegram\Widget\includes\Requirements( WPTELEGRAM_WIDGET_MAIN_FILE );
 
 if ( $requirements->satisfied() ) {
 	// Fire.

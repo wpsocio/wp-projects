@@ -13,6 +13,7 @@ namespace WPTelegram\Widget\shared\shortcodes;
 
 defined( 'ABSPATH' ) || die( 'No script kiddies please!' );
 
+use WPTelegram\Widget\includes\AssetManager;
 use WPTelegram\Widget\includes\Utils;
 
 /**
@@ -28,6 +29,13 @@ class JoinChannel {
 	 * @param array $atts The shortcode attributes.
 	 */
 	public static function render( $atts ) {
+
+		// This shortcode depends on the blocks styles.
+		$styles = WPTG_Widget()->assets()->get_entry_handles( AssetManager::BLOCKS_ENTRY, 'styles' );
+		foreach ( $styles as $handle ) {
+			wp_enqueue_style( $handle );
+		}
+
 		$defaults = [
 			'link' => WPTG_Widget()->options()->get_path( 'join_link.url', '' ),
 			'text' => WPTG_Widget()->options()->get_path( 'join_link.text', '' ),

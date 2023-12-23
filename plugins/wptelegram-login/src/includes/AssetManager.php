@@ -13,6 +13,7 @@ namespace WPTelegram\Login\includes;
 
 use WPTelegram\Login\includes\restApi\SettingsController;
 use Kucrut\Vite;
+use WPSocio\WPUtils\JsDependencies;
 
 /**
  * The assets manager of the plugin.
@@ -56,23 +57,17 @@ class AssetManager extends BaseClass {
 	const WPTELEGRAM_MENU_HANDLE = 'wptelegram-menu';
 
 	/**
-	 * The registered handles.
-	 *
-	 * @since x.y.z
-	 * @var   array $registered_handles The registered handles.
-	 */
-	private $registered_handles = [];
-
-	/**
 	 * Register the assets.
 	 *
 	 * @since    1.9.7
 	 */
 	public function register_assets() {
 
-		$assets = $this->plugin()->assets();
+		$build_dir = $this->plugin()->dir( '/assets/build' );
 
-		$build_dir = $assets->build_path();
+		$js_dependencies = new JsDependencies( $build_dir );
+
+		$assets = $this->plugin()->assets();
 
 		foreach ( self::ASSET_ENTRIES as $name => $data ) {
 			$entry = $data['entry'];
@@ -88,13 +83,12 @@ class AssetManager extends BaseClass {
 						true
 					);
 				}
-				$dependencies = array_merge( $assets->get_dependencies( $entry ), array_keys( $data['external-deps'] ) );
+				$dependencies = array_merge( $js_dependencies->get( $entry ), array_keys( $data['external-deps'] ) );
 			} else {
-				$dependencies = $assets->get_dependencies( $entry );
+				$dependencies = $js_dependencies->get( $entry );
 			}
 
-			$this->registered_handles[ $entry ] = Vite\register_asset(
-				$build_dir,
+			$assets->register_asset(
 				$entry,
 				[
 					'handle'           => $this->plugin()->name() . '-' . $name,
@@ -108,7 +102,7 @@ class AssetManager extends BaseClass {
 		if ( ! defined( 'WPTELEGRAM_LOADED' ) ) {
 			wp_register_style(
 				self::WPTELEGRAM_MENU_HANDLE,
-				$assets->url( sprintf( '/static/css/admin-menu%s.css', wp_scripts_get_suffix() ) ),
+				$this->plugin()->url( sprintf( '/assets/static/css/admin-menu%s.css', wp_scripts_get_suffix() ) ),
 				[],
 				$this->plugin()->version(),
 				'all'
@@ -128,9 +122,12 @@ class AssetManager extends BaseClass {
 			wp_enqueue_style( self::WPTELEGRAM_MENU_HANDLE );
 		}
 
+		wp_enqueue_style( self::WPTELEGRAM_MENU_HANDLE );
+
 		// Load only on settings page.
 		if ( $this->is_settings_page( $hook_suffix ) ) {
-			$admin_styles = $this->registered_handles[ self::ADMIN_SETTINGS_ENTRY ]['styles'] ?? [];
+
+			$admin_styles = $this->plugin()->assets()->get_entry_handles( self::ADMIN_SETTINGS_ENTRY, 'styles' );
 
 			foreach ( $admin_styles as $handle ) {
 				wp_enqueue_style( $handle );
@@ -146,8 +143,9 @@ class AssetManager extends BaseClass {
 	 */
 	public function enqueue_admin_scripts( $hook_suffix ) {
 		// Load only on settings page.
-		if ( $this->is_settings_page( $hook_suffix ) && ! empty( $this->registered_handles[ self::ADMIN_SETTINGS_ENTRY ]['scripts'] ) ) {
-			[$handle] = $this->registered_handles[ self::ADMIN_SETTINGS_ENTRY ]['scripts'];
+		if ( $this->is_settings_page( $hook_suffix ) && $this->plugin()->assets()->is_registered( self::ADMIN_SETTINGS_ENTRY ) ) {
+
+			[$handle] = $this->plugin()->assets()->get_entry_handles( self::ADMIN_SETTINGS_ENTRY );
 
 			wp_enqueue_script( $handle );
 
@@ -201,8 +199,8 @@ class AssetManager extends BaseClass {
 				'wp_rest_url'    => esc_url_raw( rest_url() ),
 			],
 			'assets'     => [
-				'logoUrl'   => $this->plugin()->assets()->url( '/static/icons/icon-128x128.png' ),
-				'tgIconUrl' => $this->plugin()->assets()->url( '/static/icons/tg-icon.svg' ),
+				'logoUrl'   => $this->plugin()->url( '/assets/static/icons/icon-128x128.png' ),
+				'tgIconUrl' => $this->plugin()->url( '/assets/static/icons/tg-icon.svg' ),
 			],
 			'uiData'     => [
 				'show_if_user_is'   => self::get_show_if_user_is_options(),
@@ -226,8 +224,8 @@ class AssetManager extends BaseClass {
 			$data['assets'] = array_merge(
 				$data['assets'],
 				[
-					'loginImageUrl'  => $this->plugin()->assets()->url( '/static/icons/telegram-login.svg' ),
-					'loginAvatarUrl' => $this->plugin()->assets()->url( '/static/icons/telegram-login-avatar.svg' ),
+					'loginImageUrl'  => $this->plugin()->url( '/assets/static/icons/telegram-login.svg' ),
+					'loginAvatarUrl' => $this->plugin()->url( '/assets/static/icons/telegram-login-avatar.svg' ),
 				]
 			);
 
@@ -371,14 +369,15 @@ class AssetManager extends BaseClass {
 
 		$hide_on_default = WPTG_Login()->options()->get( 'hide_on_default' );
 
-		if ( $hide_on_default || empty( $this->registered_handles[ self::WP_LOGIN_ENTRY ]['scripts'] ) ) {
+		if ( $hide_on_default || ! $this->plugin()->assets()->is_registered( self::WP_LOGIN_ENTRY ) ) {
 			return;
 		}
-		[$handle] = $this->registered_handles[ self::WP_LOGIN_ENTRY ]['scripts'];
+
+		[$handle] = $this->plugin()->assets()->get_entry_handles( self::WP_LOGIN_ENTRY );
 
 		wp_enqueue_script( $handle );
 
-		$styles = $this->registered_handles[ self::WP_LOGIN_ENTRY ]['styles'] ?? [];
+		$styles = $this->plugin()->assets()->get_entry_handles( self::WP_LOGIN_ENTRY, 'styles' );
 
 		foreach ( $styles as $handle ) {
 			wp_enqueue_style( $handle );
@@ -407,9 +406,9 @@ class AssetManager extends BaseClass {
 			]
 		);
 
-		if ( 'wptelegram_login_webapp' === $query_params['action'] && ! empty( $this->registered_handles[ self::WEB_APP_LOGIN_ENTRY ]['scripts'] ) ) {
+		if ( 'wptelegram_login_webapp' === $query_params['action'] && $this->plugin()->assets()->is_registered( self::WEB_APP_LOGIN_ENTRY ) ) {
 
-			[$handle] = $this->registered_handles[ self::WEB_APP_LOGIN_ENTRY ]['scripts'];
+			[$handle] = $this->plugin()->assets()->get_entry_handles( self::WEB_APP_LOGIN_ENTRY );
 
 			// This should not be needed, but it doesn't seem to work without loading the dependency.
 			wp_enqueue_script( self::WEB_APP_EXTERNAL_SCRIPT_HANDLE );
@@ -470,8 +469,8 @@ class AssetManager extends BaseClass {
 	 * @since    1.4.1
 	 */
 	public function enqueue_block_editor_assets() {
-		if ( ! empty( $this->registered_handles[ self::BLOCKS_ENTRY ]['scripts'] ) ) {
-			[$handle] = $this->registered_handles[ self::BLOCKS_ENTRY ]['scripts'];
+		if ( $this->plugin()->assets()->is_registered( self::BLOCKS_ENTRY ) ) {
+			[$handle] = $this->plugin()->assets()->get_entry_handles( self::BLOCKS_ENTRY );
 
 			wp_enqueue_script( $handle );
 
@@ -479,7 +478,7 @@ class AssetManager extends BaseClass {
 
 			self::add_dom_data( $handle, $data );
 
-			$styles = $this->registered_handles[ self::BLOCKS_ENTRY ]['styles'] ?? [];
+			$styles = $this->plugin()->assets()->get_entry_handles( self::BLOCKS_ENTRY, 'styles' );
 
 			foreach ( $styles as $handle ) {
 				wp_enqueue_style( $handle );
