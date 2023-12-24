@@ -1,10 +1,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { createViteConfig } from '@wpsocio/dev/vite';
+import { CreateViteConfigOptions, createViteConfig } from '@wpsocio/dev/vite';
 import Listr from 'listr';
 import { rimraf } from 'rimraf';
 import { build } from 'vite';
 import { Argv } from 'yargs';
+import { z } from 'zod';
 import { InferBuilderOptions } from '../types.js';
 import {
 	getMonorepoProjects,
@@ -39,6 +40,35 @@ export function builder(yargs: Argv) {
 
 type HandlerArgs = InferBuilderOptions<ReturnType<typeof builder>>;
 
+const BuildConfigSchema = z.object({
+	input: z.union([z.string(), z.array(z.string()), z.record(z.string())]),
+	outDir: z.string(),
+	makePot: z
+		.object({
+			output: z.string().optional(),
+			headers: z.record(z.string()).optional(),
+			functions: z.record(z.array(z.string())).optional(),
+		})
+		.optional(),
+});
+
+function normalizeInput(
+	input: z.infer<typeof BuildConfigSchema>['input'],
+): Array<{ entry: string; entryAlias?: string }> {
+	if (typeof input === 'string') {
+		return [{ entry: input }];
+	}
+
+	if (Array.isArray(input)) {
+		return input.map((entry) => ({ entry }));
+	}
+
+	return Object.entries(input).map(([entryAlias, entry]) => ({
+		entryAlias,
+		entry,
+	}));
+}
+
 export async function handler(argv: HandlerArgs) {
 	const projects = argv.all ? getMonorepoProjects() : new Set(argv.projects);
 
@@ -53,38 +83,64 @@ export async function handler(argv: HandlerArgs) {
 			title: `Build ${project}`,
 			task: async (ctx, task) => {
 				const projectPath = getRealPath(project);
-				const buildConfigPath = path.join(projectPath, 'build-config.json');
 
-				if (!fs.existsSync(buildConfigPath)) {
-					task.skip(`No build-config.json found for ${project}.`);
+				const buildConfigPath = path.join(projectPath, 'build.config.js');
+
+				let config: Record<'dev' | 'build', CreateViteConfigOptions>;
+
+				try {
+					config = await import(`file://${buildConfigPath}`);
+				} catch (error) {
+					let message = `Failed to load build.config.js for ${project}.`;
+
+					if (!fs.existsSync(buildConfigPath)) {
+						message = `No build.config.js found for ${project}.`;
+					}
+					task.skip(message);
 					return;
 				}
 
-				const buildConfigJson = fs.readFileSync(buildConfigPath);
-				const buildConfig = JSON.parse(buildConfigJson.toString());
+				const parsedConfig = BuildConfigSchema.safeParse(config.build);
+
+				if (!parsedConfig.success) {
+					task.skip(
+						`Invalid build.config.js for ${project}. Errors: ${JSON.stringify(
+							parsedConfig.error.flatten().fieldErrors,
+						)}`,
+					);
+
+					return;
+				}
+
+				const buildConfig = parsedConfig.data;
 
 				const entryBuildTasks: Array<Listr.ListrTask> = [];
 
 				let manifest = {};
 				let dependencies = {};
 
-				const outDir = path.join(
-					projectPath,
-					buildConfig.outDir || 'src/assets/build',
-				);
+				const outDir = path.join(projectPath, buildConfig.outDir);
 
 				await rimraf(outDir);
 
-				for (const [entryName, entry] of Object.entries(buildConfig.input)) {
-					const config = createViteConfig(
-						{
-							input: {
-								[entryName]: path.join(projectPath, `${entry}`),
-							},
-							outDir,
-						},
-						{ emptyOutDir: false },
+				// Resolve makePot output path relative to the project path
+				if (buildConfig.makePot?.output) {
+					buildConfig.makePot.output = path.join(
+						projectPath,
+						buildConfig.makePot.output,
 					);
+				}
+
+				for (const { entryAlias, entry } of normalizeInput(buildConfig.input)) {
+					const entryPath = path.join(projectPath, `${entry}`);
+					const entryName = entryAlias || entry;
+
+					const config = createViteConfig({
+						input: entryAlias ? { [entryAlias]: entryPath } : entryPath,
+						outDir,
+						buildOptions: { emptyOutDir: false },
+						makePot: buildConfig.makePot,
+					});
 
 					entryBuildTasks.push({
 						title: `Build ${entryName}`,
