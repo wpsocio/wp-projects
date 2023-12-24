@@ -23,6 +23,7 @@
 		"test:php": "turbo run test:php",
 		"nuke:nm:pwsh": "Get-ChildItem -Path '.' -Include 'node_modules' -Recurse -Directory | Remove-Item -Recurse -Force",
 		"nuke:nm:unix": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +",
+		"wp": "composer run wp -- ",
 		"upgrade-all": "pnpm -r exec pnpm ncu -u"
 	},
 	"devDependencies": {

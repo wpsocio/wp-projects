@@ -3,12 +3,14 @@
 	"version": "4.0.14",
 	"description": "Integrate your WordPress site perfectly with Telegram with full control.",
 	"require-dev": {
-		"wp-coding-standards/wpcs": "^3.0"
+		"wp-coding-standards/wpcs": "^3.0",
+		"wp-cli/wp-cli-bundle": "^2.9"
 	},
 	"scripts": {
 		"lint": "\"vendor/bin/phpcs\" --standard=phpcs.xml --extensions=php plugins/ packages/php/",
 		"lint:skip-warnings": "\"vendor/bin/phpcs\" --standard=phpcs.xml --extensions=php -n plugins/ packages/php/",
-		"lint:fix": "\"vendor/bin/phpcbf\" --standard=phpcs.xml --extensions=php plugins/ packages/php/"
+		"lint:fix": "\"vendor/bin/phpcbf\" --standard=phpcs.xml --extensions=php plugins/ packages/php/",
+		"wp": "\"vendor/wp-cli/wp-cli/bin/wp\""
 	},
 	"config": {
 		"allow-plugins": {
