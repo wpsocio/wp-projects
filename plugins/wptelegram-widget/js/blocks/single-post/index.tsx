@@ -5,8 +5,6 @@ import { __ } from '@wpsocio/i18n';
 import { Edit } from './Edit';
 import { blockAttributes } from './constants';
 
-import './style.scss';
-
 registerBlockType('wptelegram/widget-single-post', {
 	title: __('Telegram Single Post'),
 	icon: 'format-aside',
@@ -29,12 +27,7 @@ registerBlockType('wptelegram/widget-single-post', {
 			<div
 				className={`wp-block-wptelegram-widget-single-post wptelegram-widget-message align${alignment}`}
 			>
-				<iframe
-					title="Telegram post"
-					frameBorder="0"
-					scrolling="no"
-					src={iframe_src}
-				>
+				<iframe title={__('Telegram post')} src={iframe_src}>
 					Your Browser Does Not Support iframes!
 				</iframe>
 			</div>
@@ -50,11 +43,9 @@ registerBlockType('wptelegram/widget-single-post', {
 					<div
 						className={`wp-block-wptelegram-widget-single-post wptelegram-widget-message align${alignment}`}
 					>
-						{
-							<iframe frameBorder="0" scrolling="no" src={iframe_src} title=" ">
-								Your Browser Does Not Support iframes!
-							</iframe>
-						}
+						<iframe src={iframe_src} title={__('Telegram post')}>
+							Your Browser Does Not Support iframes!
+						</iframe>
 					</div>
 				);
 			},

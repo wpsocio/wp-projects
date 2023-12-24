@@ -1,5 +1,11 @@
 .wptelegram-widget-message {
 	padding: 2px;
+
+	iframe {
+		width: 100%;
+		border: 0px;
+		overflow: hidden;
+	}
 }
 .wptelegram-widget-ajax-widget iframe {
 	border: 0.5px solid #b5c0c8;

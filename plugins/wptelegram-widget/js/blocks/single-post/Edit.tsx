@@ -170,11 +170,10 @@ export class Edit extends Component<BlockEditProps<SinglePostAtts>, State> {
 					<div className={'wp-block-embed__content-wrapper'}>
 						<FocusableIframe
 							iframeRef={this.iframe_ref}
-							frameBorder="0"
-							scrolling="no"
 							src={iframe_src}
 							onLoad={this.onLoad}
 							height={iframe_height}
+							title={__('Telegram post')}
 						>
 							Your Browser Does Not Support iframes!
 						</FocusableIframe>

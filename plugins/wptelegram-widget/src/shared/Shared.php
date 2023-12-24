@@ -57,12 +57,13 @@ class Shared extends BaseClass {
 
 		$style_handles = $this->plugin()->assets()->get_entry_handles( AssetManager::BLOCKS_ENTRY, 'styles' );
 
-		register_block_type(
+		$blocks = [
 			'wptelegram/widget-join-channel',
-			[
-				'style_handles' => $style_handles,
-			]
-		);
+		];
+
+		foreach ( $blocks as $block ) {
+			register_block_type( $block, [ 'style_handles' => $style_handles ] );
+		}
 	}
 
 	/**

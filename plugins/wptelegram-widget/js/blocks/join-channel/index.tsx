@@ -1,3 +1,4 @@
+import { useBlockProps } from '@wordpress/block-editor';
 import { registerBlockType } from '@wordpress/blocks';
 
 import { __ } from '@wpsocio/i18n';
@@ -11,6 +12,7 @@ import { blockAttributes } from './constants';
 import './style.scss';
 
 registerBlockType('wptelegram/widget-join-channel', {
+	apiVersion: 3,
 	title: __('Join Telegram Channel'),
 	icon: <TelegramIcon fill="#555d66" />,
 	category: 'wptelegram',
@@ -22,22 +24,25 @@ registerBlockType('wptelegram/widget-join-channel', {
 		}
 		return { 'data-align': '' };
 	},
-	edit: ({ attributes, setAttributes, className }) => {
+	edit: ({ attributes, setAttributes }) => {
+		const blockProps = useBlockProps({
+			className: `align${attributes.alignment}`,
+		});
+
 		return (
-			<>
+			<div {...blockProps}>
 				<Controls attributes={attributes} setAttributes={setAttributes} />
-				<div className={className}>
-					<JoinButton {...attributes} isEditing />
-				</div>
-			</>
+				<JoinButton {...attributes} isEditing />
+			</div>
 		);
 	},
 	save: ({ attributes }) => {
-		const { alignment } = attributes;
+		const blockProps = useBlockProps.save();
 
 		return (
 			<div
-				className={`wp-block-wptelegram-widget-join-channel align${alignment}`}
+				{...blockProps}
+				className={`wp-block-wptelegram-widget-join-channel align${attributes.alignment}`}
 			>
 				<JoinButton {...attributes} />
 			</div>

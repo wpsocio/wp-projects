@@ -9,7 +9,10 @@ $(() => {
 		const $this = $(this);
 		const height = $this.contents().find('body').height();
 
-		$this.height(height?.toString() || '');
+		if (height) {
+			// Add 2px to the height to avoid hiddern borders
+			$this.height((height + 2).toString());
+		}
 	});
 
 	iframe.on('load', function () {
