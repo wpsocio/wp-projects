@@ -3,5 +3,6 @@
 	"include": [
 		"js",
 		"vite.config.ts",
+		"build.config.js"
 	]
 }

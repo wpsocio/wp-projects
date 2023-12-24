@@ -1,4 +1,4 @@
 import { createViteConfig, defineConfig } from '@wpsocio/dev/vite';
-import config from './build-config.json';
+import { dev } from './build.config.js';
 
-export default defineConfig(createViteConfig(config));
+export default defineConfig(createViteConfig(dev));
