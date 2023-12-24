@@ -11,31 +11,25 @@ export { defineConfig };
 /**
  * Create Vite config
  *
- * @param {import('@kucrut/vite-for-wp').V4wpOptions} options
- * @param {import('vite').BuildOptions} [buildOptions]
+ * @param {import('./types.js').CreateViteConfigOptions} options
  *
  * @returns {import('vite').UserConfig}
  */
-export function createViteConfig(options, buildOptions) {
+export function createViteConfig({ outDir, input, buildOptions, makePot }) {
+	/**
+	 * @type {import('@vitejs/plugin-react').BabelOptions['plugins']}
+	 */
+	const bableplugins = [];
+
+	if (makePot) {
+		bableplugins.push(['@wordpress/babel-plugin-makepot', makePot]);
+	}
+
 	return {
 		plugins: [
-			react(),
-			v4wp({ outDir: 'src/assets/build', ...options }),
+			react({ babel: { plugins: bableplugins } }),
+			v4wp({ outDir, input }),
 			wp_scripts(),
-			{
-				name: 'wpsocio:override-config',
-				config: () => ({
-					build: {
-						// emptyOutDir: false,
-						// minify: false,
-						// cssCodeSplit: false,
-						assetsDir: 'dist',
-						// ensure that manifest.json is not in ".vite/" folder
-						manifest: 'manifest.json',
-						...buildOptions,
-					},
-				}),
-			},
 			importToCDN({
 				/**
 				 * Use the fake CDN imports to ensure react imports don't end up in the bundle
@@ -57,6 +51,17 @@ export function createViteConfig(options, buildOptions) {
 				],
 			}),
 			extractExternalDepsPlugin(),
+			{
+				name: 'wpsocio:override-config',
+				config: () => ({
+					build: {
+						assetsDir: 'dist',
+						// ensure that manifest.json is not in ".vite/" folder
+						manifest: 'manifest.json',
+						...buildOptions,
+					},
+				}),
+			},
 		],
 	};
 }
