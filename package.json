@@ -10,12 +10,11 @@
 	"scripts": {
 		"dev": "turbo run dev",
 		"build": "turbo build",
-		"build:all": "pnpm wpsocio build --all",
 		"typecheck": "turbo typecheck",
 		"lint": "pnpm run lint:js",
 		"lint:js": "biome lint ./",
 		"setup:php": "pnpm setup:php:root && pnpm setup:php:packages && pnpm setup:php:plugins",
-		"setup:php:root": "composer install",
+		"setup:php:root": "composer install --ignore-platform-reqs",
 		"setup:php:packages": "turbo run setup:php --filter=./packages/php/*",
 		"setup:php:plugins": "turbo run setup:php --filter=./plugins/*",
 		"lint:php": "turbo run lint:php",
@@ -23,6 +22,7 @@
 		"test:php": "turbo run test:php",
 		"nuke:nm:pwsh": "Get-ChildItem -Path '.' -Include 'node_modules' -Recurse -Directory | Remove-Item -Recurse -Force",
 		"nuke:nm:unix": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +",
+		"wp": "composer run wp -- ",
 		"upgrade-all": "pnpm -r exec pnpm ncu -u"
 	},
 	"devDependencies": {

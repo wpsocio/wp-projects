@@ -1,7 +1,0 @@
-{
-	"input": {
-		"blocks": "js/blocks/index.ts",
-		"public": "js/public/index.ts",
-		"settings": "js/settings/index.ts"
-	}
-}

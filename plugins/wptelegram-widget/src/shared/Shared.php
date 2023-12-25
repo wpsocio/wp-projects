@@ -60,7 +60,8 @@ class Shared extends BaseClass {
 		register_block_type(
 			'wptelegram/widget-join-channel',
 			[
-				'style_handles' => $style_handles,
+				'style_handles'   => $style_handles,
+				'render_callback' => [ JoinChannel::class, 'render' ],
 			]
 		);
 	}

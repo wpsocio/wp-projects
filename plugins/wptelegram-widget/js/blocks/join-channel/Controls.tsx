@@ -1,11 +1,10 @@
-import { Fragment, useCallback, useEffect } from '@wordpress/element';
-
 import {
 	BlockAlignmentToolbar,
 	BlockControls,
 	InspectorControls,
 } from '@wordpress/block-editor';
 import { PanelBody, TextControl } from '@wordpress/components';
+import { Fragment, useCallback, useEffect } from '@wordpress/element';
 
 import { __ } from '@wpsocio/i18n';
 

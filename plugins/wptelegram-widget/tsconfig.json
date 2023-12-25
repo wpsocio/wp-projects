@@ -2,6 +2,6 @@
 	"extends": "../tsconfig.json",
 	"include": [
 		"js",
-		"vite.config.ts",
+		"vite.config.ts"
 	]
 }

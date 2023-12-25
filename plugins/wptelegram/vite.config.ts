@@ -1,4 +1,15 @@
 import { createViteConfig, defineConfig } from '@wpsocio/dev/vite';
-import config from './build-config.json';
 
-export default defineConfig(createViteConfig(config));
+export default defineConfig(
+	createViteConfig({
+		input: {
+			settings: 'js/settings/index.ts',
+			'p2tg-block-editor': 'js/p2tg-block-editor/index.ts',
+			'p2tg-classic-editor': 'js/p2tg-classic-editor/index.ts',
+		},
+		outDir: 'src/assets/build',
+		makePot: {
+			output: 'src/languages/js-translations.pot',
+		},
+	}),
+);

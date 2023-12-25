@@ -17,7 +17,6 @@ namespace WPSocio\WPUtils;
 use Exception;
 use WP_HTML_Tag_Processor;
 
-
 /**
  * Class ViteAssets
  *
@@ -401,8 +400,23 @@ OUTPUT;
 			}
 		}
 
-		if ( ! empty( $item->css ) ) {
-			foreach ( $item->css as $index => $css_file_path ) {
+		$css = $item->css ?? [];
+
+		// Actively load CSS from lazy loaded js chunks.
+		if ( isset( $item->imports ) && is_array( $item->imports ) ) {
+			$css = array_merge(
+				$css,
+				...array_map(
+					function ( $import ) use ( $manifest ) {
+						return $manifest->data->{$import}->css ?? [];
+					},
+					$item->imports,
+				)
+			);
+		}
+
+		if ( ! empty( $css ) ) {
+			foreach ( $css as $index => $css_file_path ) {
 				$style_handle = "{$options['handle']}-{$index}";
 
 				// Don't worry about browser caching as the version is embedded in the file name.
