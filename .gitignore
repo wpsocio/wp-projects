@@ -42,3 +42,4 @@ build/
 dist/
 .env
 temp/
+js-translations.pot

@@ -20,7 +20,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite --port=5002",
-		"build": "pnpm wpsocio build plugins/wptelegram",
+		"build": "vite build",
 		"lint:php": "composer run lint",
 		"preview": "vite preview",
 		"setup:php": "composer config vendor-dir --unset && composer install",
