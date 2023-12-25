@@ -36,7 +36,11 @@ registerBlockType('wptelegram/widget-join-channel', {
 			</div>
 		);
 	},
-	save: ({ attributes }) => {
+	// Save is handled by PHP via render_callback
+	// because WP blocks sometimes suck big time
+	// by failing block validation for no reason
+	// save: null
+	/* save: ({ attributes }) => {
 		const blockProps = useBlockProps.save();
 
 		return (
@@ -47,5 +51,13 @@ registerBlockType('wptelegram/widget-join-channel', {
 				<JoinButton {...attributes} />
 			</div>
 		);
-	},
+	}, */
+	deprecated: [
+		{
+			attributes: blockAttributes,
+			save() {
+				return null;
+			},
+		},
+	],
 });
