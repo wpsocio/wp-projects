@@ -4,6 +4,7 @@
 	"private": true,
 	"type": "module",
 	"exports": {
+		".": "./dist/index.js",
 		"./utils": "./dist/utils/index.js",
 		"./plugins": "./dist/plugins/index.js"
 	},
@@ -15,12 +16,15 @@
 	},
 	"devDependencies": {
 		"@types/node": "^20.10.4",
+		"@vitejs/plugin-react": "^4.2.1",
 		"@wordpress/babel-plugin-makepot": "^5.32.0",
 		"esbuild": "^0.19.9",
 		"rollup": "^4.9.0",
+		"rollup-plugin-external-globals": "^0.9.1",
 		"sass": "^1.69.5",
 		"typescript": "^5.3.3",
 		"vite": "^5.0.9",
-		"vite-plugin-cdn-import": "^0.3.5"
+		"vite-plugin-cdn-import": "^0.3.5",
+		"vite-plugin-external": "^4.1.3"
 	}
 }

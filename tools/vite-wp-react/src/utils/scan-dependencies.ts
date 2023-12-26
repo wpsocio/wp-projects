@@ -6,26 +6,26 @@ import type { InputOption } from 'rollup';
 export const IMPORTS_TO_IGNORE =
 	/\.(css|less|sass|scss|styl|stylus|pcss|postcss|sss)(?:$|\?)/;
 
-export type ExtractDependenciesOptions = {
+export type ScanDependenciesOptions = {
 	absWorkingDir: string;
 	input?: InputOption;
-	externalDeps: Array<string>;
+	dependenciesToScan: Array<string>;
 	normalizePath?: (path: string) => string;
 	plugins?: Array<EsBuildPlugin>;
 	onComplete?: (data: string) => void;
 };
 
 /**
- * Extract dependencies
+ * Scan dependencies
  */
-export async function extractDependencies({
+export async function scanDependencies({
 	absWorkingDir,
-	externalDeps = [],
+	dependenciesToScan = [],
 	input,
 	normalizePath,
 	plugins = [],
 	onComplete,
-}: ExtractDependenciesOptions) {
+}: ScanDependenciesOptions) {
 	const dependencies: Record<string, Array<string>> = {};
 	const entries: Array<string> = [];
 
@@ -42,7 +42,7 @@ export async function extractDependencies({
 		throw new Error('No entry points found');
 	}
 
-	const filter = new RegExp(`^(${externalDeps.join('|')})$`);
+	const filter = new RegExp(`^(${dependenciesToScan.join('|')})$`);
 
 	try {
 		await Promise.all(
@@ -66,14 +66,14 @@ export async function extractDependencies({
 					platform: 'browser',
 					plugins: [
 						{
-							name: 'extract-dependencies',
+							name: 'scan-dependencies',
 							setup(build) {
 								build.onResolve({ filter }, (args) => ({
 									path: args.path,
-									namespace: 'extract-dependencies',
+									namespace: 'scan-dependencies',
 								}));
 								build.onLoad(
-									{ filter: /.*/, namespace: 'extract-dependencies' },
+									{ filter: /.*/, namespace: 'scan-dependencies' },
 									(args) => {
 										dependencies[entry].push(
 											normalizePath ? normalizePath(args.path) : args.path,
