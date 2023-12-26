@@ -245,11 +245,7 @@ final class Main {
 	private function set_assets() {
 		$this->assets = new Assets(
 			$this->dir( '/assets/build' ),
-			$this->url( '/assets/build' ),
-			[
-				'prod-manifest' => 'manifest.json',
-				'dev-manifest'  => 'vite-dev-server.json',
-			]
+			$this->url( '/assets/build' )
 		);
 	}
 
