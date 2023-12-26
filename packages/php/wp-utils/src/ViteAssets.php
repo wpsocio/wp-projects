@@ -81,8 +81,8 @@ class ViteAssets {
 		$this->assets_url  = untrailingslashit( $assets_url );
 
 		$default_config = [
-			'prod-manifest' => '.vite/manifest.json',
-			'dev-manifest'  => '.vite/dev-server.json',
+			'prod-manifest' => 'manifest.json',
+			'dev-manifest'  => 'dev-server.json',
 		];
 
 		$this->config = wp_parse_args( $config, $default_config );
