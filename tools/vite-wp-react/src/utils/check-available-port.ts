@@ -1,4 +1,4 @@
-import { createServer } from 'net';
+import { createServer } from 'node:net';
 
 export type CheckAvailablePortOptions = {
 	host?: string;
@@ -7,6 +7,10 @@ export type CheckAvailablePortOptions = {
 
 /**
  * The next available port number.
+ *
+ * Taken from vite
+ *
+ * @see https://github.com/vitejs/vite/blob/56ae92c33cba6c86ab5819877c19b9ea39f7121b/packages/vite/src/node/http.ts#L141-L175
  */
 export async function checkAvailablePort(
 	options: CheckAvailablePortOptions = {},
