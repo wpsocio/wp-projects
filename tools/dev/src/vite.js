@@ -20,7 +20,7 @@ export function createViteConfig({ outDir, input, makePot }) {
 			viteWpReact(
 				{ outDir, input },
 				{
-					extractWpDependencies: {},
+					extractWpDependencies: true,
 					externalizeWpPackages: true,
 					enableReact: true,
 					makePot,

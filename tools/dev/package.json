@@ -7,13 +7,12 @@
 	},
 	"type": "module",
 	"exports": {
-		"./vite": "./vite.js"
+		"./vite": "./src/vite.js"
 	},
 	"scripts": {
 		"typecheck": "pnpm tsc"
 	},
 	"devDependencies": {
-		"@types/node": "^20.10.4",
 		"@wpsocio/vite-wp-react": "workspace:*",
 		"typescript": "^5.3.3",
 		"vite": "^5.0.9"

@@ -37,12 +37,12 @@ export type ViteWpReactConfig = {
 	 * If enabled, a `dependencies.json` file will be generated in the `outDir` directory,
 	 * containing a list of all WordPress dependencies used in the bundle.
 	 */
-	extractWpDependencies?: Partial<ExtractWpDependenciesOptions>;
+	extractWpDependencies?: Partial<ExtractWpDependenciesOptions> | boolean;
 
 	/**
 	 * Whether to generate a POT file from your React components.
 	 */
-	makePot?: ReactMakePotOptions;
+	makePot?: ReactMakePotOptions | boolean;
 
 	/**
 	 * Whether to enable React support.
@@ -79,22 +79,30 @@ export default function viteWpReact(
 	}
 
 	if (config.extractWpDependencies) {
-		plugins.push(
-			extractWpDependencies({
-				outDir,
-				...config.extractWpDependencies,
-			}),
-		);
+		// If `extractWpDependencies` is a boolean, use the default options.
+		const extractDepsConfig =
+			typeof config.extractWpDependencies === 'boolean'
+				? { outDir }
+				: {
+						outDir,
+						...config.extractWpDependencies,
+				  };
+
+		plugins.push(extractWpDependencies(extractDepsConfig));
 	}
+
+	const makePot = config.makePot
+		? typeof config.makePot === 'boolean'
+			? {}
+			: config.makePot
+		: undefined;
 
 	if (config.enableReact ?? true) {
 		plugins.push(
-			viteReact(
-				config.makePot ? getMakePotReactConfig(config.makePot) : undefined,
-			),
+			viteReact(makePot ? getMakePotReactConfig(makePot) : undefined),
 		);
-	} else if (config.makePot) {
-		plugins.push(reactMakePot(config.makePot));
+	} else if (makePot) {
+		plugins.push(reactMakePot(makePot));
 	}
 
 	return plugins;

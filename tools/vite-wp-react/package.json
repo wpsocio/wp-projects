@@ -19,6 +19,7 @@
 		"@vitejs/plugin-react": "^4.2.1",
 		"@wordpress/babel-plugin-makepot": "^5.32.0",
 		"esbuild": "^0.19.9",
+		"rimraf": "^5.0.5",
 		"rollup": "^4.9.0",
 		"rollup-plugin-external-globals": "^0.9.1",
 		"sass": "^1.69.5",
