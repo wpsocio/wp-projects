@@ -60,3 +60,7 @@ function map_deep( $value, $callback ) {
 
 	return $value;
 }
+
+function wp_json_file_decode( string $filename, array $options = [] ) {
+	return json_decode( file_get_contents( $filename ), $options['associative'] ?? false );
+}
