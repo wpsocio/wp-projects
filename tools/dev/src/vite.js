@@ -13,12 +13,9 @@ export { defineConfig };
  */
 export function createViteConfig({ outDir, input, makePot }) {
 	return {
-		build: {
-			assetsDir: 'dist',
-		},
 		plugins: [
 			viteWpReact(
-				{ outDir, input },
+				{ outDir, input, assetsDir: 'dist' },
 				{
 					extractWpDependencies: true,
 					externalizeWpPackages: true,

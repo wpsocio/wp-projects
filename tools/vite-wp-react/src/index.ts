@@ -23,6 +23,11 @@ export type ViteWpReactOptions = {
 	 * @default 'build'
 	 */
 	outDir?: string;
+
+	/**
+	 * The directory to write assets to.
+	 */
+	assetsDir?: string;
 };
 
 export type ViteWpReactConfig = {
@@ -51,7 +56,11 @@ export type ViteWpReactConfig = {
 };
 
 export default function viteWpReact(
-	{ input = 'js/main.js', outDir = 'build' }: ViteWpReactOptions = {},
+	{
+		input = 'js/main.js',
+		outDir = 'build',
+		assetsDir,
+	}: ViteWpReactOptions = {},
 	config: ViteWpReactConfig = {},
 ): PluginOption[] {
 	const mainPlugin: Plugin = {
@@ -61,6 +70,7 @@ export default function viteWpReact(
 			return {
 				build: {
 					outDir,
+					assetsDir,
 					manifest: 'manifest.json',
 					rollupOptions: { input },
 					sourcemap: true,
