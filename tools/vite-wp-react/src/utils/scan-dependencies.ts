@@ -42,6 +42,7 @@ export async function scanDependencies({
 		throw new Error('No entry points found');
 	}
 
+	// Create a filter for the dependencies we want to scan
 	const filter = new RegExp(`^(${dependenciesToScan.join('|')})$`);
 
 	try {
