@@ -11,13 +11,19 @@ type Options = {
 const TARGET_PLUGINS = ['vite:react-refresh'];
 
 export function devServer(options: Options = {}): Plugin {
-	let devManifestFile: string;
 	let resolvedConfig: ResolvedConfig;
+
+	function getTargetDir() {
+		return options.outDir || resolvedConfig.build.outDir;
+	}
+
+	function getManifestPath() {
+		return path.join(getTargetDir(), options.fileName || 'dev-server.json');
+	}
 
 	return {
 		apply: 'serve',
 		name: 'vwpr:dev-server',
-
 		async config(config) {
 			let {
 				server: { host = 'localhost', port = 5173, ...serverConfig } = {},
@@ -54,13 +60,11 @@ export function devServer(options: Options = {}): Plugin {
 				},
 			};
 		},
-
 		configResolved(config) {
 			resolvedConfig = config;
 		},
-
 		buildStart() {
-			const { base, build, plugins, server } = resolvedConfig;
+			const { base, plugins, server } = resolvedConfig;
 
 			const data = JSON.stringify({
 				base,
@@ -71,21 +75,13 @@ export function devServer(options: Options = {}): Plugin {
 				),
 			});
 
-			const targetDir = options.outDir || build.outDir;
-
-			devManifestFile = path.join(
-				targetDir,
-				options.fileName || 'dev-server.json',
-			);
-
 			// Ensure the directory exists
-			fs.mkdirSync(targetDir, { recursive: true });
+			fs.mkdirSync(getTargetDir(), { recursive: true });
 
-			fs.writeFileSync(devManifestFile, data, 'utf8');
+			fs.writeFileSync(getManifestPath(), data, 'utf8');
 		},
-
 		buildEnd() {
-			fs.rmSync(devManifestFile, { force: true });
+			fs.rmSync(getManifestPath(), { force: true });
 		},
 	};
 }
