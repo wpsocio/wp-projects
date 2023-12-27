@@ -492,10 +492,10 @@ class ViteWPReactAssets {
 	 *
 	 * @param string $entry Entry name.
 	 *
-	 * @return string|false
+	 * @return string
 	 */
-	public function get_entry_script_handle( string $entry ): string|false {
-		return $this->registered_assets[ $entry ]['script'] ?? false;
+	public function get_entry_script_handle( string $entry ): string {
+		return $this->registered_assets[ $entry ]['script'] ?? '';
 	}
 
 	/**
