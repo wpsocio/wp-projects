@@ -6,6 +6,7 @@
 		},
 		"build": {
 			"outputs": ["src/assets/build/**"],
+			"inputs": ["js/**"],
 			"dependsOn": ["^build"]
 		},
 		"setup:php": {

@@ -16,7 +16,6 @@ use WPTelegram\Core\includes\restApi\SettingsController;
 use DOMDocument;
 use DOMXPath;
 use WPSocio\WPUtils\JsDependencies;
-use WPSocio\WPUtils\ViteAssets;
 
 /**
  * The assets manager of the plugin.
@@ -63,12 +62,12 @@ class AssetManager extends BaseClass {
 		foreach ( self::ASSET_ENTRIES as $name => $data ) {
 			$entry = $data['entry'];
 
-			$assets->register_asset(
+			$assets->register(
 				$entry,
 				[
-					'handle'       => $this->plugin()->name() . '-' . $name,
-					'dependencies' => $dependencies->get( $entry ),
-					'in-footer'    => $data['in-footer'] ?? true,
+					'handle'              => $this->plugin()->name() . '-' . $name,
+					'script-dependencies' => $dependencies->get( $entry ),
+					'script-args'         => $data['in-footer'] ?? true,
 				]
 			);
 		}
@@ -83,75 +82,63 @@ class AssetManager extends BaseClass {
 	}
 
 	/**
-	 * Add the data to DOM.
+	 * Add inline script for a given entry.
 	 *
-	 * @since 3.0.10
-	 *
-	 * @param string $handle The script handle to attach the data to.
-	 * @param mixed  $data   The data to add.
-	 * @param string $var    The JavaScript variable name to use.
+	 * @param string $entry Entrypoint.
 	 *
 	 * @return void
 	 */
-	public static function add_dom_data( $handle, $data, $var = 'wptelegram' ) {
-		wp_add_inline_script(
-			$handle,
-			sprintf( 'var %s = %s;', $var, wp_json_encode( $data ) ),
-			'before'
-		);
+	public function add_inline_script( string $entry ): void {
+		$handle = $this->plugin()->assets()->get_entry_script_handle( $entry );
+
+		if ( $handle ) {
+			$data = $this->get_inline_script_data_str( $entry );
+
+			wp_add_inline_script( $handle, $data, 'before' );
+		}
 	}
 
 	/**
-	 * Register the stylesheets for the admin area.
+	 * Enqueue the assets for the admin area.
 	 *
-	 * @since    3.0.0
+	 * @since    x.y.z
 	 * @param string $hook_suffix The current admin page.
 	 */
-	public function enqueue_admin_styles( $hook_suffix ) {
-
+	public function enqueue_admin_assets( $hook_suffix ) {
 		wp_enqueue_style( self::WPTELEGRAM_MENU_HANDLE );
+
+		$assets = $this->plugin()->assets();
 
 		// Load only on settings page.
 		if ( $this->is_settings_page( $hook_suffix ) ) {
 
-			$admin_styles = $this->plugin()->assets()->get_entry_handles( self::ADMIN_SETTINGS_ENTRY, 'styles' );
-
-			foreach ( $admin_styles as $handle ) {
-				wp_enqueue_style( $handle );
-			}
+			$assets->enqueue( self::ADMIN_SETTINGS_ENTRY );
+			$this->add_inline_script( self::ADMIN_SETTINGS_ENTRY );
 		}
 	}
 
 	/**
-	 * Register the JavaScript for the admin area.
+	 * Get the inline script data as a string.
 	 *
-	 * @since    3.0.0
-	 * @param string $hook_suffix The current admin page.
+	 * @param string $for The JS entry point for which the data is needed.
+	 *
+	 * @return string
 	 */
-	public function enqueue_admin_scripts( $hook_suffix ) {
-		// Load only on settings page.
-		if ( $this->is_settings_page( $hook_suffix ) && $this->plugin()->assets()->is_registered( self::ADMIN_SETTINGS_ENTRY ) ) {
+	public function get_inline_script_data_str( string $for ): string {
 
-			[$handle] = $this->plugin()->assets()->get_entry_handles( self::ADMIN_SETTINGS_ENTRY );
+		$data = $this->get_inline_script_data( $for );
 
-			wp_enqueue_script( $handle );
-
-			// Pass data to JS.
-			$data = $this->get_dom_data();
-
-			self::add_dom_data( $handle, $data );
-		}
+		return $data ? sprintf( 'var %s = %s;', $this->plugin()->name(), wp_json_encode( $data ) ) : '';
 	}
 
 	/**
-	 * Get the common DOM data.
+	 * Get the inline script data.
 	 *
-	 * @param string $for The domain for which the DOM data is to be rendered.
-	 * possible values: 'SETTINGS_PAGE' | 'BLOCKS'.
+	 * @param string $for The JS entry point for which the data is needed.
 	 *
 	 * @return array
 	 */
-	public function get_dom_data( $for = 'SETTINGS_PAGE' ) {
+	public function get_inline_script_data( string $for ) {
 		$data = [
 			'pluginInfo' => [
 				'title'       => $this->plugin()->title(),
@@ -166,28 +153,30 @@ class AssetManager extends BaseClass {
 				'rest_namespace' => RESTController::REST_NAMESPACE,
 				'wp_rest_url'    => esc_url_raw( rest_url() ),
 			],
+			'assets'     => [
+				'logoUrl'   => $this->plugin()->url( '/assets/static/icons/icon-128x128.png' ),
+				'tgIconUrl' => $this->plugin()->url( '/assets/static/icons/tg-icon.svg' ),
+			],
 			'uiData'     => [
 				'debug_info' => $this->get_debug_info(),
 			],
 			'i18n'       => Utils::get_jed_locale_data( 'wptelegram' ),
 		];
 
-		if ( 'SETTINGS_PAGE' === $for ) {
+		// Not to expose bot token to non-admins.
+		if ( self::ADMIN_SETTINGS_ENTRY === $for && current_user_can( 'manage_options' ) ) {
+
+			$data['savedSettings'] = SettingsController::get_default_settings();
+
 			$data['assets'] = [
-				'logoUrl'        => $this->plugin()->url( '/assets/static/icons/icon-128x128.png' ),
-				'tgIconUrl'      => $this->plugin()->url( '/assets/static/icons/tg-icon.svg' ),
+				...$data['assets'],
 				'editProfileUrl' => get_edit_profile_url( get_current_user_id() ),
 				'p2tgLogUrl'     => Logger::get_log_url( 'p2tg' ),
 				'botApiLogUrl'   => Logger::get_log_url( 'bot-api' ),
 			];
 		}
 
-		// Not to expose bot token to non-admins.
-		if ( 'SETTINGS_PAGE' === $for && current_user_can( 'manage_options' ) ) {
-			$data['savedSettings'] = SettingsController::get_default_settings();
-		}
-
-		return apply_filters( 'wptelegram_assets_dom_data', $data, $for, $this->plugin() );
+		return apply_filters( 'wptelegram_inline_script_data', $data, $for, $this->plugin() );
 	}
 
 	/**

@@ -16,7 +16,7 @@ namespace WPTelegram\Comments\includes;
 
 use WPTelegram\Comments\admin\Admin;
 use WPTelegram\Comments\shared\Shared;
-use WPSocio\WPUtils\ViteAssets as Assets;
+use WPSocio\WPUtils\ViteWPReactAssets as Assets;
 use WPSocio\WPUtils\Options;
 
 /**
@@ -242,11 +242,7 @@ class Main {
 	private function set_assets() {
 		$this->assets = new Assets(
 			$this->dir( '/assets/build' ),
-			$this->url( '/assets/build' ),
-			[
-				'prod-manifest' => 'manifest.json',
-				'dev-manifest'  => 'vite-dev-server.json',
-			]
+			$this->url( '/assets/build' )
 		);
 	}
 
@@ -326,8 +322,7 @@ class Main {
 
 		$asset_manager = $this->asset_manager();
 
-		add_action( 'admin_enqueue_scripts', [ $asset_manager, 'enqueue_admin_styles' ] );
-		add_action( 'admin_enqueue_scripts', [ $asset_manager, 'enqueue_admin_scripts' ] );
+		add_action( 'admin_enqueue_scripts', [ $asset_manager, 'enqueue_admin_assets' ] );
 		add_action( 'init', [ $asset_manager, 'register_assets' ], 5 );
 	}
 

@@ -14,7 +14,7 @@
 
 namespace WPTelegram\Core\includes;
 
-use WPSocio\WPUtils\ViteAssets as Assets;
+use WPSocio\WPUtils\ViteWPReactAssets as Assets;
 use WPSocio\WPUtils\Options;
 use WPTelegram\Core\admin\Admin;
 
@@ -245,11 +245,7 @@ final class Main {
 	private function set_assets() {
 		$this->assets = new Assets(
 			$this->dir( '/assets/build' ),
-			$this->url( '/assets/build' ),
-			[
-				'prod-manifest' => 'manifest.json',
-				'dev-manifest'  => 'vite-dev-server.json',
-			]
+			$this->url( '/assets/build' )
 		);
 	}
 
@@ -297,8 +293,7 @@ final class Main {
 		// Ensure that the assets are registered before any other hooks.
 		add_action( 'admin_init', [ $asset_manager, 'register_assets' ], 5 );
 
-		add_action( 'admin_enqueue_scripts', [ $asset_manager, 'enqueue_admin_styles' ] );
-		add_action( 'admin_enqueue_scripts', [ $asset_manager, 'enqueue_admin_scripts' ] );
+		add_action( 'admin_enqueue_scripts', [ $asset_manager, 'enqueue_admin_assets' ] );
 
 		// Load the integrations.
 		new Integrations();

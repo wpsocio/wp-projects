@@ -36,7 +36,7 @@ class Main extends BaseModule {
 	protected function define_necessary_hooks() {
 		$admin = Admin::instance();
 
-		add_filter( 'wptelegram_assets_dom_data', [ $admin, 'update_dom_data' ], 10, 2 );
+		add_filter( 'wptelegram_inline_script_data', [ $admin, 'update_inline_script_data' ], 10, 2 );
 
 		add_action( 'rest_api_init', [ $admin, 'register_rest_routes' ] );
 	}

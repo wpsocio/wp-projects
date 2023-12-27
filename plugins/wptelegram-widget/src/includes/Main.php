@@ -11,7 +11,7 @@
 
 namespace WPTelegram\Widget\includes;
 
-use WPSocio\WPUtils\ViteAssets as Assets;
+use WPSocio\WPUtils\ViteWPReactAssets as Assets;
 use WPTelegram\Widget\admin\Admin;
 use WPTelegram\Widget\shared\Shared;
 use WPTelegram\Widget\shared\embed\AjaxWidget as EmbedAjaxWidget;
@@ -242,11 +242,7 @@ class Main {
 	private function set_assets() {
 		$this->assets = new Assets(
 			$this->dir( '/assets/build' ),
-			$this->url( '/assets/build' ),
-			[
-				'prod-manifest' => 'manifest.json',
-				'dev-manifest'  => 'vite-dev-server.json',
-			]
+			$this->url( '/assets/build' )
 		);
 	}
 
@@ -381,11 +377,9 @@ class Main {
 		// Ensure that assets are registered before any other hooks.
 		add_action( 'init', [ $asset_manager, 'register_assets' ], 5 );
 
-		add_action( 'wp_enqueue_scripts', [ $asset_manager, 'enqueue_public_styles' ] );
-		add_action( 'wp_enqueue_scripts', [ $asset_manager, 'enqueue_public_scripts' ] );
+		add_action( 'wp_enqueue_scripts', [ $asset_manager, 'enqueue_public_assets' ] );
 
-		add_action( 'admin_enqueue_scripts', [ $asset_manager, 'enqueue_admin_styles' ] );
-		add_action( 'admin_enqueue_scripts', [ $asset_manager, 'enqueue_admin_scripts' ] );
+		add_action( 'admin_enqueue_scripts', [ $asset_manager, 'enqueue_admin_assets' ] );
 
 		add_action( 'enqueue_block_editor_assets', [ $asset_manager, 'enqueue_block_editor_assets' ] );
 

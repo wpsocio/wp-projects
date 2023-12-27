@@ -7,23 +7,14 @@
 	},
 	"type": "module",
 	"exports": {
-		"./vite": "./vite.js"
+		"./vite": "./src/vite.js"
 	},
 	"scripts": {
 		"typecheck": "pnpm tsc"
 	},
 	"devDependencies": {
-		"@kucrut/vite-for-wp": "^0.8.0",
-		"@types/node": "^20.10.4",
-		"@vitejs/plugin-react": "^4.2.1",
-		"@wordpress/babel-plugin-makepot": "^5.32.0",
-		"esbuild": "^0.19.9",
-		"rollup": "^4.9.0",
-		"rollup-plugin-external-globals": "^0.9.1",
-		"sass": "^1.69.5",
+		"@wpsocio/vite-wp-react": "workspace:*",
 		"typescript": "^5.3.3",
-		"vite": "^5.0.9",
-		"vite-plugin-cdn-import": "^0.3.5",
-		"vite-plugin-external": "^4.1.1"
+		"vite": "^5.0.9"
 	}
 }

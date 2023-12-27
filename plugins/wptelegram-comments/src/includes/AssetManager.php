@@ -52,13 +52,12 @@ class AssetManager extends BaseClass {
 		foreach ( self::ASSET_ENTRIES as $name => $data ) {
 			$entry = $data['entry'];
 
-			$assets->register_asset(
+			$assets->register(
 				$entry,
 				[
-					'handle'           => $this->plugin()->name() . '-' . $name,
-					'dependencies'     => $dependencies->get( $entry ),
-					'css-dependencies' => $data['css-deps'] ?? [],
-					'in-footer'        => $data['in-footer'] ?? true,
+					'handle'              => $this->plugin()->name() . '-' . $name,
+					'script-dependencies' => $dependencies->get( $entry ),
+					'script-args'         => $data['in-footer'] ?? true,
 				]
 			);
 		}
@@ -75,79 +74,66 @@ class AssetManager extends BaseClass {
 	}
 
 	/**
-	 * Register the stylesheets for the admin area.
+	 * Add inline script for a given entry.
 	 *
-	 * @since    1.1.0
+	 * @param string $entry Entrypoint.
+	 *
+	 * @return void
+	 */
+	public function add_inline_script( string $entry ): void {
+		$handle = $this->plugin()->assets()->get_entry_script_handle( $entry );
+
+		if ( $handle ) {
+			$data = $this->get_inline_script_data_str( $entry );
+
+			wp_add_inline_script( $handle, $data, 'before' );
+		}
+	}
+
+	/**
+	 * Enqueue the assets for the admin area.
+	 *
+	 * @since    x.y.z
 	 * @param string $hook_suffix The current admin page.
 	 */
-	public function enqueue_admin_styles( $hook_suffix ) {
+	public function enqueue_admin_assets( $hook_suffix ) {
 
 		if ( ! defined( 'WPTELEGRAM_LOADED' ) ) {
 			wp_enqueue_style( self::WPTELEGRAM_MENU_HANDLE );
 		}
 
+		$assets = $this->plugin()->assets();
+
 		// Load only on settings page.
 		if ( $this->is_settings_page( $hook_suffix ) ) {
 
-			$admin_styles = $this->plugin()->assets()->get_entry_handles( self::ADMIN_SETTINGS_ENTRY, 'styles' );
-
-			foreach ( $admin_styles as $handle ) {
-				wp_enqueue_style( $handle );
-			}
+			$assets->enqueue( self::ADMIN_SETTINGS_ENTRY );
+			$this->add_inline_script( self::ADMIN_SETTINGS_ENTRY );
 		}
 	}
 
 	/**
-	 * Register the JavaScript for the admin area.
+	 * Get the inline script data as a string.
 	 *
-	 * @since    1.1.0
-	 * @param string $hook_suffix The current admin page.
+	 * @param string $for The JS entry point for which the data is needed.
+	 *
+	 * @return string
 	 */
-	public function enqueue_admin_scripts( $hook_suffix ) {
-		// Load only on settings page.
-		if ( $this->is_settings_page( $hook_suffix ) && $this->plugin()->assets()->is_registered( self::ADMIN_SETTINGS_ENTRY ) ) {
+	public function get_inline_script_data_str( string $for ): string {
 
-			[$handle] = $this->plugin()->assets()->get_entry_handles( self::ADMIN_SETTINGS_ENTRY );
+		$data = $this->get_inline_script_data( $for );
 
-			wp_enqueue_script( $handle );
-
-			// Pass data to JS.
-			$data = $this->get_dom_data();
-			// Not to expose bot token to non-admins.
-			if ( current_user_can( 'manage_options' ) ) {
-				$data['savedSettings'] = SettingsController::get_default_settings();
-			}
-			$data['uiData']['post_types'] = $this->get_post_type_options();
-
-			self::add_dom_data( $handle, $data );
-		}
+		return $data ? sprintf( 'var %s = %s;', $this->plugin()->name(), wp_json_encode( $data ) ) : '';
 	}
 
 	/**
-	 * Add the data to DOM.
+	 * Get the inline script data.
 	 *
-	 * @since 1.1.3
-	 *
-	 * @param string $handle The script handle to attach the data to.
-	 * @param mixed  $data   The data to add.
-	 * @param string $var    The JavaScript variable name to use.
-	 *
-	 * @return void
-	 */
-	public static function add_dom_data( $handle, $data, $var = 'wptelegram_comments' ) {
-		wp_add_inline_script(
-			$handle,
-			sprintf( 'var %s = %s;', $var, wp_json_encode( $data ) ),
-			'before'
-		);
-	}
-
-	/**
-	 * Get the common DOM data.
+	 * @param string $for The JS entry point for which the data is needed.
 	 *
 	 * @return array
 	 */
-	private function get_dom_data() {
+	public function get_inline_script_data( string $for ) {
 		$data = [
 			'pluginInfo' => [
 				'title'       => $this->plugin()->title(),
@@ -169,7 +155,12 @@ class AssetManager extends BaseClass {
 			'i18n'       => Utils::get_jed_locale_data( 'wptelegram-comments' ),
 		];
 
-		return $data;
+		if ( self::ADMIN_SETTINGS_ENTRY === $for && current_user_can( 'manage_options' ) ) {
+			$data['savedSettings']        = SettingsController::get_default_settings();
+			$data['uiData']['post_types'] = $this->get_post_type_options();
+		}
+
+		return apply_filters( 'wptelegram_comments_inline_script_data', $data, $for, $this->plugin() );
 	}
 
 	/**

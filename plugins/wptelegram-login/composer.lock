@@ -12,11 +12,10 @@
             "dist": {
                 "type": "path",
                 "url": "../../packages/php/wp-utils",
-                "reference": "ba55d0228449123c7a87cb9f8380c94378c539f2"
+                "reference": "1e6337bd50a16a647b8ec92758f891bbbd1398e0"
             },
             "require-dev": {
                 "pestphp/pest": "^1.22",
-                "php-stubs/wordpress-stubs": "^6.4",
                 "wp-coding-standards/wpcs": "^3.0.1"
             },
             "type": "library",

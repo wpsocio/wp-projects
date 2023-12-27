@@ -31,7 +31,7 @@ class JoinChannel {
 	public static function render( $atts ) {
 
 		// This shortcode depends on the blocks styles.
-		$styles = WPTG_Widget()->assets()->get_entry_handles( AssetManager::BLOCKS_ENTRY, 'styles' );
+		$styles = WPTG_Widget()->assets()->get_entry_style_handles( AssetManager::BLOCKS_ENTRY );
 		foreach ( $styles as $handle ) {
 			wp_enqueue_style( $handle );
 		}

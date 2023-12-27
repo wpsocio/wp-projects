@@ -33,14 +33,14 @@ class AssetManager extends BaseClass {
 
 	const ASSET_ENTRIES = [
 		'blocks'         => [
-			'entry'    => self::BLOCKS_ENTRY,
-			'css-deps' => [
+			'entry'      => self::BLOCKS_ENTRY,
+			'style-deps' => [
 				'wp-components',
 			],
 		],
 		'admin-settings' => [
-			'entry'             => self::ADMIN_SETTINGS_ENTRY,
-			'internal-css-deps' => [
+			'entry'               => self::ADMIN_SETTINGS_ENTRY,
+			'internal-style-deps' => [
 				self::BLOCKS_ENTRY,
 			],
 		],
@@ -65,25 +65,25 @@ class AssetManager extends BaseClass {
 		$assets = $this->plugin()->assets();
 
 		foreach ( self::ASSET_ENTRIES as $name => $data ) {
-			$entry    = $data['entry'];
-			$css_deps = $data['css-deps'] ?? [];
+			$entry      = $data['entry'];
+			$style_deps = $data['style-deps'] ?? [];
 
-			if ( ! empty( $data['internal-css-deps'] ) ) {
-				foreach ( $data['internal-css-deps'] as $css_entry ) {
+			if ( ! empty( $data['internal-style-deps'] ) ) {
+				foreach ( $data['internal-style-deps'] as $style_entry ) {
 
-					if ( $assets->is_registered( $css_entry, 'styles' ) ) {
-						$css_deps = array_merge( $css_deps, $assets->get_entry_handles( $css_entry, 'styles' ) );
+					if ( $assets->is_registered( $style_entry, 'style' ) ) {
+						$style_deps = array_merge( $style_deps, $assets->get_entry_style_handles( $style_entry ) );
 					}
 				}
 			}
 
-			$assets->register_asset(
+			$assets->register(
 				$entry,
 				[
-					'handle'           => $this->plugin()->name() . '-' . $name,
-					'dependencies'     => $dependencies->get( $entry ),
-					'css-dependencies' => $css_deps,
-					'in-footer'        => $data['in-footer'] ?? true,
+					'handle'              => $this->plugin()->name() . '-' . $name,
+					'script-dependencies' => $dependencies->get( $entry ),
+					'style-dependencies'  => $style_deps,
+					'script-args'         => $data['in-footer'] ?? true,
 				]
 			);
 		}
@@ -98,8 +98,8 @@ class AssetManager extends BaseClass {
 			);
 		}
 
-		if ( $assets->is_registered( self::BLOCKS_ENTRY, 'styles' ) ) {
-			[$handle] = $assets->get_entry_handles( self::BLOCKS_ENTRY, 'styles' );
+		if ( $assets->is_registered( self::BLOCKS_ENTRY ) ) {
+			[$handle] = $assets->get_entry_style_handles( self::BLOCKS_ENTRY );
 
 			$style = sprintf(
 				':root {%1$s: %2$s;%3$s: %4$s}',
@@ -114,44 +114,39 @@ class AssetManager extends BaseClass {
 	}
 
 	/**
-	 * Register the stylesheets for the public area.
+	 * Add inline script for a given entry.
 	 *
-	 * @since    2.0.0
+	 * @param string $entry Entrypoint.
+	 *
+	 * @return void
 	 */
-	public function enqueue_public_styles() {
+	public function add_inline_script( string $entry ): void {
+		$handle = $this->plugin()->assets()->get_entry_script_handle( $entry );
 
-		$assets = $this->plugin()->assets();
+		if ( $handle ) {
+			$data = $this->get_inline_script_data_str( $entry );
 
-		if ( $assets->is_registered( self::PUBLIC_WIDGET_ENTRY, 'styles' ) ) {
-			[$handle] = $assets->get_entry_handles( self::PUBLIC_WIDGET_ENTRY, 'styles' );
-
-			wp_enqueue_style( $handle );
+			wp_add_inline_script( $handle, $data, 'before' );
 		}
 	}
 
 	/**
-	 * Register the stylesheets for the public area.
+	 * Enqueue the assets for the public area.
 	 *
-	 * @since    2.0.0
+	 * @since    x.y.z
 	 */
-	public function enqueue_public_scripts() {
+	public function enqueue_public_assets() {
 
-		$assets = $this->plugin()->assets();
-
-		if ( $assets->is_registered( self::PUBLIC_WIDGET_ENTRY, 'scripts' ) ) {
-			[$handle] = $assets->get_entry_handles( self::PUBLIC_WIDGET_ENTRY, 'scripts' );
-
-			wp_enqueue_script( $handle );
-		}
+		$this->plugin()->assets()->enqueue( self::PUBLIC_WIDGET_ENTRY );
 	}
 
 	/**
-	 * Register the stylesheets for the admin area.
+	 * Enqueue the assets for the admin area.
 	 *
-	 * @since    2.0.0
+	 * @since    x.y.z
 	 * @param string $hook_suffix The current admin page.
 	 */
-	public function enqueue_admin_styles( $hook_suffix ) {
+	public function enqueue_admin_assets( $hook_suffix ) {
 
 		if ( ! defined( 'WPTELEGRAM_LOADED' ) ) {
 			wp_enqueue_style( self::WPTELEGRAM_MENU_HANDLE );
@@ -159,64 +154,33 @@ class AssetManager extends BaseClass {
 
 		// Load only on settings page.
 		if ( $this->is_settings_page( $hook_suffix ) ) {
-
-			$admin_styles = $this->plugin()->assets()->get_entry_handles( self::ADMIN_SETTINGS_ENTRY, 'styles' );
-
-			foreach ( $admin_styles as $handle ) {
-				wp_enqueue_style( $handle );
-			}
+			$this->plugin()->assets()->enqueue( self::ADMIN_SETTINGS_ENTRY );
+			$this->add_inline_script( self::ADMIN_SETTINGS_ENTRY );
 		}
 	}
 
 	/**
-	 * Register the JavaScript for the admin area.
+	 * Get the inline script data as a string.
 	 *
-	 * @since    2.0.0
-	 * @param string $hook_suffix The current admin page.
+	 * @param string $for The JS entry point for which the data is needed.
+	 *
+	 * @return string
 	 */
-	public function enqueue_admin_scripts( $hook_suffix ) {
-		$assets = $this->plugin()->assets();
-		// Load only on settings page.
-		if ( $this->is_settings_page( $hook_suffix ) && $assets->is_registered( self::ADMIN_SETTINGS_ENTRY, 'scripts' ) ) {
-			[$handle] = $assets->get_entry_handles( self::ADMIN_SETTINGS_ENTRY, 'scripts' );
+	public function get_inline_script_data_str( string $for ): string {
 
-			wp_enqueue_script( $handle );
+		$data = $this->get_inline_script_data( $for );
 
-			// Pass data to JS.
-			$data = $this->get_dom_data();
-
-			self::add_dom_data( $handle, $data );
-		}
+		return $data ? sprintf( 'var %s = %s;', $this->plugin()->name(), wp_json_encode( $data ) ) : '';
 	}
 
 	/**
-	 * Add the data to DOM.
+	 * Get the inline script data.
 	 *
-	 * @since 2.1.0
-	 *
-	 * @param string $handle The script handle to attach the data to.
-	 * @param mixed  $data   The data to add.
-	 * @param string $var    The JavaScript variable name to use.
-	 *
-	 * @return void
-	 */
-	public static function add_dom_data( $handle, $data, $var = 'wptelegram_widget' ) {
-		wp_add_inline_script(
-			$handle,
-			sprintf( 'var %s = %s;', $var, wp_json_encode( $data ) ),
-			'before'
-		);
-	}
-
-	/**
-	 * Get the common DOM data.
-	 *
-	 * @param string $for The domain for which the DOM data is to be rendered.
-	 * possible values: 'SETTINGS_PAGE' | 'BLOCKS'.
+	 * @param string $for The JS entry point for which the data is needed.
 	 *
 	 * @return array
 	 */
-	public function get_dom_data( $for = 'SETTINGS_PAGE' ) {
+	public function get_inline_script_data( string $for ) {
 		$data = [
 			'pluginInfo' => [
 				'title'       => $this->plugin()->title(),
@@ -239,18 +203,17 @@ class AssetManager extends BaseClass {
 			'i18n'       => Utils::get_jed_locale_data( 'wptelegram-widget' ),
 		];
 
-		$settings = SettingsController::get_default_settings();
-
 		// Not to expose bot token to non-admins.
-		if ( 'SETTINGS_PAGE' === $for && current_user_can( 'manage_options' ) ) {
-			$data['savedSettings'] = $settings;
+		if ( self::ADMIN_SETTINGS_ENTRY === $for && current_user_can( 'manage_options' ) ) {
+
+			$data['savedSettings'] = SettingsController::get_default_settings();
 
 			$data['uiData']['post_types'] = $this->get_post_type_options();
 
 			$data['assets']['pullUpdatesUrl'] = add_query_arg( [ 'action' => 'wptelegram_widget_pull_updates' ], site_url() );
 		}
 
-		if ( 'BLOCKS' === $for ) {
+		if ( self::BLOCKS_ENTRY === $for ) {
 
 			$data['assets']['message_view_url'] = LegacyWidget::get_single_message_embed_url( '%username%', '%message_id%', '%userpic%' );
 
@@ -263,7 +226,7 @@ class AssetManager extends BaseClass {
 			);
 		}
 
-		return apply_filters( 'wptelegram_widget_assets_dom_data', $data, $for, $this->plugin() );
+		return apply_filters( 'wptelegram_widget_inline_script_data', $data, $for, $this->plugin() );
 	}
 
 	/**
@@ -307,22 +270,7 @@ class AssetManager extends BaseClass {
 	 */
 	public function enqueue_block_editor_assets() {
 
-		$assets = $this->plugin()->assets();
-
-		if ( $assets->is_registered( self::BLOCKS_ENTRY, 'scripts' ) ) {
-			[$handle] = $assets->get_entry_handles( self::BLOCKS_ENTRY, 'scripts' );
-
-			wp_enqueue_script( $handle );
-
-			$data = $this->get_dom_data( 'BLOCKS' );
-
-			self::add_dom_data( $handle, $data );
-
-			$styles = $assets->get_entry_handles( self::BLOCKS_ENTRY, 'styles' );
-
-			foreach ( $styles as $handle ) {
-				wp_enqueue_style( $handle );
-			}
-		}
+		$this->plugin()->assets()->enqueue( self::BLOCKS_ENTRY );
+		$this->add_inline_script( self::BLOCKS_ENTRY );
 	}
 }

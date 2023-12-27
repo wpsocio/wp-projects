@@ -1,0 +1,35 @@
+import rollupGlobals from 'rollup-plugin-external-globals';
+import { PluginOption } from 'vite';
+import viteExternal from 'vite-plugin-external';
+import { WP_EXTERNAL_PACKAGES } from '../utils/index.js';
+
+/**
+ * Updates the vite config to externalize all WordPress packages.
+ */
+export const externalizeWpPackages = (): PluginOption => {
+	return [
+		{
+			name: 'vwpr:externalize-wp-packages',
+			config() {
+				return {
+					build: {
+						rollupOptions: {
+							external: Object.keys(WP_EXTERNAL_PACKAGES),
+							/**
+							 * Add the plugin to rollup to ensure react imports don't end up in the bundle
+							 * framer-motion causes the issue by using namespace imports
+							 *
+							 * @see https://github.com/vitejs/vite-plugin-react/issues/3
+							 */
+							plugins: [rollupGlobals(WP_EXTERNAL_PACKAGES)],
+						},
+					},
+				};
+			},
+		},
+		// @ts-expect-error - viteExternal is not typed well
+		viteExternal({
+			externals: WP_EXTERNAL_PACKAGES,
+		}),
+	];
+};

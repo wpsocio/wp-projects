@@ -10,7 +10,14 @@ export type { DataShape };
 
 export interface WPTelegramLoginData
 	extends BaseDOMData<AssetsData>,
-		BasePluginData<DataShape, UiData> {}
+		BasePluginData<DataShape, UiData> {
+	web_app_data?: {
+		is_user_logged_in: boolean;
+		confirm_login: boolean;
+		login_auth_url: string;
+		i18n: Record<string, unknown>;
+	};
+}
 
 export interface AssetsData extends BaseAssetsData {
 	tgIconUrl: string;

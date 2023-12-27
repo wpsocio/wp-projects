@@ -36,8 +36,8 @@ class AssetManager extends BaseClass {
 			'entry' => self::ADMIN_SETTINGS_ENTRY,
 		],
 		'blocks'         => [
-			'entry'    => self::BLOCKS_ENTRY,
-			'css-deps' => [
+			'entry'      => self::BLOCKS_ENTRY,
+			'style-deps' => [
 				'wp-components',
 			],
 		],
@@ -88,13 +88,13 @@ class AssetManager extends BaseClass {
 				$dependencies = $js_dependencies->get( $entry );
 			}
 
-			$assets->register_asset(
+			$assets->register(
 				$entry,
 				[
-					'handle'           => $this->plugin()->name() . '-' . $name,
-					'dependencies'     => $dependencies,
-					'css-dependencies' => $data['css-deps'] ?? [],
-					'in-footer'        => $data['in-footer'] ?? true,
+					'handle'              => $this->plugin()->name() . '-' . $name,
+					'script-dependencies' => $dependencies,
+					'style-dependencies'  => $data['style-deps'] ?? [],
+					'script-args'         => $data['in-footer'] ?? true,
 				]
 			);
 		}
@@ -111,80 +111,66 @@ class AssetManager extends BaseClass {
 	}
 
 	/**
-	 * Register the stylesheets for the admin area.
+	 * Add inline script for a given entry.
 	 *
-	 * @since    1.9.0
+	 * @param string $entry Entrypoint.
+	 *
+	 * @return void
+	 */
+	public function add_inline_script( string $entry ): void {
+		$handle = $this->plugin()->assets()->get_entry_script_handle( $entry );
+
+		if ( $handle ) {
+			$data = $this->get_inline_script_data_str( $entry );
+
+			wp_add_inline_script( $handle, $data, 'before' );
+		}
+	}
+
+	/**
+	 * Enqueue the assets for the admin area.
+	 *
+	 * @since    x.y.z
 	 * @param string $hook_suffix The current admin page.
 	 */
-	public function enqueue_admin_styles( $hook_suffix ) {
+	public function enqueue_admin_assets( $hook_suffix ) {
 
 		if ( ! defined( 'WPTELEGRAM_LOADED' ) ) {
 			wp_enqueue_style( self::WPTELEGRAM_MENU_HANDLE );
 		}
 
-		wp_enqueue_style( self::WPTELEGRAM_MENU_HANDLE );
+		$assets = $this->plugin()->assets();
 
 		// Load only on settings page.
 		if ( $this->is_settings_page( $hook_suffix ) ) {
-
-			$admin_styles = $this->plugin()->assets()->get_entry_handles( self::ADMIN_SETTINGS_ENTRY, 'styles' );
-
-			foreach ( $admin_styles as $handle ) {
-				wp_enqueue_style( $handle );
-			}
+			$assets->enqueue( self::ADMIN_SETTINGS_ENTRY );
+			$this->add_inline_script( self::ADMIN_SETTINGS_ENTRY );
 		}
 	}
 
 	/**
-	 * Register the JavaScript for the admin area.
+	 * Get the inline script data as a string.
 	 *
-	 * @since    1.9.0
-	 * @param string $hook_suffix The current admin page.
+	 * @param string $for The JS entry point for which the data is needed.
+	 *
+	 * @return string
 	 */
-	public function enqueue_admin_scripts( $hook_suffix ) {
-		// Load only on settings page.
-		if ( $this->is_settings_page( $hook_suffix ) && $this->plugin()->assets()->is_registered( self::ADMIN_SETTINGS_ENTRY ) ) {
+	public function get_inline_script_data_str( string $for ): string {
 
-			[$handle] = $this->plugin()->assets()->get_entry_handles( self::ADMIN_SETTINGS_ENTRY );
+		$data = $this->get_inline_script_data( $for );
 
-			wp_enqueue_script( $handle );
-
-			// Pass data to JS.
-			$data = $this->get_dom_data();
-
-			self::add_dom_data( $handle, $data );
-		}
+		return $data ? sprintf( 'var %s = %s;', $this->plugin()->name(), wp_json_encode( $data ) ) : '';
 	}
 
 	/**
-	 * Add the data to DOM.
+	 * Get the inline script data.
 	 *
-	 * @since 1.9.7
-	 *
-	 * @param string $handle The script handle to attach the data to.
-	 * @param mixed  $data   The data to add.
-	 * @param string $var    The JavaScript variable name to use.
-	 *
-	 * @return void
-	 */
-	public static function add_dom_data( $handle, $data, $var = 'wptelegram_login' ) {
-		wp_add_inline_script(
-			$handle,
-			sprintf( 'var %s = %s;', $var, wp_json_encode( $data ) ),
-			'before'
-		);
-	}
-
-	/**
-	 * Get the common DOM data.
-	 *
-	 * @param string $for The domain for which the DOM data is to be rendered.
-	 * possible values: 'SETTINGS_PAGE' | 'BLOCKS'.
+	 * @param string $for The JS entry point for which the data is needed.
 	 *
 	 * @return array
 	 */
-	public function get_dom_data( $for = 'SETTINGS_PAGE' ) {
-		$data = [
+	public function get_inline_script_data( string $for ) {
+		$shared_data = [
 			'pluginInfo' => [
 				'title'       => $this->plugin()->title(),
 				'name'        => $this->plugin()->name(),
@@ -210,16 +196,21 @@ class AssetManager extends BaseClass {
 			'i18n'       => Utils::get_jed_locale_data( 'wptelegram-login' ),
 		];
 
+		$data = [];
+
 		$settings = SettingsController::get_rest_settings();
 
 		// Not to expose bot token to non-admins.
-		if ( 'SETTINGS_PAGE' === $for && current_user_can( 'manage_options' ) ) {
+		if ( self::ADMIN_SETTINGS_ENTRY === $for && current_user_can( 'manage_options' ) ) {
+			$data = $shared_data;
+
 			$data['savedSettings'] = $settings;
 			// Add UI data for settings page.
 			$data['uiData']['user_role'] = self::user_role_options_cb();
 		}
 
-		if ( 'BLOCKS' === $for ) {
+		if ( self::BLOCKS_ENTRY === $for ) {
+			$data = $shared_data;
 
 			$data['assets'] = array_merge(
 				$data['assets'],
@@ -242,7 +233,49 @@ class AssetManager extends BaseClass {
 			);
 		}
 
-		return apply_filters( 'wptelegram_login_assets_dom_data', $data, $for, $this->plugin() );
+		if ( self::WEB_APP_LOGIN_ENTRY === $for ) {
+
+			$query_params = $this->get_webapp_login_params();
+
+			$redirect_to       = esc_url( $query_params['redirect_to'] );
+			$confirm_login     = (bool) $query_params['confirm_login'];
+			$is_user_logged_in = is_user_logged_in();
+			$login_auth_url    = add_query_arg(
+				[
+					'action'      => 'wptelegram_login',
+					'source'      => 'WebAppData',
+					'redirect_to' => $redirect_to,
+				],
+				site_url()
+			);
+
+			$i18n = [
+				'popup' => [
+					'title'   => __( 'Login with Telegram', 'wptelegram-login' ),
+					'message' => __( 'Do you want to login via Telegram for a better experience?', 'wptelegram-login' ),
+					'buttons' => [
+						[
+							'id'   => 'login',
+							'text' => __( 'Login', 'wptelegram-login' ),
+							'type' => 'default',
+						],
+						[
+							'id'   => 'cancel',
+							'text' => __( 'Cancel', 'wptelegram-login' ),
+							'type' => 'cancel',
+						],
+					],
+				],
+			];
+
+			$data = compact( 'is_user_logged_in', 'login_auth_url', 'confirm_login', 'i18n' );
+
+			$data = apply_filters( 'wptelegram_login_web_app_login_data', $data );
+
+			$data = [ 'web_app_data' => $data ];
+		}
+
+		return apply_filters( 'wptelegram_login_inline_script_data', $data, $for, $this->plugin() );
 	}
 
 	/**
@@ -369,19 +402,33 @@ class AssetManager extends BaseClass {
 
 		$hide_on_default = WPTG_Login()->options()->get( 'hide_on_default' );
 
-		if ( $hide_on_default || ! $this->plugin()->assets()->is_registered( self::WP_LOGIN_ENTRY ) ) {
+		if ( $hide_on_default ) {
 			return;
 		}
 
-		[$handle] = $this->plugin()->assets()->get_entry_handles( self::WP_LOGIN_ENTRY );
+		$this->plugin()->assets()->enqueue( self::WP_LOGIN_ENTRY );
+	}
 
-		wp_enqueue_script( $handle );
+	/**
+	 * Get the query params for the webapp login.
+	 *
+	 * @return array
+	 */
+	private function get_webapp_login_params() {
 
-		$styles = $this->plugin()->assets()->get_entry_handles( self::WP_LOGIN_ENTRY, 'styles' );
+		// Using $_SERVER['QUERY_STRING'] to avoid a bug in Telegram Mini Apps which pass HTML encoded query string.
+		$query_string = ! empty( $_SERVER['QUERY_STRING'] )
+			? html_entity_decode( sanitize_text_field( wp_unslash( $_SERVER['QUERY_STRING'] ) ) )
+			: '';
 
-		foreach ( $styles as $handle ) {
-			wp_enqueue_style( $handle );
-		}
+		return wp_parse_args(
+			$query_string,
+			[
+				'action'        => '',
+				'confirm_login' => '1',
+				'redirect_to'   => '',
+			]
+		);
 	}
 
 	/**
@@ -390,66 +437,18 @@ class AssetManager extends BaseClass {
 	 * @since    1.10.4
 	 */
 	public function enqueue_public_scripts() {
-		if ( empty( $_SERVER['QUERY_STRING'] ) ) {
-			return;
-		}
 
-		// Using $_SERVER['QUERY_STRING'] to avoid a bug in Telegram Mini Apps which pass HTML encoded query string.
-		$query_string = html_entity_decode( sanitize_text_field( wp_unslash( $_SERVER['QUERY_STRING'] ) ) );
+		$query_params = $this->get_webapp_login_params();
 
-		$query_params = wp_parse_args(
-			$query_string,
-			[
-				'action'        => '',
-				'confirm_login' => '1',
-				'redirect_to'   => '',
-			]
-		);
+		$assets = $this->plugin()->assets();
 
-		if ( 'wptelegram_login_webapp' === $query_params['action'] && $this->plugin()->assets()->is_registered( self::WEB_APP_LOGIN_ENTRY ) ) {
-
-			[$handle] = $this->plugin()->assets()->get_entry_handles( self::WEB_APP_LOGIN_ENTRY );
+		if ( 'wptelegram_login_webapp' === $query_params['action'] ) {
 
 			// This should not be needed, but it doesn't seem to work without loading the dependency.
 			wp_enqueue_script( self::WEB_APP_EXTERNAL_SCRIPT_HANDLE );
-			wp_enqueue_script( $handle );
+			$assets->enqueue( self::WEB_APP_LOGIN_ENTRY );
 
-			$redirect_to       = esc_url( $query_params['redirect_to'] );
-			$confirm_login     = (bool) $query_params['confirm_login'];
-			$is_user_logged_in = is_user_logged_in();
-			$login_auth_url    = add_query_arg(
-				[
-					'action'      => 'wptelegram_login',
-					'source'      => 'WebAppData',
-					'redirect_to' => $redirect_to,
-				],
-				site_url()
-			);
-
-			$i18n = [
-				'popup' => [
-					'title'   => __( 'Login with Telegram', 'wptelegram-login' ),
-					'message' => __( 'Do you want to login via Telegram for a better experience?', 'wptelegram-login' ),
-					'buttons' => [
-						[
-							'id'   => 'login',
-							'text' => __( 'Login', 'wptelegram-login' ),
-							'type' => 'default',
-						],
-						[
-							'id'   => 'cancel',
-							'text' => __( 'Cancel', 'wptelegram-login' ),
-							'type' => 'cancel',
-						],
-					],
-				],
-			];
-
-			$data = compact( 'is_user_logged_in', 'login_auth_url', 'confirm_login', 'i18n' );
-
-			$data = apply_filters( 'wptelegram_login_web_app_login_data', $data );
-
-			self::add_dom_data( $handle, $data, 'wptelegram_web_app_data' );
+			$this->add_inline_script( self::WEB_APP_LOGIN_ENTRY );
 		}
 	}
 
@@ -469,20 +468,8 @@ class AssetManager extends BaseClass {
 	 * @since    1.4.1
 	 */
 	public function enqueue_block_editor_assets() {
-		if ( $this->plugin()->assets()->is_registered( self::BLOCKS_ENTRY ) ) {
-			[$handle] = $this->plugin()->assets()->get_entry_handles( self::BLOCKS_ENTRY );
 
-			wp_enqueue_script( $handle );
-
-			$data = $this->get_dom_data( 'BLOCKS' );
-
-			self::add_dom_data( $handle, $data );
-
-			$styles = $this->plugin()->assets()->get_entry_handles( self::BLOCKS_ENTRY, 'styles' );
-
-			foreach ( $styles as $handle ) {
-				wp_enqueue_style( $handle );
-			}
-		}
+		$this->plugin()->assets()->enqueue( self::BLOCKS_ENTRY );
+		$this->add_inline_script( self::BLOCKS_ENTRY );
 	}
 }
