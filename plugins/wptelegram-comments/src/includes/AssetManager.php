@@ -105,7 +105,7 @@ class AssetManager extends BaseClass {
 		$assets = $this->plugin()->assets();
 
 		// Load only on settings page.
-		if ( $this->is_settings_page( $hook_suffix ) && $assets->is_registered( self::ADMIN_SETTINGS_ENTRY ) ) {
+		if ( $this->is_settings_page( $hook_suffix ) ) {
 
 			$assets->enqueue( self::ADMIN_SETTINGS_ENTRY );
 			$this->add_inline_script( self::ADMIN_SETTINGS_ENTRY );

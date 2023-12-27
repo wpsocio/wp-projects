@@ -71,7 +71,7 @@ class AssetManager extends BaseClass {
 			if ( ! empty( $data['internal-style-deps'] ) ) {
 				foreach ( $data['internal-style-deps'] as $style_entry ) {
 
-					if ( $assets->is_registered( $style_entry, 'styles' ) ) {
+					if ( $assets->is_registered( $style_entry, 'style' ) ) {
 						$style_deps = array_merge( $style_deps, $assets->get_entry_style_handles( $style_entry ) );
 					}
 				}
