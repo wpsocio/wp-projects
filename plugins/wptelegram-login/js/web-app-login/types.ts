@@ -10,11 +10,5 @@ declare global {
 				showPopup: (params: unknown, callback: (id: string) => void) => void;
 			};
 		};
-		wptelegram_web_app_data: {
-			is_user_logged_in: boolean;
-			confirm_login: boolean;
-			login_auth_url: string;
-			i18n: Record<string, unknown>;
-		};
 	}
 }

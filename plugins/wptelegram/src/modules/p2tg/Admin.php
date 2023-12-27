@@ -57,13 +57,7 @@ class Admin extends BaseClass {
 			&& did_action( 'cmb2_init' )
 			&& ! did_action( 'enqueue_block_editor_assets' )
 		) {
-
-			if ( WPTG()->assets()->is_registered( AssetManager::P2TG_CLASSIC_EDITOR_ENTRY ) ) {
-
-				[$handle] = WPTG()->assets()->get_entry_handles( AssetManager::P2TG_CLASSIC_EDITOR_ENTRY );
-
-				wp_enqueue_script( $handle );
-			}
+			WPTG()->assets()->enqueue( AssetManager::P2TG_CLASSIC_EDITOR_ENTRY );
 		}
 	}
 
@@ -84,17 +78,9 @@ class Admin extends BaseClass {
 			return;
 		}
 
-		if ( WPTG()->assets()->is_registered( AssetManager::P2TG_BLOCK_EDITOR_ENTRY ) ) {
+		WPTG()->assets()->enqueue( AssetManager::P2TG_BLOCK_EDITOR_ENTRY );
 
-			[$handle] = WPTG()->assets()->get_entry_handles( AssetManager::P2TG_BLOCK_EDITOR_ENTRY );
-
-			wp_enqueue_script( $handle );
-
-			// Pass data to JS.
-			$data = AssetManager::instance()->get_dom_data( 'BLOCKS' );
-
-			AssetManager::add_dom_data( $handle, $data );
-		}
+		AssetManager::instance()->add_inline_script( AssetManager::P2TG_BLOCK_EDITOR_ENTRY );
 	}
 
 	/**
@@ -142,19 +128,18 @@ class Admin extends BaseClass {
 	 *
 	 * @return array
 	 */
-	public function update_dom_data( $data, $for ) {
+	public function update_inline_script_data( $data, $for ) {
 
-		if ( 'SETTINGS_PAGE' === $for ) {
-			$data['uiData'] = array_merge(
-				$data['uiData'],
-				[
-					'post_types'          => $this->get_post_type_options(),
-					'macros'              => $this->get_macros(),
-					'rule_types'          => Rules::get_rule_types(),
-					'is_wp_cron_disabled' => defined( 'DISABLE_WP_CRON' ) && constant( 'DISABLE_WP_CRON' ),
-				]
-			);
-		} elseif ( 'BLOCKS' === $for ) {
+		if ( AssetManager::ADMIN_SETTINGS_ENTRY === $for ) {
+			$data['uiData'] = [
+				...$data['uiData'],
+				'post_types'          => $this->get_post_type_options(),
+				'macros'              => $this->get_macros(),
+				'rule_types'          => Rules::get_rule_types(),
+				'is_wp_cron_disabled' => defined( 'DISABLE_WP_CRON' ) && constant( 'DISABLE_WP_CRON' ),
+			];
+		} elseif ( AssetManager::P2TG_BLOCK_EDITOR_ENTRY === $for ) {
+
 			$blocks_fields  = [
 				'channels',
 				'disable_notification',

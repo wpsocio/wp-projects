@@ -17,7 +17,7 @@ namespace WPTelegram\Login\includes;
 use WPTelegram\Login\admin\Admin;
 use WPTelegram\Login\shared\Shared;
 use WPTelegram\Login\shared\LoginHandler;
-use WPSocio\WPUtils\ViteAssets as Assets;
+use WPSocio\WPUtils\ViteWPReactAssets as Assets;
 use WPSocio\WPUtils\Options;
 
 /**
@@ -381,8 +381,7 @@ class Main {
 		// Register hooks early on init.
 		add_action( 'init', [ $asset_manager, 'register_assets' ], 5 );
 
-		add_action( 'admin_enqueue_scripts', [ $asset_manager, 'enqueue_admin_styles' ] );
-		add_action( 'admin_enqueue_scripts', [ $asset_manager, 'enqueue_admin_scripts' ] );
+		add_action( 'admin_enqueue_scripts', [ $asset_manager, 'enqueue_admin_assets' ] );
 
 		add_action( 'enqueue_block_editor_assets', [ $asset_manager, 'enqueue_block_editor_assets' ] );
 

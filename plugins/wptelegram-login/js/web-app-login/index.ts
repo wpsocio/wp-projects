@@ -25,20 +25,22 @@ function getLoginURL(auth_url: string, auth_data: string) {
 	return login_url.toString();
 }
 
-(({ is_user_logged_in, login_auth_url, confirm_login, i18n }, webApp) => {
-	if (!is_user_logged_in && webApp.initData) {
-		const login = () => {
-			// Redirect the user to login URL.
-			window.location.href = getLoginURL(login_auth_url, webApp.initData);
-		};
-		if (confirm_login) {
-			webApp.showPopup(i18n.popup, (id) => {
-				if (id === 'login') {
-					login();
-				}
-			});
-		} else {
-			login();
+if (window.wptelegram_login?.web_app_data) {
+	(({ is_user_logged_in, login_auth_url, confirm_login, i18n }, webApp) => {
+		if (!is_user_logged_in && webApp.initData) {
+			const login = () => {
+				// Redirect the user to login URL.
+				window.location.href = getLoginURL(login_auth_url, webApp.initData);
+			};
+			if (confirm_login) {
+				webApp.showPopup(i18n.popup, (id) => {
+					if (id === 'login') {
+						login();
+					}
+				});
+			} else {
+				login();
+			}
 		}
-	}
-})(window.wptelegram_web_app_data, window.Telegram.WebApp);
+	})(window.wptelegram_login?.web_app_data, window.Telegram.WebApp);
+}
