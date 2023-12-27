@@ -63,7 +63,6 @@ export async function scanDependencies({
 					outdir: './',
 					bundle: true,
 					write: false,
-					platform: 'browser',
 					plugins: [
 						{
 							name: 'scan-dependencies',
