@@ -1,0 +1,7 @@
+tests/data/input/* linguist-generated=true
+tests/data/output/* linguist-generated=true
+
+tests/ export-ignore
+bin/ export-ignore
+phpunit.xml export-ignore
+package.json export-ignore

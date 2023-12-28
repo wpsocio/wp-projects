@@ -1,0 +1,12 @@
+# Auto detect text files and perform LF normalization
+*         text=auto
+
+# PHP files
+*.php     text eol=lf diff=php
+
+# Configuration
+phpcs.xml    text eol=lf
+phpunit.xml  text eol=lf
+
+# Fix syntax highlighting on GitHub to allow comments
+.vscode/*.json linguist-language=JSON-with-Comments
