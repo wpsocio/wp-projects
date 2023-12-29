@@ -1,6 +1,6 @@
 import { Flags } from '@oclif/core';
 import chalk from 'chalk';
-import { Listr, ListrTask, delay } from 'listr2';
+import { Listr, ListrTask, ListrTaskWrapper, delay } from 'listr2';
 import { BaseProjectCommand } from '../baseProjectCommand.js';
 import { updateRequirements, updateVersion } from '../utils/dist.js';
 
@@ -20,20 +20,20 @@ export default class Dist extends BaseProjectCommand<typeof Dist> {
 	};
 
 	public async run(): Promise<void> {
-		const tasksList: Array<ListrTask> = [];
+		const tasks = new Listr([], {
+			concurrent: true,
+		});
 
 		for (const project of this.projects) {
-			tasksList.push({
+			tasks.add({
 				title: `Preparing ${project}`,
-				task: () => {
-					return this.prepareForDist(project);
+				task: (_, task) => {
+					return task.newListr(this.prepareForDist(project), {
+						concurrent: false,
+					});
 				},
 			});
 		}
-
-		const tasks = new Listr(tasksList, {
-			concurrent: true,
-		});
 
 		try {
 			await tasks.run();
@@ -43,11 +43,12 @@ export default class Dist extends BaseProjectCommand<typeof Dist> {
 		}
 	}
 
-	async prepareForDist(project: string) {
-		const projectTasksList: Array<ListrTask> = [
+	prepareForDist(project: string): Array<ListrTask> {
+		return [
 			{
 				title: 'Update requirements',
 				task: async (): Promise<void> => {
+					await delay(1000);
 					await updateRequirements(project, {
 						requirements: {
 							requiresPHP: '8.0',
@@ -71,6 +72,7 @@ export default class Dist extends BaseProjectCommand<typeof Dist> {
 					const projectSlug = project.split('/')[1];
 					const projectName = projectSlug.replace('-', '_');
 
+					await delay(1000);
 					await updateVersion(project, '5.0.1', {
 						toUpdate: [
 							{
@@ -107,7 +109,5 @@ export default class Dist extends BaseProjectCommand<typeof Dist> {
 				},
 			},
 		];
-
-		return new Listr(projectTasksList, { concurrent: false });
 	}
 }
