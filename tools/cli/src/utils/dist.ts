@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import fg from 'fast-glob';
+import fg, { Options } from 'fast-glob';
 
 export type Requirements = {
 	requiresPHP: string;
@@ -18,9 +18,10 @@ export type RequirementsConfig = {
 	toUpdate: ToUpdate;
 };
 
-function globFiles(toUpdate: ToUpdate) {
+function globFiles(toUpdate: ToUpdate, options?: Options) {
 	return fg.sync(toUpdate.files, {
 		ignore: toUpdate.ignore,
+		...options,
 	});
 }
 
@@ -40,7 +41,7 @@ export async function updateRequirements(
 		testedUpTo: 'Tested up to',
 	};
 
-	const entries = globFiles(toUpdate);
+	const entries = globFiles(toUpdate, { cwd: project });
 
 	for (const file of entries) {
 		const filePath = path.join(project, file);
@@ -83,7 +84,7 @@ export type UpdateVersionConfig = {
 	>;
 };
 
-function createVersionPattern(toUpdate: UpdateVersionConfig['toUpdate'][0]) {
+function createVersionPatterns(toUpdate: UpdateVersionConfig['toUpdate'][0]) {
 	switch (toUpdate.type) {
 		case 'packageJson':
 		case 'composerJson':
@@ -171,11 +172,32 @@ function getFilesToUpdate(
  */
 export async function updateVersion(
 	project: string,
-	varsion: string,
+	version: string,
 	{ toUpdate }: UpdateVersionConfig,
 ) {
 	for (const item of toUpdate) {
-		const patterns = createVersionPattern(item);
+		const patterns = createVersionPatterns(item);
 		const filesToUpdate = getFilesToUpdate(item, project);
+
+		const entries = globFiles(filesToUpdate, { cwd: project });
+
+		console.log({ entries, filesToUpdate, item, patterns });
+
+		const replaceCallback = (match: string, $1: string) => {
+			return match.replace($1, version);
+		};
+
+		for (const file of entries) {
+			const filePath = path.join(project, file);
+			// console.log(filePath);
+
+			let fileContents = fs.readFileSync(filePath, 'utf8');
+
+			for (const pattern of patterns) {
+				fileContents = fileContents.replace(pattern, replaceCallback);
+			}
+
+			// fs.writeFileSync(filePath, fileContents);
+		}
 	}
 }

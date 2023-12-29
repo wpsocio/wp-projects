@@ -2,7 +2,7 @@ import { Flags } from '@oclif/core';
 import chalk from 'chalk';
 import { Listr, ListrTask, delay } from 'listr2';
 import { BaseProjectCommand } from '../baseProjectCommand.js';
-import { updateRequirements } from '../utils/dist.js';
+import { updateRequirements, updateVersion } from '../utils/dist.js';
 
 export default class Dist extends BaseProjectCommand<typeof Dist> {
 	static description = 'Prepares projects for distribution or deployment.';
@@ -67,7 +67,44 @@ export default class Dist extends BaseProjectCommand<typeof Dist> {
 			},
 			{
 				title: 'Update version',
-				task: async (): Promise<void> => {},
+				task: async (): Promise<void> => {
+					const projectName = project.split('/')[0].replace('-', '_');
+					const projectSlug = project.split('/')[1];
+
+					await updateVersion(project, '6.1.0', {
+						toUpdate: [
+							{
+								type: 'packageJson',
+								files: ['package.json'],
+							},
+							{
+								type: 'composerJson',
+								files: ['composer.json'],
+							},
+							{
+								type: 'readmeFiles',
+								files: ['README.md', 'src/README.txt'],
+							},
+							{
+								type: 'pluginMainFile',
+								files: [`src/${projectSlug}.php`],
+							},
+							{
+								type: 'sinceTag',
+								files: ['**/*.php'],
+							},
+							{
+								type: 'general',
+								files: [`src/${projectSlug}.php`],
+								textPatterns: [
+									new RegExp(
+										`'${projectName.toUpperCase()}_VER',\\s*'([0-9a-z-+.]+)'`,
+									),
+								],
+							},
+						],
+					});
+				},
 			},
 		];
 
