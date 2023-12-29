@@ -181,15 +181,12 @@ export async function updateVersion(
 
 		const entries = globFiles(filesToUpdate, { cwd: project });
 
-		console.log({ entries, filesToUpdate, item, patterns });
-
 		const replaceCallback = (match: string, $1: string) => {
 			return match.replace($1, version);
 		};
 
 		for (const file of entries) {
 			const filePath = path.join(project, file);
-			// console.log(filePath);
 
 			let fileContents = fs.readFileSync(filePath, 'utf8');
 
