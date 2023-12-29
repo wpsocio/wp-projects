@@ -50,7 +50,7 @@ export default class Dist extends BaseProjectCommand<typeof Dist> {
 				task: async (): Promise<void> => {
 					await updateRequirements(project, {
 						requirements: {
-							requiresPHP: '8.3',
+							requiresPHP: '8.0',
 							requiresAtLeast: '6.2',
 							testedUpTo: '6.4.1',
 						},
