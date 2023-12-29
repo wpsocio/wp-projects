@@ -1,5 +1,3 @@
-import '../../env.js'; // Load environment variables before anything else.
-
 import { Hook } from '@oclif/core';
 import { ROOT_DIR } from '../../utils/monorepo.js';
 
