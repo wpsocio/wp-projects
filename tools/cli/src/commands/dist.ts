@@ -1,18 +1,9 @@
-import { Args, Command, Flags } from '@oclif/core';
+import { Flags } from '@oclif/core';
 import chalk from 'chalk';
-import {
-	getMonorepoProjects,
-	normalizeProjectsInput,
-	validateProject,
-} from '../utils/projects.js';
+import { BaseProjectCommand } from '../baseProjectCommand.js';
 
-export default class Dist extends Command {
+export default class Dist extends BaseProjectCommand<typeof Dist> {
 	static description = 'Prepares projects for distribution or deployment.';
-
-	static examples = [
-		'<%= config.bin %> <%= command.id %> plugins/wptelegram,themes/wptest',
-		'<%= config.bin %> <%= command.id %> --all',
-	];
 
 	static flags = {
 		'out-dir': Flags.string({
@@ -20,52 +11,18 @@ export default class Dist extends Command {
 			description:
 				'Path to the output directory. Defaults to "dist/{project}".',
 		}),
-		all: Flags.boolean({
-			description: 'Prepare all projects for distribution.',
-		}),
 	};
-
-	static strict = false;
 
 	static args = {
-		projects: Args.string({
-			description: 'Project(s) to prepare for distribution.',
-		}),
+		...BaseProjectCommand.args,
 	};
 
-	getInput() {
-		return this.parse(Dist);
-	}
-
-	assertArgs(
-		args: Awaited<ReturnType<typeof this.getInput>>['args'],
-		flags: Awaited<ReturnType<typeof this.getInput>>['flags'],
-	): asserts flags is {
-		'out-dir': string;
-		all: boolean;
-		json: boolean;
-	} {
-		if (!args.projects?.length && !flags.all) {
-			throw new Error('Please provide a project.');
-		}
-	}
-
 	public async run(): Promise<void> {
-		const { args, flags, raw } = await this.getInput();
+		console.log(this);
 
 		try {
-			this.assertArgs(args, flags);
-
-			const projects = flags.all
-				? getMonorepoProjects()
-				: normalizeProjectsInput(raw);
-
-			for (const project of projects) {
-				validateProject(project);
-			}
-
-			for (const project of projects) {
-				const result = 'test';
+			for (const project of this.projects) {
+				const result = project;
 
 				if (result) {
 					this.log(result);

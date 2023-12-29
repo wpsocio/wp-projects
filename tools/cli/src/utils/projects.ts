@@ -120,23 +120,6 @@ export type ArgToken = {
 	input: string;
 };
 
-export function normalizeProjectsInput(rawInput: Array<ArgToken>) {
-	const projects = [];
-
-	for (const token of rawInput) {
-		if (token.type === 'arg') {
-			projects.push(
-				...token.input
-					.split(/\s+/)
-					.map((project) => project.trim())
-					.filter(Boolean),
-			);
-		}
-	}
-
-	return new Set(projects);
-}
-
 /**
  * Coerce array input from yargs
  * `array: true` works weirdly with positional arguments
