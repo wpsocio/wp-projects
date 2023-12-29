@@ -197,7 +197,7 @@ export async function updateVersion(
 				fileContents = fileContents.replace(pattern, replaceCallback);
 			}
 
-			// fs.writeFileSync(filePath, fileContents);
+			fs.writeFileSync(filePath, fileContents);
 		}
 	}
 }

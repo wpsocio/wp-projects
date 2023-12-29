@@ -52,7 +52,7 @@ export default class Dist extends BaseProjectCommand<typeof Dist> {
 						requirements: {
 							requiresPHP: '8.3',
 							requiresAtLeast: '5.9',
-							testedUpTo: '6.1',
+							testedUpTo: '6.1.4',
 						},
 						toUpdate: {
 							files: [
@@ -71,7 +71,7 @@ export default class Dist extends BaseProjectCommand<typeof Dist> {
 					const projectSlug = project.split('/')[1];
 					const projectName = projectSlug.replace('-', '_');
 
-					await updateVersion(project, '6.1.0', {
+					await updateVersion(project, '3.0.1', {
 						toUpdate: [
 							{
 								type: 'packageJson',
