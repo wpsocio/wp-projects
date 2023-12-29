@@ -68,8 +68,8 @@ export default class Dist extends BaseProjectCommand<typeof Dist> {
 			{
 				title: 'Update version',
 				task: async (): Promise<void> => {
-					const projectName = project.split('/')[0].replace('-', '_');
 					const projectSlug = project.split('/')[1];
+					const projectName = projectSlug.replace('-', '_');
 
 					await updateVersion(project, '6.1.0', {
 						toUpdate: [
