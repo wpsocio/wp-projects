@@ -51,7 +51,7 @@ export default class Dist extends BaseProjectCommand<typeof Dist> {
 					await updateRequirements(project, {
 						requirements: {
 							requiresPHP: '8.3',
-							requiresAtLeast: '5.9',
+							requiresAtLeast: '6.2',
 							testedUpTo: '6.1.4',
 						},
 						toUpdate: {
