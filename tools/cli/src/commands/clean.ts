@@ -47,6 +47,7 @@ export default class Clean extends Command {
 		const args: CleanArgs = {
 			path: _args.path ?? '',
 			all: flags.all,
+			include: flags.include,
 		};
 
 		if (args.all) {
@@ -78,7 +79,15 @@ export default class Clean extends Command {
 
 			await this.cleanFiles(filesToDelete, args);
 		} catch (error) {
-			this.log(chalk.red((error as { message: string }).message));
+			if (
+				typeof error === 'object' &&
+				error &&
+				'message' in error &&
+				error.message
+			) {
+				this.log(chalk.red(error.message));
+			}
+
 			process.exitCode = 1;
 		}
 	}

@@ -76,5 +76,6 @@ export default class Dist extends Command {
 			process.exitCode = 1;
 		}
 	}
+
 	async prepareForDist(project: string) {}
 }

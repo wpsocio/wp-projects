@@ -4,7 +4,7 @@
 	"private": true,
 	"type": "module",
 	"bin": {
-		"wpsocio": "./bin/run.js"
+		"wpsocio": "./bin/dev.js"
 	},
 	"types": "dist/index.d.ts",
 	"main": "bin/run.js",
