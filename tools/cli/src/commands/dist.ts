@@ -2,16 +2,12 @@ import { Args, Command, Flags } from '@oclif/core';
 import chalk from 'chalk';
 import {
 	getMonorepoProjects,
-	getRealPath,
-	getSymlinkPath,
 	normalizeProjectsInput,
 	validateProject,
 } from '../utils/projects.js';
-import { SymlinkManager } from '../utils/symlinks.js';
 
-export default class Link extends Command {
-	static description =
-		'Creates symlinks in the given wp-content directory for the project(s) in this monorepo.';
+export default class Dist extends Command {
+	static description = 'Prepares projects for distribution or deployment.';
 
 	static examples = [
 		'<%= config.bin %> <%= command.id %> plugins/wptelegram,themes/wptest',
@@ -19,13 +15,13 @@ export default class Link extends Command {
 	];
 
 	static flags = {
-		'wp-content-dir': Flags.string({
+		'out-dir': Flags.string({
 			char: 'd',
-			description: 'Path to the WordPress content directory.',
-			env: 'WP_CONTENT_DIR',
+			description:
+				'Path to the output directory. Defaults to "dist/{project}".',
 		}),
 		all: Flags.boolean({
-			description: 'Link all projects.',
+			description: 'Prepare all projects for distribution.',
 		}),
 	};
 
@@ -33,27 +29,22 @@ export default class Link extends Command {
 
 	static args = {
 		projects: Args.string({
-			description: 'Project(s) to link',
+			description: 'Project(s) to prepare for distribution.',
 		}),
 	};
 
 	getInput() {
-		return this.parse(Link);
+		return this.parse(Dist);
 	}
 
 	assertArgs(
 		args: Awaited<ReturnType<typeof this.getInput>>['args'],
 		flags: Awaited<ReturnType<typeof this.getInput>>['flags'],
 	): asserts flags is {
-		'wp-content-dir': string;
+		'out-dir': string;
 		all: boolean;
 		json: boolean;
 	} {
-		if (!flags['wp-content-dir']) {
-			throw new Error(
-				'Please provide a valid WordPress content directory.\n\nYou can set it using the --wp-content-dir option or the WP_CONTENT_DIR environment variable.',
-			);
-		}
 		if (!args.projects?.length && !flags.all) {
 			throw new Error('Please provide a project.');
 		}
@@ -65,8 +56,6 @@ export default class Link extends Command {
 		try {
 			this.assertArgs(args, flags);
 
-			const symlinkManager = new SymlinkManager();
-
 			const projects = flags.all
 				? getMonorepoProjects()
 				: normalizeProjectsInput(raw);
@@ -76,12 +65,7 @@ export default class Link extends Command {
 			}
 
 			for (const project of projects) {
-				const symlinkPath = getSymlinkPath(project, flags['wp-content-dir']);
-				const realPath = getRealPath(project);
-				const result = symlinkManager.createSymlink({
-					symlinkPath,
-					realPath,
-				});
+				const result = 'test';
 
 				if (result) {
 					this.log(result);
@@ -92,4 +76,5 @@ export default class Link extends Command {
 			process.exitCode = 1;
 		}
 	}
+	async prepareForDist(project: string) {}
 }

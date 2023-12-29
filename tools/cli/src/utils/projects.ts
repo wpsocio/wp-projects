@@ -1,6 +1,5 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import chalk from 'chalk';
 import { ROOT_DIR } from './monorepo.js';
 
 export const PROJECT_TYPES = ['plugins'] as const;
@@ -22,10 +21,11 @@ const GIT_IGNORE_PATH = path.join(ROOT_DIR, '.gitignore');
 
 const gitIgnoreContent = fs.readFileSync(GIT_IGNORE_PATH, 'utf8');
 
-const connectedProjects = (process.env.CONNECTED_PROJECTS || '')
-	.split(',')
-	.map((project) => project.trim())
-	.filter(Boolean);
+const getConnectedProjects = () =>
+	(process.env.CONNECTED_PROJECTS || '')
+		.split(',')
+		.map((project) => project.trim())
+		.filter(Boolean);
 
 function getProjectDetails(
 	dirent: fs.Dirent,
@@ -34,7 +34,7 @@ function getProjectDetails(
 	const projectPath = `${projectType}/${dirent.name}`;
 
 	// Connected is a subset of ignored, so we need to check for connected first
-	if (connectedProjects.includes(`${projectType}/${dirent.name}`)) {
+	if (getConnectedProjects().includes(`${projectType}/${dirent.name}`)) {
 		return {
 			path: projectPath,
 			status: 'connected',
@@ -95,8 +95,7 @@ export function getAllProjects() {
 
 export function validateProject(project: string) {
 	if (!getMonorepoProjects().has(project)) {
-		console.error(chalk.red(`Invalid project: ${project}`));
-		process.exit(1);
+		throw new Error(`Invalid project: ${project}`);
 	}
 }
 
@@ -112,4 +111,41 @@ export function getRealPath(project: string, relativeTo = ROOT_DIR) {
  */
 export function getSymlinkPath(project: string, relativeTo: string) {
 	return path.join(relativeTo, project);
+}
+
+export type ArgToken = {
+	type: 'arg' | 'flag';
+	arg?: string;
+	flag?: string;
+	input: string;
+};
+
+export function normalizeProjectsInput(rawInput: Array<ArgToken>) {
+	const projects = [];
+
+	for (const token of rawInput) {
+		if (token.type === 'arg') {
+			projects.push(
+				...token.input
+					.split(/\s+/)
+					.map((project) => project.trim())
+					.filter(Boolean),
+			);
+		}
+	}
+
+	return new Set(projects);
+}
+
+/**
+ * Coerce array input from yargs
+ * `array: true` works weirdly with positional arguments
+ * So, in order to provide support for comma separated values, we need to use coerce
+ */
+export function coerceArrayInput(projects: Array<string>) {
+	// Comma gets converted to space by yargs
+	return projects
+		.flatMap((project) => project.split(/\s+/))
+		.map((part) => part.trim())
+		.filter(Boolean);
 }
