@@ -52,7 +52,7 @@ export default class Dist extends BaseProjectCommand<typeof Dist> {
 						requirements: {
 							requiresPHP: '8.3',
 							requiresAtLeast: '6.2',
-							testedUpTo: '6.1.4',
+							testedUpTo: '6.4.1',
 						},
 						toUpdate: {
 							files: [
