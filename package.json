@@ -31,6 +31,7 @@
 		"@wpsocio/cli": "workspace:*",
 		"dotenv": "^16.3.1",
 		"npm-check-updates": "^16.14.12",
+		"ts-node": "^10.9.2",
 		"turbo": "^1.11.2",
 		"typescript": "^5.3.3"
 	}
