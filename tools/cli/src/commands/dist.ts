@@ -71,7 +71,7 @@ export default class Dist extends BaseProjectCommand<typeof Dist> {
 					const projectSlug = project.split('/')[1];
 					const projectName = projectSlug.replace('-', '_');
 
-					await updateVersion(project, '3.0.1', {
+					await updateVersion(project, '5.0.1', {
 						toUpdate: [
 							{
 								type: 'packageJson',
