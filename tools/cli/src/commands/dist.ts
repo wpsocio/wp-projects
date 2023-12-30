@@ -1,6 +1,6 @@
 import { Flags } from '@oclif/core';
 import chalk from 'chalk';
-import { Listr, ListrTask, ListrTaskWrapper, delay } from 'listr2';
+import { Listr, ListrTask, delay } from 'listr2';
 import { BaseProjectCommand } from '../baseProjectCommand.js';
 import { updateRequirements, updateVersion } from '../utils/dist.js';
 
@@ -101,6 +101,17 @@ export default class Dist extends BaseProjectCommand<typeof Dist> {
 					});
 				},
 			},
+			/* {
+				title: 'Update changelog',
+				task: async (): Promise<void> => {
+					await updateChangelog(project, '5.0.1', {
+						changelogPath: 'changelog.md',
+						readmeTxt: {
+							files: ['src/README.txt'],
+						},
+					});
+				},
+			}, */
 		];
 	}
 }
