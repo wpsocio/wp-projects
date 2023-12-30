@@ -77,31 +77,24 @@ export default class Dist extends BaseProjectCommand<typeof Dist> {
 						toUpdate: [
 							{
 								type: 'packageJson',
-								files: ['package.json'],
 							},
 							{
 								type: 'composerJson',
-								files: ['composer.json'],
 							},
 							{
 								type: 'readmeFiles',
-								files: ['README.md', 'src/README.txt'],
 							},
 							{
 								type: 'pluginMainFile',
-								files: [`src/${projectSlug}.php`],
 							},
 							{
 								type: 'sinceTag',
-								files: ['**/*.php'],
 							},
 							{
 								type: 'general',
 								files: [`src/${projectSlug}.php`],
 								textPatterns: [
-									new RegExp(
-										`'${projectName.toUpperCase()}_VER',\\s*'([0-9a-z-+.]+)'`,
-									),
+									`'${projectName.toUpperCase()}_VER',\\s*'([0-9a-z-+.]+)'`,
 								],
 							},
 						],
