@@ -2,7 +2,13 @@ import { Flags } from '@oclif/core';
 import chalk from 'chalk';
 import { Listr, ListrTask, delay } from 'listr2';
 import { BaseProjectCommand } from '../baseProjectCommand.js';
-import { updateRequirements, updateVersion } from '../utils/dist.js';
+import {
+	generatePotFile,
+	makeMoFiles,
+	updatePoFiles,
+	updateRequirements,
+	updateVersion,
+} from '../utils/dist.js';
 
 export default class Dist extends BaseProjectCommand<typeof Dist> {
 	static description = 'Prepares projects for distribution or deployment.';
@@ -44,6 +50,8 @@ export default class Dist extends BaseProjectCommand<typeof Dist> {
 	}
 
 	prepareForDist(project: string): Array<ListrTask> {
+		const projectSlug = project.split('/')[1];
+		const projectName = projectSlug.replace('-', '_');
 		return [
 			{
 				title: 'Update requirements',
@@ -69,9 +77,6 @@ export default class Dist extends BaseProjectCommand<typeof Dist> {
 			{
 				title: 'Update version',
 				task: async (): Promise<void> => {
-					const projectSlug = project.split('/')[1];
-					const projectName = projectSlug.replace('-', '_');
-
 					await delay(1000);
 					await updateVersion(project, '5.0.1', {
 						toUpdate: [
@@ -112,6 +117,60 @@ export default class Dist extends BaseProjectCommand<typeof Dist> {
 					});
 				},
 			}, */
+			{
+				title: 'i18n',
+				task: async (_, task) => {
+					await delay(1000);
+					return task.newListr(
+						[
+							/* 
+							{
+								title: 'JS POT to PHP',
+								task: async () => {
+									await potToPhp(project, {
+										potFile: 'src/languages/js-translations.pot',
+										textDomain: 'wptelegram',
+									});
+								},
+							}, */
+							{
+								title: 'Generate POT file',
+								task: async () => {
+									await generatePotFile(project, {
+										source: 'src',
+										textDomain: projectSlug,
+										headers: {
+											language: 'en_US',
+											'X-Poedit-Basepath': '..',
+											'Plural-Forms': 'nplurals=2; plural=n != 1;',
+											'X-Poedit-KeywordsList':
+												'__;_e;_x;esc_attr__;esc_attr_e;esc_html__;esc_html_e',
+											'X-Poedit-SearchPath-0': '.',
+											'X-Poedit-SearchPathExcluded-0': 'assets',
+										},
+										mergeFiles: ['src/languages/js-translations.pot'],
+										makePotArgs: {
+											slug: projectSlug,
+										},
+									});
+								},
+							},
+							{
+								title: 'Update PO and MO files',
+								task: async () => {
+									await updatePoFiles(project, {
+										source: 'src/languages/wptelegram.pot',
+									});
+									await makeMoFiles(project, {
+										source: 'src/languages/',
+									});
+								},
+							},
+						],
+						{ concurrent: false },
+					);
+				},
+			},
 		];
 	}
 }
