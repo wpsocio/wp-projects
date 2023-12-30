@@ -1,6 +1,6 @@
-import { Text, Link } from '@wpsocio/adapters';
-import { sprintf, __ } from '@wpsocio/i18n';
+import { Link, Text } from '@wpsocio/adapters';
 import { FormField } from '@wpsocio/form';
+import { __, sprintf } from '@wpsocio/i18n';
 import { createInterpolateElement, prefixName } from '@wpsocio/utilities';
 
 import { getFieldLabel } from '../services';
@@ -26,8 +26,8 @@ export const UserNotifications: React.FC<UserNotificationsProps> = ({
 			/>
 			<Text mb="2em">
 				{createInterpolateElement(
-					/* translators: 1 Plugin name */
 					sprintf(
+						/* translators: 1 Plugin name */
 						__('Use %s to let them connect their Telegram account.'),
 						'<Link />',
 					),
@@ -44,8 +44,8 @@ export const UserNotifications: React.FC<UserNotificationsProps> = ({
 				)}
 				<br />
 				{createInterpolateElement(
-					/* translators: 1 profile page */
 					sprintf(
+						/* translators: 1 profile page */
 						__(
 							'They can also enter their Telegram Chat ID manually on %s page.',
 						),

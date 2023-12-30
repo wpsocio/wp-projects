@@ -1,10 +1,10 @@
-import { __, sprintf } from '@wpsocio/i18n';
+import { Box, Link, List, ListItem, SimpleGrid } from '@wpsocio/adapters';
 import {
-	Instructions as InstructionsUI,
 	Code,
+	Instructions as InstructionsUI,
 	YouTubeVideo,
 } from '@wpsocio/components';
-import { Box, List, ListItem, Link, SimpleGrid } from '@wpsocio/adapters';
+import { __, sprintf } from '@wpsocio/i18n';
 import { createInterpolateElement } from '@wpsocio/utilities';
 
 export interface NotifyInstructionsProps {
@@ -28,8 +28,8 @@ export const NotifyInstructions: React.FC<NotifyInstructionsProps> = ({
 							<List as="ol" styleType="decimal" ms="1em">
 								<ListItem>
 									{createInterpolateElement(
-										/* translators: 1 bot username */
 										sprintf(
+											/* translators: 1 bot username */
 											__('Get your Chat ID from %s and enter it below.'),
 											'<BotLink />',
 										),
@@ -67,8 +67,8 @@ export const NotifyInstructions: React.FC<NotifyInstructionsProps> = ({
 							<List as="ol" styleType="decimal" ms="1em">
 								<ListItem>
 									{createInterpolateElement(
-										/* translators: 1 bot username */
 										sprintf(
+											/* translators: 1 bot username */
 											__('Add %s to the group to get its Chat ID.'),
 											'<Username />',
 										),
@@ -80,6 +80,7 @@ export const NotifyInstructions: React.FC<NotifyInstructionsProps> = ({
 								<ListItem>
 									{createInterpolateElement(
 										sprintf(
+											/* translators: 1 field name */
 											__('Enter the Chat ID in %s field below.'),
 											'<Field />',
 										),

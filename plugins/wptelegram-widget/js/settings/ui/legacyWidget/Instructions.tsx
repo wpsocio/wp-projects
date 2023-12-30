@@ -35,6 +35,7 @@ export const Instructions: React.FC = () => {
 					</ListItem>
 					<ListItem>
 						{sprintf(
+							/* translators: %s bot name */
 							__(
 								'After completing the steps %s will provide you the Bot Token.',
 							),

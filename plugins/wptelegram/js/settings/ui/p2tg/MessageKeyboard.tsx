@@ -45,8 +45,8 @@ export const MessageKeyboard: React.FC = () => {
 				<FeildStackItem>
 					<FormField
 						after={createInterpolateElement(
-							/* translators: template tag/macro */
 							sprintf(
+								/* translators: template tag/macro */
 								__('You can specify any custom field like %s.'),
 								'<Macro />',
 							),

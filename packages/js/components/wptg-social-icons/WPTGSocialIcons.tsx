@@ -45,7 +45,11 @@ export const WPTGSocialIcons: React.FC<WPTGSocialIconsProps> = ({
 					className="twitter-follow-button"
 					data-show-count="false"
 				>
-					{sprintf(__('Follow %s'), '@WPTelegram')}
+					{sprintf(
+						/* translators: %s: social handle */
+						__('Follow %s'),
+						'@WPTelegram',
+					)}
 				</Box>
 			</StackItem>
 			<StackItem className="wptelegram-social-icons__icon wptelegram-social-icons__icon--telegram">
@@ -57,7 +61,11 @@ export const WPTGSocialIcons: React.FC<WPTGSocialIconsProps> = ({
 						verticalAlign="middle"
 					/>
 					<Text as="small" color="#fff">
-						{sprintf(__('Join %s'), '@WPTelegram')}
+						{sprintf(
+							/* translators: %s: channel name */
+							__('Join %s'),
+							'@WPTelegram',
+						)}
 					</Text>
 				</Link>
 			</StackItem>

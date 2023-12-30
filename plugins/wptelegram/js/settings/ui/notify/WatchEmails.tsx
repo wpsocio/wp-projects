@@ -20,6 +20,7 @@ export const WatchEmails: React.FC = () => {
 			<FormField
 				description={createInterpolateElement(
 					sprintf(
+						/* translators: %s code */
 						__(
 							'If you want to receive notification for every email, then write %s.',
 						),

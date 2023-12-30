@@ -1,10 +1,10 @@
-import { __, sprintf } from '@wpsocio/i18n';
+import { Box, Link, List, ListItem, SimpleGrid, Text } from '@wpsocio/adapters';
 import {
-	Instructions as InstructionsUI,
 	Code,
+	Instructions as InstructionsUI,
 	YouTubeVideo,
 } from '@wpsocio/components';
-import { Box, List, ListItem, Link, SimpleGrid, Text } from '@wpsocio/adapters';
+import { __, sprintf } from '@wpsocio/i18n';
 import { createInterpolateElement } from '@wpsocio/utilities';
 
 export interface P2TGInstructionsProps {
@@ -27,6 +27,7 @@ export const P2TGInstructions: React.FC<P2TGInstructionsProps> = ({
 						<ListItem>
 							{createInterpolateElement(
 								sprintf(
+									/* translators: %s bot username */
 									__('Add your bot %s as Administrator to your Channel/Group.'),
 									'<Username />',
 								),
@@ -45,7 +46,11 @@ export const P2TGInstructions: React.FC<P2TGInstructionsProps> = ({
 						<List styleType="disc" ms="2rem">
 							<ListItem>
 								{createInterpolateElement(
-									sprintf(__('Username must start with %s'), '<Symbol />'),
+									sprintf(
+										/* translators: %s symbol - @ */
+										__('Username must start with %s'),
+										'<Symbol />',
+									),
 									{
 										Symbol: <Code>@</Code>,
 									},
@@ -55,7 +60,11 @@ export const P2TGInstructions: React.FC<P2TGInstructionsProps> = ({
 								{__('You can also use the Chat ID of a group or private chat.')}
 								&nbsp;
 								{createInterpolateElement(
-									sprintf(__('Get it from %s.'), '<BotLink />'),
+									sprintf(
+										/* translators: %s bot username */
+										__('Get it from %s.'),
+										'<BotLink />',
+									),
 									{
 										BotLink: (
 											<Link href="https://t.me/MyChatInfoBot" isExternal>
@@ -68,6 +77,7 @@ export const P2TGInstructions: React.FC<P2TGInstructionsProps> = ({
 							<ListItem>
 								{createInterpolateElement(
 									sprintf(
+										/* translators: %s colon character */
 										__(
 											'If you want to send posts to a specific topic in a group with topics enabled, you can add a colon (%s) to the chat ID followed by topic ID.',
 										),
@@ -79,7 +89,11 @@ export const P2TGInstructions: React.FC<P2TGInstructionsProps> = ({
 								)}
 								&nbsp;
 								{createInterpolateElement(
-									sprintf(__('For example %s'), '<Ex />'),
+									sprintf(
+										/* translators: %s code example */
+										__('For example %s'),
+										'<Ex />',
+									),
 									{
 										Ex: <Code>{'-100012345678:102'}</Code>,
 									},
@@ -134,7 +148,13 @@ export const P2TGInstructions: React.FC<P2TGInstructionsProps> = ({
 						)}
 					</Text>
 					<br />
-					<Text as="span">{sprintf(__('For example %s'), '👇')}</Text>
+					<Text as="span">
+						{sprintf(
+							/* translators: %s code example */
+							__('For example %s'),
+							'👇',
+						)}
+					</Text>
 				</Text>
 				<List styleType="disc" ms="2rem" mt="1rem">
 					<ListItem>
