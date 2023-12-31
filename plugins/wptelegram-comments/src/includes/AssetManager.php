@@ -12,7 +12,6 @@
 namespace WPTelegram\Comments\includes;
 
 use WPTelegram\Comments\includes\restApi\SettingsController;
-use Kucrut\Vite;
 use WPSocio\WPUtils\JsDependencies;
 
 /**

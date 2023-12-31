@@ -12,7 +12,6 @@
 namespace WPTelegram\Login\includes;
 
 use WPTelegram\Login\includes\restApi\SettingsController;
-use Kucrut\Vite;
 use WPSocio\WPUtils\JsDependencies;
 
 /**
