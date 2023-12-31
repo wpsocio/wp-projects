@@ -5,6 +5,7 @@ import { BaseProjectCommand } from '../baseProjectCommand.js';
 import {
 	generatePotFile,
 	makeMoFiles,
+	potToPhp,
 	updatePoFiles,
 	updateRequirements,
 	updateVersion,
@@ -66,7 +67,7 @@ export default class Dist extends BaseProjectCommand<typeof Dist> {
 						toUpdate: {
 							files: [
 								'dev.php',
-								'src/wptelegram.php',
+								`src/${projectSlug}.php`,
 								'src/README.txt',
 								'README.md',
 							],
@@ -123,16 +124,6 @@ export default class Dist extends BaseProjectCommand<typeof Dist> {
 					await delay(1000);
 					return task.newListr(
 						[
-							/* 
-							{
-								title: 'JS POT to PHP',
-								task: async () => {
-									await potToPhp(project, {
-										potFile: 'src/languages/js-translations.pot',
-										textDomain: 'wptelegram',
-									});
-								},
-							}, */
 							{
 								title: 'Generate POT file',
 								task: async () => {
@@ -159,10 +150,21 @@ export default class Dist extends BaseProjectCommand<typeof Dist> {
 								title: 'Update PO and MO files',
 								task: async () => {
 									await updatePoFiles(project, {
-										source: 'src/languages/wptelegram.pot',
+										source: `src/languages/${projectSlug}.pot`,
 									});
 									await makeMoFiles(project, {
 										source: 'src/languages/',
+									});
+								},
+							},
+							{
+								// Generate PHP file from JS POT file
+								// for wp.org to scan the translation strings
+								title: 'JS POT to PHP',
+								task: async () => {
+									await potToPhp(project, {
+										potFile: 'src/languages/js-translations.pot',
+										textDomain: projectSlug,
 									});
 								},
 							},
