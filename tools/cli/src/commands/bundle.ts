@@ -13,6 +13,8 @@ import { updateRequirements } from '../utils/requirements.js';
 import { processStyles } from '../utils/styles.js';
 import { updateVersion } from '../utils/versions.js';
 
+type TaskWrapper = Parameters<ListrTask['task']>[1];
+
 export default class Bundle extends BaseProjectCommand<typeof Bundle> {
 	static description =
 		'Prepares and bundles projects for distribution or deployment.';
@@ -61,9 +63,10 @@ export default class Bundle extends BaseProjectCommand<typeof Bundle> {
 			tasks.add({
 				title: `Preparing ${project}`,
 				task: (_, task) => {
-					return task.newListr(this.prepareForDist(project), {
-						concurrent: false,
-					});
+					return this.prepareForDist(project, task);
+				},
+				rendererOptions: {
+					persistentOutput: true,
 				},
 			});
 		}
@@ -76,75 +79,92 @@ export default class Bundle extends BaseProjectCommand<typeof Bundle> {
 		}
 	}
 
-	prepareForDist(project: string): Array<ListrTask> {
-		const version =
-			this.flags.version || getNextVersion(project, this.flags['release-type']);
+	getVersion(project: string, task: TaskWrapper) {
+		let version = this.flags.version;
 
 		if (!version) {
-			throw new Error(
-				'Could not calculate the next version. Is the current version a valid semver?',
-			);
-		}
+			const releaseType = this.flags['release-type'] || 'patch';
 
+			version = getNextVersion(project, releaseType) || '';
+
+			if (!version) {
+				throw new Error(
+					'Could not calculate the next version. Is the current version a valid semver?',
+				);
+			}
+
+			task.output = `Preparing for "${chalk.bold(
+				releaseType,
+			)}" (v${version}) release`;
+		} else {
+			task.output = `Preparing "v${chalk.bold(version)}"`;
+		}
+		return version;
+	}
+
+	prepareForDist(project: string, task: TaskWrapper) {
 		const projectSlug = project.split('/')[1];
 		const projectName = projectSlug.replace('-', '_');
 
 		const outDir = this.flags['out-dir'] || `dist/${project}`;
 		const preserveSource = this.flags['preserve-source'];
 
-		return [
-			{
-				title: 'Update requirements',
-				task: async (): Promise<void> => {
-					await updateRequirements(project, {
-						requirements: {
-							requiresPHP: '8.0',
-							requiresAtLeast: '6.2',
-							testedUpTo: '6.4.1',
-						},
-						toUpdate: {
-							files: [
-								'dev.php',
-								`src/${projectSlug}.php`,
-								'src/README.txt',
-								'README.md',
-							],
-						},
-					});
-				},
-			},
-			{
-				title: 'Update version',
-				task: async (): Promise<void> => {
-					await updateVersion(project, version, {
-						toUpdate: [
-							{
-								type: 'packageJson',
+		const version = this.getVersion(project, task);
+
+		return task.newListr(
+			[
+				{
+					title: 'Update requirements',
+					task: async () => {
+						return await updateRequirements(project, {
+							requirements: {
+								requiresPHP: '8.0',
+								requiresAtLeast: '6.2',
+								testedUpTo: '6.4.1',
 							},
-							{
-								type: 'composerJson',
-							},
-							{
-								type: 'readmeFiles',
-							},
-							{
-								type: 'pluginMainFile',
-							},
-							{
-								type: 'sinceTag',
-							},
-							{
-								type: 'general',
-								files: [`src/${projectSlug}.php`],
-								textPatterns: [
-									`'${projectName.toUpperCase()}_VER',\\s*'([0-9a-z-+.]+)'`,
+							toUpdate: {
+								files: [
+									'dev.php',
+									`src/${projectSlug}.php`,
+									'src/README.txt',
+									'README.md',
 								],
 							},
-						],
-					});
+						});
+					},
 				},
-			},
-			/* {
+				{
+					title: 'Update version',
+					task: async () => {
+						return await updateVersion(project, version, {
+							toUpdate: [
+								{
+									type: 'packageJson',
+								},
+								{
+									type: 'composerJson',
+								},
+								{
+									type: 'readmeFiles',
+								},
+								{
+									type: 'pluginMainFile',
+								},
+								{
+									type: 'sinceTag',
+								},
+								{
+									type: 'general',
+									files: [`src/${projectSlug}.php`],
+									textPatterns: [
+										`'${projectName.toUpperCase()}_VER',\\s*'([0-9a-z-+.]+)'`,
+									],
+								},
+							],
+						});
+					},
+				},
+				/* {
 				title: 'Update changelog',
 				task: async (): Promise<void> => {
 					await updateChangelog(project, version, {
@@ -155,79 +175,83 @@ export default class Bundle extends BaseProjectCommand<typeof Bundle> {
 					});
 				},
 			}, */
-			{
-				title: 'i18n',
-				task: async (_, task) => {
-					return task.newListr(
-						[
-							{
-								title: 'Generate POT file',
-								task: async () => {
-									await generatePotFile(project, {
-										source: 'src',
-										textDomain: projectSlug,
-										headers: {
-											language: 'en_US',
-											'X-Poedit-Basepath': '..',
-											'Plural-Forms': 'nplurals=2; plural=n != 1;',
-											'X-Poedit-KeywordsList':
-												'__;_e;_x;esc_attr__;esc_attr_e;esc_html__;esc_html_e',
-											'X-Poedit-SearchPath-0': '.',
-											'X-Poedit-SearchPathExcluded-0': 'assets',
-										},
-										mergeFiles: ['src/languages/js-translations.pot'],
-										makePotArgs: {
-											slug: projectSlug,
-										},
-									});
+				{
+					title: 'i18n',
+					task: async (_, task) => {
+						return task.newListr(
+							[
+								{
+									title: 'Generate POT file',
+									task: async () => {
+										return await generatePotFile(project, {
+											source: 'src',
+											textDomain: projectSlug,
+											headers: {
+												language: 'en_US',
+												'X-Poedit-Basepath': '..',
+												'Plural-Forms': 'nplurals=2; plural=n != 1;',
+												'X-Poedit-KeywordsList':
+													'__;_e;_x;esc_attr__;esc_attr_e;esc_html__;esc_html_e',
+												'X-Poedit-SearchPath-0': '.',
+												'X-Poedit-SearchPathExcluded-0': 'assets',
+											},
+											mergeFiles: ['src/languages/js-translations.pot'],
+											makePotArgs: {
+												slug: projectSlug,
+											},
+										});
+									},
 								},
-							},
-							{
-								title: 'Update PO and MO files',
-								task: async () => {
-									await updatePoFiles(project, {
-										source: `src/languages/${projectSlug}.pot`,
-									});
-									await makeMoFiles(project, {
-										source: 'src/languages/',
-									});
+								{
+									title: 'Update PO and MO files',
+									task: async () => {
+										await updatePoFiles(project, {
+											source: `src/languages/${projectSlug}.pot`,
+										});
+										return await makeMoFiles(project, {
+											source: 'src/languages/',
+										});
+									},
 								},
-							},
-							{
-								// Generate PHP file from JS POT file
-								// for wp.org to scan the translation strings
-								title: 'JS POT to PHP',
-								task: async () => {
-									await potToPhp(project, {
-										potFile: 'src/languages/js-translations.pot',
-										textDomain: projectSlug,
-									});
+								{
+									// Generate PHP file from JS POT file
+									// for wp.org to scan the translation strings
+									title: 'JS POT to PHP',
+									task: async () => {
+										return await potToPhp(project, {
+											potFile: 'src/languages/js-translations.pot',
+											textDomain: projectSlug,
+										});
+									},
 								},
-							},
-						],
-						{ concurrent: false },
-					);
+							],
+							{ concurrent: false },
+						);
+					},
 				},
-			},
-			{
-				title: 'Process styles',
-				task: async (_, task) => {
-					return task.newListr(
-						[
-							{
-								title: 'Minify CSS',
-								task: async () => {
-									await processStyles(project, {
-										files: ['src/assets/static/css/*.css'],
-										ignore: ['src/assets/static/css/*.min.css'],
-									});
+				{
+					title: 'Process styles',
+					task: async (_, task) => {
+						return task.newListr(
+							[
+								{
+									title: 'Minify CSS',
+									task: async () => {
+										return await processStyles(project, {
+											files: ['src/assets/static/css/*.css'],
+											ignore: ['src/assets/static/css/*.min.css'],
+										});
+									},
 								},
-							},
-						],
-						{ concurrent: false },
-					);
+							],
+							{ concurrent: false },
+						);
+					},
 				},
+			],
+			{
+				concurrent: false,
 			},
-		];
+		);
 	}
 }

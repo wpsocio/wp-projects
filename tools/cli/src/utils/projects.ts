@@ -115,7 +115,7 @@ export function getSymlinkPath(project: string, relativeTo: string) {
 }
 
 export function getCurrentVersion(project: string) {
-	const packageJsonPath = path.join(getRealPath(project), 'package.json');
+	const packageJsonPath = path.join(project, 'package.json');
 
 	const { version } = JSON.parse(
 		fs.readFileSync(packageJsonPath, { encoding: 'utf8' }),
@@ -124,8 +124,8 @@ export function getCurrentVersion(project: string) {
 	return version;
 }
 
-export function getNextVersion(project: string, releaseType?: string) {
+export function getNextVersion(project: string, releaseType: string) {
 	const currentVersion = getCurrentVersion(project);
 
-	return semverInc(currentVersion, (releaseType || 'patch') as ReleaseType);
+	return semverInc(currentVersion, releaseType as ReleaseType);
 }
