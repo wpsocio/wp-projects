@@ -78,8 +78,7 @@ export default class Bundle extends BaseProjectCommand<typeof Bundle> {
 		try {
 			await tasks.run();
 		} catch (error) {
-			this.log(chalk.red((error as { message: string }).message));
-			process.exitCode = 1;
+			this.error(chalk.red((error as { message: string }).message));
 		}
 	}
 
@@ -102,8 +101,10 @@ export default class Bundle extends BaseProjectCommand<typeof Bundle> {
 			version = getNextVersion(project, releaseType) || '';
 
 			if (!version) {
-				throw new Error(
-					'Could not calculate the next version. Is the current version a valid semver?',
+				this.error(
+					chalk.red(
+						'Could not calculate the next version. Is the current version a valid semver?',
+					),
 				);
 			}
 
