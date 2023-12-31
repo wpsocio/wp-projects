@@ -16,7 +16,10 @@
 	"repositories": {
 		"local": {
 			"type": "path",
-			"url": "../../packages/php/*"
+			"url": "../../packages/php/*",
+			"options": {
+				"symlink": true
+			}
 		}
 	},
 	"config": {

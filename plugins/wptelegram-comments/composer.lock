@@ -4,19 +4,18 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f3112f4fd93c71302f226f9ce9c83940",
+    "content-hash": "82a0259489e18ff4b516d3438a1ee97e",
     "packages": [
         {
             "name": "wpsocio/wp-utils",
-            "version": "dev-main",
+            "version": "dev-update/enhance-dist-commant",
             "dist": {
                 "type": "path",
                 "url": "../../packages/php/wp-utils",
-                "reference": "ba55d0228449123c7a87cb9f8380c94378c539f2"
+                "reference": "1e6337bd50a16a647b8ec92758f891bbbd1398e0"
             },
             "require-dev": {
                 "pestphp/pest": "^1.22",
-                "php-stubs/wordpress-stubs": "^6.4",
                 "wp-coding-standards/wpcs": "^3.0.1"
             },
             "type": "library",
