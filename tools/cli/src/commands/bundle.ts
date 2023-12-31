@@ -27,7 +27,7 @@ export default class Bundle extends BaseProjectCommand<typeof Bundle> {
 			description:
 				'Path to the output directory. Defaults to "dist/{project}".',
 		}),
-		'no-source-change': Flags.boolean({
+		'no-changes-to-source': Flags.boolean({
 			char: 'n',
 			description: 'Do not change the source files.',
 		}),
@@ -124,7 +124,7 @@ export default class Bundle extends BaseProjectCommand<typeof Bundle> {
 
 		const outDir = this.getOutputDir().replace(this.placeholder, project);
 
-		const canChangeSourceFiles = !this.flags['no-source-change'];
+		const canChangeSourceFiles = !this.flags['no-changes-to-source'];
 
 		const cwd = canChangeSourceFiles ? project : outDir;
 
