@@ -51,7 +51,7 @@ export async function zipDir(sourceDir: string, outPath: string) {
 
 	return await new Promise((resolve, reject) => {
 		archive
-			.directory(sourceDir, false)
+			.directory(sourceDir, path.basename(sourceDir))
 			.on('error', (err) => reject(err))
 			.pipe(stream);
 
