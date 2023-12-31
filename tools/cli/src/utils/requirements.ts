@@ -20,7 +20,7 @@ export type RequirementsConfig = {
  * For themes, it's the style.css file
  */
 export async function updateRequirements(
-	project: string,
+	cwd: string,
 	{ requirements, toUpdate }: RequirementsConfig,
 ) {
 	const strings: Requirements = {
@@ -29,10 +29,10 @@ export async function updateRequirements(
 		testedUpTo: 'Tested up to',
 	};
 
-	const entries = globFiles(toUpdate, { cwd: project });
+	const entries = globFiles(toUpdate, { cwd });
 
 	for (const file of entries) {
-		const filePath = path.join(project, file);
+		const filePath = path.join(cwd, file);
 		let fileContents = fs.readFileSync(filePath, 'utf8');
 
 		for (const [dataKey, version] of Object.entries(requirements)) {

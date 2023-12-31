@@ -3,6 +3,7 @@ import path from 'node:path';
 import { ToUpdate, globFiles } from './misc.js';
 
 export type UpdateVersionConfig = {
+	slug?: string;
 	toUpdate: Array<
 		Partial<ToUpdate> &
 			(
@@ -54,7 +55,7 @@ function createVersionPatterns(toUpdate: UpdateVersionConfig['toUpdate'][0]) {
 
 function getFilesToUpdate(
 	{ type, ...item }: UpdateVersionConfig['toUpdate'][0],
-	project: string,
+	slug?: string,
 ) {
 	let filesToUpdate: ToUpdate;
 
@@ -76,11 +77,7 @@ function getFilesToUpdate(
 
 		case 'pluginMainFile':
 			filesToUpdate = {
-				/**
-				 * e.g. if project is plugins/wptelegram, then files will be
-				 * ['src/wptelegram.php']
-				 */
-				files: [`src/${project.split('/')[0] || 'main'}.php`],
+				files: [`src/${slug || 'main'}.php`],
 				...item,
 			};
 			break;
@@ -111,22 +108,22 @@ function getFilesToUpdate(
  * Updates the version string in different files
  */
 export async function updateVersion(
-	project: string,
+	cwd: string,
 	version: string,
-	{ toUpdate }: UpdateVersionConfig,
+	{ toUpdate, slug }: UpdateVersionConfig,
 ) {
 	for (const item of toUpdate) {
 		const patterns = createVersionPatterns(item);
-		const filesToUpdate = getFilesToUpdate(item, project);
+		const filesToUpdate = getFilesToUpdate(item, slug);
 
-		const entries = globFiles(filesToUpdate, { cwd: project });
+		const entries = globFiles(filesToUpdate, { cwd });
 
 		const replaceCallback = (match: string, $1: string) => {
 			return match.replace($1, version);
 		};
 
 		for (const file of entries) {
-			const filePath = path.join(project, file);
+			const filePath = path.join(cwd, file);
 
 			let fileContents = fs.readFileSync(filePath, 'utf8');
 

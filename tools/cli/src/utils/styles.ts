@@ -4,11 +4,11 @@ import cssnano from 'cssnano';
 import postcss from 'postcss';
 import { ToUpdate, globFiles } from './misc.js';
 
-export async function processStyles(project: string, toUpdate: ToUpdate) {
-	const entries = globFiles(toUpdate, { cwd: project });
+export async function processStyles(cwd: string, toUpdate: ToUpdate) {
+	const entries = globFiles(toUpdate, { cwd });
 
 	for (const file of entries) {
-		const filePath = path.join(project, file);
+		const filePath = path.join(cwd, file);
 		const fileContents = fs.readFileSync(filePath, 'utf8');
 
 		const destPath = path.format({

@@ -8,11 +8,11 @@ export type UpdateChangelogConfig = {
 };
 
 export async function updateChangelog(
-	project: string,
+	cwd: string,
 	version: string,
 	config: UpdateChangelogConfig,
 ) {
-	const changelogPath = path.join(project, config.changelogPath);
+	const changelogPath = path.join(cwd, config.changelogPath);
 
 	if (!fs.existsSync(changelogPath)) {
 		throw new Error(`Changelog not found at "${changelogPath}"`);
@@ -32,10 +32,10 @@ export async function updateChangelog(
 
 	const readmeTxtChanges = '\n\n= {version} =\n{changes}\n';
 
-	const readmeTxtEntries = globFiles(config.readmeTxt, { cwd: project });
+	const readmeTxtEntries = globFiles(config.readmeTxt, { cwd: cwd });
 
 	for (const file of readmeTxtEntries) {
-		const filePath = path.join(project, file);
+		const filePath = path.join(cwd, file);
 		const fileContents = fs.readFileSync(filePath, 'utf8');
 
 		const contents = fileContents.replace(readmeTxtRegex, (match, $1) => {

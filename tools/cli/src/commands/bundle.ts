@@ -1,3 +1,4 @@
+import path from 'node:path';
 import { Flags } from '@oclif/core';
 import chalk from 'chalk';
 import { Listr, ListrTask } from 'listr2';
@@ -54,6 +55,8 @@ export default class Bundle extends BaseProjectCommand<typeof Bundle> {
 		...BaseProjectCommand.args,
 	};
 
+	protected placeholder = '{project}';
+
 	public async run(): Promise<void> {
 		const tasks = new Listr([], {
 			concurrent: true,
@@ -77,6 +80,16 @@ export default class Bundle extends BaseProjectCommand<typeof Bundle> {
 			this.log(chalk.red((error as { message: string }).message));
 			process.exitCode = 1;
 		}
+	}
+
+	getOutputDir() {
+		if (this.flags['out-dir']) {
+			return this.projects.size === 1
+				? this.flags['out-dir']
+				: path.join(this.flags['out-dir'], this.placeholder);
+		}
+
+		return `dist/${this.placeholder}`;
 	}
 
 	getVersion(project: string, task: TaskWrapper) {
@@ -108,8 +121,9 @@ export default class Bundle extends BaseProjectCommand<typeof Bundle> {
 		const projectSlug = project.split('/')[1];
 		const projectName = projectSlug.replace('-', '_');
 
-		const outDir = this.flags['out-dir'] || `dist/${project}`;
-		const preserveSource = this.flags['no-source-change'];
+		const outDir = this.getOutputDir().replace(this.placeholder, project);
+
+		const cwd = this.flags['no-source-change'] ? outDir : project;
 
 		return task.newListr(
 			[
@@ -137,6 +151,7 @@ export default class Bundle extends BaseProjectCommand<typeof Bundle> {
 					title: 'Update version',
 					task: async () => {
 						return await updateVersion(project, version, {
+							slug: projectSlug,
 							toUpdate: [
 								{
 									type: 'packageJson',

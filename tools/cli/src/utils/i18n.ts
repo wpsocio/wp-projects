@@ -12,7 +12,7 @@ export type PotToPhpConfig = {
  * Converts JS POT file to PHP using @wordpress/i18n
  */
 export async function potToPhp(
-	project: string,
+	cwd: string,
 	{ potFile, textDomain, outFile }: PotToPhpConfig,
 ) {
 	const potDir = path.dirname(potFile);
@@ -23,7 +23,7 @@ export async function potToPhp(
 	const args = [potFile, outFilePath, textDomain];
 
 	// `pot-to-php` binary comes from @wordpress/i18n
-	await $({ cwd: project })`pot-to-php ${args}`;
+	await $({ cwd })`pot-to-php ${args}`;
 }
 
 export type GeneratePotFileConfig = Pick<
@@ -37,7 +37,7 @@ export type GeneratePotFileConfig = Pick<
 };
 
 export async function generatePotFile(
-	project: string,
+	cwd: string,
 	{
 		outFile,
 		textDomain,
@@ -69,14 +69,14 @@ export async function generatePotFile(
 	const placeholder = '____amp____';
 	args = args.map((arg) => arg.replaceAll('&', placeholder));
 
-	const result = await $({ cwd: project })`wp i18n make-pot ${args}`;
+	const result = await $({ cwd })`wp i18n make-pot ${args}`;
 
 	// Replace the placeholder back with &
 	const content = fs
-		.readFileSync(path.join(project, outFilePath), 'utf8')
+		.readFileSync(path.join(cwd, outFilePath), 'utf8')
 		.replaceAll(placeholder, '&');
 
-	fs.writeFileSync(path.join(project, outFilePath), content);
+	fs.writeFileSync(path.join(cwd, outFilePath), content);
 
 	return result;
 }
@@ -87,17 +87,17 @@ export type UpdatePoFilesConfig = {
 };
 
 export async function updatePoFiles(
-	project: string,
+	cwd: string,
 	{ source, destination }: UpdatePoFilesConfig,
 ) {
 	const dest = destination || path.dirname(source);
-	return await $({ cwd: project })`wp i18n update-po ${source} ${dest}`;
+	return await $({ cwd })`wp i18n update-po ${source} ${dest}`;
 }
 
 export async function makeMoFiles(
-	project: string,
+	cwd: string,
 	{ source, destination }: UpdatePoFilesConfig,
 ) {
 	const dest = destination || source;
-	return await $({ cwd: project })`wp i18n make-mo ${source} ${dest}`;
+	return await $({ cwd })`wp i18n make-mo ${source} ${dest}`;
 }
