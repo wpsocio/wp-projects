@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { execa } from 'execa';
 import { ReleaseType, inc as semverInc } from 'semver';
 import { ROOT_DIR } from './monorepo.js';
 
@@ -128,4 +129,10 @@ export function getNextVersion(cwd: string, releaseType: string) {
 	const currentVersion = getCurrentVersion(cwd);
 
 	return semverInc(currentVersion, releaseType as ReleaseType);
+}
+
+export async function runScript(cwd: string, script: string, pm = 'npm') {
+	const cleanScript = script.replaceAll('&', '');
+
+	return execa(pm, ['run', cleanScript], { cwd });
 }

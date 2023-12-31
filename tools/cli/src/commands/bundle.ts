@@ -10,7 +10,7 @@ import {
 	updatePoFiles,
 } from '../utils/i18n.js';
 import { copyDir } from '../utils/misc.js';
-import { getNextVersion } from '../utils/projects.js';
+import { getNextVersion, runScript } from '../utils/projects.js';
 import { updateRequirements } from '../utils/requirements.js';
 import { processStyles } from '../utils/styles.js';
 import { updateVersion } from '../utils/versions.js';
@@ -30,6 +30,17 @@ export default class Bundle extends BaseProjectCommand<typeof Bundle> {
 		'no-changes-to-source': Flags.boolean({
 			char: 'n',
 			description: 'Do not change the source files.',
+		}),
+		'pre-script': Flags.string({
+			char: 's',
+			description: 'Script to tun before bundling.',
+			multiple: true,
+		}),
+		'package-manager': Flags.string({
+			char: 'p',
+			description: 'Package manager to use.',
+			options: ['npm', 'yarn', 'pnpm', 'bun'],
+			default: 'npm',
 		}),
 		version: Flags.string({
 			char: 'v',
@@ -61,6 +72,9 @@ export default class Bundle extends BaseProjectCommand<typeof Bundle> {
 	public async run(): Promise<void> {
 		const tasks = new Listr([], {
 			concurrent: true,
+			rendererOptions: {
+				collapseSubtasks: false,
+			},
 		});
 
 		for (const project of this.projects) {
@@ -131,6 +145,26 @@ export default class Bundle extends BaseProjectCommand<typeof Bundle> {
 
 		return task.newListr(
 			[
+				{
+					title: 'Run pre-scripts',
+					skip: () => !this.flags['pre-script']?.length,
+					task: async (_, task) => {
+						return task.newListr(
+							(this.flags['pre-script'] || []).map((script) => {
+								return {
+									title: `Running "${script}"`,
+									task: async () => {
+										return await runScript(
+											project,
+											script,
+											this.flags['package-manager'],
+										);
+									},
+								};
+							}),
+						);
+					},
+				},
 				{
 					title: 'Copy files before changing',
 					skip: () => canChangeSourceFiles,
