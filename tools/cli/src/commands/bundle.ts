@@ -13,14 +13,19 @@ import { updateRequirements } from '../utils/requirements.js';
 import { processStyles } from '../utils/styles.js';
 import { updateVersion } from '../utils/versions.js';
 
-export default class Dist extends BaseProjectCommand<typeof Dist> {
-	static description = 'Prepares projects for distribution or deployment.';
+export default class Bundle extends BaseProjectCommand<typeof Bundle> {
+	static description =
+		'Prepares and bundles projects for distribution or deployment.';
 
 	static flags = {
 		'out-dir': Flags.string({
 			char: 'd',
 			description:
 				'Path to the output directory. Defaults to "dist/{project}".',
+		}),
+		'preserve-source': Flags.boolean({
+			char: 'p',
+			description: 'Preserve source files and not change them.',
 		}),
 		version: Flags.string({
 			char: 'v',
@@ -85,6 +90,7 @@ export default class Dist extends BaseProjectCommand<typeof Dist> {
 		const projectName = projectSlug.replace('-', '_');
 
 		const outDir = this.flags['out-dir'] || `dist/${project}`;
+		const preserveSource = this.flags['preserve-source'];
 
 		return [
 			{
