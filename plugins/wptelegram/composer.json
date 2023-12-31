@@ -16,34 +16,17 @@
 		"wp-coding-standards/wpcs": "^3.0",
 		"wpackagist-plugin/cmb2": ">=2.9.0"
 	},
-	"repositories": [
-		{
+	"repositories": {
+		"wppackagist": {
 			"type": "composer",
 			"url": "https://wpackagist.org",
 			"only": ["wpackagist-plugin/*"]
 		},
-		{
+		"local": {
 			"type": "path",
-			"url": "../../packages/php/telegram-format-text",
-			"options": {
-				"symlink": true
-			}
-		},
-		{
-			"type": "path",
-			"url": "../../packages/php/wp-utils",
-			"options": {
-				"symlink": true
-			}
-		},
-		{
-			"type": "path",
-			"url": "../../packages/php/wptelegram-bot-api",
-			"options": {
-				"symlink": true
-			}
+			"url": "../../packages/php/*"
 		}
-	],
+	},
 	"extra": {
 		"installer-paths": {
 			"temp/{$name}/": ["wpackagist-plugin/cmb2"]

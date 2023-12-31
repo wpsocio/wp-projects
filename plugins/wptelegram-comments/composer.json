@@ -12,15 +12,12 @@
 	"require-dev": {
 		"wp-coding-standards/wpcs": "^3.0"
 	},
-	"repositories": [
-		{
+	"repositories": {
+		"local": {
 			"type": "path",
-			"url": "../../packages/php/wp-utils",
-			"options": {
-				"symlink": true
-			}
+			"url": "../../packages/php/*"
 		}
-	],
+	},
 	"config": {
 		"allow-plugins": {
 			"dealerdirect/phpcodesniffer-composer-installer": false
