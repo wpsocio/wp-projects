@@ -21,9 +21,13 @@ export async function copyDir(
 ) {
 	const entries = globFiles(
 		{
-			ignore: ['**/node_modules/**'],
 			files: ['**/*'],
 			...options,
+			ignore: [
+				'**/node_modules/**',
+				'**/dev-server.json',
+				...(options?.ignore || []),
+			],
 		},
 		{ cwd: sourceDir },
 	);
@@ -31,6 +35,10 @@ export async function copyDir(
 	for (const file of entries) {
 		const filePath = path.join(sourceDir, file);
 		const destPath = path.join(destDir, file);
+
+		if (!fs.existsSync(path.dirname(destPath))) {
+			fs.mkdirSync(path.dirname(destPath), { recursive: true });
+		}
 
 		fs.copyFileSync(filePath, destPath);
 	}
