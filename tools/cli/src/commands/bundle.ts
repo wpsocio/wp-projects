@@ -25,9 +25,9 @@ export default class Bundle extends BaseProjectCommand<typeof Bundle> {
 			description:
 				'Path to the output directory. Defaults to "dist/{project}".',
 		}),
-		'preserve-source': Flags.boolean({
-			char: 'p',
-			description: 'Preserve source files and not change them.',
+		'no-source-change': Flags.boolean({
+			char: 'n',
+			description: 'Do not change the source files.',
 		}),
 		version: Flags.string({
 			char: 'v',
@@ -103,13 +103,13 @@ export default class Bundle extends BaseProjectCommand<typeof Bundle> {
 	}
 
 	prepareForDist(project: string, task: TaskWrapper) {
+		const version = this.getVersion(project, task);
+
 		const projectSlug = project.split('/')[1];
 		const projectName = projectSlug.replace('-', '_');
 
 		const outDir = this.flags['out-dir'] || `dist/${project}`;
-		const preserveSource = this.flags['preserve-source'];
-
-		const version = this.getVersion(project, task);
+		const preserveSource = this.flags['no-source-change'];
 
 		return task.newListr(
 			[
