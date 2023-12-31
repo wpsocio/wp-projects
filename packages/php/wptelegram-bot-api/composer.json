@@ -4,7 +4,9 @@
 	"license": "GPL-3.0-or-later",
 	"description": "Telegram Bot API library for WordPress.",
 	"autoload": {
-		"files": ["autoload-wp.php"]
+		"psr-4": {
+			"WPTelegram\\BotAPI\\": "src/"
+		}
 	},
 	"authors": [
 		{
