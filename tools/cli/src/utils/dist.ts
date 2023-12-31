@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import cssnano from 'cssnano';
-import { $, execa } from 'execa';
+import { $ } from 'execa';
 import fg, { Options } from 'fast-glob';
 import postcss from 'postcss';
 
