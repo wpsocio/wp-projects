@@ -9,6 +9,7 @@ import {
 	potToPhp,
 	updatePoFiles,
 } from '../utils/i18n.js';
+import { copyDir } from '../utils/misc.js';
 import { getNextVersion } from '../utils/projects.js';
 import { updateRequirements } from '../utils/requirements.js';
 import { processStyles } from '../utils/styles.js';
@@ -123,14 +124,23 @@ export default class Bundle extends BaseProjectCommand<typeof Bundle> {
 
 		const outDir = this.getOutputDir().replace(this.placeholder, project);
 
-		const cwd = this.flags['no-source-change'] ? outDir : project;
+		const canChangeSourceFiles = !this.flags['no-source-change'];
+
+		const cwd = canChangeSourceFiles ? project : outDir;
 
 		return task.newListr(
 			[
 				{
+					title: 'Copy files before changing',
+					skip: () => canChangeSourceFiles,
+					task: async () => {
+						return await copyDir(`${project}/src`, outDir);
+					},
+				},
+				{
 					title: 'Update requirements',
 					task: async () => {
-						return await updateRequirements(project, {
+						return await updateRequirements(cwd, {
 							requirements: {
 								requiresPHP: '8.0',
 								requiresAtLeast: '6.2',
@@ -150,7 +160,7 @@ export default class Bundle extends BaseProjectCommand<typeof Bundle> {
 				{
 					title: 'Update version',
 					task: async () => {
-						return await updateVersion(project, version, {
+						return await updateVersion(cwd, version, {
 							slug: projectSlug,
 							toUpdate: [
 								{
@@ -198,7 +208,7 @@ export default class Bundle extends BaseProjectCommand<typeof Bundle> {
 								{
 									title: 'Generate POT file',
 									task: async () => {
-										return await generatePotFile(project, {
+										return await generatePotFile(cwd, {
 											source: 'src',
 											textDomain: projectSlug,
 											headers: {
@@ -220,10 +230,10 @@ export default class Bundle extends BaseProjectCommand<typeof Bundle> {
 								{
 									title: 'Update PO and MO files',
 									task: async () => {
-										await updatePoFiles(project, {
+										await updatePoFiles(cwd, {
 											source: `src/languages/${projectSlug}.pot`,
 										});
-										return await makeMoFiles(project, {
+										return await makeMoFiles(cwd, {
 											source: 'src/languages/',
 										});
 									},
@@ -233,7 +243,7 @@ export default class Bundle extends BaseProjectCommand<typeof Bundle> {
 									// for wp.org to scan the translation strings
 									title: 'JS POT to PHP',
 									task: async () => {
-										return await potToPhp(project, {
+										return await potToPhp(cwd, {
 											potFile: 'src/languages/js-translations.pot',
 											textDomain: projectSlug,
 										});
@@ -252,7 +262,7 @@ export default class Bundle extends BaseProjectCommand<typeof Bundle> {
 								{
 									title: 'Minify CSS',
 									task: async () => {
-										return await processStyles(project, {
+										return await processStyles(cwd, {
 											files: ['src/assets/static/css/*.css'],
 											ignore: ['src/assets/static/css/*.min.css'],
 										});
@@ -261,6 +271,13 @@ export default class Bundle extends BaseProjectCommand<typeof Bundle> {
 							],
 							{ concurrent: false },
 						);
+					},
+				},
+				{
+					title: 'Copy files after changing',
+					skip: () => !canChangeSourceFiles,
+					task: async () => {
+						return await copyDir(`${project}/src`, outDir);
 					},
 				},
 			],
