@@ -6,6 +6,7 @@ import {
 	generatePotFile,
 	makeMoFiles,
 	potToPhp,
+	processStyles,
 	updatePoFiles,
 	updateRequirements,
 	updateVersion,
@@ -165,6 +166,26 @@ export default class Dist extends BaseProjectCommand<typeof Dist> {
 									await potToPhp(project, {
 										potFile: 'src/languages/js-translations.pot',
 										textDomain: projectSlug,
+									});
+								},
+							},
+						],
+						{ concurrent: false },
+					);
+				},
+			},
+			{
+				title: 'Process styles',
+				task: async (_, task) => {
+					await delay(1000);
+					return task.newListr(
+						[
+							{
+								title: 'Minify CSS',
+								task: async () => {
+									await processStyles(project, {
+										files: ['src/assets/static/css/*.css'],
+										ignore: ['src/assets/static/css/*.min.css'],
 									});
 								},
 							},

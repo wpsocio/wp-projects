@@ -1,7 +1,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import cssnano from 'cssnano';
 import { $, execa } from 'execa';
 import fg, { Options } from 'fast-glob';
+import postcss from 'postcss';
 
 export type Requirements = {
 	requiresPHP: string;
@@ -354,4 +356,26 @@ export async function makeMoFiles(
 ) {
 	const dest = destination || source;
 	return await $({ cwd: project })`wp i18n make-mo ${source} ${dest}`;
+}
+
+export async function processStyles(project: string, toUpdate: ToUpdate) {
+	const entries = globFiles(toUpdate, { cwd: project });
+
+	for (const file of entries) {
+		const filePath = path.join(project, file);
+		const fileContents = fs.readFileSync(filePath, 'utf8');
+
+		const destPath = path.format({
+			...path.parse(filePath),
+			base: '',
+			ext: '.min.css',
+		});
+
+		const result = await postcss([cssnano]).process(fileContents, {
+			from: filePath,
+			to: destPath,
+		});
+
+		fs.writeFileSync(destPath, result.css);
+	}
 }
