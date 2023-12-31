@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { ReleaseType, inc as semverInc } from 'semver';
 import { ROOT_DIR } from './monorepo.js';
 
 export const PROJECT_TYPES = ['plugins'] as const;
@@ -113,22 +114,18 @@ export function getSymlinkPath(project: string, relativeTo: string) {
 	return path.join(relativeTo, project);
 }
 
-export type ArgToken = {
-	type: 'arg' | 'flag';
-	arg?: string;
-	flag?: string;
-	input: string;
-};
+export function getCurrentVersion(project: string) {
+	const packageJsonPath = path.join(getRealPath(project), 'package.json');
 
-/**
- * Coerce array input from yargs
- * `array: true` works weirdly with positional arguments
- * So, in order to provide support for comma separated values, we need to use coerce
- */
-export function coerceArrayInput(projects: Array<string>) {
-	// Comma gets converted to space by yargs
-	return projects
-		.flatMap((project) => project.split(/\s+/))
-		.map((part) => part.trim())
-		.filter(Boolean);
+	const { version } = JSON.parse(
+		fs.readFileSync(packageJsonPath, { encoding: 'utf8' }),
+	);
+
+	return version;
+}
+
+export function getNextVersion(project: string, releaseType?: string) {
+	const currentVersion = getCurrentVersion(project);
+
+	return semverInc(currentVersion, (releaseType || 'patch') as ReleaseType);
 }

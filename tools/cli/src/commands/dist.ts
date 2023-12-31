@@ -1,16 +1,17 @@
 import { Flags } from '@oclif/core';
 import chalk from 'chalk';
-import { Listr, ListrTask, delay } from 'listr2';
+import { Listr, ListrTask } from 'listr2';
 import { BaseProjectCommand } from '../baseProjectCommand.js';
 import {
 	generatePotFile,
 	makeMoFiles,
 	potToPhp,
-	processStyles,
 	updatePoFiles,
-	updateRequirements,
-	updateVersion,
-} from '../utils/dist.js';
+} from '../utils/i18n.js';
+import { getNextVersion } from '../utils/projects.js';
+import { updateRequirements } from '../utils/requirements.js';
+import { processStyles } from '../utils/styles.js';
+import { updateVersion } from '../utils/versions.js';
 
 export default class Dist extends BaseProjectCommand<typeof Dist> {
 	static description = 'Prepares projects for distribution or deployment.';
@@ -20,6 +21,25 @@ export default class Dist extends BaseProjectCommand<typeof Dist> {
 			char: 'd',
 			description:
 				'Path to the output directory. Defaults to "dist/{project}".',
+		}),
+		version: Flags.string({
+			char: 'v',
+			description: 'Version to update to.',
+			exclusive: ['version-type'],
+		}),
+		'release-type': Flags.string({
+			char: 't',
+			description: 'Release type to update to. Defaults to "patch".',
+			exclusive: ['version'],
+			options: [
+				'major',
+				'minor',
+				'patch',
+				'premajor',
+				'preminor',
+				'prepatch',
+				'prerelease',
+			],
 		}),
 	};
 
@@ -52,13 +72,24 @@ export default class Dist extends BaseProjectCommand<typeof Dist> {
 	}
 
 	prepareForDist(project: string): Array<ListrTask> {
+		const version =
+			this.flags.version || getNextVersion(project, this.flags['release-type']);
+
+		if (!version) {
+			throw new Error(
+				'Could not calculate the next version. Is the current version a valid semver?',
+			);
+		}
+
 		const projectSlug = project.split('/')[1];
 		const projectName = projectSlug.replace('-', '_');
+
+		const outDir = this.flags['out-dir'] || `dist/${project}`;
+
 		return [
 			{
 				title: 'Update requirements',
 				task: async (): Promise<void> => {
-					await delay(1000);
 					await updateRequirements(project, {
 						requirements: {
 							requiresPHP: '8.0',
@@ -79,8 +110,7 @@ export default class Dist extends BaseProjectCommand<typeof Dist> {
 			{
 				title: 'Update version',
 				task: async (): Promise<void> => {
-					await delay(1000);
-					await updateVersion(project, '5.0.1', {
+					await updateVersion(project, version, {
 						toUpdate: [
 							{
 								type: 'packageJson',
@@ -111,7 +141,7 @@ export default class Dist extends BaseProjectCommand<typeof Dist> {
 			/* {
 				title: 'Update changelog',
 				task: async (): Promise<void> => {
-					await updateChangelog(project, '5.0.1', {
+					await updateChangelog(project, version, {
 						changelogPath: 'changelog.md',
 						readmeTxt: {
 							files: ['src/README.txt'],
@@ -122,7 +152,6 @@ export default class Dist extends BaseProjectCommand<typeof Dist> {
 			{
 				title: 'i18n',
 				task: async (_, task) => {
-					await delay(1000);
 					return task.newListr(
 						[
 							{
@@ -177,7 +206,6 @@ export default class Dist extends BaseProjectCommand<typeof Dist> {
 			{
 				title: 'Process styles',
 				task: async (_, task) => {
-					await delay(1000);
 					return task.newListr(
 						[
 							{
