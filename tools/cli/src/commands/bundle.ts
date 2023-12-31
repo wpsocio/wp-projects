@@ -9,7 +9,7 @@ import {
 	potToPhp,
 	updatePoFiles,
 } from '../utils/i18n.js';
-import { copyDir } from '../utils/misc.js';
+import { copyDir, zipDir } from '../utils/misc.js';
 import { getNextVersion, runScript } from '../utils/projects.js';
 import { updateRequirements } from '../utils/requirements.js';
 import { processStyles } from '../utils/styles.js';
@@ -47,6 +47,10 @@ export default class Bundle extends BaseProjectCommand<typeof Bundle> {
 			options: ['npm', 'yarn', 'pnpm', 'bun'],
 			default: 'npm',
 		}),
+		'zip-archive': Flags.boolean({
+			char: 'z',
+			description: 'Create a zip archive of the bundled project.',
+		}),
 		version: Flags.string({
 			char: 'v',
 			description: 'Version to update to.',
@@ -77,9 +81,6 @@ export default class Bundle extends BaseProjectCommand<typeof Bundle> {
 	public async run(): Promise<void> {
 		const tasks = new Listr([], {
 			concurrent: true,
-			rendererOptions: {
-				collapseSubtasks: false,
-			},
 		});
 
 		for (const project of this.projects) {
@@ -337,6 +338,16 @@ export default class Bundle extends BaseProjectCommand<typeof Bundle> {
 									},
 								};
 							}),
+						);
+					},
+				},
+				{
+					title: 'Create zip archive',
+					skip: () => !this.flags['zip-archive'],
+					task: async () => {
+						return await zipDir(
+							outDir,
+							`${path.dirname(outDir)}/${projectSlug}-${version}.zip`,
 						);
 					},
 				},

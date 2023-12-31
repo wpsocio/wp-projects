@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import archiver from 'archiver';
 import fg, { Options } from 'fast-glob';
 
 export type ToUpdate = {
@@ -42,4 +43,21 @@ export async function copyDir(
 
 		fs.copyFileSync(filePath, destPath);
 	}
+}
+
+export async function zipDir(sourceDir: string, outPath: string) {
+	const archive = archiver('zip', { zlib: { level: 9 } });
+	const stream = fs.createWriteStream(outPath);
+
+	return await new Promise((resolve, reject) => {
+		archive
+			.directory(sourceDir, false)
+			.on('error', (err) => reject(err))
+			.pipe(stream);
+
+		stream.on('close', () =>
+			resolve(`Zip file created successfully at ${outPath}`),
+		);
+		archive.finalize();
+	});
 }
