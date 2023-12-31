@@ -32,8 +32,13 @@ export default class Bundle extends BaseProjectCommand<typeof Bundle> {
 			description: 'Do not change the source files.',
 		}),
 		'pre-script': Flags.string({
-			char: 's',
-			description: 'Script to tun before bundling.',
+			char: 'b',
+			description: 'Script to run before bundling.',
+			multiple: true,
+		}),
+		'post-script': Flags.string({
+			char: 'a',
+			description: 'Script to run after bundling.',
 			multiple: true,
 		}),
 		'package-manager': Flags.string({
@@ -313,6 +318,26 @@ export default class Bundle extends BaseProjectCommand<typeof Bundle> {
 					skip: () => !canChangeSourceFiles,
 					task: async () => {
 						return await copyDir(`${project}/src`, outDir);
+					},
+				},
+				{
+					title: 'Run post-scripts',
+					skip: () => !this.flags['post-script']?.length,
+					task: async (_, task) => {
+						return task.newListr(
+							(this.flags['post-script'] || []).map((script) => {
+								return {
+									title: `Running "${script}"`,
+									task: async () => {
+										return await runScript(
+											project,
+											script,
+											this.flags['package-manager'],
+										);
+									},
+								};
+							}),
+						);
 					},
 				},
 			],

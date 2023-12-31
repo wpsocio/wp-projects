@@ -134,5 +134,5 @@ export function getNextVersion(cwd: string, releaseType: string) {
 export async function runScript(cwd: string, script: string, pm = 'npm') {
 	const cleanScript = script.replaceAll('&', '');
 
-	return execa(pm, ['run', cleanScript], { cwd });
+	return await execa(pm, ['run', cleanScript], { cwd });
 }

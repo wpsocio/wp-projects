@@ -1,4 +1,4 @@
-import fs from 'node:fs';
+import fs from 'node:fs/promises';
 import path from 'node:path';
 import fg, { Options } from 'fast-glob';
 
@@ -36,10 +36,10 @@ export async function copyDir(
 		const filePath = path.join(sourceDir, file);
 		const destPath = path.join(destDir, file);
 
-		if (!fs.existsSync(path.dirname(destPath))) {
-			fs.mkdirSync(path.dirname(destPath), { recursive: true });
+		if (!(await fs.stat(path.dirname(destPath))).isDirectory()) {
+			await fs.mkdir(path.dirname(destPath), { recursive: true });
 		}
 
-		fs.copyFileSync(filePath, destPath);
+		await fs.copyFile(filePath, destPath);
 	}
 }
