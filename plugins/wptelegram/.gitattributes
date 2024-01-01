@@ -4,12 +4,14 @@ js/                                       export-ignore
 dev.php                                   export-ignore
 tsconfig.json                             export-ignore
 vite.config.js                            export-ignore
+vite.config.ts                            export-ignore
 js-translations.pot                       export-ignore
 vendor/*/vendor/                          export-ignore
 
 # Misc
 .distignore                               export-ignore
 .gitignore                                export-ignore
+.gitattributes                            export-ignore
 .wordpress-org                            export-ignore
 .git                                      export-ignore
 .editorconfig                             export-ignore
