@@ -6,7 +6,8 @@ tsconfig.json                             export-ignore
 vite.config.js                            export-ignore
 vite.config.ts                            export-ignore
 js-translations.pot                       export-ignore
-vendor/*/vendor/                          export-ignore
+dev-server.json                           export-ignore
+vendor/**/vendor/**                       export-ignore
 
 # Misc
 .distignore                               export-ignore
