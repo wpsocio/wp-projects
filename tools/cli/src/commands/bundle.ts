@@ -49,9 +49,11 @@ export default class Bundle extends BaseProjectCommand<typeof Bundle> {
 			options: ['npm', 'yarn', 'pnpm', 'bun'],
 			default: 'npm',
 		}),
-		compress: Flags.boolean({
+		archive: Flags.boolean({
 			char: 'c',
 			description: 'Create a compressed archive (zip) of the bundled project.',
+			default: true,
+			allowNo: true,
 		}),
 		version: Flags.string({
 			char: 'v',
