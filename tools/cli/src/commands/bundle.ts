@@ -9,7 +9,7 @@ import {
 	potToPhp,
 	updatePoFiles,
 } from '../utils/i18n.js';
-import { copyDir, zipDir } from '../utils/misc.js';
+import { copyDir, getDistIgnorePattern, zipDir } from '../utils/misc.js';
 import { getNextVersion, runScript } from '../utils/projects.js';
 import { updateRequirements } from '../utils/requirements.js';
 import { processStyles } from '../utils/styles.js';
@@ -47,8 +47,8 @@ export default class Bundle extends BaseProjectCommand<typeof Bundle> {
 			options: ['npm', 'yarn', 'pnpm', 'bun'],
 			default: 'npm',
 		}),
-		'zip-archive': Flags.boolean({
-			char: 'z',
+		archive: Flags.boolean({
+			char: 'a',
 			description: 'Create a zip archive of the bundled project.',
 		}),
 		version: Flags.string({
@@ -175,7 +175,11 @@ export default class Bundle extends BaseProjectCommand<typeof Bundle> {
 					title: 'Copy files before changing',
 					skip: () => canChangeSourceFiles,
 					task: async () => {
-						return await copyDir(`${project}/src`, outDir);
+						const distignore = getDistIgnorePattern(project);
+
+						return await copyDir(`${project}/src`, outDir, {
+							ignore: distignore,
+						});
 					},
 				},
 				{
@@ -318,7 +322,11 @@ export default class Bundle extends BaseProjectCommand<typeof Bundle> {
 					title: 'Copy files after changing',
 					skip: () => !canChangeSourceFiles,
 					task: async () => {
-						return await copyDir(`${project}/src`, outDir);
+						const distignore = getDistIgnorePattern(project);
+
+						return await copyDir(`${project}/src`, outDir, {
+							ignore: distignore,
+						});
 					},
 				},
 				{
@@ -342,8 +350,8 @@ export default class Bundle extends BaseProjectCommand<typeof Bundle> {
 					},
 				},
 				{
-					title: 'Create zip archive',
-					skip: () => !this.flags['zip-archive'],
+					title: 'Create archive',
+					skip: () => !this.flags.archive,
 					task: async () => {
 						return await zipDir(
 							outDir,

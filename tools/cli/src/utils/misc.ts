@@ -24,11 +24,7 @@ export async function copyDir(
 		{
 			files: ['**/*'],
 			...options,
-			ignore: [
-				'**/node_modules/**',
-				'**/dev-server.json',
-				...(options?.ignore || []),
-			],
+			ignore: ['**/node_modules/**', ...(options?.ignore || [])],
 		},
 		{ cwd: sourceDir },
 	);
@@ -60,4 +56,41 @@ export async function zipDir(sourceDir: string, outPath: string) {
 		);
 		archive.finalize();
 	});
+}
+
+export function getDistIgnorePattern(dir: string) {
+	const filesToLookFor = ['.distignore', '.gitattributes'];
+
+	for (const file of filesToLookFor) {
+		const filePath = path.join(dir, file);
+
+		if (fs.existsSync(filePath)) {
+			const gitattributes = fs.readFileSync(filePath, 'utf8');
+
+			return gitattributes
+				.split(/[\n\r]+/)
+				.filter((line) => {
+					const trimmed = line.trim();
+
+					return (
+						// Ignore comments
+						!trimmed.startsWith('#') &&
+						// Only include lines with export-ignore
+						trimmed.includes('export-ignore')
+					);
+				})
+				.map((line) => {
+					return (
+						line
+							// Remove export-ignore from the line
+							.replace('export-ignore', '')
+							.trim()
+							// Replace leading slashes with **/ to match any folder
+							.replace(/(^|^\/+)/g, '**/')
+					);
+				});
+		}
+	}
+
+	return [];
 }
