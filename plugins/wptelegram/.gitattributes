@@ -16,6 +16,7 @@ vendor/**/vendor/**                       export-ignore
 .gitattributes                            export-ignore
 .wordpress-org                            export-ignore
 .git                                      export-ignore
+.github                                   export-ignore
 .editorconfig                             export-ignore
 .vs                                       export-ignore
 .vscode                                   export-ignore
