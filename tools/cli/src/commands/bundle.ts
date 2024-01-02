@@ -27,9 +27,11 @@ export default class Bundle extends BaseProjectCommand<typeof Bundle> {
 			description:
 				'Path to the output directory. Defaults to "dist/{project}".',
 		}),
-		'no-changes-to-source': Flags.boolean({
-			char: 'n',
-			description: 'Do not change the source files.',
+		'update-source-files': Flags.boolean({
+			char: 'u',
+			description: 'Update the source files.',
+			default: true,
+			allowNo: true,
 		}),
 		'pre-script': Flags.string({
 			char: 'b',
@@ -145,7 +147,7 @@ export default class Bundle extends BaseProjectCommand<typeof Bundle> {
 
 		const outDir = this.getOutputDir().replace(this.placeholder, project);
 
-		const canChangeSourceFiles = !this.flags['no-changes-to-source'];
+		const canChangeSourceFiles = this.flags['update-source-files'];
 
 		const cwd = canChangeSourceFiles ? project : outDir;
 
