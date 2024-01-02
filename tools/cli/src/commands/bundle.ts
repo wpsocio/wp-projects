@@ -355,7 +355,7 @@ export default class Bundle extends BaseProjectCommand<typeof Bundle> {
 				},
 				{
 					title: 'Create archive',
-					skip: () => !this.flags.compress,
+					skip: () => !this.flags.archive,
 					task: async () => {
 						return await zipDir(
 							outDir,
