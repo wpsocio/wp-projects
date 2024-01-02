@@ -7,6 +7,7 @@ vite.config.js                            export-ignore
 vite.config.ts                            export-ignore
 js-translations.pot                       export-ignore
 dev-server.json                           export-ignore
+# Ingore nested vendor directories
 vendor/**/vendor/**                       export-ignore
 
 # Misc
