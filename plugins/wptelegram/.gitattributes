@@ -25,6 +25,7 @@ vendor/**/vendor/**                       export-ignore
 .vscode                                   export-ignore
 .wordpress-org                            export-ignore
 Gruntfile.js                              export-ignore
+gulp.config.js                            export-ignore
 README.md                                 export-ignore
 Thumbs.db                                 export-ignore
 behat.yml                                 export-ignore
