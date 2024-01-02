@@ -47,9 +47,9 @@ export default class Bundle extends BaseProjectCommand<typeof Bundle> {
 			options: ['npm', 'yarn', 'pnpm', 'bun'],
 			default: 'npm',
 		}),
-		archive: Flags.boolean({
-			char: 'a',
-			description: 'Create a zip archive of the bundled project.',
+		compress: Flags.boolean({
+			char: 'c',
+			description: 'Create a compressed archive (zip) of the bundled project.',
 		}),
 		version: Flags.string({
 			char: 'v',
@@ -351,7 +351,7 @@ export default class Bundle extends BaseProjectCommand<typeof Bundle> {
 				},
 				{
 					title: 'Create archive',
-					skip: () => !this.flags.archive,
+					skip: () => !this.flags.compress,
 					task: async () => {
 						return await zipDir(
 							outDir,
