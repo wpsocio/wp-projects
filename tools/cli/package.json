@@ -36,10 +36,7 @@
 		"bin": "wpsocio",
 		"dirname": "wpsocio",
 		"commands": "./dist/commands",
-		"topicSeparator": " ",
-		"hooks": {
-			"init": "./dist/hooks/init/setup"
-		}
+		"topicSeparator": " "
 	},
 	"scripts": {
 		"compile": "rimraf dist/ tsconfig.tsbuildinfo && tsc",
