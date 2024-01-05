@@ -24,7 +24,8 @@
 		"typecheck": "turbo typecheck",
 		"upgrade-all": "pnpm -r exec pnpm ncu -u",
 		"wp": "composer run wp -- ",
-		"wpsocio": "dotenv -- wpsocio"
+		"wpsocio-link": "dotenv -- wpsocio link",
+		"wpsocio-unlink": "dotenv -- wpsocio unlink"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.4.1",
