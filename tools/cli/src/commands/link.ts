@@ -1,10 +1,9 @@
 import { Flags } from '@oclif/core';
 import chalk from 'chalk';
-import { BaseProjectCommand } from '../baseProjectCommand.js';
-import { getRealPath, getSymlinkPath } from '../utils/projects.js';
+import { WithProjects } from '../base-commands/WithProjects.js';
 import { SymlinkManager } from '../utils/symlinks.js';
 
-export default class Link extends BaseProjectCommand<typeof Link> {
+export default class Link extends WithProjects<typeof Link> {
 	static description =
 		'Creates symlinks in the given wp-content directory for the project(s) in this monorepo.';
 
@@ -18,7 +17,7 @@ export default class Link extends BaseProjectCommand<typeof Link> {
 	};
 
 	static args = {
-		...BaseProjectCommand.args,
+		...WithProjects.args,
 	};
 
 	symlinkManager = new SymlinkManager();
@@ -35,11 +34,11 @@ export default class Link extends BaseProjectCommand<typeof Link> {
 	public async run(): Promise<void> {
 		try {
 			for (const project of this.projects) {
-				const symlinkPath = getSymlinkPath(
+				const symlinkPath = this.wpProjects.getSymlinkPath(
 					project,
 					this.flags['wp-content-dir'],
 				);
-				const realPath = getRealPath(project);
+				const realPath = this.wpProjects.getRealPath(project);
 				const result = this.symlinkManager.createSymlink({
 					symlinkPath,
 					realPath,

@@ -1,0 +1,5 @@
+{
+	"envFiles": [".env"],
+	"projectTypes": ["plugins"],
+	"repoType": "monorepo"
+}

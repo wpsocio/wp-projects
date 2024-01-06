@@ -37,5 +37,9 @@
 		"ts-node": "^10.9.2",
 		"turbo": "^1.11.2",
 		"typescript": "^5.3.3"
+	},
+	"wpdev": {
+		"repo-type": "monorepo",
+		"env-file": ".env"
 	}
 }

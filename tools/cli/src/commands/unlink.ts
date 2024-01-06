@@ -1,5 +1,4 @@
 import chalk from 'chalk';
-import { getSymlinkPath } from '../utils/projects.js';
 import Link from './link.js';
 
 export default class Unlink extends Link {
@@ -15,7 +14,7 @@ export default class Unlink extends Link {
 			}
 
 			for (const project of this.projects) {
-				const symlinkPath = getSymlinkPath(
+				const symlinkPath = this.wpProjects.getSymlinkPath(
 					project,
 					this.flags['wp-content-dir'],
 				);

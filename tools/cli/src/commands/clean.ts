@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import { Args, Command, Flags } from '@oclif/core';
 import chalk from 'chalk';
 import enquirer from 'enquirer';
-import { getAllProjects, getProjects } from '../utils/projects.js';
+import { WithProjects } from '../base-commands/WithProjects.js';
 
 type CleanArgs = {
 	path: string;
@@ -11,7 +11,7 @@ type CleanArgs = {
 	all?: boolean;
 };
 
-export default class Clean extends Command {
+export default class Clean extends WithProjects<typeof Clean> {
 	static description = 'Cleans up the given path(s) in this monorepo.';
 
 	static examples = [
@@ -32,6 +32,9 @@ export default class Clean extends Command {
 	};
 
 	static args = {
+		projects: Args.string({
+			hidden: true,
+		}),
 		path: Args.string({
 			description: 'Path to clean. Relative to root directory',
 		}),
@@ -229,7 +232,7 @@ export default class Clean extends Command {
 
 		// It's possible that the connected project may be a git repo
 		// So the above git commands won't work for nested git repos
-		const connectedProjects = getProjects({ connected: true });
+		const connectedProjects = this.wpProjects.getProjects({ connected: true });
 
 		for (const project of connectedProjects) {
 			const files = child_process.execSync(
@@ -253,7 +256,7 @@ export default class Clean extends Command {
 
 		// We do not want to delete any of the project directories in the monorepo.
 		const filesToSkip = new Set(
-			[...getAllProjects()].map((project) =>
+			[...this.wpProjects.getAllProjects()].map((project) =>
 				// Ensure that the path ends with a slash.
 				project.replace(/\/?$/, '/'),
 			),

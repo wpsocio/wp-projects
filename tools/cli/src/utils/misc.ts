@@ -94,3 +94,12 @@ export function getDistIgnorePattern(dir: string) {
 
 	return [];
 }
+
+export function isFileReadable(file: string) {
+	try {
+		fs.accessSync(file, fs.constants.R_OK);
+		return true;
+	} catch (e) {
+		return false;
+	}
+}

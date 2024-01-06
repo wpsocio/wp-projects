@@ -2,7 +2,7 @@ import path from 'node:path';
 import { Flags } from '@oclif/core';
 import chalk from 'chalk';
 import { Listr, ListrTask } from 'listr2';
-import { BaseProjectCommand } from '../baseProjectCommand.js';
+import { WithProjects } from '../base-commands/WithProjects.js';
 import {
 	generatePotFile,
 	makeMoFiles,
@@ -17,7 +17,7 @@ import { updateVersion } from '../utils/versions.js';
 
 type TaskWrapper = Parameters<ListrTask['task']>[1];
 
-export default class Bundle extends BaseProjectCommand<typeof Bundle> {
+export default class Bundle extends WithProjects<typeof Bundle> {
 	static description =
 		'Prepares and bundles projects for distribution or deployment.';
 
@@ -77,7 +77,7 @@ export default class Bundle extends BaseProjectCommand<typeof Bundle> {
 	};
 
 	static args = {
-		...BaseProjectCommand.args,
+		...WithProjects.args,
 	};
 
 	protected placeholder = '{project}';
@@ -144,7 +144,7 @@ export default class Bundle extends BaseProjectCommand<typeof Bundle> {
 	prepareForDist(project: string, task: TaskWrapper) {
 		const version = this.getVersion(project, task);
 
-		const projectSlug = project.split('/')[1];
+		const projectSlug = project.split('/')[1] || project;
 		const projectName = projectSlug.replace('-', '_');
 
 		const outDir = this.getOutputDir().replace(this.placeholder, project);
