@@ -75,6 +75,8 @@ export abstract class WithProjects<
 			} else {
 				const detectedProject = await this.detectProject();
 
+				this.log('🔍 Detected project: ', chalk.bold(detectedProject));
+
 				this.projects = new Set([detectedProject]);
 			}
 		}
