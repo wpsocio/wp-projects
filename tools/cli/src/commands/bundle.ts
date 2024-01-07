@@ -162,12 +162,6 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 
 		const { projectInfo, bundle } = await getProjectConfig(project, version);
 
-		const skip = true;
-
-		if (skip) {
-			return;
-		}
-
 		const outDir = this.parseOutputDir(this.getOutputDir(), project);
 
 		const canChangeSourceFiles = this.flags['update-source-files'];
