@@ -1,7 +1,4 @@
-import fs from 'node:fs';
-import path from 'node:path';
 import { z } from 'zod';
-import { zodToJsonSchema } from 'zod-to-json-schema';
 
 const targetFilesSchema = z.object({
 	files: z
@@ -205,25 +202,3 @@ export const projectSchema = z.object({
 	project: projectInfoSchema.optional(),
 	bundle: bundleSchema,
 });
-
-export function createJsonSchema(outFile?: string) {
-	const result = zodToJsonSchema(
-		projectSchema.merge(
-			z.object({
-				$schema: z.string().optional().describe('The schema URL.'),
-			}),
-		),
-	);
-
-	if (outFile) {
-		const outDir = path.dirname(outFile);
-
-		if (!fs.existsSync(outDir)) {
-			fs.mkdirSync(outDir, { recursive: true });
-		}
-
-		fs.writeFileSync(outFile, JSON.stringify(result, null, '\t'), 'utf8');
-	}
-
-	return result;
-}
