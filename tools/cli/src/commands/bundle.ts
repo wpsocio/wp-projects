@@ -10,9 +10,13 @@ import {
 	updatePoFiles,
 } from '../utils/i18n.js';
 import { copyDir, getDistIgnorePattern, zipDir } from '../utils/misc.js';
-import { getNextVersion, runScript } from '../utils/projects.js';
+import {
+	getNextVersion,
+	getProjectConfig,
+	runScript,
+} from '../utils/projects.js';
 import { updateRequirements } from '../utils/requirements.js';
-import { processStyles } from '../utils/styles.js';
+import { minifyStyles } from '../utils/styles.js';
 import { updateVersion } from '../utils/versions.js';
 
 type TaskWrapper = Parameters<ListrTask['task']>[1];
@@ -80,7 +84,7 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 		...WithProjects.args,
 	};
 
-	protected placeholder = '{project}';
+	protected destPlaceholder = '{project}';
 
 	public async run(): Promise<void> {
 		const tasks = new Listr([], {
@@ -90,8 +94,8 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 		for (const project of this.projects) {
 			tasks.add({
 				title: `Preparing ${project}`,
-				task: (_, task) => {
-					return this.prepareForDist(project, task);
+				task: async (_, task) => {
+					return await this.prepareForDist(project, task);
 				},
 				rendererOptions: {
 					persistentOutput: true,
@@ -102,7 +106,15 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 		try {
 			await tasks.run();
 		} catch (error) {
-			this.error(chalk.red((error as { message: string }).message));
+			if (
+				typeof error === 'object' &&
+				error &&
+				'message' in error &&
+				error.message
+			) {
+				this.log(chalk.red(error.message), error);
+			}
+			this.exit(1);
 		}
 	}
 
@@ -110,10 +122,14 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 		if (this.flags['out-dir']) {
 			return this.projects.size === 1
 				? this.flags['out-dir']
-				: path.join(this.flags['out-dir'], this.placeholder);
+				: path.join(this.flags['out-dir'], this.destPlaceholder);
 		}
 
-		return `dist/${this.placeholder}`;
+		return `dist/${this.destPlaceholder}`;
+	}
+
+	parseOutputDir(outDir: string, project: string) {
+		return outDir.replace(this.destPlaceholder, project);
 	}
 
 	getVersion(project: string, task: TaskWrapper) {
@@ -141,26 +157,34 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 		return version;
 	}
 
-	prepareForDist(project: string, task: TaskWrapper) {
+	async prepareForDist(project: string, task: TaskWrapper) {
 		const version = this.getVersion(project, task);
 
-		const projectSlug = project.split('/')[1] || project;
-		const projectName = projectSlug.replace('-', '_');
+		const { projectInfo, bundle } = await getProjectConfig(project, version);
 
-		const outDir = this.getOutputDir().replace(this.placeholder, project);
+		const skip = true;
+
+		if (skip) {
+			return;
+		}
+
+		const outDir = this.parseOutputDir(this.getOutputDir(), project);
 
 		const canChangeSourceFiles = this.flags['update-source-files'];
 
 		const cwd = canChangeSourceFiles ? project : outDir;
 
+		const preScripts = this.flags['pre-script'] || bundle.tasks.preScripts;
+		const postScripts = this.flags['post-script'] || bundle.tasks.postScripts;
+
 		return task.newListr(
 			[
 				{
 					title: 'Run pre-scripts',
-					skip: () => !this.flags['pre-script']?.length,
+					skip: () => !preScripts?.length,
 					task: async (_, task) => {
 						return task.newListr(
-							(this.flags['pre-script'] || []).map((script) => {
+							(preScripts || []).map((script) => {
 								return {
 									title: `Running "${script}"`,
 									task: async () => {
@@ -178,63 +202,47 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 				{
 					title: 'Copy files before changing',
 					skip: () => canChangeSourceFiles,
-					task: async () => {
-						const distignore = getDistIgnorePattern(project);
+					task: async (_, task) => {
+						if (!bundle.tasks.copyFilesBefore) {
+							return task.skip();
+						}
 
-						return await copyDir(`${project}/src`, outDir, {
-							ignore: distignore,
-						});
+						const {
+							sourceDir,
+							destDir,
+							ignore = getDistIgnorePattern(project),
+						} = bundle.tasks.copyFilesBefore;
+
+						return await copyDir(
+							path.join(project, sourceDir),
+							this.parseOutputDir(destDir, project),
+							{ ignore },
+						);
 					},
 				},
 				{
 					title: 'Update requirements',
-					task: async () => {
-						return await updateRequirements(cwd, {
-							requirements: {
-								requiresPHP: '8.0',
-								requiresAtLeast: '6.2',
-								testedUpTo: '6.4.1',
-							},
-							toUpdate: {
-								files: [
-									'dev.php',
-									`src/${projectSlug}.php`,
-									'src/README.txt',
-									'README.md',
-								],
-							},
-						});
+					task: async (_, task) => {
+						if (!bundle.tasks.updateRequirements) {
+							return task.skip();
+						}
+
+						return await updateRequirements(
+							cwd,
+							bundle.tasks.updateRequirements,
+						);
 					},
 				},
 				{
 					title: 'Update version',
-					task: async () => {
+					task: async (_, task) => {
+						if (!bundle.tasks.updateVersion) {
+							return task.skip();
+						}
+
 						return await updateVersion(cwd, version, {
-							slug: projectSlug,
-							toUpdate: [
-								{
-									type: 'packageJson',
-								},
-								{
-									type: 'composerJson',
-								},
-								{
-									type: 'readmeFiles',
-								},
-								{
-									type: 'pluginMainFile',
-								},
-								{
-									type: 'sinceTag',
-								},
-								{
-									type: 'general',
-									files: [`src/${projectSlug}.php`],
-									textPatterns: [
-										`'${projectName.toUpperCase()}_VER',\\s*'([0-9a-z-+.]+)'`,
-									],
-								},
-							],
+							slug: projectInfo.slug,
+							target: bundle.tasks.updateVersion,
 						});
 					},
 				},
@@ -251,39 +259,45 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 			}, */
 				{
 					title: 'i18n',
-					task: async (_, task) => {
-						return task.newListr(
+					task: async (_, i18nTask) => {
+						return i18nTask.newListr(
 							[
 								{
 									title: 'Generate POT file',
-									task: async () => {
+									task: async (_, task) => {
+										if (!bundle.tasks.generatePot) {
+											return task.skip();
+										}
+
 										return await generatePotFile(cwd, {
-											source: 'src',
-											textDomain: projectSlug,
-											headers: {
-												language: 'en_US',
-												'X-Poedit-Basepath': '..',
-												'Plural-Forms': 'nplurals=2; plural=n != 1;',
-												'X-Poedit-KeywordsList':
-													'__;_e;_x;esc_attr__;esc_attr_e;esc_html__;esc_html_e',
-												'X-Poedit-SearchPath-0': '.',
-												'X-Poedit-SearchPathExcluded-0': 'assets',
-											},
-											mergeFiles: ['src/languages/js-translations.pot'],
-											makePotArgs: {
-												slug: projectSlug,
-											},
+											textDomain: projectInfo.textDomain,
+											...bundle.tasks.generatePot,
 										});
 									},
 								},
 								{
-									title: 'Update PO and MO files',
-									task: async () => {
-										await updatePoFiles(cwd, {
-											source: `src/languages/${projectSlug}.pot`,
+									title: 'Update PO files',
+									task: async (_, task) => {
+										if (!bundle.tasks.updatePoFiles) {
+											return task.skip();
+										}
+
+										return await updatePoFiles(cwd, {
+											source: `src/languages/${projectInfo.textDomain}.pot`,
+											...bundle.tasks.updatePoFiles,
 										});
+									},
+								},
+								{
+									title: 'Make MO files',
+									task: async (_, task) => {
+										if (!bundle.tasks.makeMoFiles) {
+											return task.skip();
+										}
+										const { source } = bundle.tasks.makeMoFiles;
+
 										return await makeMoFiles(cwd, {
-											source: 'src/languages/',
+											source: source || 'src/languages/',
 										});
 									},
 								},
@@ -291,10 +305,15 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 									// Generate PHP file from JS POT file
 									// for wp.org to scan the translation strings
 									title: 'JS POT to PHP',
-									task: async () => {
+									task: async (_, task) => {
+										if (!bundle.tasks.jsPotToPhp) {
+											return task.skip();
+										}
+										const { potFile, textDomain } = bundle.tasks.jsPotToPhp;
+
 										return await potToPhp(cwd, {
-											potFile: 'src/languages/js-translations.pot',
-											textDomain: projectSlug,
+											potFile: potFile || 'src/languages/js-translations.pot',
+											textDomain: textDomain || projectInfo.textDomain,
 										});
 									},
 								},
@@ -305,16 +324,20 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 				},
 				{
 					title: 'Process styles',
-					task: async (_, task) => {
-						return task.newListr(
+					task: async (_, stylesTask) => {
+						if (!bundle.tasks.minifyStyles) {
+							return stylesTask.skip();
+						}
+						return stylesTask.newListr(
 							[
 								{
 									title: 'Minify CSS',
-									task: async () => {
-										return await processStyles(cwd, {
-											files: ['src/assets/static/css/*.css'],
-											ignore: ['src/assets/static/css/*.min.css'],
-										});
+									task: async (_, task) => {
+										if (!bundle.tasks.minifyStyles) {
+											return task.skip();
+										}
+
+										return await minifyStyles(cwd, bundle.tasks.minifyStyles);
 									},
 								},
 							],
@@ -325,20 +348,30 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 				{
 					title: 'Copy files after changing',
 					skip: () => !canChangeSourceFiles,
-					task: async () => {
-						const distignore = getDistIgnorePattern(project);
+					task: async (_, task) => {
+						if (!bundle.tasks.copyFilesAfter) {
+							return task.skip();
+						}
 
-						return await copyDir(`${project}/src`, outDir, {
-							ignore: distignore,
-						});
+						const {
+							sourceDir,
+							destDir,
+							ignore = getDistIgnorePattern(project),
+						} = bundle.tasks.copyFilesAfter;
+
+						return await copyDir(
+							path.join(project, sourceDir),
+							this.parseOutputDir(destDir, project),
+							{ ignore },
+						);
 					},
 				},
 				{
 					title: 'Run post-scripts',
-					skip: () => !this.flags['post-script']?.length,
+					skip: () => !postScripts?.length,
 					task: async (_, task) => {
 						return task.newListr(
-							(this.flags['post-script'] || []).map((script) => {
+							(postScripts || []).map((script) => {
 								return {
 									title: `Running "${script}"`,
 									task: async () => {
@@ -355,11 +388,16 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 				},
 				{
 					title: 'Create archive',
-					skip: () => !this.flags.archive,
+					skip: () => !this.flags.archive && !bundle.tasks.createArchive,
 					task: async () => {
+						const outPath = bundle.tasks.createArchive?.outPath;
+
 						return await zipDir(
 							outDir,
-							`${path.dirname(outDir)}/${projectSlug}-${version}.zip`,
+							path.join(
+								path.dirname(outDir),
+								outPath || `${projectInfo.slug}-${version}.zip`,
+							),
 						);
 					},
 				},

@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { ToUpdate, globFiles } from './misc.js';
+import { TaskTarget, globFiles } from './misc.js';
 
 export type Requirements = {
 	requiresPHP: string;
@@ -10,7 +10,7 @@ export type Requirements = {
 
 export type RequirementsConfig = {
 	requirements: Requirements;
-	toUpdate: ToUpdate;
+	target: TaskTarget;
 };
 
 /**
@@ -21,7 +21,7 @@ export type RequirementsConfig = {
  */
 export async function updateRequirements(
 	cwd: string,
-	{ requirements, toUpdate }: RequirementsConfig,
+	{ requirements, target }: RequirementsConfig,
 ) {
 	const strings: Requirements = {
 		requiresAtLeast: 'Requires at least',
@@ -29,7 +29,7 @@ export async function updateRequirements(
 		testedUpTo: 'Tested up to',
 	};
 
-	const entries = globFiles(toUpdate, { cwd });
+	const entries = globFiles(target, { cwd });
 
 	for (const file of entries) {
 		const filePath = path.join(cwd, file);

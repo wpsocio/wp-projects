@@ -2,19 +2,24 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { execa } from 'execa';
 import { findUp } from 'find-up';
+import { readPackageSync } from 'read-pkg';
 import { ReleaseType, inc as semverInc } from 'semver';
 import { isFileReadable } from './misc.js';
+import {
+	BundleConfigInput,
+	ProjectInfoInput,
+	bundleSchema,
+	projectInfoSchema,
+} from './schema.js';
 import { getFileData, zippedFileHeaders } from './wp-files.js';
 import { ProjectType } from './wp-projects.js';
 
+export function readPackageJson(cwd: string) {
+	return readPackageSync({ cwd });
+}
+
 export function getCurrentVersion(cwd: string) {
-	const packageJsonPath = path.join(cwd, 'package.json');
-
-	const { version } = JSON.parse(
-		fs.readFileSync(packageJsonPath, { encoding: 'utf8' }),
-	);
-
-	return version;
+	return readPackageJson(cwd).version;
 }
 
 export function getNextVersion(cwd: string, releaseType: string) {
@@ -93,4 +98,80 @@ export async function detectProject({
 	}
 
 	return { dir: projectDir, projectType };
+}
+
+export type ProjectConfig = {
+	getProjectInfo?: (options: {
+		projectDir: string;
+		version?: string;
+	}) => ProjectInfoInput;
+	getBundleConfig: (options: {
+		projectDir: string;
+		slug: string;
+		key: string;
+		version?: string;
+		textDomain: string;
+	}) => BundleConfigInput;
+};
+
+export async function getProjectConfig(projectDir: string, version?: string) {
+	const configPathRel = path.join(projectDir, 'wpdev.project.js');
+
+	const configPath = path.resolve(configPathRel);
+
+	if (!fs.existsSync(configPath)) {
+		throw new Error(`Project config file not found at "${configPathRel}"`);
+	}
+
+	const { getProjectInfo, getBundleConfig } = (await import(
+		`file:///${configPath}`
+	)) as ProjectConfig;
+
+	if (!getBundleConfig || typeof getBundleConfig !== 'function') {
+		throw new Error(
+			`Invalid project config at "${configPathRel}".\n\nERRORS: "getBundleConfig" must be a function.`,
+		);
+	}
+
+	const projectInfo = getProjectInfo?.({ projectDir, version }) || {};
+
+	const projectInfoResult = projectInfoSchema.safeParse(projectInfo);
+
+	if (!projectInfoResult.success) {
+		throw new Error(
+			`Invalid project config at "${configPathRel}".\n\nERRORS: "${projectInfoResult.error.message}"`,
+		);
+	}
+
+	let { slug, key, textDomain } = projectInfoResult.data;
+
+	if (!slug) {
+		// If the slug is not defined, use the package name
+		// It can be something like "@wpsocio/plugin-name"
+		const parts = readPackageJson(projectDir).name.split('/');
+
+		slug = parts[1] || parts[0];
+	}
+
+	if (!key) {
+		// If the key is not defined, use the slug
+		key = slug.replace('-', '_');
+	}
+
+	textDomain = textDomain || slug;
+
+	const bundleResult = bundleSchema.safeParse(
+		getBundleConfig({ projectDir, slug, key, version, textDomain }),
+	);
+
+	if (!bundleResult.success) {
+		throw new Error(
+			`Invalid project config at "${configPathRel}".\n\nERRORS: "${bundleResult.error.message}"`,
+		);
+	}
+
+	return {
+		projectInfo: { ...projectInfo, slug, key, textDomain },
+		bundle: bundleResult.data,
+	};
 }

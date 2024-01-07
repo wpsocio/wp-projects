@@ -6,7 +6,6 @@ import { zodToJsonSchema } from 'zod-to-json-schema';
 const targetFilesSchema = z.object({
 	files: z
 		.union([z.string(), z.array(z.string())])
-		.optional()
 		.describe('The glob pattern for target files.'),
 	ignore: z
 		.array(z.string())
@@ -23,8 +22,8 @@ const copyFilesData = z.object({
 	destDir: z
 		.string()
 		.optional()
-		.default('dist/{slug}')
-		.describe('The destination directory.'),
+		.default('dist/{project}')
+		.describe('The destination directory. Defaults to dist/{project}.'),
 	ignore: targetFilesSchema.shape.ignore,
 });
 
@@ -32,8 +31,9 @@ const createArchiveData = z.object({
 	outPath: z
 		.string()
 		.optional()
-		.default('{slug}-{version}.zip')
-		.describe('The path to the output file. Defaults to {slug}-{version}.zip.'),
+		.describe(
+			'The path to the output file. Defaults to "{slug}-{version}.zip".',
+		),
 });
 
 const generatePotData = z.object({
@@ -45,8 +45,7 @@ const generatePotData = z.object({
 	textDomain: z
 		.string()
 		.optional()
-		.default('{slug}')
-		.describe('The text domain. Can be {slug}.'),
+		.describe('The text domain. Defaults to slug.'),
 	headers: z
 		.record(z.string())
 		.optional()
@@ -71,8 +70,7 @@ const jsPotToPhpData = z.object({
 	textDomain: z
 		.string()
 		.optional()
-		.default('{slug}')
-		.describe('The text domain. Can be {slug}.'),
+		.describe('The text domain. Defaults to slug.'),
 });
 
 const makeMoFilesData = z.object({
@@ -100,8 +98,9 @@ const updatePoFilesData = z.object({
 	source: z
 		.string()
 		.optional()
-		.default('src/languages/{slug}.pot')
-		.describe('The source POT file.'),
+		.describe(
+			'The source POT file. Defaults to "src/languages/{text-domain}.pot"',
+		),
 });
 
 const updateRequirementsData = z.object({
@@ -128,100 +127,93 @@ const updateVersionData = z.array(
 					'sinceTag',
 				]),
 			})
-			.merge(targetFilesSchema),
+			.merge(targetFilesSchema.partial()),
 		z
 			.object({
 				type: z.literal('general'),
 				textPatterns: z
 					.array(
-						z.object({
-							pattern: z.string(),
-							flags: z.string().optional(),
-						}),
+						z.union([
+							z.object({
+								pattern: z.string(),
+								flags: z.string().optional(),
+							}),
+							z.object({
+								pattern: z.instanceof(RegExp),
+							}),
+						]),
 					)
 					.describe('The text patterns to match. Regex can also be used.'),
 			})
-
 			.merge(targetFilesSchema),
 	]),
 );
 
+export type UpdateVersionInput = z.input<typeof updateVersionData>;
+
 export const bundleSchema = z
 	.object({
-		tasks: z.array(
-			z.discriminatedUnion('type', [
-				z.object({
-					type: z.literal('copyFiles'),
-					data: copyFilesData.optional(),
-				}),
-				z.object({
-					type: z.literal('createArchive'),
-					data: createArchiveData.optional(),
-				}),
-				z.object({
-					type: z.literal('generatePot'),
-					data: generatePotData.optional(),
-				}),
-				z.object({
-					type: z.literal('jsPotToPhp'),
-					data: jsPotToPhpData.optional(),
-				}),
-				z.object({
-					type: z.literal('makeMoFiles'),
-					data: makeMoFilesData.optional(),
-				}),
-				z.object({
-					type: z.literal('postScripts'),
-					data: scriptsData.optional(),
-				}),
-				z.object({
-					type: z.literal('preScripts'),
-					data: scriptsData.optional(),
-				}),
-				z.object({
-					type: z.literal('processStyles'),
-					data: processStylesData.optional(),
-				}),
-				z.object({
-					type: z.literal('updatePoFiles'),
-					data: updatePoFilesData.optional(),
-				}),
-				z.object({
-					type: z.literal('updateRequirements'),
-					data: updateRequirementsData,
-				}),
-				z.object({
-					type: z.literal('updateVersion'),
-					data: updateVersionData.optional(),
-				}),
-			]),
-		),
+		tasks: z
+			.object({
+				preScripts: scriptsData,
+				copyFilesBefore: copyFilesData,
+				updateRequirements: updateRequirementsData,
+				updateVersion: updateVersionData,
+				generatePot: generatePotData,
+				updatePoFiles: updatePoFilesData,
+				makeMoFiles: makeMoFilesData,
+				jsPotToPhp: jsPotToPhpData,
+				minifyStyles: processStylesData,
+				postScripts: scriptsData,
+				copyFilesAfter: copyFilesData,
+				createArchive: createArchiveData,
+			})
+			.partial(),
 	})
 	.describe('The bundling configuration.');
 
+export type BundleConfigInput = z.input<typeof bundleSchema>;
+export type BundleConfig = z.infer<typeof bundleSchema>;
+
+export const projectInfoSchema = z.object({
+	title: z
+		.string()
+		.optional()
+		.describe('The project title. e.g. "WP Telegram Login".'),
+	key: z
+		.string()
+		.optional()
+		.describe(
+			'The project key. Parts separated by underscore e.g. "wptelegram_login".',
+		),
+	slug: z
+		.string()
+		.optional()
+		.describe(
+			'The project slug. Parts separated by hyphen e.g. "wptelegram-login".',
+		),
+	textDomain: z
+		.string()
+		.optional()
+		.describe('The text domain for i18n e.g. "wptelegram-login".'),
+});
+
+export type ProjectInfoInput = z.input<typeof projectInfoSchema>;
+export type ProjectInfo = z.infer<typeof projectInfoSchema>;
+
 export const projectSchema = z.object({
-	$schema: z.string().optional().describe('The schema URL.'),
-	project: z.object({
-		title: z
-			.string()
-			.optional()
-			.describe('The project title. e.g. "WP Telegram Login".'),
-		key: z
-			.string()
-			.describe(
-				'The project key. Parts separated by underscore e.g. "wptelegram_login".',
-			),
-		slug: z
-			.string()
-			.describe(
-				'The project slug. Parts separated by hyphen e.g. "wptelegram-login".',
-			),
-	}),
+	project: projectInfoSchema.optional(),
 	bundle: bundleSchema,
 });
 
 export function createJsonSchema(outFile?: string) {
-	const result = zodToJsonSchema(projectSchema);
+	const result = zodToJsonSchema(
+		projectSchema.merge(
+			z.object({
+				$schema: z.string().optional().describe('The schema URL.'),
+			}),
+		),
+	);
 
 	if (outFile) {
 		const outDir = path.dirname(outFile);

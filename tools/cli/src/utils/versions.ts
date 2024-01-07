@@ -1,32 +1,17 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { ToUpdate, globFiles } from './misc.js';
+import { TaskTarget, globFiles } from './misc.js';
+import { UpdateVersionInput } from './schema.js';
 
 export type UpdateVersionConfig = {
 	slug?: string;
-	toUpdate: Array<
-		Partial<ToUpdate> &
-			(
-				| {
-						type:
-							| 'packageJson'
-							| 'composerJson'
-							| 'readmeFiles'
-							| 'pluginMainFile'
-							| 'themeStylesheet'
-							| 'sinceTag';
-				  }
-				| {
-						files: string | Array<string>;
-						type: 'general';
-						textPatterns: Array<RegExp | string>;
-				  }
-			)
-	>;
+	target: UpdateVersionInput;
 };
 
-function createVersionPatterns(toUpdate: UpdateVersionConfig['toUpdate'][0]) {
-	switch (toUpdate.type) {
+function createVersionPatterns(
+	target: UpdateVersionConfig['target'][0],
+): Array<RegExp> {
+	switch (target.type) {
 		case 'packageJson':
 		case 'composerJson':
 			// Allow any type of version string
@@ -44,20 +29,22 @@ function createVersionPatterns(toUpdate: UpdateVersionConfig['toUpdate'][0]) {
 			return [/@since[\s\t]*(x\.?y\.?z)/gi, /((?:since:)x\.?y\.?z)/gi];
 
 		case 'general':
-			return toUpdate.textPatterns.map((pattern) => {
-				if (typeof pattern === 'string') {
-					return new RegExp(pattern, 'gi');
+			return target.textPatterns.map((item) => {
+				if (typeof item.pattern === 'string') {
+					const flags = 'flags' in item ? item.flags : 'gi';
+
+					return new RegExp(item.pattern, flags);
 				}
-				return pattern;
+				return item.pattern;
 			});
 	}
 }
 
 function getFilesToUpdate(
-	{ type, ...item }: UpdateVersionConfig['toUpdate'][0],
+	{ type, ...item }: UpdateVersionConfig['target'][0],
 	slug?: string,
 ) {
-	let filesToUpdate: ToUpdate;
+	let filesToUpdate: TaskTarget;
 
 	switch (type) {
 		case 'packageJson':
@@ -110,9 +97,9 @@ function getFilesToUpdate(
 export async function updateVersion(
 	cwd: string,
 	version: string,
-	{ toUpdate, slug }: UpdateVersionConfig,
+	{ target, slug }: UpdateVersionConfig,
 ) {
-	for (const item of toUpdate) {
+	for (const item of target) {
 		const patterns = createVersionPatterns(item);
 		const filesToUpdate = getFilesToUpdate(item, slug);
 

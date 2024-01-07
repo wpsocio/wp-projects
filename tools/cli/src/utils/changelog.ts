@@ -1,10 +1,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { ToUpdate, globFiles } from './misc.js';
+import { TaskTarget, globFiles } from './misc.js';
 
 export type UpdateChangelogConfig = {
 	changelogPath: string;
-	readmeTxt: ToUpdate;
+	readmeTxt: TaskTarget;
 };
 
 export async function updateChangelog(
