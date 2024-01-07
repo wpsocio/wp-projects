@@ -1,134 +1,96 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { ROOT_DIR } from './monorepo.js';
+import { execa } from 'execa';
+import { findUp } from 'find-up';
+import { ReleaseType, inc as semverInc } from 'semver';
+import { isFileReadable } from './misc.js';
+import { getFileData, zippedFileHeaders } from './wp-files.js';
+import { ProjectType } from './wp-projects.js';
 
-export const PROJECT_TYPES = ['plugins'] as const;
+export function getCurrentVersion(cwd: string) {
+	const packageJsonPath = path.join(cwd, 'package.json');
 
-export type ProjectType = (typeof PROJECT_TYPES)[number];
+	const { version } = JSON.parse(
+		fs.readFileSync(packageJsonPath, { encoding: 'utf8' }),
+	);
 
-type ProjectStatus = 'ignored' | 'tracked' | 'connected';
-
-type IncludeOptions = {
-	[key in ProjectStatus]?: boolean;
-};
-
-type ProjectDetails = {
-	path: string;
-	status: ProjectStatus;
-};
-
-const GIT_IGNORE_PATH = path.join(ROOT_DIR, '.gitignore');
-
-const gitIgnoreContent = fs.readFileSync(GIT_IGNORE_PATH, 'utf8');
-
-const getConnectedProjects = () =>
-	(process.env.CONNECTED_PROJECTS || '')
-		.split(',')
-		.map((project) => project.trim())
-		.filter(Boolean);
-
-function getProjectDetails(
-	dirent: fs.Dirent,
-	projectType: ProjectType,
-): ProjectDetails {
-	const projectPath = `${projectType}/${dirent.name}`;
-
-	// Connected is a subset of ignored, so we need to check for connected first
-	if (getConnectedProjects().includes(`${projectType}/${dirent.name}`)) {
-		return {
-			path: projectPath,
-			status: 'connected',
-		};
-	}
-
-	// For tracked projects, we expect an entry like this in the .gitignore file:
-	// !/plugins/plugin-name/, !themes/theme-name/
-	const RE = new RegExp(`[^#]!/${projectType}/${dirent.name}/`);
-
-	if (RE.test(gitIgnoreContent)) {
-		return {
-			path: projectPath,
-			status: 'tracked',
-		};
-	}
-
-	return {
-		path: projectPath,
-		status: 'ignored',
-	};
+	return version;
 }
 
-function getProjectDirectoriesByType(projectType: ProjectType) {
-	return fs
-		.readdirSync(path.join(ROOT_DIR, projectType), { withFileTypes: true })
-		.filter((dirent) => dirent.isDirectory());
+export function getNextVersion(cwd: string, releaseType: string) {
+	const currentVersion = getCurrentVersion(cwd);
+
+	return semverInc(currentVersion, releaseType as ReleaseType);
+}
+
+export async function runScript(cwd: string, script: string, pm = 'npm') {
+	const cleanScript = script.replaceAll('&', '');
+
+	return await execa(pm, ['run', cleanScript], { cwd });
 }
 
 /**
- * Get projects.
- *
- * By default, it returns all projects that are connected or tracked.
+ * Detect project from a given path. It traverses the directory tree upwards
  */
-export function getProjects(include: IncludeOptions) {
-	const projects = new Set<string>();
+export async function detectProject({
+	startAt: cwd,
+	stopAt,
+}: { startAt: string; stopAt: string }) {
+	let projectType: ProjectType | undefined;
 
-	for (const projectType of PROJECT_TYPES) {
-		for (const project of getProjectDirectoriesByType(projectType)) {
-			const projectDetails = getProjectDetails(project, projectType);
+	const projectDir = await findUp(
+		async (directory) => {
+			const entries = fs.readdirSync(directory, { withFileTypes: true });
 
-			if (include[projectDetails.status]) {
-				projects.add(projectDetails.path);
+			for (const dirent of entries) {
+				if (!dirent.isFile()) {
+					continue;
+				}
+
+				const file = path.join(directory, dirent.name);
+
+				if (!isFileReadable(file)) {
+					return undefined;
+				}
+
+				const fileInfo = path.parse(file);
+
+				if (fileInfo.ext === '.css' && fileInfo.name === 'style') {
+					const data = await getFileData(file, zippedFileHeaders('theme'));
+
+					// If the file has a theme name, it's a theme
+					if (data['Theme Name']) {
+						projectType = 'themes';
+
+						return directory;
+					}
+				}
+
+				if (fileInfo.ext === '.php') {
+					const data = await getFileData(file, zippedFileHeaders('plugin'));
+
+					// If the file has a plugin name, it's a plugin
+					if (data['Plugin Name']) {
+						projectType = 'plugins';
+
+						// But, if there is a dev.php file in the parent directory, use that instead
+						const devFile = path.join(fileInfo.dir, 'dev.php');
+
+						if (isFileReadable(devFile)) {
+							return fileInfo.dir;
+						}
+
+						return directory;
+					}
+				}
 			}
-		}
+		},
+		{ type: 'directory', cwd, stopAt },
+	);
+
+	if (!projectDir) {
+		return undefined;
 	}
 
-	return projects;
-}
-
-export function getMonorepoProjects() {
-	return getProjects({ connected: true, tracked: true });
-}
-
-export function getAllProjects() {
-	return getProjects({ connected: true, tracked: true, ignored: true });
-}
-
-export function validateProject(project: string) {
-	if (!getMonorepoProjects().has(project)) {
-		throw new Error(`Invalid project: ${project}`);
-	}
-}
-
-/**
- * Get the real path for a project
- */
-export function getRealPath(project: string, relativeTo = ROOT_DIR) {
-	return path.join(relativeTo, project);
-}
-
-/**
- * Get the symlink path for an item
- */
-export function getSymlinkPath(project: string, relativeTo: string) {
-	return path.join(relativeTo, project);
-}
-
-export type ArgToken = {
-	type: 'arg' | 'flag';
-	arg?: string;
-	flag?: string;
-	input: string;
-};
-
-/**
- * Coerce array input from yargs
- * `array: true` works weirdly with positional arguments
- * So, in order to provide support for comma separated values, we need to use coerce
- */
-export function coerceArrayInput(projects: Array<string>) {
-	// Comma gets converted to space by yargs
-	return projects
-		.flatMap((project) => project.split(/\s+/))
-		.map((part) => part.trim())
-		.filter(Boolean);
+	return { dir: projectDir, projectType };
 }

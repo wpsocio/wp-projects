@@ -31,9 +31,11 @@ export const getFormErrorMessage = <Fields extends string>(
 
 		switch (errorType) {
 			case 'invalid':
+				/* translators: %s: field label */
 				message = __('Invalid %s');
 				break;
 			case 'required':
+				/* translators: %s: field label */
 				message = __('%s required.');
 				break;
 			default:

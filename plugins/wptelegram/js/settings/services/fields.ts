@@ -62,11 +62,19 @@ export const validationSchema = yup.object({
 					? schema
 					: schema
 							.required(
-								sprintf(__('At least one %s is required.'), __('channel')),
+								sprintf(
+									/* translators: %s: field label */
+									__('At least one %s is required.'),
+									__('channel'),
+								),
 							)
 							.min(
 								1,
-								sprintf(__('At least one %s is required.'), __('channel')),
+								sprintf(
+									/* translators: %s: field label */
+									__('At least one %s is required.'),
+									__('channel'),
+								),
 							);
 			}),
 		send_when: yup
@@ -103,7 +111,11 @@ export const validationSchema = yup.object({
 			.integer()
 			.positive()
 			.typeError(() =>
-				sprintf(__('%s must be a number.'), getFieldLabel('excerpt_length')),
+				sprintf(
+					/* translators: %s: field label */
+					__('%s must be a number.'),
+					getFieldLabel('excerpt_length'),
+				),
 			)
 			// make sure it's >= 1
 			.min(1)
@@ -122,7 +134,11 @@ export const validationSchema = yup.object({
 			.number()
 			.nullable()
 			.typeError(() =>
-				sprintf(__('%s must be a number.'), getFieldLabel('delay')),
+				sprintf(
+					/* translators: %s: field label */
+					__('%s must be a number.'),
+					getFieldLabel('delay'),
+				),
 			)
 			.positive()
 			.min(0),

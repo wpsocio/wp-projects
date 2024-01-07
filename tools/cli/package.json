@@ -4,30 +4,43 @@
 	"private": true,
 	"type": "module",
 	"bin": {
-		"wpsocio": "./bin/dev.js"
+		"wpsocio": "./bin/dev.js",
+		"pot-to-php": "./node_modules/@wordpress/i18n/tools/pot-to-php.js"
 	},
 	"types": "dist/index.d.ts",
 	"main": "bin/run.js",
 	"dependencies": {
-		"@oclif/core": "^3",
+		"@oclif/core": "^3.16.0",
+		"@wordpress/i18n": "^4.48.0",
+		"archiver": "^6.0.1",
 		"chalk": "^5.3.0",
+		"cssnano": "^6.0.2",
 		"dotenv": "^16.3.1",
-		"enquirer": "^2.4.1"
+		"enquirer": "^2.4.1",
+		"execa": "^8.0.1",
+		"find-up": "^7.0.0",
+		"listr2": "^8.0.1",
+		"parse-json": "^8.1.0",
+		"postcss": "^8.4.32",
+		"read-pkg": "^9.0.1",
+		"semver": "^7.5.4",
+		"zod": "^3.22.4",
+		"zod-to-json-schema": "^3.22.3"
 	},
 	"devDependencies": {
-		"oclif": "^4.1.0",
-		"ts-node": "^10.9.2",
+		"@types/archiver": "^6.0.2",
+		"@types/semver": "^7.5.6",
+		"fast-glob": "^3.3.2",
+		"oclif": "^4.1.3",
 		"rimraf": "^5.0.5",
+		"ts-node": "^10.9.2",
 		"typescript": "^5.3.3"
 	},
 	"oclif": {
 		"bin": "wpsocio",
-		"dirname": "cli",
+		"dirname": "wpsocio",
 		"commands": "./dist/commands",
-		"topicSeparator": " ",
-		"hooks": {
-			"init": "./dist/hooks/init/load-env"
-		}
+		"topicSeparator": " "
 	},
 	"scripts": {
 		"compile": "rimraf dist/ tsconfig.tsbuildinfo && tsc",

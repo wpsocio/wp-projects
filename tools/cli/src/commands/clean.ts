@@ -1,9 +1,10 @@
 import child_process from 'node:child_process';
 import fs from 'node:fs';
-import { Args, Command, Flags } from '@oclif/core';
+import { Args, Flags } from '@oclif/core';
 import chalk from 'chalk';
 import enquirer from 'enquirer';
-import { getAllProjects, getProjects } from '../utils/projects.js';
+import { WithConfig } from '../base-commands/WithConfig.js';
+import { WPProjects } from '../utils/wp-projects.js';
 
 type CleanArgs = {
 	path: string;
@@ -11,7 +12,7 @@ type CleanArgs = {
 	all?: boolean;
 };
 
-export default class Clean extends Command {
+export default class Clean extends WithConfig {
 	static description = 'Cleans up the given path(s) in this monorepo.';
 
 	static examples = [
@@ -227,9 +228,11 @@ export default class Clean extends Command {
 			allFiles.composerLock.push(...composerLockFiles);
 		}
 
+		const wpProjects = new WPProjects(this.devConfig);
+
 		// It's possible that the connected project may be a git repo
 		// So the above git commands won't work for nested git repos
-		const connectedProjects = getProjects({ connected: true });
+		const connectedProjects = wpProjects.getProjects({ connected: true });
 
 		for (const project of connectedProjects) {
 			const files = child_process.execSync(
@@ -253,7 +256,7 @@ export default class Clean extends Command {
 
 		// We do not want to delete any of the project directories in the monorepo.
 		const filesToSkip = new Set(
-			[...getAllProjects()].map((project) =>
+			[...wpProjects.getAllProjects()].map((project) =>
 				// Ensure that the path ends with a slash.
 				project.replace(/\/?$/, '/'),
 			),

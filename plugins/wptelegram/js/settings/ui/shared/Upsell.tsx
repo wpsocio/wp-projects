@@ -65,6 +65,7 @@ export const Upsell: React.FC<UpsellProps> = ({
 
 		case 'rules':
 			message = sprintf(
+				/* translators: %s: plugin name */
 				__(
 					'%s supports multiple instances of Post to Telgram with different rules.',
 				),
@@ -74,6 +75,7 @@ export const Upsell: React.FC<UpsellProps> = ({
 
 		case 'template':
 			message = sprintf(
+				/* translators: %s: plugin name */
 				__('%s supports ALL WooCommerce and ACF text fields.'),
 				__('WP Telegram Pro'),
 			);
@@ -85,6 +87,7 @@ export const Upsell: React.FC<UpsellProps> = ({
 
 		case 'delay':
 			message = sprintf(
+				/* translators: %s: plugin name */
 				__('%s supports delay per channel.'),
 				__('WP Telegram Pro'),
 			);
@@ -96,6 +99,7 @@ export const Upsell: React.FC<UpsellProps> = ({
 
 		case 'proxy-method':
 			message = sprintf(
+				/* translators: %s: plugin name */
 				__('%s supports Cloudflare proxy for featured image upload!'),
 				__('WP Telegram Pro'),
 			);

@@ -27,6 +27,7 @@ export const Basics: React.FC = () => {
 			<FormField<'text', DataShape>
 				addonBefore="@"
 				description={sprintf(
+					/* translators: %s button name */
 					__('Use %s above to set automatically.'),
 					__('Test Token'),
 				)}

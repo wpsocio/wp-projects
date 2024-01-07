@@ -4,11 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d988c8d988c5dbc590de166a6a4ce42d",
+    "content-hash": "54e51c7c9d8951a60f0e6943009787a2",
     "packages": [
         {
             "name": "wpsocio/wp-utils",
-            "version": "dev-main",
+            "version": "dev-update/enhance-dist-commant",
             "dist": {
                 "type": "path",
                 "url": "../../packages/php/wp-utils",

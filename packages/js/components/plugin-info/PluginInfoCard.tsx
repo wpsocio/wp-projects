@@ -55,7 +55,13 @@ export const PluginInfoCard: React.FC<PluginInfoCardProps> = ({
 				{socialIcons && <StackItem>{socialIcons}</StackItem>}
 				{reviewLink && (
 					<StackItem>
-						<Text mb="0.5em">{sprintf(__('Do you like %s?'), title)}</Text>
+						<Text mb="0.5em">
+							{sprintf(
+								/* translators: %s: plugin name */
+								__('Do you like %s?'),
+								title,
+							)}
+						</Text>
 						<Box>
 							<Link
 								href={reviewLink}

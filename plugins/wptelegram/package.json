@@ -46,7 +46,6 @@
 		"@wordpress/media-utils": "^4.39.0",
 		"@wordpress/plugins": "^6.16.0",
 		"@wpsocio/adapters": "workspace:*",
-		"@wpsocio/cli": "workspace:*",
 		"@wpsocio/components": "workspace:*",
 		"@wpsocio/dev": "workspace:*",
 		"@wpsocio/form": "workspace:*",
