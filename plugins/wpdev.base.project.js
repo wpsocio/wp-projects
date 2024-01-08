@@ -6,6 +6,7 @@
 export const getBundleConfig = ({ slug, key, version, textDomain }) => {
 	return {
 		tasks: {
+			preScripts: ['setup:php:prod'],
 			updateRequirements: {
 				requirements: {
 					requiresPHP: '8.0',

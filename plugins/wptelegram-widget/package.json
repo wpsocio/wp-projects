@@ -24,7 +24,7 @@
 		"lint:php": "composer run lint",
 		"preview": "vite preview",
 		"setup:php": "composer config vendor-dir --unset && composer install",
-		"setup:php:prod": "composer config vendor-dir src/vendor && composer install --no-dev"
+		"setup:php:prod": "composer config vendor-dir src/vendor && composer install --no-dev && composer config vendor-dir --unset"
 	},
 	"dependencies": {
 		"@wordpress/compose": "^6.25.0",
