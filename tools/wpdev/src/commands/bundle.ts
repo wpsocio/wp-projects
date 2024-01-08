@@ -240,17 +240,6 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 						});
 					},
 				},
-				/* {
-				title: 'Update changelog',
-				task: async (): Promise<void> => {
-					await updateChangelog(project, version, {
-						changelogPath: 'changelog.md',
-						readmeTxt: {
-							files: ['src/README.txt'],
-						},
-					});
-				},
-			}, */
 				{
 					title: 'i18n',
 					task: async (_, i18nTask) => {

@@ -42,7 +42,6 @@
 		"@wordpress/element": "^5.25.0",
 		"@wordpress/url": "^3.49.0",
 		"@wpsocio/adapters": "workspace:*",
-		"@wpsocio/cli": "workspace:*",
 		"@wpsocio/components": "workspace:*",
 		"@wpsocio/dev": "workspace:*",
 		"@wpsocio/form": "workspace:*",

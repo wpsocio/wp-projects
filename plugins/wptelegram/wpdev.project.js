@@ -1,6 +1,6 @@
 // @ts-check
 /**
- * @type {import("@wpsocio/cli").ProjectConfig['getProjectInfo']}
+ * @type {import("@wpsocio/wpdev").ProjectConfig['getProjectInfo']}
  */
 export const getProjectInfo = () => ({
 	title: 'WP Telegram',
@@ -10,7 +10,7 @@ export const getProjectInfo = () => ({
 });
 
 /**
- * @type {import("@wpsocio/cli").ProjectConfig['getBundleConfig']}
+ * @type {import("@wpsocio/wpdev").ProjectConfig['getBundleConfig']}
  */
 export const getBundleConfig = ({ slug, key, version, textDomain }) => {
 	return {

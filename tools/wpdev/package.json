@@ -1,10 +1,10 @@
 {
-	"name": "@wpsocio/cli",
+	"name": "@wpsocio/wpdev",
 	"version": "1.0.0",
 	"private": true,
 	"type": "module",
 	"bin": {
-		"wpsocio": "./bin/dev.js",
+		"wpdev": "./bin/dev.js",
 		"pot-to-php": "./node_modules/@wordpress/i18n/tools/pot-to-php.js"
 	},
 	"types": "dist/index.d.ts",
@@ -36,8 +36,8 @@
 		"typescript": "^5.3.3"
 	},
 	"oclif": {
-		"bin": "wpsocio",
-		"dirname": "wpsocio",
+		"bin": "wpdev",
+		"dirname": "wpdev",
 		"commands": "./dist/commands",
 		"topicSeparator": " "
 	},
