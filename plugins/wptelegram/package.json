@@ -47,7 +47,6 @@
 		"@wordpress/plugins": "^6.16.0",
 		"@wpsocio/adapters": "workspace:*",
 		"@wpsocio/components": "workspace:*",
-		"@wpsocio/dev": "workspace:*",
 		"@wpsocio/form": "workspace:*",
 		"@wpsocio/form-components": "workspace:*",
 		"@wpsocio/i18n": "workspace:*",
@@ -55,6 +54,7 @@
 		"@wpsocio/services": "workspace:*",
 		"@wpsocio/shared-wptelegram-ui": "workspace:*",
 		"@wpsocio/utilities": "workspace:*",
+		"@wpsocio/wpdev": "workspace:*",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"typescript": "^5.3.3"

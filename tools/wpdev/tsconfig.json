@@ -6,7 +6,7 @@
 		"noEmit": false,
 	},
 	"include": [
-		"./src/**/*"
+		"src"
 	],
 	"ts-node": {
 		"esm": true
