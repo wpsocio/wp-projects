@@ -33,8 +33,8 @@
 	"devDependencies": {
 		"@types/jquery": "^3.5.29",
 		"@types/ramda": "^0.29.9",
-		"@types/react": "^18.2.45",
-		"@types/react-dom": "^18.2.17",
+		"@types/react": "^18.2.47",
+		"@types/react-dom": "^18.2.18",
 		"@types/wordpress__edit-post": "^7.5.6",
 		"@types/wordpress__editor": "^13.6.7",
 		"@types/wordpress__media-utils": "^4.14.4",

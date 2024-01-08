@@ -8,22 +8,22 @@
 	"sideEffects": false,
 	"dependencies": {
 		"@hookform/error-message": "^2.0.1",
-		"@hookform/resolvers": "^3.3.2",
+		"@hookform/resolvers": "^3.3.4",
 		"@wpsocio/adapters": "workspace:*",
 		"@wpsocio/components": "workspace:*",
 		"@wpsocio/i18n": "workspace:*",
 		"@wpsocio/icons": "workspace:*",
 		"@wpsocio/utilities": "workspace:*",
-		"classnames": "^2.3.2",
+		"classnames": "^2.5.1",
 		"ramda": "^0.29.1",
 		"react-hook-form": "^7.49.2",
 		"yup": "^1.3.3"
 	},
 	"devDependencies": {
-		"@types/node": "^20.10.4",
+		"@types/node": "^20.10.7",
 		"@types/ramda": "^0.29.9",
-		"@types/react": "^18.2.45",
-		"@types/react-dom": "^18.2.17",
+		"@types/react": "^18.2.47",
+		"@types/react-dom": "^18.2.18",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0"
 	}

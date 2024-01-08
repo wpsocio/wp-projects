@@ -22,7 +22,7 @@
 		"setup:php:root": "composer install --ignore-platform-reqs",
 		"test:php": "turbo run test:php",
 		"typecheck": "turbo typecheck",
-		"upgrade-all": "pnpm -r exec pnpm ncu -u",
+		"upgrade-all": "pnpm -r --parallel exec pnpm ncu -u",
 		"wp": "composer run wp -- ",
 		"wpdev-link": "dotenv -- wpdev link",
 		"wpdev-unlink": "dotenv -- wpdev unlink"
