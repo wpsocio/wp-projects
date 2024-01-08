@@ -6,7 +6,10 @@
 export const getBundleConfig = ({ slug, key, version, textDomain }) => {
 	return {
 		tasks: {
-			preScripts: ['setup:php:prod'],
+			preScripts: [
+				// Install composer dependencies for production
+				'setup:php:prod',
+			],
 			updateRequirements: {
 				requirements: {
 					requiresPHP: '8.0',
