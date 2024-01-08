@@ -8,7 +8,7 @@
 	"license": "GPL-3.0",
 	"type": "module",
 	"scripts": {
-		"build": "turbo build",
+		"build": "wireit",
 		"dev": "turbo run dev",
 		"lint": "pnpm run lint:js",
 		"lint:js": "biome lint ./",
@@ -16,10 +16,7 @@
 		"lint:php": "turbo run lint:php",
 		"nuke:nm:pwsh": "Get-ChildItem -Path '.' -Include 'node_modules' -Recurse -Directory | Remove-Item -Recurse -Force",
 		"nuke:nm:unix": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +",
-		"setup:php": "pnpm setup:php:root && pnpm setup:php:packages && pnpm setup:php:plugins",
-		"setup:php:packages": "turbo run setup:php --filter=./packages/php/*",
-		"setup:php:plugins": "turbo run setup:php --filter=./plugins/*",
-		"setup:php:root": "composer install --ignore-platform-reqs",
+		"setup:php": "wireit",
 		"test:php": "turbo run test:php",
 		"typecheck": "turbo typecheck",
 		"upgrade-all": "pnpm -r --parallel exec pnpm ncu -u",
@@ -36,7 +33,30 @@
 		"npm-check-updates": "^16.14.12",
 		"ts-node": "^10.9.2",
 		"turbo": "^1.11.2",
-		"typescript": "^5.3.3"
+		"typescript": "^5.3.3",
+		"wireit": "^0.14.1"
+	},
+	"wireit": {
+		"build": {
+			"command": "pnpm -r run build"
+		},
+		"setup:php": {
+			"dependencies": [
+				"setup:php:root",
+				"setup:php:packages",
+				"setup:php:plugins"
+			]
+		},
+		"setup:php:packages": {
+			"command": "pnpm -r --filter=./packages/php/* run setup:php"
+		},
+		"setup:php:root": {
+			"command": "composer install --ignore-platform-reqs"
+		},
+		"setup:php:plugins": {
+			"command": "pnpm -r --filter=./plugins/* run setup:php",
+			"dependencies": ["setup:php:packages"]
+		}
 	},
 	"wpdev": {
 		"repo-type": "monorepo",
