@@ -11,6 +11,7 @@ import {
 } from '../utils/i18n.js';
 import { copyDir, getDistIgnorePattern, zipDir } from '../utils/misc.js';
 import {
+	getCurrentVersion,
 	getNextVersion,
 	getProjectConfig,
 	runScript,
@@ -62,11 +63,11 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 		version: Flags.string({
 			char: 'v',
 			description: 'Version to update to.',
-			exclusive: ['version-type'],
+			exclusive: ['release-type'],
 		}),
 		'release-type': Flags.string({
 			char: 't',
-			description: 'Release type to update to. Defaults to "patch".',
+			description: 'Release type to update to.',
 			exclusive: ['version'],
 			options: [
 				'major',
@@ -133,6 +134,10 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 	}
 
 	getVersion(project: string, task: TaskWrapper) {
+		if (!this.flags.version && !this.flags['release-type']) {
+			return getCurrentVersion(project);
+		}
+
 		let version = this.flags.version;
 
 		if (!version) {
@@ -229,6 +234,7 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 				},
 				{
 					title: 'Update version',
+					skip: () => !this.flags.version && !this.flags['release-type'],
 					task: async (_, task) => {
 						if (!bundle.tasks.updateVersion) {
 							return task.skip();
