@@ -32,8 +32,8 @@
 	},
 	"devDependencies": {
 		"@types/jquery": "^3.5.29",
-		"@types/react": "^18.2.45",
-		"@types/react-dom": "^18.2.17",
+		"@types/react": "^18.2.47",
+		"@types/react-dom": "^18.2.18",
 		"@wpsocio/adapters": "workspace:*",
 		"@wpsocio/components": "workspace:*",
 		"@wpsocio/form": "workspace:*",
