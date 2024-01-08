@@ -3,8 +3,7 @@
 	"globalDotEnv": [".env"],
 	"pipeline": {
 		"dev": {
-			"cache": false,
-			"persistent": true
+			"cache": false
 		},
 		"build": {
 			"outputs": ["src/assets/build/**"],
