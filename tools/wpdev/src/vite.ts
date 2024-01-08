@@ -1,17 +1,17 @@
-// @ts-check
 import viteWpReact from '@wpsocio/vite-wp-react';
 import { defineConfig } from 'vite';
+import { CreateViteConfigOptions } from './types.js';
 
 export { defineConfig };
 
 /**
  * Create Vite config
- *
- * @param {import('./types.js').CreateViteConfigOptions} options
- *
- * @returns {import('vite').UserConfigExport}
  */
-export function createViteConfig({ outDir, input, makePot }) {
+export function createViteConfig({
+	outDir,
+	input,
+	makePot,
+}: CreateViteConfigOptions) {
 	return {
 		plugins: [
 			viteWpReact(

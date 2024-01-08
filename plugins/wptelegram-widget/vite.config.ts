@@ -1,4 +1,4 @@
-import { createViteConfig, defineConfig } from '@wpsocio/dev/vite';
+import { createViteConfig, defineConfig } from '@wpsocio/wpdev/vite';
 
 export default defineConfig(
 	createViteConfig({

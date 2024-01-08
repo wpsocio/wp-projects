@@ -24,13 +24,13 @@
 		"typecheck": "turbo typecheck",
 		"upgrade-all": "pnpm -r exec pnpm ncu -u",
 		"wp": "composer run wp -- ",
-		"wpsocio-link": "dotenv -- wpsocio link",
-		"wpsocio-unlink": "dotenv -- wpsocio unlink"
+		"wpdev-link": "dotenv -- wpdev link",
+		"wpdev-unlink": "dotenv -- wpdev unlink"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.4.1",
 		"@wpsocio/adapters": "workspace:*",
-		"@wpsocio/cli": "workspace:*",
+		"@wpsocio/wpdev": "workspace:*",
 		"dotenv": "^16.3.1",
 		"dotenv-cli": "^7.3.0",
 		"npm-check-updates": "^16.14.12",

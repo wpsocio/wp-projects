@@ -25,7 +25,7 @@
 		"preview": "vite preview",
 		"lint:php": "composer run lint",
 		"setup:php": "composer config vendor-dir --unset && composer install",
-		"setup:php:prod": "composer config vendor-dir src/vendor && composer install --no-dev"
+		"setup:php:prod": "composer config vendor-dir src/vendor && composer install --no-dev && composer config vendor-dir --unset"
 	},
 	"dependencies": {
 		"yup": "^1.3.3"
@@ -35,14 +35,13 @@
 		"@types/react": "^18.2.45",
 		"@types/react-dom": "^18.2.17",
 		"@wpsocio/adapters": "workspace:*",
-		"@wpsocio/cli": "workspace:*",
 		"@wpsocio/components": "workspace:*",
-		"@wpsocio/dev": "workspace:*",
 		"@wpsocio/form": "workspace:*",
 		"@wpsocio/form-components": "workspace:*",
 		"@wpsocio/i18n": "workspace:*",
 		"@wpsocio/services": "workspace:*",
 		"@wpsocio/utilities": "workspace:*",
+		"@wpsocio/wpdev": "workspace:*",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"typescript": "^5.3.3"

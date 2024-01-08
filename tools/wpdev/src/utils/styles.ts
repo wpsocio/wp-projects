@@ -2,10 +2,10 @@ import fs from 'node:fs';
 import path from 'node:path';
 import cssnano from 'cssnano';
 import postcss from 'postcss';
-import { ToUpdate, globFiles } from './misc.js';
+import { TaskTarget, globFiles } from './misc.js';
 
-export async function processStyles(cwd: string, toUpdate: ToUpdate) {
-	const entries = globFiles(toUpdate, { cwd });
+export async function minifyStyles(cwd: string, target: TaskTarget) {
+	const entries = globFiles(target, { cwd });
 
 	for (const file of entries) {
 		const filePath = path.join(cwd, file);
