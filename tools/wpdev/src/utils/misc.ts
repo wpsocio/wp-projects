@@ -65,9 +65,9 @@ export function getDistIgnorePattern(dir: string) {
 		const filePath = path.join(dir, file);
 
 		if (fs.existsSync(filePath)) {
-			const gitattributes = fs.readFileSync(filePath, 'utf8');
+			const distignore = fs.readFileSync(filePath, 'utf8');
 
-			return gitattributes
+			return distignore
 				.split(/[\n\r]+/)
 				.filter((line) => {
 					const trimmed = line.trim();
