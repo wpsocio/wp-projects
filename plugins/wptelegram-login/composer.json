@@ -8,7 +8,7 @@
 		"lint:fix": "\"vendor/bin/phpcbf\" --standard=../../phpcs.xml --extensions=php src/ dev.php"
 	},
 	"require": {
-		"wpsocio/wp-utils": "@dev"
+		"wpsocio/wp-utils": "dev-main"
 	},
 	"require-dev": {
 		"wp-coding-standards/wpcs": "^3.0"
