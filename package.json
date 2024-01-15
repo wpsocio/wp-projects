@@ -15,8 +15,6 @@
 		"lint:js": "biome lint ./",
 		"lint:js:fix": "biome format ./ --write",
 		"lint:php": "wireit",
-		"nuke:nm:pwsh": "Get-ChildItem -Path '.' -Include 'node_modules' -Recurse -Directory | Remove-Item -Recurse -Force",
-		"nuke:nm:unix": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +",
 		"setup:php": "wireit",
 		"test:php": "wireit",
 		"typecheck": "wireit",
