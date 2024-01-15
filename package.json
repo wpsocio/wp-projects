@@ -8,35 +8,85 @@
 	"license": "GPL-3.0",
 	"type": "module",
 	"scripts": {
-		"build": "turbo build",
-		"dev": "turbo run dev",
-		"lint": "pnpm run lint:js",
-		"lint:js": "biome lint ./",
+		"build": "wireit",
+		"dev": "wireit",
+		"dev:cleanup": "wireit",
+		"lint:all": "wireit",
+		"lint:js": "wireit",
 		"lint:js:fix": "biome format ./ --write",
-		"lint:php": "turbo run lint:php",
-		"nuke:nm:pwsh": "Get-ChildItem -Path '.' -Include 'node_modules' -Recurse -Directory | Remove-Item -Recurse -Force",
-		"nuke:nm:unix": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +",
-		"setup:php": "pnpm setup:php:root && pnpm setup:php:packages && pnpm setup:php:plugins",
-		"setup:php:packages": "turbo run setup:php --filter=./packages/php/*",
-		"setup:php:plugins": "turbo run setup:php --filter=./plugins/*",
-		"setup:php:root": "composer install --ignore-platform-reqs",
-		"test:php": "turbo run test:php",
-		"typecheck": "turbo typecheck",
-		"upgrade-all": "pnpm -r --parallel exec pnpm ncu -u",
-		"wp": "composer run wp -- ",
-		"wpdev-link": "dotenv -- wpdev link",
-		"wpdev-unlink": "dotenv -- wpdev unlink"
+		"lint:php": "wireit",
+		"setup:php": "wireit",
+		"test:php": "wireit",
+		"typecheck": "wireit",
+		"upgrade-all": "pnpm ncu -u && pnpm -r exec pnpm ncu -u",
+		"wp": "composer run wp -- "
 	},
 	"devDependencies": {
-		"@biomejs/biome": "1.4.1",
+		"@biomejs/biome": "1.5.2",
 		"@wpsocio/adapters": "workspace:*",
 		"@wpsocio/wpdev": "workspace:*",
-		"dotenv": "^16.3.1",
-		"dotenv-cli": "^7.3.0",
 		"npm-check-updates": "^16.14.12",
+		"rimraf": "^5.0.5",
 		"ts-node": "^10.9.2",
-		"turbo": "^1.11.2",
-		"typescript": "^5.3.3"
+		"typescript": "^5.3.3",
+		"wireit": "^0.14.3"
+	},
+	"wireit": {
+		"dev": {
+			"command": "pnpm -r --workspace-concurrency=Infinity run dev",
+			"service": true
+		},
+		"dev:cleanup": {
+			"command": "pnpm -r --filter=./plugins/* exec pnpm rimraf src/assets/build/dev-server.json"
+		},
+		"build": {
+			"command": "pnpm -r run build"
+		},
+		"lint:all": {
+			"dependencies": ["lint:js", "lint:php"]
+		},
+		"lint:js": {
+			"command": "biome lint ./"
+		},
+		"lint:php": {
+			"command": "pnpm -r run lint:php"
+		},
+		"test:php": {
+			"command": "pnpm -r run test:php"
+		},
+		"typecheck": {
+			"dependencies": [
+				"typecheck:tools",
+				"typecheck:packages",
+				"typecheck:plugins"
+			]
+		},
+		"typecheck:packages": {
+			"command": "pnpm -r --filter=./packages/js/* exec tsc --noEmit"
+		},
+		"typecheck:plugins": {
+			"command": "pnpm -r --filter=./plugins/* exec tsc --noEmit"
+		},
+		"typecheck:tools": {
+			"command": "pnpm -r --filter=./tools/* exec tsc --noEmit"
+		},
+		"setup:php": {
+			"dependencies": [
+				"setup:php:root",
+				"setup:php:packages",
+				"setup:php:plugins"
+			]
+		},
+		"setup:php:packages": {
+			"command": "pnpm -r --filter=./packages/php/* run setup:php"
+		},
+		"setup:php:root": {
+			"command": "composer install --ignore-platform-reqs"
+		},
+		"setup:php:plugins": {
+			"command": "pnpm -r --filter=./plugins/* run setup:php",
+			"dependencies": ["setup:php:packages"]
+		}
 	},
 	"wpdev": {
 		"repo-type": "monorepo",

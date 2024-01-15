@@ -7,12 +7,12 @@
 	"module": "index.ts",
 	"dependencies": {
 		"@wpsocio/i18n": "workspace:*",
-		"cuid": "^2.1.8",
+		"@paralleldrive/cuid2": "^2.2.2",
 		"ramda": "^0.29.1"
 	},
 	"devDependencies": {
-		"@types/node": "^20.10.7",
+		"@types/node": "^20.11.2",
 		"@types/ramda": "^0.29.9",
-		"@types/react": "^18.2.47"
+		"@types/react": "^18.2.48"
 	}
 }

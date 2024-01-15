@@ -9,14 +9,14 @@ export const Output: React.FC<
 	const assets = useData('assets');
 	const { button_style, show_user_photo, corner_radius } = attributes;
 
-	let button_width;
+	let button_width: string | undefined;
 	if ('small' === button_style) {
 		button_width = '100px';
 	} else if ('medium' === button_style) {
 		button_width = '150px';
 	}
 
-	let avatar_width;
+	let avatar_width: string | undefined;
 	if ('small' === button_style) {
 		avatar_width = '20px';
 	} else if ('medium' === button_style) {

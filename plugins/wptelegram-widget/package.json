@@ -20,11 +20,11 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite --port=5006",
-		"build": "vite build",
+		"build": "wireit",
 		"lint:php": "composer run lint",
-		"preview": "vite preview",
-		"setup:php": "composer config vendor-dir --unset && composer install",
-		"setup:php:prod": "composer config vendor-dir src/vendor && composer install --no-dev && composer config vendor-dir --unset"
+		"setup:php": "wireit",
+		"setup:php:prod": "wireit",
+		"unset-vendor-dir": "composer config vendor-dir --unset"
 	},
 	"dependencies": {
 		"@wordpress/compose": "^6.25.0",
@@ -32,7 +32,7 @@
 	},
 	"devDependencies": {
 		"@types/jquery": "^3.5.29",
-		"@types/react": "^18.2.47",
+		"@types/react": "^18.2.48",
 		"@types/react-dom": "^18.2.18",
 		"@types/wordpress__block-editor": "^11.5.9",
 		"@types/wordpress__blocks": "^12.5.13",
@@ -52,6 +52,24 @@
 		"@wpsocio/wpdev": "workspace:*",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
-		"typescript": "^5.3.3"
+		"typescript": "^5.3.3",
+		"wireit": "^0.14.3"
+	},
+	"wireit": {
+		"build": {
+			"command": "vite build",
+			"output": ["src/assets/build"]
+		},
+		"setup:php": {
+			"command": "composer install",
+			"dependencies": ["unset-vendor-dir"]
+		},
+		"setup:php:prod": {
+			"command": "composer install --no-dev && pnpm run unset-vendor-dir",
+			"dependencies": ["set-prod-vendor"]
+		},
+		"set-prod-vendor": {
+			"command": "composer config vendor-dir src/vendor"
+		}
 	}
 }

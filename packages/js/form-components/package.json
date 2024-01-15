@@ -23,7 +23,8 @@
 		"@wpsocio/i18n": "workspace:*"
 	},
 	"devDependencies": {
-		"@types/react": "^18.2.47",
+		"@types/node": "^20.11.2",
+		"@types/react": "^18.2.48",
 		"react": "^18.2.0"
 	}
 }

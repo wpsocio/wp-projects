@@ -6,7 +6,7 @@
 	"bin": {
 		"pot-to-php": "./node_modules/@wordpress/i18n/tools/pot-to-php.js",
 		"vite": "./node_modules/vite/bin/vite.js",
-		"wpdev": "./bin/dev.js"
+		"wpdev": "./bin/run.js"
 	},
 	"types": "dist/index.d.ts",
 	"main": "bin/run.js",
@@ -21,7 +21,7 @@
 		}
 	},
 	"dependencies": {
-		"@oclif/core": "^3.16.0",
+		"@oclif/core": "^3.18.1",
 		"@wordpress/i18n": "^4.48.0",
 		"@wpsocio/vite-wp-react": "workspace:*",
 		"archiver": "^6.0.1",
@@ -44,9 +44,10 @@
 	"devDependencies": {
 		"@types/archiver": "^6.0.2",
 		"@types/semver": "^7.5.6",
-		"oclif": "^4.1.3",
+		"oclif": "^4.3.4",
 		"ts-node": "^10.9.2",
-		"typescript": "^5.3.3"
+		"typescript": "^5.3.3",
+		"wireit": "^0.14.3"
 	},
 	"oclif": {
 		"bin": "wpdev",
@@ -55,9 +56,20 @@
 		"topicSeparator": " "
 	},
 	"scripts": {
-		"compile": "rimraf dist/ tsconfig.tsbuildinfo && tsc",
-		"preinstall": "tsc",
-		"watch": "tsc --watch",
-		"typecheck": "tsc --noEmit"
+		"clean": "rimraf dist/ tsconfig.tsbuildinfo",
+		"preinstall": "wireit",
+		"build": "wireit",
+		"watch": "tsc --watch"
+	},
+	"wireit": {
+		"build": {
+			"command": "tsc --build --pretty",
+			"clean": "if-file-deleted",
+			"files": ["src/", "tsconfig.json"],
+			"output": ["dist/**", "tsconfig.tsbuildinfo"]
+		},
+		"preinstall": {
+			"dependencies": ["build"]
+		}
 	}
 }

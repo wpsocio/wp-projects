@@ -31,6 +31,7 @@ vendor/
 tsconfig.tsbuildinfo
 .idea/
 .turbo/
+.wireit/
 .phpunit.result.cache
 
 # We don't want to have lock file to be tracked to allow other plugins be managed in the monorepo

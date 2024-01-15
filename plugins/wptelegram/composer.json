@@ -8,9 +8,9 @@
 		"lint:fix": "\"vendor/bin/phpcbf\" --standard=../../phpcs.xml --extensions=php src/ dev.php"
 	},
 	"require": {
-		"wpsocio/telegram-format-text": "@dev",
-		"wpsocio/wptelegram-bot-api": "@dev",
-		"wpsocio/wp-utils": "@dev"
+		"wpsocio/telegram-format-text": "dev-main",
+		"wpsocio/wptelegram-bot-api": "dev-main",
+		"wpsocio/wp-utils": "dev-main"
 	},
 	"require-dev": {
 		"wp-coding-standards/wpcs": "^3.0",

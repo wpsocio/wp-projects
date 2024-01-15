@@ -8,24 +8,37 @@
 		"./utils": "./dist/utils/index.js",
 		"./plugins": "./dist/plugins/index.js"
 	},
-	"scripts": {
-		"compile": "rimraf dist/ tsconfig.tsbuildinfo && tsc",
-		"preinstall": "tsc",
-		"watch": "tsc --watch",
-		"typecheck": "tsc --noEmit"
-	},
-	"devDependencies": {
-		"@types/node": "^20.10.7",
+	"dependencies": {
 		"@vitejs/plugin-react": "^4.2.1",
 		"@wordpress/babel-plugin-makepot": "^5.32.0",
 		"esbuild": "^0.19.11",
-		"rimraf": "^5.0.5",
-		"rollup": "^4.9.4",
+		"rollup": "^4.9.5",
 		"rollup-plugin-external-globals": "^0.9.1",
 		"sass": "^1.69.7",
-		"typescript": "^5.3.3",
 		"vite": "^5.0.11",
-		"vite-plugin-cdn-import": "^0.3.5",
 		"vite-plugin-external": "^4.2.1"
+	},
+	"devDependencies": {
+		"@types/node": "^20.11.2",
+		"rimraf": "^5.0.5",
+		"typescript": "^5.3.3",
+		"wireit": "^0.14.3"
+	},
+	"scripts": {
+		"clean": "rimraf dist/ tsconfig.tsbuildinfo",
+		"preinstall": "wireit",
+		"build": "wireit",
+		"watch": "tsc --watch"
+	},
+	"wireit": {
+		"build": {
+			"command": "tsc --build --pretty",
+			"clean": "if-file-deleted",
+			"files": ["src/", "tsconfig.json"],
+			"output": ["dist/**", "tsconfig.tsbuildinfo"]
+		},
+		"preinstall": {
+			"dependencies": ["build"]
+		}
 	}
 }

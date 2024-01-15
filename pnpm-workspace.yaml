@@ -2,6 +2,6 @@ packages:
     - 'packages/js/*'
     - '!packages/js/shared'
     - 'packages/js/shared/*'
-    - 'packages/php/*' # Just for running PHP tests via turbo
+    - 'packages/php/*' # Just for running PHP tests via pnpm
     - 'plugins/*'
     - 'tools/*'
