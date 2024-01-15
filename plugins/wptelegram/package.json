@@ -22,7 +22,6 @@
 		"dev": "vite --port=5002",
 		"build": "wireit",
 		"lint:php": "composer run lint",
-		"preview": "vite preview",
 		"setup:php": "wireit",
 		"setup:php:prod": "wireit",
 		"unset-vendor-dir": "composer config vendor-dir --unset"
@@ -64,6 +63,7 @@
 	"wireit": {
 		"build": {
 			"command": "vite build",
+			"dependencies": ["typecheck"],
 			"output": ["src/assets/build"]
 		},
 		"setup:php": {
@@ -76,6 +76,9 @@
 		},
 		"set-prod-vendor": {
 			"command": "composer config vendor-dir src/vendor"
+		},
+		"typecheck": {
+			"command": "tsc --noEmit"
 		}
 	}
 }

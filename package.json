@@ -9,36 +9,44 @@
 	"type": "module",
 	"scripts": {
 		"build": "wireit",
-		"dev": "turbo run dev",
+		"dev": "wireit",
 		"lint": "pnpm run lint:js",
 		"lint:js": "biome lint ./",
 		"lint:js:fix": "biome format ./ --write",
-		"lint:php": "turbo run lint:php",
+		"lint:php": "wireit",
 		"nuke:nm:pwsh": "Get-ChildItem -Path '.' -Include 'node_modules' -Recurse -Directory | Remove-Item -Recurse -Force",
 		"nuke:nm:unix": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +",
 		"setup:php": "wireit",
-		"test:php": "turbo run test:php",
-		"typecheck": "turbo typecheck",
+		"test:php": "wireit",
+		"typecheck": "wireit",
 		"upgrade-all": "pnpm -r --parallel exec pnpm ncu -u",
-		"wp": "composer run wp -- ",
-		"wpdev-link": "dotenv -- wpdev link",
-		"wpdev-unlink": "dotenv -- wpdev unlink"
+		"wp": "composer run wp -- "
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.4.1",
 		"@wpsocio/adapters": "workspace:*",
 		"@wpsocio/wpdev": "workspace:*",
-		"dotenv": "^16.3.1",
-		"dotenv-cli": "^7.3.0",
 		"npm-check-updates": "^16.14.12",
 		"ts-node": "^10.9.2",
-		"turbo": "^1.11.2",
 		"typescript": "^5.3.3",
 		"wireit": "^0.14.1"
 	},
 	"wireit": {
+		"dev": {
+			"command": "pnpm -r --workspace-concurrency=Infinity run dev",
+			"service": true
+		},
 		"build": {
 			"command": "pnpm -r run build"
+		},
+		"lint:php": {
+			"command": "pnpm -r run lint:php"
+		},
+		"test:php": {
+			"command": "pnpm -r run test:php"
+		},
+		"typecheck": {
+			"command": "pnpm -r run typecheck"
 		},
 		"setup:php": {
 			"dependencies": [
