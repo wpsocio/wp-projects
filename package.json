@@ -10,6 +10,7 @@
 	"scripts": {
 		"build": "wireit",
 		"dev": "wireit",
+		"dev:cleanup": "wireit",
 		"lint": "pnpm run lint:js",
 		"lint:js": "biome lint ./",
 		"lint:js:fix": "biome format ./ --write",
@@ -27,6 +28,7 @@
 		"@wpsocio/adapters": "workspace:*",
 		"@wpsocio/wpdev": "workspace:*",
 		"npm-check-updates": "^16.14.12",
+		"rimraf": "^5.0.5",
 		"ts-node": "^10.9.2",
 		"typescript": "^5.3.3",
 		"wireit": "^0.14.1"
@@ -35,6 +37,9 @@
 		"dev": {
 			"command": "pnpm -r --workspace-concurrency=Infinity run dev",
 			"service": true
+		},
+		"dev:cleanup": {
+			"command": "pnpm -r --parallel exec pnpm rimraf src/assets/build/dev-server.json"
 		},
 		"build": {
 			"command": "pnpm -r run build"
