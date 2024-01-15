@@ -37,7 +37,7 @@
 			"service": true
 		},
 		"dev:cleanup": {
-			"command": "pnpm -r exec pnpm rimraf src/assets/build/dev-server.json"
+			"command": "pnpm -r --filter=./plugins/* exec pnpm rimraf src/assets/build/dev-server.json"
 		},
 		"build": {
 			"command": "pnpm -r run build"
