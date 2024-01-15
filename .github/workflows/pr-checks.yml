@@ -37,7 +37,6 @@ jobs:
         name: Setup pnpm cache
         with:
           path: |
-            .turbo
             ${{ env.STORE_PATH }}
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/package.json', '**/pnpm-hashed.lock') }}
           restore-keys: |
@@ -100,11 +99,13 @@ jobs:
         name: Setup pnpm cache
         with:
           path: |
-            .turbo
             ${{ env.STORE_PATH }}
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/package.json', '**/pnpm-hashed.lock') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
+
+      - name: Wireit cache
+        uses: google/wireit@setup-github-actions-caching/v1
 
       - name: Install dependencies
         run: pnpm install
