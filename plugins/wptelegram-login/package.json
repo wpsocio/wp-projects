@@ -32,7 +32,7 @@
 	},
 	"devDependencies": {
 		"@types/jquery": "^3.5.29",
-		"@types/react": "^18.2.47",
+		"@types/react": "^18.2.48",
 		"@types/react-dom": "^18.2.18",
 		"@types/wordpress__block-editor": "^11.5.9",
 		"@types/wordpress__blocks": "^12.5.13",
@@ -51,7 +51,7 @@
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"typescript": "^5.3.3",
-		"wireit": "^0.14.1"
+		"wireit": "^0.14.3"
 	},
 	"wireit": {
 		"build": {

@@ -18,18 +18,18 @@
 		"setup:php": "wireit",
 		"test:php": "wireit",
 		"typecheck": "wireit",
-		"upgrade-all": "pnpm -r exec pnpm ncu -u",
+		"upgrade-all": "pnpm ncu -u && pnpm -r exec pnpm ncu -u",
 		"wp": "composer run wp -- "
 	},
 	"devDependencies": {
-		"@biomejs/biome": "1.4.1",
+		"@biomejs/biome": "1.5.2",
 		"@wpsocio/adapters": "workspace:*",
 		"@wpsocio/wpdev": "workspace:*",
 		"npm-check-updates": "^16.14.12",
 		"rimraf": "^5.0.5",
 		"ts-node": "^10.9.2",
 		"typescript": "^5.3.3",
-		"wireit": "^0.14.1"
+		"wireit": "^0.14.3"
 	},
 	"wireit": {
 		"dev": {
