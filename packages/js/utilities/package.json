@@ -5,9 +5,12 @@
 	"license": "GPL-3.0",
 	"type": "module",
 	"module": "index.ts",
+	"scripts": {
+		"typecheck": "tsc --noEmit"
+	},
 	"dependencies": {
 		"@wpsocio/i18n": "workspace:*",
-		"cuid": "^2.1.8",
+		"@paralleldrive/cuid2": "^2.2.2",
 		"ramda": "^0.29.1"
 	},
 	"devDependencies": {

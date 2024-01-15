@@ -13,6 +13,9 @@
 			"import": "./*/index.tsx"
 		}
 	},
+	"scripts": {
+		"typecheck": "tsc --noEmit"
+	},
 	"dependencies": {
 		"@wpsocio/adapters": "workspace:*",
 		"@wpsocio/services": "workspace:*",
@@ -21,6 +24,7 @@
 		"@wpsocio/i18n": "workspace:*"
 	},
 	"devDependencies": {
+		"@types/node": "^20.11.2",
 		"@types/react": "^18.2.48",
 		"@types/react-dom": "^18.2.18",
 		"react": "^18.2.0",

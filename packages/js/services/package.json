@@ -5,6 +5,9 @@
 	"license": "GPL-3.0",
 	"type": "module",
 	"module": "index.ts",
+	"scripts": {
+		"typecheck": "tsc --noEmit"
+	},
 	"dependencies": {
 		"@chakra-ui/toast": "^7.0.2",
 		"@wordpress/api-fetch": "6.45.0",
@@ -18,7 +21,6 @@
 		"@types/node": "^20.11.2",
 		"@types/ramda": "^0.29.9",
 		"@types/react": "^18.2.48",
-		"@types/wordpress__api-fetch": "3.23.1",
 		"react-hook-form": "^7.49.3",
 		"react": "^18.2.0"
 	}

@@ -13,6 +13,9 @@
 			"import": "./*/index.tsx"
 		}
 	},
+	"scripts": {
+		"typecheck": "tsc --noEmit"
+	},
 	"dependencies": {
 		"@wpsocio/adapters": "workspace:*",
 		"@wpsocio/components": "workspace:*",
@@ -28,7 +31,6 @@
 		"@types/node": "^20.11.2",
 		"@types/ramda": "^0.29.9",
 		"@types/react": "^18.2.48",
-		"@types/yup": "^0.32.0",
 		"react": "^18.2.0"
 	}
 }

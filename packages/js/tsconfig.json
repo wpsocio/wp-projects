@@ -6,6 +6,8 @@
 			"DOM.Iterable",
 			"ESNext"
 		],
+		"composite": false,
+		"incremental": false,
 		"jsx": "preserve",
 		"moduleResolution": "Bundler",
 		"module": "ESNext",

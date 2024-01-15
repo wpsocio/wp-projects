@@ -6,6 +6,9 @@
 	"type": "module",
 	"module": "index.ts",
 	"sideEffects": false,
+	"scripts": {
+		"typecheck": "tsc --noEmit"
+	},
 	"dependencies": {
 		"@hookform/error-message": "^2.0.1",
 		"@hookform/resolvers": "^3.3.4",
