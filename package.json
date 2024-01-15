@@ -55,7 +55,20 @@
 			"command": "pnpm -r run test:php"
 		},
 		"typecheck": {
-			"command": "pnpm -r run typecheck"
+			"dependencies": [
+				"typecheck:tools",
+				"typecheck:packages",
+				"typecheck:plugins"
+			]
+		},
+		"typecheck:packages": {
+			"command": "pnpm -r --filter=./packages/js/* exec tsc --noEmit"
+		},
+		"typecheck:plugins": {
+			"command": "pnpm -r --filter=./plugins/* exec tsc --noEmit"
+		},
+		"typecheck:tools": {
+			"command": "pnpm -r --filter=./tools/* exec tsc --noEmit"
 		},
 		"setup:php": {
 			"dependencies": [

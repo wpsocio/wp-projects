@@ -5,9 +5,6 @@
 	"license": "GPL-3.0",
 	"type": "module",
 	"module": "index.ts",
-	"scripts": {
-		"typecheck": "tsc --noEmit"
-	},
 	"dependencies": {
 		"@chakra-ui/toast": "^7.0.2",
 		"@wordpress/api-fetch": "6.45.0",

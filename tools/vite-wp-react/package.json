@@ -28,8 +28,7 @@
 		"clean": "rimraf dist/ tsconfig.tsbuildinfo",
 		"preinstall": "wireit",
 		"build": "wireit",
-		"watch": "tsc --watch",
-		"typecheck": "tsc --noEmit"
+		"watch": "tsc --watch"
 	},
 	"wireit": {
 		"build": {

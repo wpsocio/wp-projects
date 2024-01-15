@@ -25,7 +25,6 @@
 		"lint:php": "composer run lint",
 		"setup:php": "wireit",
 		"setup:php:prod": "wireit",
-		"typecheck": "tsc --noEmit",
 		"unset-vendor-dir": "composer config vendor-dir --unset"
 	},
 	"dependencies": {

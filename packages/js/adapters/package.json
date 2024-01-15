@@ -13,9 +13,6 @@
 			"import": "./*/index.tsx"
 		}
 	},
-	"scripts": {
-		"typecheck": "tsc --noEmit"
-	},
 	"dependencies": {
 		"@chakra-ui/react": "^2.8.2",
 		"@emotion/react": "^11.11.3",

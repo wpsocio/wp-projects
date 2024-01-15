@@ -13,9 +13,6 @@
 			"import": "./*/index.tsx"
 		}
 	},
-	"scripts": {
-		"typecheck": "tsc --noEmit"
-	},
 	"dependencies": {
 		"@wpsocio/adapters": "workspace:*",
 		"@wpsocio/components": "workspace:*",
