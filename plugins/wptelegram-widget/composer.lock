@@ -4,11 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ceacf4c566c901f66bc5a73d8757d24b",
+    "content-hash": "10aae68efe5ea6059b7e75d5fcd38672",
     "packages": [
         {
             "name": "wpsocio/wp-utils",
-            "version": "dev-update/switch-from-turbo-to-wireit",
+            "version": "dev-main",
             "dist": {
                 "type": "path",
                 "url": "../../packages/php/wp-utils",
@@ -54,7 +54,7 @@
         },
         {
             "name": "wpsocio/wptelegram-bot-api",
-            "version": "dev-update/switch-from-turbo-to-wireit",
+            "version": "dev-main",
             "dist": {
                 "type": "path",
                 "url": "../../packages/php/wptelegram-bot-api",
