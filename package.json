@@ -18,7 +18,7 @@
 		"setup:php": "wireit",
 		"test:php": "wireit",
 		"typecheck": "wireit",
-		"upgrade-all": "pnpm -r --parallel exec pnpm ncu -u",
+		"upgrade-all": "pnpm -r exec pnpm ncu -u",
 		"wp": "composer run wp -- "
 	},
 	"devDependencies": {
@@ -37,7 +37,7 @@
 			"service": true
 		},
 		"dev:cleanup": {
-			"command": "pnpm -r --parallel exec pnpm rimraf src/assets/build/dev-server.json"
+			"command": "pnpm -r exec pnpm rimraf src/assets/build/dev-server.json"
 		},
 		"build": {
 			"command": "pnpm -r run build"
