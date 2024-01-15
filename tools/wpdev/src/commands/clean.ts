@@ -198,7 +198,7 @@ export default class Clean extends WithConfig {
 			 *
 			 * EPERM: operation not permitted, unlink '.pnpm\@rollup+rollup-win32-x64-msvc@4.9.1\node_modules\@rollup\rollup-win32-x64-msvc\rollup.win32-x64-msvc.node
 			 */
-			// filesToDelete.add('node_modules/');
+			filesToDelete.add('node_modules/');
 		}
 
 		return [...filesToDelete].filter(Boolean);
