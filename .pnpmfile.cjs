@@ -1,10 +1,15 @@
 function fixPeerDeps(pkg) {
+	// @wordpress/* and its dependencies are ages behind
 	const reactOldPkgs = new Set([
 		'react-autosize-textarea',
 		'reakit',
 		'reakit-system',
 		'reakit-utils',
 		'reakit-warning',
+		'@wordpress/data',
+		'@wordpress/compose',
+		'@wordpress/blocks',
+		'@wordpress/core-data',
 	]);
 	if (reactOldPkgs.has(pkg.name)) {
 		for (const p of ['react', 'react-dom']) {
