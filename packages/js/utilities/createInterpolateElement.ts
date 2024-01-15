@@ -12,7 +12,7 @@ import { Fragment, cloneElement, createElement, isValidElement } from 'react';
  * @typedef {import('react').ReactElement} Element
  */
 
-// biome-ignore lint/style/useSingleVarDeclarator: <explanation>
+// biome-ignore lint/style/useSingleVarDeclarator lint/suspicious/noImplicitAnyLet: <explanation>
 let indoc, offset, output, stack;
 
 /**
