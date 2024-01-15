@@ -25,6 +25,7 @@
 		"lint:php": "composer run lint",
 		"setup:php": "wireit",
 		"setup:php:prod": "wireit",
+		"typecheck": "tsc --noEmit",
 		"unset-vendor-dir": "composer config vendor-dir --unset"
 	},
 	"dependencies": {
@@ -50,7 +51,6 @@
 	"wireit": {
 		"build": {
 			"command": "vite build",
-			"dependencies": ["typecheck"],
 			"output": ["src/assets/build"]
 		},
 		"setup:php": {
@@ -63,9 +63,6 @@
 		},
 		"set-prod-vendor": {
 			"command": "composer config vendor-dir src/vendor"
-		},
-		"typecheck": {
-			"command": "tsc --noEmit"
 		}
 	}
 }
