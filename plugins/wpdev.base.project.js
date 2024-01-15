@@ -9,6 +9,7 @@ export const getBundleConfig = ({ slug, key, version, textDomain }) => {
 			preScripts: [
 				// Install composer dependencies for production
 				'setup:php:prod',
+				'build',
 			],
 			updateRequirements: {
 				requirements: {
