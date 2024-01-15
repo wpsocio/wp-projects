@@ -11,7 +11,8 @@
 		"build": "wireit",
 		"dev": "wireit",
 		"dev:cleanup": "wireit",
-		"lint": "wireit",
+		"lint:all": "wireit",
+		"lint:js": "wireit",
 		"lint:js:fix": "biome format ./ --write",
 		"lint:php": "wireit",
 		"setup:php": "wireit",
@@ -41,7 +42,7 @@
 		"build": {
 			"command": "pnpm -r run build"
 		},
-		"lint": {
+		"lint:all": {
 			"dependencies": ["lint:js", "lint:php"]
 		},
 		"lint:js": {
