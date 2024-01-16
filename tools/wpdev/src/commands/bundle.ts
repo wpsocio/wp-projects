@@ -65,6 +65,9 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 			description: 'Version to update to.',
 			exclusive: ['release-type'],
 		}),
+		'no-version-update': Flags.boolean({
+			description: 'Do not update the version.',
+		}),
 		'release-type': Flags.string({
 			char: 't',
 			description: 'Release type to update to.',
@@ -234,7 +237,7 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 				},
 				{
 					title: 'Update version',
-					skip: () => !this.flags.version && !this.flags['release-type'],
+					skip: () => this.flags['no-version-update'],
 					task: async (_, task) => {
 						if (!bundle.tasks.updateVersion) {
 							return task.skip();
