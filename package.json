@@ -45,7 +45,10 @@
 			"command": "pnpm -r run build"
 		},
 		"lint:all": {
-			"dependencies": ["lint:js", "lint:php"]
+			"dependencies": [
+				"lint:js",
+				"lint:php"
+			]
 		},
 		"lint:js": {
 			"command": "biome lint ./"
@@ -87,7 +90,9 @@
 		},
 		"setup:php:plugins": {
 			"command": "pnpm -r --filter=./plugins/* run setup:php",
-			"dependencies": ["setup:php:packages"]
+			"dependencies": [
+				"setup:php:packages"
+			]
 		}
 	},
 	"wpdev": {
