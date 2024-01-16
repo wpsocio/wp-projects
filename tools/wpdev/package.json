@@ -4,8 +4,6 @@
 	"private": true,
 	"type": "module",
 	"bin": {
-		"pot-to-php": "./node_modules/@wordpress/i18n/tools/pot-to-php.js",
-		"vite": "./node_modules/vite/bin/vite.js",
 		"wpdev": "./bin/run.js"
 	},
 	"types": "dist/index.d.ts",
