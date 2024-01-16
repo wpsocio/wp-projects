@@ -383,7 +383,7 @@ class Main {
 
 		add_action( 'admin_enqueue_scripts', [ $asset_manager, 'enqueue_admin_assets' ] );
 
-		add_action( 'enqueue_block_editor_assets', [ $asset_manager, 'enqueue_block_editor_assets' ] );
+		add_action( 'enqueue_block_assets', [ $asset_manager, 'enqueue_block_assets' ] );
 
 		add_action( 'login_enqueue_scripts', [ $asset_manager, 'login_enqueue_scripts' ] );
 

@@ -12,7 +12,6 @@ vendor/
 !/.changeset/
 !/.github/
 !/.vscode/
-!/bin/
 !/packages/
 !/plugins/
 !/tools/
@@ -20,7 +19,6 @@ vendor/
 # Ignore all plugins because there may be other plugins installed
 /plugins/*/
 # Except for the ones in this repo
-!/plugins/wp-test-plugin/
 !/plugins/wptelegram/
 !/plugins/wptelegram-bot-api/
 !/plugins/wptelegram-comments/

@@ -452,7 +452,7 @@ class AssetManager extends BaseClass {
 	}
 
 	/**
-	 * Enqueue assets for the Gutenberg block
+	 * Check if the current page is the settings page.
 	 *
 	 * @since 1.5.0
 	 * @param string $hook_suffix The current admin page.
@@ -462,11 +462,11 @@ class AssetManager extends BaseClass {
 	}
 
 	/**
-	 * Enqueue assets for the Gutenberg block
+	 * Enqueue assets for blocks
 	 *
-	 * @since    1.4.1
+	 * @since    x.y.z
 	 */
-	public function enqueue_block_editor_assets() {
+	public function enqueue_block_assets() {
 
 		$this->plugin()->assets()->enqueue( self::BLOCKS_ENTRY );
 		$this->add_inline_script( self::BLOCKS_ENTRY );
