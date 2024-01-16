@@ -5,7 +5,7 @@
 	},
 	"phpSniffer.autoDetect": true,
 	"phpSniffer.standard": "phpcs.xml",
-	"[javascript][javascriptreact][typescript][typescriptreact][jsonc][json]": {
+	"[javascript][javascriptreact][typescript][typescriptreact]": {
 		"editor.formatOnSave": true,
 		"editor.defaultFormatter": "biomejs.biome"
 	},

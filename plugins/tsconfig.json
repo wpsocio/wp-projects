@@ -1,16 +1,12 @@
 {
 	"extends": "../tsconfig.json",
 	"compilerOptions": {
-		"lib": [
-			"DOM",
-			"DOM.Iterable",
-			"ESNext"
-		],
+		"lib": ["DOM", "DOM.Iterable", "ESNext"],
 		"composite": false,
 		"incremental": false,
 		"jsx": "preserve",
 		"moduleResolution": "Bundler",
 		"module": "ESNext",
-		"noEmit": true,
+		"noEmit": true
 	}
 }

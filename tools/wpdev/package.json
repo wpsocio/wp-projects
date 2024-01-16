@@ -65,11 +65,19 @@
 		"build": {
 			"command": "tsc --build --pretty",
 			"clean": "if-file-deleted",
-			"files": ["src/", "tsconfig.json"],
-			"output": ["dist/**", "tsconfig.tsbuildinfo"]
+			"files": [
+				"src/",
+				"tsconfig.json"
+			],
+			"output": [
+				"dist/**",
+				"tsconfig.tsbuildinfo"
+			]
 		},
 		"preinstall": {
-			"dependencies": ["build"]
+			"dependencies": [
+				"build"
+			]
 		}
 	}
 }

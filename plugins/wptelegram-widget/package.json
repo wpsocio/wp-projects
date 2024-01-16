@@ -58,15 +58,21 @@
 	"wireit": {
 		"build": {
 			"command": "vite build",
-			"output": ["src/assets/build"]
+			"output": [
+				"src/assets/build"
+			]
 		},
 		"setup:php": {
 			"command": "composer install",
-			"dependencies": ["unset-vendor-dir"]
+			"dependencies": [
+				"unset-vendor-dir"
+			]
 		},
 		"setup:php:prod": {
 			"command": "composer install --no-dev && pnpm run unset-vendor-dir",
-			"dependencies": ["set-prod-vendor"]
+			"dependencies": [
+				"set-prod-vendor"
+			]
 		},
 		"set-prod-vendor": {
 			"command": "composer config vendor-dir src/vendor"
