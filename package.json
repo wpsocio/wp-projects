@@ -23,6 +23,7 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.5.2",
+		"@changesets/cli": "^2.27.1",
 		"@wpsocio/adapters": "workspace:*",
 		"@wpsocio/wpdev": "workspace:*",
 		"npm-check-updates": "^16.14.12",
@@ -43,7 +44,10 @@
 			"command": "pnpm -r run build"
 		},
 		"lint:all": {
-			"dependencies": ["lint:js", "lint:php"]
+			"dependencies": [
+				"lint:js",
+				"lint:php"
+			]
 		},
 		"lint:js": {
 			"command": "biome lint ./"
@@ -85,7 +89,9 @@
 		},
 		"setup:php:plugins": {
 			"command": "pnpm -r --filter=./plugins/* run setup:php",
-			"dependencies": ["setup:php:packages"]
+			"dependencies": [
+				"setup:php:packages"
+			]
 		}
 	},
 	"wpdev": {
