@@ -19,7 +19,7 @@
 		"vite-plugin-external": "^4.2.1"
 	},
 	"devDependencies": {
-		"@types/node": "^20.11.2",
+		"@types/node": "^20.11.3",
 		"rimraf": "^5.0.5",
 		"typescript": "^5.3.3",
 		"wireit": "^0.14.3"
