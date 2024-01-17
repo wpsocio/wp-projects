@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-versions: ["7.4", "8.0", "8.1", "8.2", "8.3"]
+        php: ["7.4", "8.0", "8.1", "8.2", "8.3"]
     steps:
       - name: Check out code
         uses: actions/checkout@v4
@@ -48,7 +48,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php-versions }}
+          php-version: ${{ matrix.php }}
           tools: phpcs
 
       - name: Check syntax errors
@@ -67,7 +67,7 @@ jobs:
 
       - name: Test
         run: "pnpm run test:php"
-        if: matrix.php-versions == '8.3'
+        if: matrix.php == '8.3'
 
   js-lint-build:
     name: "JS: Lint, Build and Test"

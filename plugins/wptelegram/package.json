@@ -1,5 +1,5 @@
 {
-	"name": "@wpsocio/wptelegram",
+	"name": "wptelegram",
 	"title": "WP Telegram",
 	"version": "4.0.14",
 	"description": "Integrate your WordPress site perfectly with Telegram with full control.",
