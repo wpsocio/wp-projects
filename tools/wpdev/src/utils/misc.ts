@@ -45,7 +45,7 @@ export async function zipDir(sourceDir: string, outPath: string) {
 	const archive = archiver('zip', { zlib: { level: 9 } });
 	const stream = fs.createWriteStream(outPath);
 
-	return await new Promise((resolve, reject) => {
+	return await new Promise<string>((resolve, reject) => {
 		archive
 			.directory(sourceDir, path.basename(sourceDir))
 			.on('error', (err) => reject(err))
@@ -102,4 +102,11 @@ export function isFileReadable(file: string) {
 	} catch (e) {
 		return false;
 	}
+}
+
+/**
+ * Converts a path to posix format.
+ */
+export function pathToPosix(str: string) {
+	return str.split(path.sep).join(path.posix.sep);
 }

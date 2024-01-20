@@ -1,104 +1,79 @@
-import fs from 'node:fs';
 import path from 'node:path';
-import { Command } from '@oclif/core';
-import chalk from 'chalk';
+import { Command, Flags } from '@oclif/core';
 import dotenv from 'dotenv';
-import { findUp, pathExists } from 'find-up';
-import parseJson from 'parse-json';
-import { readPackage } from 'read-pkg';
-import { z } from 'zod';
-import type { Config } from '../utils/wp-projects.js';
+import { pathExists } from 'find-up';
+import { ParsedUserConfig, parseUserConfig } from '../utils/config.js';
+import { UserConfig } from '../utils/tools.js';
 
-export const UserConfigSchema = z
-	.object({
-		envFiles: z.array(z.string()).optional().default([]),
-		repoType: z.enum(['monorepo', 'single']).optional().default('monorepo'),
-		projectTypes: z.array(z.string()).optional().default([]),
-	})
-	.transform((value) => {
-		if (value.repoType === 'single') {
-			// 'projectTypes' is not used in single repo mode
-			return {
-				...value,
-				projectTypes: [],
-			};
-		}
-
-		// If we already have project types, return the value as is
-		if (value.projectTypes.length) {
-			return value;
-		}
-
-		// Otherwise, default to plugins and themes
-		return {
-			...value,
-			projectTypes: ['plugins', 'themes'],
-		};
-	});
-
-export type DevConfig = Config;
+export type CliConfig = Omit<UserConfig, 'isRoot' | 'envFiles'> & {
+	rootDir: string;
+};
 
 export abstract class WithConfig extends Command {
-	protected devConfig!: DevConfig;
+	static baseFlags = {
+		'root-dir': Flags.string({
+			description: 'Root directory. Can be an absolute or a relative path.',
+			char: 'r',
+		}),
+		'operation-mode': Flags.option({
+			description: 'Operation mode.',
+			char: 'm',
+			options: ['wp-monorepo', 'standalone'] as const,
+		})(),
+		'project-types': Flags.option({
+			description:
+				'Project types managed in the monorepo. Only used in wp-monorepo mode.',
+			char: 't',
+			options: ['plugins', 'themes'] as const,
+			multiple: true,
+		})(),
+		'env-file': Flags.string({
+			description: 'Environment file(s) to load',
+			char: 'e',
+			multiple: true,
+		}),
+	};
+
+	protected cliConfig!: CliConfig;
+
+	async flagsToConfig(): Promise<Partial<ParsedUserConfig>> {
+		const { flags } = await this.parse({
+			baseFlags: (super.ctor as typeof WithConfig).baseFlags,
+			flags: this.ctor.flags,
+			args: this.ctor.args,
+			strict: this.ctor.strict,
+		});
+
+		let config = {
+			rootDir: flags['root-dir'],
+			operationMode: flags['operation-mode'],
+			projectTypes: flags['project-types'],
+			envFiles: flags['env-file'],
+		};
+
+		// Remove undefined values
+		config = JSON.parse(JSON.stringify(config));
+
+		if (config.rootDir) {
+			config.rootDir = path.resolve(config.rootDir);
+		}
+
+		return config;
+	}
 
 	public async init() {
 		await super.init();
 
-		const configFile = await findUp(['wpdev.config.json']);
+		const cliFlags = await this.flagsToConfig();
+		const parsedConfig = await parseUserConfig(cliFlags.rootDir);
 
-		let userConfig: unknown;
+		const { envFiles, ...config } = {
+			...parsedConfig,
+			...cliFlags,
+		};
 
-		let rootDir: string | undefined;
-
-		if (!configFile) {
-			rootDir = await findUp(
-				async (directory) => {
-					const pkg = path.join(directory, 'package.json');
-					const hasPkg = await pathExists(pkg);
-
-					if (hasPkg) {
-						const { wpdev } = await readPackage({ cwd: directory });
-
-						if (wpdev) {
-							userConfig = wpdev;
-							return directory;
-						}
-					}
-				},
-				{ type: 'directory' },
-			);
-		} else {
-			rootDir = path.dirname(configFile);
-			userConfig = parseJson(fs.readFileSync(configFile, 'utf-8'));
-		}
-
-		if (!rootDir || !userConfig) {
-			this.log(
-				chalk.red(
-					'Could not find wpdev config file or a corresponding package.json entry.',
-				),
-			);
-			this.exit(1);
-		}
-
-		const parsedUserConfig = UserConfigSchema.safeParse(userConfig);
-
-		if (!parsedUserConfig.success) {
-			this.log(chalk.red('Invalid wpdev config.'));
-			this.log(
-				`Errors: ${JSON.stringify(
-					parsedUserConfig.error.flatten().fieldErrors,
-					null,
-					2,
-				)}`,
-			);
-			this.exit(1);
-		}
-
-		const { envFiles, ...devConfig } = parsedUserConfig.data;
-
-		for (const envFile of parsedUserConfig.data.envFiles) {
-			const envFilePath = path.join(rootDir, envFile);
+		for (const envFile of envFiles) {
+			const envFilePath = path.join(config.rootDir, envFile);
 
 			if (await pathExists(envFilePath)) {
 				dotenv.config({
@@ -107,9 +82,6 @@ export abstract class WithConfig extends Command {
 			}
 		}
 
-		this.devConfig = {
-			rootDir,
-			...devConfig,
-		};
+		this.cliConfig = config;
 	}
 }

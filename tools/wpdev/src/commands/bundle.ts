@@ -11,13 +11,13 @@ import {
 } from '../utils/i18n.js';
 import { copyDir, getDistIgnorePattern, zipDir } from '../utils/misc.js';
 import {
-	getCurrentVersion,
 	getNextVersion,
 	getProjectConfig,
 	runScript,
 } from '../utils/projects.js';
 import { updateRequirements } from '../utils/requirements.js';
 import { minifyStyles } from '../utils/styles.js';
+import { WPProject } from '../utils/tools.js';
 import { updateVersion } from '../utils/versions.js';
 
 type TaskWrapper = Parameters<ListrTask['task']>[1];
@@ -29,8 +29,7 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 	static flags = {
 		'out-dir': Flags.string({
 			char: 'd',
-			description:
-				'Path to the output directory. Defaults to "dist/{project}".',
+			description: 'Path to the output directory. Defaults to "dist/{slug}".',
 		}),
 		'update-source-files': Flags.boolean({
 			char: 'u',
@@ -88,16 +87,16 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 		...WithProjects.args,
 	};
 
-	protected destPlaceholder = '{project}';
+	protected destPlaceholder = '{slug}';
 
 	public async run(): Promise<void> {
 		const tasks = new Listr([], {
 			concurrent: true,
 		});
 
-		for (const project of this.projects) {
+		for (const [name, project] of this.projects) {
 			tasks.add({
-				title: `Preparing ${project}`,
+				title: `Preparing ${project.packageJson.name}`,
 				task: async (_, task) => {
 					return await this.prepareForDist(project, task);
 				},
@@ -132,13 +131,14 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 		return `dist/${this.destPlaceholder}`;
 	}
 
-	parseOutputDir(outDir: string, project: string) {
-		return outDir.replace(this.destPlaceholder, project);
+	parseOutputDir(outDir: string, slug: string) {
+		return outDir.replace(this.destPlaceholder, slug);
 	}
 
-	getVersion(project: string, task: TaskWrapper) {
+	getVersion(project: WPProject, task: TaskWrapper) {
 		if (!this.flags.version && !this.flags['release-type']) {
-			return getCurrentVersion(project);
+			// Use the current version if no version or release type is provided
+			return project.packageJson.version;
 		}
 
 		let version = this.flags.version;
@@ -165,16 +165,16 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 		return version;
 	}
 
-	async prepareForDist(project: string, task: TaskWrapper) {
+	async prepareForDist(project: WPProject, task: TaskWrapper) {
 		const version = this.getVersion(project, task);
 
 		const { projectInfo, bundle } = await getProjectConfig(project, version);
 
-		const outDir = this.parseOutputDir(this.getOutputDir(), project);
+		const outDir = this.parseOutputDir(this.getOutputDir(), projectInfo.slug);
 
 		const canChangeSourceFiles = this.flags['update-source-files'];
 
-		const cwd = canChangeSourceFiles ? project : outDir;
+		const cwd = canChangeSourceFiles ? project.dir : outDir;
 
 		const preScripts = this.flags['pre-script'] || bundle.tasks.preScripts;
 		const postScripts = this.flags['post-script'] || bundle.tasks.postScripts;
@@ -191,7 +191,7 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 									title: `Running "${script}"`,
 									task: async () => {
 										return await runScript(
-											project,
+											project.dir,
 											script,
 											this.flags['package-manager'],
 										);
@@ -212,12 +212,12 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 						const {
 							sourceDir,
 							destDir,
-							ignore = getDistIgnorePattern(project),
+							ignore = getDistIgnorePattern(project.dir),
 						} = bundle.tasks.copyFilesBefore;
 
 						return await copyDir(
-							path.join(project, sourceDir),
-							this.parseOutputDir(destDir, project),
+							path.join(project.dir, sourceDir),
+							this.parseOutputDir(destDir, projectInfo.slug),
 							{ ignore },
 						);
 					},
@@ -348,12 +348,12 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 						const {
 							sourceDir,
 							destDir,
-							ignore = getDistIgnorePattern(project),
+							ignore = getDistIgnorePattern(project.dir),
 						} = bundle.tasks.copyFilesAfter;
 
 						return await copyDir(
-							path.join(project, sourceDir),
-							this.parseOutputDir(destDir, project),
+							path.join(project.dir, sourceDir),
+							this.parseOutputDir(destDir, projectInfo.slug),
 							{ ignore },
 						);
 					},
@@ -368,7 +368,7 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 									title: `Running "${script}"`,
 									task: async () => {
 										return await runScript(
-											project,
+											project.dir,
 											script,
 											this.flags['package-manager'],
 										);
@@ -381,10 +381,10 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 				{
 					title: 'Create archive',
 					skip: () => !this.flags.archive && !bundle.tasks.createArchive,
-					task: async () => {
+					task: async (_, task) => {
 						const outPath = bundle.tasks.createArchive?.outPath;
 
-						return await zipDir(
+						task.output = await zipDir(
 							outDir,
 							path.join(
 								path.dirname(outDir),

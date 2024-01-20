@@ -33,15 +33,14 @@ export default class Link extends WithProjects<typeof Link> {
 
 	public async run(): Promise<void> {
 		try {
-			for (const project of this.projects) {
-				const symlinkPath = this.wpProjects.getSymlinkPath(
+			for (const [name, project] of this.projects) {
+				const symlinkPath = this.wpMonorepo.getSymlinkPath(
 					project,
 					this.flags['wp-content-dir'],
 				);
-				const realPath = this.wpProjects.getRealPath(project);
 				const result = this.symlinkManager.createSymlink({
 					symlinkPath,
-					realPath,
+					realPath: project.dir,
 				});
 
 				if (result) {
