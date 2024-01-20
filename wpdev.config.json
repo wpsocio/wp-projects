@@ -1,5 +1,5 @@
 {
-	"envFiles": [".env"],
+	"operationMode": "wp-monorepo",
 	"projectTypes": ["plugins"],
-	"repoType": "monorepo"
+	"envFiles": [".env"]
 }
