@@ -19,8 +19,8 @@ const copyFilesData = z.object({
 	destDir: z
 		.string()
 		.optional()
-		.default('dist/{project}')
-		.describe('The destination directory. Defaults to dist/{project}.'),
+		.default('dist/{slug}')
+		.describe('The destination directory. Defaults to dist/{slug}.'),
 	ignore: targetFilesSchema.shape.ignore,
 });
 

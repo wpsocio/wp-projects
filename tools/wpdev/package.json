@@ -21,6 +21,9 @@
 		}
 	},
 	"dependencies": {
+		"@manypkg/find-root": "^2.2.1",
+		"@manypkg/get-packages": "^2.2.0",
+		"@manypkg/tools": "^1.1.0",
 		"@oclif/core": "^3.18.1",
 		"@wordpress/i18n": "^4.48.0",
 		"@wpsocio/vite-wp-react": "workspace:*",
@@ -35,7 +38,6 @@
 		"listr2": "^8.0.1",
 		"parse-json": "^8.1.0",
 		"postcss": "^8.4.33",
-		"read-pkg": "^9.0.1",
 		"rimraf": "^5.0.5",
 		"semver": "^7.5.4",
 		"vite": "^5.0.11",
@@ -56,7 +58,7 @@
 		"topicSeparator": " "
 	},
 	"scripts": {
-		"clean": "rimraf dist/ tsconfig.tsbuildinfo",
+		"clean": "rimraf dist/ tsconfig.tsbuildinfo .wireit",
 		"preinstall": "wireit",
 		"build": "wireit",
 		"watch": "tsc --watch"

@@ -1,10 +1,12 @@
 import child_process from 'node:child_process';
 import fs from 'node:fs';
+import path from 'node:path';
 import { Args, Flags } from '@oclif/core';
 import chalk from 'chalk';
 import enquirer from 'enquirer';
 import { WithConfig } from '../base-commands/WithConfig.js';
-import { WPProjects } from '../utils/wp-projects.js';
+import { pathToPosix } from '../utils/misc.js';
+import { WPMonorepo } from '../utils/wp-monorepo.js';
 
 type CleanArgs = {
 	path: string;
@@ -228,39 +230,49 @@ export default class Clean extends WithConfig {
 			allFiles.composerLock.push(...composerLockFiles);
 		}
 
-		const wpProjects = new WPProjects(this.devConfig);
+		let filesToSkip = new Set<string>();
 
-		// It's possible that the connected project may be a git repo
-		// So the above git commands won't work for nested git repos
-		const connectedProjects = wpProjects.getProjects({ connected: true });
+		if (this.cliConfig.operationMode === 'wp-monorepo') {
+			const wpMonorepo = new WPMonorepo(this.cliConfig);
 
-		for (const project of connectedProjects) {
-			const files = child_process.execSync(
-				`git -C ${project} -c core.quotepath=off ls-files --exclude-standard --directory --ignored --other`,
-			);
-			const connectedProjectFiles = files
-				.toString()
-				.trim()
-				.split('\n')
-				.map((file) => `${project}/${file}`);
+			// It's possible that the connected project may be a git repo
+			// So the above git commands won't work for nested git repos
+			const connectedProjects = wpMonorepo.getProjects({ connected: true });
 
-			ignoredFileNames.push(...connectedProjectFiles);
+			for (const [name, project] of connectedProjects) {
+				const files = child_process.execSync(
+					`git -C ${project.dir} -c core.quotepath=off ls-files --exclude-standard --directory --ignored --other`,
+				);
+				const connectedProjectFiles = files
+					.toString()
+					.trim()
+					.split('\n')
+					.map((file) => pathToPosix(path.join(project.relativeDir, file)));
 
-			if (
-				toDelete.includes('composer.lock') &&
-				fs.existsSync(`${project}/composer.lock`)
-			) {
-				allFiles.composerLock.push(`${project}/composer.lock`);
+				ignoredFileNames.push(...connectedProjectFiles);
+
+				if (
+					toDelete.includes('composer.lock') &&
+					fs.existsSync(path.join(project.dir, 'composer.lock'))
+				) {
+					allFiles.composerLock.push(
+						path.join(project.relativeDir, 'composer.lock'),
+					);
+				}
 			}
-		}
 
-		// We do not want to delete any of the project directories in the monorepo.
-		const filesToSkip = new Set(
-			[...wpProjects.getAllProjects()].map((project) =>
-				// Ensure that the path ends with a slash.
-				project.replace(/\/?$/, '/'),
-			),
-		);
+			// We do not want to delete any of the project directories in the monorepo.
+			filesToSkip = new Set(
+				[...wpMonorepo.getAllProjects()].map(([name, project]) => {
+					return (
+						// We need posix paths for git
+						pathToPosix(project.relativeDir)
+							// Ensure that the path ends with a slash.
+							.replace(/\/?$/, '/')
+					);
+				}),
+			);
+		}
 
 		for (const file of ignoredFileNames) {
 			if (filesToSkip.has(file) || file.endsWith('.env')) {
