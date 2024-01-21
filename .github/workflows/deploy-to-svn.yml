@@ -61,15 +61,15 @@ jobs:
 
       - name: Build
         run: |
-          pnpm wpdev bundle ${{ fromJson(needs.details.outputs.result).project }}
+          pnpm wpdev bundle ${{ fromJson(needs.details.outputs.result).name }}
           ls
           ls dist
-          ls dist/${{ fromJson(needs.details.outputs.result).project }}
+          ls dist/${{ fromJson(needs.details.outputs.result).name }}
 
       - uses: AButler/upload-release-assets@v3.0
         with:
           # e.g. dist/plugin-name-1.0.0.zip
-          files: "dist/${{ fromJson(needs.details.outputs.result).project }}-${{ fromJson(needs.details.outputs.result).version }}.zip"
+          files: "dist/${{ fromJson(needs.details.outputs.result).name }}-${{ fromJson(needs.details.outputs.result).version }}.zip"
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Deploy
@@ -80,10 +80,10 @@ jobs:
         env:
           SLUG: ${{ fromJson(needs.details.outputs.result).name }}
           VERSION: ${{ fromJson(needs.details.outputs.result).version }}
-          BUILD_DIR: "dist/${{ fromJson(needs.details.outputs.result).project }}"
-          ASSETS_DIR: "${{ fromJson(needs.details.outputs.result).project }}/.wordpress-org"
-          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
-          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+          BUILD_DIR: "dist/${{ fromJson(needs.details.outputs.result).name }}"
+          ASSETS_DIR: "${{ fromJson(needs.details.outputs.result).name }}/.wordpress-org"
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}test
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}test
 
   details:
     name: Get details
@@ -117,17 +117,9 @@ jobs:
 
             const toDeploy = [...plugins, ...themes];
 
-            const path = plugins.includes(name)
-              ? 'plugins'
-              : themes.includes(name)
-                ? 'themes'
-                : '';
-
-            const project = [path, name].filter(Boolean).join('/');
-
             const shouldDeploy = toDeploy.includes(name);
 
-            return { name, version, project, shouldDeploy };
+            return { name, version, shouldDeploy };
 
       - name: Print details
         run: |
