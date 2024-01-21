@@ -62,6 +62,12 @@ jobs:
       - name: Build
         run: |
           pnpm wpdev bundle ${{ fromJson(needs.details.outputs.result).name }}
+          echo "ls"
+          ls
+          echo "ls dist"
+          ls dist
+          echo "ls dist/${{ fromJson(needs.details.outputs.result).name }}"
+          ls dist/${{ fromJson(needs.details.outputs.result).name }}
 
       - uses: AButler/upload-release-assets@v3.0
         with:
@@ -72,8 +78,8 @@ jobs:
       - name: Deploy
         id: deploy
         uses: 10up/action-wordpress-plugin-deploy@stable
-        with:
-          dry-run: true
+        # with:
+        # dry-run: true
         env:
           SLUG: ${{ fromJson(needs.details.outputs.result).name }}
           VERSION: ${{ fromJson(needs.details.outputs.result).version }}
