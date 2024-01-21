@@ -9,7 +9,7 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   release:
-    name: Prepare or publish
+    name: Prepare or publish release
     if: github.repository == 'irshadahmad21/wp-plugins-dev-test'
     runs-on: ubuntu-latest
     steps:
