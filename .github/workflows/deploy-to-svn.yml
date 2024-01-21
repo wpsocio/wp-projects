@@ -62,9 +62,6 @@ jobs:
       - name: Build
         run: |
           pnpm wpdev bundle ${{ fromJson(needs.details.outputs.result).name }}
-          ls
-          ls dist
-          ls dist/${{ fromJson(needs.details.outputs.result).name }}
 
       - uses: AButler/upload-release-assets@v3.0
         with:
@@ -81,7 +78,7 @@ jobs:
           SLUG: ${{ fromJson(needs.details.outputs.result).name }}
           VERSION: ${{ fromJson(needs.details.outputs.result).version }}
           BUILD_DIR: "dist/${{ fromJson(needs.details.outputs.result).name }}"
-          ASSETS_DIR: "${{ fromJson(needs.details.outputs.result).name }}/.wordpress-org"
+          ASSETS_DIR: "${{ fromJson(needs.details.outputs.result).path }}/.wordpress-org"
           SVN_USERNAME: ${{ secrets.SVN_USERNAME }}test
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}test
 
@@ -117,9 +114,17 @@ jobs:
 
             const toDeploy = [...plugins, ...themes];
 
+            const belongsTo = plugins.includes(name)
+              ? 'plugins'
+              : themes.includes(name)
+                ? 'themes'
+                : '';
+
+            const path = [belongsTo, name].filter(Boolean).join('/');
+
             const shouldDeploy = toDeploy.includes(name);
 
-            return { name, version, shouldDeploy };
+            return { name, version, path, shouldDeploy };
 
       - name: Print details
         run: |
