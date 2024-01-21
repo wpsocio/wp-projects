@@ -59,7 +59,7 @@ jobs:
           sudo mv wp-cli.phar /usr/local/bin/wp
           wp --info
 
-      - name: Build
+      - name: Prepare bundle
         run: |
           pnpm wpdev bundle ${{ fromJson(needs.details.outputs.result).name }}
 
@@ -91,7 +91,10 @@ jobs:
           target_dir: "."
           target_branch: main
           access_token: ${{ secrets.GH_ACCESS_TOKEN }}
+          # Remove everything from the target repo before deploying
           cleanup_command: "git rm -rf . && git clean -fxd"
+          # Copy markdown files from the project to the target repo
+          precommit_command: "cp ${{ github.workspace }}/${{ fromJson(needs.details.outputs.result).path }}/*.md ./"
 
   details:
     name: Get details
