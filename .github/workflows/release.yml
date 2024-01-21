@@ -1,4 +1,4 @@
-name: Release
+name: Prepare or publish release
 
 on:
   push:
@@ -9,7 +9,7 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   release:
-    name: Release
+    name: Prepare or publish
     if: github.repository == 'irshadahmad21/wp-plugins-dev-test'
     runs-on: ubuntu-latest
     steps:
@@ -43,17 +43,15 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Install required tools
-        run: sudo apt install gettext
-
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: "8"
           tools: phpcs
 
-      - name: Setup WP CLI
+      - name: Install required tools
         run: |
+          sudo apt install gettext
           curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
           chmod +x wp-cli.phar
           sudo mv wp-cli.phar /usr/local/bin/wp
@@ -70,6 +68,3 @@ jobs:
           commit: Prepare for next release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
-
-      - name: Output changeset
-        run: echo "${{ toJSON(steps.changesets.outputs) }}"
