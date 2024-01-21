@@ -9,8 +9,10 @@
 	"dependencies": {
 		"@chakra-ui/icons": "^2.1.1"
 	},
-	"devDependencies": {
-		"@types/react": "^18.2.48",
+	"peerDependencies": {
 		"react": "^18.2.0"
+	},
+	"devDependencies": {
+		"@types/react": "^18.2.48"
 	}
 }
