@@ -172,9 +172,11 @@ export class WPMonorepo {
 		}
 		const json = JSON.parse(fs.readFileSync(changesetJsonFile, 'utf8'));
 
-		const projectNames = ReleaseJsonSchema.parse(json).releases.map(
-			(release) => release.name,
-		);
+		const projectNames = ReleaseJsonSchema.parse(json)
+			// Get the names of projects that have changesets, ignoring the ones that don't
+			.releases.filter(({ changesets }) => changesets.length)
+			// Collect the names
+			.map((release) => release.name);
 
 		return this.getProjectsByName(projectNames, { throwIfNotFound: false });
 	}
