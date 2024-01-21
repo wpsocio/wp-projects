@@ -86,15 +86,15 @@ jobs:
       - name: Deploy to repo
         uses: manzoorwanijk/action-deploy-to-repo@v3
         with:
-          src_dir: "dist/${{ fromJson(needs.details.outputs.result).name }}"
-          target_repo: "${{ github.repository_owner }}/${{ fromJson(needs.details.outputs.result).name }}"
+          src_dir: dist/${{ fromJson(needs.details.outputs.result).name }}
+          target_repo: ${{ github.repository_owner }}/${{ fromJson(needs.details.outputs.result).name }}
           target_dir: "."
           target_branch: main
           access_token: ${{ secrets.GH_ACCESS_TOKEN }}
           # Remove everything from the target repo before deploying
-          cleanup_command: "git rm -rf . && git clean -fxd"
+          cleanup_command: git rm -rf . && git clean -fxd
           # Copy markdown files from the project to the target repo
-          precommit_command: "cp ${{ github.workspace }}/${{ fromJson(needs.details.outputs.result).path }}/*.md ./"
+          precommit_command: cp ${{ github.workspace }}/${{ fromJson(needs.details.outputs.result).path }}/*.md ./
 
   details:
     name: Get details
