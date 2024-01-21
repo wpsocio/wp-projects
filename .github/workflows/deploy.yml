@@ -93,8 +93,8 @@ jobs:
           access_token: ${{ secrets.GH_ACCESS_TOKEN }}
           # Remove everything from the target repo before deploying
           cleanup_command: git rm -rf . && git clean -fxd
-          # Copy markdown files from the project to the target repo
-          precommit_command: cp ${{ github.workspace }}/${{ fromJson(needs.details.outputs.result).path }}/*.md ./
+          # Copy CHANGELOG to the target repo
+          precommit_command: cp ${{ github.workspace }}/${{ fromJson(needs.details.outputs.result).path }}/CHANGELOG.md ./
 
   details:
     name: Get details
