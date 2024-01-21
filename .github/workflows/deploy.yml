@@ -85,6 +85,10 @@ jobs:
           SVN_USERNAME: ${{ secrets.SVN_USERNAME }}test
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}test
 
+      - name: Copy README.md to dist
+        run: |
+          cp ${{ fromJson(needs.details.outputs.result).path }}/README.md dist/${{ fromJson(needs.details.outputs.result).name }}/README.md
+
       - name: Deploy to repo
         uses: manzoorwanijk/action-deploy-to-repo@v3
         with:
@@ -96,7 +100,7 @@ jobs:
           # Remove everything from the target repo before deploying
           cleanup_command: git rm -rf . && git clean -fxd
           # Copy README.md to the target repo
-          precommit_command: cp ${{ github.workspace }}/${{ fromJson(needs.details.outputs.result).path }}/README.md ./
+          precommit_command: ls ${{ github.workspace }}/${{ fromJson(needs.details.outputs.result).path }}
 
   details:
     name: Get details
