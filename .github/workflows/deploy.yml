@@ -57,13 +57,12 @@ jobs:
           curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
           chmod +x wp-cli.phar
           sudo mv wp-cli.phar /usr/local/bin/wp
+          # Check WP-CLI
           wp --info
 
       - name: Prepare bundle
         run: |
           pnpm wpdev bundle ${{ fromJson(needs.details.outputs.result).name }}
-          echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> PWD"
-          pwd
 
       - name: Upload release assets
         uses: AButler/upload-release-assets@v3.0
@@ -99,8 +98,6 @@ jobs:
           access_token: ${{ secrets.GH_ACCESS_TOKEN }}
           # Remove everything from the target repo before deploying
           cleanup_command: git rm -rf . && git clean -fxd
-          # Copy README.md to the target repo
-          precommit_command: ls ${{ github.workspace }}/${{ fromJson(needs.details.outputs.result).path }}
 
   details:
     name: Get details
