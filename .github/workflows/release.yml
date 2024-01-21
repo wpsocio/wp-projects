@@ -62,7 +62,6 @@ jobs:
         id: changesets
         with:
           publish: pnpm release
-          # TODO prepare only the affected packages
           version: pnpm prep-version
           title: Prepare for next release
           commit: Prepare for next release
