@@ -74,8 +74,8 @@ jobs:
       - name: Deploy to WordPress.org
         id: deploy
         uses: 10up/action-wordpress-plugin-deploy@stable
-        # with:
-        # dry-run: true
+        with:
+          dry-run: true
         env:
           SLUG: ${{ fromJson(needs.details.outputs.result).name }}
           VERSION: ${{ fromJson(needs.details.outputs.result).version }}

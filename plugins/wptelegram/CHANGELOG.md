@@ -1,14 +1,6 @@
 # Changelog
 
-All notable changes to this project are documented in this file.
-
-## Unreleased
-
-### Bug fixes
-
-- Fixed the emojis in notifications not being sent.
-
-## [4.0.14 - 2023-11-22](https://github.com/wpsocio/wptelegram/releases/tag/v4.0.14)
+## 4.0.14
 
 ### Enhancements
 
@@ -109,6 +101,7 @@ All notable changes to this project are documented in this file.
 - Intelligently trim `{post_excerpt}` to preserve the other parts of Message Template.
 
 ### Breaking changes
+
 - Removed support for Markdown formatting in favour of better HTML formatting
 
 ### Bug fixes
