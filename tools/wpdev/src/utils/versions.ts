@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { prerelease } from 'semver';
 import { TaskTarget, globFiles } from './misc.js';
 import { UpdateVersionInput } from './schema.js';
 
@@ -100,6 +101,13 @@ export async function updateVersion(
 	{ target, slug }: UpdateVersionConfig,
 ) {
 	for (const item of target) {
+		if (
+			item.type === 'sinceTag' &&
+			item.onlyIfStable &&
+			!isVersionStable(version)
+		) {
+			continue;
+		}
 		const patterns = createVersionPatterns(item);
 		const filesToUpdate = getFilesToUpdate(item, slug);
 
@@ -121,4 +129,8 @@ export async function updateVersion(
 			fs.writeFileSync(filePath, fileContents);
 		}
 	}
+}
+
+export function isVersionStable(version: string) {
+	return prerelease(version) === null;
 }

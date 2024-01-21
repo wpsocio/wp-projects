@@ -121,10 +121,18 @@ const updateVersionData = z.array(
 					'readmeFiles',
 					'pluginMainFile',
 					'themeStylesheet',
-					'sinceTag',
 				]),
 			})
 			.merge(targetFilesSchema.partial()),
+		z
+			.object({
+				type: z.literal('sinceTag'),
+				onlyIfStable: z
+					.boolean()
+					.default(true)
+					.describe('The text patterns to match. Regex can also be used.'),
+			})
+			.merge(targetFilesSchema),
 		z
 			.object({
 				type: z.literal('general'),
