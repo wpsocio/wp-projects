@@ -43,3 +43,4 @@ dist/
 .env
 temp/
 js-translations.pot
+changeset-status.json
