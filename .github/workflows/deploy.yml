@@ -1,4 +1,4 @@
-name: Deploy to SVN
+name: Deploy
 
 on:
   release:
@@ -69,13 +69,14 @@ jobs:
           echo "ls dist/${{ fromJson(needs.details.outputs.result).name }}"
           ls dist/${{ fromJson(needs.details.outputs.result).name }}
 
-      - uses: AButler/upload-release-assets@v3.0
+      - name: Upload release assets
+        uses: AButler/upload-release-assets@v3.0
         with:
           # e.g. dist/plugin-name-1.0.0.zip
           files: "dist/${{ fromJson(needs.details.outputs.result).name }}-${{ fromJson(needs.details.outputs.result).version }}.zip"
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Deploy
+      - name: Deploy to WordPress.org
         id: deploy
         uses: 10up/action-wordpress-plugin-deploy@stable
         # with:
@@ -87,6 +88,15 @@ jobs:
           ASSETS_DIR: "${{ fromJson(needs.details.outputs.result).path }}/.wordpress-org"
           SVN_USERNAME: ${{ secrets.SVN_USERNAME }}test
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}test
+
+      - name: Deploy to repo
+        uses: manzoorwanijk/action-deploy-to-repo@v3
+        with:
+          src_dir: "dist/${{ fromJson(needs.details.outputs.result).name }}"
+          target_repo: "${{ github.repository_owner }}/${{ fromJson(needs.details.outputs.result).name }}"
+          target_dir: "."
+          target_branch: main
+          access_token: ${{ secrets.GH_ACCESS_TOKEN }}
 
   details:
     name: Get details
