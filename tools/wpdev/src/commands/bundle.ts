@@ -29,7 +29,8 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 	static flags = {
 		'out-dir': Flags.string({
 			char: 'd',
-			description: 'Path to the output directory. Defaults to "dist/{slug}".',
+			description: 'Path to the output directory. Defaults to "dist".',
+			default: 'dist',
 		}),
 		'update-source-files': Flags.boolean({
 			char: 'u',
@@ -87,8 +88,6 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 		...WithProjects.args,
 	};
 
-	protected destPlaceholder = '{slug}';
-
 	public async run(): Promise<void> {
 		const tasks = new Listr([], {
 			concurrent: true,
@@ -121,18 +120,14 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 		}
 	}
 
-	getOutputDir() {
-		if (this.flags['out-dir']) {
-			return this.projects.size === 1
-				? this.flags['out-dir']
-				: path.join(this.flags['out-dir'], this.destPlaceholder);
+	getOutputDir(project: WPProject) {
+		const baseOutDir = this.flags['out-dir'] || 'dist';
+
+		if (this.cliConfig.operationMode !== 'wp-monorepo') {
+			return baseOutDir;
 		}
 
-		return `dist/${this.destPlaceholder}`;
-	}
-
-	parseOutputDir(outDir: string, slug: string) {
-		return outDir.replace(this.destPlaceholder, slug);
+		return path.join(baseOutDir, project.relativeDir);
 	}
 
 	getVersion(project: WPProject, task: TaskWrapper) {
@@ -170,7 +165,7 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 
 		const { projectInfo, bundle } = await getProjectConfig(project, version);
 
-		const outDir = this.parseOutputDir(this.getOutputDir(), projectInfo.slug);
+		const outDir = this.getOutputDir(project);
 
 		const canChangeSourceFiles = this.flags['update-source-files'];
 
@@ -209,17 +204,12 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 							return task.skip();
 						}
 
-						const {
-							sourceDir,
-							destDir,
-							ignore = getDistIgnorePattern(project.dir),
-						} = bundle.tasks.copyFilesBefore;
+						const { sourceDir, ignore = getDistIgnorePattern(project.dir) } =
+							bundle.tasks.copyFilesBefore;
 
-						return await copyDir(
-							path.join(project.dir, sourceDir),
-							this.parseOutputDir(destDir, projectInfo.slug),
-							{ ignore },
-						);
+						return await copyDir(path.join(project.dir, sourceDir), outDir, {
+							ignore,
+						});
 					},
 				},
 				{
@@ -345,17 +335,12 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 							return task.skip();
 						}
 
-						const {
-							sourceDir,
-							destDir,
-							ignore = getDistIgnorePattern(project.dir),
-						} = bundle.tasks.copyFilesAfter;
+						const { sourceDir, ignore = getDistIgnorePattern(project.dir) } =
+							bundle.tasks.copyFilesAfter;
 
-						return await copyDir(
-							path.join(project.dir, sourceDir),
-							this.parseOutputDir(destDir, projectInfo.slug),
-							{ ignore },
-						);
+						return await copyDir(path.join(project.dir, sourceDir), outDir, {
+							ignore,
+						});
 					},
 				},
 				{
