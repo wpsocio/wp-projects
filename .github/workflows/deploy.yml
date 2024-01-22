@@ -43,8 +43,8 @@ jobs:
           VERSION: ${{ fromJson(needs.details.outputs.result).version }}
           BUILD_DIR: "dist/${{ fromJson(needs.details.outputs.result).name }}"
           ASSETS_DIR: "${{ fromJson(needs.details.outputs.result).path }}/.wordpress-org"
-          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}test
-          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}test
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
 
       - name: Copy README.md to dist
         run: |
