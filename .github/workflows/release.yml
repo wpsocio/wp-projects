@@ -13,8 +13,11 @@ jobs:
     if: github.repository == 'irshadahmad21/wp-plugins-dev-test'
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout and setup
-        uses: ./actions/checkout-n-setup
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Environment
+        uses: ./actions/setup
         with:
           lockfile: pnpm-hashed.lock
 

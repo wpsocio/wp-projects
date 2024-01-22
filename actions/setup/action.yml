@@ -1,4 +1,4 @@
-name: "Checkout and setup"
+name: "Setup Node, pnpm, PHP, WP CLI and install dependencies"
 description: "This action checks out the commit, sets up Node, pnpm, PHP, WP CLI and installs dependencies."
 author: "wpsocio"
 inputs:
@@ -6,16 +6,6 @@ inputs:
     required: false
     description: "Cache busting key. If this changes, the cache will be busted."
     default: "1"
-
-  checkout-depth:
-    required: false
-    description: "Number of commits to fetch. 0 indicates all history for all branches and tags."
-    default: 1
-
-  access-token:
-    required: false
-    description: "The GitHub access token to use for fetching the repository."
-    default: ${{ github.token }}
 
   node-version:
     required: false
@@ -45,12 +35,6 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: ${{ inputs.checkout-depth }}
-        token: ${{ inputs.access-token }}
-
     - name: Setup Node
       uses: actions/setup-node@v4
       with:

@@ -13,8 +13,11 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ fromJson(needs.details.outputs.result).shouldDeploy }}
     steps:
-      - name: Checkout and setup
-        uses: ./actions/checkout-n-setup
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Environment
+        uses: ./actions/setup
         with:
           lockfile: pnpm-hashed.lock
 
