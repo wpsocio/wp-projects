@@ -1,6 +1,8 @@
+import fs from 'node:fs';
 import path from 'node:path';
 import { getPackagesSync } from '@manypkg/get-packages';
 import { execaSync } from 'execa';
+import { z } from 'zod';
 import { ProjectType, UserConfig, WPProject, fixPackage } from './tools.js';
 
 export type WPMonorepoConfig = {
@@ -13,6 +15,16 @@ type ProjectStatus = 'ignored' | 'tracked' | 'connected';
 type IncludeOptions = {
 	[key in ProjectStatus]?: boolean;
 };
+
+const ReleaseJsonSchema = z.object({
+	releases: z.array(
+		z.object({
+			name: z.string(),
+			type: z.string().optional(),
+			changesets: z.array(z.string()),
+		}),
+	),
+});
 
 export class WPMonorepo {
 	config: WPMonorepoConfig;
@@ -114,22 +126,27 @@ export class WPMonorepo {
 		return this.getProjects({ connected: true, tracked: true, ignored: true });
 	}
 
-	getProjectsByName(projectNames: Array<string>) {
-		const projects = this.getManagedProjects();
+	getProjectsByName(
+		projectNames: Array<string>,
+		{ throwIfNotFound = true }: { throwIfNotFound?: boolean } = {},
+	) {
+		const managedProjects = this.getManagedProjects();
 
-		const entries = projectNames.map((projectName) => {
-			const project = projects.get(projectName);
+		const projects = new Map<string, WPProject>();
 
-			if (!project) {
+		for (const projectName of projectNames) {
+			const project = managedProjects.get(projectName);
+
+			if (project) {
+				projects.set(projectName, project);
+			} else if (throwIfNotFound) {
 				throw new Error(
 					`Invalid project: Could not find a package with name: "${projectName}"`,
 				);
 			}
+		}
 
-			return [project.packageJson.name, project] as const;
-		});
-
-		return new Map(entries);
+		return projects;
 	}
 
 	/**
@@ -147,5 +164,20 @@ export class WPMonorepo {
 		const slug = parts[1] || parts[0];
 
 		return path.join(wpContentDir, wpdev?.belongsTo || '', slug);
+	}
+
+	getProjectsToRelease(changesetJsonFile: string) {
+		if (!fs.existsSync(changesetJsonFile)) {
+			throw new Error('Please provide a valid release JSON file.');
+		}
+		const json = JSON.parse(fs.readFileSync(changesetJsonFile, 'utf8'));
+
+		const projectNames = ReleaseJsonSchema.parse(json)
+			// Get the names of projects that have changesets, ignoring the ones that don't
+			.releases.filter(({ changesets }) => changesets.length)
+			// Collect the names
+			.map((release) => release.name);
+
+		return this.getProjectsByName(projectNames, { throwIfNotFound: false });
 	}
 }

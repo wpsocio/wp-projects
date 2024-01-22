@@ -13,43 +13,15 @@ jobs:
       matrix:
         php: ["7.4", "8.0", "8.1", "8.2", "8.3"]
     steps:
-      - name: Check out code
+      - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Setup Environment
+        uses: ./actions/setup
         with:
-          fetch-depth: 2
-
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v4
-        with:
-          node-version: lts/*
-
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 8
-          run_install: false
-
-      - name: Get pnpm store directory
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-
-      - uses: actions/cache@v3
-        name: Setup pnpm cache
-        with:
-          path: |
-            ${{ env.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/package.json', '**/pnpm-hashed.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
+          lockfile: pnpm-hashed.lock
           php-version: ${{ matrix.php }}
-          tools: phpcs
+          enable-wireit-cache: true
 
       - name: Check syntax errors
         # For plugins, we need to check production dependencies as well
@@ -59,7 +31,7 @@ jobs:
           pnpm -r --parallel --filter "./plugins/**" exec composer install --no-dev
           find ./plugins/*/src ./packages/php/*/src ! -path "*/vendor/*" ! -path "*/node_modules/*" -type f -name '*.php' -print0 | xargs -0 -n1 -P4 php -l -n | (! grep -v "No syntax errors detected" )
 
-      - name: Setup
+      - name: Setup PHP
         run: "pnpm run setup:php"
 
       - name: Lint
@@ -75,40 +47,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out code
+      - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Setup Environment
+        uses: ./actions/setup
         with:
-          fetch-depth: 2
-
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v4
-        with:
-          node-version: lts/*
-
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 8
-          run_install: false
-
-      - name: Get pnpm store directory
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-
-      - uses: actions/cache@v3
-        name: Setup pnpm cache
-        with:
-          path: |
-            ${{ env.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/package.json', '**/pnpm-hashed.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-
-      - name: Wireit cache
-        uses: google/wireit@setup-github-actions-caching/v1
-
-      - name: Install dependencies
-        run: pnpm install
+          lockfile: pnpm-hashed.lock
+          enable-wireit-cache: true
 
       - name: Lint
         run: "pnpm lint:js"

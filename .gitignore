@@ -12,6 +12,7 @@ vendor/
 !/.changeset/
 !/.github/
 !/.vscode/
+!/actions/
 !/packages/
 !/plugins/
 !/tools/
@@ -43,3 +44,4 @@ dist/
 .env
 temp/
 js-translations.pot
+changeset-status.json

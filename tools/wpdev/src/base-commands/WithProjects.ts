@@ -27,7 +27,11 @@ export abstract class WithProjects<
 	static baseFlags = {
 		...WithRootDirAsCwd.baseFlags,
 		all: Flags.boolean({
-			description: 'Target all projects.',
+			description: 'Target all projects in monorepo.',
+		}),
+		'from-release': Flags.string({
+			description:
+				'Target projects in monorepo that are to be released next. Pass the {filePath} given to `changset status --output={filePath}`',
 		}),
 	};
 
@@ -89,7 +93,11 @@ export abstract class WithProjects<
 		this.args = args as TArgs<T>;
 
 		if (this.cliConfig.operationMode === 'wp-monorepo') {
-			if (flags.all) {
+			if (flags['from-release']) {
+				this.projects = this.wpMonorepo.getProjectsToRelease(
+					flags['from-release'],
+				);
+			} else if (flags.all) {
 				this.projects = this.wpMonorepo.getManagedProjects();
 			} else if (argv.length) {
 				this.projects = this.wpMonorepo.getProjectsByName(

@@ -1,0 +1,110 @@
+name: Deploy
+
+on:
+  release:
+    types: [published]
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  tag:
+    name: New release
+    needs: [details]
+    runs-on: ubuntu-latest
+    if: ${{ fromJson(needs.details.outputs.result).shouldDeploy }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Environment
+        uses: ./actions/setup
+        with:
+          lockfile: pnpm-hashed.lock
+          enable-wireit-cache: true
+
+      - name: Prepare bundle
+        run: |
+          pnpm wpdev bundle ${{ fromJson(needs.details.outputs.result).name }}
+
+      - name: Upload release assets
+        uses: AButler/upload-release-assets@v3.0
+        with:
+          # e.g. dist/plugin-name-1.0.0.zip
+          files: "dist/${{ fromJson(needs.details.outputs.result).name }}-${{ fromJson(needs.details.outputs.result).version }}.zip"
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Deploy to WordPress.org
+        id: deploy
+        uses: 10up/action-wordpress-plugin-deploy@stable
+        with:
+          dry-run: true
+        env:
+          SLUG: ${{ fromJson(needs.details.outputs.result).name }}
+          VERSION: ${{ fromJson(needs.details.outputs.result).version }}
+          BUILD_DIR: "dist/${{ fromJson(needs.details.outputs.result).name }}"
+          ASSETS_DIR: "${{ fromJson(needs.details.outputs.result).path }}/.wordpress-org"
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}test
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}test
+
+      - name: Copy README.md to dist
+        run: |
+          cp ${{ fromJson(needs.details.outputs.result).path }}/README.md dist/${{ fromJson(needs.details.outputs.result).name }}/README.md
+
+      - name: Deploy to repo
+        uses: manzoorwanijk/action-deploy-to-repo@v3
+        with:
+          src_dir: dist/${{ fromJson(needs.details.outputs.result).name }}
+          target_repo: ${{ github.repository_owner }}/${{ fromJson(needs.details.outputs.result).name }}
+          target_dir: "."
+          target_branch: main
+          access_token: ${{ secrets.GH_ACCESS_TOKEN }}
+          # Remove everything from the target repo before deploying
+          cleanup_command: git rm -rf . && git clean -fxd
+
+  details:
+    name: Get details
+    runs-on: ubuntu-latest
+    outputs:
+      result: ${{ steps.details.outputs.result }}
+    steps:
+      - name: Get release details
+        uses: actions/github-script@v7
+        id: details
+        with:
+          script: |
+            const tagRegex = /^(?<name>.+)@(?<version>[^@]+)$/;
+
+            const result = '${{ github.event.release.tag_name }}'.match(tagRegex);
+
+            if (!result) {
+              throw new Error('Invalid tag name: ${{ github.event.release.tag_name }}');
+            }
+
+            const { name, version } = result.groups;
+
+            const plugins = [
+              'wptelegram',
+              'wptelegram-comments',
+              'wptelegram-login',
+              'wptelegram-widget',
+            ];
+
+            const themes = [];
+
+            const toDeploy = [...plugins, ...themes];
+
+            const belongsTo = plugins.includes(name)
+              ? 'plugins'
+              : themes.includes(name)
+                ? 'themes'
+                : '';
+
+            const path = [belongsTo, name].filter(Boolean).join('/');
+
+            const shouldDeploy = toDeploy.includes(name);
+
+            return { name, version, path, shouldDeploy };
+
+      - name: Print details
+        run: |
+          echo "Package details: ${{ steps.details.outputs.result }}"

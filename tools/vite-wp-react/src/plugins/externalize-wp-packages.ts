@@ -15,13 +15,15 @@ export const externalizeWpPackages = (): PluginOption => {
 					build: {
 						rollupOptions: {
 							external: Object.keys(WP_EXTERNAL_PACKAGES),
-							/**
-							 * Add the plugin to rollup to ensure react imports don't end up in the bundle
-							 * framer-motion causes the issue by using namespace imports
-							 *
-							 * @see https://github.com/vitejs/vite-plugin-react/issues/3
-							 */
-							plugins: [rollupGlobals(WP_EXTERNAL_PACKAGES)],
+							plugins: [
+								/**
+								 * Add the plugin to rollup to ensure react imports don't end up in the bundle
+								 * framer-motion causes the issue by using namespace imports
+								 *
+								 * @see https://github.com/vitejs/vite-plugin-react/issues/3
+								 */
+								rollupGlobals(WP_EXTERNAL_PACKAGES)
+							],
 						},
 					},
 				};
