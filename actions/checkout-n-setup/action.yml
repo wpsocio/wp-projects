@@ -1,0 +1,100 @@
+name: "Checkout and setup"
+description: "This action checks out the commit, sets up Node, pnpm, PHP, WP CLI and installs dependencies."
+author: "wpsocio"
+inputs:
+  cache-key:
+    required: false
+    description: "Cache busting key. If this changes, the cache will be busted."
+    default: "1"
+
+  checkout-depth:
+    required: false
+    description: "Number of commits to fetch. 0 indicates all history for all branches and tags."
+    default: 1
+
+  access-token:
+    required: false
+    description: "The GitHub access token to use for fetching the repository."
+    default: ${{ github.token }}
+
+  node-version:
+    required: false
+    description: "The version of Node to use."
+    default: "lts/*"
+
+  php-version:
+    required: false
+    description: "The version of PHP to use."
+    default: "8"
+
+  pnpm-version:
+    required: false
+    description: "The version of pnpm to use."
+    default: "latest"
+
+  lockfile:
+    required: false
+    description: "The lockfile to use."
+    default: "pnpm-lock.yaml"
+
+  enable-wireit-cache:
+    required: false
+    description: "Enable Wireit cache."
+    default: false
+
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: ${{ inputs.checkout-depth }}
+        token: ${{ inputs.access-token }}
+
+    - name: Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
+
+    - uses: pnpm/action-setup@v2
+      with:
+        version: ${{ inputs.pnpm-version }}
+        run_install: false
+
+    - name: Get pnpm store directory
+      shell: bash
+      run: |
+        echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+    - uses: actions/cache@v3
+      name: Setup pnpm cache
+      with:
+        path: |
+          ${{ env.STORE_PATH }}
+        key: ${{ runner.os }}-modules-${{ inputs.cache-key }}-${{ hashFiles( inputs.lockfile ) }}
+        restore-keys: |
+          ${{ runner.os }}-pnpm-store-
+
+    - name: Wireit cache
+      if: ${{ inputs.enable-wireit-cache }}
+      uses: google/wireit@setup-github-actions-caching/v1
+
+    - name: Install dependencies
+      run: pnpm install
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ inputs.php-version }}
+        tools: phpcs
+
+    - name: Install gettext
+      run: sudo apt install gettext
+
+    - name: Setup WP-CLI
+      run: |
+        curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+        chmod +x wp-cli.phar
+        sudo mv wp-cli.phar /usr/local/bin/wp
+        # Check WP-CLI
+        wp --info
