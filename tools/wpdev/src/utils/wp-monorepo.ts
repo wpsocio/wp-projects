@@ -156,7 +156,7 @@ export class WPMonorepo {
 				projects.set(projectName, project);
 			} else if (throwIfNotFound) {
 				throw new Error(
-					`Invalid project: Could not find a package with name: "${projectName}"`,
+					`Invalid project: Could not find a WordPress project with name: "${projectName}"`,
 				);
 			}
 		}
