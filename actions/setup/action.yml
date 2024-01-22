@@ -30,7 +30,7 @@ inputs:
   enable-wireit-cache:
     required: false
     description: "Enable Wireit cache."
-    default: false
+    default: "false"
 
 runs:
   using: "composite"
@@ -60,7 +60,7 @@ runs:
           ${{ runner.os }}-pnpm-store-
 
     - name: Wireit cache
-      if: ${{ inputs.enable-wireit-cache }}
+      if: ${{ inputs.enable-wireit-cache == 'true' }}
       uses: google/wireit@setup-github-actions-caching/v1
 
     - name: Install dependencies

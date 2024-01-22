@@ -21,6 +21,7 @@ jobs:
         with:
           lockfile: pnpm-hashed.lock
           php-version: ${{ matrix.php }}
+          enable-wireit-cache: true
 
       - name: Check syntax errors
         # For plugins, we need to check production dependencies as well
@@ -53,6 +54,7 @@ jobs:
         uses: ./actions/setup
         with:
           lockfile: pnpm-hashed.lock
+          enable-wireit-cache: true
 
       - name: Lint
         run: "pnpm lint:js"

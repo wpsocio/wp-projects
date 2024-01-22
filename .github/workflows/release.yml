@@ -20,6 +20,7 @@ jobs:
         uses: ./actions/setup
         with:
           lockfile: pnpm-hashed.lock
+          enable-wireit-cache: true
 
       - name: Create Release Pull Request or Publish
         uses: changesets/action@v1
