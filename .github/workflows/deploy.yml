@@ -30,7 +30,7 @@ jobs:
         uses: AButler/upload-release-assets@v3.0
         with:
           # e.g. dist/plugin-name-1.0.0.zip
-          files: "dist/${{ fromJson(needs.details.outputs.result).name }}-${{ fromJson(needs.details.outputs.result).version }}.zip"
+          files: "dist/${{ fromJson(needs.details.outputs.result).relativeDir }}-${{ fromJson(needs.details.outputs.result).version }}.zip"
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Deploy to WordPress.org
@@ -41,19 +41,19 @@ jobs:
         env:
           SLUG: ${{ fromJson(needs.details.outputs.result).name }}
           VERSION: ${{ fromJson(needs.details.outputs.result).version }}
-          BUILD_DIR: "dist/${{ fromJson(needs.details.outputs.result).name }}"
-          ASSETS_DIR: "${{ fromJson(needs.details.outputs.result).path }}/.wordpress-org"
-          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
-          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+          BUILD_DIR: "dist/${{ fromJson(needs.details.outputs.result).relativeDir }}"
+          ASSETS_DIR: "${{ fromJson(needs.details.outputs.result).relativeDir }}/.wordpress-org"
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME || 'test' }}
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD || 'test' }}
 
       - name: Copy README.md to dist
         run: |
-          cp ${{ fromJson(needs.details.outputs.result).path }}/README.md dist/${{ fromJson(needs.details.outputs.result).name }}/README.md
+          cp ${{ fromJson(needs.details.outputs.result).relativeDir }}/README.md dist/${{ fromJson(needs.details.outputs.result).relativeDir }}/README.md
 
       - name: Deploy to repo
         uses: manzoorwanijk/action-deploy-to-repo@v3
         with:
-          src_dir: dist/${{ fromJson(needs.details.outputs.result).name }}
+          src_dir: dist/${{ fromJson(needs.details.outputs.result).relativeDir }}
           target_repo: ${{ github.repository_owner }}/${{ fromJson(needs.details.outputs.result).name }}
           target_dir: "."
           target_branch: main
@@ -67,7 +67,21 @@ jobs:
     outputs:
       result: ${{ steps.details.outputs.result }}
     steps:
-      - name: Get release details
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Environment
+        uses: ./actions/setup
+        with:
+          lockfile: pnpm-hashed.lock
+          enable-wireit-cache: true
+
+      - name: List projects
+        id: projects
+        run: |
+          echo "result=$(pnpm wpdev project-info --all)" >> $GITHUB_OUTPUT
+
+      - name: Get details
         uses: actions/github-script@v7
         id: details
         with:
@@ -77,34 +91,22 @@ jobs:
             const result = '${{ github.event.release.tag_name }}'.match(tagRegex);
 
             if (!result) {
-              throw new Error('Invalid tag name: ${{ github.event.release.tag_name }}');
+              console.warn('Invalid tag name: "${{ github.event.release.tag_name }}"');
+
+              return { shouldDeploy: false };
             }
 
             const { name, version } = result.groups;
 
-            const plugins = [
-              'wptelegram',
-              'wptelegram-comments',
-              'wptelegram-login',
-              'wptelegram-widget',
-            ];
+            const projects = ${{ steps.projects.outputs.result }};
 
-            const themes = [];
+            const project = projects.find(project => project.name === name);
 
-            const toDeploy = [...plugins, ...themes];
+            const shouldDeploy = Boolean(project);
 
-            const belongsTo = plugins.includes(name)
-              ? 'plugins'
-              : themes.includes(name)
-                ? 'themes'
-                : '';
-
-            const path = [belongsTo, name].filter(Boolean).join('/');
-
-            const shouldDeploy = toDeploy.includes(name);
-
-            return { name, version, path, shouldDeploy };
+            // User the version from the tag to ensure we're deploying the correct version
+            return { ...project, name, version, shouldDeploy };
 
       - name: Print details
         run: |
-          echo "Package details: ${{ steps.details.outputs.result }}"
+          echo "Details: ${{ steps.details.outputs.result }}"
