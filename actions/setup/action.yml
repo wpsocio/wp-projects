@@ -64,6 +64,7 @@ runs:
       uses: google/wireit@setup-github-actions-caching/v1
 
     - name: Install dependencies
+      shell: bash
       run: pnpm install
 
     - name: Setup PHP
@@ -73,9 +74,11 @@ runs:
         tools: phpcs
 
     - name: Install gettext
+      shell: bash
       run: sudo apt install gettext
 
     - name: Setup WP-CLI
+      shell: bash
       run: |
         curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
         chmod +x wp-cli.phar
