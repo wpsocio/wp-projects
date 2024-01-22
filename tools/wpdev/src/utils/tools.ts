@@ -14,14 +14,14 @@ export const UserConfigSchema = z
 			.default('standalone')
 			.describe('Whether this is a wp-monorepo or standalone project.'),
 		projectTypes: z
-			.array(z.enum(['plugins', 'themes']))
+			.array(z.enum(['plugins', 'themes', 'mu-plugins']))
 			.optional()
 			.default(['plugins', 'themes'])
 			.describe(
 				'The project types managed by this monorepo. Only used in wp-monorepo mode.',
 			),
 		belongsTo: z
-			.enum(['plugins', 'themes'])
+			.enum(['plugins', 'themes', 'mu-plugins'])
 			.optional()
 			.describe(
 				'The project type this project belongs to. Used for individual packages in a monorepo or for standalone projects.',

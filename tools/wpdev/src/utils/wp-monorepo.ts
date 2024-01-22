@@ -37,10 +37,14 @@ export class WPMonorepo {
 	 * Returns an array of connected project names as defined in the CONNECTED_PROJECTS env var.
 	 */
 	getConnectedProjectsNames() {
-		return (process.env.CONNECTED_PROJECTS || '')
-			.split(',')
-			.map((project) => project.trim())
-			.filter(Boolean);
+		return [
+			...new Set(
+				(process.env.CONNECTED_PROJECTS || '')
+					.split(',')
+					.map((project) => project.trim())
+					.filter(Boolean),
+			),
+		];
 	}
 
 	getProjectStatus(project: WPProject): ProjectStatus {
@@ -48,6 +52,18 @@ export class WPMonorepo {
 		if (this.getConnectedProjectsNames().includes(project.packageJson.name)) {
 			return 'connected';
 		}
+
+		// If the project is in the "premium" folder
+		// e.g. "premium/plugins/wptelegram-pro"
+		const isPremium = project.relativeDir.startsWith(
+			path.normalize('premium/'),
+		);
+
+		// If the project is premium, it should be treated as connected
+		if (isPremium) {
+			return 'connected';
+		}
+
 		try {
 			// If `git check-ignore <pathname>` succeeds, it means the path is ignored
 			execaSync('git', ['check-ignore', project.dir]);
@@ -74,13 +90,12 @@ export class WPMonorepo {
 					projectType = pkg.packageJson.wpdev?.belongsTo;
 				}
 			} else {
-				// If "belongsTo" is not defined, we can use the package containing folder name to determine the project type
+				// If "belongsTo" is not defined, we can use the package's parent folder name to determine the project type
 				// For example `relativeDir: 'plugins/wptelegram-widget'`
-				for (const _type of projectTypes) {
-					if (pkg.relativeDir.startsWith(_type)) {
-						projectType = _type;
-						break;
-					}
+				const parentDir = path.basename(path.dirname(pkg.dir)) as ProjectType;
+
+				if (projectTypes.includes(parentDir)) {
+					projectType = parentDir;
 				}
 			}
 
