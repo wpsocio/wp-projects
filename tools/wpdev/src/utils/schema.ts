@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { UserConfigSchema } from './tools.js';
 
 const targetFilesSchema = z.object({
 	files: z
@@ -231,10 +232,6 @@ export type BundleConfigInput = z.input<typeof bundleSchema>;
 export type BundleConfig = z.infer<typeof bundleSchema>;
 
 export const projectInfoSchema = z.object({
-	title: z
-		.string()
-		.optional()
-		.describe('The project title. e.g. "WP Telegram Login".'),
 	key: z
 		.string()
 		.optional()
@@ -251,10 +248,14 @@ export const projectInfoSchema = z.object({
 		.string()
 		.optional()
 		.describe('The text domain for i18n e.g. "wptelegram-login".'),
+	projectType: z
+		.enum(['plugin', 'theme', 'mu-plugin'])
+		.optional()
+		.describe('The project type.'),
 });
 
 export type ProjectInfoInput = z.input<typeof projectInfoSchema>;
-export type ProjectInfo = z.infer<typeof projectInfoSchema>;
+export type ProjectInfo = Required<z.infer<typeof projectInfoSchema>>;
 
 export const projectSchema = z.object({
 	project: projectInfoSchema.optional(),

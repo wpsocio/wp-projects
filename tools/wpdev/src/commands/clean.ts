@@ -237,7 +237,9 @@ export default class Clean extends WithConfig {
 
 			// It's possible that the connected project may be a git repo
 			// So the above git commands won't work for nested git repos
-			const connectedProjects = wpMonorepo.getProjects({ connected: true });
+			const connectedProjects = await wpMonorepo.getProjects({
+				connected: true,
+			});
 
 			for (const [name, project] of connectedProjects) {
 				const files = child_process.execSync(
@@ -263,7 +265,7 @@ export default class Clean extends WithConfig {
 
 			// We do not want to delete any of the project directories in the monorepo.
 			filesToSkip = new Set(
-				[...wpMonorepo.getAllProjects()].map(([name, project]) => {
+				[...(await wpMonorepo.getAllProjects())].map(([name, project]) => {
 					return (
 						// We need posix paths for git
 						pathToPosix(project.relativeDir)

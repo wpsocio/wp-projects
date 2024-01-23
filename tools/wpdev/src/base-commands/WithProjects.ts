@@ -4,7 +4,7 @@ import {
 	PROJECT_CONFIG_FILE_NAME,
 	ROOT_CONFIG_FILE_NAME,
 } from '../utils/config.js';
-import { WPProject, getStandalonePackage } from '../utils/tools.js';
+import { WPProject, getStandaloneProject } from '../utils/projects.js';
 import { WPMonorepo } from '../utils/wp-monorepo.js';
 import { WithRootDirAsCwd } from './WithRootDirAsCwd.js';
 
@@ -65,7 +65,7 @@ export abstract class WithProjects<
 
 			const expectedPkgJsonConfig =
 				this.cliConfig.operationMode === 'wp-monorepo'
-					? 'wpdev.belongsTo'
+					? 'wpdev.projectType'
 					: 'wpdev.isRoot';
 
 			messages.push(
@@ -99,13 +99,13 @@ export abstract class WithProjects<
 
 		if (this.cliConfig.operationMode === 'wp-monorepo') {
 			if (this.flags['from-changeset']) {
-				this.projects = this.wpMonorepo.getProjectsToRelease(
+				this.projects = await this.wpMonorepo.getProjectsToRelease(
 					this.flags['changeset-json'],
 				);
 			} else if (this.flags.all) {
-				this.projects = this.wpMonorepo.getManagedProjects();
+				this.projects = await this.wpMonorepo.getManagedProjects();
 			} else if (argv.length) {
-				this.projects = this.wpMonorepo.getProjectsByName(
+				this.projects = await this.wpMonorepo.getProjectsByName(
 					argv as Array<string>,
 				);
 			} else {
@@ -117,7 +117,7 @@ export abstract class WithProjects<
 	}
 
 	protected async detectProject() {
-		const project = await getStandalonePackage(this.commandCwd);
+		const project = await getStandaloneProject(this.commandCwd);
 
 		if (!project) {
 			throw new Error('Could not detect project.');
@@ -125,8 +125,10 @@ export abstract class WithProjects<
 
 		this.log('🔍 Detected project: ', chalk.bold(project.packageJson.name));
 
-		if (project.packageJson.wpdev?.belongsTo) {
-			this.projects = new Map([[project.packageJson.name, project]]);
+		if (project.wpdev?.projectType) {
+			this.projects = new Map([
+				[project.packageJson.name, project as WPProject],
+			]);
 
 			return;
 		}
