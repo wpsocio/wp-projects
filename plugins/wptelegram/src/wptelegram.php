@@ -50,7 +50,6 @@ require_once dirname( WPTELEGRAM_MAIN_FILE ) . '/vendor/autoload.php';
 
 /**
  * The code that runs during plugin activation.
- * This action is documented in includes/class-wptelegram-activator.php
  */
 function activate_wptelegram() {
 	\WPTelegram\Core\includes\Activator::activate();
@@ -58,7 +57,6 @@ function activate_wptelegram() {
 
 /**
  * The code that runs during plugin deactivation.
- * This action is documented in includes/class-wptelegram-deactivator.php
  */
 function deactivate_wptelegram() {
 	\WPTelegram\Core\includes\Deactivator::deactivate();

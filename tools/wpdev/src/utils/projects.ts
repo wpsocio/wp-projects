@@ -32,7 +32,7 @@ export type ProjectConfig = {
 };
 
 export async function getProjectConfig(project: WPProject, version?: string) {
-	const configPathRel = path.join(project.dir, 'wpdev.project.js');
+	const configPathRel = path.join(project.relativeDir, 'wpdev.project.js');
 
 	const configPath = path.resolve(configPathRel);
 

@@ -176,23 +176,54 @@ export type UpdateVersionInput = z.input<typeof updateVersionData>;
 
 export const bundleSchema = z
 	.object({
-		tasks: z
-			.object({
-				preScripts: scriptsData,
-				copyFilesBefore: copyFilesData,
-				updateRequirements: updateRequirementsData,
-				updateVersion: updateVersionData,
-				updateChangelog: updateChangelogData,
-				generatePot: generatePotData,
-				updatePoFiles: updatePoFilesData,
-				makeMoFiles: makeMoFilesData,
-				jsPotToPhp: jsPotToPhpData,
-				minifyStyles: processStylesData,
-				postScripts: scriptsData,
-				copyFilesAfter: copyFilesData,
-				createArchive: createArchiveData,
-			})
-			.partial(),
+		tasks: z.array(
+			z.discriminatedUnion('type', [
+				z.object({
+					type: z.literal('run-scripts'),
+					data: scriptsData,
+				}),
+				z.object({
+					type: z.literal('copy-files'),
+					data: copyFilesData,
+				}),
+				z.object({
+					type: z.literal('update-requirements'),
+					data: updateRequirementsData,
+				}),
+				z.object({
+					type: z.literal('update-version'),
+					data: updateVersionData,
+				}),
+				z.object({
+					type: z.literal('update-changelog'),
+					data: updateChangelogData,
+				}),
+				z.object({
+					type: z.literal('generate-pot'),
+					data: generatePotData,
+				}),
+				z.object({
+					type: z.literal('update-po-files'),
+					data: updatePoFilesData,
+				}),
+				z.object({
+					type: z.literal('make-mo-files'),
+					data: makeMoFilesData,
+				}),
+				z.object({
+					type: z.literal('js-pot-to-php'),
+					data: jsPotToPhpData,
+				}),
+				z.object({
+					type: z.literal('minify-styles'),
+					data: processStylesData,
+				}),
+				z.object({
+					type: z.literal('create-archive'),
+					data: createArchiveData,
+				}),
+			]),
+		),
 	})
 	.describe('The bundling configuration.');
 
