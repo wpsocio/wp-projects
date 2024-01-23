@@ -148,7 +148,7 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 
 		const projectInfo = project.wpdev;
 
-		const bundle = await getProjectBundleConfig(project);
+		const bundle = await getProjectBundleConfig(project, { version });
 
 		const outDir = this.getOutputDir(project);
 

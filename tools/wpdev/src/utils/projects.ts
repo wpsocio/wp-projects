@@ -36,7 +36,7 @@ export type ProjectConfig = {
 	getBundleConfig: (
 		options: Required<ProjectInfoInput> & {
 			project: WPProject;
-			version?: string;
+			version: string;
 		},
 	) => BundleConfigInput;
 };
@@ -149,12 +149,13 @@ export async function getProjectInfo(
 }
 
 type ProjectBundleConfigOptions = {
+	version: string;
 	globalConfig?: string;
 };
 
 export async function getProjectBundleConfig(
 	project: WPProject,
-	{ globalConfig }: ProjectBundleConfigOptions = {},
+	{ globalConfig, version }: ProjectBundleConfigOptions,
 ) {
 	const configPath = path.join(project.dir, PROJECT_CONFIG_FILE_NAME);
 	const configPathRel = path.relative(process.cwd(), configPath);
@@ -177,7 +178,7 @@ export async function getProjectBundleConfig(
 	}
 
 	const bundleResult = bundleSchema.safeParse(
-		getBundleConfig({ project, ...project.wpdev }),
+		getBundleConfig({ project, ...project.wpdev, version }),
 	);
 
 	if (!bundleResult.success) {
