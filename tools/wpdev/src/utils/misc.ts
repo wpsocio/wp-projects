@@ -22,13 +22,9 @@ export async function copyFiles(
 ) {
 	const entries = globFiles(targetFiles, { cwd });
 
-	console.log(entries);
-
 	for (const file of entries) {
 		const filePath = path.join(cwd, file);
 		const destPath = path.join(destDir, file);
-
-		console.log({ file, filePath, destPath });
 
 		if (!fs.existsSync(path.dirname(destPath))) {
 			fs.mkdirSync(path.dirname(destPath), { recursive: true });
