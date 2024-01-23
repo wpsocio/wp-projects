@@ -235,4 +235,4 @@ Legacy Widget does not show the old messages. you need to post something new int
 -   Refreshed and improved the UI
 -   Improved names for hooks and shortcodes
 
-== Upgrade Notice ==
+[See full changelog](https://github.com/wpsocio/wptelegram-widget/blob/main/CHANGELOG.md)

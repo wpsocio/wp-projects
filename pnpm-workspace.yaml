@@ -1,7 +1,8 @@
 packages:
-    - 'packages/js/*'
-    - '!packages/js/shared'
-    - 'packages/js/shared/*'
-    - 'packages/php/*' # Just for running PHP tests via pnpm
-    - 'plugins/*'
-    - 'tools/*'
+    - "packages/js/*"
+    - "!packages/js/shared"
+    - "packages/js/shared/*"
+    - "packages/php/*" # Just for running PHP tests via pnpm
+    - "plugins/*"
+    # - "premium/plugins/*"
+    - "tools/*"

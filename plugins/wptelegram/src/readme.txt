@@ -259,3 +259,5 @@ Yes, all you need to do is to setup **Private Notifications** module and use the
 - Removed support for Markdown formatting in favour of better HTML formatting
 - Fixed the image not being sent "After the text" when "Send files by URL" is disabled
 - Fixed the issue of messages not being sent when the markup is not valid
+
+[See full changelog](https://github.com/wpsocio/wptelegram/blob/main/CHANGELOG.md)

@@ -1,15 +1,17 @@
+import fs from 'node:fs';
 import path from 'node:path';
 import { Flags } from '@oclif/core';
 import chalk from 'chalk';
 import { Listr, ListrTask } from 'listr2';
 import { WithProjects } from '../base-commands/WithProjects.js';
+import { updateChangelog } from '../utils/changelog.js';
 import {
 	generatePotFile,
 	makeMoFiles,
 	potToPhp,
 	updatePoFiles,
 } from '../utils/i18n.js';
-import { copyDir, getDistIgnorePattern, zipDir } from '../utils/misc.js';
+import { copyFiles, getDistIgnorePattern, zipDir } from '../utils/misc.js';
 import {
 	getNextVersion,
 	getProjectConfig,
@@ -29,7 +31,8 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 	static flags = {
 		'out-dir': Flags.string({
 			char: 'd',
-			description: 'Path to the output directory. Defaults to "dist/{slug}".',
+			description: 'Path to the output directory. Defaults to "dist".',
+			default: 'dist',
 		}),
 		'update-source-files': Flags.boolean({
 			char: 'u',
@@ -87,8 +90,6 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 		...WithProjects.args,
 	};
 
-	protected destPlaceholder = '{slug}';
-
 	public async run(): Promise<void> {
 		const tasks = new Listr([], {
 			concurrent: true,
@@ -121,18 +122,14 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 		}
 	}
 
-	getOutputDir() {
-		if (this.flags['out-dir']) {
-			return this.projects.size === 1
-				? this.flags['out-dir']
-				: path.join(this.flags['out-dir'], this.destPlaceholder);
+	getOutputDir(project: WPProject) {
+		const baseOutDir = this.flags['out-dir'] || 'dist';
+
+		if (this.cliConfig.operationMode !== 'wp-monorepo') {
+			return baseOutDir;
 		}
 
-		return `dist/${this.destPlaceholder}`;
-	}
-
-	parseOutputDir(outDir: string, slug: string) {
-		return outDir.replace(this.destPlaceholder, slug);
+		return path.join(baseOutDir, project.relativeDir);
 	}
 
 	getVersion(project: WPProject, task: TaskWrapper) {
@@ -170,7 +167,12 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 
 		const { projectInfo, bundle } = await getProjectConfig(project, version);
 
-		const outDir = this.parseOutputDir(this.getOutputDir(), projectInfo.slug);
+		const outDir = this.getOutputDir(project);
+
+		// Clean up output directory
+		if (fs.existsSync(outDir)) {
+			fs.rmSync(outDir, { recursive: true });
+		}
 
 		const canChangeSourceFiles = this.flags['update-source-files'];
 
@@ -210,16 +212,36 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 						}
 
 						const {
-							sourceDir,
-							destDir,
+							relativeSource,
+							files,
 							ignore = getDistIgnorePattern(project.dir),
 						} = bundle.tasks.copyFilesBefore;
 
-						return await copyDir(
-							path.join(project.dir, sourceDir),
-							this.parseOutputDir(destDir, projectInfo.slug),
-							{ ignore },
+						return await copyFiles(
+							path.join(project.dir, relativeSource),
+							{ files, ignore },
+							outDir,
 						);
+					},
+				},
+				{
+					title: 'Update changelog',
+					task: async (_, task) => {
+						if (
+							!bundle.tasks.updateChangelog ||
+							!this.flags['changeset-json']
+						) {
+							return task.skip();
+						}
+
+						const { readmeTxtFile } = bundle.tasks.updateChangelog;
+
+						return updateChangelog({
+							changesetJsonFile: this.flags['changeset-json'],
+							readmeTxtFile: path.join(project.dir, readmeTxtFile),
+							packageName: project.packageJson.name,
+							version,
+						});
 					},
 				},
 				{
@@ -346,15 +368,15 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 						}
 
 						const {
-							sourceDir,
-							destDir,
+							relativeSource,
+							files,
 							ignore = getDistIgnorePattern(project.dir),
 						} = bundle.tasks.copyFilesAfter;
 
-						return await copyDir(
-							path.join(project.dir, sourceDir),
-							this.parseOutputDir(destDir, projectInfo.slug),
-							{ ignore },
+						return await copyFiles(
+							path.join(project.dir, relativeSource),
+							{ files, ignore },
+							outDir,
 						);
 					},
 				},

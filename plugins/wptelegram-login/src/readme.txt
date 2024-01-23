@@ -174,4 +174,4 @@ Follow the instructions given on the settings page. You need to send `/setdomain
 = 1.10.0 =
 - Added support for Telegram Web App data authorization
 
-== Upgrade Notice ==
+[See full changelog](https://github.com/wpsocio/wptelegram-login/blob/main/CHANGELOG.md)

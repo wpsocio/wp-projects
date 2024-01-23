@@ -3,32 +3,26 @@ description: "This action checks out the commit, sets up Node, pnpm, PHP, WP CLI
 author: "wpsocio"
 inputs:
   cache-key:
-    required: false
     description: "Cache busting key. If this changes, the cache will be busted."
     default: "1"
 
   node-version:
-    required: false
     description: "The version of Node to use."
     default: "lts/*"
 
   php-version:
-    required: false
     description: "The version of PHP to use."
     default: "8"
 
   pnpm-version:
-    required: false
     description: "The version of pnpm to use."
     default: "latest"
 
   lockfile:
-    required: false
     description: "The lockfile to use."
     default: "pnpm-lock.yaml"
 
   enable-wireit-cache:
-    required: false
     description: "Enable Wireit cache."
     default: "false"
 

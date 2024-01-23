@@ -99,3 +99,5 @@ For rules, see the pinned message. No spam please.
 
 = 1.0.0 =
 * Initial Release
+
+[See full changelog](https://github.com/wpsocio/wptelegram-comments/blob/main/CHANGELOG.md)
