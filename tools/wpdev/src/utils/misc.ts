@@ -15,28 +15,20 @@ export function globFiles(target: TaskTarget, options?: Options) {
 	});
 }
 
-export async function copyDir(
-	sourceDir: string,
+export async function copyFiles(
+	cwd: string,
+	targetFiles: TaskTarget,
 	destDir: string,
-	options?: Partial<Options>,
 ) {
-	const entries = globFiles(
-		{
-			files: ['**/*'],
-			...options,
-			ignore: ['**/node_modules/**', ...(options?.ignore || [])],
-		},
-		{ cwd: sourceDir },
-	);
+	const entries = globFiles(targetFiles, { cwd });
 
-	// Clean up destination directory
-	if (fs.existsSync(destDir)) {
-		fs.rmSync(destDir, { recursive: true });
-	}
+	console.log(entries);
 
 	for (const file of entries) {
-		const filePath = path.join(sourceDir, file);
+		const filePath = path.join(cwd, file);
 		const destPath = path.join(destDir, file);
+
+		console.log({ file, filePath, destPath });
 
 		if (!fs.existsSync(path.dirname(destPath))) {
 			fs.mkdirSync(path.dirname(destPath), { recursive: true });

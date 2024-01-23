@@ -1,3 +1,4 @@
+import fs from 'node:fs';
 import path from 'node:path';
 import { Flags } from '@oclif/core';
 import chalk from 'chalk';
@@ -10,7 +11,7 @@ import {
 	potToPhp,
 	updatePoFiles,
 } from '../utils/i18n.js';
-import { copyDir, getDistIgnorePattern, zipDir } from '../utils/misc.js';
+import { copyFiles, getDistIgnorePattern, zipDir } from '../utils/misc.js';
 import {
 	getNextVersion,
 	getProjectConfig,
@@ -168,6 +169,11 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 
 		const outDir = this.getOutputDir(project);
 
+		// Clean up output directory
+		if (fs.existsSync(outDir)) {
+			fs.rmSync(outDir, { recursive: true });
+		}
+
 		const canChangeSourceFiles = this.flags['update-source-files'];
 
 		const cwd = canChangeSourceFiles ? project.dir : outDir;
@@ -205,12 +211,17 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 							return task.skip();
 						}
 
-						const { sourceDir, ignore = getDistIgnorePattern(project.dir) } =
-							bundle.tasks.copyFilesBefore;
+						const {
+							relativeSource,
+							files,
+							ignore = getDistIgnorePattern(project.dir),
+						} = bundle.tasks.copyFilesBefore;
 
-						return await copyDir(path.join(project.dir, sourceDir), outDir, {
-							ignore,
-						});
+						return await copyFiles(
+							path.join(project.dir, relativeSource),
+							{ files, ignore },
+							outDir,
+						);
 					},
 				},
 				{
@@ -356,12 +367,17 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 							return task.skip();
 						}
 
-						const { sourceDir, ignore = getDistIgnorePattern(project.dir) } =
-							bundle.tasks.copyFilesAfter;
+						const {
+							relativeSource,
+							files,
+							ignore = getDistIgnorePattern(project.dir),
+						} = bundle.tasks.copyFilesAfter;
 
-						return await copyDir(path.join(project.dir, sourceDir), outDir, {
-							ignore,
-						});
+						return await copyFiles(
+							path.join(project.dir, relativeSource),
+							{ files, ignore },
+							outDir,
+						);
 					},
 				},
 				{

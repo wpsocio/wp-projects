@@ -11,11 +11,14 @@ const targetFilesSchema = z.object({
 });
 
 const copyFilesData = z.object({
-	sourceDir: z
+	relativeSource: z
 		.string()
 		.optional()
 		.default('src')
-		.describe('The source directory.'),
+		.describe('The directory relative to which the source files are.'),
+	files: targetFilesSchema.shape.files
+		.optional()
+		.default(['**/*', '../CHANGELOG.md', '../README.md']),
 	ignore: targetFilesSchema.shape.ignore,
 });
 
@@ -81,9 +84,9 @@ const processStylesData = z.object({
 	files: targetFilesSchema.shape.files
 		.optional()
 		.default(['src/assets/static/css/*.css']),
-	ignore: targetFilesSchema.shape.ignore
-		.optional()
-		.default(['src/assets/static/css/*.min.css']),
+	ignore: targetFilesSchema.shape.ignore.default([
+		'src/assets/static/css/*.min.css',
+	]),
 });
 
 const updatePoFilesData = z.object({
