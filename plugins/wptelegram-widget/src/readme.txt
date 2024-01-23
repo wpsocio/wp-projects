@@ -142,16 +142,6 @@ Many thanks to the translators for the great job!
 
 * Note: You can also contribute in translating this plugin into your local language. Join the Chat (above)
 
-
-== Installation ==
-
-
-1. Upload the `wptelegram-widget` folder to the `/wp-content/plugins/` directory
-2. Activate the plugin through the Plugins menu in WordPress. After activation, you should see the menu of this plugin the the admin
-3. Configure the plugin.
-
-**Enjoy!**
-
 == Frequently Asked Questions ==
 
 = How to create a Telegram Bot =
@@ -160,7 +150,21 @@ Many thanks to the translators for the great job!
 
 = Why Legacy Widget shows nothing? =
 
-Legacy Widget does not show the old messages. you need to post something new into the group/channel and wait for 5 minutes for the messages to appear. If you are too impatient to wait for the results 😄, then open the URL given under **Tip!** (below the instructions) in your browser.
+<em>Legacy Widget</em> <strong>does not show</strong> the <strong>old messages</strong>.
+
+You need to post something new into the group/channel and wait for 5 minutes for the messages to appear.
+
+If you are too impatient to wait for the results, open the URL under <strong>Tip!💡</strong> (below the instructions) in your browser.
+
+<strong>Note:</strong> Please ensure to follow the instructions given on the settings page correctly.
+
+= Why do I see my own website in the widget? =
+
+It means that there is something wrong with the permalinks on your website.
+
+Simply goto wp-admin > Settings > <strong>Permalinks</strong> and just <em>Save Changes.</em>
+
+That should fix it. If it doesn't, please let us know at [@WPTelegramSupport](https://t.me/WPTelegramSupport).
 
 
 == Screenshots ==
@@ -175,64 +179,26 @@ Legacy Widget does not show the old messages. you need to post something new int
 8. Blocks
 9. Join Link View
 
+== Installation ==
+
+= Automatic installation =
+
+Automatic installation is the easiest way -- WordPress will handle the file transfer, and you won’t need to leave your web browser. To do an automatic install of the plugin:
+ 
+* Log in to your WordPress dashboard
+* Navigate to the Plugins menu, and click "Add New"
+* In the search field type "wptelegram-widget" and hit Enter
+* Locate the plugin in the list of search results
+* Click on "Install Now" and wait for the installation to complete
+* Click on "Activate"
+
+= Manual installation =
+
+Manual installation method requires downloading the plugin and uploading it to your web server via your favorite FTP application. The official WordPress documentation contains [instructions on how to do this here](https://wordpress.org/support/article/managing-plugins/#manual-plugin-installation).
+
 == Changelog ==
 
 = 2.1.11 =
 - Maintenance release
-
-= 2.1.10 =
-- Fixed translations not loaded for some strings
-
-= 2.1.9 =
-- Added caching for the widget content
-
-= 2.1.8 =
-- Fixed warnings in PHP 8.x
-
-= 2.1.7 =
-- Maintenance release
-
-= 2.1.6 =
-- Maintenance release
-
-= 2.1.5 =
-- Fixed PHP warning for `block_categories` deprecation
-
-= 2.1.4 =
-- Added lazy loading to iframes
-
-= 2.1.3 =
-- Added new tab option for join link
-
-= 2.1.2 =
-- Cleaned up the admin menu for single entry for WP Telegram
-
-= 2.1.1 =
-- Fixed the issue of settings not saved due to trailing slash redirects
-
-= 2.1.0 =
-- Added multi-channel support for Ajax Widget
-- Fixed the ugly URLs filter for widgets
-
-= 2.0.5 =
-- Fixed the admin menu and settings page icon
-
-= 2.0.4 =
-- Minor UI fixes for Join Link color picker
-
-= 2.0.3 =
-- Fixed the last messed up update
-
-= 2.0.2 =
-- Added color options to Join Link settings
-
-= 2.0.1 =
--   Fixed the issue with message order in legacy widget
-
-= 2.0.0 =
--   Switched to PHP namespaces
--   Added support for separate ajax and legacy widgets
--   Refreshed and improved the UI
--   Improved names for hooks and shortcodes
 
 [See full changelog](https://github.com/wpsocio/wptelegram-widget/blob/main/CHANGELOG.md)

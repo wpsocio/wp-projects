@@ -108,15 +108,6 @@ Many thanks to the translators for the great job!
 
 Note: You can also contribute in translating this plugin into your local language. Join the Chat (above)
 
-
-== Installation ==
-
-1. Upload the `wptelegram` folder to the `/wp-content/plugins/` directory
-2. Activate the plugin through the Plugins menu in WordPress. After activation, you should see the menu of this plugin the the admin
-3. Configure the plugin.
-
-**Enjoy!**
-
 == Frequently Asked Questions ==
 
 = How to create a Telegram Bot? =
@@ -203,61 +194,30 @@ Yes, all you need to do is to setup **Private Notifications** module and use the
 12. Post Edit Page (Block Editor)
 13. Post Edit Page (Block Editor)
 
+== Installation ==
+
+= Automatic installation =
+
+Automatic installation is the easiest way -- WordPress will handle the file transfer, and you won’t need to leave your web browser. To do an automatic install of the plugin:
+ 
+* Log in to your WordPress dashboard
+* Navigate to the Plugins menu, and click "Add New"
+* In the search field type "wptelegram" and hit Enter
+* Locate the plugin in the list of search results
+* Click on "Install Now" and wait for the installation to complete
+* Click on "Activate"
+
+= Manual installation =
+
+Manual installation method requires downloading the plugin and uploading it to your web server via your favorite FTP application. The official WordPress documentation contains [instructions on how to do this here](https://wordpress.org/support/article/managing-plugins/#manual-plugin-installation).
+
+= Updating =
+
+Automatic updates should work smoothly, but we still recommend you back up your site.
+
 == Changelog ==
 
 = 4.0.14 =
 - Added support for `<blockquote>` tag
-
-= 4.0.13 =
-- Fixed the failure of sending posts with large size images
-
-= 4.0.12 =
-- Fixed the Yoast Duplicated post not sent to Telegram
-
-= 4.0.11 =
-- Fixed translations not loaded for some strings
-
-= 4.0.10 =
-- Fixed the dollar sign getting nuked from excerpt
-- Fixed logs to avoid bot token added to URL
-
-= 4.0.9 =
-- Improved message template sanitization to prevent breaking the markup
-- Added a new filter `wptelegram_p2tg_post_data_plain_excerpt` to allow sending plain text excerpt
-- Fixed the links added in parenthesis when "Formatting" is set to "None"
-
-= 4.0.8 =
-- Fixed the broken hyperlinks in Message Template when using custom field link
-
-= 4.0.7 =
-- Fixed the issue of images being retained in post content links
-
-= 4.0.6 =
-- Fixed the issue of shortcodes being sent to Telegram
-
-= 4.0.5 =
-- Fixed the unintended newlines in Post Excerpt and Post Content
-
-= 4.0.4 =
-- Fixed repeated caption for the image when using the "After the text" option
-- Fixed the issue of long texts being truncated
-
-= 4.0.3 =
-- Added support for adding internal note to chat IDs
-
-= 4.0.2 =
-- Fixed PHP 8.1 issue with HTML conversion
-
-= 4.0.1 =
-- Fixed the word count issue with non-english locales
-
-= 4.0.0 =
-- Added better support for HTML formatting.
-- Added support for <u> and <ins> HTML tags.
-- Added support for nested tags. You can now use <b> inside <i> and vice versa.
-- Intelligently trim `{post_excerpt}` to preserve the other parts of Message Template.
-- Removed support for Markdown formatting in favour of better HTML formatting
-- Fixed the image not being sent "After the text" when "Send files by URL" is disabled
-- Fixed the issue of messages not being sent when the markup is not valid
 
 [See full changelog](https://github.com/wpsocio/wptelegram/blob/main/CHANGELOG.md)

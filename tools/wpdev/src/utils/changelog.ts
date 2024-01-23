@@ -35,10 +35,35 @@ type UpdateChangelogConfig = UpdateChangelogOptions & {
 
 export function updateChangelog({
 	changesetJsonFile,
+	defaultChange,
 	readmeTxtFile,
+	prevChangesPattern,
 	packageName,
 	version,
 }: UpdateChangelogConfig) {
+	let readmeTxt = fs.readFileSync(readmeTxtFile, 'utf8');
+
+	const versionStr = `= ${version} =`;
+
+	const prevChangesRegex =
+		prevChangesPattern.pattern instanceof RegExp
+			? prevChangesPattern.pattern
+			: new RegExp(
+					prevChangesPattern.pattern,
+					'flags' in prevChangesPattern ? prevChangesPattern.flags : 's',
+			  );
+
+	const prevChanges = readmeTxt.match(prevChangesRegex);
+
+	/**
+	 * The pattern must have a capturing group for actual changes.
+	 *
+	 * If the version is already in the changelog, skip.
+	 */
+	if (!prevChanges?.[1] || prevChanges[0].includes(versionStr)) {
+		return;
+	}
+
 	const data = readChangesetJson(changesetJsonFile);
 
 	const changesetsMap = new Map(
@@ -65,20 +90,19 @@ export function updateChangelog({
 		}
 	}
 
-	let readmeTxt = fs.readFileSync(readmeTxtFile, 'utf8');
-
-	const versionStr = `= ${version} =`;
-
 	if (!changes.length) {
-		changes.push('- Maintenance release.');
+		changes.push(`- ${defaultChange}`);
 	}
 
 	const changesStr = changes.join('\n');
 
-	readmeTxt = readmeTxt.replace(
-		/== Changelog ==\n.*?\[See full changelog\]/s,
-		`== Changelog ==\n\n${versionStr}\n${changesStr}\n\n[See full changelog]`,
+	// Replace the captured group with the new changes
+	const updatedChanges = prevChanges[0].replace(
+		prevChanges[1],
+		`${versionStr}\n${changesStr}`,
 	);
+
+	readmeTxt = readmeTxt.replace(prevChangesRegex, updatedChanges);
 
 	fs.writeFileSync(readmeTxtFile, readmeTxt);
 }

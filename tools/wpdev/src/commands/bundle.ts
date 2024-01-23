@@ -234,11 +234,12 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 							return task.skip();
 						}
 
-						const { readmeTxtFile } = bundle.tasks.updateChangelog;
+						const { readmeTxtFile, ...config } = bundle.tasks.updateChangelog;
 
 						return updateChangelog({
 							changesetJsonFile: this.flags['changeset-json'],
 							readmeTxtFile: path.join(project.dir, readmeTxtFile),
+							...config,
 							packageName: project.packageJson.name,
 							version,
 						});
