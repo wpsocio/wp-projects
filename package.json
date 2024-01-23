@@ -9,14 +9,17 @@
 	"type": "module",
 	"scripts": {
 		"build": "wireit",
+		"bundle:changed": "wireit",
 		"dev": "wireit",
 		"dev:cleanup": "wireit",
 		"lint:all": "wireit",
 		"lint:js": "wireit",
 		"lint:js:fix": "biome format ./ --write",
 		"lint:php": "wireit",
-		"prep-release": "changeset status --output=changeset-status.json && changeset version && wpdev bundle --from-changeset --changeset-json=changeset-status.json",
+		"prep-release": "wireit",
+		"prep-version": "wireit",
 		"release": "changeset publish",
+		"release:status": "wireit",
 		"setup:php": "wireit",
 		"test:php": "wireit",
 		"typecheck": "wireit",
@@ -36,15 +39,18 @@
 		"wireit": "^0.14.3"
 	},
 	"wireit": {
+		"build": {
+			"command": "pnpm -r run build"
+		},
+		"bundle:changed": {
+			"command": "wpdev bundle --from-changeset --changeset-json=changeset-status.json"
+		},
 		"dev": {
 			"command": "pnpm -r --workspace-concurrency=Infinity run dev",
 			"service": true
 		},
 		"dev:cleanup": {
 			"command": "pnpm -r --filter=./plugins/* exec pnpm rimraf src/assets/build/dev-server.json"
-		},
-		"build": {
-			"command": "pnpm -r run build"
 		},
 		"lint:all": {
 			"dependencies": [
@@ -58,24 +64,20 @@
 		"lint:php": {
 			"command": "pnpm -r run lint:php"
 		},
-		"test:php": {
-			"command": "pnpm -r run test:php"
-		},
-		"typecheck": {
+		"prep-release": {
+			"command": "pnpm run bundle:changed",
 			"dependencies": [
-				"typecheck:tools",
-				"typecheck:packages",
-				"typecheck:plugins"
+				"prep-version"
 			]
 		},
-		"typecheck:packages": {
-			"command": "pnpm -r --filter=./packages/js/* exec tsc --noEmit"
+		"prep-version": {
+			"command": "changeset version",
+			"dependencies": [
+				"release:status"
+			]
 		},
-		"typecheck:plugins": {
-			"command": "pnpm -r --filter=./plugins/* exec tsc --noEmit"
-		},
-		"typecheck:tools": {
-			"command": "pnpm -r --filter=./tools/* exec tsc --noEmit"
+		"release:status": {
+			"command": "changeset status --output=changeset-status.json"
 		},
 		"setup:php": {
 			"dependencies": [
@@ -95,6 +97,25 @@
 			"dependencies": [
 				"setup:php:packages"
 			]
+		},
+		"test:php": {
+			"command": "pnpm -r run test:php"
+		},
+		"typecheck": {
+			"dependencies": [
+				"typecheck:tools",
+				"typecheck:packages",
+				"typecheck:plugins"
+			]
+		},
+		"typecheck:packages": {
+			"command": "pnpm -r --filter=./packages/js/* exec tsc --noEmit"
+		},
+		"typecheck:plugins": {
+			"command": "pnpm -r --filter=./plugins/* exec tsc --noEmit"
+		},
+		"typecheck:tools": {
+			"command": "pnpm -r --filter=./tools/* exec tsc --noEmit"
 		}
 	},
 	"wpdev": {
