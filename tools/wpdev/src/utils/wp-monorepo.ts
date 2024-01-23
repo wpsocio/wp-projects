@@ -1,8 +1,7 @@
-import fs from 'node:fs';
 import path from 'node:path';
 import { getPackagesSync } from '@manypkg/get-packages';
 import { execaSync } from 'execa';
-import { z } from 'zod';
+import { readChangesetJson } from './changelog.js';
 import { ProjectType, UserConfig, WPProject, fixPackage } from './tools.js';
 
 export type WPMonorepoConfig = {
@@ -15,16 +14,6 @@ type ProjectStatus = 'ignored' | 'tracked' | 'connected';
 type IncludeOptions = {
 	[key in ProjectStatus]?: boolean;
 };
-
-const ReleaseJsonSchema = z.object({
-	releases: z.array(
-		z.object({
-			name: z.string(),
-			type: z.string().optional(),
-			changesets: z.array(z.string()),
-		}),
-	),
-});
 
 export class WPMonorepo {
 	config: WPMonorepoConfig;
@@ -182,12 +171,7 @@ export class WPMonorepo {
 	}
 
 	getProjectsToRelease(changesetJsonFile: string) {
-		if (!fs.existsSync(changesetJsonFile)) {
-			throw new Error('Please provide a valid release JSON file.');
-		}
-		const json = JSON.parse(fs.readFileSync(changesetJsonFile, 'utf8'));
-
-		const projectNames = ReleaseJsonSchema.parse(json)
+		const projectNames = readChangesetJson(changesetJsonFile)
 			// Get the names of projects that have changesets, ignoring the ones that don't
 			.releases.filter(({ changesets }) => changesets.length)
 			// Collect the names

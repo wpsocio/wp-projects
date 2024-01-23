@@ -48,6 +48,9 @@ export const getBundleConfig = ({ slug, key, version, textDomain }) => {
 					],
 				},
 			],
+			updateChangelog: {
+				readmeTxtFile: 'src/readme.txt',
+			},
 			generatePot: {
 				source: 'src',
 				textDomain,

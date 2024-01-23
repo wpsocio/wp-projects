@@ -1,59 +1,84 @@
 import fs from 'node:fs';
-import path from 'node:path';
-import { TaskTarget, globFiles } from './misc.js';
+import { z } from 'zod';
+import { UpdateChangelogOptions } from './schema.js';
 
-export type UpdateChangelogConfig = {
-	changelogPath: string;
-	readmeTxt: TaskTarget;
+export const ChangesetJsonSchema = z.object({
+	changesets: z.array(
+		z.object({
+			summary: z.string().optional().default(''),
+			id: z.string(),
+		}),
+	),
+	releases: z.array(
+		z.object({
+			name: z.string(),
+			type: z.string().optional(),
+			changesets: z.array(z.string()),
+		}),
+	),
+});
+
+export function readChangesetJson(changesetJsonFile: string) {
+	if (!changesetJsonFile || !fs.existsSync(changesetJsonFile)) {
+		throw new Error('Please provide a valid changeset JSON file.');
+	}
+	const json = JSON.parse(fs.readFileSync(changesetJsonFile, 'utf8'));
+
+	return ChangesetJsonSchema.parse(json);
+}
+
+type UpdateChangelogConfig = UpdateChangelogOptions & {
+	changesetJsonFile: string;
+	packageName: string;
+	version: string;
 };
 
-export async function updateChangelog(
-	cwd: string,
-	version: string,
-	config: UpdateChangelogConfig,
-) {
-	const changelogPath = path.join(cwd, config.changelogPath);
+export function updateChangelog({
+	changesetJsonFile,
+	readmeTxtFile,
+	packageName,
+	version,
+}: UpdateChangelogConfig) {
+	const data = readChangesetJson(changesetJsonFile);
 
-	if (!fs.existsSync(changelogPath)) {
-		throw new Error(`Changelog not found at "${changelogPath}"`);
+	const changesetsMap = new Map(
+		data.changesets.map(({ id, summary }) => [id, summary]),
+	);
+
+	const changes = [];
+
+	for (const { name, changesets } of data.releases) {
+		if (!changesets.length || name !== packageName) {
+			continue;
+		}
+		for (const changeset of changesets) {
+			const summary = changesetsMap.get(changeset);
+
+			if (!summary) {
+				console.warn(
+					`Could not find changeset summary for changeset: "${changeset}"`,
+				);
+				continue;
+			}
+
+			changes.push(`- ${summary}`);
+		}
 	}
 
-	const changelogContents = fs.readFileSync(changelogPath, 'utf8');
-	// Match anything between "## Unreleased" and the previous release tag like "## [0.0.0]"
-	const changelogRegex = /(?<=##\sUnreleased)[\s\S]+?(?=##\s?\[\d+\.\d+\.\d+)/i;
-	const changelogChanges = changelogContents.match(changelogRegex)?.[0].trim();
+	let readmeTxt = fs.readFileSync(readmeTxtFile, 'utf8');
 
-	if (!changelogChanges) {
-		throw new Error('Cannot find changelog changes');
+	const versionStr = `= ${version} =`;
+
+	if (!changes.length) {
+		changes.push('- Maintenance release.');
 	}
 
-	// Match the one character after "== Changelog ==" to add the notes after it
-	const readmeTxtRegex = /== Changelog ==([\s\S])/i;
+	const changesStr = changes.join('\n');
 
-	const readmeTxtChanges = '\n\n= {version} =\n{changes}\n';
+	readmeTxt = readmeTxt.replace(
+		/== Changelog ==\n.*?\[See full changelog\]/s,
+		`== Changelog ==\n\n${versionStr}\n${changesStr}\n\n[See full changelog]`,
+	);
 
-	const readmeTxtEntries = globFiles(config.readmeTxt, { cwd: cwd });
-
-	for (const file of readmeTxtEntries) {
-		const filePath = path.join(cwd, file);
-		const fileContents = fs.readFileSync(filePath, 'utf8');
-
-		const contents = fileContents.replace(readmeTxtRegex, (match, $1) => {
-			const changes = changelogChanges
-				// remove headings like Enhancements, Bug fixes
-				.replace(/(^|\n)(##.+)/g, '')
-				// replace empty lines
-				.replace(/\n[\s\t]*\n/g, '\n')
-				// cleanup
-				.trim();
-
-			const replace = readmeTxtChanges
-				.replace('{version}', version)
-				.replace('{changes}', changes);
-
-			return match.replace($1, replace);
-		});
-
-		fs.writeFileSync(filePath, contents);
-	}
+	fs.writeFileSync(readmeTxtFile, readmeTxt);
 }

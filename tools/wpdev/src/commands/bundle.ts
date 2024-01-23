@@ -3,6 +3,7 @@ import { Flags } from '@oclif/core';
 import chalk from 'chalk';
 import { Listr, ListrTask } from 'listr2';
 import { WithProjects } from '../base-commands/WithProjects.js';
+import { updateChangelog } from '../utils/changelog.js';
 import {
 	generatePotFile,
 	makeMoFiles,
@@ -209,6 +210,26 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 
 						return await copyDir(path.join(project.dir, sourceDir), outDir, {
 							ignore,
+						});
+					},
+				},
+				{
+					title: 'Update changelog',
+					task: async (_, task) => {
+						if (
+							!bundle.tasks.updateChangelog ||
+							!this.flags['changeset-json']
+						) {
+							return task.skip();
+						}
+
+						const { readmeTxtFile } = bundle.tasks.updateChangelog;
+
+						return updateChangelog({
+							changesetJsonFile: this.flags['changeset-json'],
+							readmeTxtFile: path.join(project.dir, readmeTxtFile),
+							packageName: project.packageJson.name,
+							version,
 						});
 					},
 				},

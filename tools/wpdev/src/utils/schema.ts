@@ -106,6 +106,10 @@ const updateRequirementsData = z.object({
 	target: targetFilesSchema.describe('The target files.'),
 });
 
+const updateChangelogData = z.object({
+	readmeTxtFile: z.string().optional().default('src/readme.txt'),
+});
+
 const updateVersionData = z.array(
 	z.discriminatedUnion('type', [
 		z
@@ -150,6 +154,8 @@ const updateVersionData = z.array(
 	]),
 );
 
+export type UpdateChangelogOptions = z.infer<typeof updateChangelogData>;
+
 export type UpdateVersionInput = z.input<typeof updateVersionData>;
 
 export const bundleSchema = z
@@ -160,6 +166,7 @@ export const bundleSchema = z
 				copyFilesBefore: copyFilesData,
 				updateRequirements: updateRequirementsData,
 				updateVersion: updateVersionData,
+				updateChangelog: updateChangelogData,
 				generatePot: generatePotData,
 				updatePoFiles: updatePoFilesData,
 				makeMoFiles: makeMoFilesData,

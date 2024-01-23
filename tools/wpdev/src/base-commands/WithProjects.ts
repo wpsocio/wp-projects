@@ -29,9 +29,14 @@ export abstract class WithProjects<
 		all: Flags.boolean({
 			description: 'Target all projects in monorepo.',
 		}),
-		'from-release': Flags.string({
+		'from-changeset': Flags.boolean({
+			description: 'Target projects in monorepo from changesets.',
+			dependsOn: ['changeset-json'],
+		}),
+		'changeset-json': Flags.file({
 			description:
-				'Target projects in monorepo that are to be released next. Pass the {filePath} given to `changset status --output={filePath}`',
+				'Path to the changeset status JSON file. Pass the {filePath} given to `changset status --output={filePath}`',
+			default: '',
 		}),
 	};
 
@@ -93,11 +98,11 @@ export abstract class WithProjects<
 		this.args = args as TArgs<T>;
 
 		if (this.cliConfig.operationMode === 'wp-monorepo') {
-			if (flags['from-release']) {
+			if (this.flags['from-changeset']) {
 				this.projects = this.wpMonorepo.getProjectsToRelease(
-					flags['from-release'],
+					this.flags['changeset-json'],
 				);
-			} else if (flags.all) {
+			} else if (this.flags.all) {
 				this.projects = this.wpMonorepo.getManagedProjects();
 			} else if (argv.length) {
 				this.projects = this.wpMonorepo.getProjectsByName(

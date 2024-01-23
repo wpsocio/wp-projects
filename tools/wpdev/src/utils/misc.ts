@@ -29,6 +29,11 @@ export async function copyDir(
 		{ cwd: sourceDir },
 	);
 
+	// Clean up destination directory
+	if (fs.existsSync(destDir)) {
+		fs.rmSync(destDir, { recursive: true });
+	}
+
 	for (const file of entries) {
 		const filePath = path.join(sourceDir, file);
 		const destPath = path.join(destDir, file);
