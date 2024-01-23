@@ -34,22 +34,6 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 			description: 'Path to the output directory. Defaults to "dist".',
 			default: 'dist',
 		}),
-		'update-source-files': Flags.boolean({
-			char: 'u',
-			description: 'Update the source files.',
-			default: true,
-			allowNo: true,
-		}),
-		'pre-script': Flags.string({
-			char: 'b',
-			description: 'Script to run before bundling.',
-			multiple: true,
-		}),
-		'post-script': Flags.string({
-			char: 'a',
-			description: 'Script to run after bundling.',
-			multiple: true,
-		}),
 		'package-manager': Flags.string({
 			char: 'p',
 			description: 'Package manager to use.',
@@ -66,9 +50,6 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 			char: 'v',
 			description: 'Version to update to.',
 			exclusive: ['release-type'],
-		}),
-		'no-version-update': Flags.boolean({
-			description: 'Do not update the version.',
 		}),
 		'release-type': Flags.string({
 			char: 't',
@@ -174,251 +155,163 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 			fs.rmSync(outDir, { recursive: true });
 		}
 
-		const canChangeSourceFiles = this.flags['update-source-files'];
-
-		const cwd = canChangeSourceFiles ? project.dir : outDir;
-
-		const preScripts = this.flags['pre-script'] || bundle.tasks.preScripts;
-		const postScripts = this.flags['post-script'] || bundle.tasks.postScripts;
+		const projectDir = project.dir;
 
 		return task.newListr(
-			[
-				{
-					title: 'Run pre-scripts',
-					skip: () => !preScripts?.length,
-					task: async (_, task) => {
-						return task.newListr(
-							(preScripts || []).map((script) => {
-								return {
-									title: `Running "${script}"`,
-									task: async () => {
-										return await runScript(
-											project.dir,
-											script,
-											this.flags['package-manager'],
-										);
-									},
-								};
-							}),
-						);
-					},
-				},
-				{
-					title: 'Copy files before changing',
-					skip: () => canChangeSourceFiles,
-					task: async (_, task) => {
-						if (!bundle.tasks.copyFilesBefore) {
-							return task.skip();
-						}
+			bundle.tasks.map(({ type: taskType, data: taskData }) => {
+				switch (taskType) {
+					case 'run-scripts':
+						return {
+							title: 'Run scripts',
+							skip: () => !taskData.length,
+							task: async (_, task) => {
+								return task.newListr(
+									taskData.map((script) => {
+										return {
+											title: `Running "${script}"`,
+											task: async () => {
+												return await runScript(
+													project.dir,
+													script,
+													this.flags['package-manager'],
+												);
+											},
+										};
+									}),
+								);
+							},
+						};
 
-						const {
-							stripFromPath,
-							files,
-							ignore = getDistIgnorePattern(project.dir),
-						} = bundle.tasks.copyFilesBefore;
+					case 'update-requirements':
+						return {
+							title: 'Update requirements',
+							task: async () => {
+								return await updateRequirements(projectDir, taskData);
+							},
+						};
 
-						return await copyFiles(
-							project.dir,
-							{ files, ignore },
-							outDir,
-							stripFromPath,
-						);
-					},
-				},
-				{
-					title: 'Update changelog',
-					task: async (_, task) => {
-						if (
-							!bundle.tasks.updateChangelog ||
-							!this.flags['changeset-json']
-						) {
-							return task.skip();
-						}
+					case 'update-version':
+						return {
+							title: 'Updating version',
+							task: async () => {
+								return await updateVersion(projectDir, version, {
+									slug: projectInfo.slug,
+									target: taskData,
+								});
+							},
+						};
 
-						const { readmeTxtFile, ...config } = bundle.tasks.updateChangelog;
+					case 'update-changelog':
+						return {
+							title: 'Update changelog',
+							task: async () => {
+								if (!this.flags['changeset-json']) {
+									return task.skip(
+										'No changeset file provided. Skipping changelog update.',
+									);
+								}
+								const { readmeTxtFile, ...config } = taskData;
 
-						return updateChangelog({
-							changesetJsonFile: this.flags['changeset-json'],
-							readmeTxtFile: path.join(project.dir, readmeTxtFile),
-							...config,
-							packageName: project.packageJson.name,
-							version,
-						});
-					},
-				},
-				{
-					title: 'Update requirements',
-					task: async (_, task) => {
-						if (!bundle.tasks.updateRequirements) {
-							return task.skip();
-						}
+								return updateChangelog({
+									changesetJsonFile: this.flags['changeset-json'],
+									readmeTxtFile: path.join(project.dir, readmeTxtFile),
+									...config,
+									packageName: project.packageJson.name,
+									version,
+								});
+							},
+						};
 
-						return await updateRequirements(
-							cwd,
-							bundle.tasks.updateRequirements,
-						);
-					},
-				},
-				{
-					title: 'Update version',
-					skip: () => this.flags['no-version-update'],
-					task: async (_, task) => {
-						if (!bundle.tasks.updateVersion) {
-							return task.skip();
-						}
+					case 'generate-pot':
+						return {
+							title: 'Generate POT file',
+							task: async () => {
+								return await generatePotFile(projectDir, {
+									textDomain: projectInfo.textDomain,
+									...taskData,
+								});
+							},
+						};
 
-						return await updateVersion(cwd, version, {
-							slug: projectInfo.slug,
-							target: bundle.tasks.updateVersion,
-						});
-					},
-				},
-				{
-					title: 'i18n',
-					task: async (_, i18nTask) => {
-						return i18nTask.newListr(
-							[
-								{
-									title: 'Generate POT file',
-									task: async (_, task) => {
-										if (!bundle.tasks.generatePot) {
-											return task.skip();
-										}
+					case 'update-po-files':
+						return {
+							title: 'Update PO files',
+							task: async () => {
+								return await updatePoFiles(projectDir, {
+									source: `src/languages/${projectInfo.textDomain}.pot`,
+									...taskData,
+								});
+							},
+						};
 
-										return await generatePotFile(cwd, {
-											textDomain: projectInfo.textDomain,
-											...bundle.tasks.generatePot,
-										});
-									},
-								},
-								{
-									title: 'Update PO files',
-									task: async (_, task) => {
-										if (!bundle.tasks.updatePoFiles) {
-											return task.skip();
-										}
+					case 'make-mo-files':
+						return {
+							title: 'Make MO files',
+							task: async () => {
+								const { source } = taskData;
 
-										return await updatePoFiles(cwd, {
-											source: `src/languages/${projectInfo.textDomain}.pot`,
-											...bundle.tasks.updatePoFiles,
-										});
-									},
-								},
-								{
-									title: 'Make MO files',
-									task: async (_, task) => {
-										if (!bundle.tasks.makeMoFiles) {
-											return task.skip();
-										}
-										const { source } = bundle.tasks.makeMoFiles;
+								return await makeMoFiles(projectDir, {
+									source: source || 'src/languages/',
+								});
+							},
+						};
 
-										return await makeMoFiles(cwd, {
-											source: source || 'src/languages/',
-										});
-									},
-								},
-								{
-									// Generate PHP file from JS POT file
-									// for wp.org to scan the translation strings
-									title: 'JS POT to PHP',
-									task: async (_, task) => {
-										if (!bundle.tasks.jsPotToPhp) {
-											return task.skip();
-										}
-										const { potFile, textDomain } = bundle.tasks.jsPotToPhp;
+					case 'js-pot-to-php':
+						return {
+							title: 'JS POT to PHP',
+							task: async () => {
+								const { potFile, textDomain } = taskData;
 
-										return await potToPhp(cwd, {
-											potFile: potFile || 'src/languages/js-translations.pot',
-											textDomain: textDomain || projectInfo.textDomain,
-										});
-									},
-								},
-							],
-							{ concurrent: false },
-						);
-					},
-				},
-				{
-					title: 'Process styles',
-					task: async (_, stylesTask) => {
-						if (!bundle.tasks.minifyStyles) {
-							return stylesTask.skip();
-						}
-						return stylesTask.newListr(
-							[
-								{
-									title: 'Minify CSS',
-									task: async (_, task) => {
-										if (!bundle.tasks.minifyStyles) {
-											return task.skip();
-										}
+								return await potToPhp(projectDir, {
+									potFile: potFile || 'src/languages/js-translations.pot',
+									textDomain: textDomain || projectInfo.textDomain,
+								});
+							},
+						};
 
-										return await minifyStyles(cwd, bundle.tasks.minifyStyles);
-									},
-								},
-							],
-							{ concurrent: false },
-						);
-					},
-				},
-				{
-					title: 'Copy files after changing',
-					skip: () => !canChangeSourceFiles,
-					task: async (_, task) => {
-						if (!bundle.tasks.copyFilesAfter) {
-							return task.skip();
-						}
+					case 'minify-styles':
+						return {
+							title: 'Minify CSS',
+							task: async () => {
+								return await minifyStyles(projectDir, taskData);
+							},
+						};
 
-						const {
-							stripFromPath,
-							files,
-							ignore = getDistIgnorePattern(project.dir),
-						} = bundle.tasks.copyFilesAfter;
+					case 'copy-files':
+						return {
+							title: 'Copy files',
+							task: async () => {
+								const {
+									stripFromPath,
+									files,
+									ignore = getDistIgnorePattern(project.dir),
+								} = taskData;
 
-						return await copyFiles(
-							project.dir,
-							{ files, ignore },
-							outDir,
-							stripFromPath,
-						);
-					},
-				},
-				{
-					title: 'Run post-scripts',
-					skip: () => !postScripts?.length,
-					task: async (_, task) => {
-						return task.newListr(
-							(postScripts || []).map((script) => {
-								return {
-									title: `Running "${script}"`,
-									task: async () => {
-										return await runScript(
-											project.dir,
-											script,
-											this.flags['package-manager'],
-										);
-									},
-								};
-							}),
-						);
-					},
-				},
-				{
-					title: 'Create archive',
-					skip: () => !this.flags.archive && !bundle.tasks.createArchive,
-					task: async (_, task) => {
-						const outPath = bundle.tasks.createArchive?.outPath;
+								return await copyFiles(
+									project.dir,
+									{ files, ignore },
+									outDir,
+									stripFromPath,
+								);
+							},
+						};
 
-						task.output = await zipDir(
-							outDir,
-							path.join(
-								path.dirname(outDir),
-								outPath || `${projectInfo.slug}-${version}.zip`,
-							),
-						);
-					},
-				},
-			],
+					case 'create-archive':
+						return {
+							title: 'Create archive',
+							skip: () => !this.flags.archive,
+							task: async () => {
+								task.output = await zipDir(
+									outDir,
+									path.join(
+										path.dirname(outDir),
+										taskData.outPath || `${projectInfo.slug}-${version}.zip`,
+									),
+								);
+							},
+						};
+				}
+			}),
 			{
 				concurrent: false,
 			},
