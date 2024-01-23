@@ -1,6 +1,7 @@
 import { getPackages } from '@manypkg/get-packages';
 import { Package, RootTool } from '@manypkg/tools';
 import { z } from 'zod';
+import { projectInfoSchema } from './schema.js';
 
 export const UserConfigSchema = z
 	.object({
@@ -20,12 +21,9 @@ export const UserConfigSchema = z
 			.describe(
 				'The project types managed by this monorepo. Only used in wp-monorepo mode.',
 			),
-		belongsTo: z
-			.enum(['plugins', 'themes', 'mu-plugins'])
-			.optional()
-			.describe(
-				'The project type this project belongs to. Used for individual packages in a monorepo or for standalone projects.',
-			),
+		projectType: projectInfoSchema.shape.projectType.describe(
+			'The project type. Used for individual packages in a monorepo or for standalone projects.',
+		),
 		envFiles: z
 			.array(z.string())
 			.optional()
@@ -48,31 +46,18 @@ export type UserConfigInput = z.input<typeof UserConfigSchema>;
 
 export type UserConfig = z.infer<typeof UserConfigSchema>;
 
-export type ProjectType = NonNullable<UserConfigInput['projectTypes']>[number];
-
 export type PackageJSON = Package['packageJson'] & {
 	wpdev?: UserConfigInput;
 };
 
-export type WPProject = Omit<Package, 'packageJson'> & {
+export type StandalonePackage = Omit<Package, 'packageJson'> & {
 	packageJson: PackageJSON;
 };
 
 /**
  * Fix the type of the package json to include the wpdev config.
  */
-export function fixPackage(pkg: Package): WPProject {
-	if ('wpdev' in pkg.packageJson && pkg.packageJson.wpdev) {
-		const wpdev = UserConfigSchema.parse(pkg.packageJson.wpdev);
-
-		return {
-			...pkg,
-			packageJson: {
-				...pkg.packageJson,
-				wpdev,
-			},
-		};
-	}
+export function fixPackageType(pkg: Package): StandalonePackage {
 	return pkg;
 }
 
@@ -81,7 +66,6 @@ export async function getStandalonePackage(dir: string) {
 		tools: [RootTool],
 	});
 
-	const [pkg] = packages;
-
-	return pkg ? fixPackage(pkg) : pkg;
+	// We need only the first package
+	return fixPackageType(packages[0]);
 }

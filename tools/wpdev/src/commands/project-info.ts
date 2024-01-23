@@ -18,13 +18,13 @@ export default class ProjectInfo extends WithProjects<typeof ProjectInfo> {
 	public async run(): Promise<void> {
 		try {
 			const projects = [...this.projects].map(
-				([name, { relativeDir, dir, packageJson }]) => {
+				([name, { relativeDir, dir, packageJson, wpdev }]) => {
 					return {
 						name,
 						version: packageJson.version,
 						relativeDir,
 						dir,
-						wpdev: packageJson.wpdev,
+						wpdev,
 					};
 				},
 			);

@@ -66,3 +66,6 @@ jobs:
 
       - name: Build
         run: pnpm build
+
+      - name: Bundle
+        run: pnpm bundle:all

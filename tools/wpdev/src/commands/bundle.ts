@@ -13,13 +13,13 @@ import {
 } from '../utils/i18n.js';
 import { copyFiles, getDistIgnorePattern, zipDir } from '../utils/misc.js';
 import {
+	WPProject,
 	getNextVersion,
-	getProjectConfig,
+	getProjectBundleConfig,
 	runScript,
 } from '../utils/projects.js';
 import { updateRequirements } from '../utils/requirements.js';
 import { minifyStyles } from '../utils/styles.js';
-import { WPProject } from '../utils/tools.js';
 import { updateVersion } from '../utils/versions.js';
 
 type TaskWrapper = Parameters<ListrTask['task']>[1];
@@ -146,7 +146,9 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 	async prepareForDist(project: WPProject, task: TaskWrapper) {
 		const version = this.getVersion(project, task);
 
-		const { projectInfo, bundle } = await getProjectConfig(project, version);
+		const projectInfo = project.wpdev;
+
+		const bundle = await getProjectBundleConfig(project, { version });
 
 		const outDir = this.getOutputDir(project);
 
