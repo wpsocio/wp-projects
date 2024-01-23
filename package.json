@@ -9,6 +9,7 @@
 	"type": "module",
 	"scripts": {
 		"build": "wireit",
+		"bundle:all": "wpdev bundle --all",
 		"bundle:changed": "wireit",
 		"dev": "wireit",
 		"dev:cleanup": "wireit",
