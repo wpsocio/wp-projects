@@ -46,6 +46,10 @@ jobs:
           SVN_USERNAME: ${{ secrets.SVN_USERNAME || 'test' }}
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD || 'test' }}
 
+      - name: Copy README.md to dist
+        run: |
+          cp ${{ fromJson(needs.details.outputs.result).relativeDir }}/README.md dist/${{ fromJson(needs.details.outputs.result).relativeDir }}/README.md
+
       - name: Deploy to repo
         uses: manzoorwanijk/action-deploy-to-repo@v3
         with:

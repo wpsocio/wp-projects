@@ -11,14 +11,16 @@ const targetFilesSchema = z.object({
 });
 
 const copyFilesData = z.object({
-	relativeSource: z
+	stripFromPath: z
 		.string()
 		.optional()
 		.default('src')
-		.describe('The directory relative to which the source files are.'),
+		.describe(
+			'The string/path to strip from the source file paths before copying them.',
+		),
 	files: targetFilesSchema.shape.files
 		.optional()
-		.default(['**/*', '../CHANGELOG.md', '../README.md']),
+		.default(['src/**/*', 'CHANGELOG.md']),
 	ignore: targetFilesSchema.shape.ignore,
 });
 
