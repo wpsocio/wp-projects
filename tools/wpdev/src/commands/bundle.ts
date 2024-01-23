@@ -212,15 +212,16 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 						}
 
 						const {
-							relativeSource,
+							stripFromPath,
 							files,
 							ignore = getDistIgnorePattern(project.dir),
 						} = bundle.tasks.copyFilesBefore;
 
 						return await copyFiles(
-							path.join(project.dir, relativeSource),
+							project.dir,
 							{ files, ignore },
 							outDir,
+							stripFromPath,
 						);
 					},
 				},
@@ -369,15 +370,16 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 						}
 
 						const {
-							relativeSource,
+							stripFromPath,
 							files,
 							ignore = getDistIgnorePattern(project.dir),
 						} = bundle.tasks.copyFilesAfter;
 
 						return await copyFiles(
-							path.join(project.dir, relativeSource),
+							project.dir,
 							{ files, ignore },
 							outDir,
+							stripFromPath,
 						);
 					},
 				},
