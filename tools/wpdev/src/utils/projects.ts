@@ -69,12 +69,6 @@ export async function getProjectType(
 		return pkg.packageJson.wpdev.projectType;
 	}
 
-	// Try to detect the project type from the files in the directory
-	const projectType = await detectWpProjectType(pkg);
-	if (projectType) {
-		return projectType;
-	}
-
 	// If "projectType" is not defined in package.json,
 	// we can use the package's parent folder name to determine the project type
 	// For example `relativeDir: 'plugins/wptelegram-widget'`
@@ -100,9 +94,8 @@ export async function getProjectInfo(
 		slug: '',
 		key: '',
 		textDomain: '',
+		...(await detectWpProject(project)),
 	};
-
-	let projectType: ProjectType | undefined;
 
 	// If we have a config file, get the project info
 	if (fs.existsSync(configPath)) {
@@ -120,17 +113,19 @@ export async function getProjectInfo(
 			);
 		}
 
+		console.log('>>>>>>>>>>>>>>>>>>>>', projectInfoResult.data);
+
 		details = {
 			...details,
 			...projectInfoResult.data,
 		};
-
-		// If the project type is defined in the config file, use it
-		projectType = projectInfoResult.data.projectType;
 	}
 
+	// If slug is not defined, use the text domain
+	details.slug = details.slug || details.textDomain;
+
 	if (!details.slug) {
-		// If the slug is not defined, use the package name
+		// If the slug is still not defined, use the package name
 		// It can be something like "@wpsocio/plugin-name"
 		const parts = project.packageJson.name.split('/');
 
@@ -143,9 +138,10 @@ export async function getProjectInfo(
 	details.textDomain = details.textDomain || details.slug;
 
 	// If the project type is not defined in the config file, don't give up!
-	projectType = projectType || (await getProjectType(project, projectTypes));
+	details.projectType =
+		details.projectType || (await getProjectType(project, projectTypes));
 
-	return { ...details, projectType };
+	return details;
 }
 
 type ProjectBundleConfigOptions = {
@@ -204,9 +200,9 @@ export async function getStandaloneProject(dir: string) {
 /**
  * Detect WP project from the files in the directory
  */
-export async function detectWpProjectType(
+export async function detectWpProject(
 	pkg: Package,
-): Promise<ProjectType | undefined> {
+): Promise<{ projectType: ProjectType; textDomain: string } | undefined> {
 	const entries = fs.readdirSync(pkg.dir, { withFileTypes: true });
 
 	for (const dirent of entries) {
@@ -227,7 +223,7 @@ export async function detectWpProjectType(
 
 			// If the file has a theme name, it's a theme
 			if (data['Theme Name']) {
-				return 'theme';
+				return { projectType: 'theme', textDomain: data['Text Domain'] };
 			}
 		}
 
@@ -236,7 +232,7 @@ export async function detectWpProjectType(
 
 			// If the file has a plugin name, it's a plugin
 			if (data['Plugin Name']) {
-				return 'plugin';
+				return { projectType: 'plugin', textDomain: data['Text Domain'] };
 			}
 		}
 	}
