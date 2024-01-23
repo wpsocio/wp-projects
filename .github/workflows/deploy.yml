@@ -7,8 +7,8 @@ on:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-  tag:
-    name: New release
+  deploy:
+    name: Deploy
     needs: [details]
     runs-on: ubuntu-latest
     if: ${{ fromJson(needs.details.outputs.result).shouldDeploy }}
