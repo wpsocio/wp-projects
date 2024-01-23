@@ -113,8 +113,6 @@ export async function getProjectInfo(
 			);
 		}
 
-		console.log('>>>>>>>>>>>>>>>>>>>>', projectInfoResult.data);
-
 		details = {
 			...details,
 			...projectInfoResult.data,
