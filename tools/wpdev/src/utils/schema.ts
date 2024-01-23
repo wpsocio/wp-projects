@@ -109,8 +109,29 @@ const updateRequirementsData = z.object({
 	target: targetFilesSchema.describe('The target files.'),
 });
 
+const pattern = z.union([
+	z.object({
+		pattern: z.string().describe('The text pattern to match.'),
+		flags: z.string().optional().describe('The regex flags.'),
+	}),
+	z.object({
+		pattern: z.instanceof(RegExp).describe('The regex pattern to match.'),
+	}),
+]);
+
 const updateChangelogData = z.object({
 	readmeTxtFile: z.string().optional().default('src/readme.txt'),
+	defaultChange: z.string().optional().default('Maintenance release.'),
+	prevChangesPattern: pattern
+		.optional()
+		.default({
+			pattern:
+				'== Changelog ==[\\n]{1,2}(.*?)[\\n]{1,2}\\[See full changelog\\]',
+			flags: 's',
+		})
+		.describe(
+			'The regex to match the previous changelog. The pattern must have a capturing group for actual changes.',
+		),
 });
 
 const updateVersionData = z.array(
@@ -140,17 +161,7 @@ const updateVersionData = z.array(
 			.object({
 				type: z.literal('general'),
 				textPatterns: z
-					.array(
-						z.union([
-							z.object({
-								pattern: z.string(),
-								flags: z.string().optional(),
-							}),
-							z.object({
-								pattern: z.instanceof(RegExp),
-							}),
-						]),
-					)
+					.array(pattern)
 					.describe('The text patterns to match. Regex can also be used.'),
 			})
 			.merge(targetFilesSchema),
