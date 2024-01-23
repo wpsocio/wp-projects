@@ -15,7 +15,7 @@
 		"lint:js": "wireit",
 		"lint:js:fix": "biome format ./ --write",
 		"lint:php": "wireit",
-		"prep-version": "changeset status --output=changeset-status.json && changeset version && wpdev bundle  --from-release=changeset-status.json",
+		"prep-release": "changeset status --output=changeset-status.json && changeset version && wpdev bundle --from-changeset --changeset-json=changeset-status.json",
 		"release": "changeset publish",
 		"setup:php": "wireit",
 		"test:php": "wireit",

@@ -27,7 +27,7 @@ jobs:
         id: changesets
         with:
           publish: pnpm release
-          version: pnpm prep-version
+          version: pnpm prep-release
           title: Prepare for next release
           commit: Prepare for next release
         env:
