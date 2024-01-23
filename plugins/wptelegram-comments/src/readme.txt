@@ -38,66 +38,34 @@ For rules, see the pinned message. No spam please.
 * ⤴️ Users can reply to comments intuitively
 * ✏️ Comments can be edited or deleted anytime
 
-== Installation ==
-
-1. Upload the `wptelegram-comments` folder to the `/wp-content/plugins/` directory
-2. Activate the plugin through the Plugins menu in WordPress. After activation, you should see the menu of this plugin the the admin
-3. Configure the plugin.
-
-**Enjoy!**
-
 == Screenshots ==
 
 1. Settings
+
+== Installation ==
+
+= Automatic installation =
+
+Automatic installation is the easiest way -- WordPress will handle the file transfer, and you won’t need to leave your web browser. To do an automatic install of the plugin:
+ 
+* Log in to your WordPress dashboard
+* Navigate to the Plugins menu, and click "Add New"
+* In the search field type "wptelegram-comments" and hit Enter
+* Locate the plugin in the list of search results
+* Click on "Install Now" and wait for the installation to complete
+* Click on "Activate"
+
+= Manual installation =
+
+Manual installation method requires downloading the plugin and uploading it to your web server via your favorite FTP application. The official WordPress documentation contains [instructions on how to do this here](https://wordpress.org/support/article/managing-plugins/#manual-plugin-installation).
+
+= Updating =
+
+Automatic updates should work smoothly, but we still recommend you back up your site.
 
 == Changelog ==
 
 = 1.1.9 =
 - Maintenance release
-
-= 1.1.8 =
-- Fixed translations not loaded for some strings
-
-= 1.1.7 =
-- Fixed warnings in PHP 8.x
-
-= 1.1.6 =
-- Maintenance release
-
-= 1.1.5 =
-- Maintenance release
-
-= 1.1.4 =
-- Minor UI improvements
-
-= 1.1.3 =
-- Cleaned up the admin menu for single entry for WP Telegram
-- Fixed the ugly post type list when there are plenty of them
-
-= 1.1.2 =
-- Fixed the issue of settings not saved due to trailing slash redirects
-
-= 1.1.1 =
-- Fixed the wrong widget configuration being saved
-
-= 1.1.0 =
--   Switched to PHP namespaces
--   Refreshed and improved the UI
-
-= 1.0.4 =
-- Fixed back-end validation for code
-
-= 1.0.3 =
-- Add support for channel discussion scripts
-
-= 1.0.2 =
-- Updated test up to
-
-= 1.0.1 =
-* Added translations
-* Minor fixes
-
-= 1.0.0 =
-* Initial Release
 
 [See full changelog](https://github.com/wpsocio/wptelegram-comments/blob/main/CHANGELOG.md)

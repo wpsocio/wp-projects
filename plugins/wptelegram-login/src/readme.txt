@@ -111,16 +111,6 @@ Many thanks to the translators for doing a great job!
 
 * Note: You can also contribute to translating this plugin into your local language. Join the Chat (above)
 
-
-== Installation ==
-
-
-1. Upload the `wptelegram-login` folder to the `/wp-content/plugins/` directory
-2. Activate the plugin through the Plugins menu in WordPress. After activation, you should see the menu of this plugin the admin
-3. Configure the plugin.
-
-**Enjoy!**
-
 == Frequently Asked Questions ==
 
 = How to create a Telegram Bot =
@@ -133,7 +123,9 @@ Sorry, that's not possible because Telegram allows only a single button per page
 
 = I see "Bot domain invalid" message =
 
-Follow the instructions given on the settings page. You need to send `/setdomain` to @BotFather.
+Please follow the instructions given on the WP Telegram Login settings page.
+
+It looks like you missed one that says to send the <code>/setdomain</code> command to @BotFather.
 
 
 == Screenshots ==
@@ -148,30 +140,26 @@ Follow the instructions given on the settings page. You need to send `/setdomain
 8. User Profile (wp-admin)
 9. WooCommerce Account Page
 
+== Installation ==
+
+= Automatic installation =
+
+Automatic installation is the easiest way -- WordPress will handle the file transfer, and you won’t need to leave your web browser. To do an automatic install of the plugin:
+ 
+* Log in to your WordPress dashboard
+* Navigate to the Plugins menu, and click "Add New"
+* In the search field type "wptelegram-login" and hit Enter
+* Locate the plugin in the list of search results
+* Click on "Install Now" and wait for the installation to complete
+* Click on "Activate"
+
+= Manual installation =
+
+Manual installation method requires downloading the plugin and uploading it to your web server via your favorite FTP application. The official WordPress documentation contains [instructions on how to do this here](https://wordpress.org/support/article/managing-plugins/#manual-plugin-installation).
+
 == Changelog ==
 
 = 1.10.7 =
 - Fixed the bug for Telegram Mini Apps which pass HTML encoded query string
-
-= 1.10.6 =
-- Fixed validation for Direct Link Mini Apps with start command
-
-= 1.10.5 =
-- Fixed validation for Direct Link Mini Apps
-
-= 1.10.4 =
-- Added Telegram Mini App login support
-
-= 1.10.3 =
-- Fixed translations not loaded for some strings
-
-= 1.10.2 =
-- Added Telegram user fields to WooCommerce Account page
-
-= 1.10.1 =
-- Added language option for the login widget
-
-= 1.10.0 =
-- Added support for Telegram Web App data authorization
 
 [See full changelog](https://github.com/wpsocio/wptelegram-login/blob/main/CHANGELOG.md)
