@@ -1,6 +1,6 @@
 {
 	"name": "wpsocio/wp-utils",
-	"description": "Easy solution to handle WP plugin or theme options",
+	"description": "Utilities for WordPress plugins and themes",
 	"type": "library",
 	"license": "GPL-3.0-or-later",
 	"autoload": {

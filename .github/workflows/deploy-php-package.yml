@@ -1,0 +1,93 @@
+name: Deploy PHP Package
+
+on:
+  release:
+    types: [published]
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  deploy:
+    name: Deploy PHP Package
+    needs: [details]
+    runs-on: ubuntu-latest
+    if: ${{ fromJson(needs.details.outputs.result).shouldDeploy }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Environment
+        uses: ./actions/setup
+        with:
+          lockfile: pnpm-hashed.lock
+
+      - name: Clean up
+        run: |
+          # Create a temp dir and move the files to it
+          mkdir -p temp/${{ fromJson(needs.details.outputs.result).path }}
+          # Move only the files that are needed
+          mv -t temp/${{ fromJson(needs.details.outputs.result).path }} composer.json src/ LICENSE README.md CHANGELOG.md .gitignore
+
+      - name: Deploy to repo
+        uses: manzoorwanijk/action-deploy-to-repo@v3
+        with:
+          src_dir: temp/${{ fromJson(needs.details.outputs.result).path }}
+          target_repo: ${{ fromJson(needs.details.outputs.result).repo }}
+          target_dir: "."
+          target_branch: main
+          access_token: ${{ secrets.GH_ACCESS_TOKEN }}
+          # Remove everything from the target repo before deploying
+          cleanup_command: git rm -rf . && git clean -fxd
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          body: ${{ github.event.release.body }}
+          token: ${{ secrets.GH_ACCESS_TOKEN }}
+          tag_name: v${{ fromJson(needs.details.outputs.result).version }}
+          repository: ${{ fromJson(needs.details.outputs.result).repo }}
+
+  details:
+    name: Get details
+    runs-on: ubuntu-latest
+    outputs:
+      result: ${{ steps.details.outputs.result }}
+    steps:
+      - name: Get details
+        uses: actions/github-script@v7
+        id: details
+        with:
+          script: |
+            const tagRegex = /^(?<name>.+)@(?<version>[^@]+)$/;
+
+            const result = '${{ github.event.release.tag_name }}'.match(tagRegex);
+
+            if (!result?.groups?.name || !result?.groups?.version) {
+              console.warn('Invalid tag name: "${{ github.event.release.tag_name }}"');
+
+              return { shouldDeploy: false };
+            }
+
+            const { name, version } = result.groups;
+
+            const toDeploy = [
+              '@wpsocio/telegram-format-text',
+              '@wpsocio/wp-utils',
+              '@wpsocio/wptelegram-bot-api',
+            ];
+
+            if (!toDeploy.includes(name)) {
+              return { shouldDeploy: false };
+            }
+
+            const path = `packages/php/${name.split('/', 2)[1]}/`;
+
+            const shouldDeploy = true;
+
+            const repo = name.replace('@', '');
+
+            return { name, version, path, repo, shouldDeploy };
+
+      - name: Print details
+        run: |
+          echo "Details: ${{ steps.details.outputs.result }}"
