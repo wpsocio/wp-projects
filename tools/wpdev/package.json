@@ -6,6 +6,7 @@
 		"url": "https://github.com/wpsocio/wp-projects",
 		"directory": "tools/wpdev"
 	},
+	"homepage": "https://github.com/wpsocio/wp-projects/tree/main/tools/wpdev",
 	"author": {
 		"name": "WP Socio",
 		"url": "https://wpsocio.com"
