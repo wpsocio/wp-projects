@@ -43,6 +43,7 @@ export const Channels: React.FC<{ isDisabled?: boolean }> = ({
 			<div role="group" id="wptg-send-to" aria-label={label}>
 				<CheckboxControl
 					checked={allChecked}
+					disabled={isDisabled}
 					indeterminate={isIndeterminate}
 					onChange={(checked) => {
 						const newChannels = checked ? allChannels : [];
