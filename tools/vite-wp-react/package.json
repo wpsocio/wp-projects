@@ -1,18 +1,25 @@
 {
 	"name": "@wpsocio/vite-wp-react",
 	"version": "0.0.1",
-	"private": true,
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/wpsocio/wp-projects",
 		"directory": "tools/vite-wp-react"
 	},
+	"homepage": "https://github.com/wpsocio/wp-projects/tree/main/tools/vite-wp-react",
 	"author": {
 		"name": "WP Socio",
 		"url": "https://wpsocio.com"
 	},
 	"bugs": {
 		"url": "https://github.com/wpsocio/wp-projects/issues"
+	},
+	"files": [
+		"dist",
+		"src"
+	],
+	"publishConfig": {
+		"access": "public"
 	},
 	"type": "module",
 	"exports": {
@@ -40,9 +47,10 @@
 		"vite": "^5.0.12"
 	},
 	"scripts": {
-		"clean": "rimraf dist/ tsconfig.tsbuildinfo",
-		"preinstall": "wireit",
 		"build": "wireit",
+		"clean": "rimraf dist/ tsconfig.tsbuildinfo .wireit",
+		"preinstall": "wireit",
+		"prepublishOnly": "wireit",
 		"watch": "tsc --watch"
 	},
 	"wireit": {
@@ -61,6 +69,12 @@
 		"preinstall": {
 			"dependencies": [
 				"build"
+			]
+		},
+		"prepublishOnly": {
+			"command": "pnpm run build",
+			"dependencies": [
+				"clean"
 			]
 		}
 	}

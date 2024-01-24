@@ -32,3 +32,4 @@ jobs:
           commit: Prepare for next release
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN_IR }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN_IR }}

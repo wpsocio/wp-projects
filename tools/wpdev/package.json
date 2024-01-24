@@ -1,18 +1,26 @@
 {
 	"name": "@wpsocio/wpdev",
 	"version": "0.0.1",
-	"private": true,
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/wpsocio/wp-projects",
 		"directory": "tools/wpdev"
 	},
+	"homepage": "https://github.com/wpsocio/wp-projects/tree/main/tools/wpdev",
 	"author": {
 		"name": "WP Socio",
 		"url": "https://wpsocio.com"
 	},
 	"bugs": {
 		"url": "https://github.com/wpsocio/wp-projects/issues"
+	},
+	"files": [
+		"bin",
+		"dist",
+		"src"
+	],
+	"publishConfig": {
+		"access": "public"
 	},
 	"type": "module",
 	"bin": {
@@ -64,9 +72,10 @@
 		"topicSeparator": " "
 	},
 	"scripts": {
+		"build": "wireit",
 		"clean": "rimraf dist/ tsconfig.tsbuildinfo .wireit",
 		"preinstall": "wireit",
-		"build": "wireit",
+		"prepublishOnly": "wireit",
 		"watch": "tsc --watch"
 	},
 	"wireit": {
@@ -85,6 +94,12 @@
 		"preinstall": {
 			"dependencies": [
 				"build"
+			]
+		},
+		"prepublishOnly": {
+			"command": "pnpm run build",
+			"dependencies": [
+				"clean"
 			]
 		}
 	}
