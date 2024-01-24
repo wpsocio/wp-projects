@@ -1,11 +1,12 @@
-import viteWpReact from '@wpsocio/vite-wp-react';
-import { defineConfig } from 'vite';
-import { CreateViteConfigOptions } from './types.js';
+import viteWpReact, { ViteWpReactOptions } from './index.js';
+import { ReactMakePotOptions } from './plugins/react-make-pot.js';
 
-export { defineConfig };
+export type CreateViteConfigOptions = ViteWpReactOptions & {
+	makePot?: ReactMakePotOptions;
+};
 
 /**
- * Create Vite config
+ * Create Vite config.
  */
 export function createViteConfig({
 	outDir,
