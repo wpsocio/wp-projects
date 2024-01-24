@@ -14,6 +14,13 @@
 	"bugs": {
 		"url": "https://github.com/wpsocio/wp-projects/issues"
 	},
+	"files": [
+		"dist",
+		"src"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
 	"type": "module",
 	"exports": {
 		".": "./dist/index.js",
@@ -40,9 +47,10 @@
 		"vite": "^5.0.12"
 	},
 	"scripts": {
+		"build": "wireit",
 		"clean": "rimraf dist/ tsconfig.tsbuildinfo",
 		"preinstall": "wireit",
-		"build": "wireit",
+		"prepublishOnly": "wireit",
 		"watch": "tsc --watch"
 	},
 	"wireit": {
@@ -61,6 +69,12 @@
 		"preinstall": {
 			"dependencies": [
 				"build"
+			]
+		},
+		"prepublishOnly": {
+			"command": "pnpm run build",
+			"dependencies": [
+				"clean"
 			]
 		}
 	}

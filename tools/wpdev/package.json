@@ -14,6 +14,14 @@
 	"bugs": {
 		"url": "https://github.com/wpsocio/wp-projects/issues"
 	},
+	"files": [
+		"bin",
+		"dist",
+		"src"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
 	"type": "module",
 	"bin": {
 		"pot-to-php": "./node_modules/@wordpress/i18n/tools/pot-to-php.js",
@@ -64,9 +72,10 @@
 		"topicSeparator": " "
 	},
 	"scripts": {
-		"clean": "rimraf dist/ tsconfig.tsbuildinfo .wireit",
-		"preinstall": "wireit",
 		"build": "wireit",
+		"clean": "rimraf dist/ tsconfig.tsbuildinfo",
+		"preinstall": "wireit",
+		"prepublishOnly": "wireit",
 		"watch": "tsc --watch"
 	},
 	"wireit": {
@@ -85,6 +94,12 @@
 		"preinstall": {
 			"dependencies": [
 				"build"
+			]
+		},
+		"prepublishOnly": {
+			"command": "pnpm run build",
+			"dependencies": [
+				"clean"
 			]
 		}
 	}
