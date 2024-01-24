@@ -15,8 +15,8 @@ export const Channels: React.FC<{ isDisabled?: boolean }> = ({
 
 	const onChange = useCallback(
 		(channel: string) => () => {
-			const hasChannel = data.channels?.indexOf(channel) !== -1;
-			const newChannels = hasChannel
+			const wasSelectedBefore = data.channels?.indexOf(channel) !== -1;
+			const newChannels = wasSelectedBefore
 				? data.channels?.filter((c) => c !== channel)
 				: [...(data.channels || []), channel];
 			updateField('channels')(newChannels);
@@ -24,9 +24,32 @@ export const Channels: React.FC<{ isDisabled?: boolean }> = ({
 		[data.channels, updateField],
 	);
 
+	const allChecked = allChannels.every(
+		(channel) => data.channels?.indexOf(channel) !== -1,
+	);
+	const isIndeterminate =
+		!allChecked &&
+		allChannels.some((channel) => data.channels?.indexOf(channel) !== -1);
+
+	const selectedChannels =
+		allChannels.length > 5
+			? `(${data.channels?.length || 0}/${allChannels.length})`
+			: '';
+
+	const label = `${__('Send to')} ${selectedChannels}`;
+
 	return (
-		<BaseControl id="wptg-send-to" label={__('Send to')}>
-			<div role="group" id="wptg-send-to" aria-label={__('Send to')}>
+		<BaseControl id="wptg-send-to" label={label}>
+			<div role="group" id="wptg-send-to" aria-label={label}>
+				<CheckboxControl
+					checked={allChecked}
+					indeterminate={isIndeterminate}
+					onChange={(checked) => {
+						const newChannels = checked ? allChannels : [];
+						updateField('channels')(newChannels);
+					}}
+					label={__('Select all')}
+				/>
 				{allChannels.map((channel, index) => {
 					return (
 						<CheckboxControl
