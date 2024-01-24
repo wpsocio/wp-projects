@@ -12,7 +12,7 @@
             "dist": {
                 "type": "path",
                 "url": "../../packages/php/wp-utils",
-                "reference": "1e6337bd50a16a647b8ec92758f891bbbd1398e0"
+                "reference": "5b5a69c7e81db920f6ee6dcac2281c721029d59e"
             },
             "require-dev": {
                 "pestphp/pest": "^1.22",
@@ -39,14 +39,14 @@
                 ]
             },
             "license": [
-                "GPL3"
+                "GPL-3.0-or-later"
             ],
             "authors": [
                 {
                     "name": "WP Socio"
                 }
             ],
-            "description": "Easy solution to handle WP plugin or theme options",
+            "description": "Utilities for WordPress plugins and themes",
             "transport-options": {
                 "symlink": true,
                 "relative": true
