@@ -48,7 +48,7 @@
 	},
 	"scripts": {
 		"build": "wireit",
-		"clean": "rimraf dist/ tsconfig.tsbuildinfo",
+		"clean": "rimraf dist/ tsconfig.tsbuildinfo .wireit",
 		"preinstall": "wireit",
 		"prepublishOnly": "wireit",
 		"watch": "tsc --watch"
