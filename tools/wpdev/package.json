@@ -2,6 +2,18 @@
 	"name": "@wpsocio/wpdev",
 	"version": "1.0.0",
 	"private": true,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/wpsocio/wp-projects",
+		"directory": "tools/wpdev"
+	},
+	"author": {
+		"name": "WP Socio",
+		"url": "https://wpsocio.com"
+	},
+	"bugs": {
+		"url": "https://github.com/wpsocio/wp-projects/issues"
+	},
 	"type": "module",
 	"bin": {
 		"pot-to-php": "./node_modules/@wordpress/i18n/tools/pot-to-php.js",

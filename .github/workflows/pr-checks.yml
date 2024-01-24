@@ -7,7 +7,7 @@ on:
 jobs:
   php-lint-test:
     name: "PHP: Lint, Test"
-    if: github.repository == 'wpsocio/wp-plugins-dev'
+    if: github.repository == 'wpsocio/wp-projects'
     timeout-minutes: 15
     runs-on: ubuntu-latest
     strategy:
@@ -44,7 +44,7 @@ jobs:
 
   js-lint-build:
     name: "JS: Lint, Build and Test"
-    if: github.repository == 'wpsocio/wp-plugins-dev'
+    if: github.repository == 'wpsocio/wp-projects'
     timeout-minutes: 15
     runs-on: ubuntu-latest
 

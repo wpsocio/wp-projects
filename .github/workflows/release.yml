@@ -10,7 +10,7 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 jobs:
   release:
     name: Prepare or publish release
-    if: github.repository == 'wpsocio/wp-plugins-dev'
+    if: github.repository == 'wpsocio/wp-projects'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

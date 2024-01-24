@@ -1,4 +1,4 @@
-# wp-plugins-dev
+# wp-projects
 
 The monorepo to develop WordPress plugins/themes.
 

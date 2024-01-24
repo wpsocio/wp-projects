@@ -2,7 +2,7 @@
 	"$schema": "https://unpkg.com/@changesets/config@3.0.0/schema.json",
 	"changelog": [
 		"@changesets/changelog-github",
-		{ "repo": "irshadahmad21/wp-plugins-dev-test" }
+		{ "repo": "wpsocio/wp-projects" }
 	],
 	"commit": false,
 	"fixed": [],
