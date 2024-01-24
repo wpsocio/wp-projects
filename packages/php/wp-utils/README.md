@@ -73,7 +73,50 @@ $details = $requirements->get_env_details();
 */
 ```
 
+### `WPSocio\WPUtils\ViteWPReactAssets`
+
+Manage the assets for a React app built with Vite using `@wpsocio/vite-wp-react` npm package.
+
+```php
+
+$assets_dir = untrailingslashit( plugin_dir_path( __FILE__ ) ) . '/assets/build';
+$assets_url = untrailingslashit( plugins_url( '', __FILE__ ) ) . '/assets/build';
+
+$assets = new \WPSocio\WPUtils\ViteWPReactAssets( $assets_dir, $assets_url );
+
+$entry = 'js/settings/index.tsx';
+
+$assets->enqueue(
+    $entry,
+    [
+        'handle'              => 'some-js-handle',
+        'script-dependencies' => [ 'wp-element', 'wp-i18n' ],
+        'style-dependencies'  => ['wp-components'],
+    ]
+);
+
+// OR
+
+[ $script_handle, $style_handles ] = $assets->register(
+    $entry,
+    [
+        'handle'              => 'some-js-handle',
+        'script-dependencies' => [ 'wp-element', 'wp-i18n' ],
+        'style-dependencies'  => ['wp-components'],
+    ]
+);
+
+// Later on
+$assets->enqueue( $entry );
+// or
+wp_enqueue_script( $script_handle );
+foreach ( $style_handles as $style_handle ) {
+    wp_enqueue_style( $style_handle );
+}
+
+```
+
 ## Requirements
 
 - `PHP >= 8.0`
-- `WP >= 6.3`
+- `WP >= 6.4`

@@ -2,7 +2,7 @@
 	"name": "wpsocio/wp-utils",
 	"description": "Easy solution to handle WP plugin or theme options",
 	"type": "library",
-	"license": "GPL3",
+	"license": "GPL-3.0-or-later",
 	"autoload": {
 		"psr-4": {
 			"WPSocio\\WPUtils\\": "src/"

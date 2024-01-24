@@ -11,9 +11,6 @@ composer require wpsocio/wptelegram-bot-api
 ```php
 require_once __DIR__ . '/autoload.php';
 
-// Or this for usage in WordPress
-require_once __DIR__ . '/autoload-wp.php';
-
 $bot_token  = 'YOUR BOT TOKEN HERE';
 
 $bot_api = new \WPTelegram\BotAPI\API( $bot_token );
@@ -29,14 +26,7 @@ $bot_api->sendPhoto( [
 ] );
 ```
 
-**NOTES:**
-
-- Do not require conditionally, like `if ( class_exists() )`.
-- It's safe to include it directly.
-- Library takes care of its multiple versions being loaded.
-- It always loads the latest version.
-
 ## Requirements
 
 - `PHP >= 8.0`
-- `WP >= 6.3`
+- `WP >= 6.4`
