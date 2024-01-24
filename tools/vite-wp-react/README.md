@@ -1,6 +1,6 @@
 # @wpsocio/vite-wp-react
 
-Set of tools to develop WordPress plugins and themes using React and Vite. It can be used along with `WPSocio\WPUtils\ViteWPReactAssets` from `wpsocio/wp-utils` composer package.
+Set of tools to develop WordPress plugins and themes using React and Vite. It can be used along with `WPSocio\WPUtils\ViteWPReactAssets` from [`wpsocio/wp-utils`](https://packagist.org/packages/wpsocio/wp-utils) composer package.
 
 ## Usage
 
