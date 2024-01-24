@@ -35,7 +35,7 @@ jobs:
           target_repo: ${{ fromJson(needs.details.outputs.result).repo }}
           target_dir: "."
           target_branch: main
-          access_token: ${{ secrets.GH_ACCESS_TOKEN }}
+          access_token: ${{ secrets.ACCESS_TOKEN_IR }}
           # Remove everything from the target repo before deploying
           cleanup_command: git rm -rf . && git clean -fxd
 
@@ -43,7 +43,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           body: ${{ github.event.release.body }}
-          token: ${{ secrets.GH_ACCESS_TOKEN }}
+          token: ${{ secrets.ACCESS_TOKEN_IR }}
           tag_name: v${{ fromJson(needs.details.outputs.result).version }}
           repository: ${{ fromJson(needs.details.outputs.result).repo }}
 

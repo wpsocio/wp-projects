@@ -57,7 +57,7 @@ jobs:
           target_repo: ${{ github.repository_owner }}/${{ fromJson(needs.details.outputs.result).name }}
           target_dir: "."
           target_branch: main
-          access_token: ${{ secrets.GH_ACCESS_TOKEN }}
+          access_token: ${{ secrets.ACCESS_TOKEN_IR }}
           # Remove everything from the target repo before deploying
           cleanup_command: git rm -rf . && git clean -fxd
 

@@ -4,5 +4,5 @@ packages:
     - "packages/js/shared/*"
     - "packages/php/*" # Just for running PHP tests via pnpm
     - "plugins/*"
-    # - "premium/plugins/*"
+    - "premium/plugins/*"
     - "tools/*"

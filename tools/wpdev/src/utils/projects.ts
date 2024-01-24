@@ -69,10 +69,14 @@ export async function getProjectType(
 		return pkg.packageJson.wpdev.projectType;
 	}
 
-	// If "projectType" is not defined in package.json,
-	// we can use the package's parent folder name to determine the project type
-	// For example `relativeDir: 'plugins/wptelegram-widget'`
-	if (process.env.WPDEV_DETECT_TYPE_FROM_PARENT_DIR) {
+	/**
+	 * If you do not want to the projects to be detected automatically,
+	 * you can set the `WPDEV_DETECT_TYPE_FROM_PARENT_DIR` env var to `false`
+	 */
+	if (process.env.WPDEV_DETECT_TYPE_FROM_PARENT_DIR !== 'false') {
+		// If "projectType" is not defined in package.json,
+		// we can use the package's parent folder name to determine the project type
+		// For example `relativeDir: 'plugins/wptelegram-widget'`
 		const parentDir = path.basename(
 			path.dirname(pkg.dir),
 		) as UserConfig['projectTypes'][number];

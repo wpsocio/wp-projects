@@ -31,4 +31,4 @@ jobs:
           title: Prepare for next release
           commit: Prepare for next release
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN_IR }}

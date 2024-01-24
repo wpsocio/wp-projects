@@ -230,9 +230,12 @@ export default class Clean extends WithConfig {
 			allFiles.composerLock.push(...composerLockFiles);
 		}
 
-		let filesToSkip = new Set<string>();
+		const filesToSkip = new Set<string>();
 
 		if (this.cliConfig.operationMode === 'wp-monorepo') {
+			// Skip the premium folder
+			filesToSkip.add('premium/');
+
 			const wpMonorepo = new WPMonorepo(this.cliConfig);
 
 			// It's possible that the connected project may be a git repo
@@ -264,16 +267,13 @@ export default class Clean extends WithConfig {
 			}
 
 			// We do not want to delete any of the project directories in the monorepo.
-			filesToSkip = new Set(
-				[...(await wpMonorepo.getAllProjects())].map(([name, project]) => {
-					return (
-						// We need posix paths for git
-						pathToPosix(project.relativeDir)
-							// Ensure that the path ends with a slash.
-							.replace(/\/?$/, '/')
-					);
-				}),
-			);
+			for (const [name, project] of await wpMonorepo.getAllProjects()) {
+				const entry = // We need posix paths for git
+					pathToPosix(project.relativeDir)
+						// Ensure that the path ends with a slash.
+						.replace(/\/?$/, '/');
+				filesToSkip.add(entry);
+			}
 		}
 
 		for (const file of ignoredFileNames) {
