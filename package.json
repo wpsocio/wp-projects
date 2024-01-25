@@ -23,6 +23,7 @@
 		"prep-version": "wireit",
 		"release": "changeset publish",
 		"release-status": "wireit",
+		"postinstall": "pnpm build:tools",
 		"setup": "wireit",
 		"setup:php": "wireit",
 		"test:php": "wireit",
