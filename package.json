@@ -20,7 +20,7 @@
 		"prep-release": "wireit",
 		"prep-version": "wireit",
 		"release": "changeset publish",
-		"release:status": "wireit",
+		"release-status": "wireit",
 		"setup:php": "wireit",
 		"test:php": "wireit",
 		"typecheck": "wireit",
@@ -73,10 +73,10 @@
 		"prep-version": {
 			"command": "changeset version",
 			"dependencies": [
-				"release:status"
+				"release-status"
 			]
 		},
-		"release:status": {
+		"release-status": {
 			"command": "changeset status --output=changeset-status.json"
 		},
 		"setup:php": {
