@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { UserConfigSchema } from './tools.js';
 
 const targetFilesSchema = z.object({
 	files: z
@@ -65,6 +64,10 @@ const jsPotToPhpData = z.object({
 		.optional()
 		.default('src/languages/js-translations.pot')
 		.describe('The path to the POT file.'),
+	phpFile: z
+		.string()
+		.optional()
+		.describe('The path to the PHP file, relative to the pot file directory.'),
 	textDomain: z
 		.string()
 		.optional()

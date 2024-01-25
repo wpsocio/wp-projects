@@ -262,11 +262,12 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 						return {
 							title: 'JS POT to PHP',
 							task: async () => {
-								const { potFile, textDomain } = taskData;
+								const { potFile, textDomain, phpFile } = taskData;
 
 								return await potToPhp(projectDir, {
 									potFile: potFile || 'src/languages/js-translations.pot',
 									textDomain: textDomain || projectInfo.textDomain,
+									outFile: phpFile,
 								});
 							},
 						};
