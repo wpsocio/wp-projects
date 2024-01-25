@@ -9,6 +9,8 @@
 	"type": "module",
 	"scripts": {
 		"build": "wireit",
+		"build:tools": "wireit",
+		"build:plugins": "wireit",
 		"bundle:all": "wpdev bundle --all",
 		"bundle:changed": "wireit",
 		"dev": "wireit",
@@ -21,6 +23,7 @@
 		"prep-version": "wireit",
 		"release": "changeset publish",
 		"release-status": "wireit",
+		"setup": "wireit",
 		"setup:php": "wireit",
 		"test:php": "wireit",
 		"typecheck": "wireit",
@@ -40,7 +43,21 @@
 	},
 	"wireit": {
 		"build": {
-			"command": "pnpm -r run build"
+			"dependencies": [
+				"build:all"
+			]
+		},
+		"build:all": {
+			"dependencies": [
+				"build:tools",
+				"build:plugins"
+			]
+		},
+		"build:tools": {
+			"command": "pnpm -r --filter=./tools/* run build"
+		},
+		"build:plugins": {
+			"command": "pnpm -r --filter=./plugins/* run build"
 		},
 		"bundle:changed": {
 			"command": "wpdev bundle --from-changeset --changeset-json=changeset-status.json"
@@ -78,6 +95,12 @@
 		},
 		"release-status": {
 			"command": "changeset status --output=changeset-status.json"
+		},
+		"setup": {
+			"dependencies": [
+				"setup:php",
+				"build:all"
+			]
 		},
 		"setup:php": {
 			"dependencies": [
