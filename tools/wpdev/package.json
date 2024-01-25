@@ -24,7 +24,6 @@
 	},
 	"type": "module",
 	"bin": {
-		"pot-to-php": "./node_modules/@wordpress/i18n/tools/pot-to-php.js",
 		"wpdev": "./bin/run.js"
 	},
 	"types": "dist/index.d.ts",
@@ -40,7 +39,6 @@
 		"@manypkg/get-packages": "^2.2.0",
 		"@manypkg/tools": "^1.1.0",
 		"@oclif/core": "^3.18.1",
-		"@wordpress/i18n": "^4.49.0",
 		"archiver": "^6.0.1",
 		"chalk": "^5.3.0",
 		"cssnano": "^6.0.3",
@@ -49,6 +47,7 @@
 		"execa": "^8.0.1",
 		"fast-glob": "^3.3.2",
 		"find-up": "^7.0.0",
+		"gettext-parser": "^7.0.1",
 		"listr2": "^8.0.1",
 		"parse-json": "^8.1.0",
 		"postcss": "^8.4.33",
@@ -59,6 +58,7 @@
 	},
 	"devDependencies": {
 		"@types/archiver": "^6.0.2",
+		"@types/gettext-parser": "^4.0.4",
 		"@types/semver": "^7.5.6",
 		"oclif": "^4.3.9",
 		"ts-node": "^10.9.2",
@@ -74,7 +74,6 @@
 	"scripts": {
 		"build": "wireit",
 		"clean": "rimraf dist/ tsconfig.tsbuildinfo .wireit",
-		"preinstall": "wireit",
 		"prepublishOnly": "wireit",
 		"watch": "tsc --watch"
 	},
@@ -89,11 +88,6 @@
 			"output": [
 				"dist/**",
 				"tsconfig.tsbuildinfo"
-			]
-		},
-		"preinstall": {
-			"dependencies": [
-				"build"
 			]
 		},
 		"prepublishOnly": {
