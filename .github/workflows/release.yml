@@ -16,6 +16,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Set up Git user
+        run: |
+          git config --global user.email ${{ secrets.GIT_USER_EMAIL_IR }}
+          git config --global user.name ${{ secrets.GIT_USER_NAME_IR }}
+
       - name: Setup Environment
         uses: ./actions/setup
         with:
@@ -30,6 +35,7 @@ jobs:
           version: pnpm prep-release
           title: Prepare for next release
           commit: Prepare for next release
+          setupGitUser: false
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN_IR }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN_IR }}
