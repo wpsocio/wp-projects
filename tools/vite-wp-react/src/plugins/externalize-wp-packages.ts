@@ -22,14 +22,14 @@ export const externalizeWpPackages = (): PluginOption => {
 								 *
 								 * @see https://github.com/vitejs/vite-plugin-react/issues/3
 								 */
-								rollupGlobals(WP_EXTERNAL_PACKAGES)
+								rollupGlobals(WP_EXTERNAL_PACKAGES),
 							],
 						},
 					},
 				};
 			},
 		},
-		// @ts-expect-error - viteExternal is not typed well
+		// @ts-ignore - viteExternal is not typed well
 		viteExternal({
 			externals: WP_EXTERNAL_PACKAGES,
 		}),

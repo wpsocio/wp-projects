@@ -55,7 +55,7 @@ export type ViteWpReactConfig = {
 	enableReact?: boolean;
 };
 
-export default function viteWpReact(
+export function viteWpReact(
 	{
 		input = 'js/main.js',
 		outDir = 'build',
@@ -117,3 +117,5 @@ export default function viteWpReact(
 
 	return plugins;
 }
+
+export default viteWpReact;
