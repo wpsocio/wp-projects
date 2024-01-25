@@ -15,13 +15,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.ACCESS_TOKEN_IR }}
 
       - name: Setup Environment
         uses: ./actions/setup
         with:
           lockfile: pnpm-hashed.lock
 
-      - name: Clean up
+      - name: Prepare
         run: |
           # Create a temp dir and move the files to it
           mkdir -p temp/${{ fromJson(needs.details.outputs.result).path }}
