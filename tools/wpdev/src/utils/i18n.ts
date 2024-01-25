@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { $ } from 'execa';
+import { convertPOTToPHP } from './pot-to-php.js';
 
 export type PotToPhpConfig = {
 	potFile: string;
@@ -15,15 +16,18 @@ export async function potToPhp(
 	cwd: string,
 	{ potFile, textDomain, outFile }: PotToPhpConfig,
 ) {
-	const potDir = path.dirname(potFile);
+	const potFilePath = fs.existsSync(potFile)
+		? path.resolve(potFile)
+		: path.join(cwd, potFile);
 
-	const outFilePath =
-		outFile || path.join(potDir, `${textDomain}-js-translations.php`);
+	const potDir = path.dirname(potFilePath);
 
-	const args = [potFile, outFilePath, textDomain];
+	const outFilePath = path.join(
+		potDir,
+		outFile || `${textDomain}-js-translations.php`,
+	);
 
-	// `pot-to-php` binary comes from @wordpress/i18n
-	await $({ cwd })`pot-to-php ${args}`;
+	convertPOTToPHP(potFilePath, outFilePath, { textDomain });
 }
 
 export type GeneratePotFileConfig = Pick<
