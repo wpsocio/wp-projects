@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.1
+
+### Patch Changes
+
+- [#63](https://github.com/wpsocio/wp-projects/pull/63) [`c1d022e`](https://github.com/wpsocio/wp-projects/commit/c1d022eefc2341bfd5cd6b9dcfe56641f0f5a874) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Updated version utility to allow both cases for readme.txt
+
 ## 1.0.0
 
 ### Major Changes
