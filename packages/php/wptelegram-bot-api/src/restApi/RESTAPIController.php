@@ -3,7 +3,7 @@
  * Plugin bot API endpoint for WordPress REST API.
  *
  * @link       https://wpsocio.com
- * @since      1.2.2
+ * @since      1.0.0
  *
  * @package    WPTelegram\BotAPI
  * @subpackage WPTelegram\BotAPI\restApi
@@ -18,7 +18,7 @@ use WPTelegram\BotAPI\API;
 /**
  * Class to handle the bot API endpoint.
  *
- * @since 1.2.2
+ * @since 1.0.0
  *
  * @package    WPTelegram\BotAPI
  * @subpackage WPTelegram\BotAPI\restApi
@@ -34,11 +34,24 @@ class RESTAPIController extends RESTBaseController {
 	const REST_BASE = '/(?P<method>[a-zA-Z]+)';
 
 	/**
+	 * Whether the dependencies have been initiated.
+	 *
+	 * @since 1.0.0
+	 * @var   bool $initiated Whether the dependencies have been initiated.
+	 */
+	private static $initiated = false;
+
+	/**
 	 * Initialize the REST routes.
 	 *
 	 * @return void
 	 */
 	public static function init() {
+		if ( self::$initiated ) {
+			return;
+		}
+		self::$initiated = true;
+
 		$controller = new self();
 		$controller->register_routes();
 	}
@@ -46,7 +59,7 @@ class RESTAPIController extends RESTBaseController {
 	/**
 	 * Register the routes.
 	 *
-	 * @since 1.2.2
+	 * @since 1.0.0
 	 *
 	 * @return void
 	 */
@@ -69,7 +82,7 @@ class RESTAPIController extends RESTBaseController {
 	/**
 	 * Check request permissions.
 	 *
-	 * @since 1.2.2
+	 * @since 1.0.0
 	 *
 	 * @param WP_REST_Request $request WP REST API request.
 	 *
@@ -84,7 +97,7 @@ class RESTAPIController extends RESTBaseController {
 	/**
 	 * Handle the request.
 	 *
-	 * @since 1.2.2
+	 * @since 1.0.0
 	 *
 	 * @param WP_REST_Request $request WP REST API request.
 	 *
@@ -129,7 +142,7 @@ class RESTAPIController extends RESTBaseController {
 	/**
 	 * Retrieves the query params for the settings.
 	 *
-	 * @since 1.2.2
+	 * @since 1.0.0
 	 *
 	 * @return array Query parameters for the settings.
 	 */
@@ -152,7 +165,7 @@ class RESTAPIController extends RESTBaseController {
 	/**
 	 * Validate params.
 	 *
-	 * @since 1.2.2
+	 * @since 1.0.0
 	 *
 	 * @param mixed           $value   Value of the param.
 	 * @param WP_REST_Request $request WP REST API request.
@@ -173,7 +186,7 @@ class RESTAPIController extends RESTBaseController {
 	/**
 	 * Sanitize params.
 	 *
-	 * @since 1.2.2
+	 * @since 1.0.0
 	 *
 	 * @param mixed           $value   Value of the param.
 	 * @param WP_REST_Request $request WP REST API request.
@@ -190,7 +203,7 @@ class RESTAPIController extends RESTBaseController {
 	/**
 	 * Sanitize params.
 	 *
-	 * @since 1.2.4
+	 * @since 1.0.0
 	 *
 	 * @param mixed $input Value of the param.
 	 *

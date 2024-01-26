@@ -17,7 +17,7 @@ if ( ! class_exists( __NAMESPACE__ . '\API', false ) ) :
 	/**
 	 * Main class.
 	 *
-	 * @since  1.0.1
+	 * @since  1.0.0
 	 *
 	 * @category  WordPress_Plugin Addon
 	 * @package   WPTelegram\BotAPI
@@ -31,7 +31,7 @@ if ( ! class_exists( __NAMESPACE__ . '\API', false ) ) :
 		 * Pattern to match Telegram bot token.
 		 *
 		 * @var string Pattern.
-		 * @since 1.2.3
+		 * @since 1.0.0
 		 */
 		const BOT_TOKEN_PATTERN = '[0-9]{9,11}:[a-zA-Z0-9_-]{35}';
 
@@ -39,7 +39,7 @@ if ( ! class_exists( __NAMESPACE__ . '\API', false ) ) :
 		 * Regular expression to match Telegram bot token.
 		 *
 		 * @var string Regex.
-		 * @since 1.2.2
+		 * @since 1.0.0
 		 */
 		const BOT_TOKEN_REGEX = '/\A' . self::BOT_TOKEN_PATTERN . '\Z/i';
 
