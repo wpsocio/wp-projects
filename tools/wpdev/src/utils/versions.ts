@@ -58,7 +58,7 @@ function getFilesToUpdate(
 
 		case 'readmeFiles':
 			filesToUpdate = {
-				files: ['README.md', 'src/README.txt'],
+				files: ['README.md', 'src/README.txt', 'src/readme.txt'],
 				...item,
 			};
 			break;

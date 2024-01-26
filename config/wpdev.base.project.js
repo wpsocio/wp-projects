@@ -26,7 +26,7 @@ export const getBundleConfig = ({ slug, key, version, textDomain }) => {
 						files: [
 							'dev.php',
 							`src/${slug}.php`,
-							'src/README.txt',
+							'src/readme.txt',
 							'README.md',
 						],
 					},
