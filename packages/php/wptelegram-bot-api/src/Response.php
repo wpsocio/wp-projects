@@ -202,7 +202,7 @@ if ( ! class_exists( __NAMESPACE__ . '\Response', false ) ) :
 		/**
 		 * Gets the Request Endpoint used to get the response.
 		 *
-		 * @since   1.0.5
+		 * @since   1.0.0
 		 *
 		 * @return string
 		 */

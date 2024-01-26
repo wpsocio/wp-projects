@@ -6,7 +6,10 @@
 	"autoload": {
 		"psr-4": {
 			"WPTelegram\\BotAPI\\": "src/"
-		}
+		},
+		"files": [
+			"init.php"
+		]
 	},
 	"authors": [
 		{
