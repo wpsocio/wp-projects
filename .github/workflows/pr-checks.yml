@@ -16,6 +16,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.ACCESS_TOKEN_IR }}
 
       - name: Setup Environment
         uses: ./actions/setup
@@ -51,6 +53,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.ACCESS_TOKEN_IR }}
 
       - name: Setup Environment
         uses: ./actions/setup

@@ -7,4 +7,4 @@ export const getProjectInfo = () => ({
 	slug: 'wptelegram-comments',
 });
 
-export { getBundleConfig } from '../wpdev.base.project.js';
+export { getBundleConfig } from '../../config/wpdev.base.project.js';

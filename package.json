@@ -4,8 +4,11 @@
 	"version": "1.0.0",
 	"description": "",
 	"keywords": [],
-	"author": "",
 	"license": "GPL-3.0",
+	"author": {
+		"name": "WP Socio",
+		"url": "https://github.com/wpsocio"
+	},
 	"type": "module",
 	"scripts": {
 		"build": "wireit",
@@ -24,7 +27,7 @@
 		"release": "changeset publish",
 		"release-status": "wireit",
 		"postinstall": "pnpm build:tools",
-		"setup": "wireit",
+		"setup:all": "wireit",
 		"setup:php": "wireit",
 		"test:php": "wireit",
 		"typecheck": "wireit",
@@ -59,6 +62,9 @@
 		},
 		"build:plugins": {
 			"command": "pnpm -r --filter=./plugins/* run build"
+		},
+		"bundle:plugins": {
+			"command": "pnpm -r --filter=./plugins/* exec wpdev bundle"
 		},
 		"bundle:changed": {
 			"command": "wpdev bundle --from-changeset --changeset-json=changeset-status.json"
@@ -97,7 +103,7 @@
 		"release-status": {
 			"command": "changeset status --output=changeset-status.json"
 		},
-		"setup": {
+		"setup:all": {
 			"dependencies": [
 				"setup:php",
 				"build:all"

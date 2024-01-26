@@ -110,7 +110,9 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 			return baseOutDir;
 		}
 
-		return path.join(baseOutDir, project.relativeDir);
+		const relativePath = path.relative(this.cliConfig.rootDir, project.dir);
+
+		return path.join(this.cliConfig.rootDir, baseOutDir, relativePath);
 	}
 
 	getVersion(project: WPProject, task: TaskWrapper) {
