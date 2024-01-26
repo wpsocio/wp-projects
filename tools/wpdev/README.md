@@ -2,6 +2,20 @@
 
 A CLI to manage WordPress projects in a monorepo or a standalone repo.
 
+## Installation
+
+```sh
+npm install --save-dev @wpsocio/wpdev
+```
+
+```sh
+yarn add --dev @wpsocio/wpdev
+```
+
+```sh
+pnpm add -D @wpsocio/wpdev
+```
+
 ## Usage
 
 <!-- usage -->
@@ -72,6 +86,8 @@ EXAMPLES
   $ wpdev bundle --all
 ```
 
+_See code: [src/commands/bundle.ts](https://github.com/wpsocio/wp-projects/blob/v1.0.0/src/commands/bundle.ts)_
+
 ## `wpdev clean [PATH]`
 
 Cleans up the given path(s) in this monorepo.
@@ -103,6 +119,8 @@ EXAMPLES
 
   $ wpdev clean --all
 ```
+
+_See code: [src/commands/clean.ts](https://github.com/wpsocio/wp-projects/blob/v1.0.0/src/commands/clean.ts)_
 
 ## `wpdev link [PROJECTS]`
 
@@ -140,6 +158,8 @@ EXAMPLES
   $ wpdev link --all
 ```
 
+_See code: [src/commands/link.ts](https://github.com/wpsocio/wp-projects/blob/v1.0.0/src/commands/link.ts)_
+
 ## `wpdev project-info [PROJECTS]`
 
 Get the project info as JSON.
@@ -176,6 +196,8 @@ EXAMPLES
   $ wpdev project-info --all
 ```
 
+_See code: [src/commands/project-info.ts](https://github.com/wpsocio/wp-projects/blob/v1.0.0/src/commands/project-info.ts)_
+
 ## `wpdev unlink [PROJECTS]`
 
 Removes symlinks in the given wp-content directory created for the project(s) in this monorepo.
@@ -211,5 +233,7 @@ EXAMPLES
 
   $ wpdev unlink --all
 ```
+
+_See code: [src/commands/unlink.ts](https://github.com/wpsocio/wp-projects/blob/v1.0.0/src/commands/unlink.ts)_
 
 <!-- commandsstop -->
