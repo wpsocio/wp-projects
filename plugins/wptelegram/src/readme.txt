@@ -6,7 +6,7 @@ Requires at least: 6.0
 Requires PHP: 7.0
 Tested up to: 6.3.1
 Stable tag: 4.0.14
-License: GPLv3 or later
+License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 Integrate your WordPress site perfectly with Telegram with full control.
