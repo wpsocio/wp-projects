@@ -13,6 +13,7 @@ vendor/
 !/.github/
 !/.vscode/
 !/actions/
+!/config/
 !/packages/
 !/plugins/
 !/tools/
