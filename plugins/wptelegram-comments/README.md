@@ -6,8 +6,8 @@
 **Requires PHP:** 7.4  
 **Tested up to:** 6.4.2  
 **Stable tag:** 1.1.9  
-**License:** GPLv2 or later  
-**License URI:** [http://www.gnu.org/licenses/gpl-2.0.html](http://www.gnu.org/licenses/gpl-2.0.html)  
+**License:** GPLv3 or later  
+**License URI:** [https://www.gnu.org/licenses/gpl-3.0.html](https://www.gnu.org/licenses/gpl-3.0.html)  
 **Donate link:** [wpsocio.com/donate](https://wpsocio.com/donate)
 
 [![Wordpress plugin](https://img.shields.io/wordpress/plugin/v/wptelegram-comments.svg)](https://wordpress.org/plugins/wptelegram-comments/)
@@ -42,14 +42,29 @@ Comments on WordPress posts not only fill your database tables, rather they also
 
 ### Contribution
 
-Development occurs on Github, and all contributions welcome.
+Development occurs in our [Github monorepo](https://github.com/wpsocio/wp-projects), and all contributions welcome.
 
 ## Translation
 
-If you are looking to provide language translation files, Please do so via [WordPress Plugin Translations](https://translate.wordpress.org/projects/wp-plugins/wptelegram-comments).
+If you want to help with translation of the plugin, you can contribute via [WordPress Plugin Translations](https://translate.wordpress.org/projects/wp-plugins/wptelegram-comments).
 
 ## Installation
 
-1. Upload the `wptelegram-comments` folder to the `/wp-content/plugins/` directory
-2. Activate the plugin through the Plugins menu in WordPress. After activation, you should see the menu of this plugin the the admin
-3. Configure the plugin.
+#### Automatic installation
+
+Automatic installation is the easiest way -- WordPress will handle the file transfer, and you won’t need to leave your web browser. To do an automatic install of the plugin:
+
+- Log in to your WordPress dashboard
+- Navigate to the Plugins menu, and click "Add New"
+- In the search field type "wptelegram-comments" and hit Enter
+- Locate the plugin in the list of search results
+- Click on "Install Now" and wait for the installation to complete
+- Click on "Activate"
+
+#### Manual installation
+
+Manual installation method requires downloading the plugin and uploading it to your web server via your favorite FTP application. The official WordPress documentation contains [instructions on how to do this here](https://wordpress.org/support/article/managing-plugins/#manual-plugin-installation).
+
+#### Updating
+
+Automatic updates should work smoothly, but we still recommend you back up your site.
