@@ -2,7 +2,13 @@
 	"$schema": "https://biomejs.dev/schemas/1.4.1/schema.json",
 	"files": {
 		"include": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", "**/*.json"],
-		"ignore": ["dist/*", "build/*", "node_modules/*", "vendor/*", ".wireit/*"]
+		"ignore": [
+			"dist/*",
+			"build/*",
+			"node_modules/*",
+			"vendor/*",
+			".wireit/*"
+		]
 	},
 	"organizeImports": {
 		"enabled": true
