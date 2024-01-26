@@ -58,7 +58,7 @@
             "dist": {
                 "type": "path",
                 "url": "../../packages/php/wptelegram-bot-api",
-                "reference": "42b6a16d5ef86237a7da499219f68fd1af73af2e"
+                "reference": "b3047579dc08a8635e6c3469f85cc13df2a035c0"
             },
             "require-dev": {
                 "pestphp/pest": "^1.22",
@@ -69,7 +69,10 @@
             "autoload": {
                 "psr-4": {
                     "WPTelegram\\BotAPI\\": "src/"
-                }
+                },
+                "files": [
+                    "init.php"
+                ]
             },
             "scripts": {
                 "lint": [
