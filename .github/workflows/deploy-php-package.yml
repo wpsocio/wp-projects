@@ -25,15 +25,19 @@ jobs:
 
       - name: Prepare
         run: |
+          # Change dir to the package
+          cd ${{ fromJson(needs.details.outputs.result).path }}
           # Create a temp dir and move the files to it
-          mkdir -p temp/${{ fromJson(needs.details.outputs.result).path }}
+          mkdir -p temp
           # Move only the files that are needed
-          mv -t temp/${{ fromJson(needs.details.outputs.result).path }} composer.json src/ LICENSE README.md CHANGELOG.md .gitignore
+          mv -t temp/ composer.json src/ LICENSE README.md CHANGELOG.md .gitignore
+          # Reset pwd
+          cd -
 
       - name: Deploy to repo
         uses: manzoorwanijk/action-deploy-to-repo@v3
         with:
-          src_dir: temp/${{ fromJson(needs.details.outputs.result).path }}
+          src_dir: ${{ fromJson(needs.details.outputs.result).path }}/temp
           target_repo: ${{ fromJson(needs.details.outputs.result).repo }}
           target_dir: "."
           target_branch: main
