@@ -2,6 +2,20 @@
 
 Set of tools to develop WordPress plugins and themes using React and Vite. It can be used along with `WPSocio\WPUtils\ViteWPReactAssets` from [`wpsocio/wp-utils`](https://packagist.org/packages/wpsocio/wp-utils) composer package.
 
+## Installation
+
+```sh
+npm install --save-dev @wpsocio/vite-wp-react
+```
+
+```sh
+yarn add --dev @wpsocio/vite-wp-react
+```
+
+```sh
+pnpm add -D @wpsocio/vite-wp-react
+```
+
 ## Usage
 
 ```ts
