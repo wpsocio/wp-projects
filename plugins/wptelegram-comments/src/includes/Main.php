@@ -38,7 +38,7 @@ class Main {
 	/**
 	 * Whether the dependencies have been initiated.
 	 *
-	 * @since x.y.z
+	 * @since 1.1.10
 	 * @var   bool $initiated Whether the dependencies have been initiated.
 	 */
 	private static $initiated = false;
@@ -158,7 +158,7 @@ class Main {
 	/**
 	 * Registers the initial hooks.
 	 *
-	 * @since   x.y.z
+	 * @since   1.1.10
 	 * @access   private
 	 */
 	public function init() {
@@ -174,7 +174,7 @@ class Main {
 	/**
 	 * Registers the initial hooks.
 	 *
-	 * @since    x.y.z
+	 * @since    1.1.10
 	 * @access   public
 	 */
 	public function hookup() {
@@ -185,7 +185,7 @@ class Main {
 	/**
 	 * Load the required dependencies for this plugin.
 	 *
-	 * @since    x.y.z
+	 * @since    1.1.10
 	 * @access   private
 	 */
 	private function load_dependencies() {

@@ -101,7 +101,7 @@ class AssetManager extends BaseClass {
 	/**
 	 * Enqueue the assets for the admin area.
 	 *
-	 * @since    x.y.z
+	 * @since    4.0.15
 	 * @param string $hook_suffix The current admin page.
 	 */
 	public function enqueue_admin_assets( $hook_suffix ) {

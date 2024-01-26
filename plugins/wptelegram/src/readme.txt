@@ -203,7 +203,9 @@ Automatic updates should work smoothly, but we still recommend you back up your 
 
 == Changelog ==
 
-= 4.0.14 =
-- Added support for `<blockquote>` tag
+= 4.0.15 =
+- Fixed the emojis in notifications not being sent.
+- Updated minimum required PHP version to 8.0
+- Added "Select all" option for channels in block editor
 
 [See full changelog](https://github.com/wpsocio/wptelegram/blob/main/CHANGELOG.md)

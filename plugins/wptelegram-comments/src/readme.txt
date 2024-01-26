@@ -76,7 +76,7 @@ Automatic updates should work smoothly, but we still recommend you back up your 
 
 == Changelog ==
 
-= 1.1.9 =
-- Maintenance release
+= 1.1.10 =
+- Updated minimum required PHP version to 8.0
 
 [See full changelog](https://github.com/wpsocio/wptelegram-comments/blob/main/CHANGELOG.md)

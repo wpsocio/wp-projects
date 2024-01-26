@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.1.12
+
+### Patch Changes
+
+- [#38](https://github.com/wpsocio/wp-projects/pull/38) [`4cbc859`](https://github.com/wpsocio/wp-projects/commit/4cbc8590ab03f09b47cadea573485508c39368d5) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Fixed the block CSS not loaded in site editor
+
+- [#59](https://github.com/wpsocio/wp-projects/pull/59) [`e762e5e`](https://github.com/wpsocio/wp-projects/commit/e762e5e418b927eb7569efb7e9cff126e022a5c7) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Updated minimum required PHP version to 8.0
+
 ## 2.1.11
 
 - Maintenance release

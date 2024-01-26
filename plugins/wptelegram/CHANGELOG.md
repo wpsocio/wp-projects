@@ -1,5 +1,15 @@
 # Changelog
 
+## 4.0.15
+
+### Patch Changes
+
+- [#36](https://github.com/wpsocio/wp-projects/pull/36) [`7b30e81`](https://github.com/wpsocio/wp-projects/commit/7b30e81083ce390f32f4d1066fe0bd4ff8791041) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Fixed the emojis in notifications not being sent.
+
+- [#59](https://github.com/wpsocio/wp-projects/pull/59) [`e762e5e`](https://github.com/wpsocio/wp-projects/commit/e762e5e418b927eb7569efb7e9cff126e022a5c7) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Updated minimum required PHP version to 8.0
+
+- [#44](https://github.com/wpsocio/wp-projects/pull/44) [`ca6e099`](https://github.com/wpsocio/wp-projects/commit/ca6e0999fe9892e0df8558b2e056e34950fdee9a) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Added "Select all" option for channels in block editor
+
 ## 4.0.14
 
 ### Enhancements

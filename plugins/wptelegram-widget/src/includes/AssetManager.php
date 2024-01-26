@@ -133,7 +133,7 @@ class AssetManager extends BaseClass {
 	/**
 	 * Enqueue the assets for the public area.
 	 *
-	 * @since    x.y.z
+	 * @since    2.1.12
 	 */
 	public function enqueue_public_assets() {
 
@@ -143,7 +143,7 @@ class AssetManager extends BaseClass {
 	/**
 	 * Enqueue the assets for the admin area.
 	 *
-	 * @since    x.y.z
+	 * @since    2.1.12
 	 * @param string $hook_suffix The current admin page.
 	 */
 	public function enqueue_admin_assets( $hook_suffix ) {
@@ -266,7 +266,7 @@ class AssetManager extends BaseClass {
 	/**
 	 * Enqueue assets for blocks
 	 *
-	 * @since x.y.z
+	 * @since 2.1.12
 	 */
 	public function enqueue_block_assets() {
 
