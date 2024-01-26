@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.10.8
+
+### Patch Changes
+
+- [#39](https://github.com/wpsocio/wp-projects/pull/39) [`be77063`](https://github.com/wpsocio/wp-projects/commit/be77063687060a3f3f81139952d08972eb566b0b) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Fixed the error when there is no user data to update.
+
+- [#38](https://github.com/wpsocio/wp-projects/pull/38) [`4cbc859`](https://github.com/wpsocio/wp-projects/commit/4cbc8590ab03f09b47cadea573485508c39368d5) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Fixed the block CSS not loaded in site editor
+
+- [#59](https://github.com/wpsocio/wp-projects/pull/59) [`e762e5e`](https://github.com/wpsocio/wp-projects/commit/e762e5e418b927eb7569efb7e9cff126e022a5c7) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Updated minimum required PHP version to 8.0
+
 ## 1.10.7
 
 ### Bug fixes

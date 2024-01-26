@@ -541,8 +541,11 @@ $generated_i18n_strings = array(
 	// Reference: ../../packages/js/utilities/fields.ts:42
 	__( 'Changes could not be saved.', 'wptelegram' ),
 
-	// Reference: js/p2tg-block-editor/Channels.tsx:29
+	// Reference: js/p2tg-block-editor/Channels.tsx:39
 	__( 'Send to', 'wptelegram' ),
+
+	// Reference: js/p2tg-block-editor/Channels.tsx:52
+	__( 'Select all', 'wptelegram' ),
 
 	// Reference: js/p2tg-block-editor/Files.tsx:17
 	__( 'Add or Upload Files', 'wptelegram' ),

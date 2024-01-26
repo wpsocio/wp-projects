@@ -193,7 +193,8 @@ Automatic updates should work smoothly, but we still recommend you back up your 
 
 == Changelog ==
 
-= 2.1.11 =
-- Maintenance release
+= 2.1.12 =
+- Fixed the block CSS not loaded in site editor
+- Updated minimum required PHP version to 8.0
 
 [See full changelog](https://github.com/wpsocio/wptelegram-widget/blob/main/CHANGELOG.md)

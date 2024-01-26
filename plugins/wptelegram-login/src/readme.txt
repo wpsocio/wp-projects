@@ -154,7 +154,9 @@ Automatic updates should work smoothly, but we still recommend you back up your 
 
 == Changelog ==
 
-= 1.10.7 =
-- Fixed the bug for Telegram Mini Apps which pass HTML encoded query string
+= 1.10.8 =
+- Fixed the error when there is no user data to update.
+- Fixed the block CSS not loaded in site editor
+- Updated minimum required PHP version to 8.0
 
 [See full changelog](https://github.com/wpsocio/wptelegram-login/blob/main/CHANGELOG.md)
