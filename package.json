@@ -4,8 +4,11 @@
 	"version": "1.0.0",
 	"description": "",
 	"keywords": [],
-	"author": "",
 	"license": "GPL-3.0",
+	"author": {
+		"name": "WP Socio",
+		"url": "https://github.com/wpsocio"
+	},
 	"type": "module",
 	"scripts": {
 		"build": "wireit",
