@@ -6,24 +6,13 @@ Requires at least: 6.0
 Requires PHP: 7.0
 Tested up to: 6.3.1
 Stable tag: 4.0.14
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License: GPLv3
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 Integrate your WordPress site perfectly with Telegram with full control.
 
 == Description ==
 Integrate your WordPress site perfectly with Telegram with full control.
-
-== Excellent LIVE Support on Telegram ==
-
-**Join the Chat**
-
-We have a public group on Telegram to provide help setting up the plugin, discuss issues, features, translations etc. Join [@WPTelegramChat](https://t.me/WPTelegramChat)
-For rules, see the pinned message. No spam please.
-
-**Upgrade to Pro**
-
-WP Telegram Pro comes with more powerful features to give you more control. [Upgrade NOW](https://wptelegram.pro)
 
 == Modules ==
 
@@ -75,38 +64,35 @@ WP Telegram Pro comes with more powerful features to give you more control. [Upg
 * Can be extended with custom code
 * Translation ready
 
-**Getting Started | Post to Telegram**
+= Getting Started | Post to Telegram =
 
 https://www.youtube.com/watch?v=m48V-gWz9-o
 
-**WooCommerce, CF7 etc. Notifications**
+= WooCommerce, CF7 etc. Notifications =
 
 https://www.youtube.com/watch?v=gVJCtwkorMA
 
-**Get in touch**
+== Contribution ==
 
-*	Website [wptelegram.com](https://wptelegram.com)
+Development occurs in our [Github monorepo](https://github.com/wpsocio/wp-projects), and all contributions welcome.
+
+== Excellent LIVE Support on Telegram ==
+
+= Join the Chat =
+
+We have a public group on Telegram to provide help setting up the plugin, discuss issues, features, translations etc. Join [@WPTelegramChat](https://t.me/WPTelegramChat)
+For rules, see the pinned message. No spam please.
+
+= Get in touch =
+
+*	Website [wpsocio.com](https://wpsocio.com)
 *	Telegram [@WPTelegram](https://t.me/WPTelegram)
 *	Facebook [@WPTelegram](https://fb.com/WPTelegram)
 *	Twitter [@WPTelegram](https://twitter.com/WPTelegram)
 
-**Contribution**
-Development occurs on [Github](https://github.com/wpsocio/wptelegram), and all contributions welcome.
+= Upgrade to Pro =
 
-**Translations**
-
-Many thanks to the translators for the great job!
-
-* [mohammadhero](https://profiles.wordpress.org/mohammadhero/) and [Aydin Mirzaie](http://mirzaie-aydin.com) (Persian)
-* [Mirko Genovese](http://www.mirkogenovese.it) (Italian)
-* [Mohamad Bush](https://profiles.wordpress.org/Mohamadbush) and Mohammad Taher (Arabic)
-* [robertskiba](https://profiles.wordpress.org/robertskiba/) (German)
-* [HellFive Osborn](https://t.me/HellFiveOsborn) (Portuguese Brazilian)
-* [Oxford](http://radiowolf.ru) and [Artem Rez](https://profiles.wordpress.org/zzart) (Russian)
-* [jdellund](https://profiles.wordpress.org/jdellund) (Catalan)
-* [Jack Kuo](https://profiles.wordpress.org/ggsnipe) (Chinese (Taiwan))
-
-Note: You can also contribute in translating this plugin into your local language. Join the Chat (above)
+WP Telegram Pro comes with more powerful features to give you more control. [Upgrade NOW](https://wptelegram.pro)
 
 == Frequently Asked Questions ==
 

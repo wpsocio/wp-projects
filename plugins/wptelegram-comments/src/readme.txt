@@ -6,20 +6,13 @@ Requires at least: 6.1
 Requires PHP: 7.4
 Tested up to: 6.4.2
 Stable tag: 1.1.9
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License: GPLv3
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 Add comments to posts/pages on your WordPress website by using Telegram Comments Widget.
 
 == Description ==
 Comments on WordPress posts not only fill your database tables, rather they also make it difficult to moderate efficiently. Telegram comments removes this drawback because the comments are stored on Telegram servers and every comment is from an authenticated Telegram user.
-
-== Excellent Support ==
-
-**Join the Chat**
-
-We have a public group on Telegram to provide help setting up the plugin, discuss issues, features, translations etc. Join [@WPTelegramChat](https://t.me/WPTelegramChat)
-For rules, see the pinned message. No spam please.
 
 == Why Telegram Comments? ==
 
@@ -37,6 +30,24 @@ For rules, see the pinned message. No spam please.
 * 📸 Comments support multimedia attachments
 * ⤴️ Users can reply to comments intuitively
 * ✏️ Comments can be edited or deleted anytime
+
+== Excellent Support ==
+
+= Join the Chat =
+
+We have a public group on Telegram to provide help setting up the plugin, discuss issues, features, translations etc. Join [@WPTelegramChat](https://t.me/WPTelegramChat)
+For rules, see the pinned message. No spam please.
+
+= Get in touch =
+
+*	Website [wpsocio.com](https://wpsocio.com)
+*	Telegram [@WPTelegram](https://t.me/WPTelegram)
+*	Facebook [@WPTelegram](https://fb.com/WPTelegram)
+*	Twitter [@WPTelegram](https://twitter.com/WPTelegram)
+
+== Contribution ==
+
+Development occurs in our [Github monorepo](https://github.com/wpsocio/wp-projects), and all contributions welcome.
 
 == Screenshots ==
 

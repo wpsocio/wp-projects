@@ -6,20 +6,13 @@ Requires at least: 6.0
 Requires PHP: 7.0
 Tested up to: 6.3.1
 Stable tag: 1.10.7
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License: GPLv3
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 Let the users login to your website with their Telegram and make it simple for them to get connected and let them receive their email notifications on Telegram.
 
 == Description ==
 Let the users login to your website with their Telegram and make it simple for them to get connected and let them receive their email notifications on Telegram.
-
-== Excellent Support ==
-
-**Join the Chat**
-
-We have a public group on Telegram to help set up the plugin and discuss issues, features, translations, etc. Join [@WPTelegramChat](https://t.me/WPTelegramChat)
-For rules, see the pinned message. No spam, please.
 
 == Why Telegram Login? ==
 
@@ -92,24 +85,23 @@ The plugin will:
 
 **Note**: You need to use the same bot token for both the plugin and the Web App.
 
-**Get in touch**
+== Excellent Support ==
 
-*	Website [wptelegram.com](https://wptelegram.com)
+= Join the Chat =
+
+We have a public group on Telegram to help set up the plugin and discuss issues, features, translations, etc. Join [@WPTelegramChat](https://t.me/WPTelegramChat)
+For rules, see the pinned message. No spam, please.
+
+= Get in touch =
+
+*	Website [wpsocio.com](https://wpsocio.com)
 *	Telegram [@WPTelegram](https://t.me/WPTelegram)
 *	Facebook [@WPTelegram](https://fb.com/WPTelegram)
 *	Twitter [@WPTelegram](https://twitter.com/WPTelegram)
 
-**Contribution**
+== Contribution ==
 
-Development occurs on [Github](https://github.com/wpsocio/wptelegram-login), and all contributions are welcome.
-
-**Translations**
-
-Many thanks to the translators for doing a great job!
-
-* [Artem](https://profiles.wordpress.org/zzart/) (Russian)
-
-* Note: You can also contribute to translating this plugin into your local language. Join the Chat (above)
+Development occurs in our [Github monorepo](https://github.com/wpsocio/wp-projects), and all contributions welcome.
 
 == Frequently Asked Questions ==
 
@@ -126,7 +118,6 @@ Sorry, that's not possible because Telegram allows only a single button per page
 Please follow the instructions given on the WP Telegram Login settings page.
 
 It looks like you missed one that says to send the <code>/setdomain</code> command to @BotFather.
-
 
 == Screenshots ==
 
@@ -156,6 +147,10 @@ Automatic installation is the easiest way -- WordPress will handle the file tran
 = Manual installation =
 
 Manual installation method requires downloading the plugin and uploading it to your web server via your favorite FTP application. The official WordPress documentation contains [instructions on how to do this here](https://wordpress.org/support/article/managing-plugins/#manual-plugin-installation).
+
+= Updating =
+
+Automatic updates should work smoothly, but we still recommend you back up your site.
 
 == Changelog ==
 
