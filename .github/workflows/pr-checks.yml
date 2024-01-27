@@ -4,6 +4,9 @@ on:
   pull_request:
     types: [opened, synchronize]
 
+env:
+  PREMIUM_REPO_REF: main
+
 jobs:
   php-lint-test:
     name: "PHP: Lint, Test"
@@ -14,10 +17,18 @@ jobs:
       matrix:
         php: ["7.4", "8.0", "8.1", "8.2", "8.3"]
     steps:
-      - name: Checkout
+      - name: Checkout this repo
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.ACCESS_TOKEN_IR }}
+
+      - name: Checkout premium projects repo
+        uses: actions/checkout@v4
+        with:
+          path: premium
+          token: ${{ secrets.ACCESS_TOKEN_IR }}
+          repository: ${{ secrets.PREMIUM_PROJECTS_REPO }}
+          ref: ${{ env.PREMIUM_REPO_REF }}
 
       - name: Setup Environment
         uses: ./actions/setup
@@ -27,12 +38,16 @@ jobs:
           enable-wireit-cache: true
 
       - name: Check syntax errors
-        # For plugins, we need to check production dependencies as well
-        # So, let us install them in src/temp to avoid their exclusion inside vendor
+        env:
+          # For plugins, we need to check production dependencies as well
+          # So, let us install them in src/temp to avoid their exclusion inside vendor
+          EXEC: composer config vendor-dir src/temp && composer install --no-dev
+          PNPM_FILTER: '--filter "./plugins/*" --filter "./premium/*/*"'
+          FIND_PATHS: ./plugins/*/src ./packages/php/*/src ./premium/*/*/src
+          FIND_IGNORE: '! -path "*/vendor/*" ! -path "*/node_modules/*"'
         run: |
-          pnpm -r --parallel --filter "./plugins/**" exec composer config vendor-dir src/temp
-          pnpm -r --parallel --filter "./plugins/**" exec composer install --no-dev
-          find ./plugins/*/src ./packages/php/*/src ! -path "*/vendor/*" ! -path "*/node_modules/*" -type f -name '*.php' -print0 | xargs -0 -n1 -P4 php -l -n | (! grep -v "No syntax errors detected" )
+          pnpm -r --parallel ${{ env.PNPM_FILTER }} exec "${{ env.EXEC }}"
+          find ${{ env.FIND_PATHS }} ${{ env.FIND_IGNORE }} -type f -name '*.php' -print0 | xargs -0 -n1 -P4 php -l -n | (! grep -v "No syntax errors detected" )
 
       - name: Setup PHP
         run: "pnpm run setup:php"
@@ -51,10 +66,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout this repo
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.ACCESS_TOKEN_IR }}
+
+      - name: Checkout premium projects repo
+        uses: actions/checkout@v4
+        with:
+          path: premium
+          token: ${{ secrets.ACCESS_TOKEN_IR }}
+          repository: ${{ secrets.PREMIUM_PROJECTS_REPO }}
+          ref: ${{ env.PREMIUM_REPO_REF }}
 
       - name: Setup Environment
         uses: ./actions/setup
