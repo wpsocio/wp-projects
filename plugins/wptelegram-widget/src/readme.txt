@@ -6,7 +6,7 @@ Requires at least: 6.2
 Requires PHP: 7.4
 Tested up to: 6.4.1
 Stable tag: 2.1.15
-License: GPLv3
+License: GPL-3.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 Display the Telegram Public Channel or Group Feed in a WordPress widget or anywhere you want using a simple shortcode.

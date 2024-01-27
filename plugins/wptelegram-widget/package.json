@@ -4,7 +4,7 @@
 	"version": "2.1.15",
 	"description": "Display the Telegram Public Channel or Group Feed in a WordPress widget or anywhere you want using a shortcode.",
 	"private": true,
-	"license": "GPL-3.0",
+	"license": "GPL-3.0-or-later",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/wpsocio/wp-projects",

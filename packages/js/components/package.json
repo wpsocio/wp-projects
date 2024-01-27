@@ -2,7 +2,7 @@
 	"name": "@wpsocio/components",
 	"version": "1.0.0",
 	"private": true,
-	"license": "GPL-3.0",
+	"license": "MIT",
 	"type": "module",
 	"module": "index.ts",
 	"exports": {
