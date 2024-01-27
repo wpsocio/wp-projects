@@ -195,6 +195,6 @@ Automatic updates should work smoothly, but we still recommend you back up your 
 
 = 2.1.14 =
 - Enabled support for PHP 7.4 after user feedback
-- Fixed button height for long text
+- Fixed join link button height for long text
 
 [See full changelog](https://github.com/wpsocio/wptelegram-widget/blob/main/CHANGELOG.md)
