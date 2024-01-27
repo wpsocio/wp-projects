@@ -4,7 +4,7 @@
 	"version": "1.10.10",
 	"description": "Let the users login to your website with their Telegram and make it simple for them to get connected and let them receive their email notifications on Telegram.",
 	"private": true,
-	"license": "GPL-3.0",
+	"license": "GPL-3.0-or-later",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/wpsocio/wp-projects",

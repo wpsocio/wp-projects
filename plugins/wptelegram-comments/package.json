@@ -4,7 +4,7 @@
 	"title": "WP Telegram Comments",
 	"description": "Add comments to posts/pages on your WordPress website by using Telegram Comments Widget",
 	"private": true,
-	"license": "GPL-3.0",
+	"license": "GPL-3.0-or-later",
 	"author": {
 		"name": "WP Socio",
 		"url": "https://wpsocio.com"

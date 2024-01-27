@@ -6,7 +6,7 @@ Requires at least: 6.2
 Requires PHP: 7.4
 Tested up to: 6.4.1
 Stable tag: 1.10.10
-License: GPLv3
+License: GPL-3.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 Let the users login to your website with their Telegram and make it simple for them to get connected and let them receive their email notifications on Telegram.
