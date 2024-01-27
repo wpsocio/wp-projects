@@ -110,7 +110,7 @@
 			"dependencies": [
 				"setup:php:root",
 				"setup:php:packages",
-				"setup:php:plugins"
+				"setup:php:projects"
 			]
 		},
 		"setup:php:packages": {
@@ -119,8 +119,8 @@
 		"setup:php:root": {
 			"command": "composer install --ignore-platform-reqs"
 		},
-		"setup:php:plugins": {
-			"command": "pnpm -r --filter=./plugins/* run setup:php",
+		"setup:php:projects": {
+			"command": "pnpm -r --filter=./plugins/* --filter=./premium/*/* run setup:php",
 			"dependencies": [
 				"setup:php:packages"
 			]
