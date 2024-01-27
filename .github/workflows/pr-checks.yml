@@ -59,7 +59,8 @@ jobs:
           cat premium/plugins/wptelegram-pro/src/wptelegram-pro.php
 
       - name: Lint
-        run: "pnpm run lint:php -- premium/plugins/"
+        # Add premium/plugins/ to the lint path
+        run: "composer run lint -- premium/plugins/"
 
       - name: Test
         run: "pnpm run test:php"
