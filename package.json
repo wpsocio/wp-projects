@@ -92,7 +92,7 @@
 			]
 		},
 		"prep-version": {
-			"command": "changeset version",
+			"command": "changeset version && pnpm -r run version",
 			"dependencies": [
 				"release-status"
 			]
