@@ -42,8 +42,8 @@ jobs:
           PNPM_FILTER: '--filter "./plugins/*" --filter "./premium/*/*"'
           FIND_PATHS: ./plugins/*/src ./packages/php/*/src ./premium/*/*/src
           FIND_IGNORE: '! -path "*/vendor/*" ! -path "*/node_modules/*"'
-          # For plugins, we need to check production dependencies as well
-          # So, let us install them in src/temp to avoid their exclusion inside vendor
+        # For plugins, we need to check production dependencies as well
+        # So, let us install them in src/temp to avoid their exclusion inside vendor
         run: |
           pnpm -r --parallel ${{ env.PNPM_FILTER }} exec composer config vendor-dir src/temp
           pnpm -r --parallel ${{ env.PNPM_FILTER }} exec composer install --no-dev
