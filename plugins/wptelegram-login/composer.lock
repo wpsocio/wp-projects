@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a345f15e55feac2c7b90f4d8af378d71",
+    "content-hash": "5801ddbe3af811bcb458737e4fd17173",
     "packages": [
         {
             "name": "wpsocio/wp-utils",
