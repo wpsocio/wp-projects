@@ -18,6 +18,7 @@
 		transition: border-radius 0.5s;
 		box-shadow: none !important;
 		border: 0px !important;
+		height: auto;
 		&:hover {
 			border-radius: 0em;
 			background-color: var(--wptelegram-widget-join-link-bg-color) !important;
