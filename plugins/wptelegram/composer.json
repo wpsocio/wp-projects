@@ -1,6 +1,6 @@
 {
 	"name": "wpsocio/wptelegram",
-	"version": "4.0.17",
+	"version": "4.0.18",
 	"description": "Integrate your WordPress site perfectly with Telegram with full control.",
 	"scripts": {
 		"lint": "\"vendor/bin/phpcs\" --standard=../../phpcs.xml --extensions=php src/ dev.php",

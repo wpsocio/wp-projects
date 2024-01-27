@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.2
+
+### Patch Changes
+
+- [#70](https://github.com/wpsocio/wp-projects/pull/70) [`1202e03`](https://github.com/wpsocio/wp-projects/commit/1202e03417f3012933cbb6ca5ea97d2926be69a8) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Fixed TS types for npm
+
+- [#71](https://github.com/wpsocio/wp-projects/pull/71) [`2f1d448`](https://github.com/wpsocio/wp-projects/commit/2f1d448e3f3bf9f1968088e70d1233c7ff673515) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Fixed project commands' error when changeset does not contain any affected projects
+
 ## 1.0.1
 
 ### Patch Changes
