@@ -2,11 +2,10 @@
 	"extends": "../../tsconfig.json",
 	"include": ["src"],
 	"compilerOptions": {
+		"incremental": false,
+		"composite": false,
 		"outDir": "dist",
 		"rootDir": "src",
 		"noEmit": false
-	},
-	"ts-node": {
-		"esm": true
 	}
 }

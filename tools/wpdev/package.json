@@ -17,7 +17,8 @@
 	"files": [
 		"bin",
 		"dist",
-		"src"
+		"src",
+		"/oclif.manifest.json"
 	],
 	"publishConfig": {
 		"access": "public"
@@ -26,12 +27,12 @@
 	"bin": {
 		"wpdev": "./bin/run.js"
 	},
-	"types": "dist/index.d.ts",
-	"main": "bin/run.js",
+	"main": "./dist/cjs/index.cjs",
+	"module": "./dist/index.js",
 	"exports": {
 		".": {
 			"import": "./dist/index.js",
-			"require": "./dist/index.js"
+			"require": "./dist/cjs/index.cjs"
 		}
 	},
 	"dependencies": {
@@ -61,7 +62,7 @@
 		"@types/gettext-parser": "^4.0.4",
 		"@types/semver": "^7.5.6",
 		"oclif": "^4.3.9",
-		"ts-node": "^10.9.2",
+		"tsup": "^8.0.1",
 		"typescript": "^5.3.3",
 		"wireit": "^0.14.3"
 	},
@@ -69,6 +70,7 @@
 		"bin": "wpdev",
 		"dirname": "wpdev",
 		"commands": "./dist/commands",
+		"repositoryPrefix": "<%- repo %>/blob/@wpsocio/wpdev@<%- version %>/tools/wpdev/<%- commandPath %>",
 		"topicSeparator": " "
 	},
 	"scripts": {
@@ -79,19 +81,19 @@
 	},
 	"wireit": {
 		"build": {
-			"command": "tsc --build --pretty",
+			"command": "tsup && tsc --build --pretty",
 			"clean": "if-file-deleted",
 			"files": [
 				"src/",
-				"tsconfig.json"
+				"tsconfig.json",
+				"tsup.config.ts"
 			],
 			"output": [
-				"dist/**",
-				"tsconfig.tsbuildinfo"
+				"dist/**"
 			]
 		},
 		"prepublishOnly": {
-			"command": "pnpm run build",
+			"command": "pnpm build && oclif manifest && oclif readme",
 			"dependencies": [
 				"clean"
 			]
