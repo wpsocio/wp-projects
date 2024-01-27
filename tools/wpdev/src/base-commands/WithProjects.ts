@@ -51,7 +51,8 @@ export abstract class WithProjects<
 	static strict = false;
 
 	protected assertArgs() {
-		if (!this.projects.size) {
+		// Assert that at least one project is targeted if not targeting from changeset.
+		if (!this.projects.size && !this.flags['from-changeset']) {
 			const messages = ['Could not find any project.'];
 
 			if (!this.flags.all && this.cliConfig.operationMode === 'wp-monorepo') {
