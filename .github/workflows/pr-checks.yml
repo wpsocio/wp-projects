@@ -37,11 +37,6 @@ jobs:
           php-version: ${{ matrix.php }}
           enable-wireit-cache: true
 
-      - name: Fail syntax on purpose
-        run: |
-          sed -i 's/__ )/__/g' premium/plugins/wptelegram-pro/src/wptelegram-pro.php
-          cat premium/plugins/wptelegram-pro/src/wptelegram-pro.php
-
       - name: Check syntax errors
         env:
           PNPM_FILTER: '--filter "./plugins/*" --filter "./premium/*/*"'
@@ -57,6 +52,11 @@ jobs:
 
       - name: Setup PHP
         run: "pnpm run setup:php"
+
+      - name: Fail lint on purpose
+        run: |
+          sed -i 's/__ /__/g' premium/plugins/wptelegram-pro/src/wptelegram-pro.php
+          cat premium/plugins/wptelegram-pro/src/wptelegram-pro.php
 
       - name: Lint
         run: "pnpm run lint:php"
