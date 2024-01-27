@@ -17,7 +17,8 @@
 	"files": [
 		"bin",
 		"dist",
-		"src"
+		"src",
+		"/oclif.manifest.json"
 	],
 	"publishConfig": {
 		"access": "public"
@@ -27,10 +28,10 @@
 		"wpdev": "./bin/run.js"
 	},
 	"main": "./dist/cjs/index.cjs",
-	"module": "./dist/esm/index.js",
+	"module": "./dist/index.js",
 	"exports": {
 		".": {
-			"import": "./dist/esm/index.js",
+			"import": "./dist/index.js",
 			"require": "./dist/cjs/index.cjs"
 		}
 	},
@@ -68,7 +69,8 @@
 	"oclif": {
 		"bin": "wpdev",
 		"dirname": "wpdev",
-		"commands": "./dist/esm/commands",
+		"commands": "./dist/commands",
+		"repositoryPrefix": "<%- repo %>/blob/@wpsocio/wpdev@<%- version %>/tools/wpdev/<%- commandPath %>",
 		"topicSeparator": " "
 	},
 	"scripts": {
@@ -91,7 +93,7 @@
 			]
 		},
 		"prepublishOnly": {
-			"command": "pnpm run build",
+			"command": "pnpm build && oclif manifest && oclif readme",
 			"dependencies": [
 				"clean"
 			]

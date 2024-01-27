@@ -75,7 +75,7 @@ $details = $requirements->get_env_details();
 
 ### `WPSocio\WPUtils\ViteWPReactAssets`
 
-Manage the assets for a React app built with Vite using `@wpsocio/vite-wp-react` npm package.
+Manage the assets for a React app built with Vite using [`@wpsocio/vite-wp-react`](https://www.npmjs.com/package/@wpsocio/vite-wp-react) npm package.
 
 ```php
 

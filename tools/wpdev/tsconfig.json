@@ -4,7 +4,7 @@
 	"compilerOptions": {
 		"incremental": false,
 		"composite": false,
-		"outDir": "dist/esm",
+		"outDir": "dist",
 		"rootDir": "src",
 		"noEmit": false
 	}
