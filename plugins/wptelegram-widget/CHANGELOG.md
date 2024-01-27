@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.1.15
+
+### Patch Changes
+
+- [#73](https://github.com/wpsocio/wp-projects/pull/73) [`65f4584`](https://github.com/wpsocio/wp-projects/commit/65f45843fe403ab706c94cad59ee5b6724a4e0c9) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Fixed PHP notice on plugins page requirements
+
 ## 2.1.14
 
 ### Patch Changes
