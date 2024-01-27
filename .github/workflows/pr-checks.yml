@@ -39,15 +39,16 @@ jobs:
 
       - name: Check syntax errors
         env:
-          # For plugins, we need to check production dependencies as well
-          # So, let us install them in src/temp to avoid their exclusion inside vendor
-          EXEC: composer config vendor-dir src/temp && composer install --no-dev
           PNPM_FILTER: '--filter "./plugins/*" --filter "./premium/*/*"'
           FIND_PATHS: ./plugins/*/src ./packages/php/*/src ./premium/*/*/src
           FIND_IGNORE: '! -path "*/vendor/*" ! -path "*/node_modules/*"'
-        run: |
-          pnpm -r --parallel ${{ env.PNPM_FILTER }} exec "${{ env.EXEC }}"
-          find ${{ env.FIND_PATHS }} ${{ env.FIND_IGNORE }} -type f -name '*.php' -print0 | xargs -0 -n1 -P4 php -l -n | (! grep -v "No syntax errors detected" )
+          # For plugins, we need to check production dependencies as well
+          # So, let us install them in src/temp to avoid their exclusion inside vendor
+          run: |
+            pnpm -r --parallel ${{ env.PNPM_FILTER }} exec composer config vendor-dir src/temp
+            pnpm -r --parallel ${{ env.PNPM_FILTER }} exec composer install --no-dev
+
+            find ${{ env.FIND_PATHS }} ${{ env.FIND_IGNORE }} -type f -name '*.php' -print0 | xargs -0 -n1 -P4 php -l -n | (! grep -v "No syntax errors detected" )
 
       - name: Setup PHP
         run: "pnpm run setup:php"
