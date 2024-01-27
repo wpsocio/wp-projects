@@ -53,11 +53,6 @@ jobs:
       - name: Setup PHP
         run: "pnpm run setup:php"
 
-      - name: Fail lint on purpose
-        run: |
-          sed -i 's/__ /__/g' premium/plugins/wptelegram-pro/src/wptelegram-pro.php
-          cat premium/plugins/wptelegram-pro/src/wptelegram-pro.php
-
       - name: Lint
         # Add premium/plugins/ to the lint path
         run: "composer run lint -- premium/plugins/"
