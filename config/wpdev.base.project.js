@@ -18,7 +18,7 @@ export const getBundleConfig = ({ slug, key, version, textDomain }) => {
 				type: 'update-requirements',
 				data: {
 					requirements: {
-						requiresPHP: '8.0',
+						requiresPHP: '7.4',
 						requiresAtLeast: '6.2',
 						testedUpTo: '6.4.1',
 					},
