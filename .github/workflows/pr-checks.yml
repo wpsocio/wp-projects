@@ -44,11 +44,11 @@ jobs:
           FIND_IGNORE: '! -path "*/vendor/*" ! -path "*/node_modules/*"'
           # For plugins, we need to check production dependencies as well
           # So, let us install them in src/temp to avoid their exclusion inside vendor
-          run: |
-            pnpm -r --parallel ${{ env.PNPM_FILTER }} exec composer config vendor-dir src/temp
-            pnpm -r --parallel ${{ env.PNPM_FILTER }} exec composer install --no-dev
+        run: |
+          pnpm -r --parallel ${{ env.PNPM_FILTER }} exec composer config vendor-dir src/temp
+          pnpm -r --parallel ${{ env.PNPM_FILTER }} exec composer install --no-dev
 
-            find ${{ env.FIND_PATHS }} ${{ env.FIND_IGNORE }} -type f -name '*.php' -print0 | xargs -0 -n1 -P4 php -l -n | (! grep -v "No syntax errors detected" )
+          find ${{ env.FIND_PATHS }} ${{ env.FIND_IGNORE }} -type f -name '*.php' -print0 | xargs -0 -n1 -P4 php -l -n | (! grep -v "No syntax errors detected" )
 
       - name: Setup PHP
         run: "pnpm run setup:php"
