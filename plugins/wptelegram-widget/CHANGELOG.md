@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.1.14
+
+### Patch Changes
+
+- [#67](https://github.com/wpsocio/wp-projects/pull/67) [`b8f1656`](https://github.com/wpsocio/wp-projects/commit/b8f16563634166ece8f62c2dc1eb77c4af1e4cdf) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Enabled support for PHP 7.4 after user feedback
+
+- [#69](https://github.com/wpsocio/wp-projects/pull/69) [`4db7700`](https://github.com/wpsocio/wp-projects/commit/4db770047684445ac1629d391a2fd6a92e2e53e2) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Fixed join link button height for long text
+
 ## 2.1.13
 
 ### Patch Changes

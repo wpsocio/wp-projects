@@ -3,9 +3,9 @@ Contributors: wpsocio, irshadahmad21
 Donate link: https://wpsocio.com/donate
 Tags: telegram, feed, widget, channel, group
 Requires at least: 6.2
-Requires PHP: 8.0
+Requires PHP: 7.4
 Tested up to: 6.4.1
-Stable tag: 2.1.13
+Stable tag: 2.1.14
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -193,7 +193,8 @@ Automatic updates should work smoothly, but we still recommend you back up your 
 
 == Changelog ==
 
-= 2.1.13 =
-- Fixed requirements in readme.txt
+= 2.1.14 =
+- Enabled support for PHP 7.4 after user feedback
+- Fixed join link button height for long text
 
 [See full changelog](https://github.com/wpsocio/wptelegram-widget/blob/main/CHANGELOG.md)
