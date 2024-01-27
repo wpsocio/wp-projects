@@ -7,7 +7,7 @@
 	"module": "index.ts",
 	"dependencies": {
 		"@chakra-ui/toast": "^7.0.2",
-		"@wordpress/api-fetch": "6.46.0",
+		"@wordpress/api-fetch": "6.47.0",
 		"@wpsocio/i18n": "workspace:*",
 		"@wpsocio/utilities": "workspace:*",
 		"ramda": "^0.29.1",
@@ -19,7 +19,7 @@
 	},
 	"devDependencies": {
 		"@types/jquery": "^3.5.29",
-		"@types/node": "^20.11.5",
+		"@types/node": "^20.11.7",
 		"@types/ramda": "^0.29.10",
 		"@types/react": "^18.2.48"
 	}

@@ -17,7 +17,7 @@
 		"@chakra-ui/react": "^2.8.2",
 		"@emotion/react": "^11.11.3",
 		"@emotion/styled": "^11.11.0",
-		"framer-motion": "^11.0.2",
+		"framer-motion": "^11.0.3",
 		"react-colorful": "^5.6.1",
 		"react-select": "^5.8.0",
 		"use-debounce": "^10.0.0"
