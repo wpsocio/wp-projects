@@ -55,10 +55,10 @@ export const validationSchema = yup.object({
 				excludeEmptyString: true,
 			})
 			// make bot token required when username is added
-			.when('username', (username, schema) => {
-				return username
-					? schema.required(() => getErrorMessage('bot_token', 'required'))
-					: schema;
+			.when('username', {
+				is: (username: string) => Boolean(username),
+				then: (schema) =>
+					schema.required(() => getErrorMessage('bot_token', 'required')),
 			}),
 		author_photo: yup
 			.mixed<'auto' | 'always_show' | 'always_hide'>()
