@@ -57,25 +57,25 @@ export const validationSchema = yup.object({
 						}),
 				}),
 			)
-			.when('active', (active, schema) => {
-				return !active
-					? schema
-					: schema
-							.required(
-								sprintf(
-									/* translators: %s: field label */
-									__('At least one %s is required.'),
-									__('channel'),
-								),
-							)
-							.min(
-								1,
-								sprintf(
-									/* translators: %s: field label */
-									__('At least one %s is required.'),
-									__('channel'),
-								),
-							);
+			.when('active', {
+				is: true,
+				then: (schema) =>
+					schema
+						.required(
+							sprintf(
+								/* translators: %s: field label */
+								__('At least one %s is required.'),
+								__('channel'),
+							),
+						)
+						.min(
+							1,
+							sprintf(
+								/* translators: %s: field label */
+								__('At least one %s is required.'),
+								__('channel'),
+							),
+						),
 			}),
 		send_when: yup
 			.array()
