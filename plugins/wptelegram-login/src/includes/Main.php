@@ -181,7 +181,7 @@ class Main {
 	/**
 	 * Whether an upgrade is going on.
 	 *
-	 * @since x.y.z
+	 * @since 1.10.11
 	 *
 	 * @return bool
 	 */

@@ -172,7 +172,7 @@ final class Main {
 	/**
 	 * Whether an upgrade is going on.
 	 *
-	 * @since x.y.z
+	 * @since 4.0.19
 	 *
 	 * @return bool
 	 */
