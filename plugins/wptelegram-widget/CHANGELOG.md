@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.1.17
+
+### Patch Changes
+
+- [#81](https://github.com/wpsocio/wp-projects/pull/81) [`2cb4c4c`](https://github.com/wpsocio/wp-projects/commit/2cb4c4ca5cb0acde6592eb5e80e56734736a461d) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Fix "Bot Token required." error
+
 ## 2.1.16
 
 ### Patch Changes
