@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.1
+
+### Patch Changes
+
+- [#74](https://github.com/wpsocio/wp-projects/pull/74) [`551c6f9`](https://github.com/wpsocio/wp-projects/commit/551c6f955ff213fd5330746afdbd826e582cffa6) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Added MIT license
+
 ## 1.0.0
 
 ### Major Changes
