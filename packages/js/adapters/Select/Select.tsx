@@ -23,9 +23,6 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
 								key={`${label}${index}`}
 								{...optionProps}
 							>
-								{optionGroups.map((grp) => (
-									<>{grp}</>
-								))}
 								{optionGroups.map(
 									({ label: optLabel, value, ...optProps }, i) => (
 										<option {...optProps} value={value} key={`${value}${i}`}>
