@@ -669,7 +669,7 @@ msgid "Display the Telegram Public Channel or Group Feed in a WordPress widget o
 msgstr ""
 
 #. Plugin Name of the plugin
-#: includes/Main.php:406
+#: includes/Main.php:420
 msgid "WP Telegram Widget"
 msgstr ""
 
@@ -683,4 +683,12 @@ msgstr ""
 
 #. Author URI of the plugin
 msgid "https://wpsocio.com"
+msgstr ""
+
+#: admin/Admin.php:104
+msgid "Plugin data has been upgraded."
+msgstr ""
+
+#: admin/Admin.php:105
+msgid "Please reload the page."
 msgstr ""
