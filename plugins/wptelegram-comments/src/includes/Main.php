@@ -269,7 +269,7 @@ class Main {
 	 * @access   private
 	 */
 	private function set_asset_manager() {
-		$this->asset_manager = new AssetManager( $this );
+		$this->asset_manager = AssetManager::instance();
 	}
 
 	/**
@@ -297,7 +297,7 @@ class Main {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Admin( $this );
+		$plugin_admin = Admin::instance();
 
 		add_action( 'admin_menu', [ $plugin_admin, 'add_plugin_admin_menu' ] );
 		add_action( 'admin_menu', [ Utils::class, 'update_menu_structure' ], 5 );
@@ -314,7 +314,7 @@ class Main {
 	 */
 	private function define_shared_hooks() {
 
-		$shared = new Shared( $this );
+		$shared = Shared::instance();
 
 		add_filter( 'comments_template', [ $shared, 'set_comments_template' ], PHP_INT_MAX - 100 );
 

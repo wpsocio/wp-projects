@@ -169,7 +169,7 @@ class Main {
 		}
 		self::$initiated = true;
 
-		$plugin_upgrade = new Upgrade( $this );
+		$plugin_upgrade = Upgrade::instance();
 
 		// First lets do the upgrades, if needed.
 		add_action( 'plugins_loaded', [ $plugin_upgrade, 'do_upgrade' ], 10 );
@@ -179,14 +179,31 @@ class Main {
 	}
 
 	/**
+	 * Whether an upgrade is going on.
+	 *
+	 * @since x.y.z
+	 *
+	 * @return bool
+	 */
+	public function doing_upgrade() {
+		return defined( 'WPTELEGRAM_WIDGET_DOING_UPGRADE' ) && WPTELEGRAM_WIDGET_DOING_UPGRADE;
+	}
+
+	/**
 	 * Registers the initial hooks.
 	 *
 	 * @since    2.1.0
 	 * @access   public
 	 */
 	public function hookup() {
-		// If an upgrade is going on.
-		if ( defined( 'WPTELEGRAM_WIDGET_DOING_UPGRADE' ) && WPTELEGRAM_WIDGET_DOING_UPGRADE ) {
+
+		$plugin_admin = Admin::instance();
+
+		// Ensure that the menu is always there.
+		add_action( 'admin_menu', [ $plugin_admin, 'add_plugin_admin_menu' ] );
+		add_action( 'admin_menu', [ Utils::class, 'update_menu_structure' ], 5 );
+
+		if ( $this->doing_upgrade() ) {
 			return;
 		}
 		$this->define_admin_hooks();
@@ -269,7 +286,7 @@ class Main {
 	 * @access   private
 	 */
 	private function set_asset_manager() {
-		$this->asset_manager = new AssetManager( $this );
+		$this->asset_manager = AssetManager::instance();
 	}
 
 	/**
@@ -313,10 +330,7 @@ class Main {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Admin( $this );
-
-		add_action( 'admin_menu', [ $plugin_admin, 'add_plugin_admin_menu' ] );
-		add_action( 'admin_menu', [ Utils::class, 'update_menu_structure' ], 5 );
+		$plugin_admin = Admin::instance();
 
 		add_action( 'rest_api_init', [ $plugin_admin, 'register_rest_routes' ] );
 
@@ -348,7 +362,7 @@ class Main {
 	 */
 	private function define_shared_hooks() {
 
-		$shared = new Shared( $this );
+		$shared = Shared::instance();
 
 		add_action( 'init', [ $shared, 'add_rewrite_rules' ] );
 
