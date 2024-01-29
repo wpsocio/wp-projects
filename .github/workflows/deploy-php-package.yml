@@ -20,8 +20,6 @@ jobs:
 
       - name: Setup Environment
         uses: ./actions/setup
-        with:
-          lockfile: pnpm-hashed.lock
 
       - name: Prepare
         run: |

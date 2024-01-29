@@ -21,7 +21,6 @@ jobs:
       - name: Setup Environment
         uses: ./actions/setup
         with:
-          lockfile: pnpm-hashed.lock
           enable-wireit-cache: true
 
       - name: Create Release Pull Request or Publish
