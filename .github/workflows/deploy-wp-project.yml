@@ -21,7 +21,6 @@ jobs:
       - name: Setup Environment
         uses: ./actions/setup
         with:
-          lockfile: pnpm-hashed.lock
           enable-wireit-cache: true
 
       - name: Prepare bundle
@@ -75,7 +74,6 @@ jobs:
       - name: Setup Environment
         uses: ./actions/setup
         with:
-          lockfile: pnpm-hashed.lock
           enable-wireit-cache: true
 
       - name: List projects
