@@ -181,9 +181,11 @@ class NotifySender extends BaseClass {
 			$this->responses = [
 				[
 					'sendMessage' => [
-						'text'                     => Utils::prepare_content( $text, $options ),
-						'parse_mode'               => $options['format_to'],
-						'disable_web_page_preview' => true,
+						'text'                 => Utils::prepare_content( $text, $options ),
+						'parse_mode'           => $options['format_to'],
+						'link_preview_options' => [
+							'is_disabled' => true,
+						],
 					],
 				],
 			];
