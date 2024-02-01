@@ -678,7 +678,7 @@ class Upgrade extends BaseClass {
 	protected function upgrade_to_4_1_0() {
 		$p2tg_settings = WPTG()->options()->get( 'p2tg' );
 
-		$p2tg_settings['link_preview_disabled'] = empty( $p2tg_settings['disable_web_page_preview'] );
+		$p2tg_settings['link_preview_disabled'] = isset( $p2tg_settings['disable_web_page_preview'] ) && boolval( $p2tg_settings['disable_web_page_preview'] );
 
 		unset( $p2tg_settings['disable_web_page_preview'] );
 
