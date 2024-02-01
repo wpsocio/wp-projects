@@ -60,6 +60,17 @@ export const getBundleConfig = ({ slug, key, version, textDomain }) => {
 							},
 						],
 					},
+					{
+						// Replace 'x.y.z' everywhere with the new version
+						type: 'general',
+						files: ['**/*.php'],
+						textPatterns: [
+							{
+								pattern: `'(x.y.z)'`,
+								flags: 'gi',
+							},
+						],
+					},
 				],
 			},
 			{
