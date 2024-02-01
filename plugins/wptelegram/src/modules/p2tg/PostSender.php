@@ -1105,7 +1105,7 @@ class PostSender extends BaseClass {
 
 		$parse_mode = MainUtils::valid_parse_mode( $this->options->get( 'parse_mode' ) );
 
-		$link_preview_options = $this->get_link_preview_options();
+		$link_preview_options = wp_json_encode( $this->get_link_preview_options() );
 
 		$disable_notification = $this->options->get( 'disable_notification' );
 		$protect_content      = $this->options->get( 'protect_content' );
@@ -1121,18 +1121,13 @@ class PostSender extends BaseClass {
 
 		$caption_options = array_merge( $text_options, [ 'limit' => MainUtils::get_max_text_length( 'caption' ) ] );
 
-		// Do not fail if the replied-to message is not found.
-		$reply_parameters = [ 'allow_sending_without_reply' => true ];
-
 		$method_params = [
 			'sendPhoto'   => compact(
-				'reply_parameters',
 				'disable_notification',
 				'parse_mode',
 				'protect_content'
 			),
 			'sendMessage' => compact(
-				'reply_parameters',
 				'disable_notification',
 				'link_preview_options',
 				'parse_mode',
@@ -1474,7 +1469,14 @@ class PostSender extends BaseClass {
 
 					$result = $res->get_result();
 
-					$params['reply_parameters']['message_id'] = ! empty( $result['message_id'] ) ? $result['message_id'] : null;
+					if ( ! empty( $result['message_id'] ) ) {
+						$params['reply_parameters'] = wp_json_encode(
+							[
+								'allow_sending_without_reply' => true,
+								'message_id' => $result['message_id'],
+							]
+						);
+					}
 				}
 
 				/**
