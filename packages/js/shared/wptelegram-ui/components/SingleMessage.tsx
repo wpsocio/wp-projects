@@ -1,6 +1,6 @@
-import { __, sprintf, isRTL } from '@wpsocio/i18n';
-import { Text, List, ListItem } from '@wpsocio/adapters';
+import { List, ListItem, Text } from '@wpsocio/adapters';
 import { FormField, useWatch } from '@wpsocio/form';
+import { __, isRTL, sprintf } from '@wpsocio/i18n';
 import { createInterpolateElement, prefixName } from '@wpsocio/utilities';
 
 import { getFieldLabel } from '../services';
@@ -82,7 +82,7 @@ export const SingleMessage: React.FC<SingleMessageProps> = ({
 										),
 										{
 											DisablePreview: (
-												<b>{getFieldLabel('disable_web_page_preview')}</b>
+												<b>{getFieldLabel('link_preview_disabled')}</b>
 											),
 										},
 									)}
