@@ -1070,6 +1070,8 @@ class PostSender extends BaseClass {
 
 		if ( ! $link_preview_options['is_disabled'] ) {
 
+			unset( $link_preview_options['is_disabled'] );
+
 			$link_preview_url = $this->options->get( 'link_preview_url' );
 
 			if ( $link_preview_url ) {
@@ -1120,17 +1122,17 @@ class PostSender extends BaseClass {
 		$caption_options = array_merge( $text_options, [ 'limit' => MainUtils::get_max_text_length( 'caption' ) ] );
 
 		// Do not fail if the replied-to message is not found.
-		$allow_sending_without_reply = true;
+		$reply_parameters = [ 'allow_sending_without_reply' => true ];
 
 		$method_params = [
 			'sendPhoto'   => compact(
-				'allow_sending_without_reply',
+				'reply_parameters',
 				'disable_notification',
 				'parse_mode',
 				'protect_content'
 			),
 			'sendMessage' => compact(
-				'allow_sending_without_reply',
+				'reply_parameters',
 				'disable_notification',
 				'link_preview_options',
 				'parse_mode',
@@ -1470,8 +1472,9 @@ class PostSender extends BaseClass {
 
 				if ( $message_as_reply && $this->bot_api->is_success( $res ) ) {
 
-					$result                        = $res->get_result();
-					$params['reply_to_message_id'] = $result ? $result['message_id'] : null;
+					$result = $res->get_result();
+
+					$params['reply_parameters']['message_id'] = ! empty( $result['message_id'] ) ? $result['message_id'] : null;
 				}
 
 				/**
