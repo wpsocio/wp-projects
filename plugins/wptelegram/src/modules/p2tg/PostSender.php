@@ -1468,7 +1468,7 @@ class PostSender extends BaseClass {
 				if ( $message_as_reply && $this->bot_api->is_success( $res ) ) {
 
 					$result = $res->get_result();
-
+					// send next message in reply to the previous one.
 					if ( ! empty( $result['message_id'] ) ) {
 						$params['reply_parameters'] = wp_json_encode(
 							[
