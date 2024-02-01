@@ -1,6 +1,6 @@
-import { __, sprintf, isRTL } from '@wpsocio/i18n';
-import { Text, List, ListItem } from '@wpsocio/adapters';
+import { List, ListItem, Text } from '@wpsocio/adapters';
 import { FormField, useWatch } from '@wpsocio/form';
+import { __, isRTL, sprintf } from '@wpsocio/i18n';
 import { createInterpolateElement, prefixName } from '@wpsocio/utilities';
 
 import { getFieldLabel } from '../services';
@@ -14,10 +14,10 @@ export const SingleMessage: React.FC<SingleMessageProps> = ({
 	isDisabled,
 	prefix,
 }) => {
-	const [disable_preview, image_position, parse_mode, single_message] =
+	const [link_preview_disabled, image_position, parse_mode, single_message] =
 		useWatch({
 			name: [
-				prefixName('disable_web_page_preview', prefix),
+				prefixName('link_preview_disabled', prefix),
 				prefixName('image_position', prefix),
 				prefixName('parse_mode', prefix),
 				prefixName('single_message', prefix),
@@ -27,7 +27,7 @@ export const SingleMessage: React.FC<SingleMessageProps> = ({
 	const showWarning =
 		single_message &&
 		image_position === 'after' &&
-		(parse_mode === 'none' || disable_preview);
+		(parse_mode === 'none' || link_preview_disabled);
 
 	return (
 		<FormField
@@ -72,7 +72,7 @@ export const SingleMessage: React.FC<SingleMessageProps> = ({
 									)}
 								</ListItem>
 							)}
-							{disable_preview && (
+							{link_preview_disabled && (
 								<ListItem color="red.500">
 									{createInterpolateElement(
 										sprintf(
@@ -82,7 +82,7 @@ export const SingleMessage: React.FC<SingleMessageProps> = ({
 										),
 										{
 											DisablePreview: (
-												<b>{getFieldLabel('disable_web_page_preview')}</b>
+												<b>{getFieldLabel('link_preview_disabled')}</b>
 											),
 										},
 									)}

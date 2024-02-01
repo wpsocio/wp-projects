@@ -59,7 +59,9 @@ export interface PostToTelegramFields extends CommonFields {
 	channels?: ChatIds;
 	delay?: number;
 	disable_notification?: boolean;
-	disable_web_page_preview?: boolean;
+	link_preview_disabled?: boolean;
+	link_preview_url?: string;
+	link_preview_above_text?: boolean;
 	excerpt_length?: number;
 	excerpt_preserve_eol?: boolean;
 	excerpt_source?: 'post_content' | 'before_more' | 'post_excerpt';

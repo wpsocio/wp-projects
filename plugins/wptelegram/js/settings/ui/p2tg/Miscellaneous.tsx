@@ -6,7 +6,6 @@ import {
 	DelayInPosting,
 	DisableNotification,
 	P2TGSwitchAndPluginPosts,
-	ProtectContent,
 } from '@wpsocio/shared-wptelegram-ui';
 
 import { useData } from '../../services';
@@ -27,7 +26,6 @@ export const Miscellaneous: React.FC = () => {
 			<Upsell location="delay" />
 			<Divider />
 			<DisableNotification prefix={PREFIX} />
-			<ProtectContent prefix={PREFIX} />
 		</SectionCard>
 	);
 };

@@ -20,7 +20,7 @@ export const getBundleConfig = ({ slug, key, version, textDomain }) => {
 					requirements: {
 						requiresPHP: '7.4',
 						requiresAtLeast: '6.2',
-						testedUpTo: '6.4.1',
+						testedUpTo: '6.4.3',
 					},
 					target: {
 						files: [
@@ -56,6 +56,17 @@ export const getBundleConfig = ({ slug, key, version, textDomain }) => {
 						textPatterns: [
 							{
 								pattern: `${key}_VER',\\s*'([0-9a-z-+.]+)`,
+								flags: 'gi',
+							},
+						],
+					},
+					{
+						// Replace 'x.y.z' everywhere with the new version
+						type: 'general',
+						files: ['**/*.php'],
+						textPatterns: [
+							{
+								pattern: `'(x.y.z)'`,
 								flags: 'gi',
 							},
 						],
