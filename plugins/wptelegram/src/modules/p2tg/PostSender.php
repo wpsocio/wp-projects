@@ -1106,7 +1106,6 @@ class PostSender extends BaseClass {
 		$parse_mode = MainUtils::valid_parse_mode( $this->options->get( 'parse_mode' ) );
 
 		$link_preview_options = wp_json_encode( $this->get_link_preview_options() );
-
 		$disable_notification = $this->options->get( 'disable_notification' );
 		$protect_content      = $this->options->get( 'protect_content' );
 
