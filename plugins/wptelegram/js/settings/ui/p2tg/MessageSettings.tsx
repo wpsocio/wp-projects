@@ -5,6 +5,7 @@ import { __ } from '@wpsocio/i18n';
 import {
 	ExcerptSettings,
 	ImageSettings,
+	LinkPreviewOptions,
 	MessageTemplate,
 	MiscMessageSettings,
 	TemplateInfo,
@@ -31,6 +32,8 @@ export const MessageSettings: React.FC = () => {
 			<ImageSettings prefix={PREFIX} />
 			<Divider />
 			<MiscMessageSettings prefix={PREFIX} />
+			<Divider />
+			<LinkPreviewOptions prefix={PREFIX} />
 		</SectionCard>
 	);
 };

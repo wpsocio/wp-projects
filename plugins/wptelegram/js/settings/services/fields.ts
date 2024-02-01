@@ -127,7 +127,9 @@ export const validationSchema = yup.object({
 		single_message: yup.boolean(),
 		cats_as_tags: yup.boolean(),
 		parse_mode: parseModeSchema,
-		disable_web_page_preview: yup.boolean(),
+		link_preview_disabled: yup.boolean(),
+		link_preview_url: yup.string(),
+		link_preview_above_text: yup.boolean(),
 		inline_button_text: yup.string(),
 		inline_button_url: yup.string(),
 		delay: yup
