@@ -70,6 +70,7 @@ export const RenderField: TRenderField = forwardRef<
 			isDisabled={rest.isDisabled}
 			isInvalid={Boolean(error)}
 			isRequired={isRequired}
+			opacity={props.isDisabled ? 0.5 : undefined}
 		>
 			{label ? (
 				<FormLabel
