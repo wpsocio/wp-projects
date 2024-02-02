@@ -26,7 +26,7 @@ Display the Telegram Public Channel or Group Feed in a WordPress widget or anywh
 *	Automatically removes deleted messages
 *	Can be displayed using a shortcode
 *	Available as a Gutengerg block
-*	Allows embeding of Telegram public channel messages
+*	Allows embedding of Telegram public channel messages
 *	Can be extended with custom code
 
 ## Widget Info

@@ -202,7 +202,7 @@ class Shared extends BaseClass {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param array $schedules The WP Cron shedules.
+	 * @param array $schedules The WP Cron schedules.
 	 */
 	public function custom_cron_schedules( $schedules ) {
 		$schedules['wptelegram_five_minutely'] = [
