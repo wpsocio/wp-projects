@@ -131,7 +131,7 @@ export const P2TGInstructions: React.FC<P2TGInstructionsProps> = ({
 					&nbsp;
 					<Text as="span">
 						{__(
-							'You can add an internal note to the chat ID to make it easier for you to indentify it.',
+							'You can add an internal note to the chat ID to make it easier for you to identify it.',
 						)}
 					</Text>
 					&nbsp;
