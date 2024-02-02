@@ -175,9 +175,9 @@ Yes, all you need to do is to setup **Private Notifications** module and use the
 7. Private Notifications Settings (Cont...)
 8. Proxy Settings
 9. Proxy Settings (Cont...)
-10. Advanced Settings
-11. Post Edit Page (Classic Editor)
-12. Post Edit Page (Block Editor)
+10. Proxy Settings (Cont...)
+11. Advanced Settings
+12. Post Edit Page (Classic Editor)
 13. Post Edit Page (Block Editor)
 
 == Installation ==
