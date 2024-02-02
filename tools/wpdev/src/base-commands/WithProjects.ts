@@ -35,7 +35,7 @@ export abstract class WithProjects<
 		}),
 		'changeset-json': Flags.file({
 			description:
-				'Path to the changeset status JSON file. Pass the {filePath} given to `changset status --output={filePath}`',
+				'Path to the changeset status JSON file. Pass the {filePath} given to `changeset status --output={filePath}`',
 			default: '',
 		}),
 	};
