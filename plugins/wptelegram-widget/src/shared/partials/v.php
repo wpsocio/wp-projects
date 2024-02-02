@@ -1,6 +1,6 @@
 <?php
 /**
- * The template to interept request to /v by Telegram scrip.
+ * The template to intercept request to /v by Telegram script.
  *
  * @link       https://wpsocio.com
  * @since      1.9.3

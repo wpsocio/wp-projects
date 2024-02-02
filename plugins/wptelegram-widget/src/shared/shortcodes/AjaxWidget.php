@@ -94,7 +94,7 @@ class AjaxWidget {
 	}
 
 	/**
-	 * Get the embedd URL for widget view.
+	 * Get the embed URL for widget view.
 	 *
 	 * @since 2.0.0
 	 *

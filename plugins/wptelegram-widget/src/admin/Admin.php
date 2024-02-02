@@ -362,7 +362,7 @@ class Admin extends BaseClass {
 	 *
 	 * @since  1.0.0
 	 *
-	 * @param array  $new_messages The mesage IDs.
+	 * @param array  $new_messages The message IDs.
 	 * @param string $username     The username to save the messages for.
 	 * @return void
 	 */
