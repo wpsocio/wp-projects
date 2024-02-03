@@ -80,6 +80,7 @@
 		"build": "wireit",
 		"clean": "rimraf dist/ tsconfig.tsbuildinfo .wireit",
 		"prepublishOnly": "wireit",
+		"typecheck": "tsc --noEmit",
 		"watch": "tsc --watch"
 	},
 	"wireit": {

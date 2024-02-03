@@ -329,12 +329,6 @@ importers:
 
   packages/php/wptelegram-bot-api: {}
 
-  plugins/test-plugin:
-    devDependencies:
-      '@wpsocio/vite-wp-react':
-        specifier: workspace:*
-        version: link:../../tools/vite-wp-react
-
   plugins/wptelegram:
     dependencies:
       ramda:

@@ -78,6 +78,7 @@
 		"build": "wireit",
 		"clean": "rimraf dist/ tsconfig.tsbuildinfo .wireit",
 		"prepublishOnly": "wireit",
+		"typecheck": "tsc --noEmit",
 		"version": "oclif readme",
 		"watch": "tsc --watch"
 	},
