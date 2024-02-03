@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.4
+
+### Patch Changes
+
+- [#90](https://github.com/wpsocio/wp-projects/pull/90) [`d7689b5`](https://github.com/wpsocio/wp-projects/commit/d7689b56e9b1b95f437b0b45066bb91a3c4f0f7e) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Fixed typos in command description
+
+- [#91](https://github.com/wpsocio/wp-projects/pull/91) [`3fde52a`](https://github.com/wpsocio/wp-projects/commit/3fde52a8492bf2f1970ebcb1ff5da3509220ad19) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Updated docs
+
 ## 1.0.3
 
 ### Patch Changes

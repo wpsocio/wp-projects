@@ -53,14 +53,14 @@ msgid "Please contact your hosting provider to ensure the above requirements are
 msgstr "Bitte wende dich an deinen Hosting-Provider, um sicherzustellen, dass die oben genannten Anforderungen erfüllt sind."
 
 #: js/settings/ui/p2tg/MessageKeyboard.tsx:41
-#: includes/restApi/SettingsController.php:134
+#: includes/restApi/SettingsController.php:136
 #: languages/wptelegram-js-translations.php:671
 msgid "View Post"
 msgstr "Beitrag anzeigen"
 
 #. %s: field label
 #. translators: %s: field label
-#: js/settings/services/fields.ts:139
+#: js/settings/services/fields.ts:141
 #: languages/wptelegram-js-translations.php:572
 msgid "%s must be a number."
 msgstr "%s muss eine Zahl sein."
@@ -85,14 +85,14 @@ msgstr "Inline-Button hinzufügen"
 msgid "Other settings"
 msgstr "Weitere Einstellungen"
 
-#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:37
+#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:39
 #: js/settings/services/fields.ts:23
 #: languages/wptelegram-js-translations.php:500
 msgid "Post type"
 msgstr "Inhaltstyp"
 
 #: ../../packages/js/shared/wptelegram-ui/components/proxy/Proxy.tsx:48
-#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:40
+#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:42
 #: js/settings/services/fields.ts:24
 #: languages/wptelegram-js-translations.php:376
 msgid "Proxy Method"
@@ -295,12 +295,12 @@ msgstr "Du kannst ein beliebiges benutzerdefiniertes Feld wie %s angeben."
 msgid "Source of the button URL."
 msgstr "Quelle der Schaltflächen-URL."
 
-#: js/settings/ui/p2tg/MessageSettings.tsx:21
+#: js/settings/ui/p2tg/MessageSettings.tsx:22
 #: languages/wptelegram-js-translations.php:681
 msgid "Message Settings"
 msgstr "Nachrichten Einstellungen"
 
-#: js/settings/ui/p2tg/Miscellaneous.tsx:20
+#: js/settings/ui/p2tg/Miscellaneous.tsx:19
 #: languages/wptelegram-js-translations.php:684
 msgid "Miscellaneous"
 msgstr "Sonstige Einstellungen"
@@ -436,7 +436,7 @@ msgstr "Dateien, nach der Nachricht versendet werden sollen."
 msgid "Files"
 msgstr "Dateien"
 
-#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:45
+#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:47
 #: js/p2tg-block-editor/OverrideSettings.tsx:116
 #: languages/wptelegram-js-translations.php:522
 #: modules/p2tg/Admin.php:481
@@ -450,7 +450,7 @@ msgstr "Beitragsbild"
 msgid "Send Featured Image (if exists)."
 msgstr "Beitragsbild senden (falls vorhanden)."
 
-#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:33
+#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:35
 #: js/p2tg-block-editor/OverrideSettings.tsx:124
 #: languages/wptelegram-js-translations.php:487
 #: modules/p2tg/Admin.php:493
@@ -581,12 +581,12 @@ msgstr "Button löschen"
 msgid "Structure of the message to be sent."
 msgstr "Struktur der Nachricht, die gesendet werden soll."
 
-#: ../../packages/js/shared/wptelegram-ui/components/MiscMessageSettings.tsx:18
+#: ../../packages/js/shared/wptelegram-ui/components/MiscMessageSettings.tsx:19
 #: languages/wptelegram-js-translations.php:180
 msgid "Send categories as hashtags."
 msgstr "Kategorien als Hashtags senden."
 
-#: ../../packages/js/shared/wptelegram-ui/components/MiscMessageSettings.tsx:30
+#: ../../packages/js/shared/wptelegram-ui/components/LinkPreviewOptions.tsx:21
 #: languages/wptelegram-js-translations.php:183
 msgid "Disables previews for links in the messages."
 msgstr "Vorschau für Links in den Nachrichten deaktivieren."
@@ -657,6 +657,7 @@ msgstr "Eine Anmerkung kann nach %s hinzugefügt werden."
 
 #. %s code example
 #. translators: %s code example
+#: ../../packages/js/shared/wptelegram-ui/components/LinkPreviewOptions.tsx:38
 #: ../../packages/js/shared/wptelegram-ui/components/P2TGInstructions.tsx:154
 #: languages/wptelegram-js-translations.php:244
 msgid "For example %s"
@@ -710,7 +711,6 @@ msgstr "Falls du Beiträge zu einem bestimmten Thema in einer Gruppe mit aktivie
 msgid "Tip!"
 msgstr "Hinweis!"
 
-#: ../../packages/js/shared/wptelegram-ui/components/P2TGInstructions.tsx:133
 #: languages/wptelegram-js-translations.php:236
 msgid "You can add an internal note to the chat ID to make it easier for you to indentify it."
 msgstr "Du kannst der Chat-ID eine interne Notiz hinzufügen, damit du sie leichter identifizieren kannst."
@@ -741,14 +741,14 @@ msgstr "Nichts"
 msgid "HTML style"
 msgstr "HTML Style"
 
+#: ../../packages/js/shared/wptelegram-ui/components/MiscMessageSettings.tsx:35
 #: ../../packages/js/shared/wptelegram-ui/components/ParseModeField.tsx:42
-#: ../../packages/js/shared/wptelegram-ui/components/ProtectContent.tsx:19
 #: ../../packages/js/shared/wptelegram-ui/components/TemplateInfo.tsx:39
 #: languages/wptelegram-js-translations.php:290
 msgid "Learn more"
 msgstr "Mehr Informationen über den Parsing-Modus gibt es hier auf der Telegram-Website"
 
-#: ../../packages/js/shared/wptelegram-ui/components/ProtectContent.tsx:22
+#: ../../packages/js/shared/wptelegram-ui/components/MiscMessageSettings.tsx:38
 #: languages/wptelegram-js-translations.php:293
 msgid "Protects the contents of sent messages from forwarding and saving."
 msgstr "Schützt den Inhalt gesendeter Nachrichten vor Weiterleitung und Speicherung."
@@ -1010,97 +1010,96 @@ msgstr "Entferne Einstellungen bei der Deinstallation"
 msgid "Debug Info"
 msgstr "Debug-Informationen"
 
-#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:26
 #: languages/wptelegram-js-translations.php:465
 msgid "Disable Web Page Preview"
 msgstr "Webseiten-Vorschau deaktivieren"
 
-#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:27
+#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:29
 #: languages/wptelegram-js-translations.php:468
 msgid "Enable logs for"
 msgstr "Logs aktivieren für"
 
-#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:28
+#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:30
 #: languages/wptelegram-js-translations.php:471
 msgid "Excerpt Length"
 msgstr "Auszugslänge"
 
-#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:29
+#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:31
 #: languages/wptelegram-js-translations.php:474
 msgid "Excerpt Newlines"
 msgstr "Auszüge neue Zeilen"
 
-#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:30
+#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:32
 #: languages/wptelegram-js-translations.php:477
 msgid "Excerpt Source"
 msgstr "Auszug generieren aus"
 
-#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:31
+#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:33
 #: languages/wptelegram-js-translations.php:480
 msgid "Google Script URL"
 msgstr "Google-Script-URL"
 
-#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:32
+#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:34
 #: languages/wptelegram-js-translations.php:483
 msgid "Image Position"
 msgstr "Bildposition"
 
-#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:34
+#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:36
 #: languages/wptelegram-js-translations.php:490
 msgid "Formatting"
 msgstr "Formatierung"
 
-#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:35
+#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:37
 #: languages/wptelegram-js-translations.php:493
 msgid "Plugin generated posts"
 msgstr "Durch ein Plugin generierte Beiträge"
 
-#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:36
+#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:38
 #: languages/wptelegram-js-translations.php:496
 msgid "Post edit switch"
 msgstr "Schalter zur Bearbeitung von Beiträgen"
 
-#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:38
+#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:40
 #: languages/wptelegram-js-translations.php:503
 msgid "Protect content"
 msgstr "Inhalte schützen"
 
-#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:39
+#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:41
 #: languages/wptelegram-js-translations.php:506
 msgid "Proxy Host"
 msgstr "Proxy Host"
 
-#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:41
+#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:43
 #: languages/wptelegram-js-translations.php:509
 msgid "Password"
 msgstr "Passwort"
 
-#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:42
+#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:44
 #: languages/wptelegram-js-translations.php:512
 msgid "Proxy Port"
 msgstr "Proxy Port"
 
-#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:43
+#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:45
 #: languages/wptelegram-js-translations.php:515
 msgid "Proxy Type"
 msgstr "Proxy-Typ"
 
-#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:44
+#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:46
 #: languages/wptelegram-js-translations.php:518
 msgid "Username"
 msgstr "Benutzername"
 
-#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:46
+#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:48
 #: languages/wptelegram-js-translations.php:525
 msgid "Send files by URL"
 msgstr "Dateien per URL senden"
 
-#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:47
+#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:49
 #: languages/wptelegram-js-translations.php:528
 msgid "Single message"
 msgstr "Nur eine Nachricht"
 
-#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:48
+#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:50
 #: languages/wptelegram-js-translations.php:531
 msgid "Notifications to Users"
 msgstr "Benachrichtigungen an Nutzer erlauben"
@@ -1380,4 +1379,28 @@ msgstr ""
 
 #: admin/Admin.php:71
 msgid "Please reload the page."
+msgstr ""
+
+#: ../../packages/js/shared/wptelegram-ui/components/LinkPreviewOptions.tsx:33
+msgid "URL to use for the link preview."
+msgstr ""
+
+#: ../../packages/js/shared/wptelegram-ui/components/LinkPreviewOptions.tsx:57
+msgid "Whether the link preview must be shown above the message text."
+msgstr ""
+
+#: ../../packages/js/shared/wptelegram-ui/components/P2TGInstructions.tsx:133
+msgid "You can add an internal note to the chat ID to make it easier for you to identify it."
+msgstr ""
+
+#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:26
+msgid "Disable link preview"
+msgstr ""
+
+#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:27
+msgid "Link preview URL"
+msgstr ""
+
+#: ../../packages/js/shared/wptelegram-ui/services/fields.ts:28
+msgid "Show preview above text"
 msgstr ""

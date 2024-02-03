@@ -1351,7 +1351,7 @@ class PostSender extends BaseClass {
 			return (array) apply_filters_deprecated(
 				'wptelegram_p2tg_button_url_macro_values',
 				[ $macro_values, $template, $post->ID ],
-				'x.y.z',
+				'4.1.0',
 				'wptelegram_p2tg_template_macro_values'
 			);
 		};
