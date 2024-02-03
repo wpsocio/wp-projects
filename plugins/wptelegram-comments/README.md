@@ -42,7 +42,7 @@ Comments on WordPress posts not only fill your database tables, rather they also
 
 ### Contribution
 
-Development occurs in our [Github monorepo](https://github.com/wpsocio/wp-projects), and all contributions welcome.
+Development takes place in our [Github monorepo](https://github.com/wpsocio/wp-projects), and all contributions welcome.
 
 ## Translation
 

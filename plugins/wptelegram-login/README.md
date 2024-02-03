@@ -94,7 +94,7 @@ The plugin will:
 
 ## Contribution
 
-Development occurs in our [Github monorepo](https://github.com/wpsocio/wp-projects), and all contributions welcome.
+Development takes place in our [Github monorepo](https://github.com/wpsocio/wp-projects), and all contributions welcome.
 
 ## Translation
 
