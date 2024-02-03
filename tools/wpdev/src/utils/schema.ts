@@ -170,7 +170,7 @@ const updateVersionData = z.array(
 					.array(pattern)
 					.describe('The text patterns to match. Regex can also be used.'),
 			})
-			.merge(targetFilesSchema),
+			.merge(targetFilesSchema.partial()),
 	]),
 );
 

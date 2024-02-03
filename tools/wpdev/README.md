@@ -2,6 +2,10 @@
 
 A CLI to manage WordPress projects in a monorepo or a standalone repo.
 
+## Requirements
+
+- [WP CLI](https://wp-cli.org/) - Required for i18n features.
+
 ## Installation
 
 ```sh
@@ -19,6 +23,7 @@ pnpm add -D @wpsocio/wpdev
 ## Usage
 
 <!-- usage -->
+
 ```sh-session
 $ npm install -g @wpsocio/wpdev
 $ wpdev COMMAND
@@ -30,6 +35,7 @@ USAGE
   $ wpdev COMMAND
 ...
 ```
+
 <!-- usagestop -->
 
 ## Commands
@@ -233,4 +239,5 @@ EXAMPLES
 ```
 
 _See code: [src/commands/unlink.ts](https://github.com/wpsocio/wp-projects/blob/@wpsocio/wpdev@1.0.3/tools/wpdev/src/commands/unlink.ts)_
+
 <!-- commandsstop -->
