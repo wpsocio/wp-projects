@@ -3,7 +3,7 @@
  * Post to Telegram message template parser.
  *
  * @link        https://t.me/WPTelegram
- * @since       x.y.z
+ * @since       4.1.0
  *
  * @package     WPTelegram\Core
  * @subpackage  WPTelegram\Core\modules\p2tg
@@ -34,7 +34,7 @@ class TemplateParser {
 	/**
 	 * The post data
 	 *
-	 * @since   x.y.z
+	 * @since   4.1.0
 	 * @access  protected
 	 * @var     PostData $post_data The post data.
 	 */
@@ -50,7 +50,7 @@ class TemplateParser {
 	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @since   x.y.z
+	 * @since   4.1.0
 	 *
 	 * @param int|WP_Post $post    Post object or ID.
 	 * @param Options     $options The options for parsing the template.
@@ -64,7 +64,7 @@ class TemplateParser {
 	/**
 	 * Set the post
 	 *
-	 * @since    x.y.z
+	 * @since    4.1.0
 	 * @param   int|WP_Post $post   Post object or ID.
 	 */
 	public function set_post( $post ) {
@@ -78,7 +78,7 @@ class TemplateParser {
 	/**
 	 * Set the post
 	 *
-	 * @since x.y.z
+	 * @since 4.1.0
 	 *
 	 * @param Options $options The options for parsing the template.
 	 */
@@ -111,7 +111,7 @@ class TemplateParser {
 	/**
 	 * Parses the given template and converts it to the text.
 	 *
-	 * @since x.y.z
+	 * @since 4.1.0
 	 *
 	 * @param  string $template The template to parse.
 	 *
@@ -136,7 +136,7 @@ class TemplateParser {
 	/**
 	 * Parses the given template to encode the values if needed.
 	 *
-	 * @since x.y.z
+	 * @since 4.1.0
 	 *
 	 * @param  string $template The template to parse.
 	 *
@@ -159,7 +159,7 @@ class TemplateParser {
 	/**
 	 * Parses the given template to set the correct values to be parsed.
 	 *
-	 * @since x.y.z
+	 * @since 4.1.0
 	 *
 	 * @param  string $template The template to parse.
 	 *
@@ -187,7 +187,7 @@ class TemplateParser {
 	/**
 	 * Parses the given template for all possible macros and returns the macro data.
 	 *
-	 * @since x.y.z
+	 * @since 4.1.0
 	 *
 	 * @param  string $template The template to parse.
 	 *
@@ -260,7 +260,7 @@ class TemplateParser {
 		 */
 		$macro_values = (array) apply_filters( 'wptelegram_p2tg_template_macro_values', $macro_values, $template, $this->post, $this->options );
 
-		$macro_values = (array) apply_filters_deprecated( 'wptelegram_p2tg_macro_values', [ $macro_values, $this->post, $this->options ], 'x.y.z', 'wptelegram_p2tg_template_macro_values' );
+		$macro_values = (array) apply_filters_deprecated( 'wptelegram_p2tg_macro_values', [ $macro_values, $this->post, $this->options ], '4.1.0', 'wptelegram_p2tg_template_macro_values' );
 
 		// Prepare macro values for further processing.
 		$macro_values = array_map( [ $this, 'prepare_macro_value' ], $macro_values );
@@ -271,7 +271,7 @@ class TemplateParser {
 	/**
 	 * Prepare macro value for further processing.
 	 *
-	 * @since x.y.z
+	 * @since 4.1.0
 	 *
 	 * @param string $macro_value The value for a macro.
 	 *
@@ -285,7 +285,7 @@ class TemplateParser {
 	/**
 	 * Resolve the conditional macros in the template.
 	 *
-	 * @since x.y.z
+	 * @since 4.1.0
 	 *
 	 * @param string $template     The message template being processed.
 	 * @param array  $macro_values The values for all macros.
@@ -332,7 +332,7 @@ class TemplateParser {
 	 * Bypass wpautop() from the given filter
 	 * to preserve newlines.
 	 *
-	 * @since x.y.z
+	 * @since 4.1.0
 	 *
 	 * @param string $tag The name of the filter hook like "the_content".
 	 */
@@ -349,7 +349,7 @@ class TemplateParser {
 	 *
 	 * @access public
 	 *
-	 * @since x.y.z
+	 * @since 4.1.0
 	 *
 	 * @param string $content The post content running through this filter.
 	 * @return string The unmodified content.
