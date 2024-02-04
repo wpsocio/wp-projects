@@ -6,6 +6,10 @@ on:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
+env:
+  # Ensure that packages are not symlinked
+  COMPOSER_MIRROR_PATH_REPOS: 1
+
 jobs:
   deploy:
     name: Deploy WP Project

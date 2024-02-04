@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "41ec8e1d2b9c877bb32ed27b5ef28762",
+    "content-hash": "033327d5f01de925582e148236302275",
     "packages": [
         {
             "name": "wpsocio/wp-utils",
@@ -12,7 +12,7 @@
             "dist": {
                 "type": "path",
                 "url": "../../packages/php/wp-utils",
-                "reference": "5b5a69c7e81db920f6ee6dcac2281c721029d59e"
+                "reference": "f7768dcc7d44830a0c58b7f6e0696bdc846781b8"
             },
             "require-dev": {
                 "pestphp/pest": "^1.22",
@@ -48,7 +48,6 @@
             ],
             "description": "Utilities for WordPress plugins and themes",
             "transport-options": {
-                "symlink": true,
                 "relative": true
             }
         },
@@ -58,7 +57,7 @@
             "dist": {
                 "type": "path",
                 "url": "../../packages/php/wptelegram-bot-api",
-                "reference": "b3047579dc08a8635e6c3469f85cc13df2a035c0"
+                "reference": "97410f5a4695b6eccea70e769a7aae2536ba42f2"
             },
             "require-dev": {
                 "pestphp/pest": "^1.22",
@@ -110,7 +109,6 @@
             ],
             "description": "Telegram Bot API library for WordPress.",
             "transport-options": {
-                "symlink": true,
                 "relative": true
             }
         }
@@ -517,5 +515,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
