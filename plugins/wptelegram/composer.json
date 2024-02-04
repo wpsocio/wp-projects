@@ -26,10 +26,7 @@
 		},
 		"local": {
 			"type": "path",
-			"url": "../../packages/php/*",
-			"options": {
-				"symlink": true
-			}
+			"url": "../../packages/php/*"
 		}
 	},
 	"extra": {
