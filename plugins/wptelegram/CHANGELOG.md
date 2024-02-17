@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.1.2
+
+### Patch Changes
+
+- [#99](https://github.com/wpsocio/wp-projects/pull/99) [`0db832f`](https://github.com/wpsocio/wp-projects/commit/0db832fdec87f92b30b274afd7241d8d74df68bd) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Improved logging for HTML conversion errors for private notifications
+
 ## 4.1.1
 
 ### Patch Changes
