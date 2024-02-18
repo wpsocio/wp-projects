@@ -23,6 +23,11 @@ jobs:
         with:
           enable-wireit-cache: true
 
+      - name: Setup git user
+        run: |
+          git config user.name "${{ secrets.GIT_USER_NAME_IR }}"
+          git config user.email "${{ secrets.GIT_USER_EMAIL_IR }}"
+
       - name: Create Release Pull Request or Publish
         uses: changesets/action@v1
         with:
@@ -30,6 +35,7 @@ jobs:
           version: pnpm prep-release
           title: Prepare for next release
           commit: Prepare for next release
+          setupGitUser: false
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN_IR }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN_IR }}

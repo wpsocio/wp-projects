@@ -42,6 +42,8 @@ jobs:
           access_token: ${{ secrets.ACCESS_TOKEN_IR }}
           # Remove everything from the target repo before deploying
           cleanup_command: git rm -rf . && git clean -fxd
+          git_user_email: ${{ secrets.GIT_USER_EMAIL_IR }}
+          git_user_name: ${{ secrets.GIT_USER_NAME_IR }}
 
       - name: Release
         uses: softprops/action-gh-release@v1
