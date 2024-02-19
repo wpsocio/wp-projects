@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.5
+
+### Patch Changes
+
+- [#104](https://github.com/wpsocio/wp-projects/pull/104) [`32fc287`](https://github.com/wpsocio/wp-projects/commit/32fc2877376a7b4374ff315f210f9b3466b8ffac) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Added `--tasks` flag to wpdev CLI bundle command
+
 ## 1.0.4
 
 ### Patch Changes

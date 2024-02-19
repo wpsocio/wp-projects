@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.13
+
+### Patch Changes
+
+- [#103](https://github.com/wpsocio/wp-projects/pull/103) [`e12a25c`](https://github.com/wpsocio/wp-projects/commit/e12a25caf8ead7065b256d58aa74b64cc35cc947) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Updated minimum required WP version to 6.4
+
 ## 1.1.12
 
 ### Patch Changes

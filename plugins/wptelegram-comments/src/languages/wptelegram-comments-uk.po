@@ -335,22 +335,27 @@ msgid "Changes could not be saved."
 msgstr "Зміни не можуть бути збережені."
 
 #. Plugin Name of the plugin
+#: wptelegram-comments.php
 #: includes/Main.php:339
 #~ msgid "WP Telegram Comments"
 #~ msgstr "WP Telegram Comments"
 
 #. Plugin URI of the plugin
+#: wptelegram-comments.php
 msgid "https://t.me/WPTelegram"
 msgstr ""
 
 #. Description of the plugin
+#: wptelegram-comments.php
 msgid "Add comments to posts/pages on your WordPress website by using Telegram Comments Widget."
 msgstr ""
 
 #. Author of the plugin
+#: wptelegram-comments.php
 msgid "WP Socio"
 msgstr ""
 
 #. Author URI of the plugin
+#: wptelegram-comments.php
 msgid "https://wpsocio.com"
 msgstr ""

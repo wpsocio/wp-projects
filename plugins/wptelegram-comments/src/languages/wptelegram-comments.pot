@@ -2,16 +2,16 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: WP Telegram Comments 1.1.12\n"
+"Project-Id-Version: WP Telegram Comments 1.1.13\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wptelegram-comments\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-01-27T04:16:58+00:00\n"
+"POT-Creation-Date: 2024-02-19T12:17:06+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.9.0\n"
+"X-Generator: WP-CLI 2.10.0\n"
 "language: en_US\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
@@ -301,23 +301,28 @@ msgid "Get LIVE support on Telegram"
 msgstr ""
 
 #. Plugin Name of the plugin
+#: wptelegram-comments.php
 #: includes/Main.php:339
 msgid "WP Telegram Comments"
 msgstr ""
 
 #. Plugin URI of the plugin
+#: wptelegram-comments.php
 msgid "https://t.me/WPTelegram"
 msgstr ""
 
 #. Description of the plugin
+#: wptelegram-comments.php
 msgid "Add comments to posts/pages on your WordPress website by using Telegram Comments Widget."
 msgstr ""
 
 #. Author of the plugin
+#: wptelegram-comments.php
 msgid "WP Socio"
 msgstr ""
 
 #. Author URI of the plugin
+#: wptelegram-comments.php
 msgid "https://wpsocio.com"
 msgstr ""
 
