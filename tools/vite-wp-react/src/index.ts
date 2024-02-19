@@ -62,7 +62,7 @@ export function viteWpReact(
 		assetsDir,
 	}: ViteWpReactOptions = {},
 	config: ViteWpReactConfig = {},
-): PluginOption[] {
+): PluginOption {
 	const mainPlugin: Plugin = {
 		name: 'vwpr:config',
 		enforce: 'pre',
@@ -82,7 +82,7 @@ export function viteWpReact(
 		},
 	};
 
-	const plugins: PluginOption[] = [mainPlugin, devServer()];
+	const plugins: PluginOption = [mainPlugin, devServer()];
 
 	if (config.externalizeWpPackages) {
 		plugins.push(externalizeWpPackages());

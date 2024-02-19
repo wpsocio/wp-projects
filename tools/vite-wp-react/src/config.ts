@@ -1,3 +1,4 @@
+import type { UserConfig } from 'vite';
 import viteWpReact, { ViteWpReactOptions } from './index.js';
 import { ReactMakePotOptions } from './plugins/react-make-pot.js';
 
@@ -12,7 +13,7 @@ export function createViteConfig({
 	outDir,
 	input,
 	makePot,
-}: CreateViteConfigOptions) {
+}: CreateViteConfigOptions): UserConfig {
 	return {
 		plugins: [
 			viteWpReact(
