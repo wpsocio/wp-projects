@@ -23,7 +23,6 @@ export abstract class WithConfig extends Command {
 		'project-types': Flags.option({
 			description:
 				'Project types managed in the monorepo. Only used in wp-monorepo mode.',
-			char: 't',
 			options: ['plugins', 'themes'] as const,
 			multiple: true,
 		})(),
