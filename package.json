@@ -55,7 +55,7 @@
 			"command": "pnpm build:tools && pnpm build:projects"
 		},
 		"build:tools": {
-			"command": "pnpm -r --filter=./tools/* run build"
+			"command": "pnpm -r --filter=./tools/* run build:local"
 		},
 		"build:projects": {
 			"command": "pnpm -r --filter=!./tools run build"
