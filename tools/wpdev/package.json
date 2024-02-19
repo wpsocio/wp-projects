@@ -1,6 +1,7 @@
 {
 	"name": "@wpsocio/wpdev",
 	"version": "1.0.5",
+	"description": "A CLI to manage WordPress projects in a monorepo or a standalone repo.",
 	"license": "MIT",
 	"repository": {
 		"type": "git",
@@ -75,6 +76,7 @@
 	},
 	"scripts": {
 		"build": "wireit",
+		"build:local": "wireit",
 		"clean": "rimraf dist/ tsconfig.tsbuildinfo .wireit",
 		"prepublishOnly": "wireit",
 		"typecheck": "tsc --noEmit",
@@ -92,6 +94,11 @@
 			],
 			"output": [
 				"dist/**"
+			]
+		},
+		"build:local": {
+			"dependencies": [
+				"build"
 			]
 		},
 		"prepublishOnly": {
