@@ -50,16 +50,14 @@ class Admin extends BaseClass {
 		if ( in_array( $slug, $slugs, true ) ) {
 			return $categories;
 		}
-		return array_merge(
-			$categories,
-			[
-				[
-					'slug'  => $slug,
-					'title' => __( 'WP Telegram', 'wptelegram-widget' ),
-					'icon'  => null,
-				],
-			]
-		);
+
+		$categories[] = [
+			'slug'  => $slug,
+			'title' => __( 'WP Telegram', 'wptelegram-widget' ),
+			'icon'  => null,
+		];
+
+		return $categories;
 	}
 
 	/**

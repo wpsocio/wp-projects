@@ -14,6 +14,7 @@ namespace WPTelegram\Login\admin;
 use WPTelegram\Login\includes\BaseClass;
 use WP_User;
 use WP_REST_Request;
+use WP_Block_Editor_Context;
 
 /**
  * The admin-specific functionality of the plugin.
@@ -41,16 +42,14 @@ class Admin extends BaseClass {
 		if ( in_array( $slug, $slugs, true ) ) {
 			return $categories;
 		}
-		return array_merge(
-			$categories,
-			[
-				[
-					'slug'  => $slug,
-					'title' => __( 'WP Telegram', 'wptelegram-login' ),
-					'icon'  => null,
-				],
-			]
-		);
+
+		$categories[] = [
+			'slug'  => $slug,
+			'title' => __( 'WP Telegram', 'wptelegram-login' ),
+			'icon'  => null,
+		];
+
+		return $categories;
 	}
 
 	/**
