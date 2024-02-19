@@ -392,6 +392,7 @@ class Main {
 		add_action( 'init', [ $asset_manager, 'register_assets' ], 5 );
 
 		add_action( 'wp_enqueue_scripts', [ $asset_manager, 'enqueue_public_assets' ] );
+		add_action( 'admin_enqueue_scripts', [ $asset_manager, 'enqueue_public_assets' ] );
 
 		add_action( 'admin_enqueue_scripts', [ $asset_manager, 'enqueue_admin_assets' ] );
 

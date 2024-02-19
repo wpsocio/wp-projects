@@ -10,7 +10,7 @@ $(() => {
 		const height = $this.contents().find('body').height();
 
 		if (height) {
-			// Add 2px to the height to avoid hiddern borders
+			// Add 2px to the height to avoid hidden borders
 			$this.height((height + 2).toString());
 		}
 	});

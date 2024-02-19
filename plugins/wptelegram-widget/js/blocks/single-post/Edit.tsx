@@ -1,6 +1,7 @@
 import type { BlockEditProps } from '@wordpress/blocks';
-import { FocusableIframe, Spinner } from '@wordpress/components';
-import { Component, Fragment, createRef } from '@wordpress/element';
+import { Spinner } from '@wordpress/components';
+import { useFocusableIframe, useMergeRefs } from '@wordpress/compose';
+import { Fragment, useEffect, useRef, useState } from '@wordpress/element';
 import { addQueryArgs } from '@wordpress/url';
 import { __ } from '@wpsocio/i18n';
 import type { SinglePostAtts } from '../types';
@@ -9,177 +10,148 @@ import { Placeholder } from './Placeholder';
 
 const { message_view_url } = window.wptelegram_widget.assets;
 
-type State = {
-	loading: boolean;
-	editingURL: boolean;
-	error: boolean;
-	url: string;
-	userpic: boolean;
-	iframe_height?: number;
-};
+export function Edit(props: BlockEditProps<SinglePostAtts>) {
+	const [iframeState, setIframeState] = useState<'loading' | 'idle' | 'error'>(
+		'loading',
+	);
+	const [isEditingURL, setIsEditingURL] = useState(false);
+	const [url, setUrl] = useState(props.attributes.url || '');
+	const [userpic, setUserpic] = useState<boolean>(
+		props.attributes.userpic || true,
+	);
+	const [iframeHeight, setIframeHeight] = useState(0);
 
-export class Edit extends Component<BlockEditProps<SinglePostAtts>, State> {
-	iframe_ref: React.RefObject<HTMLIFrameElement>;
+	const { className } = props;
+	const { alignment, iframe_src } = props.attributes;
 
-	constructor(props: BlockEditProps<SinglePostAtts>) {
-		super(props);
-		this.iframe_ref = createRef<HTMLIFrameElement>();
+	const label = __('Telegram post URL');
 
-		this.switchBackToURLInput = this.switchBackToURLInput.bind(this);
-		this.getIframeSrc = this.getIframeSrc.bind(this);
-		this.toggleUserPic = this.toggleUserPic.bind(this);
-		this.resizeIframe = this.resizeIframe.bind(this);
-		this.setUrl = this.setUrl.bind(this);
-		this.handleOnChangeURL = this.handleOnChangeURL.bind(this);
-		this.handleOnChangeAlign = this.handleOnChangeAlign.bind(this);
-		this.onLoad = this.onLoad.bind(this);
-
-		this.state = {
-			loading: true,
-			editingURL: false,
-			error: false,
-			url: this.props.attributes.url || '',
-			userpic: this.props.attributes.userpic || true,
-			iframe_height: 0,
-		};
+	function onChangeURL(event: React.ChangeEvent<HTMLInputElement>) {
+		setUrl(event.target.value);
 	}
 
-	toggleUserPic() {
-		const userpic = !this.state.userpic;
-		const loading = true;
-		let { iframe_src } = this.props.attributes;
-
-		iframe_src = addQueryArgs(iframe_src, { userpic });
-
-		this.setState({ userpic, loading });
-		this.props.setAttributes({ userpic, iframe_src });
-	}
-
-	setUrl(event: React.FormEvent<HTMLFormElement>) {
+	function updateUrl(event: React.FormEvent<HTMLFormElement>) {
 		if (event) {
 			event.preventDefault();
 		}
-		const { url } = this.state;
 
 		const regex =
 			/^(?:https?:\/\/)?t\.me\/(?<username>[a-z][a-z0-9_]{3,30}[a-z0-9])\/(?<message_id>\d+)$/i;
 		const match = url.match(regex);
 		// validate URL
 		if (null === match) {
-			this.setState({ error: true });
+			setIframeState('error');
 		} else {
-			const iframe_src = this.getIframeSrc(
+			const iframe_src = getIframeSrc(
 				match.groups as {
 					username: string;
 					message_id: string;
 				},
 			);
-			const { setAttributes } = this.props;
+			const { setAttributes } = props;
 
-			this.setState({ loading: true, editingURL: false, error: false });
+			setIframeState('loading');
+			setIsEditingURL(false);
 			setAttributes({ url, iframe_src });
 		}
 	}
 
-	getIframeSrc(data: { username: string; message_id: string }) {
+	function getIframeSrc(data: { username: string; message_id: string }) {
 		return message_view_url
 			.replace('%username%', data.username)
 			.replace('%message_id%', data.message_id)
-			.replace('%userpic%', `${this.state.userpic}`);
+			.replace('%userpic%', `${userpic}`);
 	}
 
-	switchBackToURLInput() {
-		this.setState({ editingURL: true });
+	function toggleUserPic() {
+		setUserpic((prevValue) => {
+			const newValue = !prevValue;
+
+			setIframeState('loading');
+			let { iframe_src } = props.attributes;
+			iframe_src = addQueryArgs(iframe_src, { userpic });
+			props.setAttributes({ userpic: newValue, iframe_src });
+
+			return newValue;
+		});
 	}
 
-	componentDidMount() {
-		window.addEventListener('resize', this.resizeIframe);
+	function onChangeAlign(align: SinglePostAtts['alignment']) {
+		resizeIframe();
+		props.setAttributes({ alignment: align });
 	}
+	const iframeRef = useRef<HTMLIFrameElement | null>();
+	const ref = useMergeRefs([iframeRef, useFocusableIframe()]);
 
-	componentWillUnmount() {
-		window.removeEventListener('resize', this.resizeIframe);
-	}
-
-	resizeIframe() {
+	function resizeIframe() {
 		if (
-			null === this.iframe_ref?.current ||
-			'undefined' === typeof this.iframe_ref.current.contentWindow
+			null === iframeRef?.current ||
+			'undefined' === typeof iframeRef?.current?.contentWindow
 		) {
 			return;
 		}
 		const iframe_height =
-			this.iframe_ref?.current?.contentWindow?.document.body.scrollHeight;
-		if (iframe_height !== this.state.iframe_height) {
-			this.setState({ iframe_height });
+			iframeRef?.current?.contentWindow?.document.body.scrollHeight;
+		if (iframe_height !== iframeHeight) {
+			setIframeHeight(iframe_height || 0);
 		}
 	}
 
-	handleOnChangeURL(event: React.ChangeEvent<HTMLInputElement>) {
-		this.setState({ url: event.target.value });
-	}
+	useEffect(() => {
+		window.addEventListener('resize', resizeIframe);
 
-	handleOnChangeAlign(align: SinglePostAtts['alignment']) {
-		this.resizeIframe();
-		this.props.setAttributes({ alignment: align });
-	}
+		return () => {
+			window.removeEventListener('resize', resizeIframe);
+		};
+	}, []);
 
-	onLoad() {
-		this.setState({ loading: false });
-		this.resizeIframe();
-	}
-
-	render() {
-		const { loading, editingURL, url, error, userpic } = this.state;
-		const { className } = this.props;
-		const { alignment, iframe_src } = this.props.attributes;
-
-		const label = __('Telegram post URL');
-
-		if (editingURL || !iframe_src) {
-			return (
-				<Placeholder
-					label={label}
-					error={error}
-					url={url}
-					onChangeURL={this.handleOnChangeURL}
-					onSubmit={this.setUrl}
-				/>
-			);
-		}
-
-		const iframe_height = loading ? 0 : this.state.iframe_height;
-
+	if (isEditingURL || !iframe_src) {
 		return (
-			<Fragment>
-				<Controls
-					userpic={userpic}
-					toggleUserPic={this.toggleUserPic}
-					showEditButton
-					switchBackToURLInput={this.switchBackToURLInput}
-					alignment={alignment}
-					changeAlignment={this.handleOnChangeAlign}
-				/>
-				{loading && (
-					<div className="wp-block-embed is-loading">
-						<Spinner />
-						<p>{__('Loading…')}</p>
-					</div>
-				)}
-
-				<div className={`${className} wptelegram-widget-message`}>
-					<div className={'wp-block-embed__content-wrapper'}>
-						<FocusableIframe
-							iframeRef={this.iframe_ref}
-							src={iframe_src}
-							onLoad={this.onLoad}
-							height={iframe_height}
-							title={__('Telegram post')}
-						>
-							Your Browser Does Not Support iframes!
-						</FocusableIframe>
-					</div>
-				</div>
-			</Fragment>
+			<Placeholder
+				label={label}
+				error={iframeState === 'error'}
+				url={url}
+				onChangeURL={onChangeURL}
+				onSubmit={updateUrl}
+			/>
 		);
 	}
+
+	const iframe_height = iframeState === 'loading' ? 0 : iframeHeight;
+
+	return (
+		<Fragment>
+			<Controls
+				userpic={userpic}
+				toggleUserPic={toggleUserPic}
+				showEditButton
+				switchBackToURLInput={() => setIsEditingURL(true)}
+				alignment={alignment}
+				changeAlignment={onChangeAlign}
+			/>
+			{iframeState === 'loading' && (
+				<div className="wp-block-embed is-loading">
+					<Spinner />
+					<p>{__('Loading…')}</p>
+				</div>
+			)}
+
+			<div className={`${className} wptelegram-widget-message`}>
+				<div className={'wp-block-embed__content-wrapper'}>
+					<iframe
+						ref={ref}
+						src={iframe_src}
+						onLoad={() => {
+							setIframeState('idle');
+							resizeIframe();
+						}}
+						height={iframe_height}
+						title={__('Telegram post')}
+					>
+						Your Browser Does Not Support iframes!
+					</iframe>
+				</div>
+			</div>
+		</Fragment>
+	);
 }
