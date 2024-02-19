@@ -333,9 +333,6 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 			}),
 			{
 				concurrent: false,
-				rendererOptions: {
-					collapseSubtasks: false,
-				},
 			},
 		);
 	}
