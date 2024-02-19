@@ -132,14 +132,14 @@
 			"dependencies": [
 				"typecheck:tools",
 				"typecheck:packages",
-				"typecheck:plugins"
+				"typecheck:projects"
 			]
 		},
 		"typecheck:packages": {
 			"command": "pnpm -r --filter=./packages/js/* exec tsc --noEmit"
 		},
-		"typecheck:plugins": {
-			"command": "pnpm -r --filter=./plugins/* exec tsc --noEmit"
+		"typecheck:projects": {
+			"command": "pnpm -r --filter=./plugins/* --filter=./premium/*/* exec tsc --noEmit"
 		},
 		"typecheck:tools": {
 			"command": "pnpm -r --filter=./tools/* exec tsc --noEmit"
