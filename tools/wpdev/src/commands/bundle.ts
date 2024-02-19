@@ -51,6 +51,9 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 			description: 'Version to update to.',
 			exclusive: ['release-type'],
 		}),
+		tasks: Flags.string({
+			description: 'Run only the specified tasks. Comma-separated list.',
+		}),
 		'release-type': Flags.string({
 			char: 't',
 			description: 'Release type to update to.',
@@ -161,8 +164,19 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 
 		const projectDir = project.dir;
 
+		const tasksToRun = this.flags.tasks?.split(',') || [];
+
+		const taskList = tasksToRun.length
+			? bundle.tasks.filter((tsk) => tasksToRun.includes(tsk.type))
+			: bundle.tasks;
+
+		if (!taskList.length) {
+			task.skip('No tasks to run. Skipping.');
+			return;
+		}
+
 		return task.newListr(
-			bundle.tasks.map(({ type: taskType, data: taskData }) => {
+			taskList.map(({ type: taskType, data: taskData }) => {
 				switch (taskType) {
 					case 'run-scripts':
 						return {
@@ -319,6 +333,9 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 			}),
 			{
 				concurrent: false,
+				rendererOptions: {
+					collapseSubtasks: false,
+				},
 			},
 		);
 	}
