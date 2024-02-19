@@ -11,8 +11,8 @@
 		"ramda": "^0.29.1"
 	},
 	"devDependencies": {
-		"@types/node": "^20.11.7",
+		"@types/node": "^20.11.19",
 		"@types/ramda": "^0.29.10",
-		"@types/react": "^18.2.48"
+		"@types/react": "^18.2.56"
 	}
 }
