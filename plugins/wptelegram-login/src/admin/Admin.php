@@ -14,7 +14,6 @@ namespace WPTelegram\Login\admin;
 use WPTelegram\Login\includes\BaseClass;
 use WP_User;
 use WP_REST_Request;
-use WP_Block_Editor_Context;
 
 /**
  * The admin-specific functionality of the plugin.
