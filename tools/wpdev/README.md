@@ -28,7 +28,7 @@ $ npm install -g @wpsocio/wpdev
 $ wpdev COMMAND
 running command...
 $ wpdev (--version)
-@wpsocio/wpdev/1.0.4 linux-x64 node-v20.11.0
+@wpsocio/wpdev/1.0.5 linux-x64 node-v20.11.0
 $ wpdev --help [COMMAND]
 USAGE
   $ wpdev COMMAND
@@ -51,9 +51,9 @@ Prepares and bundles projects for distribution or deployment.
 
 ```
 USAGE
-  $ wpdev bundle [PROJECTS] [-r <value>] [-m wp-monorepo|standalone] [-t plugins|themes] [-e <value>]
-    [--all] [--from-changeset --changeset-json <value>] [-d <value>] [-p npm|yarn|pnpm|bun] [-c] [-v <value> | -t
-    major|minor|patch|premajor|preminor|prepatch|prerelease]
+  $ wpdev bundle [PROJECTS] [-r <value>] [-m wp-monorepo|standalone] [--project-types plugins|themes] [-e
+    <value>] [--all] [--from-changeset --changeset-json <value>] [-d <value>] [-p npm|yarn|pnpm|bun] [-c] [-v <value> |
+    -t major|minor|patch|premajor|preminor|prepatch|prerelease] [--tasks <value>]
 
 ARGUMENTS
   PROJECTS  Project(s) to target.
@@ -67,8 +67,6 @@ FLAGS
   -p, --package-manager=<option>   [default: npm] Package manager to use.
                                    <options: npm|yarn|pnpm|bun>
   -r, --root-dir=<value>           Root directory. Can be an absolute or a relative path.
-  -t, --project-types=<option>...  Project types managed in the monorepo. Only used in wp-monorepo mode.
-                                   <options: plugins|themes>
   -t, --release-type=<option>      Release type to update to.
                                    <options: major|minor|patch|premajor|preminor|prepatch|prerelease>
   -v, --version=<value>            Version to update to.
@@ -76,6 +74,9 @@ FLAGS
       --changeset-json=<value>     Path to the changeset status JSON file. Pass the {filePath} given to `changeset
                                    status --output={filePath}`
       --from-changeset             Target projects in monorepo from changesets.
+      --project-types=<option>...  Project types managed in the monorepo. Only used in wp-monorepo mode.
+                                   <options: plugins|themes>
+      --tasks=<value>              Run only the specified tasks. Comma-separated list.
 
 DESCRIPTION
   Prepares and bundles projects for distribution or deployment.
@@ -88,7 +89,7 @@ EXAMPLES
   $ wpdev bundle --all
 ```
 
-_See code: [src/commands/bundle.ts](https://github.com/wpsocio/wp-projects/blob/@wpsocio/wpdev@1.0.4/tools/wpdev/src/commands/bundle.ts)_
+_See code: [src/commands/bundle.ts](https://github.com/wpsocio/wp-projects/blob/@wpsocio/wpdev@1.0.5/tools/wpdev/src/commands/bundle.ts)_
 
 ## `wpdev clean [PATH]`
 
@@ -96,8 +97,8 @@ Cleans up the given path(s) in this monorepo.
 
 ```
 USAGE
-  $ wpdev clean [PATH] [-r <value>] [-m wp-monorepo|standalone] [-t plugins|themes] [-e <value>] [-i
-    ignored|node_modules|composer.lock|vendor] [--all]
+  $ wpdev clean [PATH] [-r <value>] [-m wp-monorepo|standalone] [--project-types plugins|themes] [-e
+    <value>] [-i ignored|node_modules|composer.lock|vendor] [--all]
 
 ARGUMENTS
   PATH  Path to clean. Relative to root directory
@@ -109,9 +110,9 @@ FLAGS
   -m, --operation-mode=<option>    Operation mode.
                                    <options: wp-monorepo|standalone>
   -r, --root-dir=<value>           Root directory. Can be an absolute or a relative path.
-  -t, --project-types=<option>...  Project types managed in the monorepo. Only used in wp-monorepo mode.
-                                   <options: plugins|themes>
       --all                        Clean everything
+      --project-types=<option>...  Project types managed in the monorepo. Only used in wp-monorepo mode.
+                                   <options: plugins|themes>
 
 DESCRIPTION
   Cleans up the given path(s) in this monorepo.
@@ -122,7 +123,7 @@ EXAMPLES
   $ wpdev clean --all
 ```
 
-_See code: [src/commands/clean.ts](https://github.com/wpsocio/wp-projects/blob/@wpsocio/wpdev@1.0.4/tools/wpdev/src/commands/clean.ts)_
+_See code: [src/commands/clean.ts](https://github.com/wpsocio/wp-projects/blob/@wpsocio/wpdev@1.0.5/tools/wpdev/src/commands/clean.ts)_
 
 ## `wpdev link [PROJECTS]`
 
@@ -130,8 +131,8 @@ Creates symlinks in the given wp-content directory for the project(s) in this mo
 
 ```
 USAGE
-  $ wpdev link [PROJECTS] [-r <value>] [-m wp-monorepo|standalone] [-t plugins|themes] [-e <value>]
-    [--all] [--from-changeset --changeset-json <value>] [-d <value>]
+  $ wpdev link [PROJECTS] [-r <value>] [-m wp-monorepo|standalone] [--project-types plugins|themes] [-e
+    <value>] [--all] [--from-changeset --changeset-json <value>] [-d <value>]
 
 ARGUMENTS
   PROJECTS  Project(s) to target.
@@ -142,12 +143,12 @@ FLAGS
   -m, --operation-mode=<option>    Operation mode.
                                    <options: wp-monorepo|standalone>
   -r, --root-dir=<value>           Root directory. Can be an absolute or a relative path.
-  -t, --project-types=<option>...  Project types managed in the monorepo. Only used in wp-monorepo mode.
-                                   <options: plugins|themes>
       --all                        Target all projects in monorepo.
       --changeset-json=<value>     Path to the changeset status JSON file. Pass the {filePath} given to `changeset
                                    status --output={filePath}`
       --from-changeset             Target projects in monorepo from changesets.
+      --project-types=<option>...  Project types managed in the monorepo. Only used in wp-monorepo mode.
+                                   <options: plugins|themes>
 
 DESCRIPTION
   Creates symlinks in the given wp-content directory for the project(s) in this monorepo.
@@ -160,7 +161,7 @@ EXAMPLES
   $ wpdev link --all
 ```
 
-_See code: [src/commands/link.ts](https://github.com/wpsocio/wp-projects/blob/@wpsocio/wpdev@1.0.4/tools/wpdev/src/commands/link.ts)_
+_See code: [src/commands/link.ts](https://github.com/wpsocio/wp-projects/blob/@wpsocio/wpdev@1.0.5/tools/wpdev/src/commands/link.ts)_
 
 ## `wpdev project-info [PROJECTS]`
 
@@ -168,8 +169,8 @@ Get the project info as JSON.
 
 ```
 USAGE
-  $ wpdev project-info [PROJECTS] [-r <value>] [-m wp-monorepo|standalone] [-t plugins|themes] [-e <value>]
-    [--all] [--from-changeset --changeset-json <value>] [--pretty]
+  $ wpdev project-info [PROJECTS] [-r <value>] [-m wp-monorepo|standalone] [--project-types plugins|themes] [-e
+    <value>] [--all] [--from-changeset --changeset-json <value>] [--pretty]
 
 ARGUMENTS
   PROJECTS  Project(s) to target.
@@ -179,13 +180,13 @@ FLAGS
   -m, --operation-mode=<option>    Operation mode.
                                    <options: wp-monorepo|standalone>
   -r, --root-dir=<value>           Root directory. Can be an absolute or a relative path.
-  -t, --project-types=<option>...  Project types managed in the monorepo. Only used in wp-monorepo mode.
-                                   <options: plugins|themes>
       --all                        Target all projects in monorepo.
       --changeset-json=<value>     Path to the changeset status JSON file. Pass the {filePath} given to `changeset
                                    status --output={filePath}`
       --from-changeset             Target projects in monorepo from changesets.
       --pretty                     Pretty print the JSON output.
+      --project-types=<option>...  Project types managed in the monorepo. Only used in wp-monorepo mode.
+                                   <options: plugins|themes>
 
 DESCRIPTION
   Get the project info as JSON.
@@ -198,7 +199,7 @@ EXAMPLES
   $ wpdev project-info --all
 ```
 
-_See code: [src/commands/project-info.ts](https://github.com/wpsocio/wp-projects/blob/@wpsocio/wpdev@1.0.4/tools/wpdev/src/commands/project-info.ts)_
+_See code: [src/commands/project-info.ts](https://github.com/wpsocio/wp-projects/blob/@wpsocio/wpdev@1.0.5/tools/wpdev/src/commands/project-info.ts)_
 
 ## `wpdev unlink [PROJECTS]`
 
@@ -206,8 +207,8 @@ Removes symlinks in the given wp-content directory created for the project(s) in
 
 ```
 USAGE
-  $ wpdev unlink [PROJECTS] [-r <value>] [-m wp-monorepo|standalone] [-t plugins|themes] [-e <value>]
-    [--all] [--from-changeset --changeset-json <value>] [-d <value>]
+  $ wpdev unlink [PROJECTS] [-r <value>] [-m wp-monorepo|standalone] [--project-types plugins|themes] [-e
+    <value>] [--all] [--from-changeset --changeset-json <value>] [-d <value>]
 
 ARGUMENTS
   PROJECTS  Project(s) to target.
@@ -218,12 +219,12 @@ FLAGS
   -m, --operation-mode=<option>    Operation mode.
                                    <options: wp-monorepo|standalone>
   -r, --root-dir=<value>           Root directory. Can be an absolute or a relative path.
-  -t, --project-types=<option>...  Project types managed in the monorepo. Only used in wp-monorepo mode.
-                                   <options: plugins|themes>
       --all                        Target all projects in monorepo.
       --changeset-json=<value>     Path to the changeset status JSON file. Pass the {filePath} given to `changeset
                                    status --output={filePath}`
       --from-changeset             Target projects in monorepo from changesets.
+      --project-types=<option>...  Project types managed in the monorepo. Only used in wp-monorepo mode.
+                                   <options: plugins|themes>
 
 DESCRIPTION
   Removes symlinks in the given wp-content directory created for the project(s) in this monorepo.
@@ -236,5 +237,5 @@ EXAMPLES
   $ wpdev unlink --all
 ```
 
-_See code: [src/commands/unlink.ts](https://github.com/wpsocio/wp-projects/blob/@wpsocio/wpdev@1.0.4/tools/wpdev/src/commands/unlink.ts)_
+_See code: [src/commands/unlink.ts](https://github.com/wpsocio/wp-projects/blob/@wpsocio/wpdev@1.0.5/tools/wpdev/src/commands/unlink.ts)_
 <!-- commandsstop -->
