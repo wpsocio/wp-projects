@@ -155,7 +155,7 @@ class PostSender extends BaseClass {
 
 					$form_data['send2tg'] = ! empty( $form_data['send2tg'] ) ? 'yes' : 'no';
 
-					$this->form_data = $form_data;
+					$this->form_data = array_merge( $this->form_data, $form_data );
 					// For logging.
 					$this->form_data['is_from_gb'] = true;
 				}
