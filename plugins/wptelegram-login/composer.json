@@ -3,6 +3,7 @@
 	"version": "1.10.14",
 	"description": "Let the users login to your website with their Telegram and make it simple for them to get connected and let them receive their email notifications on Telegram.",
 	"scripts": {
+		"gen:docs": "\"vendor/bin/wp-documentor\" parse src --format=markdown --output=docs/README.md --relative=docs",
 		"lint": "\"vendor/bin/phpcs\" --standard=../../phpcs.xml --extensions=php src/ dev.php",
 		"lint:skip-warnings": "\"vendor/bin/phpcs\" --standard=../../phpcs.xml --extensions=php -n src/ dev.php",
 		"lint:fix": "\"vendor/bin/phpcbf\" --standard=../../phpcs.xml --extensions=php src/ dev.php"
@@ -11,7 +12,8 @@
 		"wpsocio/wp-utils": "dev-main"
 	},
 	"require-dev": {
-		"wp-coding-standards/wpcs": "^3.0"
+		"wp-coding-standards/wpcs": "^3.0",
+		"pronamic/wp-documentor": "^1.3"
 	},
 	"repositories": {
 		"local": {
@@ -21,7 +23,8 @@
 	},
 	"config": {
 		"allow-plugins": {
-			"dealerdirect/phpcodesniffer-composer-installer": false
+			"dealerdirect/phpcodesniffer-composer-installer": false,
+			"composer/installers": false
 		}
 	}
 }
