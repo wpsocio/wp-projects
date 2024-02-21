@@ -5,11 +5,6 @@
 
 ## Actions
 
-### `wptelegram_login_init`
-
-*Fires before the login process starts.*
-
-
 Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 43](../src/shared/LoginHandler.php#L43-L46)
 
 ### `wptelegram_login_pre_save_user_data`
