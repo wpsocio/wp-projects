@@ -62,7 +62,7 @@
 			]
 		},
 		"setup:php": {
-			"command": "composer install",
+			"command": "composer install --ignore-platform-reqs",
 			"dependencies": [
 				"unset-vendor-dir"
 			]
