@@ -23,6 +23,9 @@ jobs:
         with:
           enable-wireit-cache: true
 
+      - name: Setup PHP
+        run: "pnpm run setup:php"
+
       - name: Setup git user
         run: |
           git config user.name "${{ secrets.GIT_USER_NAME_IR }}"
