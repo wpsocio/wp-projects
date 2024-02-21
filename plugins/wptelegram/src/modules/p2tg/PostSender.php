@@ -147,10 +147,13 @@ class PostSender extends BaseClass {
 					$data = $body[ Main::PREFIX ];
 
 					$form_data = MainUtils::sanitize( $data );
-					// Sanitize the template separately.
-					$form_data['message_template'] = MainUtils::sanitize_message_template( $data['message_template'] );
 
-					$form_data['send2tg'] = $form_data['send2tg'] ? 'yes' : 'no';
+					if ( isset( $data['message_template'] ) ) {
+						// Sanitize the template separately.
+						$form_data['message_template'] = MainUtils::sanitize_message_template( $data['message_template'] );
+					}
+
+					$form_data['send2tg'] = ! empty( $form_data['send2tg'] ) ? 'yes' : 'no';
 
 					$this->form_data = $form_data;
 					// For logging.
