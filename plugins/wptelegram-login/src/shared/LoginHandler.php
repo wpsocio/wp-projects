@@ -469,17 +469,17 @@ class LoginHandler extends BaseClass {
 		} else { // New user.
 
 			// Whether to allow create new account.
-			$disable_signup = (bool) WPTG_Login()->options()->get( 'disable_signup' );
+			$disable_signup = WPTG_Login()->options()->get( 'disable_signup' );
 
 			/**
-			 * Filter whether to disable sign up via Telegram!!
+			 * Filters whether to disable sign up via Telegram.
 			 *
 			 * It means that the user must first create an account and connect it to Telegram to be able to use Telegram Login.
 			 *
 			 * @param bool  $disable_signup Whether to disable sign up via Telegram.
 			 * @param array $data           The user details.
 			 */
-			$disable_signup = apply_filters( 'wptelegram_login_disable_signup', $disable_signup, $data );
+			$disable_signup = (bool) apply_filters( 'wptelegram_login_disable_signup', $disable_signup, $data );
 
 			if ( $disable_signup ) {
 
