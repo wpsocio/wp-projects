@@ -5,7 +5,7 @@ Tags: telegram, feed, widget, channel, group
 Requires at least: 6.4
 Requires PHP: 7.4
 Tested up to: 6.4.3
-Stable tag: 2.1.19
+Stable tag: 2.1.20
 License: GPL-3.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -193,8 +193,8 @@ Automatic updates should work smoothly, but we still recommend you back up your 
 
 == Changelog ==
 
-= 2.1.19 =
-- Updated minimum required WP version to 6.4
-- Fixed the warning "The block \* is registered with an invalid category"
+= 2.1.20 =
+- Fixed the deprecation warning for `FocusableIframe`
+- Fixed the single post widget styles in post editor
 
 [See full changelog](https://github.com/wpsocio/wptelegram-widget/blob/main/CHANGELOG.md)

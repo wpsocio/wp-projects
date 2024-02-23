@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.2
+
+### Patch Changes
+
+- [#107](https://github.com/wpsocio/wp-projects/pull/107) [`7db8989`](https://github.com/wpsocio/wp-projects/commit/7db898958d0a2dd4e6e69b3ea14f328d0a7884f5) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Fixed TS types for config and plugins
+
 ## 1.0.1
 
 ### Patch Changes

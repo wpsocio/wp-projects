@@ -5,6 +5,11 @@
 
 ## Actions
 
+### `wptelegram_login_init`
+
+*Fires before the login process starts.*
+
+
 Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 43](../src/shared/LoginHandler.php#L43-L46)
 
 ### `wptelegram_login_pre_save_user_data`
@@ -131,46 +136,210 @@ Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 634
 
 ## Filters
 
-### `wptelegram_login_intercept_request_on`
+### `wptelegram_login_validation_query_params`
 
-*Filter the hook and priority to use for intercepting the login request.*
-
-- [Examples](./examples/intercept_request_on.md)
+*Filter the validation query parameters that the plugin uses.*
 
 **Arguments**
 
 Argument | Type | Description
 -------- | ---- | -----------
-`$hook_and_priority` | `array` | The hook and priority.
+`$validation_query_params` | `array` | The validation query parameters.
+`$input` | `array` | The input data.
 
-Source: [src/includes/Main.php](../src/includes/Main.php), [line 392](../src/includes/Main.php#L392-L399)
+Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 203](../src/shared/LoginHandler.php#L203-L209)
 
-### `wptelegram_login_web_app_login_data`
+### `wptelegram_login_clean_input`
 
-*Filters the data for the web app login.*
-
-This can be used to customize the messages etc. for the web app login UI.
-
-**Arguments**
-
-Argument | Type | Description
--------- | ---- | -----------
-`$data` | `array` | The data for the web app login.
-
-Source: [src/includes/AssetManager.php](../src/includes/AssetManager.php), [line 272](../src/includes/AssetManager.php#L272-L279)
-
-### `wptelegram_login_language_options`
-
-*Filters the language options for the settings page.*
+*Filter the cleaned input from the login request.*
 
 **Arguments**
 
 Argument | Type | Description
 -------- | ---- | -----------
-`$data` | `array` | The language options.
-`$translations` | `array` | The available translations.
+`$clean_input` | `array` | The cleaned input.
+`$input` | `array` | The input data.
 
-Source: [src/includes/AssetManager.php](../src/includes/AssetManager.php), [line 408](../src/includes/AssetManager.php#L408-L414)
+Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 213](../src/shared/LoginHandler.php#L213-L219)
+
+### `wptelegram_login_valid_auth_data`
+
+*Filter the validated auth data.*
+
+**Arguments**
+
+Argument | Type | Description
+-------- | ---- | -----------
+`$auth_data` | `array` | The valid auth data.
+`$input_data` | `array` | The input data.
+
+Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 263](../src/shared/LoginHandler.php#L263-L269)
+
+### `wptelegram_login_hash_auth_data`
+
+*Filter the generated hash for the incoming auth data.*
+
+**Arguments**
+
+Argument | Type | Description
+-------- | ---- | -----------
+`$generated_hash` | `string` | The generated hash.
+`$auth_data` | `array` | The auth data received.
+`$secret_key` | `string` | The secret key.
+
+Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 297](../src/shared/LoginHandler.php#L297-L304)
+
+### `wptelegram_login_get_secret_key`
+
+*Filter the secret key for the data source.*
+
+**Arguments**
+
+Argument | Type | Description
+-------- | ---- | -----------
+`$secret_key` | `string` | The secret key.
+`$data_source` | `string` | The data source.
+`$bot_token` | `string` | The bot token.
+
+Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 343](../src/shared/LoginHandler.php#L343-L350)
+
+### `wptelegram_login_random_email_host`
+
+*Filter the host for the random email.*
+
+**Arguments**
+
+Argument | Type | Description
+-------- | ---- | -----------
+`$host` | `string` | The host for the random email.
+`$user` | `\WP_User` | The current user.
+
+Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 364](../src/shared/LoginHandler.php#L364-L370)
+
+### `wptelegram_login_random_email_user`
+
+*Filter the username for the random email.*
+
+**Arguments**
+
+Argument | Type | Description
+-------- | ---- | -----------
+`$random_user` | `string` | The username for the random email.
+`$user` | `\WP_User` | The current user.
+
+Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 373](../src/shared/LoginHandler.php#L373-L379)
+
+### `wptelegram_login_random_email`
+
+*Filter the randomly generated email.*
+
+**Arguments**
+
+Argument | Type | Description
+-------- | ---- | -----------
+`$random_email` | `string` | The random email.
+`$user` | `\WP_User` | The current user.
+`$random_user` | `string` | The username for the random email.
+`$host` | `string` | The host for the random email.
+
+Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 383](../src/shared/LoginHandler.php#L383-L391)
+
+### `wptelegram_login_disable_signup`
+
+*Filters whether to disable sign up via Telegram.*
+
+It means that the user must first create an account and connect it to Telegram to be able to use Telegram Login.
+
+**Arguments**
+
+Argument | Type | Description
+-------- | ---- | -----------
+`$disable_signup` | `bool` | Whether to disable sign up via Telegram.
+`$data` | `array` | The user details.
+
+Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 474](../src/shared/LoginHandler.php#L474-L482)
+
+### `wptelegram_login_always_update_user_data`
+
+*Whether to always update the existing user data.*
+
+Pass `false` if you do not want to update user profile for existing users.
+
+- [Examples](./examples/always_update_user_data.md)
+
+**Arguments**
+
+Argument | Type | Description
+-------- | ---- | -----------
+`$always_update` | `bool` | Whether to always update the user data.
+`$data` | `array` | The user details.
+`$existing_user_id` | `int\|null` | Existing WP User ID.
+
+Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 492](../src/shared/LoginHandler.php#L492-L503)
+
+### `wptelegram_login_save_user_data`
+
+*Filter the user data before saving the user in the database.*
+
+**Arguments**
+
+Argument | Type | Description
+-------- | ---- | -----------
+`$data` | `array` | The user details.
+`$wp_user_id` | `int\|null` | Existing WP User ID.
+
+Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 526](../src/shared/LoginHandler.php#L526-L532)
+
+### `wptelegram_login_unique_username`
+
+*Filter the unique username before creating the user.*
+
+**Arguments**
+
+Argument | Type | Description
+-------- | ---- | -----------
+`$unique_username` | `string` | The unique username.
+
+Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 551](../src/shared/LoginHandler.php#L551-L556)
+
+### `wptelegram_login_insert_user_data`
+
+*Filter the user data before inserting the user into the database.*
+
+**Arguments**
+
+Argument | Type | Description
+-------- | ---- | -----------
+`$userdata` | `array` | The user data.
+
+Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 565](../src/shared/LoginHandler.php#L565-L570)
+
+### `wptelegram_login_update_user_data`
+
+*Filter the user data before updating the user in the database.*
+
+- [Examples](./examples/update_user_data.md)
+
+**Arguments**
+
+Argument | Type | Description
+-------- | ---- | -----------
+`$userdata` | `array` | The user data.
+
+Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 594](../src/shared/LoginHandler.php#L594-L601)
+
+### `wptelegram_login_user_redirect_to`
+
+*Filter the redirect URL after login.*
+
+**Arguments**
+
+Argument | Type | Description
+-------- | ---- | -----------
+`$redirect_to` | `string` | The redirect URL.
+`$user` | `\WP_User` | The logged in user.
+
+Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 682](../src/shared/LoginHandler.php#L682-L688)
 
 ### `wptelegram_login_redirect_to`
 
@@ -286,211 +455,6 @@ Argument | Type | Description
 
 Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 357](../src/shared/Shared.php#L357-L364)
 
-### `wptelegram_login_validation_query_params`
-
-*Filter the validation query parameters that the plugin uses.*
-
-**Arguments**
-
-Argument | Type | Description
--------- | ---- | -----------
-`$validation_query_params` | `array` | The validation query parameters.
-`$input` | `array` | The input data.
-
-Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 203](../src/shared/LoginHandler.php#L203-L209)
-
-### `wptelegram_login_clean_input`
-
-*Filter the cleaned input from the login request.*
-
-**Arguments**
-
-Argument | Type | Description
--------- | ---- | -----------
-`$clean_input` | `array` | The cleaned input.
-`$input` | `array` | The input data.
-
-Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 213](../src/shared/LoginHandler.php#L213-L219)
-
-### `wptelegram_login_valid_auth_data`
-
-*Filter the validated auth data.*
-
-**Arguments**
-
-Argument | Type | Description
--------- | ---- | -----------
-`$auth_data` | `array` | The valid auth data.
-`$input_data` | `array` | The input data.
-
-Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 263](../src/shared/LoginHandler.php#L263-L269)
-
-### `wptelegram_login_hash_auth_data`
-
-*Filter the generated hash for the incoming auth data.*
-
-**Arguments**
-
-Argument | Type | Description
--------- | ---- | -----------
-`$generated_hash` | `string` | The generated hash.
-`$auth_data` | `array` | The auth data received.
-`$secret_key` | `string` | The secret key.
-
-Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 297](../src/shared/LoginHandler.php#L297-L304)
-
-### `wptelegram_login_get_secret_key`
-
-*Filter the secret key for the data source.*
-
-**Arguments**
-
-Argument | Type | Description
--------- | ---- | -----------
-`$secret_key` | `string` | The secret key.
-`$data_source` | `string` | The data source.
-`$bot_token` | `string` | The bot token.
-
-Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 343](../src/shared/LoginHandler.php#L343-L350)
-
-### `wptelegram_login_random_email_host`
-
-*Filter the host for the random email.*
-
-**Arguments**
-
-Argument | Type | Description
--------- | ---- | -----------
-`$host` | `string` | The host for the random email.
-`$user` | `\WP_User` | The current user.
-
-Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 364](../src/shared/LoginHandler.php#L364-L370)
-
-### `wptelegram_login_random_email_user`
-
-*Filter the username for the random email.*
-
-**Arguments**
-
-Argument | Type | Description
--------- | ---- | -----------
-`$random_user` | `string` | The username for the random email.
-`$user` | `\WP_User` | The current user.
-
-Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 373](../src/shared/LoginHandler.php#L373-L379)
-
-### `wptelegram_login_random_email`
-
-*Filter the randomly generated email.*
-
-**Arguments**
-
-Argument | Type | Description
--------- | ---- | -----------
-`$random_email` | `string` | The random email.
-`$user` | `\WP_User` | The current user.
-`$random_user` | `string` | The username for the random email.
-`$host` | `string` | The host for the random email.
-
-Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 383](../src/shared/LoginHandler.php#L383-L391)
-
-### `wptelegram_login_disable_signup`
-
-*Filter whether to disable sign up via Telegram!!*
-
-It means that the user must first create an account and connect it to Telegram to be able to use Telegram Login.
-
-**Arguments**
-
-Argument | Type | Description
--------- | ---- | -----------
-`$disable_signup` | `bool` | Whether to disable sign up via Telegram.
-`$data` | `array` | The user details.
-
-Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 474](../src/shared/LoginHandler.php#L474-L482)
-
-### `wptelegram_login_always_update_user_data`
-
-*Whether to always update the existing user data.*
-
-Pass `false` if you do not want to update user profile for existing users.
-
-- [Examples](./examples/always_update_user_data.md)
-
-**Arguments**
-
-Argument | Type | Description
--------- | ---- | -----------
-`$always_update` | `bool` | Whether to always update the user data.
-`$data` | `array` | The user details.
-`$existing_user_id` | `int\|null` | Existing WP User ID.
-
-Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 492](../src/shared/LoginHandler.php#L492-L503)
-
-### `wptelegram_login_save_user_data`
-
-*Filter the user data before saving the user in the database.*
-
-**Arguments**
-
-Argument | Type | Description
--------- | ---- | -----------
-`$data` | `array` | The user details.
-`$wp_user_id` | `int\|null` | Existing WP User ID.
-
-Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 526](../src/shared/LoginHandler.php#L526-L532)
-
-### `wptelegram_login_unique_username`
-
-*Filter the unique username before creating the user.*
-
-**Arguments**
-
-Argument | Type | Description
--------- | ---- | -----------
-`$unique_username` | `string` | The unique username.
-
-Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 551](../src/shared/LoginHandler.php#L551-L556)
-
-### `wptelegram_login_insert_user_data`
-
-*Filter the user data before inserting the user into the database.*
-
-**Arguments**
-
-Argument | Type | Description
--------- | ---- | -----------
-`$userdata` | `array` | The user data.
-
-Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 565](../src/shared/LoginHandler.php#L565-L570)
-
-### `wptelegram_login_update_user_data`
-
-*Filter the user data before updating the user in the database.*
-
-- [Examples](./examples/update_user_data.md)
-
-**Arguments**
-
-Argument | Type | Description
--------- | ---- | -----------
-`$userdata` | `array` | The user data.
-
-Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 594](../src/shared/LoginHandler.php#L594-L601)
-
-### `wptelegram_login_user_redirect_to`
-
-*Filter the redirect URL after login.*
-
-**Arguments**
-
-Argument | Type | Description
--------- | ---- | -----------
-`$redirect_to` | `string` | The redirect URL.
-`$user` | `\WP_User` | The logged in user.
-
-Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 682](../src/shared/LoginHandler.php#L682-L688)
-
 ### `widget_title`
 
 *Filters the widget title.*
@@ -510,6 +474,47 @@ Version | Description
 `1.0.0` | 
 
 Source: [src/shared/widgets/Primary.php](../src/shared/widgets/Primary.php), [line 46](../src/shared/widgets/Primary.php#L46-L55)
+
+### `wptelegram_login_web_app_login_data`
+
+*Filters the data for the web app login.*
+
+This can be used to customize the messages etc. for the web app login UI.
+
+**Arguments**
+
+Argument | Type | Description
+-------- | ---- | -----------
+`$data` | `array` | The data for the web app login.
+
+Source: [src/includes/AssetManager.php](../src/includes/AssetManager.php), [line 272](../src/includes/AssetManager.php#L272-L279)
+
+### `wptelegram_login_language_options`
+
+*Filters the language options for the settings page.*
+
+**Arguments**
+
+Argument | Type | Description
+-------- | ---- | -----------
+`$data` | `array` | The language options.
+`$translations` | `array` | The available translations.
+
+Source: [src/includes/AssetManager.php](../src/includes/AssetManager.php), [line 408](../src/includes/AssetManager.php#L408-L414)
+
+### `wptelegram_login_intercept_request_on`
+
+*Filter the hook and priority to use for intercepting the login request.*
+
+- [Examples](./examples/intercept_request_on.md)
+
+**Arguments**
+
+Argument | Type | Description
+-------- | ---- | -----------
+`$hook_and_priority` | `array` | The hook and priority.
+
+Source: [src/includes/Main.php](../src/includes/Main.php), [line 392](../src/includes/Main.php#L392-L399)
 
 
 <p align="center"><a href="https://github.com/pronamic/wp-documentor"><img src="https://cdn.jsdelivr.net/gh/pronamic/wp-documentor@main/logos/pronamic-wp-documentor.svgo-min.svg" alt="Pronamic WordPress Documentor" width="32" height="32"></a><br><em>Generated by <a href="https://github.com/pronamic/wp-documentor">Pronamic WordPress Documentor</a> <code>1.2.0</code></em><p>

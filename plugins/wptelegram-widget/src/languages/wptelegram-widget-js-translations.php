@@ -182,15 +182,15 @@ $generated_i18n_strings = array(
 	// Reference: js/blocks/single-post/Controls.tsx:51
 	__( 'Edit URL', 'wptelegram-widget' ),
 
-	// Reference: js/blocks/single-post/Edit.tsx:136
-	__( 'Telegram post URL', 'wptelegram-widget' ),
-
-	// Reference: js/blocks/single-post/Edit.tsx:165
+	// Reference: js/blocks/single-post/Edit.tsx:135
 	__( 'Loading…', 'wptelegram-widget' ),
 
-	// Reference: js/blocks/single-post/Edit.tsx:176
+	// Reference: js/blocks/single-post/Edit.tsx:149
 	// Reference: js/blocks/single-post/index.tsx:46
 	__( 'Telegram post', 'wptelegram-widget' ),
+
+	// Reference: js/blocks/single-post/Edit.tsx:27
+	__( 'Telegram post URL', 'wptelegram-widget' ),
 
 	// Reference: js/blocks/single-post/Placeholder.tsx:40
 	__( 'Embed', 'wptelegram-widget' ),
