@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dde805feed32c6059979ea3dbdb0bd12",
+    "content-hash": "d150f1b92109017cd8c6042e25e08659",
     "packages": [
         {
             "name": "wpsocio/wp-utils",
@@ -673,16 +673,16 @@
         },
         {
             "name": "pronamic/wp-documentor",
-            "version": "1.3.0",
+            "version": "v1.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pronamic/wp-documentor.git",
-                "reference": "3fbe5703626936e2541451ca8dd5ed71db44539e"
+                "reference": "aa61fc73df910fc2414e784f30456c148cc628b1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pronamic/wp-documentor/zipball/3fbe5703626936e2541451ca8dd5ed71db44539e",
-                "reference": "3fbe5703626936e2541451ca8dd5ed71db44539e",
+                "url": "https://api.github.com/repos/pronamic/wp-documentor/zipball/aa61fc73df910fc2414e784f30456c148cc628b1",
+                "reference": "aa61fc73df910fc2414e784f30456c148cc628b1",
                 "shasum": ""
             },
             "require": {
@@ -740,9 +740,9 @@
             ],
             "support": {
                 "issues": "https://github.com/pronamic/wp-documentor/issues",
-                "source": "https://github.com/pronamic/wp-documentor/tree/1.3.0"
+                "source": "https://github.com/pronamic/wp-documentor/tree/v1.3.1"
             },
-            "time": "2022-07-18T12:17:30+00:00"
+            "time": "2024-02-22T08:38:58+00:00"
         },
         {
             "name": "psr/container",
