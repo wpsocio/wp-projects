@@ -472,7 +472,7 @@ class LoginHandler extends BaseClass {
 			$disable_signup = WPTG_Login()->options()->get( 'disable_signup' );
 
 			/**
-			 * Filter whether to disable sign up via Telegram!!
+			 * Filters whether to disable sign up via Telegram.
 			 *
 			 * It means that the user must first create an account and connect it to Telegram to be able to use Telegram Login.
 			 *
