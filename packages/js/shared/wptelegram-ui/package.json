@@ -28,8 +28,8 @@
 		"react": "^18.2.0"
 	},
 	"devDependencies": {
-		"@types/node": "^20.11.19",
+		"@types/node": "^20.11.20",
 		"@types/ramda": "^0.29.10",
-		"@types/react": "^18.2.56"
+		"@types/react": "^18.2.58"
 	}
 }
