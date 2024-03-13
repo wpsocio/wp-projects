@@ -28,7 +28,7 @@ $ npm install -g @wpsocio/wpdev
 $ wpdev COMMAND
 running command...
 $ wpdev (--version)
-@wpsocio/wpdev/1.0.5 linux-x64 node-v20.11.0
+@wpsocio/wpdev/1.0.5 linux-x64 node-v20.11.1
 $ wpdev --help [COMMAND]
 USAGE
   $ wpdev COMMAND

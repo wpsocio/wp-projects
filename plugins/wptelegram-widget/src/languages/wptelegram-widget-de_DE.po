@@ -161,12 +161,12 @@ msgstr "Optionen"
 msgid "Edit URL"
 msgstr "URL bearbeiten"
 
-#: js/blocks/single-post/Edit.tsx:136
+#: js/blocks/single-post/Edit.tsx:27
 #: languages/wptelegram-widget-js-translations.php:186
 msgid "Telegram post URL"
 msgstr "Beitrags-URL von Telegram"
 
-#: js/blocks/single-post/Edit.tsx:165
+#: js/blocks/single-post/Edit.tsx:135
 #: languages/wptelegram-widget-js-translations.php:189
 msgid "Loading…"
 msgstr "Wird geladen..."
@@ -658,7 +658,7 @@ msgstr "Zeigt einen öffentlichen Telegram Channel oder Gruppen-Feed in einem Wi
 
 #. Plugin Name of the plugin
 #: wptelegram-widget.php
-#: includes/Main.php:420
+#: includes/Main.php:421
 #~ msgid "WP Telegram Widget"
 #~ msgstr "WP Telegram Widget"
 
@@ -669,7 +669,7 @@ msgstr "Zeigt einen öffentlichen Telegram Channel oder Gruppen-Feed in einem Wi
 #~ msgid "Display the Telegram Public Channel or Group Feed in a WordPress widget or anywhere you want using a shortcode."
 #~ msgstr "Zeigt einen öffentlichen Telegram Channel oder Gruppen-Feed in einem Widget oder per Shortcode an beliebiger Stelle an."
 
-#: js/blocks/single-post/Edit.tsx:176
+#: js/blocks/single-post/Edit.tsx:149
 #: js/blocks/single-post/index.tsx:46
 #: languages/wptelegram-widget-js-translations.php:193
 msgid "Telegram post"

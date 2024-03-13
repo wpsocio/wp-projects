@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.1.20
+
+### Patch Changes
+
+- [#110](https://github.com/wpsocio/wp-projects/pull/110) [`e2a689c`](https://github.com/wpsocio/wp-projects/commit/e2a689c152f4ea0d377544b75912831f88e4451e) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Fixed the deprecation warning for `FocusableIframe`
+
+- [#110](https://github.com/wpsocio/wp-projects/pull/110) [`e2a689c`](https://github.com/wpsocio/wp-projects/commit/e2a689c152f4ea0d377544b75912831f88e4451e) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Fixed the single post widget styles in post editor
+
 ## 2.1.19
 
 ### Patch Changes
