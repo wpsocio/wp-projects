@@ -79,7 +79,7 @@ export const getBundleConfig = ({ slug, key, version, textDomain }) => {
 				},
 			},
 			{
-				type: 'generate-pot',
+				type: 'i18n-make-pot',
 				data: {
 					source: 'src',
 					textDomain,
@@ -99,19 +99,25 @@ export const getBundleConfig = ({ slug, key, version, textDomain }) => {
 				},
 			},
 			{
-				type: 'update-po-files',
+				type: 'i18n-update-po',
 				data: {
 					source: `src/languages/${slug}.pot`,
 				},
 			},
 			{
-				type: 'make-mo-files',
+				type: 'i18n-make-mo',
 				data: {
 					source: 'src/languages/',
 				},
 			},
 			{
-				type: 'js-pot-to-php',
+				type: 'i18n-make-php',
+				data: {
+					source: 'src/languages/',
+				},
+			},
+			{
+				type: 'i18n-js-pot-to-php',
 				data: {
 					potFile: 'src/languages/js-translations.pot',
 					textDomain,
