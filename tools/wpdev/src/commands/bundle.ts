@@ -5,12 +5,7 @@ import chalk from 'chalk';
 import { Listr, ListrTask } from 'listr2';
 import { WithProjects } from '../base-commands/WithProjects.js';
 import { updateChangelog } from '../utils/changelog.js';
-import {
-	generatePotFile,
-	makeMoFiles,
-	potToPhp,
-	updatePoFiles,
-} from '../utils/i18n.js';
+import { makeMo, makePhp, makePot, potToPhp, updatePo } from '../utils/i18n.js';
 import { copyFiles, getDistIgnorePattern, zipDir } from '../utils/misc.js';
 import {
 	WPProject,
@@ -240,43 +235,57 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 							},
 						};
 
-					case 'generate-pot':
+					case 'i18n-make-pot':
 						return {
-							title: 'Generate POT file',
+							title: 'I18N: Make POT',
 							task: async () => {
-								return await generatePotFile(projectDir, {
+								return await makePot(projectDir, {
 									textDomain: projectInfo.textDomain,
 									...taskData,
 								});
 							},
 						};
 
-					case 'update-po-files':
+					case 'i18n-update-po':
 						return {
-							title: 'Update PO files',
+							title: 'I18N: Update PO files',
 							task: async () => {
-								return await updatePoFiles(projectDir, {
+								return await updatePo(projectDir, {
 									source: `src/languages/${projectInfo.textDomain}.pot`,
 									...taskData,
 								});
 							},
 						};
 
-					case 'make-mo-files':
+					case 'i18n-make-mo':
 						return {
-							title: 'Make MO files',
+							title: 'I18N: Make MO files',
 							task: async () => {
-								const { source } = taskData;
+								const { source, destination } = taskData;
 
-								return await makeMoFiles(projectDir, {
+								return await makeMo(projectDir, {
 									source: source || 'src/languages/',
+									destination: destination,
 								});
 							},
 						};
 
-					case 'js-pot-to-php':
+					case 'i18n-make-php':
 						return {
-							title: 'JS POT to PHP',
+							title: 'I18N: Make PHP files',
+							task: async () => {
+								const { source, destination } = taskData;
+
+								return await makePhp(projectDir, {
+									source: source || 'src/languages/',
+									destination: destination,
+								});
+							},
+						};
+
+					case 'i18n-js-pot-to-php':
+						return {
+							title: 'I18N: JS POT to PHP',
 							task: async () => {
 								const { potFile, textDomain, phpFile } = taskData;
 
