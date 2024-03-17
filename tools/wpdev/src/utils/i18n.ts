@@ -40,7 +40,7 @@ export type GeneratePotFileConfig = Pick<
 	mergeFiles?: Array<string>;
 };
 
-export async function generatePotFile(
+export async function makePot(
 	cwd: string,
 	{
 		outFile,
@@ -90,7 +90,7 @@ export type UpdatePoFilesConfig = {
 	destination?: string;
 };
 
-export async function updatePoFiles(
+export async function updatePo(
 	cwd: string,
 	{ source, destination }: UpdatePoFilesConfig,
 ) {
@@ -98,10 +98,18 @@ export async function updatePoFiles(
 	return await $({ cwd })`wp i18n update-po ${source} ${dest}`;
 }
 
-export async function makeMoFiles(
+export async function makeMo(
 	cwd: string,
 	{ source, destination }: UpdatePoFilesConfig,
 ) {
 	const dest = destination || source;
 	return await $({ cwd })`wp i18n make-mo ${source} ${dest}`;
+}
+
+export async function makePhp(
+	cwd: string,
+	{ source, destination }: UpdatePoFilesConfig,
+) {
+	const dest = destination || source;
+	return await $({ cwd })`wp i18n make-php ${source} ${dest}`;
 }

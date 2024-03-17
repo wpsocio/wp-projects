@@ -74,14 +74,6 @@ const jsPotToPhpData = z.object({
 		.describe('The text domain. Defaults to slug.'),
 });
 
-const makeMoFilesData = z.object({
-	source: z
-		.string()
-		.optional()
-		.default('src/languages/')
-		.describe('The source directory that contains the .po files.'),
-});
-
 const scriptsData = z
 	.array(z.string())
 	.describe('The list of npm scripts to run.');
@@ -101,6 +93,40 @@ const updatePoFilesData = z.object({
 		.optional()
 		.describe(
 			'The source POT file. Defaults to "src/languages/{text-domain}.pot"',
+		),
+	destination: z
+		.string()
+		.optional()
+		.describe(
+			'The destination directory for the PO files. Defaults to "src/languages/"',
+		),
+});
+
+const makeMoFilesData = z.object({
+	source: z
+		.string()
+		.optional()
+		.default('src/languages/')
+		.describe('The source directory that contains the .po files.'),
+	destination: z
+		.string()
+		.optional()
+		.describe(
+			'The destination directory for the .mo files. Defaults to the source directory.',
+		),
+});
+
+const makePhpFilesData = z.object({
+	source: z
+		.string()
+		.optional()
+		.default('src/languages/')
+		.describe('The source directory that contains the .po files.'),
+	destination: z
+		.string()
+		.optional()
+		.describe(
+			'The destination directory for the .php files. Defaults to the source directory.',
 		),
 });
 
@@ -203,19 +229,23 @@ export const bundleSchema = z
 					data: updateChangelogData,
 				}),
 				z.object({
-					type: z.literal('generate-pot'),
+					type: z.literal('i18n-make-pot'),
 					data: generatePotData,
 				}),
 				z.object({
-					type: z.literal('update-po-files'),
+					type: z.literal('i18n-update-po'),
 					data: updatePoFilesData,
 				}),
 				z.object({
-					type: z.literal('make-mo-files'),
+					type: z.literal('i18n-make-mo'),
 					data: makeMoFilesData,
 				}),
 				z.object({
-					type: z.literal('js-pot-to-php'),
+					type: z.literal('i18n-make-php'),
+					data: makePhpFilesData,
+				}),
+				z.object({
+					type: z.literal('i18n-js-pot-to-php'),
 					data: jsPotToPhpData,
 				}),
 				z.object({
