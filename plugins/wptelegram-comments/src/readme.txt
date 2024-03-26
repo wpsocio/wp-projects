@@ -4,8 +4,8 @@ Donate link: https://wpsocio.com/donate
 Tags: telegram, comments, discuss, social, widget
 Requires at least: 6.4
 Requires PHP: 7.4
-Tested up to: 6.4.3
-Stable tag: 1.1.13
+Tested up to: 6.5
+Stable tag: 1.1.14
 License: GPL-3.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -76,7 +76,7 @@ Automatic updates should work smoothly, but we still recommend you back up your 
 
 == Changelog ==
 
-= 1.1.13 =
-- Updated minimum required WP version to 6.4
+= 1.1.14 =
+- Added php translation files for better performance with WP 6.5
 
 [See full changelog](https://github.com/wpsocio/wptelegram-comments/blob/main/CHANGELOG.md)

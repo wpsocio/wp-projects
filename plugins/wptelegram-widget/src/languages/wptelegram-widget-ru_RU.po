@@ -163,12 +163,12 @@ msgid "Edit URL"
 msgstr ""
 
 #: js/blocks/single-post/Edit.tsx:27
-#: languages/wptelegram-widget-js-translations.php:186
+#: languages/wptelegram-widget-js-translations.php:193
 msgid "Telegram post URL"
 msgstr ""
 
 #: js/blocks/single-post/Edit.tsx:135
-#: languages/wptelegram-widget-js-translations.php:189
+#: languages/wptelegram-widget-js-translations.php:186
 msgid "Loading…"
 msgstr ""
 
@@ -658,7 +658,7 @@ msgstr "Отображать Telegram канал или Чат в виджете
 
 #: js/blocks/single-post/Edit.tsx:149
 #: js/blocks/single-post/index.tsx:46
-#: languages/wptelegram-widget-js-translations.php:193
+#: languages/wptelegram-widget-js-translations.php:190
 msgid "Telegram post"
 msgstr ""
 

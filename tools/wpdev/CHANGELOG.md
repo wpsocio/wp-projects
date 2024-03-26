@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.6
+
+### Patch Changes
+
+- [#116](https://github.com/wpsocio/wp-projects/pull/116) [`cfac49f`](https://github.com/wpsocio/wp-projects/commit/cfac49f19a2c8783782ba2d4229d5bf2a742ba11) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Added `make-php` task to `bundle` command
+
 ## 1.0.5
 
 ### Patch Changes
