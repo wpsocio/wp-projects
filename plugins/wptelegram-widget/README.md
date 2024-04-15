@@ -4,8 +4,8 @@
 **Tags:** telegram, feed, widget, channel, group  
 **Requires at least:** 6.4  
 **Requires PHP:** 7.4  
-**Tested up to:** 6.5  
-**Stable tag:** 2.1.21  
+**Tested up to:** 6.5.2  
+**Stable tag:** 2.1.22  
 **License:** GPL-3.0-or-later  
 **License URI:** [https://www.gnu.org/licenses/gpl-3.0.html](https://www.gnu.org/licenses/gpl-3.0.html)  
 **Donate link:** [wpsocio.com/donate](https://wpsocio.com/donate)
