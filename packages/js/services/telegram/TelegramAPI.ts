@@ -46,6 +46,10 @@ class ApiClient implements TelegramApi {
 	};
 
 	getOptions = (apiMethod: string, apiParams: ApiParams): APIFetchOptions => {
+		// if testing on playground, use browser
+		if (location.hostname === 'playground.wordpress.net') {
+			this.apiData.use = 'BROWSER';
+		}
 		// if holding shift key while testing
 		if (this.event?.shiftKey) {
 			if (!this.apiData.use || this.apiData.use === 'SERVER') {
