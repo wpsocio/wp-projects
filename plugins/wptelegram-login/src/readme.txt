@@ -9,7 +9,7 @@ Stable tag: 1.10.16
 License: GPL-3.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-Let the users login to your website with their Telegram and make it simple for them to get connected and let them receive their email notifications on Telegram.
+Let your users login and register via Telegram, making it easier form them to get started on your website.
 
 == Description ==
 Let the users login to your website with their Telegram and make it simple for them to get connected and let them receive their email notifications on Telegram.

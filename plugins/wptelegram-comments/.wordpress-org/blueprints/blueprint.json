@@ -1,5 +1,5 @@
 {
-	"landingPage": "/wp-admin/admin.php?page=wptelegram-comments",
+	"landingPage": "/wp-admin/admin.php?page=wptelegram_comments",
 	"preferredVersions": {
 		"php": "8.0",
 		"wp": "latest"
