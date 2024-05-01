@@ -1,5 +1,5 @@
 {
-	"landingPage": "/wp-admin/admin.php?page=wptelegram-login",
+	"landingPage": "/wp-admin/admin.php?page=wptelegram_login",
 	"preferredVersions": {
 		"php": "8.0",
 		"wp": "latest"
