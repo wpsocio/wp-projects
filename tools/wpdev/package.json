@@ -1,6 +1,6 @@
 {
 	"name": "@wpsocio/wpdev",
-	"version": "1.0.6",
+	"version": "1.0.7",
 	"description": "A CLI to manage WordPress projects in a monorepo or a standalone repo.",
 	"license": "MIT",
 	"repository": {

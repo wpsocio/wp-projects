@@ -28,7 +28,7 @@ $ npm install -g @wpsocio/wpdev
 $ wpdev COMMAND
 running command...
 $ wpdev (--version)
-@wpsocio/wpdev/1.0.6 linux-x64 node-v20.13.1
+@wpsocio/wpdev/1.0.7 linux-x64 node-v20.15.0
 $ wpdev --help [COMMAND]
 USAGE
   $ wpdev COMMAND
@@ -89,7 +89,7 @@ EXAMPLES
   $ wpdev bundle --all
 ```
 
-_See code: [src/commands/bundle.ts](https://github.com/wpsocio/wp-projects/blob/@wpsocio/wpdev@1.0.6/tools/wpdev/src/commands/bundle.ts)_
+_See code: [src/commands/bundle.ts](https://github.com/wpsocio/wp-projects/blob/@wpsocio/wpdev@1.0.7/tools/wpdev/src/commands/bundle.ts)_
 
 ## `wpdev clean [PATH]`
 
@@ -123,7 +123,7 @@ EXAMPLES
   $ wpdev clean --all
 ```
 
-_See code: [src/commands/clean.ts](https://github.com/wpsocio/wp-projects/blob/@wpsocio/wpdev@1.0.6/tools/wpdev/src/commands/clean.ts)_
+_See code: [src/commands/clean.ts](https://github.com/wpsocio/wp-projects/blob/@wpsocio/wpdev@1.0.7/tools/wpdev/src/commands/clean.ts)_
 
 ## `wpdev link [PROJECTS]`
 
@@ -161,7 +161,7 @@ EXAMPLES
   $ wpdev link --all
 ```
 
-_See code: [src/commands/link.ts](https://github.com/wpsocio/wp-projects/blob/@wpsocio/wpdev@1.0.6/tools/wpdev/src/commands/link.ts)_
+_See code: [src/commands/link.ts](https://github.com/wpsocio/wp-projects/blob/@wpsocio/wpdev@1.0.7/tools/wpdev/src/commands/link.ts)_
 
 ## `wpdev project-info [PROJECTS]`
 
@@ -199,7 +199,7 @@ EXAMPLES
   $ wpdev project-info --all
 ```
 
-_See code: [src/commands/project-info.ts](https://github.com/wpsocio/wp-projects/blob/@wpsocio/wpdev@1.0.6/tools/wpdev/src/commands/project-info.ts)_
+_See code: [src/commands/project-info.ts](https://github.com/wpsocio/wp-projects/blob/@wpsocio/wpdev@1.0.7/tools/wpdev/src/commands/project-info.ts)_
 
 ## `wpdev unlink [PROJECTS]`
 
@@ -237,5 +237,5 @@ EXAMPLES
   $ wpdev unlink --all
 ```
 
-_See code: [src/commands/unlink.ts](https://github.com/wpsocio/wp-projects/blob/@wpsocio/wpdev@1.0.6/tools/wpdev/src/commands/unlink.ts)_
+_See code: [src/commands/unlink.ts](https://github.com/wpsocio/wp-projects/blob/@wpsocio/wpdev@1.0.7/tools/wpdev/src/commands/unlink.ts)_
 <!-- commandsstop -->

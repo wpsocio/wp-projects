@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.7
+
+### Patch Changes
+
+- [#127](https://github.com/wpsocio/wp-projects/pull/127) [`0f3c254`](https://github.com/wpsocio/wp-projects/commit/0f3c2540ffbef606386c462cbbca98b7b7f51b6a) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Added make-json task for i18n
+
 ## 1.0.6
 
 ### Patch Changes
