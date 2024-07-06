@@ -5,7 +5,7 @@ Tags: telegram, login, register, social, signup
 Requires at least: 6.4
 Requires PHP: 7.4
 Tested up to: 6.5.2
-Stable tag: 1.10.16
+Stable tag: 1.10.17
 License: GPL-3.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -154,7 +154,7 @@ Automatic updates should work smoothly, but we still recommend you back up your 
 
 == Changelog ==
 
-= 1.10.16 =
-- Added blueprints for WP Playground
+= 1.10.17 =
+- Fixed translations not working for settings page
 
 [See full changelog](https://github.com/wpsocio/wptelegram-login/blob/main/CHANGELOG.md)
