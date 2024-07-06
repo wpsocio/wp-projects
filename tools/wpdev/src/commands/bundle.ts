@@ -5,7 +5,14 @@ import chalk from 'chalk';
 import { Listr, ListrTask } from 'listr2';
 import { WithProjects } from '../base-commands/WithProjects.js';
 import { updateChangelog } from '../utils/changelog.js';
-import { makeMo, makePhp, makePot, potToPhp, updatePo } from '../utils/i18n.js';
+import {
+	makeJson,
+	makeMo,
+	makePhp,
+	makePot,
+	potToPhp,
+	updatePo,
+} from '../utils/i18n.js';
 import { copyFiles, getDistIgnorePattern, zipDir } from '../utils/misc.js';
 import {
 	WPProject,
@@ -277,6 +284,19 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 								const { source, destination } = taskData;
 
 								return await makePhp(projectDir, {
+									source: source || 'src/languages/',
+									destination: destination,
+								});
+							},
+						};
+
+					case 'i18n-make-json':
+						return {
+							title: 'I18N: Make JSON files',
+							task: async () => {
+								const { source, destination } = taskData;
+
+								return await makeJson(projectDir, {
 									source: source || 'src/languages/',
 									destination: destination,
 								});

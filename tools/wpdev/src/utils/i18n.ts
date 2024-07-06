@@ -111,5 +111,17 @@ export async function makePhp(
 	{ source, destination }: UpdatePoFilesConfig,
 ) {
 	const dest = destination || source;
-	return await $({ cwd })`wp i18n make-php ${source} ${dest}`;
+	const result = await $({ cwd })`wp i18n make-php ${source} ${dest}`;
+
+	return result;
+}
+
+export async function makeJson(
+	cwd: string,
+	{ source, destination }: UpdatePoFilesConfig,
+) {
+	const dest = destination || source;
+	const result = await $({ cwd })`wp i18n make-json ${source} ${dest}`;
+
+	return result;
 }
