@@ -117,6 +117,12 @@ export const getBundleConfig = ({ slug, key, version, textDomain }) => {
 				},
 			},
 			{
+				type: 'i18n-make-json',
+				data: {
+					source: 'src/languages/',
+				},
+			},
+			{
 				type: 'i18n-js-pot-to-php',
 				data: {
 					potFile: 'src/languages/js-translations.pot',
