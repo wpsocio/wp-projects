@@ -130,6 +130,20 @@ const makePhpFilesData = z.object({
 		),
 });
 
+const makeJsonFilesData = z.object({
+	source: z
+		.string()
+		.optional()
+		.default('src/languages/')
+		.describe('The source directory that contains the .po files.'),
+	destination: z
+		.string()
+		.optional()
+		.describe(
+			'The destination directory for the .json files. Defaults to the source directory.',
+		),
+});
+
 const updateRequirementsData = z.object({
 	requirements: z.object({
 		requiresPHP: z.string().describe('The minimum required PHP version.'),
@@ -243,6 +257,10 @@ export const bundleSchema = z
 				z.object({
 					type: z.literal('i18n-make-php'),
 					data: makePhpFilesData,
+				}),
+				z.object({
+					type: z.literal('i18n-make-json'),
+					data: makeJsonFilesData,
 				}),
 				z.object({
 					type: z.literal('i18n-js-pot-to-php'),
