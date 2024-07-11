@@ -20,7 +20,7 @@ export const getBundleConfig = ({ slug, key, version, textDomain }) => {
 					requirements: {
 						requiresPHP: '7.4',
 						requiresAtLeast: '6.4',
-						testedUpTo: '6.5.2',
+						testedUpTo: '6.6',
 					},
 					target: {
 						files: [
@@ -112,12 +112,6 @@ export const getBundleConfig = ({ slug, key, version, textDomain }) => {
 			},
 			{
 				type: 'i18n-make-php',
-				data: {
-					source: 'src/languages/',
-				},
-			},
-			{
-				type: 'i18n-make-json',
 				data: {
 					source: 'src/languages/',
 				},
