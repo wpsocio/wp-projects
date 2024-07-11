@@ -426,17 +426,27 @@ class Logger extends BaseClass {
 
 		$text = preg_replace( $bot_token_regex, '**********', $text );
 
+		/**
+		 * The global WP_Filesystem object.
+		 *
+		 * @var \WP_Filesystem_Base $wp_filesystem The global WP_Filesystem object.
+		 */
 		global $wp_filesystem;
-
-		$contents = '[' . current_time( 'mysql' ) . ']' . PHP_EOL . $text . PHP_EOL . PHP_EOL;
 
 		// Default to 1 MB.
 		$max_filesize = apply_filters( 'wptelegram_logger_max_filesize', 1024 ** 2, $type, $file_path );
 
+		$contents  = $wp_filesystem->is_readable( $file_path ) ? $wp_filesystem->get_contents( $file_path ) : '';
+		$contents .= '[' . current_time( 'mysql' ) . ']' . PHP_EOL . $text . PHP_EOL . PHP_EOL;
+
 		// Make sure that the file size remains less than $max_filesize.
-		if ( $wp_filesystem->exists( $file_path ) && $wp_filesystem->size( $file_path ) < $max_filesize ) {
-			// Append the existing content.
-			$contents = $wp_filesystem->get_contents( $file_path ) . $contents;
+		while ( mb_strlen( $contents ) > $max_filesize ) {
+			$content_pieces = preg_split( "/[\n\r]{2}/", $contents );
+
+			// Remove the first piece.
+			array_shift( $content_pieces );
+
+			$contents = implode( "\n\n", $content_pieces );
 		}
 
 		$wp_filesystem->put_contents( $file_path, $contents );
