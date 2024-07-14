@@ -176,6 +176,8 @@ class Logger extends BaseClass {
 
 		add_action( 'wptelegram_p2tg_post_sv_check_failed', [ $this, 'add_sv_check' ], 999, 3 );
 
+		add_action( 'wptelegram_p2tg_delay_post', [ $this, 'add_delay_post' ], 999, 3 );
+
 		add_filter( 'wptelegram_p2tg_rules_apply', [ $this, 'add_rules_apply' ], 999, 3 );
 
 		add_filter( 'wptelegram_p2tg_featured_image_source', [ $this, 'add_featured_image_source' ], 999, 4 );
@@ -260,6 +262,24 @@ class Logger extends BaseClass {
 		$key = $this->get_key( $post );
 
 		$this->p2tg_post_info[ $key ]['sv'] = $validity;
+	}
+
+	/**
+	 * Add delay post info.
+	 *
+	 * @param float   $delay       Delay in posting.
+	 * @param WP_Post $post        The post being handled.
+	 * @param array   $result      The result of delay handler.
+	 */
+	public function add_delay_post( $delay, $post, $result ) {
+
+		// create an entry from post ID and its status.
+		$key = $this->get_key( $post );
+
+		$this->p2tg_post_info[ $key ]['delay'] = [
+			'duration' => $delay,
+			'result'   => $result,
+		];
 	}
 
 	/**
