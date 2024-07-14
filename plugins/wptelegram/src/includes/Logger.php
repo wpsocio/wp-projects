@@ -14,6 +14,7 @@ use WPTelegram\Core\modules\p2tg\RequestCheck;
 use WPTelegram\Core\modules\p2tg\Main as P2TGMain;
 use WPSocio\TelegramFormatText\Exceptions\ConverterException;
 use ReflectionClass;
+use WP_Filesystem_Base;
 use WP_Post;
 
 /**
@@ -140,12 +141,11 @@ class Logger extends BaseClass {
 			$type = sanitize_text_field( wp_unslash( $_GET['type'] ) ); // phpcs:ignore
 
 			if ( ! empty( $hash ) && ! empty( $type ) ) {
-				global $wp_filesystem;
 
 				$file_path = self::get_log_file_path( $type, $hash );
 
-				if ( $wp_filesystem->exists( $file_path ) ) {
-					$contents = $wp_filesystem->get_contents( $file_path );
+				if ( self::wp_filesystem()->exists( $file_path ) ) {
+					$contents = self::wp_filesystem()->get_contents( $file_path );
 				} else {
 					$contents = 'Log file not found!';
 				}
@@ -446,17 +446,12 @@ class Logger extends BaseClass {
 
 		$text = preg_replace( $bot_token_regex, '**********', $text );
 
-		/**
-		 * The global WP_Filesystem object.
-		 *
-		 * @var \WP_Filesystem_Base $wp_filesystem The global WP_Filesystem object.
-		 */
-		global $wp_filesystem;
+		$filesystem = self::wp_filesystem();
 
 		// Default to 1 MB.
 		$max_filesize = apply_filters( 'wptelegram_logger_max_filesize', 1024 ** 2, $type, $file_path );
 
-		$contents  = $wp_filesystem->is_readable( $file_path ) ? $wp_filesystem->get_contents( $file_path ) : '';
+		$contents  = $filesystem->is_readable( $file_path ) ? $filesystem->get_contents( $file_path ) : '';
 		$contents .= '[' . current_time( 'mysql' ) . ']' . PHP_EOL . $text . PHP_EOL . PHP_EOL;
 
 		// Make sure that the file size remains less than $max_filesize.
@@ -469,7 +464,22 @@ class Logger extends BaseClass {
 			$contents = implode( "\n\n", $content_pieces );
 		}
 
-		$wp_filesystem->put_contents( $file_path, $contents );
+		$filesystem->put_contents( $file_path, $contents );
+	}
+
+	/**
+	 * Get an instance of WP_Filesystem.
+	 *
+	 * @return WP_Filesystem_Base The global WP_Filesystem object.
+	 */
+	public static function wp_filesystem() {
+
+		require_once ABSPATH . 'wp-admin/includes/file.php';
+		WP_Filesystem();
+
+		global $wp_filesystem;
+
+		return $wp_filesystem;
 	}
 
 	/**
@@ -484,14 +494,9 @@ class Logger extends BaseClass {
 	 */
 	public static function get_log_file_path( $type, $hash = '' ) {
 
-		require_once ABSPATH . 'wp-admin/includes/file.php';
-		WP_Filesystem();
-
-		global $wp_filesystem;
-
 		$file_name = self::get_log_file_name( $type, $hash );
 
-		$file_path = $wp_filesystem->wp_content_dir() . $file_name;
+		$file_path = self::wp_filesystem()->wp_content_dir() . $file_name;
 
 		return apply_filters( 'wptelegram_logger_log_file_path', $file_path, $type );
 	}
