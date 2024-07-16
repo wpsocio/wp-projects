@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.1.24
+
+### Patch Changes
+
+- [#133](https://github.com/wpsocio/wp-projects/pull/133) [`760751a`](https://github.com/wpsocio/wp-projects/commit/760751a67dac66edff10b865a8d10fe074b352ae) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Maintenance release
+
 ## 2.1.23
 
 ### Patch Changes
