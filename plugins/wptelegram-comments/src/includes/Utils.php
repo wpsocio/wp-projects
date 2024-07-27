@@ -63,8 +63,8 @@ class Utils extends \WPSocio\WPUtils\Helpers {
 
 		if ( ! defined( 'WPTELEGRAM_LOADED' ) && empty( $admin_page_hooks['wptelegram'] ) ) {
 			add_menu_page(
-				__( 'WP Telegram', 'wptelegram-comments' ),
-				__( 'WP Telegram', 'wptelegram-comments' ),
+				'WP Telegram',
+				'WP Telegram',
 				'manage_options',
 				'wptelegram',
 				null,
