@@ -24,6 +24,8 @@ runs:
           const refsCommentRegex =
             /<!--- REMOTE REFS START -->(?<content>.+)<!--- REMOTE REFS END -->/is;
 
+          console.log('pr.body:', pr.body);
+
           const result = (pr.body || '').match(refsCommentRegex);
 
           console.log('result:', result);
