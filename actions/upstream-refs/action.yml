@@ -19,14 +19,14 @@ runs:
             owner: context.repo.owner,
             repo: context.repo.repo,
             pull_number: context.payload.pull_request.number,
-          }).data;
+          });
 
           const refsCommentRegex =
             /<!--- REMOTE REFS START -->(?<content>.+)<!--- REMOTE REFS END -->/is;
 
-          console.log('pr.body:', pr.body);
+          console.log('pr.data.body:', pr.data.body);
 
-          const result = (pr.body || '').match(refsCommentRegex);
+          const result = (pr.data.body || '').match(refsCommentRegex);
 
           console.log('result:', result);
 
