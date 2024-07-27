@@ -1,18 +1,22 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { Package } from '@manypkg/tools';
+import type { Package } from '@manypkg/tools';
 import { execa } from 'execa';
-import { ReleaseType, inc as semverInc } from 'semver';
+import { type ReleaseType, inc as semverInc } from 'semver';
 import { PROJECT_CONFIG_FILE_NAME } from './config.js';
 import { isFileReadable } from './misc.js';
 import {
-	BundleConfigInput,
-	ProjectInfo,
-	ProjectInfoInput,
+	type BundleConfigInput,
+	type ProjectInfo,
+	type ProjectInfoInput,
 	bundleSchema,
 	projectInfoSchema,
 } from './schema.js';
-import { UserConfig, fixPackageType, getStandalonePackage } from './tools.js';
+import {
+	type UserConfig,
+	fixPackageType,
+	getStandalonePackage,
+} from './tools.js';
 import { getFileData, zippedFileHeaders } from './wp-files.js';
 
 export type ProjectType = NonNullable<UserConfig['projectType']>;

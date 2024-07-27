@@ -1,5 +1,5 @@
 import { getPackages } from '@manypkg/get-packages';
-import { Package, RootTool } from '@manypkg/tools';
+import { type Package, RootTool } from '@manypkg/tools';
 import { z } from 'zod';
 import { projectInfoSchema } from './schema.js';
 

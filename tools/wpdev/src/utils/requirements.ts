@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { TaskTarget, globFiles } from './misc.js';
+import { type TaskTarget, globFiles } from './misc.js';
 
 export type Requirements = {
 	requiresPHP: string;

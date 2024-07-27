@@ -1,8 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { prerelease } from 'semver';
-import { TaskTarget, globFiles } from './misc.js';
-import { UpdateVersionInput } from './schema.js';
+import { type TaskTarget, globFiles } from './misc.js';
+import type { UpdateVersionInput } from './schema.js';
 
 export type UpdateVersionConfig = {
 	slug?: string;

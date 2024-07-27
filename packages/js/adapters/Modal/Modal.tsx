@@ -1,4 +1,6 @@
 import {
+	Button,
+	type ButtonProps,
 	Modal as ChakraModal,
 	ModalBody,
 	ModalCloseButton,
@@ -6,8 +8,6 @@ import {
 	ModalFooter,
 	ModalHeader,
 	ModalOverlay,
-	Button,
-	ButtonProps,
 } from '@chakra-ui/react';
 
 export interface ModalProps extends React.ComponentProps<typeof ChakraModal> {

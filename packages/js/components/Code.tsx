@@ -1,4 +1,4 @@
-import { Code as CodeAdapter, CodeProps } from '@wpsocio/adapters';
+import { Code as CodeAdapter, type CodeProps } from '@wpsocio/adapters';
 
 export const Code: React.FC<CodeProps> = ({ children, ...rest }) => {
 	return (

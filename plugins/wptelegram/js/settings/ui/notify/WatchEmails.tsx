@@ -1,10 +1,10 @@
-import { Stack, StackItem, StackProps } from '@wpsocio/adapters';
+import { Stack, StackItem, type StackProps } from '@wpsocio/adapters';
 import { Code } from '@wpsocio/components';
 import { FormField, useFormContext } from '@wpsocio/form';
 import { useChatWithTest } from '@wpsocio/form-components';
 import { __, sprintf } from '@wpsocio/i18n';
 import { createInterpolateElement } from '@wpsocio/utilities';
-import { DataShape, getFieldLabel } from '../../services';
+import { type DataShape, getFieldLabel } from '../../services';
 import { Upsell } from '../shared/Upsell';
 import { PREFIX } from './constants';
 

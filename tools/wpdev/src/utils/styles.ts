@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import cssnano from 'cssnano';
 import postcss from 'postcss';
-import { TaskTarget, globFiles } from './misc.js';
+import { type TaskTarget, globFiles } from './misc.js';
 
 export async function minifyStyles(cwd: string, target: TaskTarget) {
 	const entries = globFiles(target, { cwd });

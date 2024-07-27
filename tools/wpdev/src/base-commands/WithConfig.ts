@@ -2,8 +2,8 @@ import path from 'node:path';
 import { Command, Flags } from '@oclif/core';
 import dotenv from 'dotenv';
 import { pathExists } from 'find-up';
-import { ParsedUserConfig, parseUserConfig } from '../utils/config.js';
-import { UserConfig } from '../utils/tools.js';
+import { type ParsedUserConfig, parseUserConfig } from '../utils/config.js';
+import type { UserConfig } from '../utils/tools.js';
 
 export type CliConfig = Omit<UserConfig, 'isRoot' | 'envFiles'> & {
 	rootDir: string;

@@ -68,7 +68,10 @@ export const Files: React.FC<{ isDisabled?: boolean }> = ({ isDisabled }) => {
 						const urlParts = url.split('/');
 						const name = urlParts[urlParts.length - 1];
 						return (
-							<li key={id + index}>
+							<li
+								// biome-ignore lint/suspicious/noArrayIndexKey: it's fine
+								key={id + index}
+							>
 								<Flex justify="flex-start">
 									<Button
 										icon={<Icon icon="no-alt" />}

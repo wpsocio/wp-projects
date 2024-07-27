@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import { z } from 'zod';
-import { UpdateChangelogOptions } from './schema.js';
+import type { UpdateChangelogOptions } from './schema.js';
 
 export const ChangesetJsonSchema = z.object({
 	changesets: z.array(
@@ -51,7 +51,7 @@ export function updateChangelog({
 			: new RegExp(
 					prevChangesPattern.pattern,
 					'flags' in prevChangesPattern ? prevChangesPattern.flags : 's',
-			  );
+				);
 
 	const prevChanges = readmeTxt.match(prevChangesRegex);
 

@@ -1,4 +1,4 @@
-import { StackItem, BoxProps } from '@wpsocio/adapters';
+import { type BoxProps, StackItem } from '@wpsocio/adapters';
 
 export const FeildStackItem: React.FC<BoxProps> = ({ children, ...props }) => {
 	return (

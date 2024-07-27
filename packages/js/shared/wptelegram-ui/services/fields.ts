@@ -2,7 +2,7 @@ import * as yup from 'yup';
 
 import { __ } from '@wpsocio/i18n';
 import {
-	ParseMode,
+	type ParseMode,
 	fieldLabelGetter,
 	getFormErrorMessage,
 } from '@wpsocio/utilities';

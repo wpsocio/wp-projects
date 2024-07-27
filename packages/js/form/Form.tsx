@@ -1,5 +1,5 @@
-import { PropsWithChildren, useEffect } from 'react';
-import { FormProvider, UseFormReturn } from 'react-hook-form';
+import { type PropsWithChildren, useEffect } from 'react';
+import { FormProvider, type UseFormReturn } from 'react-hook-form';
 
 import type { AnyObject } from '@wpsocio/utilities';
 

@@ -1,6 +1,6 @@
-import { CSSProperties, useCallback } from 'react';
+import { type CSSProperties, useCallback } from 'react';
 
-import { Tab, Tabs, TabsProps, Text } from '@wpsocio/adapters';
+import { Tab, Tabs, type TabsProps, Text } from '@wpsocio/adapters';
 import { useFormState } from '@wpsocio/form';
 import { __ } from '@wpsocio/i18n';
 import { WarningIcon } from '@wpsocio/icons';

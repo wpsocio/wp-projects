@@ -1,6 +1,6 @@
 import { path, allPass, has, propIs, uniq } from 'ramda';
 import { TG_CHAT_ID_REGEX, TG_USERNAME_REGEX } from './constants';
-import { AnyObject, ChatIdParts } from './types';
+import type { AnyObject, ChatIdParts } from './types';
 
 const isFieldError = allPass([
 	has('message'),

@@ -8,11 +8,11 @@
 	"dependencies": {
 		"@wpsocio/i18n": "workspace:*",
 		"@paralleldrive/cuid2": "^2.2.2",
-		"ramda": "^0.29.1"
+		"ramda": "^0.30.1"
 	},
 	"devDependencies": {
-		"@types/node": "^20.11.20",
-		"@types/ramda": "^0.29.10",
-		"@types/react": "^18.2.58"
+		"@types/node": "^20.14.12",
+		"@types/ramda": "^0.30.1",
+		"@types/react": "^18.3.3"
 	}
 }

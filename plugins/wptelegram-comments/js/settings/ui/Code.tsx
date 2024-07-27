@@ -1,10 +1,10 @@
 import $ from 'jquery';
-import { CSSProperties, useEffect } from 'react';
+import { type CSSProperties, useEffect } from 'react';
 
 import { FormField, useFormContext, useWatch } from '@wpsocio/form';
 import { __ } from '@wpsocio/i18n';
 
-import { DataShape, getFieldLabel } from '../services';
+import { type DataShape, getFieldLabel } from '../services';
 
 const style: CSSProperties = {
 	WebkitAppearance: 'none',

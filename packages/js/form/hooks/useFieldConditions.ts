@@ -16,7 +16,7 @@ export const useFieldConditions = (
 
 	const { watch } = useFormContext();
 
-	let formData: Array<unknown> | undefined;
+	let formData: Array<{ [k: string]: string }> | undefined;
 
 	if (conditions) {
 		formData = watch(fields);

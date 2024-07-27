@@ -1,8 +1,11 @@
-import { UseToastOptions, useToast } from '@chakra-ui/toast';
-import { useCallback, useMemo } from 'react';
-
+import { type UseToastOptions, useToast } from '@chakra-ui/toast';
 import { __ } from '@wpsocio/i18n';
-import { AnyObject, FORM_ERROR, getErrorStrings } from '@wpsocio/utilities';
+import {
+	type AnyObject,
+	FORM_ERROR,
+	getErrorStrings,
+} from '@wpsocio/utilities';
+import { useCallback, useMemo } from 'react';
 
 interface DisplayFeedback {
 	displayError: (props: UseToastOptions) => void;

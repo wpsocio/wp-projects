@@ -1,9 +1,9 @@
 import {
+	type RadioGroupProps as ChakraRadioProps,
 	Radio as CharaRadio,
 	RadioGroup,
-	RadioGroupProps as ChakraRadioProps,
 	Stack,
-	StackProps,
+	type StackProps,
 } from '@chakra-ui/react';
 import { forwardRef, useMemo } from 'react';
 

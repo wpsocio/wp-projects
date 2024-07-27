@@ -1,4 +1,4 @@
-import { APIFetchOptions, fetchAPI } from '../apiFetch';
+import { type APIFetchOptions, fetchAPI } from '../apiFetch';
 import type { ApiData } from '../types';
 import type { ApiParams, TelegramApi, TelegramApiMethod } from './types';
 

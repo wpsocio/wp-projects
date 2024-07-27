@@ -21,5 +21,5 @@ root
 					<App />
 				</ThemeProvider>
 			</React.StrictMode>,
-	  )
+		)
 	: console.error(`Root element not found: ${ROOT_ID}`);

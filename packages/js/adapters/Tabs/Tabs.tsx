@@ -1,10 +1,10 @@
 import {
+	Tabs as ChakraTabs,
+	type TabsProps as ChakraTabsProps,
 	Tab,
 	TabList,
 	TabPanel,
 	TabPanels,
-	Tabs as ChakraTabs,
-	TabsProps as ChakraTabsProps,
 } from '@chakra-ui/react';
 import { useMemo } from 'react';
 

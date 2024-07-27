@@ -1,5 +1,5 @@
 import { Link } from '@wpsocio/adapters';
-import { FieldConditions, FormField } from '@wpsocio/form';
+import { type FieldConditions, FormField } from '@wpsocio/form';
 import { __ } from '@wpsocio/i18n';
 
 import { getFieldLabel } from '../../services';

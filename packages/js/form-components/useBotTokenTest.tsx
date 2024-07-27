@@ -1,8 +1,13 @@
-import { Button, ButtonProps } from '@wpsocio/adapters';
+import { Button, type ButtonProps } from '@wpsocio/adapters';
 import { __ } from '@wpsocio/i18n';
-import { TestResult, TestResultType, testBotToken } from '@wpsocio/services';
+import {
+	type TestResult,
+	type TestResultType,
+	testBotToken,
+} from '@wpsocio/services';
 import { BOT_TOKEN_REGEX } from '@wpsocio/utilities';
-import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
+import type React from 'react';
+import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { RenderTestResult } from './test-result';
 
 export type BotTokenTest = {
