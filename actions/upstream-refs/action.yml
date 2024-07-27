@@ -21,14 +21,18 @@ runs:
             pull_number: context.payload.pull_request.number,
           });
 
+          /**
+          * The comment has to be in this format
+          *
+          * <!--- REMOTE REFS START -->
+          * some/project/path: add/some-feature
+          * some/other/project/path: fix/some-bug
+          * <!--- REMOTE REFS END -->
+          */
           const refsCommentRegex =
             /<!--- REMOTE REFS START -->(?<content>.+)<!--- REMOTE REFS END -->/is;
 
-          console.log('pr.data.body:', pr.data.body);
-
           const result = (pr.data.body || '').match(refsCommentRegex);
-
-          console.log('result:', result);
 
           if (!result?.groups?.content) {
             return {};
@@ -45,7 +49,5 @@ runs:
 
               return list;
             }, {});
-
-          console.log('refs:', refs);
 
           return refs;
