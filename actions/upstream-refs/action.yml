@@ -41,7 +41,7 @@ runs:
             .reduce((list, line) => {
               const [name, ref] = line.split(/:\s?/);
 
-              list[name] = ref;
+              list[name.trim()] = ref.trim();
 
               return list;
             }, {});
