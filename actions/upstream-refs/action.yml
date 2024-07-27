@@ -16,14 +16,14 @@ runs:
       with:
         script: |
           // Get the PR description
-            const pr = github.rest.pulls.get({
+            const pr = await github.rest.pulls.get({
               owner: context.repo.owner,
               repo: context.repo.repo,
               pull_number: context.payload.pull_request.number
             });
 
 
-          console.log('body is:', pr);
+          console.log('body is:', pr.body);
 
     - name: Random Number Generator
       id: random-number-generator
