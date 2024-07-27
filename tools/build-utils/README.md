@@ -2,10 +2,6 @@
 
 Build utilities CLI.
 
-## Requirements
-
-- [WP CLI](https://wp-cli.org/) - Required for i18n features.
-
 ## Installation
 
 ```sh
@@ -23,6 +19,7 @@ pnpm add -D @wpsocio/build-utils
 ## Usage
 
 <!-- usage -->
+
 ```sh-session
 $ npm install -g @wpsocio/build-utils
 $ build-utils COMMAND
@@ -34,12 +31,14 @@ USAGE
   $ build-utils COMMAND
 ...
 ```
+
 <!-- usagestop -->
 
 ## Commands
 
 <!-- commands -->
-* [`build-utils validate`](#build-utils-validate)
+
+- [`build-utils validate`](#build-utils-validate)
 
 ## `build-utils validate`
 
@@ -54,4 +53,5 @@ DESCRIPTION
 ```
 
 _See code: [src/commands/validate.ts](https://github.com/wpsocio/wp-projects/blob/@wpsocio/build-utils@0.0.0/tools/build-utils/src/commands/validate.ts)_
+
 <!-- commandsstop -->
