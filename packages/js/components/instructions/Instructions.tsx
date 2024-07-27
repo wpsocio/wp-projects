@@ -1,5 +1,5 @@
 import { __ } from '@wpsocio/i18n';
-import { SectionCard, SectionCardProps } from '../section-card';
+import { SectionCard, type SectionCardProps } from '../section-card';
 
 const headerProps = {
 	backgroundColor: '#343a40',

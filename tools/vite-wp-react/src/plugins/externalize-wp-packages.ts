@@ -1,5 +1,5 @@
 import rollupGlobals from 'rollup-plugin-external-globals';
-import { PluginOption } from 'vite';
+import type { PluginOption } from 'vite';
 import viteExternal from 'vite-plugin-external';
 import { WP_EXTERNAL_PACKAGES } from '../utils/index.js';
 

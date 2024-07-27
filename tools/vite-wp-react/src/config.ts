@@ -1,6 +1,6 @@
 import type { UserConfig } from 'vite';
-import viteWpReact, { ViteWpReactOptions } from './index.js';
-import { ReactMakePotOptions } from './plugins/react-make-pot.js';
+import viteWpReact, { type ViteWpReactOptions } from './index.js';
+import type { ReactMakePotOptions } from './plugins/react-make-pot.js';
 
 export type CreateViteConfigOptions = ViteWpReactOptions & {
 	makePot?: ReactMakePotOptions;

@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
-import { Controller, ControllerProps } from 'react-hook-form';
+import { Controller, type ControllerProps } from 'react-hook-form';
 
-import { ColorInputPicker, ColorPickerProps } from '@wpsocio/adapters';
+import { ColorInputPicker, type ColorPickerProps } from '@wpsocio/adapters';
 
 export const ColorPicker: React.FC<ColorPickerProps & { name?: string }> = (
 	props,

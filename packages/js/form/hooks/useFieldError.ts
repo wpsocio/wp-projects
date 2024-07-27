@@ -1,4 +1,4 @@
-import { FieldError, useFormState } from 'react-hook-form';
+import { type FieldError, useFormState } from 'react-hook-form';
 
 import { getValueByPath } from '@wpsocio/utilities';
 

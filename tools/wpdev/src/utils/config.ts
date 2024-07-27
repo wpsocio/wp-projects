@@ -2,7 +2,11 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { findUp, pathExists } from 'find-up';
 import parseJson from 'parse-json';
-import { UserConfig, UserConfigSchema, getStandalonePackage } from './tools.js';
+import {
+	type UserConfig,
+	UserConfigSchema,
+	getStandalonePackage,
+} from './tools.js';
 
 export type ParsedUserConfig = Omit<UserConfig, 'isRoot'> & {
 	rootDir: string;

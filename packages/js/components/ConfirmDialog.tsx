@@ -9,7 +9,7 @@ import {
 	AlertDialogHeader,
 	AlertDialogOverlay,
 	Button,
-	ButtonProps,
+	type ButtonProps,
 	useDisclosure,
 } from '@wpsocio/adapters';
 import { __ } from '@wpsocio/i18n';

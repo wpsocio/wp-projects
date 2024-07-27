@@ -38,7 +38,12 @@ export const Group = <TFieldType extends 'group', TDataShape extends DataShape>(
 						);
 
 						return (
-							<Box {...groupItemProps} className={className} key={name + i}>
+							<Box
+								{...groupItemProps}
+								className={className}
+								// biome-ignore lint/suspicious/noArrayIndexKey: it's fine
+								key={name + i}
+							>
 								<FormField
 									{...rest}
 									//@ts-ignore

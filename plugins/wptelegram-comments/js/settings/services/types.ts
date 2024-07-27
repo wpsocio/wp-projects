@@ -4,7 +4,7 @@ import type {
 	BaseDOMData,
 	BasePluginData,
 } from '@wpsocio/services';
-import { DataShape } from './fields';
+import type { DataShape } from './fields';
 
 export type { DataShape };
 

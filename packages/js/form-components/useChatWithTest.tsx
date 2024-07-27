@@ -1,8 +1,8 @@
-import { Button, ButtonProps } from '@wpsocio/adapters';
+import { Button, type ButtonProps } from '@wpsocio/adapters';
 import { __ } from '@wpsocio/i18n';
 import {
-	TestResult,
-	TestResultType,
+	type TestResult,
+	type TestResultType,
 	checkMemberCount,
 	sendTestMessage,
 } from '@wpsocio/services';

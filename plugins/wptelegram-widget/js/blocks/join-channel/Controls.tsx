@@ -8,7 +8,7 @@ import { Fragment, useCallback, useEffect } from '@wordpress/element';
 
 import { __ } from '@wpsocio/i18n';
 
-import { JoinChannelAtts } from '../types';
+import type { JoinChannelAtts } from '../types';
 import { useData } from '../useData';
 
 export type ControlsProps = {

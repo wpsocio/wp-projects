@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 
 import { SectionCard } from '@wpsocio/components';
-import { FieldConditions, FormField } from '@wpsocio/form';
+import { type FieldConditions, FormField } from '@wpsocio/form';
 import { __ } from '@wpsocio/i18n';
 
 import { getFieldLabel, useData } from '../services';

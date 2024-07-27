@@ -1,4 +1,4 @@
-import { FormField, FormFieldProps } from '@wpsocio/form';
+import { FormField, type FormFieldProps } from '@wpsocio/form';
 import { __ } from '@wpsocio/i18n';
 import { prefixName } from '@wpsocio/utilities';
 

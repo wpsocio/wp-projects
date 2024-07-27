@@ -1,4 +1,4 @@
-import { Box, BoxProps } from '@wpsocio/adapters';
+import { Box, type BoxProps } from '@wpsocio/adapters';
 
 export interface SectionCardProps extends Omit<BoxProps, 'title'> {
 	title: React.ReactNode;

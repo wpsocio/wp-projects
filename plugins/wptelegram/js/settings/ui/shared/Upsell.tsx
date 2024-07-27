@@ -1,4 +1,4 @@
-import { Link, LinkProps, Text, TextProps } from '@wpsocio/adapters';
+import { Link, type LinkProps, Text, type TextProps } from '@wpsocio/adapters';
 import { __, sprintf } from '@wpsocio/i18n';
 
 type Location =

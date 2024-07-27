@@ -3,7 +3,7 @@ import { Form, useForm, yupResolver } from '@wpsocio/form';
 import { SubmitBar } from '@wpsocio/form-components';
 import { useMemo } from 'react';
 import { ROOT_ID } from '../constants';
-import { DataShape, useData, validationSchema } from '../services';
+import { type DataShape, useData, validationSchema } from '../services';
 import {
 	prepDefaultValues,
 	useInit,

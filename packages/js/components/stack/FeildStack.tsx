@@ -1,4 +1,4 @@
-import { Stack, StackProps } from '@wpsocio/adapters';
+import { Stack, type StackProps } from '@wpsocio/adapters';
 
 const direction: StackProps['direction'] = ['column', 'row'];
 

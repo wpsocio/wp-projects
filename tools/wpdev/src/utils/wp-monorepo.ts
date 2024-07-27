@@ -2,8 +2,12 @@ import path from 'node:path';
 import { getPackagesSync } from '@manypkg/get-packages';
 import { execaSync } from 'execa';
 import { readChangesetJson } from './changelog.js';
-import { WPProject, getProjectInfo, pluralizeProjectType } from './projects.js';
-import { UserConfig } from './tools.js';
+import {
+	type WPProject,
+	getProjectInfo,
+	pluralizeProjectType,
+} from './projects.js';
+import type { UserConfig } from './tools.js';
 
 export type WPMonorepoConfig = {
 	rootDir: string;

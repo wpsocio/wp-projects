@@ -1,7 +1,7 @@
 import { useFormContext, useWatch } from '@wpsocio/form';
 import { BotTokenField } from '@wpsocio/form-components';
 import { useEffect } from 'react';
-import { DataShape, getFieldLabel } from '../../services';
+import { type DataShape, getFieldLabel } from '../../services';
 import { PREFIX } from './constants';
 
 export const BotToken: React.FC = () => {

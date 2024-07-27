@@ -20,7 +20,7 @@
 		"dev:cleanup": "wireit",
 		"lint:all": "wireit",
 		"lint:js": "wireit",
-		"lint:js:fix": "biome format ./ --write",
+		"lint:js:fix": "biome format ./ --fix",
 		"lint:php": "wireit",
 		"prep-release": "wireit",
 		"prep-version": "wireit",

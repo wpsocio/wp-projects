@@ -1,6 +1,6 @@
-import { ButtonProps, Button } from '@wpsocio/adapters';
-import { SaveIcon } from '@wpsocio/icons';
+import { Button, type ButtonProps } from '@wpsocio/adapters';
 import { __ } from '@wpsocio/i18n';
+import { SaveIcon } from '@wpsocio/icons';
 
 export const SubmitButton: React.FC<ButtonProps> = (props) => {
 	return (

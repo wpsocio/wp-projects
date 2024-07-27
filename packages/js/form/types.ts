@@ -71,7 +71,7 @@ export type FormFieldProps<
 				groupClassName?: string;
 				groupItemProps?: BoxProps;
 				subFields?: FieldList<FieldType, TDataShape>;
-		  }
+			}
 		: unknown);
 
 export type RenderFieldProps<

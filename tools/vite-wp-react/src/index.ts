@@ -1,9 +1,9 @@
 import viteReact from '@vitejs/plugin-react';
-import { InputOption } from 'rollup';
-import { Plugin, PluginOption } from 'vite';
+import type { InputOption } from 'rollup';
+import type { Plugin, PluginOption } from 'vite';
 import {
-	ExtractWpDependenciesOptions,
-	ReactMakePotOptions,
+	type ExtractWpDependenciesOptions,
+	type ReactMakePotOptions,
 	devServer,
 	externalizeWpPackages,
 	extractWpDependencies,
@@ -96,7 +96,7 @@ export function viteWpReact(
 				: {
 						outDir,
 						...config.extractWpDependencies,
-				  };
+					};
 
 		plugins.push(extractWpDependencies(extractDepsConfig));
 	}

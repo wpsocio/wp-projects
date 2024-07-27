@@ -10,7 +10,7 @@ import {
 } from '@wpsocio/adapters';
 import { InfoOutlineIcon } from '@wpsocio/icons';
 
-import { Adapter, AdapterPropsMap } from '../adapters';
+import { Adapter, type AdapterPropsMap } from '../adapters';
 import type { DataShape, FieldType, RenderFieldProps } from '../types';
 import { ErrorMessage } from './ErrorMessage';
 

@@ -1,8 +1,8 @@
 import {
 	Button,
-	ButtonProps,
-	InputAddonProps,
-	InputProps,
+	type ButtonProps,
+	type InputAddonProps,
+	type InputProps,
 	Popover,
 	PopoverBody,
 	PopoverContent,
@@ -11,7 +11,7 @@ import {
 import { useCallback, useMemo, useState } from 'react';
 import { TextInput } from '../Input';
 import { useDebouncedCallback } from '../hooks';
-import { ColorPicker, ColorPickerProps } from './ColorPicker';
+import { ColorPicker, type ColorPickerProps } from './ColorPicker';
 
 const addonBeforeProps: InputAddonProps = { px: '0px', py: '0px' };
 

@@ -16,12 +16,7 @@
 	"bugs": {
 		"url": "https://github.com/wpsocio/wp-projects/issues"
 	},
-	"files": [
-		"bin",
-		"dist",
-		"src",
-		"oclif.manifest.json"
-	],
+	"files": ["bin", "dist", "src", "oclif.manifest.json"],
 	"publishConfig": {
 		"access": "public"
 	},
@@ -87,25 +82,15 @@
 		"build": {
 			"command": "tsup && tsc --build --pretty",
 			"clean": "if-file-deleted",
-			"files": [
-				"src/",
-				"tsconfig.json",
-				"tsup.config.ts"
-			],
-			"output": [
-				"dist/**"
-			]
+			"files": ["src/", "tsconfig.json", "tsup.config.ts"],
+			"output": ["dist/**"]
 		},
 		"build:local": {
-			"dependencies": [
-				"build"
-			]
+			"dependencies": ["build"]
 		},
 		"prepublishOnly": {
 			"command": "pnpm build && oclif manifest && oclif readme",
-			"dependencies": [
-				"clean"
-			]
+			"dependencies": ["clean"]
 		}
 	}
 }

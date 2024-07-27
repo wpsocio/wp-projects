@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
-import { GroupBase } from 'react-select';
-import ReactSelectAsync, { AsyncProps } from 'react-select/async';
+import type { GroupBase } from 'react-select';
+import ReactSelectAsync, { type AsyncProps } from 'react-select/async';
 
 import { components } from './components';
 

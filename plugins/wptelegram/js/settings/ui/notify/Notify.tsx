@@ -10,7 +10,7 @@ import {
 	UserNotifications,
 } from '@wpsocio/shared-wptelegram-ui';
 
-import { DataShape, useData } from '../../services';
+import { type DataShape, useData } from '../../services';
 import { IfBotToken } from '../shared/IfBotToken';
 import { MessageSettings } from './MessageSettings';
 import { WatchEmails } from './WatchEmails';

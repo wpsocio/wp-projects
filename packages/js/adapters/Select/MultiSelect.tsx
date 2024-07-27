@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-import ReactSelect, { Props } from 'react-select';
+import ReactSelect, { type Props } from 'react-select';
 
 type Option = { label: string; value: string };
 

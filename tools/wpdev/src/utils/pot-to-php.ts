@@ -3,7 +3,7 @@
  */
 
 import fs from 'node:fs';
-import gettextParser, { GetTextTranslation } from 'gettext-parser';
+import gettextParser, { type GetTextTranslation } from 'gettext-parser';
 
 const TAB = '\t';
 const NEWLINE = '\n';
