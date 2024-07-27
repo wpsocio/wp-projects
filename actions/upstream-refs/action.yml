@@ -15,7 +15,7 @@ runs:
       id: details
       with:
         script: |
-          const body = github.event.pull_request.body;
+          const body = github.rest.event.pull_request.body;
 
           console.log('body:', body);
 
