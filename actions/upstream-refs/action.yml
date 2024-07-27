@@ -5,7 +5,7 @@ author: "wpsocio"
 outputs:
   refs:
     description: "Refs JSON"
-    value: ${{ steps.details.outputs.result.refs }}
+    value: ${{ steps.details.outputs.result }}
 
 runs:
   using: "composite"
