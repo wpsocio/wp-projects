@@ -15,12 +15,10 @@ runs:
       id: details
       with:
         script: |
-          const body = context.payload.pull_request.body;
+        // Get the PR description
+        const body = '${{ github.event.pull_request.body }}';
 
-          console.log('body:', body);
-
-          // User the version from the tag to ensure we're deploying the correct version
-          return { body };
+        console.log('body is:', body);
 
     - name: Random Number Generator
       id: random-number-generator
