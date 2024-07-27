@@ -29,7 +29,6 @@ jobs:
       - name: Print refs
         run: |
           echo "${{ steps.remote-refs.outputs.result }}"
-          exit 1
 
       - name: Checkout premium projects repo
         uses: actions/checkout@v4
@@ -87,8 +86,7 @@ jobs:
 
       - name: Print refs
         run: |
-          echo "${{ toJSON(fromJSON(steps.remote-refs.outputs.result).refs) }}"
-          exit 1
+          echo "${{ steps.remote-refs.outputs.result }}"
 
       - name: Checkout premium projects repo
         uses: actions/checkout@v4
@@ -96,7 +94,7 @@ jobs:
           path: premium
           token: ${{ secrets.ACCESS_TOKEN_IR }}
           repository: ${{ secrets.PREMIUM_PROJECTS_REPO }}
-          ref: ${{ env.PREMIUM_REPO_REF }}
+          ref: ${{ fromJSON(steps.remote-refs.outputs.result).premium || 'main' }}
 
       - name: Setup Environment
         uses: ./actions/setup
