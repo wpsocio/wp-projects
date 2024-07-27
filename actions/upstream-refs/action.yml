@@ -26,6 +26,8 @@ runs:
 
           const result = (pr.body || '').match(refsCommentRegex);
 
+          console.log('result:', result);
+
           if (!result?.groups?.content) {
             return { refs: [] };
           }
@@ -41,7 +43,3 @@ runs:
           console.log('refs:', refs);
 
           return { refs };
-
-    - name: Run goodbye.sh
-      run: goodbye.sh
-      shell: bash
