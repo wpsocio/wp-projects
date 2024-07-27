@@ -23,10 +23,6 @@ jobs:
         uses: ./actions/upstream-refs
         id: remote-refs
 
-      - name: Print refs
-        run: |
-          echo "${{ steps.remote-refs.outputs.result }}"
-
       - name: Checkout premium projects repo
         uses: actions/checkout@v4
         with:
@@ -80,10 +76,6 @@ jobs:
       - name: Remote refs
         uses: ./actions/upstream-refs
         id: remote-refs
-
-      - name: Print refs
-        run: |
-          echo "${{ steps.remote-refs.outputs.result }}"
 
       - name: Checkout premium projects repo
         uses: actions/checkout@v4
