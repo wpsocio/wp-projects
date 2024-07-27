@@ -3,9 +3,9 @@ description: "Reads and outputs the refs/branches from PR description to use for
 author: "wpsocio"
 
 outputs:
-  random-number:
+  refs:
     description: "Refs JSON"
-    value: ${{ steps.random-number-generator.outputs.random-number }}
+    value: ${{ steps.details.outputs.refs }}
 
 runs:
   using: "composite"
@@ -15,20 +15,32 @@ runs:
       id: details
       with:
         script: |
-          // Get the PR description
-            const pr = await github.rest.pulls.get({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: context.payload.pull_request.number
+          const pr = await github.rest.pulls.get({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            pull_number: context.payload.pull_request.number,
+          });
+
+          const refsCommentRegex =
+            /<!--- REMOTE REFS START -->(?<content>.+)<!--- REMOTE REFS END -->/is;
+
+          const result = (pr.body || '').match(refsCommentRegex);
+
+          if (!result?.groups?.content) {
+            return { refs: [] };
+          }
+
+          const refs = result.groups.content
+            .trim()
+            .split(/[\n\r]+/)
+            .map((line) => {
+              const [name, ref] = line.split(/:\s?/);
+              return { name, ref };
             });
 
+          console.log('refs:', refs);
 
-          console.log('body is:', pr.data.body);
-
-    - name: Random Number Generator
-      id: random-number-generator
-      run: echo "random-number=$(echo $RANDOM)" >> $GITHUB_OUTPUT
-      shell: bash
+          return { refs };
 
     - name: Run goodbye.sh
       run: goodbye.sh
