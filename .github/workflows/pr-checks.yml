@@ -28,7 +28,7 @@ jobs:
 
       - name: Print refs
         run: |
-          echo "${{ steps.remote-refs.outputs.refs }}"
+          echo "${{ steps.remote-refs.outputs.result.refs }}"
           exit 1
 
       - name: Checkout premium projects repo
@@ -87,7 +87,7 @@ jobs:
 
       - name: Print refs
         run: |
-          echo "${{ steps.remote-refs.outputs.result }}"
+          echo "${{ steps.remote-refs.outputs.result.refs }}"
           exit 1
 
       - name: Checkout premium projects repo
