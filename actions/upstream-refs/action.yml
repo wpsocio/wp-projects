@@ -31,17 +31,21 @@ runs:
           console.log('result:', result);
 
           if (!result?.groups?.content) {
-            return { refs: [] };
+            return {};
           }
 
           const refs = result.groups.content
             .trim()
             .split(/[\n\r]+/)
-            .map((line) => {
+            .filter((line) => line.trim())
+            .reduce((list, line) => {
               const [name, ref] = line.split(/:\s?/);
-              return { name, ref };
-            });
+
+              list[name] = ref;
+
+              return list;
+            }, {});
 
           console.log('refs:', refs);
 
-          return { refs };
+          return refs;
