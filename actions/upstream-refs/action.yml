@@ -23,7 +23,7 @@ runs:
             });
 
 
-          console.log('body is:', pr.body);
+          console.log('body is:', pr);
 
     - name: Random Number Generator
       id: random-number-generator
