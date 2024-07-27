@@ -4,9 +4,6 @@ on:
   pull_request:
     types: [opened, synchronize]
 
-env:
-  PREMIUM_REPO_REF: main
-
 jobs:
   php-lint-test:
     name: "PHP: Lint, Test"
