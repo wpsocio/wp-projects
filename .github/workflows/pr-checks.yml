@@ -83,6 +83,12 @@ jobs:
 
       - name: Remote refs
         uses: ./actions/upstream-refs
+        id: remote-refs
+
+      - name: Print refs
+        run: |
+          echo "${{ steps.remote-refs.outputs.refs }}"
+          exit 1
 
       - name: Checkout premium projects repo
         uses: actions/checkout@v4
