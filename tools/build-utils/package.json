@@ -1,0 +1,94 @@
+{
+	"name": "@wpsocio/build-utils",
+	"version": "0.0.1",
+	"description": "Build utilities CLI.",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/wpsocio/wp-projects",
+		"directory": "tools/build-utils"
+	},
+	"homepage": "https://github.com/wpsocio/wp-projects/tree/main/tools/build-utils",
+	"author": {
+		"name": "WP Socio",
+		"url": "https://wpsocio.com"
+	},
+	"bugs": {
+		"url": "https://github.com/wpsocio/wp-projects/issues"
+	},
+	"files": [
+		"bin",
+		"dist",
+		"src",
+		"oclif.manifest.json"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"type": "module",
+	"bin": {
+		"build-utils": "./bin/run.js"
+	},
+	"main": "./dist/cjs/index.cjs",
+	"module": "./dist/index.js",
+	"exports": {
+		".": {
+			"import": "./dist/index.js",
+			"require": "./dist/cjs/index.cjs"
+		}
+	},
+	"dependencies": {
+		"@oclif/core": "^4.0.16",
+		"chalk": "^5.3.0",
+		"zod": "^3.23.8"
+	},
+	"devDependencies": {
+		"@manypkg/get-packages": "^2.2.2",
+		"@types/node": "^20.14.12",
+		"oclif": "^4.14.9",
+		"tsup": "^8.2.3",
+		"typescript": "^5.5.4",
+		"wireit": "^0.14.5"
+	},
+	"oclif": {
+		"bin": "build-utils",
+		"dirname": "build-utils",
+		"commands": "./dist/commands",
+		"repositoryPrefix": "<%- repo %>/blob/@wpsocio/build-utils@<%- version %>/tools/build-utils/<%- commandPath %>",
+		"topicSeparator": " "
+	},
+	"scripts": {
+		"build": "wireit",
+		"build:local": "wireit",
+		"clean": "rimraf dist/ tsconfig.tsbuildinfo .wireit",
+		"prepublishOnly": "wireit",
+		"typecheck": "tsc --noEmit",
+		"version": "oclif readme",
+		"watch": "tsc --watch"
+	},
+	"wireit": {
+		"build": {
+			"command": "tsup && tsc --build --pretty",
+			"clean": "if-file-deleted",
+			"files": [
+				"src/",
+				"tsconfig.json",
+				"tsup.config.ts"
+			],
+			"output": [
+				"dist/**"
+			]
+		},
+		"build:local": {
+			"dependencies": [
+				"build"
+			]
+		},
+		"prepublishOnly": {
+			"command": "pnpm build && oclif manifest && oclif readme",
+			"dependencies": [
+				"clean"
+			]
+		}
+	}
+}
