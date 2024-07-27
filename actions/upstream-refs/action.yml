@@ -1,0 +1,53 @@
+name: "Read the refs/branches to use for checking out upstream repos"
+description: "Reads and outputs the refs/branches from PR description to use for checking out upstream repos."
+author: "wpsocio"
+
+outputs:
+  result:
+    description: "Refs JSON"
+    value: ${{ steps.details.outputs.result }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Get details
+      uses: actions/github-script@v7
+      id: details
+      with:
+        script: |
+          const pr = await github.rest.pulls.get({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            pull_number: context.payload.pull_request.number,
+          });
+
+          /**
+          * The comment has to be in this format
+          *
+          * <!--- REMOTE REFS START -->
+          * some/project/path: add/some-feature
+          * some/other/project/path: fix/some-bug
+          * <!--- REMOTE REFS END -->
+          */
+          const refsCommentRegex =
+            /<!--- REMOTE REFS START -->(?<content>.+)<!--- REMOTE REFS END -->/is;
+
+          const result = (pr.data.body || '').match(refsCommentRegex);
+
+          if (!result?.groups?.content) {
+            return {};
+          }
+
+          const refs = result.groups.content
+            .trim()
+            .split(/[\n\r]+/)
+            .filter((line) => line.trim())
+            .reduce((list, line) => {
+              const [name, ref] = line.split(/:\s?/);
+
+              list[name.trim()] = ref.trim();
+
+              return list;
+            }, {});
+
+          return refs;

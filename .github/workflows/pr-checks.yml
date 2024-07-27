@@ -4,9 +4,6 @@ on:
   pull_request:
     types: [opened, synchronize]
 
-env:
-  PREMIUM_REPO_REF: main
-
 jobs:
   php-lint-test:
     name: "PHP: Lint, Test"
@@ -22,13 +19,17 @@ jobs:
         with:
           token: ${{ secrets.ACCESS_TOKEN_IR }}
 
+      - name: Remote refs
+        uses: ./actions/upstream-refs
+        id: remote-refs
+
       - name: Checkout premium projects repo
         uses: actions/checkout@v4
         with:
           path: premium
           token: ${{ secrets.ACCESS_TOKEN_IR }}
           repository: ${{ secrets.PREMIUM_PROJECTS_REPO }}
-          ref: ${{ env.PREMIUM_REPO_REF }}
+          ref: ${{ fromJSON(steps.remote-refs.outputs.result).premium || 'main' }}
 
       - name: Setup Environment
         uses: ./actions/setup
@@ -72,13 +73,17 @@ jobs:
         with:
           token: ${{ secrets.ACCESS_TOKEN_IR }}
 
+      - name: Remote refs
+        uses: ./actions/upstream-refs
+        id: remote-refs
+
       - name: Checkout premium projects repo
         uses: actions/checkout@v4
         with:
           path: premium
           token: ${{ secrets.ACCESS_TOKEN_IR }}
           repository: ${{ secrets.PREMIUM_PROJECTS_REPO }}
-          ref: ${{ env.PREMIUM_REPO_REF }}
+          ref: ${{ fromJSON(steps.remote-refs.outputs.result).premium || 'main' }}
 
       - name: Setup Environment
         uses: ./actions/setup
