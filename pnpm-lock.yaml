@@ -385,6 +385,9 @@ importers:
       '@wpsocio/adapters':
         specifier: workspace:*
         version: link:../../packages/js/adapters
+      '@wpsocio/build-utils':
+        specifier: workspace:*
+        version: link:../../tools/build-utils
       '@wpsocio/components':
         specifier: workspace:*
         version: link:../../packages/js/components
@@ -446,6 +449,9 @@ importers:
       '@wpsocio/adapters':
         specifier: workspace:*
         version: link:../../packages/js/adapters
+      '@wpsocio/build-utils':
+        specifier: workspace:*
+        version: link:../../tools/build-utils
       '@wpsocio/components':
         specifier: workspace:*
         version: link:../../packages/js/components
@@ -519,6 +525,9 @@ importers:
       '@wpsocio/adapters':
         specifier: workspace:*
         version: link:../../packages/js/adapters
+      '@wpsocio/build-utils':
+        specifier: workspace:*
+        version: link:../../tools/build-utils
       '@wpsocio/components':
         specifier: workspace:*
         version: link:../../packages/js/components
@@ -598,6 +607,9 @@ importers:
       '@wpsocio/adapters':
         specifier: workspace:*
         version: link:../../packages/js/adapters
+      '@wpsocio/build-utils':
+        specifier: workspace:*
+        version: link:../../tools/build-utils
       '@wpsocio/components':
         specifier: workspace:*
         version: link:../../packages/js/components
@@ -719,6 +731,9 @@ importers:
       '@wpsocio/adapters':
         specifier: workspace:*
         version: link:../../../packages/js/adapters
+      '@wpsocio/build-utils':
+        specifier: workspace:*
+        version: link:../../../tools/build-utils
       '@wpsocio/components':
         specifier: workspace:*
         version: link:../../../packages/js/components
@@ -758,6 +773,37 @@ importers:
       vite:
         specifier: ^5.3.5
         version: 5.3.5(@types/node@20.14.12)(sass@1.77.8)
+      wireit:
+        specifier: ^0.14.5
+        version: 0.14.5
+
+  tools/build-utils:
+    dependencies:
+      '@oclif/core':
+        specifier: ^4.0.16
+        version: 4.0.16
+      chalk:
+        specifier: ^5.3.0
+        version: 5.3.0
+      zod:
+        specifier: ^3.23.8
+        version: 3.23.8
+    devDependencies:
+      '@manypkg/get-packages':
+        specifier: ^2.2.2
+        version: 2.2.2
+      '@types/node':
+        specifier: ^20.14.12
+        version: 20.14.12
+      oclif:
+        specifier: ^4.14.9
+        version: 4.14.9
+      tsup:
+        specifier: ^8.2.3
+        version: 8.2.3(postcss@8.4.40)(typescript@5.5.4)(yaml@2.3.4)
+      typescript:
+        specifier: ^5.5.4
+        version: 5.5.4
       wireit:
         specifier: ^0.14.5
         version: 0.14.5
@@ -13544,7 +13590,7 @@ snapshots:
       async-retry: 1.3.3
       chalk: 4.1.2
       change-case: 4.1.2
-      debug: 4.3.4
+      debug: 4.3.5(supports-color@8.1.1)
       ejs: 3.1.10
       find-yarn-workspace-root: 2.0.0
       fs-extra: 8.1.0
@@ -14578,7 +14624,7 @@ snapshots:
 
   sucrase@3.35.0:
     dependencies:
-      '@jridgewell/gen-mapping': 0.3.3
+      '@jridgewell/gen-mapping': 0.3.5
       commander: 4.1.1
       glob: 10.3.10
       lines-and-columns: 1.2.4

@@ -25,7 +25,8 @@
 		"lint:php": "composer run lint",
 		"setup:php": "wireit",
 		"setup:php:prod": "wireit",
-		"unset-vendor-dir": "composer config vendor-dir --unset"
+		"unset-vendor-dir": "composer config vendor-dir --unset",
+		"validate-build": "pnpm build-utils validate"
 	},
 	"dependencies": {
 		"yup": "^1.4.0"
@@ -35,6 +36,7 @@
 		"@types/react": "^18.3.3",
 		"@types/react-dom": "^18.3.0",
 		"@wpsocio/adapters": "workspace:*",
+		"@wpsocio/build-utils": "workspace:*",
 		"@wpsocio/components": "workspace:*",
 		"@wpsocio/form": "workspace:*",
 		"@wpsocio/form-components": "workspace:*",
@@ -48,10 +50,28 @@
 		"vite": "^5.3.5",
 		"wireit": "^0.14.5"
 	},
+	"build-utils": {
+		"validate": [
+			{
+				"paths": [
+					"src/assets/build/dependencies.json",
+					"src/assets/build/manifest.json"
+				],
+				"rules": [
+					{
+						"value": "EXISTS",
+						"message": "Could not verify the build output: {path}"
+					}
+				]
+			}
+		]
+	},
 	"wireit": {
 		"build": {
-			"command": "vite build",
-			"output": ["src/assets/build"]
+			"command": "vite build && pnpm run validate-build",
+			"output": [
+				"src/assets/build"
+			]
 		},
 		"setup:php": {
 			"command": "composer install",
