@@ -3,9 +3,9 @@ description: "Reads and outputs the refs/branches from PR description to use for
 author: "wpsocio"
 
 outputs:
-  refs:
+  result:
     description: "Refs JSON"
-    value: ${{ fromJSON(steps.details.outputs.result).refs }}
+    value: ${{ steps.details.outputs.result }}
 
 runs:
   using: "composite"
