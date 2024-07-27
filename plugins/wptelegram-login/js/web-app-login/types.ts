@@ -1,4 +1,4 @@
-export {};
+export default {};
 
 // Add Telegram WebApp object to global namespace in TS.
 declare global {

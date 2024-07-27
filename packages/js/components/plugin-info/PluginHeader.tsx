@@ -2,7 +2,7 @@ import { Box, Flex, Heading, Text } from '@wpsocio/adapters';
 import type { BaseAssetsData, PluginInfo } from '@wpsocio/services';
 import { Description } from '../Description';
 
-import { SectionCard, SectionCardProps } from '../section-card';
+import { SectionCard, type SectionCardProps } from '../section-card';
 
 export interface PluginHeaderProps
 	extends PluginInfo,

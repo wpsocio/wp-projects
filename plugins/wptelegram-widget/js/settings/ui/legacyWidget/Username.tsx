@@ -2,7 +2,7 @@ import { FormField, useWatch } from '@wpsocio/form';
 import { useChatWithTest } from '@wpsocio/form-components';
 import { __ } from '@wpsocio/i18n';
 
-import { DataShape, getFieldLabel } from '../../services';
+import { type DataShape, getFieldLabel } from '../../services';
 import { PREFIX } from './constants';
 
 export const Username: React.FC = () => {

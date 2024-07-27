@@ -1,4 +1,4 @@
-import { BoxProps, StackItem as StackedItem } from '@wpsocio/adapters';
+import { type BoxProps, StackItem as StackedItem } from '@wpsocio/adapters';
 
 export const WidgetInfoItem: React.FC<BoxProps> = (props) => {
 	return (

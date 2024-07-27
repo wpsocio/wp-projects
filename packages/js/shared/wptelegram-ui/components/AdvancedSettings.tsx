@@ -5,7 +5,7 @@ import {
 	Divider,
 	FormControl,
 	Link,
-	SimpleOptionProps,
+	type SimpleOptionProps,
 	Text,
 } from '@wpsocio/adapters';
 import { Code, Description } from '@wpsocio/components';

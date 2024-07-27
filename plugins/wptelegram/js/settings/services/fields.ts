@@ -1,8 +1,8 @@
 import { __, sprintf } from '@wpsocio/i18n';
 import {
-	fieldLabels as sharedFieldLabels,
 	parseModeSchema,
 	proxySchema,
+	fieldLabels as sharedFieldLabels,
 } from '@wpsocio/shared-wptelegram-ui';
 import {
 	BOT_TOKEN_REGEX,
@@ -59,6 +59,7 @@ export const validationSchema = yup.object({
 			)
 			.when('active', {
 				is: true,
+				// biome-ignore lint/suspicious/noThenProperty: it's from Yup
 				then: (schema) =>
 					schema
 						.required(

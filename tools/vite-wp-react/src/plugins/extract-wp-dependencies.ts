@@ -1,8 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { Plugin, ResolvedConfig } from 'vite';
+import type { Plugin, ResolvedConfig } from 'vite';
 import {
-	ScanDependenciesOptions,
+	type ScanDependenciesOptions,
 	WP_EXTERNAL_PACKAGES,
 	scanDependencies,
 } from '../utils/index.js';

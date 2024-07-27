@@ -1,12 +1,12 @@
-import { forwardRef } from 'react';
 import {
+	NumberInput as ChakraNumberInput,
+	type NumberInputProps as ChakraNumberInputProps,
 	NumberDecrementStepper,
 	NumberIncrementStepper,
-	NumberInput as ChakraNumberInput,
-	NumberInputProps as ChakraNumberInputProps,
 	NumberInputField,
 	NumberInputStepper,
 } from '@chakra-ui/react';
+import { forwardRef } from 'react';
 
 export interface NumberInputProps
 	extends Omit<ChakraNumberInputProps, 'onChange'> {

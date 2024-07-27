@@ -4,7 +4,7 @@ import { FormField } from '@wpsocio/form';
 import { BotTokenField } from '@wpsocio/form-components';
 import { __, sprintf } from '@wpsocio/i18n';
 
-import { DataShape, getFieldLabel } from '../../services';
+import { type DataShape, getFieldLabel } from '../../services';
 import { Upsell } from '../shared/Upsell';
 import { Instructions } from './Instructions';
 

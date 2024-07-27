@@ -1,4 +1,4 @@
-import { ButtonGroup, ButtonGroupProps, Divider } from '@wpsocio/adapters';
+import { ButtonGroup, type ButtonGroupProps, Divider } from '@wpsocio/adapters';
 
 import './styles.scss';
 

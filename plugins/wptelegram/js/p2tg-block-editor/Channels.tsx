@@ -54,6 +54,7 @@ export const Channels: React.FC<{ isDisabled?: boolean }> = ({
 				{allChannels.map((channel, index) => {
 					return (
 						<CheckboxControl
+							// biome-ignore lint/suspicious/noArrayIndexKey: it's fine
 							key={channel + index}
 							label={channel}
 							disabled={isDisabled}

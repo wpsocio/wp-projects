@@ -1,4 +1,4 @@
-import { Box, Flex, BoxProps } from '@wpsocio/adapters';
+import { Box, type BoxProps, Flex } from '@wpsocio/adapters';
 import { useMemo } from 'react';
 
 const commonColumnProps: BoxProps = {

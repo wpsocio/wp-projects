@@ -51,7 +51,6 @@ export const Controls: React.FC<ControlsProps> = (props) => {
 							title={__('Edit URL')}
 							icon="edit"
 							onClick={switchBackToURLInput}
-							placeholder=""
 						/>
 					)}
 				</ToolbarGroup>

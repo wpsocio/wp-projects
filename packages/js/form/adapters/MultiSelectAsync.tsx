@@ -1,9 +1,9 @@
 import { useCallback } from 'react';
-import { Controller, ControllerProps } from 'react-hook-form';
+import { Controller, type ControllerProps } from 'react-hook-form';
 
 import {
 	MultiSelectAsync as MultiSelectAsyncAdapter,
-	MultiSelectAsyncProps,
+	type MultiSelectAsyncProps,
 } from '@wpsocio/adapters';
 
 const DEFAULT_VALUE: Array<unknown> = [];

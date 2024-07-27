@@ -1,5 +1,5 @@
 import viteReact from '@vitejs/plugin-react';
-import { PluginOption } from 'vite';
+import type { PluginOption } from 'vite';
 
 export type ReactMakePotOptions = {
 	output?: string;

@@ -1,4 +1,4 @@
-import { Icon, IconProps } from '@chakra-ui/icons';
+import { Icon, type IconProps } from '@chakra-ui/icons';
 
 export const SaveIcon: React.FC<IconProps> = (props) => {
 	return (

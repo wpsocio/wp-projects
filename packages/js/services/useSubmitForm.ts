@@ -1,5 +1,5 @@
 import { __ } from '@wpsocio/i18n';
-import { GetErrorMessage, strToPath } from '@wpsocio/utilities';
+import { type GetErrorMessage, strToPath } from '@wpsocio/utilities';
 import { last } from 'ramda';
 import { useCallback, useEffect, useRef } from 'react';
 import type {

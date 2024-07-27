@@ -1,9 +1,9 @@
 import { useCallback } from 'react';
-import { Controller, ControllerProps } from 'react-hook-form';
+import { Controller, type ControllerProps } from 'react-hook-form';
 
 import {
 	MultiCheck as MultiCheckAdapter,
-	MultiCheckProps,
+	type MultiCheckProps,
 } from '@wpsocio/adapters';
 
 export const MultiCheck: React.FC<MultiCheckProps> = (props) => {

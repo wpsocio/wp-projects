@@ -68,6 +68,7 @@ export const RenderRepeatable = <
 				const title = repeatableItemLabel?.(index) || `#${index + 1}`;
 
 				const removeButton = (
+					// biome-ignore lint/correctness/useJsxKeyInIterable: biome bug
 					<IconButton
 						aria-label="Remove Item"
 						icon={<CloseIcon />}
@@ -83,6 +84,7 @@ export const RenderRepeatable = <
 
 				const formField = (
 					<FormField
+						// biome-ignore lint/correctness/useJsxKeyInIterable: biome bug
 						// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 						{...(rest as any)}
 						defaultValue={field.value}

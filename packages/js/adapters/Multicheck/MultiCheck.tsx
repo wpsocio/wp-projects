@@ -1,9 +1,9 @@
 import {
 	Checkbox,
 	CheckboxGroup,
-	CheckboxGroupProps,
+	type CheckboxGroupProps,
 	Stack,
-	StackProps,
+	type StackProps,
 } from '@chakra-ui/react';
 import { useId, useMemo } from 'react';
 
@@ -32,6 +32,7 @@ export const MultiCheck: React.FC<MultiCheckProps> = ({
 					value={value}
 					id={id + value}
 					{...rest}
+					// biome-ignore lint/suspicious/noArrayIndexKey: ok
 					key={`${value}${index}`}
 				>
 					{label}

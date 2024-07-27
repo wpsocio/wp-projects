@@ -1,18 +1,18 @@
 import { pick } from 'ramda';
 
-import { __ } from '@wpsocio/i18n';
 import {
 	Button,
+	type ButtonProps,
 	IconButton,
-	ButtonProps,
 	Popover,
 	PopoverArrow,
 	PopoverBody,
 	PopoverContent,
 	PopoverTrigger,
 } from '@wpsocio/adapters';
+import { __ } from '@wpsocio/i18n';
+import { ArrowUpIcon, CopyIcon, DeleteIcon, EditIcon } from '@wpsocio/icons';
 import type { KeyboardButton as TKeyboardButton } from '@wpsocio/utilities';
-import { ArrowUpIcon, EditIcon, DeleteIcon, CopyIcon } from '@wpsocio/icons';
 
 interface ButtonRendererProps extends Partial<ButtonProps> {
 	button: TKeyboardButton;

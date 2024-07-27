@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import archiver from 'archiver';
-import fg, { Options } from 'fast-glob';
+import fg, { type Options } from 'fast-glob';
 
 export type TaskTarget = {
 	files: string | Array<string>;

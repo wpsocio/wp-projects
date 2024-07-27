@@ -57,6 +57,7 @@ export const validationSchema = yup.object({
 			// make bot token required when username is added
 			.when('username', {
 				is: (username: string) => Boolean(username),
+				// biome-ignore lint/suspicious/noThenProperty: It comes from Yup
 				then: (schema) =>
 					schema.required(() => getErrorMessage('bot_token', 'required')),
 			}),

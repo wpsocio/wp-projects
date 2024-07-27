@@ -1,4 +1,4 @@
-import { Box, BoxProps, Link, Stack, Text } from '@wpsocio/adapters';
+import { Box, type BoxProps, Link, Stack, Text } from '@wpsocio/adapters';
 import { __, sprintf } from '@wpsocio/i18n';
 import { Description } from '../Description';
 import { Smile } from '../Smile';

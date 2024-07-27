@@ -2,7 +2,7 @@ import { Cols75x25 } from '@wpsocio/components';
 import { Form, useForm, yupResolver } from '@wpsocio/form';
 import { SubmitBar } from '@wpsocio/form-components';
 import { ROOT_ID } from '../constants';
-import { DataShape, useData, validationSchema } from '../services';
+import { type DataShape, useData, validationSchema } from '../services';
 import { useInit, useOnInvalid, useOnSubmit } from '../services';
 import { ButtonOptions } from './ButtonOptions';
 import { ErrorMessageOptions } from './ErrorMessageOptions';

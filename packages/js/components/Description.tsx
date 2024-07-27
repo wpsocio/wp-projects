@@ -1,4 +1,4 @@
-import { Text, TextProps } from '@wpsocio/adapters';
+import { Text, type TextProps } from '@wpsocio/adapters';
 
 export const Description: React.FC<TextProps> = ({ children, ...props }) => {
 	return (

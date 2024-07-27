@@ -1,10 +1,10 @@
-import { Args, Command, Flags, Interfaces } from '@oclif/core';
+import { Args, type Command, Flags, type Interfaces } from '@oclif/core';
 import chalk from 'chalk';
 import {
 	PROJECT_CONFIG_FILE_NAME,
 	ROOT_CONFIG_FILE_NAME,
 } from '../utils/config.js';
-import { WPProject, getStandaloneProject } from '../utils/projects.js';
+import { type WPProject, getStandaloneProject } from '../utils/projects.js';
 import { WPMonorepo } from '../utils/wp-monorepo.js';
 import { WithRootDirAsCwd } from './WithRootDirAsCwd.js';
 

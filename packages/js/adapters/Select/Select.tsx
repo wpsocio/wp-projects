@@ -1,6 +1,6 @@
 import {
 	Select as ChakraSelect,
-	SelectProps as ChakraSelectProps,
+	type SelectProps as ChakraSelectProps,
 } from '@chakra-ui/react';
 import { forwardRef, useMemo } from 'react';
 import type { OptionsType } from '../types';
@@ -20,12 +20,18 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
 						return (
 							<optgroup
 								label={label as string}
+								// biome-ignore lint/suspicious/noArrayIndexKey: ok
 								key={`${label}${index}`}
 								{...optionProps}
 							>
 								{optionGroups.map(
 									({ label: optLabel, value, ...optProps }, i) => (
-										<option {...optProps} value={value} key={`${value}${i}`}>
+										<option
+											{...optProps}
+											value={value}
+											// biome-ignore lint/suspicious/noArrayIndexKey: ok
+											key={`${value}${i}`}
+										>
 											{optLabel}
 										</option>
 									),
@@ -34,7 +40,12 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
 						);
 					}
 					return (
-						<option {...optionProps} value={value} key={`${value}${index}`}>
+						<option
+							{...optionProps}
+							value={value}
+							// biome-ignore lint/suspicious/noArrayIndexKey: ok
+							key={`${value}${index}`}
+						>
 							{label}
 						</option>
 					);

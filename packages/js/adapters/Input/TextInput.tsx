@@ -1,10 +1,10 @@
 import {
 	Input,
-	InputAddonProps,
+	type InputAddonProps,
 	InputGroup,
-	InputGroupProps,
+	type InputGroupProps,
 	InputLeftAddon,
-	InputProps,
+	type InputProps,
 	InputRightAddon,
 } from '@chakra-ui/react';
 import { forwardRef } from 'react';

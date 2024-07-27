@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { Flags } from '@oclif/core';
 import chalk from 'chalk';
-import { Listr, ListrTask } from 'listr2';
+import { Listr, type ListrTask } from 'listr2';
 import { WithProjects } from '../base-commands/WithProjects.js';
 import { updateChangelog } from '../utils/changelog.js';
 import {
@@ -15,7 +15,7 @@ import {
 } from '../utils/i18n.js';
 import { copyFiles, getDistIgnorePattern, zipDir } from '../utils/misc.js';
 import {
-	WPProject,
+	type WPProject,
 	getNextVersion,
 	getProjectBundleConfig,
 	runScript,

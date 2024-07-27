@@ -1,4 +1,4 @@
-import { Stack, StackProps } from '@wpsocio/adapters';
+import { Stack, type StackProps } from '@wpsocio/adapters';
 import { __ } from '@wpsocio/i18n';
 import { SectionCard } from '../section-card';
 
