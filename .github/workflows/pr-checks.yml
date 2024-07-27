@@ -37,7 +37,7 @@ jobs:
           path: premium
           token: ${{ secrets.ACCESS_TOKEN_IR }}
           repository: ${{ secrets.PREMIUM_PROJECTS_REPO }}
-          ref: ${{ fromJSON(steps.remote-refs.outputs.result).premium || main }}
+          ref: ${{ fromJSON(steps.remote-refs.outputs.result).premium || 'main' }}
 
       - name: Setup Environment
         uses: ./actions/setup
