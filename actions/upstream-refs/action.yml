@@ -19,7 +19,7 @@ runs:
             owner: context.repo.owner,
             repo: context.repo.repo,
             pull_number: context.payload.pull_request.number,
-          });
+          }).data;
 
           const refsCommentRegex =
             /<!--- REMOTE REFS START -->(?<content>.+)<!--- REMOTE REFS END -->/is;
