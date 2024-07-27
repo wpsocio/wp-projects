@@ -1,0 +1,38 @@
+name: "Read the refs/branches to use for checking out upstream repos"
+description: "Reads and outputs the refs/branches from PR description to use for checking out upstream repos."
+author: "wpsocio"
+
+outputs:
+  random-number:
+    description: "Refs JSON"
+    value: ${{ steps.random-number-generator.outputs.random-number }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Get details
+      uses: actions/github-script@v7
+      id: details
+      with:
+        script: |
+          const body = github.event.pull_request.body;
+
+          console.log('body:', body);
+
+          // User the version from the tag to ensure we're deploying the correct version
+          return { body };
+
+    - name: Random Number Generator
+      id: random-number-generator
+      run: echo "random-number=$(echo $RANDOM)" >> $GITHUB_OUTPUT
+      shell: bash
+
+    - name: Set GitHub Path
+      run: echo "$GITHUB_ACTION_PATH" >> $GITHUB_PATH
+      shell: bash
+      env:
+        GITHUB_ACTION_PATH: ${{ github.action_path }}
+
+    - name: Run goodbye.sh
+      run: goodbye.sh
+      shell: bash
