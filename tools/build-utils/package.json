@@ -1,6 +1,6 @@
 {
 	"name": "@wpsocio/build-utils",
-	"version": "0.0.1",
+	"version": "0.0.0",
 	"description": "Build utilities CLI.",
 	"license": "MIT",
 	"repository": {
