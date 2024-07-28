@@ -71,6 +71,16 @@
 						"message": "Could not verify the build output: {path}"
 					}
 				]
+			},
+			{
+				"paths": [
+					"src/assets/build/dev-server.json"
+				],
+				"rules": [
+					{
+						"value": "NOT_EXISTS"
+					}
+				]
 			}
 		]
 	},
@@ -83,11 +93,15 @@
 		},
 		"setup:php": {
 			"command": "composer install",
-			"dependencies": ["unset-vendor-dir"]
+			"dependencies": [
+				"unset-vendor-dir"
+			]
 		},
 		"setup:php:prod": {
 			"command": "composer install --no-dev && pnpm run unset-vendor-dir",
-			"dependencies": ["set-prod-vendor"]
+			"dependencies": [
+				"set-prod-vendor"
+			]
 		},
 		"set-prod-vendor": {
 			"command": "composer config vendor-dir src/vendor"
