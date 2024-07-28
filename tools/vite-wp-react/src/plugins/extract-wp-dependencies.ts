@@ -2,8 +2,10 @@ import fs from 'node:fs';
 import path from 'node:path';
 import type { Plugin, ResolvedConfig } from 'vite';
 import {
+	BUNDLED_WP_PACKAGES,
+	NON_WP_PACKAGES,
+	PACKAGE_HANDLES,
 	type ScanDependenciesOptions,
-	WP_EXTERNAL_PACKAGES,
 	scanDependencies,
 } from '../utils/index.js';
 
@@ -11,6 +13,10 @@ export type ExtractWpDependenciesOptions = {
 	outDir: string;
 	fileName?: string;
 } & Pick<ScanDependenciesOptions, 'plugins' | 'normalizePath'>;
+
+const dependenciesToScan = new RegExp(
+	`^((${Object.keys(NON_WP_PACKAGES).join('|')})|@wordpress/.+)$`,
+);
 
 /**
  * Extract external dependencies from the bundle.
@@ -29,9 +35,18 @@ export const extractWpDependencies = ({
 		async buildStart(options) {
 			scanDependencies({
 				absWorkingDir: config.root,
-				dependenciesToScan: Object.keys(WP_EXTERNAL_PACKAGES),
+				dependenciesToScan,
+				excludeDependencies: BUNDLED_WP_PACKAGES,
 				input: options.input,
-				normalizePath: (path) => path.replace(/^@wordpress\//, 'wp-'),
+				normalizePath: (path) => {
+					if (path in PACKAGE_HANDLES) {
+						return PACKAGE_HANDLES[path];
+					}
+
+					const _path = path.replace(/^@wordpress\//, 'wp-');
+
+					return _path;
+				},
 				onComplete: (source) => {
 					// this.emitFile is available only in build mode
 					config.command === 'build'

@@ -9,10 +9,11 @@ export const IMPORTS_TO_IGNORE =
 export type ScanDependenciesOptions = {
 	absWorkingDir: string;
 	input?: InputOption;
-	dependenciesToScan: Array<string>;
+	dependenciesToScan: RegExp;
 	normalizePath?: (path: string) => string;
 	plugins?: Array<EsBuildPlugin>;
 	onComplete?: (data: string) => void;
+	excludeDependencies?: Array<string>;
 };
 
 /**
@@ -20,11 +21,12 @@ export type ScanDependenciesOptions = {
  */
 export async function scanDependencies({
 	absWorkingDir,
-	dependenciesToScan = [],
+	dependenciesToScan,
 	input,
 	normalizePath,
 	plugins = [],
 	onComplete,
+	excludeDependencies = [],
 }: ScanDependenciesOptions) {
 	const dependencies: Record<string, Array<string>> = {};
 	const entries: Array<string> = [];
@@ -41,9 +43,6 @@ export async function scanDependencies({
 	if (!validEntries.length) {
 		throw new Error('No entry points found');
 	}
-
-	// Create a filter for the dependencies we want to scan
-	const filter = new RegExp(`^(${dependenciesToScan.join('|')})$`);
 
 	try {
 		await Promise.all(
@@ -68,16 +67,22 @@ export async function scanDependencies({
 						{
 							name: 'scan-dependencies',
 							setup(build) {
-								build.onResolve({ filter }, (args) => ({
+								build.onResolve({ filter: dependenciesToScan }, (args) => ({
 									path: args.path,
 									namespace: 'scan-dependencies',
 								}));
+
 								build.onLoad(
 									{ filter: /.*/, namespace: 'scan-dependencies' },
 									(args) => {
-										dependencies[entry].push(
-											normalizePath ? normalizePath(args.path) : args.path,
-										);
+										if (!excludeDependencies.includes(args.path)) {
+											const dependency = normalizePath
+												? normalizePath(args.path)
+												: args.path;
+
+											dependencies[entry].push(dependency);
+										}
+
 										return {
 											contents: 'exports.ok = true;',
 											loader: 'js',
