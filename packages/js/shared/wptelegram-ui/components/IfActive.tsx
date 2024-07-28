@@ -1,5 +1,5 @@
+import { Box, Collapse } from '@wpsocio/adapters';
 import { useWatch } from '@wpsocio/form';
-import { Collapse } from '@wpsocio/adapters';
 
 export type IfActiveProps = {
 	name: string;
@@ -12,8 +12,13 @@ export const IfActive: React.FC<IfActiveProps> = ({ children, name }) => {
 	const active: boolean = useWatch({ name });
 
 	return (
-		<Collapse in={active} animateOpacity>
-			{'function' === typeof children ? children(active) : children}
-		</Collapse>
+		// There is some bug in Collapse component and it doesn't collapse/expand properly
+		<>
+			{/* <Collapse in={active}> */}
+			<Box height={active ? 'auto' : 0} overflow="hidden">
+				{'function' === typeof children ? children(active) : children}
+			</Box>
+			{/* </Collapse> */}
+		</>
 	);
 };
