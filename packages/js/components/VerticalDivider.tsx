@@ -16,12 +16,7 @@ export const VerticalDivider: React.FC<
 		/>
 	);
 	return (
-		<Flex
-			className="or"
-			justifyContent="center"
-			alignItems="center"
-			flexDirection="column"
-		>
+		<Flex justifyContent="center" alignItems="center" flexDirection="column">
 			{divider}
 			{children}
 			{divider}
