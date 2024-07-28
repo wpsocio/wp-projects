@@ -78,6 +78,12 @@ export const PACKAGE_HANDLES: Record<string, string> = {
 	'react-refresh/runtime': 'wp-react-refresh-runtime',
 };
 
+/**
+ * WordPress packages that are bundled.
+ *
+ * This list comes from Gutenberg
+ * @see https://github.com/WordPress/gutenberg/blob/313246a01f18e504dabd8313e7eacca728332bcd/packages/dependency-extraction-webpack-plugin/lib/util.js#L6
+ */
 export const BUNDLED_WP_PACKAGES = [
 	'@wordpress/dataviews',
 	'@wordpress/icons',
