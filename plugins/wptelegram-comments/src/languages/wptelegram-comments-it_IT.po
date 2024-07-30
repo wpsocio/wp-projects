@@ -47,12 +47,6 @@ msgstr ""
 msgid "Please contact your hosting provider to ensure the above requirements are met."
 msgstr ""
 
-#: includes/Utils.php:66
-#: includes/Utils.php:67
-#, fuzzy
-msgid "WP Telegram"
-msgstr "WP Telegram Comments"
-
 #: js/settings/services/fields.ts:7
 #: languages/wptelegram-comments-js-translations.php:125
 msgid "Code"
@@ -254,13 +248,13 @@ msgstr ""
 msgid "Widget Info"
 msgstr ""
 
-#: ../../packages/js/form-components/useBotTokenTest.tsx:111
+#: ../../packages/js/form-components/useBotTokenTest.tsx:116
 #: ../../packages/js/form-components/useChatWithTest.tsx:110
 #: languages/wptelegram-comments-js-translations.php:78
 msgid "Please wait…"
 msgstr ""
 
-#: ../../packages/js/form-components/useBotTokenTest.tsx:112
+#: ../../packages/js/form-components/useBotTokenTest.tsx:117
 #: languages/wptelegram-comments-js-translations.php:81
 msgid "Test Token"
 msgstr ""
@@ -270,7 +264,7 @@ msgstr ""
 msgid "Send Test"
 msgstr ""
 
-#: ../../packages/js/form/render/RenderRepeatable.tsx:122
+#: ../../packages/js/form/render/RenderRepeatable.tsx:124
 #: languages/wptelegram-comments-js-translations.php:87
 msgid "Add"
 msgstr ""
@@ -305,7 +299,7 @@ msgstr ""
 msgid "Success"
 msgstr ""
 
-#: ../../packages/js/services/useDisplayFeedback.ts:65
+#: ../../packages/js/services/useDisplayFeedback.ts:68
 #: languages/wptelegram-comments-js-translations.php:108
 msgid "Lets fix these errors first."
 msgstr "Correggi questi errori prima."

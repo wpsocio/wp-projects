@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.3
+
+### Patch Changes
+
+- [#141](https://github.com/wpsocio/wp-projects/pull/141) [`4f35b35`](https://github.com/wpsocio/wp-projects/commit/4f35b354a69ff9cf1813b9d84f42a2581f352ed9) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Externalize WP deps dynamically to ensure new dependencies are not left out
+
 ## 1.0.2
 
 ### Patch Changes

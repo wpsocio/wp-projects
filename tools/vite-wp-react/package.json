@@ -1,6 +1,6 @@
 {
 	"name": "@wpsocio/vite-wp-react",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "Set of tools to develop WordPress plugins and themes using React and Vite.",
 	"license": "MIT",
 	"repository": {
@@ -16,7 +16,10 @@
 	"bugs": {
 		"url": "https://github.com/wpsocio/wp-projects/issues"
 	},
-	"files": ["dist", "src"],
+	"files": [
+		"dist",
+		"src"
+	],
 	"publishConfig": {
 		"access": "public"
 	},
@@ -44,9 +47,15 @@
 	},
 	"typesVersions": {
 		"*": {
-			"config": ["./dist/config.d.ts"],
-			"utils": ["./dist/utils/index.d.ts"],
-			"plugins": ["./dist/plugins/index.d.ts"]
+			"config": [
+				"./dist/config.d.ts"
+			],
+			"utils": [
+				"./dist/utils/index.d.ts"
+			],
+			"plugins": [
+				"./dist/plugins/index.d.ts"
+			]
 		}
 	},
 	"dependencies": {
@@ -80,16 +89,26 @@
 		"build": {
 			"command": "tsup",
 			"clean": "if-file-deleted",
-			"files": ["src/", "tsconfig.json", "tsup.config.ts"],
-			"output": ["dist/**"]
+			"files": [
+				"src/",
+				"tsconfig.json",
+				"tsup.config.ts"
+			],
+			"output": [
+				"dist/**"
+			]
 		},
 		"build:local": {
 			"command": "tsc --emitDeclarationOnly --declaration",
-			"dependencies": ["build"]
+			"dependencies": [
+				"build"
+			]
 		},
 		"prepublishOnly": {
 			"command": "pnpm run build",
-			"dependencies": ["clean"]
+			"dependencies": [
+				"clean"
+			]
 		}
 	}
 }

@@ -28,7 +28,7 @@ $ npm install -g @wpsocio/wpdev
 $ wpdev COMMAND
 running command...
 $ wpdev (--version)
-@wpsocio/wpdev/1.0.7 linux-x64 node-v20.15.0
+@wpsocio/wpdev/1.0.7 linux-x64 node-v20.15.1
 $ wpdev --help [COMMAND]
 USAGE
   $ wpdev COMMAND
@@ -51,12 +51,12 @@ Prepares and bundles projects for distribution or deployment.
 
 ```
 USAGE
-  $ wpdev bundle [PROJECTS] [-r <value>] [-m wp-monorepo|standalone] [--project-types plugins|themes] [-e
-    <value>] [--all] [--from-changeset --changeset-json <value>] [-d <value>] [-p npm|yarn|pnpm|bun] [-c] [-v <value> |
-    -t major|minor|patch|premajor|preminor|prepatch|prerelease] [--tasks <value>]
+  $ wpdev bundle [PROJECTS...] [-r <value>] [-m wp-monorepo|standalone] [--project-types plugins|themes...]
+    [-e <value>...] [--all] [--from-changeset --changeset-json <value>] [-d <value>] [-p npm|yarn|pnpm|bun] [-c] [-v
+    <value> | -t major|minor|patch|premajor|preminor|prepatch|prerelease] [--tasks <value>]
 
 ARGUMENTS
-  PROJECTS  Project(s) to target.
+  PROJECTS...  Project(s) to target.
 
 FLAGS
   -c, --[no-]archive               Create a compressed archive (zip) of the bundled project.
@@ -97,8 +97,8 @@ Cleans up the given path(s) in this monorepo.
 
 ```
 USAGE
-  $ wpdev clean [PATH] [-r <value>] [-m wp-monorepo|standalone] [--project-types plugins|themes] [-e
-    <value>] [-i ignored|node_modules|composer.lock|vendor] [--all]
+  $ wpdev clean [PATH] [-r <value>] [-m wp-monorepo|standalone] [--project-types plugins|themes...] [-e
+    <value>...] [-i ignored|node_modules|composer.lock|vendor...] [--all]
 
 ARGUMENTS
   PATH  Path to clean. Relative to root directory
@@ -131,11 +131,11 @@ Creates symlinks in the given wp-content directory for the project(s) in this mo
 
 ```
 USAGE
-  $ wpdev link [PROJECTS] [-r <value>] [-m wp-monorepo|standalone] [--project-types plugins|themes] [-e
-    <value>] [--all] [--from-changeset --changeset-json <value>] [-d <value>]
+  $ wpdev link [PROJECTS...] [-r <value>] [-m wp-monorepo|standalone] [--project-types plugins|themes...]
+    [-e <value>...] [--all] [--from-changeset --changeset-json <value>] [-d <value>]
 
 ARGUMENTS
-  PROJECTS  Project(s) to target.
+  PROJECTS...  Project(s) to target.
 
 FLAGS
   -d, --wp-content-dir=<value>     Path to the WordPress content directory.
@@ -169,11 +169,11 @@ Get the project info as JSON.
 
 ```
 USAGE
-  $ wpdev project-info [PROJECTS] [-r <value>] [-m wp-monorepo|standalone] [--project-types plugins|themes] [-e
-    <value>] [--all] [--from-changeset --changeset-json <value>] [--pretty]
+  $ wpdev project-info [PROJECTS...] [-r <value>] [-m wp-monorepo|standalone] [--project-types plugins|themes...]
+    [-e <value>...] [--all] [--from-changeset --changeset-json <value>] [--pretty]
 
 ARGUMENTS
-  PROJECTS  Project(s) to target.
+  PROJECTS...  Project(s) to target.
 
 FLAGS
   -e, --env-file=<value>...        Environment file(s) to load
@@ -207,11 +207,11 @@ Removes symlinks in the given wp-content directory created for the project(s) in
 
 ```
 USAGE
-  $ wpdev unlink [PROJECTS] [-r <value>] [-m wp-monorepo|standalone] [--project-types plugins|themes] [-e
-    <value>] [--all] [--from-changeset --changeset-json <value>] [-d <value>]
+  $ wpdev unlink [PROJECTS...] [-r <value>] [-m wp-monorepo|standalone] [--project-types plugins|themes...]
+    [-e <value>...] [--all] [--from-changeset --changeset-json <value>] [-d <value>]
 
 ARGUMENTS
-  PROJECTS  Project(s) to target.
+  PROJECTS...  Project(s) to target.
 
 FLAGS
   -d, --wp-content-dir=<value>     Path to the WordPress content directory.
