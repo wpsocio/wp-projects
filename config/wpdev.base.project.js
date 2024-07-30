@@ -20,7 +20,7 @@ export const getBundleConfig = ({ slug, key, version, textDomain }) => {
 					requirements: {
 						requiresPHP: '7.4',
 						requiresAtLeast: '6.4',
-						testedUpTo: '6.6',
+						testedUpTo: '6.6.1',
 					},
 					target: {
 						files: [
