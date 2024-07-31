@@ -276,8 +276,8 @@ class Utils {
 
 		if ( ! defined( 'WPTELEGRAM_LOADED' ) && empty( $admin_page_hooks['wptelegram'] ) ) {
 			add_menu_page(
-				'WP Telegram',
-				'WP Telegram',
+				__( 'WP Telegram', 'wptelegram-widget' ),
+				__( 'WP Telegram', 'wptelegram-widget' ),
 				'manage_options',
 				'wptelegram',
 				null,
