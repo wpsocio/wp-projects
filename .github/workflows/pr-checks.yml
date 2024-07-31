@@ -90,20 +90,14 @@ jobs:
         with:
           enable-wireit-cache: true
 
-      # - name: Lint
-      #   run: "pnpm lint:js"
+      - name: Lint
+        run: "pnpm lint:js"
 
-      # - name: Typecheck
-      #   run: pnpm typecheck
+      - name: Typecheck
+        run: pnpm typecheck
 
-      # - name: Build
-      #   run: pnpm build
-
-      - name: Debug before
-        run: cat plugins/wptelegram/src/languages/wptelegram-it_IT.l10n.php
+      - name: Build
+        run: pnpm build
 
       - name: Bundle
         run: pnpm bundle:all
-
-      - name: Debug after
-        run: cat plugins/wptelegram/src/languages/wptelegram-it_IT.l10n.php
