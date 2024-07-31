@@ -53,7 +53,7 @@ class Admin extends BaseClass {
 
 		$categories[] = [
 			'slug'  => $slug,
-			'title' => 'WP Telegram',
+			'title' => __( 'WP Telegram', 'wptelegram-widget' ),
 			'icon'  => null,
 		];
 
