@@ -691,3 +691,9 @@ msgstr ""
 #: admin/Admin.php:103
 msgid "Please reload the page."
 msgstr ""
+
+#: admin/Admin.php:56
+#: includes/Utils.php:279
+#: includes/Utils.php:280
+msgid "WP Telegram"
+msgstr ""

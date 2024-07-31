@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.1.26
+
+### Patch Changes
+
+- [#146](https://github.com/wpsocio/wp-projects/pull/146) [`bb3677f`](https://github.com/wpsocio/wp-projects/commit/bb3677f466665e3e766cb54922773b89e23d4aaf) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Fixed empty translations loaded via l10n.php files
+
+- [#150](https://github.com/wpsocio/wp-projects/pull/150) [`44e433a`](https://github.com/wpsocio/wp-projects/commit/44e433aefcec4a3d0ab5470485ca1b30b40a0a22) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Restored translations for plugin name after l10n fix
+
 ## 2.1.25
 
 ### Patch Changes

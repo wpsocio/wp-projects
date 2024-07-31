@@ -353,3 +353,8 @@ msgstr ""
 #: wptelegram-comments.php
 msgid "https://wpsocio.com"
 msgstr ""
+
+#: includes/Utils.php:66
+#: includes/Utils.php:67
+msgid "WP Telegram"
+msgstr ""
