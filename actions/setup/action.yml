@@ -82,3 +82,5 @@ runs:
         # Install the latest version of i18n package
         wp package uninstall wp-cli/i18n-command
         wp package install wp-cli/i18n-command
+        echo "WP-CLI packages:"
+        wp package list
