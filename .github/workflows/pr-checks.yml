@@ -100,10 +100,10 @@ jobs:
       #   run: pnpm build
 
       - name: Debug before
-        run: cat plugins/wptelegram/src/languages/wptelegram-it_IT.po
+        run: cat plugins/wptelegram/src/languages/wptelegram-it_IT.l10n.php
 
       - name: Bundle
         run: pnpm bundle:all
 
       - name: Debug after
-        run: cat plugins/wptelegram/src/languages/wptelegram-it_IT.po
+        run: cat plugins/wptelegram/src/languages/wptelegram-it_IT.l10n.php
