@@ -80,4 +80,5 @@ runs:
         # Check WP-CLI
         wp --info
         # Install the latest version of i18n package
+        wp package uninstall wp-cli/i18n-command
         wp package install wp-cli/i18n-command
