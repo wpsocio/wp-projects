@@ -79,3 +79,5 @@ runs:
         sudo mv wp-cli.phar /usr/local/bin/wp
         # Check WP-CLI
         wp --info
+        # Install the latest version of i18n package
+        wp package install wp-cli/i18n-command
