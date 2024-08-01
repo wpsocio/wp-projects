@@ -68,14 +68,14 @@ export const NON_WP_PACKAGES: Record<string, string> = {
 	backbone: 'Backbone',
 	lodash: 'lodash',
 	'lodash-es': 'lodash',
-	'react/jsx-runtime': 'ReactJSXRuntime',
-	'react-refresh/runtime': 'ReactRefreshRuntime',
+	// 'react/jsx-runtime': 'ReactJSXRuntime',
+	// 'react-refresh/runtime': 'ReactRefreshRuntime',
 };
 
 export const PACKAGE_HANDLES: Record<string, string> = {
 	'lodash-es': 'lodash',
-	'react/jsx-runtime': 'react-jsx-runtime',
-	'react-refresh/runtime': 'wp-react-refresh-runtime',
+	// 'react/jsx-runtime': 'react-jsx-runtime',
+	// 'react-refresh/runtime': 'wp-react-refresh-runtime',
 };
 
 /**
