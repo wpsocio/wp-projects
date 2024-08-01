@@ -74,8 +74,8 @@ export const NON_WP_PACKAGES: Record<string, string> = {
 
 export const PACKAGE_HANDLES: Record<string, string> = {
 	'lodash-es': 'lodash',
-	'react/jsx-runtime': 'react-jsx-runtime',
-	'react-refresh/runtime': 'wp-react-refresh-runtime',
+	// 'react/jsx-runtime': 'react-jsx-runtime',
+	// 'react-refresh/runtime': 'wp-react-refresh-runtime',
 };
 
 /**
