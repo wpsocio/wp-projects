@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.1.27
+
+### Patch Changes
+
+- [#151](https://github.com/wpsocio/wp-projects/pull/151) [`7f06002`](https://github.com/wpsocio/wp-projects/commit/7f06002dd4b9b31cc4c4fc9320444ac7e1885c26) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Fixed settings page and post editor crash for older Wp versions
+
 ## 2.1.26
 
 ### Patch Changes
