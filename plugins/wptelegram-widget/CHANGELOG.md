@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.1.28
+
+### Patch Changes
+
+- [#153](https://github.com/wpsocio/wp-projects/pull/153) [`db87357`](https://github.com/wpsocio/wp-projects/commit/db87357d497c4574f8e632adb7645bcafa5b6908) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Fixed Join Link widget shortcode sanitization
+
 ## 2.1.27
 
 ### Patch Changes
