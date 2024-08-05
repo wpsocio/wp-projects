@@ -22,7 +22,7 @@
 	foreach ( $embed_urls as $src ) :
 		?>
 		<div class="wptelegram-widget-message">
-			<iframe loading="lazy" frameborder="0" scrolling="no" width="<?php echo esc_attr( $width ); ?>%" src="<?php echo esc_attr( $src ); ?>">Your Browser Does Not Support iframes!</iframe>
+			<iframe loading="lazy" frameborder="0" scrolling="no" width="<?php echo esc_attr( $width ); ?>%" src="<?php echo esc_url( $src ); ?>">Your Browser Does Not Support iframes!</iframe>
 		</div>
 	<?php endforeach; ?>
 </div>
