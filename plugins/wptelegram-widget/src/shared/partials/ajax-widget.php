@@ -19,7 +19,7 @@
 ?>
 <div class="wptelegram-widget-wrap">
 	<div class="wptelegram-widget-ajax-widget">
-		<iframe loading="lazy" frameborder="0" width="<?php echo esc_attr( $width ); ?>" height="<?php echo esc_attr( $height ); ?>" src="<?php echo esc_attr( $embed_url ); ?>">Your Browser Does Not Support iframes!</iframe>
+		<iframe loading="lazy" frameborder="0" width="<?php echo esc_attr( $width ); ?>" height="<?php echo esc_attr( $height ); ?>" src="<?php echo esc_url( $embed_url ); ?>">Your Browser Does Not Support iframes!</iframe>
 	</div>
 </div>
 <?php
