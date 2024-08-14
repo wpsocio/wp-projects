@@ -1,6 +1,6 @@
-import * as yup from 'yup';
+import { z } from 'zod';
 
-import { __ } from '@wpsocio/i18n';
+import { __, sprintf } from '@wpsocio/i18n';
 import {
 	BOT_TOKEN_REGEX,
 	TG_USERNAME_REGEX,
@@ -29,45 +29,49 @@ export const fieldLabels = {
 
 export const getFieldLabel = fieldLabelGetter(fieldLabels);
 
-export const validationSchema = yup.object({
-	bot_token: yup
+export const validationSchema = z.object({
+	bot_token: z
 		.string()
-		.matches(BOT_TOKEN_REGEX, {
-			message: () => getErrorMessage('bot_token', 'invalid'),
-			excludeEmptyString: true,
-		})
-		.required(() => getErrorMessage('bot_token', 'required')),
-	bot_username: yup
+		.regex(
+			BOT_TOKEN_REGEX,
+			sprintf(__('Invalid %s'), getFieldLabel('bot_token')),
+		),
+
+	bot_username: z
 		.string()
-		.matches(TG_USERNAME_REGEX, {
-			message: () => getErrorMessage('bot_username', 'invalid'),
-			excludeEmptyString: true,
-		})
-		.required(() => getErrorMessage('bot_username', 'required')),
-	avatar_meta_key: yup
+		.regex(
+			TG_USERNAME_REGEX,
+			sprintf(__('Invalid %s'), getFieldLabel('bot_username')),
+		),
+	avatar_meta_key: z
 		.string()
-		.matches(/^[a-z0-9_]+$/i, {
-			message: () => getErrorMessage('avatar_meta_key', 'invalid'),
-			excludeEmptyString: true,
-		})
-		.required(() => getErrorMessage('avatar_meta_key', 'required')),
-	disable_signup: yup.bool(),
-	random_email: yup.bool(),
-	user_role: yup.string(),
-	redirect_to: yup.string(),
-	redirect_url: yup.string(),
-	button_style: yup.string().oneOf(['large', 'medium', 'small']),
-	show_user_photo: yup.bool(),
-	corner_radius: yup.string().matches(/^[1-2]?[0-9]?$/, {
-		message: () => getErrorMessage('corner_radius', 'invalid'),
-		excludeEmptyString: true,
-	}),
-	show_if_user_is: yup.string(),
-	hide_on_default: yup.bool(),
-	show_message_on_error: yup.bool(),
-	custom_error_message: yup.string(),
+		.regex(
+			/^[a-z0-9_]+$/i,
+			sprintf(__('Invalid %s'), getFieldLabel('avatar_meta_key')),
+		),
+	disable_signup: z.boolean().optional(),
+	random_email: z.boolean().optional(),
+	user_role: z.string().optional(),
+	redirect_to: z.string().optional(),
+	redirect_url: z.string().optional(),
+	button_style: z
+		.union([z.literal('large'), z.literal('medium'), z.literal('small')])
+		.optional(),
+	show_user_photo: z.boolean().optional(),
+	corner_radius: z
+		.string()
+		.regex(
+			/^[1-2]?[0-9]?$/,
+			sprintf(__('Invalid %s'), getFieldLabel('corner_radius')),
+		)
+		.optional(),
+	lang: z.string().optional(),
+	show_if_user_is: z.string().optional(),
+	hide_on_default: z.boolean().optional(),
+	show_message_on_error: z.boolean().optional(),
+	custom_error_message: z.string().optional(),
 });
 
-export type DataShape = ReturnType<typeof validationSchema.validateSync>;
+export type DataShape = z.infer<typeof validationSchema>;
 
 export const getErrorMessage = getFormErrorMessage(fieldLabels);

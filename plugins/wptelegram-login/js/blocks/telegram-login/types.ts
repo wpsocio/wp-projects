@@ -1,9 +1,13 @@
-import type { SimpleOptionsType } from '@wpsocio/adapters';
 import type {
 	BaseAssetsData,
 	BaseDOMData,
 	BasePluginData,
 } from '@wpsocio/services';
+
+type SimpleOptionsType = Array<{
+	value: string;
+	label: string;
+}>;
 
 export interface WPTelegramLoginData
 	extends BaseDOMData<AssetsData>,

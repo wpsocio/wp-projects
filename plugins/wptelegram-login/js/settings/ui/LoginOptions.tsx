@@ -1,9 +1,17 @@
-import { useCallback, useState } from 'react';
-
-import { SectionCard } from '@wpsocio/components';
-import { type FieldConditions, FormField } from '@wpsocio/form';
+import { useFormContext, useWatch } from '@wpsocio/form';
 import { __ } from '@wpsocio/i18n';
-
+import { SectionCard } from '@wpsocio/shared-ui/components/section-card.js';
+import { FormItem } from '@wpsocio/shared-ui/form/form-item';
+import { cn } from '@wpsocio/ui-components';
+import {
+	FormControl,
+	FormField,
+} from '@wpsocio/ui-components/wrappers/form.js';
+import { Input } from '@wpsocio/ui-components/wrappers/input';
+import { RadioGroup } from '@wpsocio/ui-components/wrappers/radio-group';
+import { Switch } from '@wpsocio/ui-components/wrappers/switch.js';
+import { useCallback, useState } from 'react';
+import { Select } from '../components/select';
 import { getFieldLabel, useData } from '../services';
 
 const getRedirectOptions = () => [
@@ -11,22 +19,6 @@ const getRedirectOptions = () => [
 	{ value: 'homepage', label: __('Homepage') },
 	{ value: 'current_page', label: __('Current page') },
 	{ value: 'custom_url', label: __('Custom URL') },
-];
-
-const disableSignupConditions: FieldConditions = [
-	{
-		field: 'disable_signup',
-		value: true,
-		compare: '!=',
-	},
-];
-
-const redirectConditions: FieldConditions = [
-	{
-		field: 'redirect_to',
-		value: 'custom_url',
-		compare: '=',
-	},
 ];
 
 export const LoginOptions = () => {
@@ -39,63 +31,137 @@ export const LoginOptions = () => {
 		[],
 	);
 
+	const { control } = useFormContext();
+
+	const [disableSignup, redirectTo] = useWatch({
+		name: ['disable_signup', 'redirect_to'],
+	});
+
 	return (
 		<SectionCard title={__('Login Options')}>
-			<FormField
-				description={__(
-					'If enabled, only the existing users who have connected their Telegram will be able to login.',
-				)}
-				fieldType="switch"
-				label={getFieldLabel('disable_signup')}
-				name="disable_signup"
-			/>
-			<FormField
-				conditions={disableSignupConditions}
-				description={__('The default role to assign for the new users.')}
-				fieldType="select"
-				label={getFieldLabel('user_role')}
-				name="user_role"
-				options={uiData.user_role}
-			/>
+			<div className="flex flex-col gap-10 md:gap-4">
+				<FormField
+					control={control}
+					name="disable_signup"
+					render={({ field }) => (
+						<FormItem
+							label={getFieldLabel('disable_signup')}
+							description={__(
+								'If enabled, only the existing users who have connected their Telegram will be able to login.',
+							)}
+						>
+							<FormControl>
+								<Switch
+									{...field}
+									checked={field.value}
+									onCheckedChange={field.onChange}
+								/>
+							</FormControl>
+						</FormItem>
+					)}
+				/>
+				<FormField
+					control={control}
+					name="user_role"
+					render={({ field }) => (
+						<FormItem
+							label={getFieldLabel('user_role')}
+							description={__('The default role to assign for the new users.')}
+							className={cn({ '!hidden': disableSignup })}
+						>
+							<FormControl>
+								<Select
+									{...field}
+									onValueChange={field.onChange}
+									defaultValue={field.value}
+									options={uiData.user_role}
+								/>
+							</FormControl>
+						</FormItem>
+					)}
+				/>
 
-			<FormField
-				description={__('Redirect location after login.')}
-				fieldType="radio"
-				isInline
-				label={getFieldLabel('redirect_to')}
-				name="redirect_to"
-				options={getRedirectOptions()}
-			/>
+				<FormField
+					control={control}
+					name="redirect_to"
+					render={({ field }) => (
+						<FormItem
+							label={getFieldLabel('redirect_to')}
+							description={__('Redirect location after login.')}
+						>
+							<FormControl>
+								<RadioGroup
+									{...field}
+									onValueChange={field.onChange}
+									defaultValue={field.value}
+									options={getRedirectOptions()}
+									displayInline
+								/>
+							</FormControl>
+						</FormItem>
+					)}
+				/>
 
-			<FormField
-				conditions={redirectConditions}
-				fieldType="text"
-				label={getFieldLabel('redirect_url')}
-				name="redirect_url"
-			/>
+				<FormField
+					control={control}
+					name="redirect_url"
+					render={({ field }) => (
+						<FormItem
+							label={getFieldLabel('redirect_url')}
+							className={cn({ '!hidden': redirectTo !== 'custom_url' })}
+						>
+							<FormControl>
+								<Input {...field} />
+							</FormControl>
+						</FormItem>
+					)}
+				/>
 
-			<FormField
-				description={__(
-					'The user meta key to be used to save Telegram photo URL.',
-				)}
-				fieldType="text"
-				isReadOnly={avatarMetaKeyReadOnly}
-				label={getFieldLabel('avatar_meta_key')}
-				maxWidth="200px"
-				name="avatar_meta_key"
-				onDoubleClick={onAvatarMetaDoubleClick}
-			/>
-			<FormField
-				conditions={disableSignupConditions}
-				description={`${__(
-					'If enabled, a random email address will be generated for new user accounts.',
-				)} ${__(
-					'Useful when you want the users to be able to receive private notifications.',
-				)}`}
-				fieldType="switch"
-				label={getFieldLabel('random_email')}
-				name="random_email"
-			/>
+				<FormField
+					control={control}
+					name="avatar_meta_key"
+					render={({ field }) => (
+						<FormItem
+							description={__(
+								'The user meta key to be used to save Telegram photo URL.',
+							)}
+							label={getFieldLabel('avatar_meta_key')}
+						>
+							<FormControl className="max-w-[200px]">
+								<Input
+									autoComplete="off"
+									readOnly={avatarMetaKeyReadOnly}
+									onDoubleClick={onAvatarMetaDoubleClick}
+									{...field}
+								/>
+							</FormControl>
+						</FormItem>
+					)}
+				/>
+				<FormField
+					control={control}
+					name="random_email"
+					render={({ field }) => (
+						<FormItem
+							label={getFieldLabel('random_email')}
+							description={`${__(
+								'If enabled, a random email address will be generated for new user accounts.',
+							)} ${__(
+								'Useful when you want the users to be able to receive private notifications.',
+							)}`}
+							className={cn({ '!hidden': disableSignup })}
+						>
+							<FormControl>
+								<Switch
+									{...field}
+									checked={field.value}
+									onCheckedChange={field.onChange}
+								/>
+							</FormControl>
+						</FormItem>
+					)}
+				/>
+			</div>
 		</SectionCard>
 	);
 };
