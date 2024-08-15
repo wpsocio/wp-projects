@@ -1,6 +1,6 @@
 import { cn } from '@wpsocio/ui-components';
 
-export const WidgetInfoItem: React.FC<React.HTMLAttributes<HTMLDivElement>> = (
+export const PluginInfoItem: React.FC<React.HTMLAttributes<HTMLDivElement>> = (
 	props,
 ) => {
 	return (

@@ -14,6 +14,8 @@ export type AccordionItemProps = {
 	trigger: React.ReactNode;
 	children?: Content;
 	content?: Content;
+	className?: string;
+	wrapperClassName?: string;
 } & AccordionHeaderProps;
 
 export type AccordionProps = Partial<
@@ -45,22 +47,35 @@ export function Accordion({
 			className={cn('w-full', className)}
 			{...props}
 		>
-			{items.map(({ value, trigger, children, content, ...headerProps }) => {
-				const contentRenderer = content || children;
-				const renderedContent =
-					typeof contentRenderer === 'function'
-						? contentRenderer(value)
-						: contentRenderer;
+			{items.map(
+				({
+					value,
+					trigger,
+					children,
+					content,
+					wrapperClassName,
+					...headerProps
+				}) => {
+					const contentRenderer = content || children;
+					const renderedContent =
+						typeof contentRenderer === 'function'
+							? contentRenderer(value)
+							: contentRenderer;
 
-				return (
-					<AccordionItem key={value} value={value}>
-						<AccordionTrigger {...headerProps}>{trigger}</AccordionTrigger>
-						<AccordionContent forceMount={forceMountContent}>
-							{renderedContent}
-						</AccordionContent>
-					</AccordionItem>
-				);
-			})}
+					return (
+						<AccordionItem
+							key={value}
+							value={value}
+							className={wrapperClassName}
+						>
+							<AccordionTrigger {...headerProps}>{trigger}</AccordionTrigger>
+							<AccordionContent forceMount={forceMountContent}>
+								{renderedContent}
+							</AccordionContent>
+						</AccordionItem>
+					);
+				},
+			)}
 		</AccordionUI>
 	);
 }

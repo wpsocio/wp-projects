@@ -1,8 +1,8 @@
 import { __, sprintf } from '@wpsocio/i18n';
 import { Code } from '@wpsocio/shared-ui/components/code.js';
+import { PluginInfoItem } from '@wpsocio/shared-ui/components/plugin-info/plugin-info-item.js';
 import { Smile } from '@wpsocio/shared-ui/components/smile.js';
 import { WidgetInfoCard as WidgetInfoCardUI } from '@wpsocio/shared-ui/components/widget-info/widget-info-card.js';
-import { WidgetInfoItem } from '@wpsocio/shared-ui/components/widget-info/widget-info-item.js';
 import { Link } from '@wpsocio/ui-components/wrappers/link.js';
 import { createInterpolateElement } from '@wpsocio/utilities';
 
@@ -13,7 +13,7 @@ export const WidgetInfoCard = () => {
 
 	return (
 		<WidgetInfoCardUI>
-			<WidgetInfoItem className="text-start">
+			<PluginInfoItem className="text-start">
 				{createInterpolateElement(
 					sprintf(
 						/* translators: 1, 2 Menu names */
@@ -33,22 +33,22 @@ export const WidgetInfoCard = () => {
 						Widget: <b>{__('WP Telegram Login')}</b>,
 					},
 				)}
-			</WidgetInfoItem>
-			<WidgetInfoItem className="text-start">
+			</PluginInfoItem>
+			<PluginInfoItem className="text-start">
 				{__(
 					'Alternately, you can use the below shortcode or the block available in block editor.',
 				)}
-			</WidgetInfoItem>
-			<WidgetInfoItem>{__('Inside page or post content:')}</WidgetInfoItem>
-			<WidgetInfoItem>
+			</PluginInfoItem>
+			<PluginInfoItem>{__('Inside page or post content:')}</PluginInfoItem>
+			<PluginInfoItem>
 				<Code className="w-full">
 					{
 						'[wptelegram-login button_style="large" show_user_photo="1" corner_radius="15" lang="en"]'
 					}
 				</Code>
-			</WidgetInfoItem>
-			<WidgetInfoItem>{__('Inside the theme templates')}</WidgetInfoItem>
-			<WidgetInfoItem>
+			</PluginInfoItem>
+			<PluginInfoItem>{__('Inside the theme templates')}</PluginInfoItem>
+			<PluginInfoItem>
 				<Code className="w-full">
 					{
 						"<?php\nif ( function_exists( 'wptelegram_login' ) ) {\n    wptelegram_login();\n}\n?>"
@@ -63,10 +63,10 @@ export const WidgetInfoCard = () => {
 						'echo do_shortCode( $shortcode );\n' +
 						'?>'}
 				</Code>
-			</WidgetInfoItem>
-			<WidgetInfoItem>
+			</PluginInfoItem>
+			<PluginInfoItem className="border-b-0 py-0">
 				<Smile />
-			</WidgetInfoItem>
+			</PluginInfoItem>
 		</WidgetInfoCardUI>
 	);
 };
