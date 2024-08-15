@@ -1,4 +1,4 @@
-import '../../shared-styles.scss';
+import './styles.scss';
 
 import { cleanup, setI18nData } from '@wpsocio/services';
 import { Toaster } from '@wpsocio/ui-components/ui/toaster';
