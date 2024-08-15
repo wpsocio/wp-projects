@@ -2,9 +2,9 @@ import { __, sprintf } from '@wpsocio/i18n';
 import { Link } from '@wpsocio/ui-components/wrappers/link.jsx';
 import { createInterpolateElement } from '@wpsocio/utilities/createInterpolateElement.js';
 import { Code } from '../code.js';
+import { PluginInfoItem } from '../plugin-info/plugin-info-item.js';
 import { Smile } from '../smile.js';
 import { WidgetInfoCard } from './widget-info-card.jsx';
-import { WidgetInfoItem } from './widget-info-item.jsx';
 
 export interface WidgetInfoProps {
 	adminUrl: string;
@@ -23,7 +23,7 @@ export const WidgetInfo: React.FC<WidgetInfoProps> = ({
 }) => {
 	return (
 		<WidgetInfoCard>
-			<WidgetInfoItem className="text-start">
+			<PluginInfoItem className="text-start">
 				{createInterpolateElement(
 					sprintf(
 						/* translators: 1, 2 Menu names */
@@ -43,18 +43,18 @@ export const WidgetInfo: React.FC<WidgetInfoProps> = ({
 						Widget: <b>{title}</b>,
 					},
 				)}
-			</WidgetInfoItem>
-			<WidgetInfoItem className="text-start">
+			</PluginInfoItem>
+			<PluginInfoItem className="text-start">
 				{__(
 					'Alternately, you can use the below shortcode or the block available in block editor.',
 				)}
-			</WidgetInfoItem>
-			<WidgetInfoItem>{__('Inside page or post content:')}</WidgetInfoItem>
-			<WidgetInfoItem>
+			</PluginInfoItem>
+			<PluginInfoItem>{__('Inside page or post content:')}</PluginInfoItem>
+			<PluginInfoItem>
 				<Code className="w-full">{shortcode1}</Code>
-			</WidgetInfoItem>
-			<WidgetInfoItem>{__('Inside the theme templates')}</WidgetInfoItem>
-			<WidgetInfoItem>
+			</PluginInfoItem>
+			<PluginInfoItem>{__('Inside the theme templates')}</PluginInfoItem>
+			<PluginInfoItem>
 				<Code className="w-full">{`<?php\n${phpCode}\n?>`}</Code>
 				<br />
 				<span>{__('or')}</span>
@@ -64,10 +64,10 @@ export const WidgetInfo: React.FC<WidgetInfoProps> = ({
 						shortcode2 || shortcode1
 					}';\necho do_shortcode( $shortcode );\n?>`}
 				</Code>
-			</WidgetInfoItem>
-			<WidgetInfoItem>
+			</PluginInfoItem>
+			<PluginInfoItem className="border-b-0 py-0">
 				<Smile />
-			</WidgetInfoItem>
+			</PluginInfoItem>
 		</WidgetInfoCard>
 	);
 };
