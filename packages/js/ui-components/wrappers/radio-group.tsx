@@ -41,3 +41,5 @@ export const RadioGroup = forwardRef<
 		</RadioGroupUI>
 	);
 });
+
+RadioGroup.displayName = 'RadioGroup';
