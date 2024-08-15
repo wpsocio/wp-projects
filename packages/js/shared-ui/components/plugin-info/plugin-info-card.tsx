@@ -63,7 +63,7 @@ export const PluginInfoCard: React.FC<PluginInfoCardProps> = ({
 								href={reviewLink}
 								rel="noopener noreferrer"
 								target="_blank"
-								className="p-2 no-underline"
+								className="p-2"
 							>
 								<span
 									aria-label={__('Write a review')}
@@ -90,7 +90,7 @@ export const PluginInfoCard: React.FC<PluginInfoCardProps> = ({
 				{supportLink && (
 					<StackItem className="p-0 border-b-0 w-full">
 						<Link
-							className="block py-3 px-5 bg-blue-100 text-blue-800 font-bold italic no-underline"
+							className="block py-3 px-5 bg-blue-100 text-blue-800 font-bold italic"
 							href={supportLink}
 							target="_blank"
 							rel="noopener noreferrer"

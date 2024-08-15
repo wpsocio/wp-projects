@@ -9,7 +9,7 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
 	({ children, isExternal, className, ...props }, ref) => {
 		return (
 			<a
-				className={cn('underline', className)}
+				className={cn('text-sky-700', className)}
 				ref={ref}
 				rel={isExternal ? 'noopener noreferrer' : undefined}
 				target={isExternal ? '_blank' : undefined}
@@ -18,7 +18,7 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
 				{children}
 			</a>
 		);
-	}
+	},
 );
 
 Link.displayName = 'Link';

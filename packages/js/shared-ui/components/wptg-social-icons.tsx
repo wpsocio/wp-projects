@@ -47,7 +47,7 @@ export const WPTGSocialIcons: React.FC<WPTGSocialIconsProps> = ({
 			<div>
 				<Link
 					href="https://t.me/WPTelegram"
-					className="flex items-center bg-[#17a2b8] rounded-md py-px px-1 no-underline whitespace-nowrap"
+					className="flex items-center bg-[#17a2b8] rounded-md py-px px-1 whitespace-nowrap"
 					isExternal
 				>
 					<img
