@@ -1,6 +1,5 @@
 {
 	"extends": "../../../config/tsconfig.react.json",
-
 	"exclude": ["**/node_modules"],
 	"include": ["components", "form"],
 	"compilerOptions": {

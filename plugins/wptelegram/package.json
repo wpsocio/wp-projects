@@ -39,13 +39,13 @@
 		"@types/wordpress__edit-post": "^7.5.7",
 		"@types/wordpress__editor": "^13.6.8",
 		"@types/wordpress__media-utils": "^4.14.4",
-		"@wordpress/components": "^28.4.0",
-		"@wordpress/data": "^10.4.0",
-		"@wordpress/edit-post": "^8.4.0",
-		"@wordpress/editor": "^14.4.0",
-		"@wordpress/element": "^6.4.0",
-		"@wordpress/media-utils": "^5.4.0",
-		"@wordpress/plugins": "^7.4.0",
+		"@wordpress/components": "^28.5.0",
+		"@wordpress/data": "^10.5.0",
+		"@wordpress/edit-post": "^8.5.0",
+		"@wordpress/editor": "^14.5.0",
+		"@wordpress/element": "^6.5.0",
+		"@wordpress/media-utils": "^5.5.0",
+		"@wordpress/plugins": "^7.5.0",
 		"@wpsocio/adapters": "workspace:*",
 		"@wpsocio/build-utils": "workspace:*",
 		"@wpsocio/components": "workspace:*",
@@ -60,8 +60,8 @@
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1",
 		"typescript": "^5.5.4",
-		"vite": "^5.3.5",
-		"wireit": "^0.14.5"
+		"vite": "^5.4.0",
+		"wireit": "^0.14.7"
 	},
 	"build-utils": {
 		"validate": [
