@@ -18,7 +18,7 @@ export const Sidebar: React.FC = () => {
 				description={`${title}: ${__(
 					'Let the users login to your WordPress website with their Telegram and make it simple for them to get connected and let them receive their email notifications on Telegram.',
 				)}`}
-				helpText={__('Get LIVE support on Telegram')}
+				helpText={__('Join our public chat on Telegram')}
 				reviewLink="https://wordpress.org/support/plugin/wptelegram-login/reviews/#new-post"
 				supportLink="https://t.me/WPTelegramChat"
 				supportLinkText="@WPTelegramChat"

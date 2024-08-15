@@ -44,7 +44,7 @@ export const PluginInfoCard: React.FC<PluginInfoCardProps> = ({
 					className: 'px-4',
 					wrapperClassName: 'border-b-0',
 					content: () => (
-						<div className="flex flex-col gap-4 items-center">
+						<div className="flex flex-col gap-4 items-center text-base">
 							<PluginInfoItem>
 								<Description className="text-start">{description}</Description>
 							</PluginInfoItem>

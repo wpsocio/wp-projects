@@ -25,7 +25,7 @@ export const WidgetInfoCard: React.FC<
 					className: 'px-4',
 					wrapperClassName: 'border-b-0',
 					content: () => (
-						<div className={cn('flex flex-col gap-4', className)}>
+						<div className={cn('flex flex-col gap-4 text-base', className)}>
 							{children}
 						</div>
 					),
