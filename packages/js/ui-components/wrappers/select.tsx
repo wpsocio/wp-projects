@@ -95,3 +95,5 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
 		);
 	},
 );
+
+Select.displayName = 'Select';
