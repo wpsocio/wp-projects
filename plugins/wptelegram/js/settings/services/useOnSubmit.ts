@@ -16,6 +16,7 @@ export const useOnSubmit = (
 	const path = `${rest_namespace}/settings/`;
 
 	const submitForm = useSubmitForm({
+		// @ts-expect-error
 		form,
 		path,
 		// @ts-expect-error
