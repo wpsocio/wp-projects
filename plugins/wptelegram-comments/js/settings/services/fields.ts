@@ -1,7 +1,9 @@
-import * as yup from 'yup';
-
-import { __ } from '@wpsocio/i18n';
-import { fieldLabelGetter, getFormErrorMessage } from '@wpsocio/utilities';
+import { __, sprintf } from '@wpsocio/i18n';
+import {
+	fieldLabelGetter,
+	getFormErrorMessage,
+} from '@wpsocio/utilities/fields';
+import { z } from 'zod';
 
 const fieldLabels = {
 	code: () => __('Code'),
@@ -11,19 +13,19 @@ const fieldLabels = {
 
 export const getFieldLabel = fieldLabelGetter(fieldLabels);
 
-export const validationSchema = yup.object({
-	attributes: yup.string(),
-	code: yup
+export const validationSchema = z.object({
+	attributes: z.string().optional(),
+	code: z
 		.string()
-		.required(() => getErrorMessage('code', 'required'))
-		.matches(/^<script[^>]+?><\/script>$/i, {
-			message: () => getErrorMessage('code', 'invalid'),
-			excludeEmptyString: true,
-		}),
-	exclude: yup.string(),
-	post_types: yup.array().of(yup.string()),
+		.min(1, sprintf(__('%s required.'), getFieldLabel('code')))
+		.regex(
+			/^<script[^>]+?><\/script>$/i,
+			sprintf(__('Invalid %s'), getFieldLabel('code')),
+		),
+	exclude: z.string().optional(),
+	post_types: z.array(z.string()).optional(),
 });
 
-export type DataShape = ReturnType<typeof validationSchema.validateSync>;
+export type DataShape = z.infer<typeof validationSchema>;
 
 export const getErrorMessage = getFormErrorMessage(fieldLabels);

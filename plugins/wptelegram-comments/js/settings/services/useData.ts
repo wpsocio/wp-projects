@@ -1,4 +1,4 @@
-import { usePluginData } from '@wpsocio/services';
+import { usePluginData } from '@wpsocio/services/usePluginData.js';
 import type { WPTelegramCommentsData } from './types';
 
 export const useData = <

@@ -1,15 +1,14 @@
-import { Link, List, ListItem } from '@wpsocio/adapters';
-import { Code, Instructions as InstructionsUI } from '@wpsocio/components';
 import { __, sprintf } from '@wpsocio/i18n';
-import { createInterpolateElement } from '@wpsocio/utilities';
-
-const { location } = window;
+import { Code } from '@wpsocio/shared-ui/components/code.js';
+import { Instructions as InstructionsUI } from '@wpsocio/shared-ui/components/instructions.js';
+import { Link } from '@wpsocio/ui-components/wrappers/link.js';
+import { createInterpolateElement } from '@wpsocio/utilities/createInterpolateElement.js';
 
 export const Instructions: React.FC = () => {
 	return (
 		<InstructionsUI>
-			<List as="ol" styleType="decimal">
-				<ListItem>
+			<ol className="ms-8 list-decimal">
+				<li>
 					{createInterpolateElement(
 						sprintf(
 							/* translators: 1 URL */
@@ -24,8 +23,8 @@ export const Instructions: React.FC = () => {
 							),
 						},
 					)}
-				</ListItem>
-				<ListItem>
+				</li>
+				<li>
 					{createInterpolateElement(
 						sprintf(
 							/* translators: 1 menu name, 2, 3 buttons */
@@ -40,8 +39,8 @@ export const Instructions: React.FC = () => {
 							Button2: <b>CONNECT WEBSITE</b>,
 						},
 					)}
-				</ListItem>
-				<ListItem>
+				</li>
+				<li>
 					{createInterpolateElement(
 						sprintf(
 							/* translators: 1 field name, 2 website address, 3 field name */
@@ -52,12 +51,16 @@ export const Instructions: React.FC = () => {
 						),
 						{
 							SiteName: <b>Site Name</b>,
-							Host: <Code>{location.host}</Code>,
+							Host: (
+								<b>
+									<Code>{window.location.host}</Code>
+								</b>
+							),
 							Domains: <b>Domains</b>,
 						},
 					)}
-				</ListItem>
-				<ListItem>
+				</li>
+				<li>
 					{createInterpolateElement(
 						sprintf(
 							/* translators: 1 button name */
@@ -68,8 +71,8 @@ export const Instructions: React.FC = () => {
 							Button: <b>CONNECT WEBSITE</b>,
 						},
 					)}
-				</ListItem>
-				<ListItem>
+				</li>
+				<li>
 					{createInterpolateElement(
 						sprintf(
 							/* translators: 1, 2 button names */
@@ -82,10 +85,10 @@ export const Instructions: React.FC = () => {
 							Button2: <b>COPY CODE</b>,
 						},
 					)}
-				</ListItem>
-				<ListItem>{__('Paste the copied code in the field below.')}</ListItem>
-				<ListItem>{__('Save Changes')}</ListItem>
-			</List>
+				</li>
+				<li>{__('Paste the copied code in the field below.')}</li>
+				<li>{__('Save Changes')}</li>
+			</ol>
 		</InstructionsUI>
 	);
 };

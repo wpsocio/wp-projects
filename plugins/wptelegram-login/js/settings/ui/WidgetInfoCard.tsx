@@ -13,7 +13,7 @@ export const WidgetInfoCard = () => {
 
 	return (
 		<WidgetInfoCardUI>
-			<PluginInfoItem className="text-start">
+			<PluginInfoItem>
 				{createInterpolateElement(
 					sprintf(
 						/* translators: 1, 2 Menu names */
@@ -34,7 +34,7 @@ export const WidgetInfoCard = () => {
 					},
 				)}
 			</PluginInfoItem>
-			<PluginInfoItem className="text-start">
+			<PluginInfoItem>
 				{__(
 					'Alternately, you can use the below shortcode or the block available in block editor.',
 				)}
@@ -64,7 +64,7 @@ export const WidgetInfoCard = () => {
 						'?>'}
 				</Code>
 			</PluginInfoItem>
-			<PluginInfoItem className="border-b-0 py-0">
+			<PluginInfoItem className="border-b-0 py-0 text-center">
 				<Smile />
 			</PluginInfoItem>
 		</WidgetInfoCardUI>

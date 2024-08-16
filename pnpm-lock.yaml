@@ -448,9 +448,33 @@ importers:
 
   plugins/wptelegram-comments:
     dependencies:
-      yup:
-        specifier: ^1.4.0
-        version: 1.4.0
+      '@wpsocio/form':
+        specifier: workspace:*
+        version: link:../../packages/js/form
+      '@wpsocio/i18n':
+        specifier: workspace:*
+        version: link:../../packages/js/i18n
+      '@wpsocio/services':
+        specifier: workspace:*
+        version: link:../../packages/js/services
+      '@wpsocio/shared-ui':
+        specifier: workspace:*
+        version: link:../../packages/js/shared-ui
+      '@wpsocio/ui-components':
+        specifier: workspace:*
+        version: link:../../packages/js/ui-components
+      '@wpsocio/utilities':
+        specifier: workspace:*
+        version: link:../../packages/js/utilities
+      react:
+        specifier: ^18.3.1
+        version: 18.3.1
+      react-dom:
+        specifier: ^18.3.1
+        version: 18.3.1(react@18.3.1)
+      zod:
+        specifier: ^3.23.8
+        version: 3.23.8
     devDependencies:
       '@types/jquery':
         specifier: ^3.5.30
@@ -461,39 +485,18 @@ importers:
       '@types/react-dom':
         specifier: ^18.3.0
         version: 18.3.0
-      '@wpsocio/adapters':
-        specifier: workspace:*
-        version: link:../../packages/js/adapters
       '@wpsocio/build-utils':
         specifier: workspace:*
         version: link:../../tools/build-utils
-      '@wpsocio/components':
-        specifier: workspace:*
-        version: link:../../packages/js/components
-      '@wpsocio/form':
-        specifier: workspace:*
-        version: link:../../packages/js/form
-      '@wpsocio/form-components':
-        specifier: workspace:*
-        version: link:../../packages/js/form-components
-      '@wpsocio/i18n':
-        specifier: workspace:*
-        version: link:../../packages/js/i18n
-      '@wpsocio/services':
-        specifier: workspace:*
-        version: link:../../packages/js/services
-      '@wpsocio/utilities':
-        specifier: workspace:*
-        version: link:../../packages/js/utilities
       '@wpsocio/vite-wp-react':
         specifier: workspace:*
         version: link:../../tools/vite-wp-react
-      react:
-        specifier: ^18.3.1
-        version: 18.3.1
-      react-dom:
-        specifier: ^18.3.1
-        version: 18.3.1(react@18.3.1)
+      autoprefixer:
+        specifier: ^10.4.20
+        version: 10.4.20(postcss@8.4.41)
+      tailwindcss:
+        specifier: ^3.4.10
+        version: 3.4.10(ts-node@10.9.2(@types/node@22.3.0)(typescript@5.5.4))
       typescript:
         specifier: ^5.5.4
         version: 5.5.4

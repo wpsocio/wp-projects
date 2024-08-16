@@ -16,7 +16,7 @@ const Sidebar: React.FC = () => {
 				description={__(
 					'Integrate your WordPress website perfectly with Telegram. Send posts automatically to Telegram when published or updated, whether to a Telegram Channel, Group or private chat, with full control. Get your email notifications on Telegram.',
 				)}
-				helpText={__('Get LIVE support on Telegram')}
+				helpText={__('Join our public chat on Telegram')}
 				reviewLink="https://wordpress.org/support/plugin/wptelegram/reviews/#new-post"
 				supportLink="https://t.me/WPTelegramChat"
 				supportLinkText="@WPTelegramChat"

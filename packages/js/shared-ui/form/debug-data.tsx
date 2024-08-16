@@ -11,6 +11,7 @@ const style: CSSProperties = {
 	color: '#a9ce47',
 	backgroundColor: '#26203d',
 	whiteSpace: 'pre-wrap',
+	overflowWrap: 'anywhere',
 };
 
 export interface DebugDataProps {
