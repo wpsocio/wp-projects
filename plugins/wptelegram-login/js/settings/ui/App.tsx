@@ -31,7 +31,7 @@ const App: React.FC = () => {
 			form={form}
 		>
 			<div className="flex flex-col gap-4 p-4 md:ps-0 md:flex-row">
-				<div className="md:basis-3/4">
+				<div className="md:basis-2/3 xl:basis-3/4 shrink-0">
 					<Header />
 					<Instructions />
 					<TelegramOptions />
@@ -40,7 +40,7 @@ const App: React.FC = () => {
 					<ErrorMessageOptions />
 					<SubmitBar form={`${ROOT_ID}-form`} />
 				</div>
-				<div className="md:basis-1/4">
+				<div className="md:basis-2/3 xl:basis-1/4">
 					<Sidebar />
 				</div>
 			</div>

@@ -46,11 +46,11 @@ export const PluginInfoCard: React.FC<PluginInfoCardProps> = ({
 					content: () => (
 						<div className="flex flex-col gap-4 items-center text-base">
 							<PluginInfoItem>
-								<Description className="text-start">{description}</Description>
+								<Description>{description}</Description>
 							</PluginInfoItem>
 							{socialIcons && <PluginInfoItem>{socialIcons}</PluginInfoItem>}
 							{reviewLink && (
-								<PluginInfoItem>
+								<PluginInfoItem className="text-center">
 									<p className="mb-2">
 										{sprintf(
 											/* translators: %s: plugin name */
@@ -76,7 +76,7 @@ export const PluginInfoCard: React.FC<PluginInfoCardProps> = ({
 								</PluginInfoItem>
 							)}
 							{upsell && <PluginInfoItem>{upsell}</PluginInfoItem>}
-							<PluginInfoItem className="border-b-0">
+							<PluginInfoItem className="border-b-0 text-center">
 								<div>
 									<span>{__('Need help?')}</span>
 								</div>
@@ -88,7 +88,7 @@ export const PluginInfoCard: React.FC<PluginInfoCardProps> = ({
 							</PluginInfoItem>
 
 							{supportLink && (
-								<PluginInfoItem className="p-0 border-b-0 w-full">
+								<PluginInfoItem className="p-0 border-b-0 w-full text-center">
 									<Link
 										className="block py-3 px-5 bg-blue-100 text-blue-800 font-bold italic"
 										href={supportLink}
@@ -100,7 +100,7 @@ export const PluginInfoCard: React.FC<PluginInfoCardProps> = ({
 								</PluginInfoItem>
 							)}
 
-							<PluginInfoItem className="border-b-0 py-0">
+							<PluginInfoItem className="border-b-0 py-0 text-center">
 								<div>
 									<Smile />
 								</div>

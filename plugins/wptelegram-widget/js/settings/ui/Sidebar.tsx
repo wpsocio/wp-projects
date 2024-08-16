@@ -16,7 +16,7 @@ const Sidebar: React.FC = () => {
 				description={__(
 					'Display the Telegram Public Channel or Group Feed in a WordPress widget or anywhere you want using a shortcode.',
 				)}
-				helpText={__('Get LIVE support on Telegram')}
+				helpText={__('Join our public chat on Telegram')}
 				reviewLink="https://wordpress.org/support/plugin/wptelegram-widget/reviews/#new-post"
 				supportLink="https://t.me/WPTelegramChat"
 				supportLinkText="@WPTelegramChat"

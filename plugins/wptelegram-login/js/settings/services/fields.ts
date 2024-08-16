@@ -4,9 +4,11 @@ import { __, sprintf } from '@wpsocio/i18n';
 import {
 	BOT_TOKEN_REGEX,
 	TG_USERNAME_REGEX,
+} from '@wpsocio/utilities/constants';
+import {
 	fieldLabelGetter,
 	getFormErrorMessage,
-} from '@wpsocio/utilities';
+} from '@wpsocio/utilities/fields';
 
 export const fieldLabels = {
 	avatar_meta_key: () => __('Avatar URL Meta Key'),
@@ -32,6 +34,7 @@ export const getFieldLabel = fieldLabelGetter(fieldLabels);
 export const validationSchema = z.object({
 	bot_token: z
 		.string()
+		.min(1, sprintf(__('%s required.'), getFieldLabel('bot_token')))
 		.regex(
 			BOT_TOKEN_REGEX,
 			sprintf(__('Invalid %s'), getFieldLabel('bot_token')),
@@ -39,12 +42,14 @@ export const validationSchema = z.object({
 
 	bot_username: z
 		.string()
+		.min(1, sprintf(__('%s required.'), getFieldLabel('bot_username')))
 		.regex(
 			TG_USERNAME_REGEX,
 			sprintf(__('Invalid %s'), getFieldLabel('bot_username')),
 		),
 	avatar_meta_key: z
 		.string()
+		.min(1, sprintf(__('%s required.'), getFieldLabel('avatar_meta_key')))
 		.regex(
 			/^[a-z0-9_]+$/i,
 			sprintf(__('Invalid %s'), getFieldLabel('avatar_meta_key')),
