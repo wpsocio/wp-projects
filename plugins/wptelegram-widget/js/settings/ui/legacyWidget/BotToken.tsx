@@ -1,5 +1,5 @@
 import { useFormContext, useWatch } from '@wpsocio/form';
-import { BotTokenField } from '@wpsocio/form-components';
+import { BotTokenField } from '@wpsocio/shared-ui/form/bot-token-field.js';
 import { useEffect } from 'react';
 import { type DataShape, getFieldLabel } from '../../services';
 import { PREFIX } from './constants';

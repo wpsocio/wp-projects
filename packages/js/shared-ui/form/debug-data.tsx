@@ -1,10 +1,8 @@
-import { type CSSProperties, useMemo } from 'react';
-
 import { isDev } from '@wpsocio/utilities/constants.js';
 
 import { Accordion } from '@wpsocio/ui-components/wrappers/accordion.js';
 
-const style: CSSProperties = {
+const style: React.CSSProperties = {
 	borderRadius: '5px',
 	boxSizing: 'border-box',
 	padding: '1em 2em',

@@ -4,14 +4,25 @@ import { Input as InputUI } from '../ui/input.js';
 
 export type InputProps = React.ComponentProps<typeof InputUI> & {
 	addonStart?: React.ReactNode;
+	addonStartClassName?: string;
 	addonEnd?: React.ReactNode;
+	addonEndClassName?: string;
 	wrapperClassName?: string;
 	isInvalid?: boolean;
 };
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 	(
-		{ addonStart, addonEnd, className, wrapperClassName, isInvalid, ...props },
+		{
+			addonStart,
+			addonStartClassName,
+			addonEnd,
+			addonEndClassName,
+			className,
+			wrapperClassName,
+			isInvalid,
+			...props
+		},
 		ref,
 	) => {
 		const classNames = cn(
@@ -26,7 +37,12 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 			return (
 				<div className={cn('flex h-10 w-full items-stretch', wrapperClassName)}>
 					{addonStart ? (
-						<div className="flex h-10 rounded-s-md border border-e-0 border-input bg-secondary px-3 py-2 text-sm">
+						<div
+							className={cn(
+								'flex h-10 rounded-s-md border border-e-0 border-input bg-secondary px-3 py-2 text-sm',
+								addonStartClassName,
+							)}
+						>
 							{addonStart}
 						</div>
 					) : null}
@@ -44,7 +60,12 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 						{...props}
 					/>
 					{addonEnd ? (
-						<div className="flex h-10 rounded-e-md border border-s-0 border-input bg-secondary px-3 py-2 text-sm">
+						<div
+							className={cn(
+								'flex h-10 rounded-e-md border border-s-0 border-input bg-secondary px-3 py-2 text-sm',
+								addonEndClassName,
+							)}
+						>
 							{addonEnd}
 						</div>
 					) : null}

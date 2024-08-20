@@ -27,8 +27,6 @@ export const Code: React.FC = () => {
 						attributes[attr.name] = attr.value;
 					});
 
-					console.log(attributes);
-
 					attributesJSON = JSON.stringify(attributes);
 				}
 			} catch (error) {

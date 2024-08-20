@@ -9,13 +9,14 @@ export interface InstructionsProps extends SectionCardProps {
 export const Instructions: React.FC<Partial<InstructionsProps>> = ({
 	children,
 	highContrast,
+	className,
 	...rest
 }) => {
 	return (
 		<SectionCard
 			title={__('INSTRUCTIONS!')}
 			headerClassName={cn(highContrast && 'bg-[#343a40] text-white')}
-			className={cn(highContrast && 'border border-[#343a40]')}
+			className={cn(highContrast && 'border border-[#343a40]', className)}
 			{...rest}
 		>
 			{children}
