@@ -1,4 +1,5 @@
 import { useFormState } from '@wpsocio/form';
+import { Separator } from '@wpsocio/ui-components/ui/separator.js';
 import { useCallback } from 'react';
 import { ResetButton } from './reset-button.js';
 import { SubmitButton } from './submit-button.js';
@@ -8,6 +9,7 @@ interface SubmitBarProps extends React.HTMLAttributes<HTMLDivElement> {
 	onSubmit?: VoidFunction;
 	onReset?: VoidFunction;
 	showResetButton?: boolean;
+	showSeparator?: boolean;
 	form?: string;
 }
 
@@ -16,6 +18,7 @@ export const SubmitBar: React.FC<SubmitBarProps> = ({
 	onReset,
 	showResetButton,
 	form,
+	showSeparator = true,
 	...props
 }) => {
 	const { isSubmitting, isDirty } = useFormState();
@@ -25,16 +28,19 @@ export const SubmitBar: React.FC<SubmitBarProps> = ({
 	const onClickReset = useCallback(() => onReset?.(), [onReset]);
 
 	return (
-		<SubmitButtons {...props}>
-			<SubmitButton
-				isLoading={isSubmitting}
-				disabled={isSubmitting}
-				onClick={onClickSubmit}
-				form={form}
-			/>
-			{showResetButton && (
-				<ResetButton disabled={!isDirty} form={form} onClick={onClickReset} />
-			)}
-		</SubmitButtons>
+		<>
+			{showSeparator && <Separator />}
+			<SubmitButtons {...props}>
+				<SubmitButton
+					isLoading={isSubmitting}
+					disabled={isSubmitting}
+					onClick={onClickSubmit}
+					form={form}
+				/>
+				{showResetButton && (
+					<ResetButton disabled={!isDirty} form={form} onClick={onClickReset} />
+				)}
+			</SubmitButtons>
+		</>
 	);
 };

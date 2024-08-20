@@ -1,8 +1,16 @@
-import { Description } from '@wpsocio/components';
-import { FormField } from '@wpsocio/form';
+import { useFormContext } from '@wpsocio/form';
 import { __ } from '@wpsocio/i18n';
-import { getFieldLabel, useData } from '../../services';
+import { FormItem } from '@wpsocio/shared-ui/form/form-item';
+import {
+	FormControl,
+	FormField,
+} from '@wpsocio/ui-components/wrappers/form.js';
+import { Input } from '@wpsocio/ui-components/wrappers/input.js';
+import { RadioGroup } from '@wpsocio/ui-components/wrappers/radio-group';
+import { Switch } from '@wpsocio/ui-components/wrappers/switch.js';
+import { type DataShape, getFieldLabel, useData } from '../../services';
 import { JoinLinkInfo } from './JoinLinkInfo';
+import { PostTypes } from './PostTypes';
 import { Styles } from './Styles';
 
 const prefix = 'join_link';
@@ -13,55 +21,100 @@ const getPositionOptions = () => [
 ];
 
 export const JoinLink: React.FC = () => {
-	const { post_types } = useData('uiData');
+	const { control } = useFormContext<DataShape>();
+
 	return (
 		<>
-			<Description>
-				{__('Join link can be automatically added to posts.')}
-			</Description>
-			<FormField
-				fieldType="text"
-				label={getFieldLabel('url')}
-				maxW="450px"
-				name={`${prefix}.url`}
-				placeholder="https://t.me/WPTelegram"
-			/>
-			<FormField
-				fieldType="text"
-				label={getFieldLabel('text')}
-				maxW="300px"
-				name={`${prefix}.text`}
-				placeholder="Join @WPTelegram on Telegram"
-			/>
-			<Styles />
-			<FormField
-				fieldType="multicheck"
-				label={getFieldLabel('post_types')}
-				name={`${prefix}.post_types`}
-				options={post_types}
-			/>
-			<FormField
-				fieldType="radio"
-				label={getFieldLabel('position')}
-				name={`${prefix}.position`}
-				options={getPositionOptions()}
-			/>
-			<FormField
-				description={__('Priority with respect to adjacent items.')}
-				fieldType="number"
-				label={getFieldLabel('priority')}
-				max={1000}
-				maxW="100px"
-				min={1}
-				name={`${prefix}.priority`}
-				placeholder="10"
-			/>
-			<FormField
-				description={__('Whether to open the join link in new tab.')}
-				fieldType="switch"
-				label={getFieldLabel('open_in_new_tab')}
-				name={`${prefix}.open_in_new_tab`}
-			/>
+			<div className="flex flex-col gap-10 md:gap-4 mb-8">
+				<FormField
+					control={control}
+					name={`${prefix}.url`}
+					render={({ field }) => (
+						<FormItem label={getFieldLabel('url')}>
+							<FormControl>
+								<Input
+									placeholder="https://t.me/WPTelegram"
+									{...field}
+									type="url"
+								/>
+							</FormControl>
+						</FormItem>
+					)}
+				/>
+				<FormField
+					control={control}
+					name={`${prefix}.text`}
+					render={({ field }) => (
+						<FormItem label={getFieldLabel('text')}>
+							<FormControl>
+								<Input placeholder="Join @WPTelegram on Telegram" {...field} />
+							</FormControl>
+						</FormItem>
+					)}
+				/>
+				<Styles />
+
+				<PostTypes />
+
+				<FormField
+					control={control}
+					name={`${prefix}.position`}
+					render={({ field }) => (
+						<FormItem label={getFieldLabel('position')}>
+							<FormControl>
+								<RadioGroup
+									{...field}
+									onValueChange={field.onChange}
+									defaultValue={field.value}
+									options={getPositionOptions()}
+									displayInline
+								/>
+							</FormControl>
+						</FormItem>
+					)}
+				/>
+
+				<FormField
+					control={control}
+					name={`${prefix}.priority`}
+					render={({ field }) => (
+						<FormItem
+							label={getFieldLabel('priority')}
+							description={__('Priority with respect to adjacent items.')}
+						>
+							<FormControl className="max-w-[100px]">
+								<Input
+									type="number"
+									max={1000}
+									min={1}
+									placeholder="10"
+									{...field}
+								/>
+							</FormControl>
+						</FormItem>
+					)}
+				/>
+
+				<FormField
+					control={control}
+					name={`${prefix}.open_in_new_tab`}
+					render={({ field }) => (
+						<FormItem
+							label={getFieldLabel('open_in_new_tab')}
+							description={__('Whether to open the join link in new tab.')}
+						>
+							<FormControl>
+								<Switch
+									{...field}
+									value={field.value?.toString()}
+									checked={field.value}
+									onCheckedChange={field.onChange}
+								/>
+							</FormControl>
+						</FormItem>
+					)}
+				/>
+			</div>
 			<JoinLinkInfo />
 		</>
 	);

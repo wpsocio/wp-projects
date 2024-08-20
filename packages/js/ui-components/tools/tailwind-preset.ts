@@ -33,6 +33,16 @@ export function tailwindPreset({
 					})
 				: undefined,
 		],
+		theme: {
+			extend: {
+				screens: {
+					// wp admin sidebar auto folds
+					'lg-wp': '960px',
+					// wp adminbar goes big
+					'md-wp': '782px',
+				},
+			},
+		},
 		important: scopeStylesInside || undefined,
 	};
 }

@@ -56,16 +56,14 @@ export const WidgetInfo: React.FC<WidgetInfoProps> = ({
 			<PluginInfoItem>{__('Inside the theme templates')}</PluginInfoItem>
 			<PluginInfoItem>
 				<Code className="w-full">{`<?php\n${phpCode}\n?>`}</Code>
-				<br />
-				<span>{__('or')}</span>
-				<br />
+				<div className="my-2 text-center">{__('or')}</div>
 				<Code className="w-full">
 					{`<?php\n$shortcode = '${
 						shortcode2 || shortcode1
 					}';\necho do_shortcode( $shortcode );\n?>`}
 				</Code>
 			</PluginInfoItem>
-			<PluginInfoItem className="border-b-0 py-0">
+			<PluginInfoItem className="border-b-0 py-0 text-center">
 				<Smile />
 			</PluginInfoItem>
 		</WidgetInfoCard>

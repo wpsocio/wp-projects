@@ -19,6 +19,7 @@ export type CardProps = Omit<
 	description?: React.ReactNode;
 	content?: React.ReactNode;
 	footer?: React.ReactNode;
+	titleClassName?: string;
 };
 
 export function Card({
@@ -28,6 +29,7 @@ export function Card({
 	content,
 	footer,
 	children,
+	titleClassName,
 }: CardProps) {
 	return (
 		<CardUI
@@ -35,7 +37,9 @@ export function Card({
 		>
 			{title || description ? (
 				<CardHeader>
-					{title ? <CardTitle>{title}</CardTitle> : null}
+					{title ? (
+						<CardTitle className={titleClassName}>{title}</CardTitle>
+					) : null}
 					{description ? (
 						<CardDescription>{description}</CardDescription>
 					) : null}

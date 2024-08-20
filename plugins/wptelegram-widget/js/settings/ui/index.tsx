@@ -1,5 +1,7 @@
-import { ThemeProvider } from '@wpsocio/adapters';
+import './styles.scss';
+
 import { cleanup, setI18nData } from '@wpsocio/services';
+import { Toaster } from '@wpsocio/ui-components/ui/toaster';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { ROOT_ID } from '../constants';
@@ -15,9 +17,8 @@ setI18nData('wptelegram_widget', 'wptelegram-widget');
 root
 	? ReactDOM.createRoot(root).render(
 			<React.StrictMode>
-				<ThemeProvider>
-					<App />
-				</ThemeProvider>
+				<App />
+				<Toaster />
 			</React.StrictMode>,
 		)
 	: console.error(`Root element not found: ${ROOT_ID}`);

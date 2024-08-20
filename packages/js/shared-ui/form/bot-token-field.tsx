@@ -42,11 +42,11 @@ export const BotTokenField: React.FC<BotTokenFieldProps> = ({
 			name={name}
 			render={({ field }) => (
 				<FormItem
-					{...props}
 					isRequired={isRequired}
 					label={label}
 					afterMessage={resultNode}
 					description={__('Please read the instructions above.')}
+					{...props}
 				>
 					<FormControl>
 						<Input required={isRequired} autoComplete="off" {...field} />

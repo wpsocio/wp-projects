@@ -12,7 +12,7 @@ import { RadioGroup } from '@wpsocio/ui-components/wrappers/radio-group';
 import { Switch } from '@wpsocio/ui-components/wrappers/switch.js';
 import { useCallback, useState } from 'react';
 import { Select } from '../components/select';
-import { getFieldLabel, useData } from '../services';
+import { type DataShape, getFieldLabel, useData } from '../services';
 
 const getRedirectOptions = () => [
 	{ value: 'default', label: __('Default') },
@@ -31,7 +31,7 @@ export const LoginOptions = () => {
 		[],
 	);
 
-	const { control } = useFormContext();
+	const { control } = useFormContext<DataShape>();
 
 	const [disableSignup, redirectTo] = useWatch({
 		name: ['disable_signup', 'redirect_to'],
@@ -53,6 +53,7 @@ export const LoginOptions = () => {
 							<FormControl>
 								<Switch
 									{...field}
+									value={field.value?.toString()}
 									checked={field.value}
 									onCheckedChange={field.onChange}
 								/>
@@ -154,6 +155,7 @@ export const LoginOptions = () => {
 							<FormControl>
 								<Switch
 									{...field}
+									value={field.value?.toString()}
 									checked={field.value}
 									onCheckedChange={field.onChange}
 								/>

@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 
 import type { SubmitHandler, UseFormReturn } from '@wpsocio/form';
-import { useSubmitForm } from '@wpsocio/services';
+import { useSubmitForm } from '@wpsocio/services/use-submit-form.js';
 
 import { getErrorMessage } from './fields';
 import type { DataShape } from './types';
