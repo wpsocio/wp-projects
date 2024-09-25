@@ -44,10 +44,10 @@ const dummyDOMData: WPTelegramData = {
 		},
 		proxy: {
 			active: true,
-			proxy_method: null,
-			proxy_type: null,
+			proxy_method: undefined,
+			proxy_type: undefined,
 		},
-		advanced: { enable_logs: null },
+		advanced: { enable_logs: [] },
 	},
 	uiData: {
 		debug_info: 'PHP: 7.4.13\nWP: 5.7\nWP Telegram: 3.0.2',

@@ -5,5 +5,6 @@ export {
 	Info,
 	X as Close,
 	ChevronDown,
-	Save as SaveIcon,
+	Save,
+	PlusIcon as Plus,
 } from 'lucide-react';

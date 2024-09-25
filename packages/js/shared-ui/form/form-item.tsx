@@ -12,6 +12,7 @@ export interface FormItemProps extends React.HTMLAttributes<HTMLDivElement> {
 	isRequired?: boolean;
 	control?: React.ReactNode;
 	description?: React.ReactNode;
+	controlWrapperClassName?: string;
 }
 
 export function FormItem({
@@ -21,6 +22,7 @@ export function FormItem({
 	control,
 	description,
 	children,
+	controlWrapperClassName,
 	...props
 }: FormItemProps) {
 	return (
@@ -34,7 +36,12 @@ export function FormItem({
 				</FormLabel>
 			) : null}
 			<div className="flex flex-col gap-3 md:flex-1">
-				<div className="flex w-full gap-4 max-w-lg items-center flex-wrap sm:flex-nowrap">
+				<div
+					className={cn(
+						'flex w-full gap-4 max-w-lg items-center flex-wrap sm:flex-nowrap',
+						controlWrapperClassName,
+					)}
+				>
 					{control || children}
 				</div>
 				{description ? <FormDescription>{description}</FormDescription> : null}

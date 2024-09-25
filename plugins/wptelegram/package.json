@@ -29,7 +29,9 @@
 	},
 	"dependencies": {
 		"ramda": "^0.30.1",
-		"yup": "^1.4.0"
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1",
+		"zod": "^3.23.8"
 	},
 	"devDependencies": {
 		"@types/jquery": "^3.5.30",
@@ -46,19 +48,16 @@
 		"@wordpress/element": "^6.5.0",
 		"@wordpress/media-utils": "^5.5.0",
 		"@wordpress/plugins": "^7.5.0",
-		"@wpsocio/adapters": "workspace:*",
 		"@wpsocio/build-utils": "workspace:*",
-		"@wpsocio/components": "workspace:*",
 		"@wpsocio/form": "workspace:*",
-		"@wpsocio/form-components": "workspace:*",
 		"@wpsocio/i18n": "workspace:*",
-		"@wpsocio/icons": "workspace:*",
 		"@wpsocio/services": "workspace:*",
-		"@wpsocio/shared-wptelegram-ui": "workspace:*",
+		"@wpsocio/shared-ui": "workspace:*",
+		"@wpsocio/ui-components": "workspace:*",
 		"@wpsocio/utilities": "workspace:*",
 		"@wpsocio/vite-wp-react": "workspace:*",
-		"react": "^18.3.1",
-		"react-dom": "^18.3.1",
+		"autoprefixer": "^10.4.20",
+		"tailwindcss": "^3.4.10",
 		"typescript": "^5.5.4",
 		"vite": "^5.4.0",
 		"wireit": "^0.14.7"

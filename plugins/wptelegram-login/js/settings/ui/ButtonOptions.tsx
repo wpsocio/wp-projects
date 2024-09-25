@@ -9,8 +9,8 @@ import {
 
 import { Input } from '@wpsocio/ui-components/wrappers/input';
 import { RadioGroup } from '@wpsocio/ui-components/wrappers/radio-group';
+import { Select } from '@wpsocio/ui-components/wrappers/select.js';
 import { Switch } from '@wpsocio/ui-components/wrappers/switch';
-import { Select } from '../components/select';
 import { getFieldLabel, useData } from '../services';
 
 const getButtonStyleOptions = () => [

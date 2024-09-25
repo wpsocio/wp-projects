@@ -47,7 +47,7 @@ export const useChatWithTest = (
 					return;
 				}
 				const chat_id = fixUsername ? fixChatId(chatId) : chatId;
-				setMemberCountResult({});
+				// setMemberCountResult({});
 				await sendTestMessage(
 					{
 						bot_token,
@@ -77,7 +77,7 @@ export const useChatWithTest = (
 
 	const onBlur = useCallback<React.FocusEventHandler<HTMLInputElement>>(
 		async ({ nativeEvent: e }) => {
-			setTestResult({});
+			// setTestResult({});
 			const chatId = (e.target as HTMLInputElement)?.value;
 			if (!bot_token || !chatId || checkingMemberCount[chatId]) {
 				return;
@@ -116,7 +116,6 @@ export const useChatWithTest = (
 					!bot_token || disabled || Boolean(sendingTestMessage) || !chat_id
 				}
 				onClick={onClickTest(chat_id?.toString() || '')}
-				// className="flex-grow flex-shrink-0"
 				variant="secondary"
 			>
 				{sendingTestMessage && sendingTestMessage === chat_id

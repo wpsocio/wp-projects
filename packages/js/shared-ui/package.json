@@ -5,12 +5,13 @@
 	"license": "MIT",
 	"type": "module",
 	"dependencies": {
-		"@wpsocio/icons": "workspace:*",
-		"@wpsocio/i18n": "workspace:*",
 		"@wpsocio/form": "workspace:*",
+		"@wpsocio/i18n": "workspace:*",
 		"@wpsocio/services": "workspace:*",
 		"@wpsocio/ui-components": "workspace:*",
-		"@wpsocio/utilities": "workspace:*"
+		"@wpsocio/utilities": "workspace:*",
+		"ramda": "^0.30.1",
+		"zod": "^3.23.8"
 	},
 	"peerDependencies": {
 		"react": "^18.3.1",
@@ -18,6 +19,7 @@
 	},
 	"devDependencies": {
 		"@types/node": "^22.3.0",
+		"@types/ramda": "^0.30.1",
 		"@types/react": "^18.3.3",
 		"@types/react-dom": "^18.3.0",
 		"tailwindcss": "^3.4.10"

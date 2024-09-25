@@ -1,16 +1,13 @@
-import type { SimpleOptionsType } from '@wpsocio/adapters';
 import type {
 	BaseAssetsData,
 	BaseDOMData,
 	BasePluginData,
-} from '@wpsocio/services';
-import type { ParseMode } from '@wpsocio/utilities';
-
-import type {
-	ChatIds,
-	ProxyFields,
-	Rules,
-} from '@wpsocio/shared-wptelegram-ui';
+} from '@wpsocio/services/types.js';
+import type { ProxyFields } from '@wpsocio/shared-ui/wptelegram/proxy/types.js';
+import type { Rules } from '@wpsocio/shared-ui/wptelegram/rules/types.js';
+import type { ChatIds } from '@wpsocio/shared-ui/wptelegram/types.js';
+import type { OptionsType } from '@wpsocio/ui-components/wrappers/types.js';
+import type { ParseMode } from '@wpsocio/utilities/types';
 import type { DataShape } from './fields';
 
 export type { DataShape };
@@ -34,8 +31,8 @@ export interface TemplateMacro {
 
 export interface UiData {
 	debug_info?: string;
-	post_types: SimpleOptionsType;
-	rule_types: SimpleOptionsType;
+	post_types: OptionsType;
+	rule_types: OptionsType;
 	is_wp_cron_disabled?: boolean;
 	macros: {
 		post: TemplateMacro;

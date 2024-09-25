@@ -1,5 +1,3 @@
-import { z } from 'zod';
-
 import { __, sprintf } from '@wpsocio/i18n';
 import {
 	BOT_TOKEN_REGEX,
@@ -9,6 +7,7 @@ import {
 	fieldLabelGetter,
 	getFormErrorMessage,
 } from '@wpsocio/utilities/fields';
+import { z } from 'zod';
 
 export const fieldLabels = {
 	avatar_meta_key: () => __('Avatar URL Meta Key'),

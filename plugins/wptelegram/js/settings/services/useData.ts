@@ -1,4 +1,4 @@
-import { usePluginData } from '@wpsocio/services';
+import { usePluginData } from '@wpsocio/services/use-plugin-data.js';
 import type { WPTelegramData } from './types';
 
 export const useData = <K extends keyof WPTelegramData | undefined = undefined>(

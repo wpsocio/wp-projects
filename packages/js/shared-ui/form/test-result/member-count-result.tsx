@@ -18,7 +18,7 @@ export const MemberCountResult: React.FC<MemberCountResultProps> = ({
 
 	return result.length ? (
 		<div className="mt-4">
-			<p className="text-gray.500">{__('Members Count:')}</p>
+			<p className="text-gray-500">{__('Members Count:')}</p>
 			{result.map(([chat_id, result]) => {
 				return (
 					<div className="flex flex-row flex-wrap py-4" key={chat_id}>

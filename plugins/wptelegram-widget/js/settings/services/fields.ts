@@ -2,9 +2,11 @@ import { __, sprintf } from '@wpsocio/i18n';
 import {
 	BOT_TOKEN_REGEX,
 	TG_USERNAME_REGEX,
+} from '@wpsocio/utilities/constants.js';
+import {
 	fieldLabelGetter,
 	getFormErrorMessage,
-} from '@wpsocio/utilities';
+} from '@wpsocio/utilities/fields.js';
 import { z } from 'zod';
 
 export const fieldLabels = {
