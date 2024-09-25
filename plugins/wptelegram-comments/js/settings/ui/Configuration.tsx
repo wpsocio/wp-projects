@@ -2,8 +2,8 @@ import { useFormContext } from '@wpsocio/form';
 import { __ } from '@wpsocio/i18n';
 import { SectionCard } from '@wpsocio/shared-ui/components/section-card.js';
 import { FormItem } from '@wpsocio/shared-ui/form/form-item';
+import { MultiCheckboxField } from '@wpsocio/shared-ui/form/multi-checkbox-field.js';
 import { Textarea } from '@wpsocio/ui-components/ui/textarea';
-import { Checkbox } from '@wpsocio/ui-components/wrappers/checkbox.js';
 import {
 	FormControl,
 	FormField,
@@ -20,53 +20,13 @@ export const Configuration = () => {
 			<div className="flex flex-col gap-10 md:gap-4">
 				<Code />
 
-				<FormField
-					control={control}
+				<MultiCheckboxField
 					name="post_types"
-					render={({ field }) => (
-						<FormItem
-							label={getFieldLabel('post_types')}
-							description={__(
-								'The comments widget will be shown on the selected post types.',
-							)}
-						>
-							<div className="grid gap-2">
-								{post_types.map((item, index) => (
-									<FormField
-										control={control}
-										name="post_types"
-										key={item.value}
-										render={({ field }) => (
-											<FormItem className="space-y-0 md:py-0">
-												<FormControl>
-													<Checkbox
-														{...field}
-														name={`post_types[${index}]`}
-														checked={field.value?.includes(item.value)}
-														wrapperClassName=""
-														onCheckedChange={(checked) => {
-															return checked
-																? field.onChange([
-																		...(field.value || []),
-																		item.value,
-																	])
-																: field.onChange(
-																		field.value?.filter(
-																			(value) => value !== item.value,
-																		),
-																	);
-														}}
-													>
-														{item.label}
-													</Checkbox>
-												</FormControl>
-											</FormItem>
-										)}
-									/>
-								))}
-							</div>
-						</FormItem>
+					description={__(
+						'The comments widget will be shown on the selected post types.',
 					)}
+					label={getFieldLabel('post_types')}
+					options={post_types}
 				/>
 
 				<FormField

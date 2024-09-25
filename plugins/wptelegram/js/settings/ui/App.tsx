@@ -1,21 +1,22 @@
-import { Cols75x25 } from '@wpsocio/components';
-import { Form, useForm, yupResolver } from '@wpsocio/form';
-import { SubmitBar } from '@wpsocio/form-components';
+import { Form, useForm, zodResolver } from '@wpsocio/form';
+import { SubmitBar } from '@wpsocio/shared-ui/form/submit/submit-bar.js';
 import { useMemo } from 'react';
 import { ROOT_ID } from '../constants';
-import { type DataShape, useData, validationSchema } from '../services';
 import {
+	type DataShape,
 	prepDefaultValues,
+	useData,
 	useInit,
 	useOnInvalid,
 	useOnSubmit,
+	validationSchema,
 } from '../services';
 import { Header } from './Header';
 import Sidebar from './Sidebar';
 import { TabbedSections } from './TabbedSections';
-import { Upsell } from './shared/Upsell';
+import { Upsell } from './shared/pro-upsell.js';
 
-const resolver = yupResolver(validationSchema);
+const resolver = zodResolver(validationSchema);
 
 const App: React.FC = () => {
 	useInit();
@@ -33,23 +34,23 @@ const App: React.FC = () => {
 
 	const onInvalid = useOnInvalid();
 
-	const leftCol = (
-		<>
-			<Header />
-			<Upsell location="header" />
-			<TabbedSections />
-			<SubmitBar form={`${ROOT_ID}-form`} />
-		</>
-	);
-	const rightCol = <Sidebar />;
-
 	return (
 		<Form
 			id={`${ROOT_ID}-form`}
 			onSubmit={form.handleSubmit(onSubmit, onInvalid)}
 			form={form}
 		>
-			<Cols75x25 leftCol={leftCol} rightCol={rightCol} />
+			<div className="flex flex-col gap-4 p-4 lg-wp:ps-0 md:flex-row">
+				<div className="md:basis-2/3 xl:basis-3/4 shrink-0">
+					<Header />
+					<Upsell location="header" />
+					<TabbedSections />
+					<SubmitBar form={`${ROOT_ID}-form`} />
+				</div>
+				<div className="md:basis-2/3 xl:basis-1/4">
+					<Sidebar />
+				</div>
+			</div>
 		</Form>
 	);
 };

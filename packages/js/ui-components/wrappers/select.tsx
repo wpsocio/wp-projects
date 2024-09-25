@@ -24,8 +24,20 @@ export type SelectProps = React.ComponentProps<typeof SelectUI> & {
 	'aria-label'?: string;
 	triggerClassName?: string;
 	isLoading?: boolean;
-	portalContainer?: HTMLElement | null;
 };
+
+declare global {
+	interface Window {
+		__WPSOCIO_UI_ROOT_SELECTOR?: string;
+	}
+}
+
+function getPortalContainer() {
+	const portalSelector = window.__WPSOCIO_UI_ROOT_SELECTOR;
+	if (typeof portalSelector === 'string' && portalSelector) {
+		return document.querySelector<HTMLElement>(portalSelector) || undefined;
+	}
+}
 
 export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
 	(
@@ -36,11 +48,12 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
 			'aria-label': ariaLabel,
 			triggerClassName,
 			isLoading,
-			portalContainer,
 			...props
 		},
 		ref,
 	) => {
+		const portalContainer = getPortalContainer();
+
 		return (
 			<SelectUI {...props}>
 				<SelectTrigger
@@ -95,5 +108,3 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
 		);
 	},
 );
-
-Select.displayName = 'Select';

@@ -75,7 +75,11 @@ export const PluginInfoCard: React.FC<PluginInfoCardProps> = ({
 									</div>
 								</PluginInfoItem>
 							)}
-							{upsell && <PluginInfoItem>{upsell}</PluginInfoItem>}
+							{upsell && (
+								<PluginInfoItem className="text-center">
+									{upsell}
+								</PluginInfoItem>
+							)}
 							<PluginInfoItem className="border-b-0 text-center">
 								<div>
 									<span>{__('Need help?')}</span>

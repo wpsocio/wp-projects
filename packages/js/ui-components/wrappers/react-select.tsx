@@ -1,5 +1,6 @@
 import Select, { components } from 'react-select';
 import type { DropdownIndicatorProps, GroupBase, Props } from 'react-select';
+import AsyncSelect, { type AsyncProps } from 'react-select/async';
 import { ChevronDown, Close } from '../icons/index.js';
 import { cn } from '../lib/utils.js';
 import { Spinner } from './spinner.js';
@@ -99,7 +100,11 @@ const classNames: Props['classNames'] = {
 			isFocused ? controlStyles.focus : controlStyles.nonFocus,
 			controlStyles.base,
 		),
-	placeholder: () => placeholderStyles,
+	placeholder: (props) => {
+		return cn(placeholderStyles, {
+			'opacity-50': props.selectProps.isLoading,
+		});
+	},
 	input: () => selectInputStyles,
 	valueContainer: () => valueContainerStyles,
 	singleValue: () => singleValueStyles,
@@ -128,6 +133,27 @@ export function ReactSelect<
 			closeMenuOnSelect={false}
 			unstyled
 			// it's fine because they are defined outside the component and thus are not aware of the generics
+			// @ts-expect-error
+			styles={styles}
+			// @ts-expect-error
+			components={customComponents}
+			// @ts-expect-error
+			classNames={classNames}
+			{...props}
+		/>
+	);
+}
+
+export function ReactAsyncSelect<
+	Option = unknown,
+	IsMulti extends boolean = boolean,
+	Group extends GroupBase<Option> = GroupBase<Option>,
+>(props: AsyncProps<Option, IsMulti, Group>) {
+	return (
+		<AsyncSelect
+			closeMenuOnSelect={false}
+			unstyled
+			// it's fine to cast these as any because they are defined outside the component
 			// @ts-expect-error
 			styles={styles}
 			// @ts-expect-error

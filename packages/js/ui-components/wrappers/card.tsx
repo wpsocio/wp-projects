@@ -20,6 +20,8 @@ export type CardProps = Omit<
 	content?: React.ReactNode;
 	footer?: React.ReactNode;
 	titleClassName?: string;
+	headerClassName?: string;
+	contentClassName?: string;
 };
 
 export function Card({
@@ -30,13 +32,15 @@ export function Card({
 	footer,
 	children,
 	titleClassName,
+	headerClassName,
+	contentClassName,
 }: CardProps) {
 	return (
 		<CardUI
 			className={cn('w-[350px] flex flex-col justify-between', className)}
 		>
 			{title || description ? (
-				<CardHeader>
+				<CardHeader className={headerClassName}>
 					{title ? (
 						<CardTitle className={titleClassName}>{title}</CardTitle>
 					) : null}
@@ -45,7 +49,9 @@ export function Card({
 					) : null}
 				</CardHeader>
 			) : null}
-			<CardContent>{content || children}</CardContent>
+			<CardContent className={contentClassName}>
+				{content || children}
+			</CardContent>
 			{footer ? <CardFooter>{footer}</CardFooter> : null}
 		</CardUI>
 	);

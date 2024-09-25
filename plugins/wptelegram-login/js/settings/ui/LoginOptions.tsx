@@ -9,9 +9,9 @@ import {
 } from '@wpsocio/ui-components/wrappers/form.js';
 import { Input } from '@wpsocio/ui-components/wrappers/input';
 import { RadioGroup } from '@wpsocio/ui-components/wrappers/radio-group';
+import { Select } from '@wpsocio/ui-components/wrappers/select.js';
 import { Switch } from '@wpsocio/ui-components/wrappers/switch.js';
 import { useCallback, useState } from 'react';
-import { Select } from '../components/select';
 import { type DataShape, getFieldLabel, useData } from '../services';
 
 const getRedirectOptions = () => [

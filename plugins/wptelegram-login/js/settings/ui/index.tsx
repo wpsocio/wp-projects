@@ -12,6 +12,8 @@ const root = document.getElementById(ROOT_ID);
 // clea up notifications etc.
 cleanup(ROOT_ID);
 
+window.__WPSOCIO_UI_ROOT_SELECTOR = `#${ROOT_ID}`;
+
 setI18nData('wptelegram_login', 'wptelegram-login');
 
 root

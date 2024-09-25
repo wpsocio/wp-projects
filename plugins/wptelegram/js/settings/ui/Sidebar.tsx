@@ -1,31 +1,35 @@
-import { Box } from '@wpsocio/adapters';
-import { PluginInfoCard, WPTGSocialIcons } from '@wpsocio/components';
-import { FormDebug } from '@wpsocio/form';
+import { useFormContext } from '@wpsocio/form';
 import { __ } from '@wpsocio/i18n';
-import { isDev } from '@wpsocio/utilities';
-
+import { PluginInfoCard } from '@wpsocio/shared-ui/components/plugin-info/plugin-info-card.js';
+import { WPTGSocialIcons } from '@wpsocio/shared-ui/components/wptg-social-icons.js';
+import { FormDebug } from '@wpsocio/shared-ui/form/form-debug';
 import { useData } from '../services';
-import { Upsell } from './shared/Upsell';
+import { Upsell } from './shared/pro-upsell';
 
 const Sidebar: React.FC = () => {
-	const { pluginInfo, assets } = useData();
+	const {
+		pluginInfo: { title },
+		assets: { tgIconUrl },
+	} = useData();
+	const { watch } = useFormContext();
 
 	return (
-		<Box>
+		<div>
 			<PluginInfoCard
-				description={__(
+				description={`${title}: ${__(
 					'Integrate your WordPress website perfectly with Telegram. Send posts automatically to Telegram when published or updated, whether to a Telegram Channel, Group or private chat, with full control. Get your email notifications on Telegram.',
-				)}
+				)}`}
 				helpText={__('Join our public chat on Telegram')}
 				reviewLink="https://wordpress.org/support/plugin/wptelegram/reviews/#new-post"
 				supportLink="https://t.me/WPTelegramChat"
 				supportLinkText="@WPTelegramChat"
-				socialIcons={<WPTGSocialIcons tgIconUrl={assets.tgIconUrl} />}
-				title={pluginInfo.title}
-				upsell={<Upsell breakLine location="sidebar" fontWeight="normal" />}
+				socialIcons={<WPTGSocialIcons tgIconUrl={tgIconUrl} />}
+				title={__('Support')}
+				className="mb-4"
+				upsell={<Upsell location="sidebar" className="font-normal" />}
 			/>
-			{isDev && <FormDebug debug={true} />}
-		</Box>
+			<FormDebug data={watch()} />
+		</div>
 	);
 };
 

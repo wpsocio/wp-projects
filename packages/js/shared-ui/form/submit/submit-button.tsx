@@ -1,5 +1,5 @@
 import { __ } from '@wpsocio/i18n';
-import { SaveIcon } from '@wpsocio/ui-components/icons/index.js';
+import { Save } from '@wpsocio/ui-components/icons/index.js';
 import {
 	Button,
 	type ButtonProps,
@@ -8,7 +8,7 @@ import {
 export const SubmitButton: React.FC<ButtonProps> = (props) => {
 	return (
 		<Button size="lg" type="submit" {...props}>
-			<SaveIcon size={18} className="me-2" />
+			<Save size={18} className="me-2" />
 			{__('Save Changes')}
 		</Button>
 	);
