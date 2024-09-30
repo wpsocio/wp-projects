@@ -1,6 +1,5 @@
+import { getValueByPath } from '@wpsocio/utilities/misc.js';
 import { type FieldError, useFormState } from 'react-hook-form';
-
-import { getValueByPath } from '@wpsocio/utilities';
 
 export const useFieldError = (name: string): FieldError | undefined => {
 	const { errors } = useFormState({ name });

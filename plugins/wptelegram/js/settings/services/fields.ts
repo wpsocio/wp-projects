@@ -139,6 +139,7 @@ export const validationSchema = z.object({
 				__('At least one %s is required.'),
 				__('chat ID'),
 			),
+			path: ['chat_ids'],
 		}),
 	proxy: proxySchema,
 	advanced: z.object({
