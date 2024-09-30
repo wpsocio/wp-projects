@@ -2,7 +2,7 @@ export * from './Form';
 export * from './FormDebug';
 export * from './FormField';
 export * from './types';
-export { useFieldError } from './hooks';
+export { useFieldError } from './hooks/useFieldError.js';
 
 export {
 	useForm,
