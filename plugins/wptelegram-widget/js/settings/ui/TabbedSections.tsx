@@ -80,7 +80,7 @@ export const TabbedSections: React.FC = () => {
 			return (
 				<Card
 					title={description ? title : undefined}
-					className="w-full"
+					className="w-full border-0"
 					description={description}
 					titleClassName="text-xl"
 				>
