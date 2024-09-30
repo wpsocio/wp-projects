@@ -40,59 +40,73 @@ export const P2TGInstructions: React.FC<P2TGInstructionsProps> = ({
 						<li>{__('Enter the Channel Username in the field below.')}</li>
 						<ul className="ms-8 list-disc">
 							<li>
-								{createInterpolateElement(
-									sprintf(
-										/* translators: %s symbol - @ */
-										__('Username must start with %s'),
-										'<Symbol />',
-									),
-									{
-										Symbol: <VariableButton content="@" />,
-									},
-								)}
+								<span>
+									{createInterpolateElement(
+										sprintf(
+											/* translators: %s symbol - @ */
+											__('Username must start with %s'),
+											'<Prefix />',
+										),
+										{
+											Prefix: <VariableButton content="@" />,
+										},
+									)}
+								</span>
 							</li>
 							<li>
-								{__('You can also use the Chat ID of a group or private chat.')}
-								&nbsp;
-								{createInterpolateElement(
-									sprintf(
-										/* translators: %s bot username */
-										__('Get it from %s.'),
-										'<BotLink />',
-									),
-									{
-										BotLink: (
-											<Link href="https://t.me/MyChatInfoBot" isExternal>
-												@MyChatInfoBot
-											</Link>
-										),
-									},
-								)}
+								<span>
+									{__(
+										'You can also use the Chat ID of a group or private chat.',
+									)}
+									&nbsp;
+									<span>
+										{createInterpolateElement(
+											sprintf(
+												/* translators: %s bot username */
+												__('Get it from %s.'),
+												'<BotLink />',
+											),
+											{
+												BotLink: (
+													<Link href="https://t.me/MyChatInfoBot" isExternal>
+														@MyChatInfoBot
+													</Link>
+												),
+											},
+										)}
+									</span>
+								</span>
 							</li>
 							<li>
-								{createInterpolateElement(
-									sprintf(
-										/* translators: %s colon character */
-										__(
-											'If you want to send posts to a specific topic in a group with topics enabled, you can add a colon (%s) to the chat ID followed by topic ID.',
-										),
-										'<Colon />',
-									),
-									{
-										Colon: <Code>:</Code>,
-									},
-								)}
-								&nbsp;
-								{createInterpolateElement(
-									sprintf(
-										/* translators: %s code example */
-										__('For example %s'),
-										'<Ex />',
-									),
-									{
-										Ex: <Code>{'-100012345678:102'}</Code>,
-									},
-								)}
+								<span>
+									<span>
+										{createInterpolateElement(
+											sprintf(
+												/* translators: %s colon character */
+												__(
+													'If you want to send posts to a specific topic in a group with topics enabled, you can add a colon (%s) to the chat ID followed by topic ID.',
+												),
+												'<Colon />',
+											),
+											{
+												Colon: <Code>:</Code>,
+											},
+										)}
+									</span>
+									&nbsp;
+									<span>
+										{createInterpolateElement(
+											sprintf(
+												/* translators: %s code example */
+												__('For example %s'),
+												'<Ex />',
+											),
+											{
+												Ex: <Code>{'-100012345678:102'}</Code>,
+											},
+										)}
+									</span>
+								</span>
 							</li>
 						</ul>
 						<li>

@@ -40,40 +40,44 @@ export const UserNotifications: React.FC<UserNotificationsProps> = ({
 				)}
 			/>
 			<p className="mb-8">
-				{createInterpolateElement(
-					sprintf(
-						/* translators: 1 Plugin name */
-						__('Use %s to let them connect their Telegram account.'),
-						'<Link />',
-					),
-					{
-						Link: (
-							<Link
-								href="https://wordpress.org/plugins/wptelegram-login"
-								isExternal
-							>
-								{'WP Telegram Login & Register'}
-							</Link>
+				<span>
+					{createInterpolateElement(
+						sprintf(
+							/* translators: 1 Plugin name */
+							__('Use %s to let them connect their Telegram account.'),
+							'<Link />',
 						),
-					},
-				)}
+						{
+							Link: (
+								<Link
+									href="https://wordpress.org/plugins/wptelegram-login"
+									isExternal
+								>
+									{'WP Telegram Login & Register'}
+								</Link>
+							),
+						},
+					)}
+				</span>
 				<br />
-				{createInterpolateElement(
-					sprintf(
-						/* translators: 1 profile page */
-						__(
-							'They can also enter their Telegram Chat ID manually on %s page.',
+				<span>
+					{createInterpolateElement(
+						sprintf(
+							/* translators: 1 profile page */
+							__(
+								'They can also enter their Telegram Chat ID manually on %s page.',
+							),
+							'<Link />',
 						),
-						'<Link />',
-					),
-					{
-						Link: (
-							<Link href={editProfileUrl} isExternal>
-								{__('profile')}
-							</Link>
-						),
-					},
-				)}
+						{
+							Link: (
+								<Link href={editProfileUrl} isExternal>
+									{__('profile')}
+								</Link>
+							),
+						},
+					)}
+				</span>
 			</p>
 		</>
 	);

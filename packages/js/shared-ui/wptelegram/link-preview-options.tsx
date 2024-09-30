@@ -50,16 +50,18 @@ export const LinkPreviewOptions: React.FC<CommonProps> = ({ prefix }) => {
 								<>
 									{__('URL to use for the link preview.')}
 									&nbsp;
-									{createInterpolateElement(
-										sprintf(
-											/* translators: %s code example */
-											__('For example %s'),
-											'<Ex />',
-										),
-										{
-											Ex: <VariableButton content="{full_url}" />,
-										},
-									)}
+									<span>
+										{createInterpolateElement(
+											sprintf(
+												/* translators: %s code example */
+												__('For example %s'),
+												'<Ex />',
+											),
+											{
+												Ex: <VariableButton content="{full_url}" />,
+											},
+										)}
+									</span>
 								</>
 							}
 						>
