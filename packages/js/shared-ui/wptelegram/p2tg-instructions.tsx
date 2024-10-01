@@ -89,7 +89,7 @@ export const P2TGInstructions: React.FC<P2TGInstructionsProps> = ({
 												'<Colon />',
 											),
 											{
-												Colon: <Code>:</Code>,
+												Colon: <VariableButton content=":" />,
 											},
 										)}
 									</span>
@@ -132,7 +132,7 @@ export const P2TGInstructions: React.FC<P2TGInstructionsProps> = ({
 				</div>
 			</div>
 			<div className="mt-8">
-				<p className="text-green-800">
+				<div className="text-green-800">
 					<b>
 						{__('Tip!')}
 						{'💡'}
@@ -152,7 +152,7 @@ export const P2TGInstructions: React.FC<P2TGInstructionsProps> = ({
 								'<code />',
 							),
 							{
-								code: <code>{'|'}</code>,
+								code: <VariableButton content="|" codeClassName="p-0" />,
 							},
 						)}
 					</span>
@@ -164,7 +164,7 @@ export const P2TGInstructions: React.FC<P2TGInstructionsProps> = ({
 							'👇',
 						)}
 					</span>
-				</p>
+				</div>
 				<ul className="ms-8 mt-4 list-disc">
 					<li>
 						<code>{'-1000123456789|Internal Testing'}</code>
