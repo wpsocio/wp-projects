@@ -8,7 +8,7 @@ type AddRuleGroupProps = {
 
 export const AddRuleGroup: React.FC<AddRuleGroupProps> = ({ onAdd }) => {
 	return (
-		<Button onClick={onAdd} className="mt-8" variant="outline">
+		<Button onClick={onAdd} variant="outline">
 			<Plus className="me-2" />
 			{__('Add')}
 		</Button>

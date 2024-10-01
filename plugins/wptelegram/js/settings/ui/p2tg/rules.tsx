@@ -54,14 +54,14 @@ export const Rules: React.FC = () => {
 					<VerticalDivider wrapperClassName="uppercase">
 						{__('And')}
 					</VerticalDivider>
+					<P2TGCustomRules
+						prefix={PREFIX}
+						rule_types={rule_types}
+						rest_namespace={rest_namespace}
+					/>
 				</div>
-				<P2TGCustomRules
-					prefix={PREFIX}
-					rule_types={rule_types}
-					rest_namespace={rest_namespace}
-				/>
 			</div>
-			<Upsell location="rules" className="text-center" />
+			<Upsell location="rules" />
 		</SectionCard>
 	);
 };
