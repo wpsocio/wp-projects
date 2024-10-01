@@ -5,7 +5,7 @@ Tags: telegram, feed, widget, channel, group
 Requires at least: 6.4
 Requires PHP: 7.4
 Tested up to: 6.6.1
-Stable tag: 2.1.29
+Stable tag: 2.1.30
 License: GPL-3.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -193,7 +193,7 @@ Automatic updates should work smoothly, but we still recommend you back up your 
 
 == Changelog ==
 
-= 2.1.29 =
-- Fixed load_plugin_textdomain warning
+= 2.1.30 =
+- Fixed load_plugin_textdomain warning in dependent package
 
 [See full changelog](https://github.com/wpsocio/wptelegram-widget/blob/main/CHANGELOG.md)
