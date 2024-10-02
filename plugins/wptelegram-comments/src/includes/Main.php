@@ -317,6 +317,7 @@ class Main {
 		$shared = Shared::instance();
 
 		add_filter( 'comments_template', [ $shared, 'set_comments_template' ], PHP_INT_MAX - 100 );
+		add_filter( 'render_block_core/comments', [ $shared, 'render_comments' ], 11, 1 );
 
 		add_filter( 'wptelegram_comments_widget_attributes', [ $shared, 'set_widget_attributes' ], 10, 2 );
 
