@@ -12,7 +12,7 @@ import { __ } from '@wpsocio/i18n';
 
 import { useDataState, useUpdateField } from './data';
 
-const render: MediaUpload.Props<true>['render'] = ({ open }) => (
+const render: React.FC<{ open: VoidFunction }> = ({ open }) => (
 	<Button variant="secondary" onClick={open} id="wptg-upload-media">
 		{__('Add or Upload Files')}
 	</Button>

@@ -1,8 +1,8 @@
+import copy from 'copy-to-clipboard';
 /**
  * @source https://chakra-ui.com/docs/hooks/use-clipboard
  */
-import { useState, useCallback, useEffect } from 'react';
-import copy from 'copy-to-clipboard';
+import { useCallback, useEffect, useState } from 'react';
 
 export interface UseClipboardOptions {
 	/**
@@ -26,19 +26,24 @@ export interface UseClipboardOptions {
  *
  * @see Docs https://chakra-ui.com/docs/hooks/use-clipboard
  */
-export function useClipboard(value: string, optionsOrTimeout: number | UseClipboardOptions = {}) {
+export function useClipboard(
+	value: string,
+	optionsOrTimeout: number | UseClipboardOptions = {},
+) {
 	const [hasCopied, setHasCopied] = useState(false);
 
 	const [valueState, setValueState] = useState(value);
 	useEffect(() => setValueState(value), [value]);
 
 	const { timeout = 1500, ...copyOptions } =
-		typeof optionsOrTimeout === 'number' ? { timeout: optionsOrTimeout } : optionsOrTimeout;
+		typeof optionsOrTimeout === 'number'
+			? { timeout: optionsOrTimeout }
+			: optionsOrTimeout;
 
-	const onCopy = useCallback(() => {
+	const onCopy = () => {
 		const didCopy = copy(valueState, copyOptions);
 		setHasCopied(didCopy);
-	}, [valueState, copyOptions]);
+	};
 
 	useEffect(() => {
 		let timeoutId: number | null = null;
