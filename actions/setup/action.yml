@@ -55,7 +55,7 @@ runs:
 
     - name: Wireit cache
       if: ${{ inputs.enable-wireit-cache == 'true' }}
-      uses: google/wireit@setup-github-actions-caching/v1
+      uses: google/wireit@setup-github-actions-caching/v2
 
     - name: Install dependencies
       shell: bash
