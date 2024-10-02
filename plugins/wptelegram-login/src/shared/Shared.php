@@ -60,12 +60,9 @@ class Shared extends BaseClass {
 	 */
 	public function render_login_block( $block_content, $block ) {
 
-		if ( 'wptelegram/login' === $block['blockName'] ) {
+		$output = self::login_shortcode( $block['attrs'] );
 
-			$output = self::login_shortcode( $block['attrs'] );
-
-			$block_content = preg_replace( '/<img[^>]+?>(.*?<img[^>]+?>)?/i', $output, $block_content );
-		}
+		$block_content = preg_replace( '/<img[^>]+?>(.*?<img[^>]+?>)?/i', $output, $block_content );
 
 		return $block_content;
 	}
