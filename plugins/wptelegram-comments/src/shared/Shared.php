@@ -48,6 +48,33 @@ class Shared extends BaseClass {
 	}
 
 	/**
+	 * Render the comments.
+	 *
+	 * @since x.y.z
+	 *
+	 * @param string $block_content The block HTML.
+	 * @return string The HTML.
+	 */
+	public function render_comments( $block_content ) {
+
+		global $post;
+
+		if ( $this->rules_apply( $post ) ) {
+			$template = $this->get_template();
+
+			ob_start();
+
+			load_template( $template, false );
+
+			$block_content = ob_get_contents();
+
+			ob_get_clean();
+		}
+
+		return $block_content;
+	}
+
+	/**
 	 * Set the comments Template.
 	 *
 	 * @since 1.0.0
@@ -58,27 +85,39 @@ class Shared extends BaseClass {
 		global $post;
 
 		if ( $this->rules_apply( $post ) ) {
-
-			$overridden_template = locate_template( 'wptelegram-comments/comments.php' );
-
-			if ( $overridden_template ) {
-				/**
-				 * The value returned by locate_template() is a path to file.
-				 * if either the child theme or the parent theme have overridden the template.
-				 */
-				if ( Utils::is_valid_theme_template( $overridden_template ) ) {
-					$template = $overridden_template;
-				}
-			} else {
-				/*
-				* If neither the child nor parent theme have overridden the template,
-				* we load the template from the 'partials' sub-directory of the directory this file is in.
-				*/
-				$template = $this->plugin()->dir( '/shared/partials/comments.php' );
-			}
+			$template = $this->get_template();
 		}
 
 		return $template;
+	}
+
+	/**
+	 * Get the comments Template.
+	 *
+	 * @since x.y.z
+	 *
+	 * @return string The path to the template file.
+	 */
+	private function get_template() {
+		$overridden_template = locate_template( 'wptelegram-comments/comments.php' );
+
+		if ( $overridden_template ) {
+			/**
+			 * The value returned by locate_template() is a path to file.
+			 * if either the child theme or the parent theme have overridden the template.
+			 */
+			if ( Utils::is_valid_theme_template( $overridden_template ) ) {
+				$template = $overridden_template;
+			}
+		} else {
+			/*
+			* If neither the child nor parent theme have overridden the template,
+			* we load the template from the 'partials' sub-directory of the directory this file is in.
+			*/
+			$template = $this->plugin()->dir( '/shared/partials/comments.php' );
+		}
+
+		return apply_filters( 'wptelegram_comments_template', $template );
 	}
 
 	/**
