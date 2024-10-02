@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.23
+
+### Patch Changes
+
+- [#168](https://github.com/wpsocio/wp-projects/pull/168) [`9124db9`](https://github.com/wpsocio/wp-projects/commit/9124db9de7a983c9598760dc7abde5e1c126b9bf) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Fixed Telegram comments template for block themes
+
 ## 1.1.22
 
 ### Patch Changes

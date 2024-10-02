@@ -330,7 +330,7 @@ msgstr "Promjene ne mogu biti spremljene."
 
 #. Plugin Name of the plugin
 #: wptelegram-comments.php
-#: includes/Main.php:339
+#: includes/Main.php:340
 #~ msgid "WP Telegram Comments"
 #~ msgstr "WP Telegram Komentari"
 
