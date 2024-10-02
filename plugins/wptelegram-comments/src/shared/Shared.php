@@ -50,7 +50,7 @@ class Shared extends BaseClass {
 	/**
 	 * Render the comments.
 	 *
-	 * @since x.y.z
+	 * @since 1.1.23
 	 *
 	 * @param string $block_content The block HTML.
 	 * @return string The HTML.
@@ -94,7 +94,7 @@ class Shared extends BaseClass {
 	/**
 	 * Get the comments Template.
 	 *
-	 * @since x.y.z
+	 * @since 1.1.23
 	 *
 	 * @return string The path to the template file.
 	 */
