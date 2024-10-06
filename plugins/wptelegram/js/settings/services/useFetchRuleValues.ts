@@ -1,7 +1,6 @@
-import { useCallback } from 'react';
-
 import { type BaseApiUtilArgs, fetchAPI } from '@wpsocio/services/apiFetch';
 import type { OptionsType } from '@wpsocio/ui-components/wrappers/types';
+import { useCallback } from 'react';
 import { useData } from './useData';
 
 interface FetchRuleValuesArgs extends BaseApiUtilArgs {
@@ -37,6 +36,7 @@ export const useFetchRuleValues = (): FetchRuleValues => {
 
 				return result;
 			} catch (error) {
+				// biome-ignore lint/suspicious/noConsoleLog: <explanation>
 				console.log('ERROR', error);
 
 				setResult?.([]);

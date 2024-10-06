@@ -1,6 +1,5 @@
-import { isDev } from '@wpsocio/utilities/constants.js';
-
 import { Accordion } from '@wpsocio/ui-components/wrappers/accordion.js';
+import { isDev } from '@wpsocio/utilities/constants.js';
 
 const style: React.CSSProperties = {
 	borderRadius: '5px',
@@ -31,7 +30,7 @@ export const DebugData: React.FC<DebugDataProps> = ({
 	try {
 		dataToRender = asJson ? JSON.stringify(data, null, 2) : `${data}`;
 	} catch (error) {
-		// console.error((error as Error).message);
+		// biome-ignore lint/suspicious/noConsoleLog: <explanation>
 		console.log('ERROR', data);
 	}
 

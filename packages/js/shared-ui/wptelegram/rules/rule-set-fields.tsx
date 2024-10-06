@@ -1,12 +1,8 @@
-import { useFormContext } from '@wpsocio/form';
 import { __ } from '@wpsocio/i18n';
-import {
-	FormControl,
-	FormField,
-	FormItem,
-} from '@wpsocio/ui-components/wrappers/form.js';
+import { FormControl, FormItem } from '@wpsocio/ui-components/wrappers/form.js';
 import { Select } from '@wpsocio/ui-components/wrappers/select.js';
 import type { OptionsType } from '@wpsocio/ui-components/wrappers/types.js';
+import { FormField } from '../../form/form-field.jsx';
 import { RuleSetValues, type RuleSetValuesProps } from './rule-set-values.js';
 
 const getOperatorOptions = () => [
@@ -27,13 +23,10 @@ export type RuleSetFieldsProps = RuleSetValuesProps & {
 export const RuleSetFields: React.FC<RuleSetFieldsProps> = (props) => {
 	const { ruleset_name, rule, rule_types } = props;
 
-	const { control } = useFormContext();
-
 	return (
 		<div className="flex flex-wrap gap-2 flex-col md:flex-row w-full">
 			<div className="grow-[2]">
 				<FormField
-					control={control}
 					name={`${ruleset_name}.param`}
 					defaultValue={rule.param}
 					render={({ field }) => (
@@ -54,7 +47,6 @@ export const RuleSetFields: React.FC<RuleSetFieldsProps> = (props) => {
 			</div>
 			<div className="grow-[1]">
 				<FormField
-					control={control}
 					name={`${ruleset_name}.operator`}
 					defaultValue={rule.operator}
 					render={({ field }) => (

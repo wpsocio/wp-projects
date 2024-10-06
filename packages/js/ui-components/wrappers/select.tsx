@@ -24,6 +24,7 @@ export type SelectProps = React.ComponentProps<typeof SelectUI> & {
 	'aria-label'?: string;
 	triggerClassName?: string;
 	isLoading?: boolean;
+	portalContainer?: HTMLElement;
 };
 
 declare global {
@@ -48,14 +49,13 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
 			'aria-label': ariaLabel,
 			triggerClassName,
 			isLoading,
+			portalContainer,
 			...props
 		},
 		ref,
 	) => {
-		const portalContainer = getPortalContainer();
-
 		return (
-			<SelectUI {...props}>
+			<SelectUI {...props} key={props.value}>
 				<SelectTrigger
 					className={cn('w-[180px]', triggerClassName)}
 					id={id}
@@ -71,7 +71,9 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
 						<SelectValue placeholder={placeholder} />
 					)}
 				</SelectTrigger>
-				<SelectContent portalContainer={portalContainer}>
+				<SelectContent
+					portalContainer={portalContainer || getPortalContainer()}
+				>
 					{options.map((option) => (
 						<React.Fragment key={option.label}>
 							{(() => {
@@ -79,9 +81,9 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
 									return (
 										<SelectGroup>
 											<SelectLabel>{option.label}</SelectLabel>
-											{option.options.map((item) => (
+											{option.options.map((item, index) => (
 												<SelectItem
-													key={item.value}
+													key={`${item.value}:${item.label}:${index}`}
 													{...item}
 													value={item.value}
 													className="ms-2"

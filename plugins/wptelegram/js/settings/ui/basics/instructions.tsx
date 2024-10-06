@@ -1,6 +1,6 @@
 import { __, sprintf } from '@wpsocio/i18n';
-import { Code } from '@wpsocio/shared-ui/components/code';
 import { Instructions as InstructionsUI } from '@wpsocio/shared-ui/components/instructions';
+import { VariableButton } from '@wpsocio/shared-ui/components/variable-button';
 import { YouTubeVideo } from '@wpsocio/shared-ui/components/youtube-video.js';
 import { Link } from '@wpsocio/ui-components/wrappers/link.js';
 import { createInterpolateElement } from '@wpsocio/utilities/createInterpolateElement.js';
@@ -20,11 +20,7 @@ export const Instructions: React.FC = () => {
 									'<Link />',
 								),
 								{
-									Command: (
-										<b>
-											<Code>/newbot</Code>
-										</b>
-									),
+									Command: <VariableButton>{'/newbot'}</VariableButton>,
 									Link: (
 										<Link href="https://t.me/BotFather" isExternal>
 											@BotFather

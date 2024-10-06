@@ -1,13 +1,13 @@
 import { useFormContext } from '@wpsocio/form';
 import { __, sprintf } from '@wpsocio/i18n';
-import { VariableButton } from '@wpsocio/shared-ui/components/variable-button';
+import { Code } from '@wpsocio/shared-ui/components/code';
 import { FormField } from '@wpsocio/shared-ui/form/form-field';
 import { FormItem } from '@wpsocio/shared-ui/form/form-item';
 import { ChannelsField } from '@wpsocio/shared-ui/wptelegram/channels-field';
 import { FormControl } from '@wpsocio/ui-components/ui/form.jsx';
 import { Input } from '@wpsocio/ui-components/wrappers/input';
 import { createInterpolateElement } from '@wpsocio/utilities';
-import { type DataShape, getFieldLabel } from '../../services';
+import { type DataShape, getFieldLabel } from '../../services/fields';
 import { Upsell } from '../shared/pro-upsell';
 import { PREFIX } from './constants';
 
@@ -30,7 +30,7 @@ export const WatchEmails: React.FC = () => {
 								),
 								'<Code />',
 							),
-							{ Code: <VariableButton content="any" /> },
+							{ Code: <Code>{'any'}</Code> },
 						)}
 					>
 						<FormControl className="max-w-[350px]">

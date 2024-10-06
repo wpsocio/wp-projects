@@ -8,7 +8,7 @@ import { FormControl } from '@wpsocio/ui-components/ui/form.jsx';
 import { Input } from '@wpsocio/ui-components/wrappers/input';
 import { Switch } from '@wpsocio/ui-components/wrappers/switch';
 import { createInterpolateElement } from '@wpsocio/utilities';
-import { getFieldLabel } from './../../services';
+import { getFieldLabel } from './../../services/fields';
 import { Upsell } from './../shared/pro-upsell';
 import { PREFIX } from './constants';
 

@@ -10,7 +10,7 @@ const config = {
 	content: [
 		...preset.content,
 		'./js/**/*.tsx',
-		'../../packages/js/shared-ui/{components,form}/**/*.tsx',
+		'./node_modules/@wpsocio/shared-ui/{components,form}/**/*.tsx',
 	],
 };
 

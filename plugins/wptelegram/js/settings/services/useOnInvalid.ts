@@ -1,7 +1,6 @@
-import { useCallback } from 'react';
-
 import type { SubmitErrorHandler } from '@wpsocio/form';
 import { useDisplayFeedback } from '@wpsocio/services/use-display-feedback.js';
+import { useCallback } from 'react';
 
 import type { DataShape } from './types';
 

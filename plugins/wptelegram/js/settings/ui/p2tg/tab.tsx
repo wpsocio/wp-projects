@@ -1,9 +1,8 @@
 import { useWatch } from '@wpsocio/form';
-import { __ } from '@wpsocio/i18n';
 import { ActiveField } from '@wpsocio/shared-ui/wptelegram/active-field.js';
 import { IfActive } from '@wpsocio/shared-ui/wptelegram/if-active.js';
 import { P2TGInstructions } from '@wpsocio/shared-ui/wptelegram/p2tg-instructions.js';
-import type { DataShape } from '../../services';
+import type { DataShape } from '../../services/fields';
 import { IfBotToken } from '../shared/if-bot-token';
 import { PREFIX } from './constants';
 import { Destination } from './destination.js';

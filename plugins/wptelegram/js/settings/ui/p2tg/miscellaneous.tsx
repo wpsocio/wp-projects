@@ -4,7 +4,7 @@ import { DelayInPosting } from '@wpsocio/shared-ui/wptelegram/delay-in-posting.j
 import { DisableNotification } from '@wpsocio/shared-ui/wptelegram/disable-notification.js';
 import { P2TGSwitchAndPluginPosts } from '@wpsocio/shared-ui/wptelegram/p2tg-switch-and-plugin-posts.js';
 import { Separator } from '@wpsocio/ui-components/ui/separator.js';
-import { useData } from '../../services';
+import { useData } from '../../services/useData';
 import { Upsell } from '../shared/pro-upsell';
 import { PREFIX } from './constants';
 

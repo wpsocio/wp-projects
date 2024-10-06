@@ -63,8 +63,8 @@ export const useDisplayFeedback = (): DF => {
 		(errors, error) => {
 			const title =
 				typeof error === 'string' ? error : __('Lets fix these errors first.');
-			displayError({ title, variant: 'destructive' });
 			displayErrors(errors);
+			displayError({ title, variant: 'destructive' });
 		},
 		[displayError, displayErrors],
 	);
