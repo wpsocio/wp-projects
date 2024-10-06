@@ -2,7 +2,7 @@ import { useFormContext, useWatch } from '@wpsocio/form';
 import { __ } from '@wpsocio/i18n';
 import { AdvancedSettings } from '@wpsocio/shared-ui/wptelegram/advanced-settings';
 import { useEffect, useMemo } from 'react';
-import { useData } from '../../services';
+import { useData } from '../../services/useData';
 import { PREFIX } from './constants';
 
 export const AdvancedTab: React.FC = () => {
@@ -22,7 +22,7 @@ export const AdvancedTab: React.FC = () => {
 				value: 'bot_api',
 				label: __('Bot API'),
 				viewLink: assets.botApiLogUrl || '',
-				isDisabled: enable_logs?.includes('p2tg'),
+				disabled: enable_logs?.includes('p2tg'),
 			},
 			{
 				value: 'p2tg',

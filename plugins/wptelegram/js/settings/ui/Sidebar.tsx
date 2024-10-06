@@ -3,10 +3,10 @@ import { __ } from '@wpsocio/i18n';
 import { PluginInfoCard } from '@wpsocio/shared-ui/components/plugin-info/plugin-info-card.js';
 import { WPTGSocialIcons } from '@wpsocio/shared-ui/components/wptg-social-icons.js';
 import { FormDebug } from '@wpsocio/shared-ui/form/form-debug';
-import { useData } from '../services';
+import { useData } from '../services/useData';
 import { Upsell } from './shared/pro-upsell';
 
-const Sidebar: React.FC = () => {
+export const Sidebar: React.FC = () => {
 	const {
 		pluginInfo: { title },
 		assets: { tgIconUrl },
@@ -32,5 +32,3 @@ const Sidebar: React.FC = () => {
 		</div>
 	);
 };
-
-export default Sidebar;

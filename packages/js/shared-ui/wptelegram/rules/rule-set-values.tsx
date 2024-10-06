@@ -2,15 +2,12 @@ import { useFormContext } from '@wpsocio/form';
 import { __ } from '@wpsocio/i18n';
 import { moduleStorage } from '@wpsocio/services/module-storage.js';
 import { useLocalStorage } from '@wpsocio/services/use-local-storage.js';
-import {
-	FormControl,
-	FormField,
-	FormItem,
-} from '@wpsocio/ui-components/wrappers/form.js';
+import { FormControl, FormItem } from '@wpsocio/ui-components/wrappers/form.js';
 import { ReactAsyncSelect } from '@wpsocio/ui-components/wrappers/react-select.js';
 import type { OptionsType } from '@wpsocio/ui-components/wrappers/types.js';
 import { usePrevious } from '@wpsocio/utilities/hooks/usePrevious.js';
 import { useCallback, useEffect, useState } from 'react';
+import { FormField } from '../../form/form-field.js';
 import type { Rule } from './types.js';
 import { useFetchRuleValues } from './use-fetch-rule-values.js';
 import { useWatchParam } from './use-watch-param.js';
@@ -43,7 +40,7 @@ export function RuleSetValues({
 		moduleStorage,
 	);
 
-	const { control, setValue } = useFormContext();
+	const { setValue } = useFormContext();
 	const param = useWatchParam(ruleset_name);
 
 	const previousParam = usePrevious(param);
@@ -102,7 +99,7 @@ export function RuleSetValues({
 
 	return (
 		<FormField
-			control={control}
+			key={param}
 			name={`${ruleset_name}.values`}
 			defaultValue={rule.values}
 			render={({ field }) => (
@@ -122,6 +119,7 @@ export function RuleSetValues({
 							placeholder={
 								isFetchingValues ? loadingMessage() : __('Select...')
 							}
+							value={field.value}
 						/>
 					</FormControl>
 				</FormItem>

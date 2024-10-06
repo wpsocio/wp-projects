@@ -38,7 +38,6 @@ export const validationSchema = z.object({
 			BOT_TOKEN_REGEX,
 			sprintf(__('Invalid %s'), getFieldLabel('bot_token')),
 		),
-
 	bot_username: z
 		.string()
 		.min(1, sprintf(__('%s required.'), getFieldLabel('bot_username')))
@@ -60,7 +59,11 @@ export const validationSchema = z.object({
 								// match @username and chat ID
 								.regex(
 									TG_CHAT_ID_REGEX,
-									sprintf(__('Invalid %s'), getFieldLabel('channels')),
+									sprintf(
+										/* translators: %s: field name */
+										__('Invalid %s'),
+										getFieldLabel('channels'),
+									),
 								),
 						]),
 					}),
@@ -69,17 +72,19 @@ export const validationSchema = z.object({
 				.transform((value) => value?.filter(Boolean)),
 			send_when: z.array(z.enum(['new', 'existing'])).optional(),
 			post_types: z.array(z.string()).optional(),
-			rules: z.array(
-				z.object({
-					value: z.array(
-						z.object({
-							param: z.string(),
-							operator: z.enum(['in', 'not_in']),
-							values: z.array(z.any()),
-						}),
-					),
-				}),
-			),
+			rules: z
+				.array(
+					z.object({
+						value: z.array(
+							z.object({
+								param: z.string(),
+								operator: z.enum(['in', 'not_in']),
+								values: z.array(z.any()).optional(),
+							}),
+						),
+					}),
+				)
+				.optional(),
 			message_template: z.string().optional(),
 			excerpt_source: z
 				.enum(['post_content', 'before_more', 'post_excerpt'])

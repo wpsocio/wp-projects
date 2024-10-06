@@ -1,14 +1,11 @@
-import { useFormContext } from '@wpsocio/form';
 import { __, sprintf } from '@wpsocio/i18n';
 import { BotTokenField } from '@wpsocio/shared-ui/form/bot-token-field';
+import { FormField } from '@wpsocio/shared-ui/form/form-field';
 import { FormItem } from '@wpsocio/shared-ui/form/form-item';
-import {
-	FormControl,
-	FormField,
-} from '@wpsocio/ui-components/wrappers/form.js';
+import { FormControl } from '@wpsocio/ui-components/wrappers/form.js';
 import { Input } from '@wpsocio/ui-components/wrappers/input.js';
 import { useCallback, useState } from 'react';
-import { getFieldLabel } from '../../services';
+import { getFieldLabel } from '../../services/fields';
 import { Upsell } from '../shared/pro-upsell';
 import { Instructions } from './instructions';
 
@@ -18,7 +15,6 @@ export const BasicsTab: React.FC = () => {
 		() => setBotUsernameReadOnly(false),
 		[],
 	);
-	const { control } = useFormContext();
 
 	return (
 		<>
@@ -32,7 +28,6 @@ export const BasicsTab: React.FC = () => {
 				/>
 
 				<FormField
-					control={control}
 					name="bot_username"
 					render={({ field }) => (
 						<FormItem

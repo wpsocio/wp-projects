@@ -2,7 +2,7 @@ import { useWatch } from '@wpsocio/form';
 import { __ } from '@wpsocio/i18n';
 import { SectionCard } from '@wpsocio/shared-ui/components/section-card.js';
 import { ChannelsField } from '@wpsocio/shared-ui/wptelegram/channels-field.js';
-import { type DataShape, getFieldLabel } from '../../services';
+import { type DataShape, getFieldLabel } from '../../services/fields.js';
 import { Upsell } from '../shared/pro-upsell.js';
 import { PREFIX } from './constants';
 

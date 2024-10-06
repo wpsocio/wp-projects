@@ -7,6 +7,7 @@ export interface SectionCardProps
 	className?: string;
 	headerClassName?: string;
 	bodyClassName?: string;
+	headingLevel?: `h${1 | 2 | 3 | 4 | 5 | 6}`;
 }
 
 export const SectionCard: React.FC<SectionCardProps> = ({
@@ -16,20 +17,19 @@ export const SectionCard: React.FC<SectionCardProps> = ({
 	className,
 	headerClassName,
 	bodyClassName,
+	headingLevel: H = 'h3',
 	...rest
 }) => {
 	return (
-		<div
+		<section
 			className={cn(
 				'border rounded-t-md border-gray-200 mb-8 overflow-hidden',
 				className,
 			)}
 			{...rest}
 		>
-			<div className={cn('bg-[#eaeaea] px-4 py-2', headerClassName)}>
-				{title}
-			</div>
+			<H className={cn('bg-[#eaeaea] px-4 py-2', headerClassName)}>{title}</H>
 			<div className={cn('px-6 py-4', bodyClassName)}>{body || children}</div>
-		</div>
+		</section>
 	);
 };

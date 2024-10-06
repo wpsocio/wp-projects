@@ -46,7 +46,7 @@ const App: React.FC = () => {
 					<Configuration />
 					<SubmitBar form={`${ROOT_ID}-form`} />
 				</div>
-				<div className="md:basis-2/3 xl:basis-1/4">
+				<div className="md:basis-1/3 xl:basis-1/4">
 					<Sidebar />
 				</div>
 			</div>

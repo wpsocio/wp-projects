@@ -1,6 +1,6 @@
 import './styles.scss';
 
-import { cleanup, setI18nData } from '@wpsocio/services';
+import { cleanup, setI18nData } from '@wpsocio/services/utils.js';
 import { Toaster } from '@wpsocio/ui-components/ui/toaster';
 import React from 'react';
 import ReactDOM from 'react-dom/client';

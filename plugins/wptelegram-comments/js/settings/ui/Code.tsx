@@ -1,18 +1,16 @@
 import { useFormContext, useWatch } from '@wpsocio/form';
 import { __ } from '@wpsocio/i18n';
+import { FormField } from '@wpsocio/shared-ui/form/form-field';
 import { FormItem } from '@wpsocio/shared-ui/form/form-item';
 import { Textarea } from '@wpsocio/ui-components/ui/textarea.js';
-import {
-	FormControl,
-	FormField,
-} from '@wpsocio/ui-components/wrappers/form.js';
+import { FormControl } from '@wpsocio/ui-components/wrappers/form.js';
 import $ from 'jquery';
 import { useEffect } from 'react';
 
 import { type DataShape, getFieldLabel } from '../services';
 
 export const Code: React.FC = () => {
-	const { setValue, control } = useFormContext<DataShape>();
+	const { setValue } = useFormContext<DataShape>();
 
 	const code = useWatch({ name: 'code', defaultValue: '' });
 
@@ -39,7 +37,6 @@ export const Code: React.FC = () => {
 	return (
 		<>
 			<FormField
-				control={control}
 				name="code"
 				render={({ field }) => (
 					<FormItem
@@ -60,7 +57,6 @@ export const Code: React.FC = () => {
 			/>
 
 			<FormField
-				control={control}
 				name="attributes"
 				render={({ field }) => (
 					<FormControl>

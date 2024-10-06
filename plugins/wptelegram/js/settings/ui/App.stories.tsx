@@ -1,5 +1,5 @@
 import { WithDOMData } from '@wpsocio/services';
-import type { WPTelegramData } from '../services';
+import type { WPTelegramData } from '../services/types';
 
 import App from './App';
 

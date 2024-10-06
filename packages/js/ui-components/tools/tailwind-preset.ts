@@ -32,7 +32,7 @@ export function tailwindPreset({
 						isolationStrategy: isolateInsideOfContainer(scopeStylesInside),
 					})
 				: undefined,
-		],
+		].filter(Boolean),
 		theme: {
 			extend: {
 				screens: {

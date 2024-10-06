@@ -5,7 +5,6 @@ export * from './DisableNotification';
 export * from './ExcerptSettings';
 export * from './IfActive';
 export * from './ImageSettings';
-export * from './KeyboardButton';
 export * from './LinkPreviewOptions';
 export * from './MessageTemplate';
 export * from './MiscMessageSettings';

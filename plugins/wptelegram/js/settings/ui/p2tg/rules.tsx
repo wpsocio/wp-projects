@@ -4,9 +4,9 @@ import { MultiCheckboxField } from '@wpsocio/shared-ui/form/multi-checkbox-field
 import { P2TGCustomRules } from '@wpsocio/shared-ui/wptelegram/rules/p2tg-custom-rules.js';
 import { Separator } from '@wpsocio/ui-components/ui/separator';
 import { VerticalDivider } from '@wpsocio/ui-components/wrappers/vertical-divider.js';
-import { getFieldLabel, useData } from './../../services';
+import { getFieldLabel } from '../../services/fields.js';
+import { useData } from '../../services/useData.js';
 import { Upsell } from './../shared/pro-upsell.js';
-
 import { PREFIX } from './constants';
 
 const getSendWhenOptions = () => [

@@ -36,6 +36,7 @@ export const setWebhook: WebhookUtil = async (args, event) => {
 			setResult?.(getErrorMessage(data));
 		}
 	} catch (error) {
+		// biome-ignore lint/suspicious/noConsoleLog: <explanation>
 		console.log('ERROR', error);
 
 		setStatus('ERROR');
@@ -58,6 +59,7 @@ export const deleteWebhook: WebhookUtil = async (args, event) => {
 		setResultType?.('SUCCESS');
 		setResult?.('');
 	} catch (error) {
+		// biome-ignore lint/suspicious/noConsoleLog: <explanation>
 		console.log('ERROR', error);
 
 		setStatus('ERROR');
@@ -88,6 +90,7 @@ export const checkWebhookInfo: WebhookUtil = async (args, event) => {
 			setStatus('NOT_SET');
 		}
 	} catch (error) {
+		// biome-ignore lint/suspicious/noConsoleLog: <explanation>
 		console.log('ERROR', error);
 
 		setStatus('ERROR', () => getErrorMessage(error));
@@ -109,6 +112,7 @@ export const checkMemberCount: TelegramApiUtil = async (args) => {
 		setResultType?.('SUCCESS');
 		setResult?.(result);
 	} catch (error) {
+		// biome-ignore lint/suspicious/noConsoleLog: <explanation>
 		console.log('ERROR', error);
 
 		setResultType?.('ERROR');
@@ -149,6 +153,7 @@ export const sendTextMessage: SendTextMessage = async (args, event) => {
 		setResultType?.('SUCCESS');
 		setResult?.(__('Success'));
 	} catch (error) {
+		// biome-ignore lint/suspicious/noConsoleLog: <explanation>
 		console.log('ERROR', error);
 
 		setResultType?.('ERROR');
@@ -179,6 +184,7 @@ export const testBotToken: TestBotToken = async (args, event) => {
 			setResult?.(`${result.first_name} (@${result.username})`);
 		}
 	} catch (error) {
+		// biome-ignore lint/suspicious/noConsoleLog: <explanation>
 		console.log('ERROR', error);
 
 		setResultType?.('ERROR');

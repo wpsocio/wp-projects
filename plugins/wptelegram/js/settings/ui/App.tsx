@@ -2,17 +2,14 @@ import { Form, useForm, zodResolver } from '@wpsocio/form';
 import { SubmitBar } from '@wpsocio/shared-ui/form/submit/submit-bar.js';
 import { useMemo } from 'react';
 import { ROOT_ID } from '../constants';
-import {
-	type DataShape,
-	prepDefaultValues,
-	useData,
-	useInit,
-	useOnInvalid,
-	useOnSubmit,
-	validationSchema,
-} from '../services';
+import { type DataShape, validationSchema } from '../services/fields';
+import { useData } from '../services/useData';
+import { useInit } from '../services/useInit';
+import { useOnInvalid } from '../services/useOnInvalid';
+import { useOnSubmit } from '../services/useOnSubmit';
+import { prepDefaultValues } from '../services/utils';
 import { Header } from './Header';
-import Sidebar from './Sidebar';
+import { Sidebar } from './Sidebar';
 import { TabbedSections } from './TabbedSections';
 import { Upsell } from './shared/pro-upsell.js';
 
@@ -47,7 +44,7 @@ const App: React.FC = () => {
 					<TabbedSections />
 					<SubmitBar form={`${ROOT_ID}-form`} />
 				</div>
-				<div className="md:basis-2/3 xl:basis-1/4">
+				<div className="md:basis-1/3 xl:basis-1/4">
 					<Sidebar />
 				</div>
 			</div>

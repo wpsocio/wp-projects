@@ -1,11 +1,9 @@
 import { useFormContext, useWatch } from '@wpsocio/form';
 import { __ } from '@wpsocio/i18n';
-import {
-	FormControl,
-	FormField,
-} from '@wpsocio/ui-components/wrappers/form.js';
+import { FormControl } from '@wpsocio/ui-components/wrappers/form.js';
 import { Input } from '@wpsocio/ui-components/wrappers/input.js';
 import { useEffect } from 'react';
+import { FormField } from './form-field.jsx';
 import { FormItem } from './form-item.js';
 import { useBotTokenTest } from './use-bot-token-test.js';
 
@@ -23,7 +21,7 @@ export const BotTokenField: React.FC<BotTokenFieldProps> = ({
 	name,
 	...props
 }) => {
-	const { setValue, trigger, control } = useFormContext();
+	const { setValue, trigger } = useFormContext();
 
 	const bot_token: string = useWatch({ name });
 
@@ -38,7 +36,6 @@ export const BotTokenField: React.FC<BotTokenFieldProps> = ({
 
 	return (
 		<FormField
-			control={control}
 			name={name}
 			render={({ field }) => (
 				<FormItem

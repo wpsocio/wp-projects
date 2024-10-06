@@ -26,6 +26,17 @@
 			"recommended": true,
 			"style": {
 				"useTemplate": "off"
+			},
+			"correctness": {
+				"noUnusedImports": {
+					"level": "warn",
+					"fix": "none"
+				}
+			},
+			"suspicious": {
+				"noConsoleLog": {
+					"level": "warn"
+				}
 			}
 		}
 	}
