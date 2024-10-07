@@ -16,7 +16,7 @@ export const IfActive: React.FC<IfActiveProps> = ({ children, name }) => {
 
 	return (
 		<Collapsible open={active}>
-			<CollapsibleContent className="space-y-2">
+			<CollapsibleContent>
 				{'function' === typeof children ? children(active) : children}
 			</CollapsibleContent>
 		</Collapsible>
