@@ -9,10 +9,7 @@
 	"dependencies": {
 		"@hookform/error-message": "^2.0.1",
 		"@hookform/resolvers": "^3.9.0",
-		"@wpsocio/adapters": "workspace:*",
-		"@wpsocio/components": "workspace:*",
 		"@wpsocio/i18n": "workspace:*",
-		"@wpsocio/icons": "workspace:*",
 		"@wpsocio/utilities": "workspace:*",
 		"classnames": "^2.5.1",
 		"ramda": "^0.30.1",
