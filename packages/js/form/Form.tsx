@@ -1,9 +1,6 @@
+import type { AnyObject } from '@wpsocio/utilities/types';
 import { type PropsWithChildren, useEffect } from 'react';
 import { FormProvider, type UseFormReturn } from 'react-hook-form';
-
-import type { AnyObject } from '@wpsocio/utilities';
-
-import './styles.scss';
 
 export interface FormProps<FormValues extends AnyObject>
 	extends React.FormHTMLAttributes<HTMLFormElement> {

@@ -888,9 +888,6 @@ importers:
       react-dom:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
-      yup:
-        specifier: ^1.4.0
-        version: 1.4.0
       zod:
         specifier: ^3.23.8
         version: 3.23.8
@@ -946,21 +943,12 @@ importers:
       '@wordpress/url':
         specifier: ^4.8.0
         version: 4.8.1
-      '@wpsocio/adapters':
-        specifier: workspace:*
-        version: link:../../../packages/js/adapters
       '@wpsocio/build-utils':
         specifier: workspace:*
         version: link:../../../tools/build-utils
-      '@wpsocio/components':
-        specifier: workspace:*
-        version: link:../../../packages/js/components
       '@wpsocio/form':
         specifier: workspace:*
         version: link:../../../packages/js/form
-      '@wpsocio/form-components':
-        specifier: workspace:*
-        version: link:../../../packages/js/form-components
       '@wpsocio/i18n':
         specifier: workspace:*
         version: link:../../../packages/js/i18n

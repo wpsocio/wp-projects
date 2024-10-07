@@ -1,6 +1,6 @@
 import { useFormContext, useWatch } from '@wpsocio/form';
-import { TelegramIcon } from '@wpsocio/icons';
 import { FormItem } from '@wpsocio/shared-ui/form/form-item';
+import { TelegramIcon } from '@wpsocio/shared-ui/wptelegram/telegram-icon.js';
 import { ColorInputPicker } from '@wpsocio/ui-components/wrappers/color-input-picker.js';
 import {
 	FormControl,
