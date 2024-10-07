@@ -1,16 +1,14 @@
-import { useCallback } from 'react';
-
 import { useFormState } from '@wpsocio/form';
 import { __ } from '@wpsocio/i18n';
-import { WarningIcon } from '@wpsocio/icons';
 import { useActiveTab } from '@wpsocio/services/use-active-tab.js';
+import { cn } from '@wpsocio/ui-components';
+import { Warning } from '@wpsocio/ui-components/icons';
+import { Card } from '@wpsocio/ui-components/wrappers/card.js';
 import {
 	type TabItemProps,
 	Tabs,
 } from '@wpsocio/ui-components/wrappers/tabs.js';
-
-import { cn } from '@wpsocio/ui-components';
-import { Card } from '@wpsocio/ui-components/wrappers/card.js';
+import { useCallback } from 'react';
 import { Advanced } from './advanced';
 import { AjaxWidget } from './ajaxWidget';
 import { JoinLink } from './joinLink';
@@ -66,7 +64,7 @@ export const TabbedSections: React.FC = () => {
 						'font-bold': showError,
 					})}
 				>
-					{showError && <WarningIcon />}
+					{showError && <Warning />}
 					&nbsp;
 					{title}
 				</span>

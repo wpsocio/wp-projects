@@ -1,6 +1,4 @@
-export const TelegramIcon: React.FC<React.SVGProps<SVGSVGElement>> = (
-	props,
-) => {
+export function TelegramIcon(props: React.SVGProps<SVGSVGElement>) {
 	return (
 		<svg width="19px" height="16px" viewBox="0 0 19 16" {...props}>
 			<title> </title>
@@ -9,4 +7,4 @@ export const TelegramIcon: React.FC<React.SVGProps<SVGSVGElement>> = (
 			</g>
 		</svg>
 	);
-};
+}
