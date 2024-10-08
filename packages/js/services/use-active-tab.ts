@@ -1,6 +1,5 @@
 import { useCallback, useMemo } from 'react';
-
-import { useLocalStorage } from './useLocalStorage';
+import { useLocalStorage } from './use-local-storage';
 
 export interface ActiveTab {
 	getActiveTab: (defaultValue: string) => string;

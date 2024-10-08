@@ -2,7 +2,7 @@ import type {
 	BaseAssetsData,
 	BaseDOMData,
 	BasePluginData,
-} from '@wpsocio/services';
+} from '@wpsocio/services/types';
 
 type SimpleOptionsType = Array<{
 	value: string;

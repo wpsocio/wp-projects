@@ -1,5 +1,6 @@
 import { __ } from '@wpsocio/i18n';
-import { type GetErrorMessage, strToPath } from '@wpsocio/utilities';
+import type { GetErrorMessage } from '@wpsocio/utilities/fields';
+import { strToPath } from '@wpsocio/utilities/misc';
 import { last } from 'ramda';
 import { useCallback, useEffect, useRef } from 'react';
 import type {
@@ -63,6 +64,7 @@ export const useSubmitForm = <FD extends FieldValues>({
 					displaySuccess({ title: __('Changes saved successfully.') });
 				}
 			} catch (error) {
+				// biome-ignore lint/suspicious/noConsoleLog: <explanation>
 				console.log('ERROR', error);
 				let errors: Record<string, unknown> = {};
 

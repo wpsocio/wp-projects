@@ -6,7 +6,7 @@ import { FormItem } from '@wpsocio/shared-ui/form/form-item';
 import { ChannelsField } from '@wpsocio/shared-ui/wptelegram/channels-field';
 import { FormControl } from '@wpsocio/ui-components/ui/form.jsx';
 import { Input } from '@wpsocio/ui-components/wrappers/input';
-import { createInterpolateElement } from '@wpsocio/utilities';
+import { createInterpolateElement } from '@wpsocio/utilities/createInterpolateElement';
 import { type DataShape, getFieldLabel } from '../../services/fields';
 import { Upsell } from '../shared/pro-upsell';
 import { PREFIX } from './constants';

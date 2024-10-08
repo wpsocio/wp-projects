@@ -1,6 +1,5 @@
 import { __ } from '@wpsocio/i18n';
-import { getChatIdParts } from '@wpsocio/utilities';
-
+import { getChatIdParts } from '@wpsocio/utilities/misc';
 import { getErrorMessage } from '../apiFetch';
 import botApi from './TelegramAPI';
 import type {

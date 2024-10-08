@@ -4,8 +4,7 @@ import { PluginInfoItem } from '@wpsocio/shared-ui/components/plugin-info/plugin
 import { Smile } from '@wpsocio/shared-ui/components/smile.js';
 import { WidgetInfoCard as WidgetInfoCardUI } from '@wpsocio/shared-ui/components/widget-info/widget-info-card.js';
 import { Link } from '@wpsocio/ui-components/wrappers/link.js';
-import { createInterpolateElement } from '@wpsocio/utilities';
-
+import { createInterpolateElement } from '@wpsocio/utilities/createInterpolateElement';
 import { useData } from '../services';
 
 export const WidgetInfoCard = () => {
