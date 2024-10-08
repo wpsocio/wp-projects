@@ -17,7 +17,7 @@ export function Edit(props: BlockEditProps<SinglePostAtts>) {
 	const [isEditingURL, setIsEditingURL] = useState(false);
 	const [url, setUrl] = useState(props.attributes.url || '');
 	const [userpic, setUserpic] = useState<boolean>(
-		props.attributes.userpic || true,
+		props.attributes.userpic ?? true,
 	);
 	const [iframeHeight, setIframeHeight] = useState(0);
 
@@ -63,17 +63,13 @@ export function Edit(props: BlockEditProps<SinglePostAtts>) {
 			.replace('%userpic%', `${userpic}`);
 	}
 
-	function toggleUserPic() {
-		setUserpic((prevValue) => {
-			const newValue = !prevValue;
+	function toggleUserPic(newValue: boolean) {
+		setIframeState('loading');
+		let { iframe_src } = props.attributes;
+		iframe_src = addQueryArgs(iframe_src, { userpic: newValue });
+		props.setAttributes({ userpic: newValue, iframe_src });
 
-			setIframeState('loading');
-			let { iframe_src } = props.attributes;
-			iframe_src = addQueryArgs(iframe_src, { userpic });
-			props.setAttributes({ userpic: newValue, iframe_src });
-
-			return newValue;
-		});
+		setUserpic(newValue);
 	}
 
 	function onChangeAlign(align: SinglePostAtts['alignment']) {
