@@ -1,4 +1,4 @@
-import { usePluginData } from '@wpsocio/services';
+import { usePluginData } from '@wpsocio/services/use-plugin-data';
 import type { WPTelegramWidgetData } from './types';
 
 export const useData = <

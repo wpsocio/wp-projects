@@ -1,6 +1,5 @@
+import type { AnyObject } from '@wpsocio/utilities/types';
 import { useCallback, useMemo } from 'react';
-
-import type { AnyObject } from '@wpsocio/utilities';
 
 interface LocalStorage<D extends AnyObject> {
 	getData: () => D;
