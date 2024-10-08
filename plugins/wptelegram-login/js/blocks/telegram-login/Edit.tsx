@@ -1,6 +1,7 @@
 import { InspectorControls } from '@wordpress/block-editor';
 import type { BlockEditProps } from '@wordpress/blocks';
 import {
+	Flex,
 	PanelBody,
 	RadioControl,
 	SelectControl,
@@ -74,37 +75,43 @@ export const Edit: React.FC<BlockEditProps<TelegramLoginAtts>> = ({
 		<>
 			<InspectorControls>
 				<PanelBody title={__('Button Settings')}>
-					<RadioControl
-						label={__('Button Style')}
-						selected={button_style}
-						onChange={onChangeButtonStyle}
-						options={getButtonStyleOptions()}
-					/>
-					<ToggleControl
-						label={__('Show User Photo')}
-						checked={show_user_photo}
-						onChange={onChangeShowUserPhoto}
-					/>
-					<TextControl
-						label={__('Corner Radius')}
-						value={corner_radius || ''}
-						onChange={onChangeCornerRadius}
-						type="number"
-						min="0"
-						max="20"
-					/>
-					<SelectControl
-						label={__('Language')}
-						value={lang}
-						onChange={onChangeLang}
-						options={uiData.lang}
-					/>
-					<SelectControl
-						label={__('Show if user is')}
-						value={show_if_user_is}
-						onChange={onChangeShowIfUserIs}
-						options={uiData.show_if_user_is}
-					/>
+					<Flex direction="column" gap={4}>
+						<RadioControl
+							label={__('Button Style')}
+							selected={button_style}
+							onChange={onChangeButtonStyle}
+							options={getButtonStyleOptions()}
+						/>
+						<ToggleControl
+							label={__('Show User Photo')}
+							checked={show_user_photo}
+							onChange={onChangeShowUserPhoto}
+							__nextHasNoMarginBottom
+						/>
+						<TextControl
+							label={__('Corner Radius')}
+							value={corner_radius || ''}
+							onChange={onChangeCornerRadius}
+							type="number"
+							min="0"
+							max="20"
+							__nextHasNoMarginBottom
+						/>
+						<SelectControl
+							label={__('Language')}
+							value={lang}
+							onChange={onChangeLang}
+							options={uiData.lang}
+							__nextHasNoMarginBottom
+						/>
+						<SelectControl
+							label={__('Show if user is')}
+							value={show_if_user_is}
+							onChange={onChangeShowIfUserIs}
+							options={uiData.show_if_user_is}
+							__nextHasNoMarginBottom
+						/>
+					</Flex>
 				</PanelBody>
 			</InspectorControls>
 			<Output attributes={attributes} className={className} />
