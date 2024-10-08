@@ -1,6 +1,6 @@
 import { InspectorControls } from '@wordpress/block-editor';
 import type { BlockEditProps } from '@wordpress/blocks';
-import { Dashicon, PanelBody, TextControl } from '@wordpress/components';
+import { Dashicon, Flex, PanelBody, TextControl } from '@wordpress/components';
 import { useCallback } from '@wordpress/element';
 
 import { __, sprintf } from '@wpsocio/i18n';
@@ -36,28 +36,33 @@ export const Edit: React.FC<BlockEditProps<AjaxWidgetAtts>> = ({
 		<>
 			<InspectorControls>
 				<PanelBody title={__('Widget Options')}>
-					<TextControl
-						label={__('Username')}
-						value={username}
-						onChange={onChangeUsername}
-						help={sprintf(
-							'%s %s',
-							__('Channel username.'),
-							__('Leave empty for default.'),
-						)}
-						placeholder={savedSettings?.username || 'WPTelegram'}
-					/>
-					<TextControl
-						label={__('Widget Width')}
-						value={widget_width}
-						onChange={onChangeWidth}
-					/>
-					<TextControl
-						label={__('Widget Height')}
-						value={widget_height}
-						onChange={onChangeHeight}
-						type="number"
-					/>
+					<Flex direction="column" gap={4}>
+						<TextControl
+							label={__('Username')}
+							value={username}
+							onChange={onChangeUsername}
+							help={sprintf(
+								'%s %s',
+								__('Channel username.'),
+								__('Leave empty for default.'),
+							)}
+							placeholder={savedSettings?.username || 'WPTelegram'}
+							__nextHasNoMarginBottom
+						/>
+						<TextControl
+							label={__('Widget Width')}
+							value={widget_width}
+							onChange={onChangeWidth}
+							__nextHasNoMarginBottom
+						/>
+						<TextControl
+							label={__('Widget Height')}
+							value={widget_height}
+							onChange={onChangeHeight}
+							type="number"
+							__nextHasNoMarginBottom
+						/>
+					</Flex>
 				</PanelBody>
 			</InspectorControls>
 			<div className={className}>

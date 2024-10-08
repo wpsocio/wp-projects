@@ -55,6 +55,7 @@ export const Files: React.FC<{ isDisabled?: boolean }> = ({ isDisabled }) => {
 				id="wptg-files"
 				label={__('Files')}
 				help={__('Files to be sent after the message.')}
+				__nextHasNoMarginBottom
 			>
 				<br />
 				<MediaUpload

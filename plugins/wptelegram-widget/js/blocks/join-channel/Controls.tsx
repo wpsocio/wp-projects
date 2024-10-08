@@ -3,7 +3,7 @@ import {
 	BlockControls,
 	InspectorControls,
 } from '@wordpress/block-editor';
-import { PanelBody, TextControl } from '@wordpress/components';
+import { Flex, PanelBody, TextControl } from '@wordpress/components';
 import { Fragment, useCallback, useEffect } from '@wordpress/element';
 
 import { __ } from '@wpsocio/i18n';
@@ -51,17 +51,21 @@ export const Controls: React.FC<ControlsProps> = ({
 		<Fragment>
 			<InspectorControls key="controls">
 				<PanelBody title={__('Button details')}>
-					<TextControl
-						label={__('Channel Link')}
-						value={link || ''}
-						onChange={onChangeChannelLink}
-						type="url"
-					/>
-					<TextControl
-						label={__('Button text')}
-						value={text || ''}
-						onChange={onChangeButtonText}
-					/>
+					<Flex direction="column" gap={4}>
+						<TextControl
+							label={__('Channel Link')}
+							value={link || ''}
+							onChange={onChangeChannelLink}
+							type="url"
+							__nextHasNoMarginBottom
+						/>
+						<TextControl
+							label={__('Button text')}
+							value={text || ''}
+							onChange={onChangeButtonText}
+							__nextHasNoMarginBottom
+						/>
+					</Flex>
 				</PanelBody>
 			</InspectorControls>
 			<BlockControls>
