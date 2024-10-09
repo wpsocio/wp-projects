@@ -8,5 +8,12 @@
 		"wp-content/plugins/wptelegram-login": "./plugins/wptelegram-login",
 		"wp-content/plugins/wptelegram-widget": "./plugins/wptelegram-widget",
 		"wp-content/debug.log": "./temp/debug.log"
+	},
+	"env": {
+		"tests": {
+			"mappings": {
+				"wp-content/mu-plugins": "./test/e2e-mu-plugins"
+			}
+		}
 	}
 }
