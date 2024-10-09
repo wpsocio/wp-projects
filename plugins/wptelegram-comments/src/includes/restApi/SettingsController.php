@@ -161,11 +161,11 @@ class SettingsController extends RESTController {
 				'validate_callback' => [ __CLASS__, 'validate_param' ],
 			],
 			'attributes' => [
-				'type'                 => 'object',
-				'additionalProperties' => true,
-				'default'              => [ 'async' => 'async' ],
-				'sanitize_callback'    => [ __CLASS__, 'sanitize_param' ],
-				'validate_callback'    => 'rest_validate_request_arg',
+				'type'              => 'object',
+				'default'           => [ 'async' => 'async' ],
+				'sanitize_callback' => [ __CLASS__, 'sanitize_param' ],
+				'validate_callback' => 'rest_validate_request_arg',
+				'properties'        => self::get_allowed_script_attributes(),
 			],
 			'post_types' => [
 				'type'              => 'array',
@@ -185,6 +185,33 @@ class SettingsController extends RESTController {
 	}
 
 	/**
+	 * Get allowed script attributes.
+	 *
+	 * @since x.y.z
+	 *
+	 * @return array
+	 */
+	public static function get_allowed_script_attributes() {
+		$attributes = [
+			'async'                     => [ 'type' => 'string' ],
+			'class'                     => [ 'type' => 'string' ],
+			'id'                        => [ 'type' => 'string' ],
+			'src'                       => [ 'type' => 'string' ],
+			'data-color'                => [ 'type' => 'string' ],
+			'data-colorful'             => [ 'type' => 'string' ],
+			'data-comments-app-website' => [ 'type' => 'string' ],
+			'data-dark'                 => [ 'type' => 'string' ],
+			'data-dislikes'             => [ 'type' => 'string' ],
+			'data-height'               => [ 'type' => 'string' ],
+			'data-limit'                => [ 'type' => 'string' ],
+			'data-outlined'             => [ 'type' => 'string' ],
+			'data-page-id'              => [ 'type' => 'string' ],
+		];
+
+		return apply_filters( 'wptelegram_comments_allowed_script_attributes', $attributes );
+	}
+
+	/**
 	 * Validate the params.
 	 *
 	 * @since 1.0.0
@@ -197,10 +224,9 @@ class SettingsController extends RESTController {
 		switch ( $key ) {
 			case 'code':
 				$pattern = '/\A<script[^<>]+?><\/script>\Z/';
-				break;
-		}
 
-		return (bool) preg_match( $pattern, $value );
+				return (bool) preg_match( $pattern, $value );
+		}
 	}
 
 	/**
@@ -215,7 +241,11 @@ class SettingsController extends RESTController {
 	public static function sanitize_param( $value, WP_REST_Request $request, $key ) {
 		switch ( $key ) {
 			case 'code':
-				return trim( $value );
+				$allowed_html = [
+					'script' => array_map( 'boolval', self::get_allowed_script_attributes() ),
+				];
+
+				return wp_kses( $value, $allowed_html );
 			case 'attributes':
 			case 'post_types':
 				return array_map( 'sanitize_text_field', $value );

@@ -37,11 +37,21 @@ class Shared extends BaseClass {
 
 		$attributes_array = $this->plugin()->options()->get( 'attributes' );
 
-		$attributes_array['async']        = 'async';
+		$attributes_array['async']        = true;
 		$attributes_array['data-page-id'] = $post->ID;
 
 		foreach ( $attributes_array as $key => $value ) {
-			$attributes .= $value ? $key . '="' . esc_attr( $value ) . '" ' : $key;
+			$separator = $value && is_string( $value ) ? '=' : '';
+
+			if ( $value && is_string( $value ) ) {
+				$value = 'src' === $key ? esc_url( $value ) : esc_attr( $value );
+
+				$value = sprintf( '"%s"', $value );
+			} else {
+				$value = '';
+			}
+
+			$attributes .= $key . $separator . $value . ' ';
 		}
 
 		return $attributes;
