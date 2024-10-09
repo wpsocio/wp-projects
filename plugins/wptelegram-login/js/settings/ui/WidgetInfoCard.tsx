@@ -1,13 +1,10 @@
-import { Link } from '@wpsocio/adapters';
-import {
-	Code,
-	Smile,
-	WidgetInfoCard as WidgetInfoCardUI,
-	WidgetInfoItem,
-} from '@wpsocio/components';
 import { __, sprintf } from '@wpsocio/i18n';
-import { createInterpolateElement } from '@wpsocio/utilities';
-
+import { Code } from '@wpsocio/shared-ui/components/code.js';
+import { PluginInfoItem } from '@wpsocio/shared-ui/components/plugin-info/plugin-info-item.js';
+import { Smile } from '@wpsocio/shared-ui/components/smile.js';
+import { WidgetInfoCard as WidgetInfoCardUI } from '@wpsocio/shared-ui/components/widget-info/widget-info-card.js';
+import { Link } from '@wpsocio/ui-components/wrappers/link.js';
+import { createInterpolateElement } from '@wpsocio/utilities/createInterpolateElement';
 import { useData } from '../services';
 
 export const WidgetInfoCard = () => {
@@ -15,7 +12,7 @@ export const WidgetInfoCard = () => {
 
 	return (
 		<WidgetInfoCardUI>
-			<WidgetInfoItem textAlign="start">
+			<PluginInfoItem>
 				{createInterpolateElement(
 					sprintf(
 						/* translators: 1, 2 Menu names */
@@ -35,23 +32,23 @@ export const WidgetInfoCard = () => {
 						Widget: <b>{__('WP Telegram Login')}</b>,
 					},
 				)}
-			</WidgetInfoItem>
-			<WidgetInfoItem textAlign="start">
+			</PluginInfoItem>
+			<PluginInfoItem>
 				{__(
 					'Alternately, you can use the below shortcode or the block available in block editor.',
 				)}
-			</WidgetInfoItem>
-			<WidgetInfoItem>{__('Inside page or post content:')}</WidgetInfoItem>
-			<WidgetInfoItem>
-				<Code width="100%">
+			</PluginInfoItem>
+			<PluginInfoItem>{__('Inside page or post content:')}</PluginInfoItem>
+			<PluginInfoItem>
+				<Code className="w-full">
 					{
 						'[wptelegram-login button_style="large" show_user_photo="1" corner_radius="15" lang="en"]'
 					}
 				</Code>
-			</WidgetInfoItem>
-			<WidgetInfoItem>{__('Inside the theme templates')}</WidgetInfoItem>
-			<WidgetInfoItem>
-				<Code width="100%">
+			</PluginInfoItem>
+			<PluginInfoItem>{__('Inside the theme templates')}</PluginInfoItem>
+			<PluginInfoItem>
+				<Code className="w-full">
 					{
 						"<?php\nif ( function_exists( 'wptelegram_login' ) ) {\n    wptelegram_login();\n}\n?>"
 					}
@@ -59,16 +56,16 @@ export const WidgetInfoCard = () => {
 				<br />
 				<span>{__('or')}</span>
 				<br />
-				<Code width="100%">
+				<Code className="w-full">
 					{'<?php\n' +
 						'$shortcode = \'[wptelegram-login button_style="small" show_user_photo="0" show_if_user_is="logged_in"]\';\n' +
 						'echo do_shortCode( $shortcode );\n' +
 						'?>'}
 				</Code>
-			</WidgetInfoItem>
-			<WidgetInfoItem>
+			</PluginInfoItem>
+			<PluginInfoItem className="border-b-0 py-0 text-center">
 				<Smile />
-			</WidgetInfoItem>
+			</PluginInfoItem>
 		</WidgetInfoCardUI>
 	);
 };

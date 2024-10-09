@@ -1,8 +1,6 @@
-import { useCallback } from 'react';
-
 import type { SubmitHandler, UseFormReturn } from '@wpsocio/form';
-import { useSubmitForm } from '@wpsocio/services';
-
+import { useSubmitForm } from '@wpsocio/services/use-submit-form.js';
+import { useCallback } from 'react';
 import { getErrorMessage } from './fields';
 import type { DataShape } from './types';
 import { useData } from './useData';
@@ -15,6 +13,7 @@ export const useOnSubmit = (
 	const path = `${rest_namespace}/settings/`;
 
 	const submitForm = useSubmitForm<DataShape>({
+		// @ts-expect-error
 		form,
 		path,
 		// @ts-expect-error

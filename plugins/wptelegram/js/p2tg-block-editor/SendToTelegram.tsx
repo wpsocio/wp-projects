@@ -1,5 +1,6 @@
 import { ToggleControl } from '@wordpress/components';
-import { PluginPostStatusInfo } from '@wordpress/edit-post';
+import { PluginPostStatusInfo as DeprecatedPluginPostStatusInfo } from '@wordpress/edit-post';
+import { PluginPostStatusInfo as _PluginPostStatusInfo } from '@wordpress/editor';
 import { useEffect } from '@wordpress/element';
 import { __ } from '@wpsocio/i18n';
 
@@ -13,6 +14,9 @@ const wrapperStyle: React.CSSProperties = {
 	width: '100%',
 	marginTop: '1rem',
 };
+
+const PluginPostStatusInfo =
+	_PluginPostStatusInfo || DeprecatedPluginPostStatusInfo;
 
 export const SendToTelegram: React.FC = () => {
 	const { data, savedData, isSaving, isDirty } = useDataState();
@@ -32,6 +36,7 @@ export const SendToTelegram: React.FC = () => {
 					label={__('Send to Telegram')}
 					checked={data.send2tg}
 					onChange={updateField('send2tg')}
+					__nextHasNoMarginBottom
 				/>
 				<OverrideSettings />
 			</div>

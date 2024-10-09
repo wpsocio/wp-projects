@@ -1,9 +1,9 @@
-import type { SimpleOptionsType } from '@wpsocio/adapters';
 import type {
 	BaseAssetsData,
 	BaseDOMData,
 	BasePluginData,
-} from '@wpsocio/services';
+} from '@wpsocio/services/types';
+import type { OptionsType } from '@wpsocio/ui-components/wrappers/types.js';
 import type { DataShape } from './fields';
 
 export type { DataShape };
@@ -17,7 +17,7 @@ export interface AssetsData extends BaseAssetsData {
 }
 
 export interface UiData {
-	post_types: SimpleOptionsType;
+	post_types: OptionsType;
 }
 
 export interface DataShape_Backup {

@@ -14,7 +14,7 @@ import {
 	trim,
 } from 'ramda';
 
-import { TG_USERNAME_REGEX } from '@wpsocio/utilities';
+import { TG_USERNAME_REGEX } from '@wpsocio/utilities/constants';
 
 import type { DataShape } from './types';
 

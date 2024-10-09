@@ -13,11 +13,11 @@ export type BotInstance = {
 	update_method: UpdateMethod;
 };
 
-export type KeyboardButton = {
+export type MessageButton = {
 	id?: string;
-	label?: string;
+	label: string;
 	value?: string;
-	url?: string;
+	type: 'url' | 'reaction' | 'login_url' | 'web_app';
 };
 
 export type ChatIdParts = {

@@ -14,23 +14,21 @@ import { __ } from '@wpsocio/i18n';
 
 export type ControlsProps = {
 	userpic: boolean;
-	toggleUserPic: VoidFunction;
+	toggleUserPic: (value: boolean) => void;
 	showEditButton: boolean;
 	switchBackToURLInput: VoidFunction;
 	alignment: NonNullable<BlockAlignmentToolbar.Props['controls']>[number];
 	changeAlignment: NonNullable<BlockAlignmentToolbar.Props['onChange']>;
 };
 
-export const Controls: React.FC<ControlsProps> = (props) => {
-	const {
-		userpic,
-		toggleUserPic,
-		showEditButton,
-		switchBackToURLInput,
-		alignment,
-		changeAlignment,
-	} = props;
-
+export const Controls: React.FC<ControlsProps> = ({
+	userpic,
+	toggleUserPic,
+	showEditButton,
+	switchBackToURLInput,
+	alignment,
+	changeAlignment,
+}) => {
 	return (
 		<Fragment>
 			<InspectorControls>
@@ -39,6 +37,7 @@ export const Controls: React.FC<ControlsProps> = (props) => {
 						label={__('Author Photo')}
 						checked={userpic}
 						onChange={toggleUserPic}
+						__nextHasNoMarginBottom
 					/>
 				</PanelBody>
 			</InspectorControls>

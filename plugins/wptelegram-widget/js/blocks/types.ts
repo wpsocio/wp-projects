@@ -3,7 +3,7 @@ import type {
 	BaseAssetsData,
 	BaseDOMData,
 	BasePluginData,
-} from '@wpsocio/services';
+} from '@wpsocio/services/types';
 
 export type TAlignment = NonNullable<
 	BlockAlignmentToolbar.Props['controls']

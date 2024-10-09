@@ -35,26 +35,27 @@
 		"validate-build": "pnpm build-utils validate"
 	},
 	"dependencies": {
-		"yup": "^1.4.0"
-	},
-	"devDependencies": {
-		"@types/jquery": "^3.5.30",
-		"@types/react": "^18.3.3",
-		"@types/react-dom": "^18.3.0",
-		"@wpsocio/adapters": "workspace:*",
-		"@wpsocio/build-utils": "workspace:*",
-		"@wpsocio/components": "workspace:*",
 		"@wpsocio/form": "workspace:*",
-		"@wpsocio/form-components": "workspace:*",
 		"@wpsocio/i18n": "workspace:*",
 		"@wpsocio/services": "workspace:*",
+		"@wpsocio/shared-ui": "workspace:*",
+		"@wpsocio/ui-components": "workspace:*",
 		"@wpsocio/utilities": "workspace:*",
-		"@wpsocio/vite-wp-react": "workspace:*",
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1",
-		"typescript": "^5.5.4",
-		"vite": "^5.3.5",
-		"wireit": "^0.14.5"
+		"zod": "^3.23.8"
+	},
+	"devDependencies": {
+		"@types/jquery": "^3.5.31",
+		"@types/react": "^18.3.10",
+		"@types/react-dom": "^18.3.0",
+		"@wpsocio/build-utils": "workspace:*",
+		"@wpsocio/vite-wp-react": "workspace:*",
+		"autoprefixer": "^10.4.20",
+		"tailwindcss": "^3.4.13",
+		"typescript": "^5.6.2",
+		"vite": "^5.4.8",
+		"wireit": "^0.14.9"
 	},
 	"build-utils": {
 		"validate": [

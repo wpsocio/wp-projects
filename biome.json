@@ -7,7 +7,8 @@
 			"build/*",
 			"node_modules/*",
 			"vendor/*",
-			".wireit/*"
+			".wireit/*",
+			"./packages/js/ui-components/ui/*"
 		]
 	},
 	"organizeImports": {
@@ -25,6 +26,17 @@
 			"recommended": true,
 			"style": {
 				"useTemplate": "off"
+			},
+			"correctness": {
+				"noUnusedImports": {
+					"level": "warn",
+					"fix": "none"
+				}
+			},
+			"suspicious": {
+				"noConsoleLog": {
+					"level": "warn"
+				}
 			}
 		}
 	}

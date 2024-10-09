@@ -1,5 +1,5 @@
-import { WidgetInfo } from '@wpsocio/components';
 import { __ } from '@wpsocio/i18n';
+import { WidgetInfo } from '@wpsocio/shared-ui/components/widget-info/widget-info.js';
 import { useData } from '../../services';
 
 export const LegacyWidgetInfo = () => {
