@@ -20,16 +20,23 @@
 		"wppackagist": {
 			"type": "composer",
 			"url": "https://wpackagist.org",
-			"only": ["wpackagist-plugin/*"]
+			"only": [
+				"wpackagist-plugin/*"
+			]
 		},
 		"local": {
 			"type": "path",
-			"url": "../../packages/php/*"
+			"url": "../../packages/php/*",
+			"options": {
+				"symlink": false
+			}
 		}
 	},
 	"extra": {
 		"installer-paths": {
-			"temp/{$name}/": ["wpackagist-plugin/cmb2"]
+			"temp/{$name}/": [
+				"wpackagist-plugin/cmb2"
+			]
 		}
 	},
 	"config": {

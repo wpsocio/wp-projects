@@ -18,6 +18,8 @@
 		"bundle:changed": "wireit",
 		"dev": "wireit",
 		"dev:cleanup": "wireit",
+		"env-start": "wp-env start",
+		"env-stop": "wp-env stop",
 		"lint:all": "wireit",
 		"lint:js": "wireit",
 		"lint:js:fix": "biome format ./ --fix",
@@ -32,12 +34,14 @@
 		"test:php": "wireit",
 		"typecheck": "wireit",
 		"upgrade-all": "pnpm ncu -u && pnpm -r exec pnpm ncu -u",
-		"wp": "composer run wp -- "
+		"wp": "composer run wp -- ",
+		"wp-env": "wp-env"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.8.3",
 		"@changesets/changelog-github": "^0.5.0",
 		"@changesets/cli": "^2.27.7",
+		"@wordpress/env": "^10.9.0",
 		"@wpsocio/wpdev": "workspace:*",
 		"npm-check-updates": "^16.14.20",
 		"rimraf": "^6.0.1",
