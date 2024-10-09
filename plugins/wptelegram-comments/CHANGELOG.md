@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.24
+
+### Patch Changes
+
+- [#170](https://github.com/wpsocio/wp-projects/pull/170) [`d60b1c9`](https://github.com/wpsocio/wp-projects/commit/d60b1c9be49da966ae70e3dd23173f6f52f7b7eb) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Improved script attributes validation and escaping
+
 ## 1.1.23
 
 ### Patch Changes

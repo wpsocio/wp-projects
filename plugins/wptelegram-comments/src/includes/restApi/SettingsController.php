@@ -187,7 +187,7 @@ class SettingsController extends RESTController {
 	/**
 	 * Get allowed script attributes.
 	 *
-	 * @since x.y.z
+	 * @since 1.1.24
 	 *
 	 * @return array
 	 */
