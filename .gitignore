@@ -18,6 +18,7 @@ vendor/
 !/plugins/
 !/tools/
 !/test/
+!/patches/
 
 # Ignore all plugins because there may be other plugins installed
 /plugins/*/
@@ -35,7 +36,6 @@ tsconfig.tsbuildinfo
 .turbo/
 .wireit/
 .phpunit.result.cache
-/test/e2e/artifacts/
 
 # Misc
 build/

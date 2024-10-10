@@ -7,8 +7,8 @@ test.describe('Settings', () => {
 	let rest: REST;
 
 	test.beforeAll(async ({ requestUtils }) => {
-		await requestUtils.activatePlugin('wp-telegram-comments');
 		rest = new REST(requestUtils);
+		await requestUtils.activatePlugin('wp-telegram-comments');
 	});
 
 	test.beforeEach(async ({ admin, pageUtils }) => {
@@ -69,7 +69,7 @@ test.describe('Settings', () => {
 		await page.keyboard.type('<script async></script>');
 
 		await actions.saveChangesAndWait({
-			apiPath: 'wp-json/wptelegram-comments/v1/settings',
+			apiPath: '/wptelegram-comments/v1/settings',
 			assertSaved: true,
 		});
 
@@ -95,7 +95,7 @@ test.describe('Settings', () => {
 		await page.keyboard.type('1, 2, 3,invalid,');
 
 		await actions.saveChangesAndWait({
-			apiPath: 'wp-json/wptelegram-comments/v1/settings',
+			apiPath: '/wptelegram-comments/v1/settings',
 		});
 
 		expect(await page.getByLabel('Code').inputValue()).toBe(

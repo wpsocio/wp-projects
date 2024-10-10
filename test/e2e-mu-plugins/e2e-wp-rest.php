@@ -1,14 +1,11 @@
 <?php
 /**
- * The plugin main file.
+ * Plugin Name: E2E WP REST: Adds some custom REST API endpoints.
+ * Plugin URI: https://github.com/WPSocio/wp-projects
+ * Author: WP Socio Team
  *
  * @package e2e-wp-rest
  */
-
-// If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
-	die;
-}
 
 add_action(
 	'rest_api_init',
@@ -61,7 +58,7 @@ add_action(
 
 						update_option( $option_name, $option_value );
 
-						return new WP_REST_Response( true, 200 );
+						return new WP_REST_Response( [ 'success' => true ], 200 );
 					},
 				],
 				[
@@ -80,7 +77,7 @@ add_action(
 
 						delete_option( $option_name );
 
-						return new WP_REST_Response( true, 200 );
+						return new WP_REST_Response( [ 'success' => true ], 200 );
 					},
 				],
 			]

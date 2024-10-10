@@ -19,7 +19,15 @@ export class Actions {
 
 		await Promise.all([
 			saveButton.click(),
-			this.page.waitForResponse((resp) => resp.url().includes(apiPath)),
+			this.page.waitForResponse((resp) => {
+				const url = resp.url();
+
+				return (
+					url.includes(apiPath) ||
+					// API path can be encoded in the URL as `rest_route`.
+					url.includes(encodeURIComponent(apiPath))
+				);
+			}),
 		]);
 
 		if (assertSaved) {

@@ -13,8 +13,8 @@ test.describe('Public UI', () => {
 	const botToken = '123456789:y7SdjUVdeSA8HRF3WmOqHAA-cOIiz9u04dC';
 
 	test.beforeAll(async ({ requestUtils }) => {
-		await requestUtils.activatePlugin('wp-telegram-login');
 		rest = new REST(requestUtils);
+		await requestUtils.activatePlugin('wp-telegram-login');
 	});
 
 	test.beforeEach(async ({ admin, page, pageUtils, requestUtils, editor }) => {
@@ -35,7 +35,7 @@ test.describe('Public UI', () => {
 		await botUsernameField.fill('E2ETestBot');
 
 		await actions.saveChangesAndWait({
-			apiPath: 'wp-json/wptelegram-login/v1/settings',
+			apiPath: '/wptelegram-login/v1/settings',
 		});
 	});
 

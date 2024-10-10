@@ -8,8 +8,8 @@ test.describe('Public UI', () => {
 	let rest: REST;
 
 	test.beforeAll(async ({ requestUtils }) => {
-		await requestUtils.activatePlugin('wp-telegram-comments');
 		rest = new REST(requestUtils);
+		await requestUtils.activatePlugin('wp-telegram-comments');
 	});
 
 	test.beforeEach(async ({ pageUtils }) => {
@@ -21,7 +21,7 @@ test.describe('Public UI', () => {
 		await rest.deleteOption('wptelegram_comments');
 	});
 
-	test('Should render the widget ', async ({
+	test('Should render the comments widget ', async ({
 		requestUtils,
 		page,
 		editor,
@@ -65,7 +65,7 @@ test.describe('Public UI', () => {
 					);
 
 					await actions.saveChangesAndWait({
-						apiPath: 'wp-json/wptelegram-comments/v1/settings',
+						apiPath: '/wptelegram-comments/v1/settings',
 					});
 				});
 
@@ -91,7 +91,7 @@ test.describe('Public UI', () => {
 				await page.keyboard.type(`${postId}`);
 
 				await actions.saveChangesAndWait({
-					apiPath: 'wp-json/wptelegram-comments/v1/settings',
+					apiPath: '/wptelegram-comments/v1/settings',
 				});
 
 				await page.goto(`/?p=${postId}`);
@@ -110,7 +110,7 @@ test.describe('Public UI', () => {
 				await page.getByLabel('Exclude').clear();
 
 				await actions.saveChangesAndWait({
-					apiPath: 'wp-json/wptelegram-comments/v1/settings',
+					apiPath: '/wptelegram-comments/v1/settings',
 				});
 
 				await page.goto(`/?p=${postId}`);
