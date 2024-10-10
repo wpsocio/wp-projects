@@ -12,6 +12,7 @@
 	"env": {
 		"tests": {
 			"mappings": {
+				"wp-content/plugins/classic-editor": "WordPress/classic-editor",
 				"wp-content/mu-plugins": "./test/e2e-mu-plugins"
 			}
 		}

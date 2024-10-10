@@ -1,4 +1,5 @@
 import { expect, test } from '@wordpress/e2e-test-utils-playwright';
+import { DEFAULT_THEME } from '../../config/constants.js';
 import { Actions } from '../../utils/actions.js';
 import { REST } from '../../utils/rest.js';
 
@@ -11,21 +12,8 @@ test.describe('Public UI', () => {
 		rest = new REST(requestUtils);
 	});
 
-	test.beforeEach(async ({ admin, page, pageUtils }) => {
+	test.beforeEach(async ({ pageUtils }) => {
 		actions = new Actions(pageUtils);
-		await rest.deleteOption('wptelegram_comments');
-
-		await admin.visitAdminPage('admin.php', 'page=wptelegram_comments');
-
-		await page.getByLabel('Code').selectText();
-
-		await page.keyboard.type(
-			'<script async src="https://comments.app/js/widget.js" data-comments-app-website="abcdefghi" id="e2e-test-comments"></script>',
-		);
-
-		await actions.saveChangesAndWait({
-			apiPath: 'wp-json/wptelegram-comments/v1/settings',
-		});
 	});
 
 	test.afterAll(async ({ requestUtils }) => {
@@ -33,81 +21,110 @@ test.describe('Public UI', () => {
 		await rest.deleteOption('wptelegram_comments');
 	});
 
-	const themeTestCases = [
-		{
-			type: 'block-based',
-			theme: 'twentytwentyfour',
-		},
-		{
-			type: 'legacy',
-			theme: 'twentytwentyone',
-		},
-	];
-
-	for (const { type, theme } of themeTestCases) {
-		test(`Should render the widget in ${type} themes`, async ({
-			requestUtils,
-			page,
-			editor,
-			admin,
-		}) => {
-			await requestUtils.activateTheme(theme);
-
+	test('Should render the widget ', async ({
+		requestUtils,
+		page,
+		editor,
+		admin,
+	}) => {
+		const { postId, activeTheme } = await test.step('Prepare', async () => {
 			await admin.createNewPost();
 
 			await editor.canvas
 				.getByRole('textbox', { name: 'Add title' })
 				.fill('A published post');
 
-			const postId = await editor.publishPost();
+			return {
+				postId: await editor.publishPost(),
+				activeTheme: await rest.getActiveTheme(),
+			};
+		});
 
-			await page.goto(`/?p=${postId}`);
+		const themeTestCases = [
+			{
+				type: 'legacy',
+				theme: 'twentytwentyone',
+			},
+			{
+				type: 'block-based',
+				theme: 'twentytwentyfour',
+			},
+		];
 
-			const script = page.locator('script[id="e2e-test-comments"]');
+		for (const { type, theme } of themeTestCases) {
+			await test.step(`Render in ${type} themes`, async () => {
+				await test.step('Reset settings', async () => {
+					await rest.deleteOption('wptelegram_comments');
 
-			await expect(script).toHaveCount(1);
+					await admin.visitAdminPage('admin.php', 'page=wptelegram_comments');
 
-			const value = await script.evaluate((el) =>
-				el.getAttribute('data-comments-app-website'),
-			);
+					await page.getByLabel('Code').selectText();
 
-			expect(value).toBe('abcdefghi');
+					await page.keyboard.type(
+						'<script async src="https://comments.app/js/widget.js" data-comments-app-website="abcdefghi" id="e2e-test-comments"></script>',
+					);
 
-			// Now let us exclude the post
-			await admin.visitAdminPage('admin.php', 'page=wptelegram_comments');
+					await actions.saveChangesAndWait({
+						apiPath: 'wp-json/wptelegram-comments/v1/settings',
+					});
+				});
 
-			await page.getByLabel('Exclude').selectText();
+				await requestUtils.activateTheme(theme);
 
-			await page.keyboard.type(`${postId}`);
+				await page.goto(`/?p=${postId}`);
 
-			await actions.saveChangesAndWait({
-				apiPath: 'wp-json/wptelegram-comments/v1/settings',
+				const script = page.locator('script[id="e2e-test-comments"]');
+
+				await expect(script).toHaveCount(1);
+
+				const value = await script.evaluate((el) =>
+					el.getAttribute('data-comments-app-website'),
+				);
+
+				expect(value).toBe('abcdefghi');
+
+				// Now let us exclude the post
+				await admin.visitAdminPage('admin.php', 'page=wptelegram_comments');
+
+				await page.getByLabel('Exclude').selectText();
+
+				await page.keyboard.type(`${postId}`);
+
+				await actions.saveChangesAndWait({
+					apiPath: 'wp-json/wptelegram-comments/v1/settings',
+				});
+
+				await page.goto(`/?p=${postId}`);
+
+				await expect(
+					page.locator('script[id="e2e-test-comments"]'),
+				).toHaveCount(0);
+
+				// Now let us disable comments on posts
+				await admin.visitAdminPage('admin.php', 'page=wptelegram_comments');
+
+				await page
+					.getByRole('checkbox', { name: 'Post (post)', exact: true })
+					.uncheck({ force: true });
+
+				await page.getByLabel('Exclude').clear();
+
+				await actions.saveChangesAndWait({
+					apiPath: 'wp-json/wptelegram-comments/v1/settings',
+				});
+
+				await page.goto(`/?p=${postId}`);
+
+				await expect(
+					page.locator('script[id="e2e-test-comments"]'),
+				).toHaveCount(0);
 			});
+		}
 
-			await page.goto(`/?p=${postId}`);
-
-			await expect(page.locator('script[id="e2e-test-comments"]')).toHaveCount(
-				0,
-			);
-
-			// Now let us disable comments on posts
-			await admin.visitAdminPage('admin.php', 'page=wptelegram_comments');
-
-			await page
-				.getByRole('checkbox', { name: 'Post (post)', exact: true })
-				.uncheck({ force: true });
-
-			await page.getByLabel('Exclude').clear();
-
-			await actions.saveChangesAndWait({
-				apiPath: 'wp-json/wptelegram-comments/v1/settings',
-			});
-
-			await page.goto(`/?p=${postId}`);
-
-			await expect(page.locator('script[id="e2e-test-comments"]')).toHaveCount(
-				0,
+		await test.step('Restore the active theme', async () => {
+			await requestUtils.activateTheme(
+				activeTheme?.stylesheet || DEFAULT_THEME,
 			);
 		});
-	}
+	});
 });

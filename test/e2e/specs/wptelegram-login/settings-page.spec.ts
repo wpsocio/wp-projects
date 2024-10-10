@@ -176,11 +176,7 @@ test.describe('Settings', () => {
 		expect(await botUsernameField.inputValue()).toBe('E2ETestBot');
 	});
 
-	test('Should display fields conditionally', async ({
-		page,
-		pageUtils,
-		requestUtils,
-	}) => {
+	test('Should display fields conditionally', async ({ page }) => {
 		// Fields that depend on the "Disable Sign up" checkbox
 		const userRoleFiel = page.getByLabel('User Role');
 		const randomEmailField = page.getByLabel('Random Email');
