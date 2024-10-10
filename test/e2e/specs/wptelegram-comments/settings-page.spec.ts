@@ -11,8 +11,8 @@ test.describe('Settings', () => {
 		rest = new REST(requestUtils);
 	});
 
-	test.beforeEach(async ({ admin, page }) => {
-		actions = new Actions(page);
+	test.beforeEach(async ({ admin, page, pageUtils }) => {
+		actions = new Actions(pageUtils);
 
 		await rest.deleteOption('wptelegram_comments');
 		await admin.visitAdminPage('admin.php', 'page=wptelegram_comments');

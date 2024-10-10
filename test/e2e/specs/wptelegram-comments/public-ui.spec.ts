@@ -11,8 +11,8 @@ test.describe('Public UI', () => {
 		rest = new REST(requestUtils);
 	});
 
-	test.beforeEach(async ({ admin, page }) => {
-		actions = new Actions(page);
+	test.beforeEach(async ({ admin, page, pageUtils }) => {
+		actions = new Actions(pageUtils);
 		await rest.deleteOption('wptelegram_comments');
 
 		await admin.visitAdminPage('admin.php', 'page=wptelegram_comments');
@@ -63,9 +63,15 @@ test.describe('Public UI', () => {
 
 			await page.goto(`/?p=${postId}`);
 
-			await expect(page.locator('script[id="e2e-test-comments"]')).toHaveCount(
-				1,
+			const script = page.locator('script[id="e2e-test-comments"]');
+
+			await expect(script).toHaveCount(1);
+
+			const value = await script.evaluate((el) =>
+				el.getAttribute('data-comments-app-website'),
 			);
+
+			expect(value).toBe('abcdefghi');
 
 			// Now let us exclude the post
 			await admin.visitAdminPage('admin.php', 'page=wptelegram_comments');
