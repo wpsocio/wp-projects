@@ -25,6 +25,18 @@
 			"recommended": true,
 			"style": {
 				"useTemplate": "off"
+			},
+			"correctness": {
+				"noUnusedImports": {
+					"level": "warn",
+					"fix": "none"
+				},
+				"noUnusedVariables": "warn"
+			},
+			"suspicious": {
+				"noConsoleLog": {
+					"level": "warn"
+				}
 			}
 		}
 	}
