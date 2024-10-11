@@ -30,19 +30,16 @@ test.describe('Settings', () => {
 	test('Should not allow submission without code', async ({ page }) => {
 		const code = page.getByLabel('Code');
 
-		const validationMessage = await code.evaluate((element) => {
-			const input = element as HTMLTextAreaElement;
-			return input.validationMessage;
-		});
+		const validationMessage = await code.evaluate(
+			(el: HTMLTextAreaElement) => el.validationMessage,
+		);
 
 		expect(validationMessage).toBe('Please fill out this field.');
 
 		// Should not show validation message before submission.
 		expect(await page.content()).not.toContain('Code required');
 
-		const saveButton = page.getByRole('button', { name: 'Save Changes' });
-
-		await saveButton.click();
+		await actions.saveChangesButton.click();
 
 		// Press tab key to blur the code input to dismiss form validation tooltip.
 		await page.keyboard.press('Tab');
@@ -78,7 +75,7 @@ test.describe('Settings', () => {
 
 		const code = page.getByLabel('Code');
 
-		code.waitFor();
+		await code.waitFor();
 
 		expect(await code.inputValue()).toBe('<script async></script>');
 	});

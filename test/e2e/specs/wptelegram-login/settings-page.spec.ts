@@ -36,21 +36,18 @@ test.describe('Settings', () => {
 	test('Should validate the bot token and username inputs', async ({
 		page,
 	}) => {
-		const botToken = page.getByLabel('Bot Token');
+		const botTokenField = page.getByLabel('Bot Token');
 
-		const validationMessage = await botToken.evaluate((element) => {
-			const input = element as HTMLTextAreaElement;
-			return input.validationMessage;
-		});
+		const validationMessage = await botTokenField.evaluate(
+			(el: HTMLInputElement) => el.validationMessage,
+		);
 
 		expect(validationMessage).toBe('Please fill out this field.');
 
 		// Should not show validation message before submission.
 		expect(await page.content()).not.toContain('Bot Token required');
 
-		const saveButton = page.getByRole('button', { name: 'Save Changes' });
-
-		await saveButton.click();
+		await actions.saveChangesButton.click();
 
 		await page.keyboard.press('Tab');
 
@@ -62,7 +59,7 @@ test.describe('Settings', () => {
 
 		expect(await page.content()).toContain('Bot Username required');
 
-		await botToken.selectText();
+		await botTokenField.selectText();
 
 		await page.keyboard.type('invalid-token');
 
@@ -86,7 +83,7 @@ test.describe('Settings', () => {
 			},
 		};
 		// Mock the api call
-		await mocks.mockRequest(`bot${botToken}/getMe`, { json });
+		const unmock = await mocks.mockRequest(`bot${botToken}/getMe`, { json });
 
 		const botTokenField = page.getByLabel('Bot Token');
 		const botUsernameField = page.getByLabel('Bot Username');
@@ -101,18 +98,20 @@ test.describe('Settings', () => {
 
 		expect(await page.content()).not.toContain(result);
 
-		await actions.testBotTokenAndWait({ botToken });
+		await actions.testBotTokenAndWait({ endpoint: `/bot${botToken}/getMe` });
 
 		expect(await page.content()).toContain(result);
 
 		expect(await botUsernameField.inputValue()).toBe(json.result.username);
+
+		await unmock();
 	});
 
 	test('Should handle the API call for invalid token', async ({ page }) => {
 		const json = { ok: false, error_code: 401, description: 'Unauthorized' };
 
 		// Mock the api call
-		await mocks.mockRequest(`bot${botToken}/getMe`, {
+		const unmock = await mocks.mockRequest(`bot${botToken}/getMe`, {
 			json,
 			status: json.error_code,
 		});
@@ -128,11 +127,13 @@ test.describe('Settings', () => {
 
 		expect(await page.content()).not.toContain(result);
 
-		await actions.testBotTokenAndWait({ botToken });
+		await actions.testBotTokenAndWait({ endpoint: `/bot${botToken}/getMe` });
 
 		expect(await page.content()).toContain(result);
 
 		expect(await botUsernameField.inputValue()).toBe('');
+
+		await unmock();
 	});
 
 	test('That the bot username field is readonly by default', async ({

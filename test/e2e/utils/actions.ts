@@ -8,26 +8,20 @@ export class Actions {
 		this.page = pageUtils.page;
 	}
 
+	get saveChangesButton() {
+		return this.page.getByRole('button', {
+			name: 'Save Changes',
+			exact: true,
+		});
+	}
+
 	async saveChangesAndWait({
 		apiPath,
 		assertSaved = false,
 	}: { apiPath: string; assertSaved?: boolean }) {
-		const saveButton = this.page.getByRole('button', {
-			name: 'Save Changes',
-			exact: true,
-		});
-
 		await Promise.all([
-			saveButton.click(),
-			this.page.waitForResponse((resp) => {
-				const url = resp.url();
-
-				return (
-					url.includes(apiPath) ||
-					// API path can be encoded in the URL as `rest_route`.
-					url.includes(encodeURIComponent(apiPath))
-				);
-			}),
+			this.saveChangesButton.click(),
+			this.waitForApiResponse(apiPath),
 		]);
 
 		if (assertSaved) {
@@ -35,9 +29,21 @@ export class Actions {
 		}
 	}
 
-	async testBotTokenAndWait({ botToken }: { botToken: string }) {
-		const apiPath = `/bot${botToken}/getMe`;
+	async waitForApiResponse(apiPath: string) {
+		return await this.page.waitForResponse((resp) => {
+			const url = resp.url();
 
+			return (
+				url.includes(apiPath) ||
+				// API path can be URL encoded
+				url.includes(encodeURIComponent(apiPath))
+			);
+		});
+	}
+
+	async testBotTokenAndWait({
+		endpoint = '/wptelegram-bot/v1/getMe',
+	}: { endpoint?: string } = {}) {
 		const testButton = this.page.getByRole('button', {
 			name: 'Test Token',
 			exact: true,
@@ -45,7 +51,7 @@ export class Actions {
 
 		return await Promise.all([
 			testButton.click(),
-			this.page.waitForResponse((resp) => resp.url().includes(apiPath)),
+			this.waitForApiResponse(endpoint),
 		]);
 	}
 
@@ -54,11 +60,15 @@ export class Actions {
 			name: 'Notifications',
 		});
 
-		const notificationShown = notifications.getByRole('status');
+		const notificationShown = notifications.locator('div[role="status"]', {
+			has: this.page.locator('span[data-status="success"]'),
+		});
 
 		await notificationShown.waitFor();
 
-		expect(await this.page.content()).toContain('Changes saved successfully.');
+		expect(await notificationShown.textContent()).toContain(
+			'Changes saved successfully.',
+		);
 	}
 
 	async logout() {

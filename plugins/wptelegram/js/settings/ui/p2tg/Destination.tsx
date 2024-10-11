@@ -28,6 +28,7 @@ export const Destination: React.FC = () => {
 						name={`${PREFIX}.channels`}
 						onBlur={onBlur}
 						placeholder="@username"
+						addButtonLabel={__('Add Channel')}
 					/>
 				</StackItem>
 				<StackItem flex={1}>

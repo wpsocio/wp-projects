@@ -102,25 +102,21 @@ test.describe('Settings', () => {
 
 		const botTokenField = tabPanel.getByLabel('Bot Token');
 
-		let validationMessage = await botTokenField.evaluate((element) => {
-			const input = element as HTMLInputElement;
-			return input.validationMessage;
-		});
+		let validationMessage = await botTokenField.evaluate(
+			(el: HTMLInputElement) => el.validationMessage,
+		);
 
 		expect(validationMessage).toBeFalsy();
 
 		await tabPanel.getByLabel('Username').fill('SomeUsername');
 
-		validationMessage = await botTokenField.evaluate((element) => {
-			const input = element as HTMLInputElement;
-			return input.validationMessage;
-		});
+		validationMessage = await botTokenField.evaluate(
+			(el: HTMLInputElement) => el.validationMessage,
+		);
 
 		expect(validationMessage).toBe('Please fill out this field.');
 
-		const saveButton = page.getByRole('button', { name: 'Save Changes' });
-
-		await saveButton.click();
+		await actions.saveChangesButton.click();
 
 		await page.keyboard.press('Tab');
 

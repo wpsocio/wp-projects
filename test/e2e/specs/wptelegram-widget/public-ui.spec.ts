@@ -113,7 +113,7 @@ test.describe('Public UI', () => {
 
 				const link = page.getByRole('link', { name: 'Join our channel' });
 
-				await expect(link).toHaveCount(1);
+				await expect(link).toBeVisible();
 
 				const href = await link.getAttribute('href');
 
@@ -175,7 +175,7 @@ test.describe('Public UI', () => {
 				for (const [text, href] of linksToAssert) {
 					const link = page.getByRole('link', { name: text });
 
-					await expect(link).toHaveCount(1);
+					await expect(link).toBeVisible();
 
 					const linkHref = await link.getAttribute('href');
 
