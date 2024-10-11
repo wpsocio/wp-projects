@@ -1,5 +1,6 @@
 {
-	"extends": "../../tsconfig.json",
+	"extends": "../tsconfig.json",
+	"include": ["e2e"],
 	"compilerOptions": {
 		"lib": ["DOM", "DOM.Iterable", "ESNext"]
 	}
