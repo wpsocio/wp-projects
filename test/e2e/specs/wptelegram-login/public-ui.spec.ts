@@ -78,4 +78,36 @@ test.describe('Public UI', () => {
 			});
 		}
 	});
+
+	test('Should show or hide the Telegram login on default login page.', async ({
+		page,
+		admin,
+	}) => {
+		// Select "Any" option for "Show if user is" setting
+		await page.getByLabel('Show if user is').selectOption('Any');
+
+		await actions.saveChangesAndWait({
+			apiPath: '/wptelegram-login/v1/settings',
+		});
+
+		await page.goto('/wp-login.php');
+
+		await expect(
+			page.locator('script[data-telegram-login="E2ETestBot"]'),
+		).toHaveCount(1);
+
+		await admin.visitAdminPage('admin.php', 'page=wptelegram_login');
+
+		await page.getByLabel('Hide on default login').check({ force: true });
+
+		await actions.saveChangesAndWait({
+			apiPath: '/wptelegram-login/v1/settings',
+		});
+
+		await page.goto('/wp-login.php');
+
+		await expect(
+			page.locator('script[data-telegram-login="E2ETestBot"]'),
+		).toHaveCount(0);
+	});
 });
