@@ -44,7 +44,7 @@ test.describe('Public UI', () => {
 		await rest.deleteOption('wptelegram_login');
 	});
 
-	test('Should render the login button', async ({ page }) => {
+	test('Should render the login button via shortcode', async ({ page }) => {
 		const editors = [
 			() => ({ type: 'classic', editorInstance: classicEditor }),
 			() => ({ type: 'block', editorInstance: blockEditor }),
@@ -77,6 +77,33 @@ test.describe('Public UI', () => {
 				await editorInstance.tearDown();
 			});
 		}
+	});
+
+	test('Should render the login button via the block in block editor', async ({
+		page,
+		admin,
+		editor,
+	}) => {
+		await admin.createNewPost();
+
+		await page
+			.getByRole('textbox', { name: 'Add title' })
+			.fill('Test post for Telegram Login block');
+
+		await editor.insertBlock({ name: 'wptelegram/login' });
+
+		await page.getByLabel('Show User Photo').uncheck();
+		await page.getByLabel('Show if user is').selectOption('Any');
+
+		const postId = await editor.publishPost();
+
+		await page.goto(`/?p=${postId}`);
+
+		const script = page.locator('script[data-telegram-login="E2ETestBot"]');
+
+		await expect(script).toHaveCount(1);
+
+		expect(await script.getAttribute('data-userpic')).toBe('false');
 	});
 
 	test('Should show or hide the Telegram login on default login page.', async ({

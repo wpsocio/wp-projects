@@ -56,7 +56,6 @@ export const Edit: React.FC<BlockEditProps<AjaxWidgetAtts>> = ({
 						label={__('Widget Height')}
 						value={widget_height}
 						onChange={onChangeHeight}
-						type="number"
 					/>
 				</PanelBody>
 			</InspectorControls>
