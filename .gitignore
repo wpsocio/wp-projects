@@ -17,6 +17,8 @@ vendor/
 !/packages/
 !/plugins/
 !/tools/
+!/test/
+!/patches/
 
 # Ignore all plugins because there may be other plugins installed
 /plugins/*/

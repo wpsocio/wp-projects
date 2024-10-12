@@ -250,23 +250,21 @@ class Shared extends BaseClass {
 		 */
 		$show_if_user_is = apply_filters( 'wptelegram_login_show_if_user_is', $show_if_user_is );
 
+		if ( 'any' === $show_if_user_is ) {
+			return true;
+		}
+
 		$user = wp_get_current_user();
 
 		$is_logged_in = $user->exists();
 
 		// Using the different convention just to make the things meaningful :).
 		if ( 'logged_in' === $show_if_user_is ) {
-			if ( $is_logged_in ) {
-				return true;
-			}
-			return false;
+			return $is_logged_in;
 		}
 
 		if ( 'logged_out' === $show_if_user_is ) {
-			if ( $is_logged_in ) {
-				return false;
-			}
-			return true;
+			return ! $is_logged_in;
 		}
 
 		if ( ! empty( $show_if_user_is ) ) {

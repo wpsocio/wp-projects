@@ -7,7 +7,7 @@
  * @package           WPTelegram_Login
  *
  * @wordpress-plugin
- * Plugin Name:       WP Telegram Login Dev
+ * Plugin Name:       WP Telegram Login
  * Plugin URI:        https://t.me/WPTelegram
  * Description:       ❌ DO NOT DELETE ❌ Development Environment for WP Telegram Login. Versioned high to avoid auto update.
  * Version:           999.999.999

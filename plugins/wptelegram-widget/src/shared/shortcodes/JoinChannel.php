@@ -65,14 +65,14 @@ class JoinChannel {
 			 * if either the child theme or the parent theme have overridden the template.
 			 */
 			if ( Utils::is_valid_template( $overridden_template ) ) {
-				load_template( $overridden_template );
+				load_template( $overridden_template, false );
 			}
 		} else {
 			/*
 			 * If neither the child nor parent theme have overridden the template,
 			 * we load the template from the 'partials' sub-directory of the directory this file is in.
 			 */
-			load_template( __DIR__ . '/../partials/join-channel.php' );
+			load_template( __DIR__ . '/../partials/join-channel.php', false );
 		}
 		$html = ob_get_clean();
 		return $html;

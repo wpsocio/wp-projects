@@ -1,8 +1,8 @@
 import { useCallback } from 'react';
 
 import { Button } from '@wpsocio/adapters';
-import { AddIcon } from '@wpsocio/icons';
 import { __ } from '@wpsocio/i18n';
+import { AddIcon } from '@wpsocio/icons';
 
 import { DEFAULT_RULE } from './constants';
 import type { RuleGroupProps } from './types';
@@ -16,7 +16,7 @@ export const AddRuleGroup: React.FC<AddRuleGroupProps> = ({ rulesArray }) => {
 
 	return (
 		<Button leftIcon={<AddIcon />} onClick={onClick}>
-			{__('Add')}
+			{__('Add rule')}
 		</Button>
 	);
 };

@@ -1,8 +1,8 @@
 import { useCallback } from 'react';
 
+import { Box, Flex, IconButton } from '@wpsocio/adapters';
 import { __ } from '@wpsocio/i18n';
 import { AddIcon, CloseIcon } from '@wpsocio/icons';
-import { Box, Flex, IconButton } from '@wpsocio/adapters';
 
 import { DEFAULT_RULE } from './constants';
 import type { RuleSetProps } from './types';
@@ -24,7 +24,7 @@ export const RuleSetButtons: React.FC<RuleSetProps> = (props) => {
 		<Flex alignItems="center">
 			<Box ps="0.5em">
 				<IconButton
-					aria-label={__('Add')}
+					aria-label={__('Add another rule')}
 					icon={<AddIcon />}
 					onClick={onAdd}
 					title={__('Add')}
@@ -33,7 +33,7 @@ export const RuleSetButtons: React.FC<RuleSetProps> = (props) => {
 			</Box>
 			<Box ps="0.5em">
 				<IconButton
-					aria-label={__('Remove')}
+					aria-label={__('Remove this rule')}
 					icon={<CloseIcon />}
 					onClick={onRemove}
 					title={__('Remove')}

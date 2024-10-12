@@ -91,13 +91,75 @@ jobs:
           enable-wireit-cache: true
 
       - name: Lint
-        run: "pnpm lint:js"
+        run: "pnpm run lint:js"
 
       - name: Typecheck
-        run: pnpm typecheck
+        run: pnpm run typecheck
 
       - name: Build
-        run: pnpm build
+        run: pnpm run build
 
       - name: Bundle
-        run: pnpm bundle:all
+        run: pnpm run bundle:all
+
+  e2e-tests:
+    name: "E2E Tests"
+    if: github.repository == 'wpsocio/wp-projects'
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout this repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.ACCESS_TOKEN_IR }}
+
+      - name: Remote refs
+        uses: ./actions/upstream-refs
+        id: remote-refs
+
+      - name: Checkout premium projects repo
+        uses: actions/checkout@v4
+        with:
+          path: premium
+          token: ${{ secrets.ACCESS_TOKEN_IR }}
+          repository: ${{ secrets.PREMIUM_PROJECTS_REPO }}
+          ref: ${{ fromJSON(steps.remote-refs.outputs.result).premium || 'main' }}
+
+      - name: Setup Environment
+        uses: ./actions/setup
+        with:
+          enable-wireit-cache: true
+
+      - name: Setup PHP
+        run: "pnpm run setup:php"
+
+      - name: Build
+        run: pnpm run build
+
+      - name: Install Playwright dependencies
+        run: |
+          npx playwright install chromium firefox webkit --with-deps
+
+      - name: Start WordPress Environment
+        run: |
+          pnpm run env-start
+
+      - name: Run tests
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
+        run: pnpm run test:e2e
+
+      - name: Upload debug artifacts
+        uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: failures-artifacts
+          path: |
+            artifacts/
+            !artifacts/test-results
+          if-no-files-found: ignore
+
+      - name: Stop WordPress Environment
+        run: |
+          pnpm run env-stop

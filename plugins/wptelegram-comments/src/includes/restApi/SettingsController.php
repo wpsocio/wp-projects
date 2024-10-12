@@ -250,7 +250,7 @@ class SettingsController extends RESTController {
 			case 'post_types':
 				return array_map( 'sanitize_text_field', $value );
 			case 'exclude':
-				return implode( ',', array_filter( array_map( 'sanitize_text_field', explode( ',', $value ) ) ) );
+				return implode( ',', array_filter( array_map( 'intval', explode( ',', $value ) ) ) );
 		}
 	}
 }

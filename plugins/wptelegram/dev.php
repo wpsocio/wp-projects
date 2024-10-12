@@ -7,7 +7,7 @@
  * @package           WPTelegram
  *
  * @wordpress-plugin
- * Plugin Name:       WP Telegram Dev
+ * Plugin Name:       WP Telegram
  * Plugin URI:        https://t.me/WPTelegram
  * Description:       ❌ DO NOT DELETE ❌ Development Environment for WP Telegram. Versioned high to avoid auto update.
  * Version:           999.999.999
