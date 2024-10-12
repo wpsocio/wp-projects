@@ -72,13 +72,7 @@ export const validationSchema = z.object({
 					.optional(),
 				z.literal(''),
 			]),
-			author_photo: z
-				.union([
-					z.literal('auto'),
-					z.literal('always_show'),
-					z.literal('always_hide'),
-				])
-				.optional(),
+			author_photo: z.enum(['auto', 'always_show', 'always_hide']).optional(),
 			num_messages: z
 				.string()
 				.regex(
@@ -112,12 +106,10 @@ export const validationSchema = z.object({
 			z.literal(''),
 		]),
 		text: z.string().optional(),
-		text_color: z.string().optional(),
 		bgcolor: z.string().optional(),
+		text_color: z.string().optional(),
 		post_types: z.array(z.string()).optional(),
-		position: z
-			.union([z.literal('before_content'), z.literal('after_content')])
-			.optional(),
+		position: z.enum(['before_content', 'after_content']).optional(),
 		priority: z
 			.string()
 			.regex(/^[0-9]*$/, sprintf(__('Invalid %s'), getFieldLabel('priority')))

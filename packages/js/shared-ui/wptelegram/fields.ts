@@ -51,7 +51,7 @@ export const getFieldLabel = fieldLabelGetter(fieldLabels);
 export const getErrorMessage = getFormErrorMessage(fieldLabels);
 
 export const proxySchema = z.object({
-	active: z.boolean(),
+	active: z.boolean().optional(),
 	proxy_method: z.enum(['cf_worker', 'google_script', 'php_proxy']).optional(),
 	cf_worker_url: z.union([z.literal(''), z.string().url()]).nullish(),
 	google_script_url: z.union([z.literal(''), z.string().url()]).nullish(),

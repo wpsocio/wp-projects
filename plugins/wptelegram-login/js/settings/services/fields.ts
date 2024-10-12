@@ -31,6 +31,7 @@ export const fieldLabels = {
 export const getFieldLabel = fieldLabelGetter(fieldLabels);
 
 export const validationSchema = z.object({
+	// Basic settings
 	bot_token: z
 		.string()
 		.min(1, sprintf(__('%s required.'), getFieldLabel('bot_token')))
@@ -46,6 +47,11 @@ export const validationSchema = z.object({
 			TG_USERNAME_REGEX,
 			sprintf(__('Invalid %s'), getFieldLabel('bot_username')),
 		),
+	// Login options
+	disable_signup: z.boolean().optional(),
+	user_role: z.string().optional(),
+	redirect_to: z.string().optional(),
+	redirect_url: z.string().optional(),
 	avatar_meta_key: z
 		.string()
 		.min(1, sprintf(__('%s required.'), getFieldLabel('avatar_meta_key')))
@@ -53,14 +59,9 @@ export const validationSchema = z.object({
 			/^[a-z0-9_]+$/i,
 			sprintf(__('Invalid %s'), getFieldLabel('avatar_meta_key')),
 		),
-	disable_signup: z.boolean().optional(),
 	random_email: z.boolean().optional(),
-	user_role: z.string().optional(),
-	redirect_to: z.string().optional(),
-	redirect_url: z.string().optional(),
-	button_style: z
-		.union([z.literal('large'), z.literal('medium'), z.literal('small')])
-		.optional(),
+	// Button options
+	button_style: z.enum(['large', 'medium', 'small']).optional(),
 	show_user_photo: z.boolean().optional(),
 	corner_radius: z
 		.string()
@@ -72,6 +73,7 @@ export const validationSchema = z.object({
 	lang: z.string().optional(),
 	show_if_user_is: z.string().optional(),
 	hide_on_default: z.boolean().optional(),
+	// Error message
 	show_message_on_error: z.boolean().optional(),
 	custom_error_message: z.string().optional(),
 });

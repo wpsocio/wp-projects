@@ -144,6 +144,7 @@ export const validationSchema = z.object({
 				)
 				.optional()
 				.transform((value) => value?.filter(Boolean)),
+			user_notifications: z.boolean().optional(),
 			message_template: z.string().optional(),
 			parse_mode: parseModeSchema,
 		})
