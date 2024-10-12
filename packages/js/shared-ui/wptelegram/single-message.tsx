@@ -96,6 +96,8 @@ export const SingleMessage: React.FC<SingleMessageProps> = ({
 				>
 					<FormControl>
 						<Switch
+							{...field}
+							value={undefined}
 							checked={field.value}
 							onCheckedChange={field.onChange}
 							disabled={disabled}

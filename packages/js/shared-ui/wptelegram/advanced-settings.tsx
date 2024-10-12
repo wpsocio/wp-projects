@@ -50,7 +50,12 @@ export const AdvancedSettings: React.FC<AdvancedSettingsProps> = ({
 						)}
 					>
 						<FormControl>
-							<Switch checked={field.value} onCheckedChange={field.onChange} />
+							<Switch
+								{...field}
+								value={undefined}
+								checked={field.value}
+								onCheckedChange={field.onChange}
+							/>
 						</FormControl>
 					</FormItem>
 				)}
@@ -77,7 +82,12 @@ export const AdvancedSettings: React.FC<AdvancedSettingsProps> = ({
 				render={({ field }) => (
 					<FormItem label={getFieldLabel('clean_uninstall')}>
 						<FormControl>
-							<Switch checked={field.value} onCheckedChange={field.onChange} />
+							<Switch
+								{...field}
+								value={undefined}
+								checked={field.value}
+								onCheckedChange={field.onChange}
+							/>
 						</FormControl>
 					</FormItem>
 				)}

@@ -13,7 +13,12 @@ export const ActiveField: React.FC<CommonProps> = ({ prefix }) => {
 			render={({ field }) => (
 				<FormItem label={getFieldLabel('active')}>
 					<FormControl>
-						<Switch checked={field.value} onCheckedChange={field.onChange} />
+						<Switch
+							{...field}
+							value={undefined}
+							checked={field.value}
+							onCheckedChange={field.onChange}
+						/>
 					</FormControl>
 				</FormItem>
 			)}

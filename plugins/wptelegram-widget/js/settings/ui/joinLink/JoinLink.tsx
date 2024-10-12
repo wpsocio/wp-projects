@@ -105,6 +105,8 @@ export const JoinLink: React.FC = () => {
 						>
 							<FormControl>
 								<Switch
+									{...field}
+									value={undefined}
 									checked={field.value}
 									onCheckedChange={field.onChange}
 								/>

@@ -57,6 +57,8 @@ export const ButtonOptions = () => {
 						>
 							<FormControl>
 								<Switch
+									{...field}
+									value={undefined}
 									checked={field.value}
 									onCheckedChange={field.onChange}
 								/>
@@ -132,6 +134,8 @@ export const ButtonOptions = () => {
 						>
 							<FormControl>
 								<Switch
+									{...field}
+									value={undefined}
 									checked={field.value}
 									onCheckedChange={field.onChange}
 								/>

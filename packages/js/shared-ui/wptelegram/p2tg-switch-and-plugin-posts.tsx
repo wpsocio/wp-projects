@@ -22,7 +22,12 @@ export const P2TGSwitchAndPluginPosts: React.FC<CommonProps> = ({ prefix }) => {
 						)}
 					>
 						<FormControl>
-							<Switch checked={field.value} onCheckedChange={field.onChange} />
+							<Switch
+								{...field}
+								value={undefined}
+								checked={field.value}
+								onCheckedChange={field.onChange}
+							/>
 						</FormControl>
 					</FormItem>
 				)}
@@ -38,7 +43,12 @@ export const P2TGSwitchAndPluginPosts: React.FC<CommonProps> = ({ prefix }) => {
 						label={getFieldLabel('plugin_posts')}
 					>
 						<FormControl>
-							<Switch checked={field.value} onCheckedChange={field.onChange} />
+							<Switch
+								{...field}
+								value={undefined}
+								checked={field.value}
+								onCheckedChange={field.onChange}
+							/>
 						</FormControl>
 					</FormItem>
 				)}

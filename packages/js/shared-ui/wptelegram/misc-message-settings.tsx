@@ -23,6 +23,8 @@ export const MiscMessageSettings: React.FC<CommonProps> = ({ prefix }) => {
 						>
 							<FormControl>
 								<Switch
+									{...field}
+									value={undefined}
 									checked={field.value}
 									onCheckedChange={field.onChange}
 								/>
@@ -58,6 +60,8 @@ export const MiscMessageSettings: React.FC<CommonProps> = ({ prefix }) => {
 						>
 							<FormControl>
 								<Switch
+									{...field}
+									value={undefined}
 									checked={field.value}
 									onCheckedChange={field.onChange}
 								/>

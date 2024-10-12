@@ -21,7 +21,12 @@ export const DisableNotification: React.FC<CommonProps> = ({ prefix }) => {
 					label={getFieldLabel('disable_notification')}
 				>
 					<FormControl>
-						<Switch checked={field.value} onCheckedChange={field.onChange} />
+						<Switch
+							{...field}
+							value={undefined}
+							checked={field.value}
+							onCheckedChange={field.onChange}
+						/>
 					</FormControl>
 				</FormItem>
 			)}
