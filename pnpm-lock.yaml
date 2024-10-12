@@ -314,9 +314,6 @@ importers:
       shadcn:
         specifier: ^2.1.0
         version: 2.1.0(typescript@5.6.3)
-      shadcn-ui:
-        specifier: ^0.9.2
-        version: 0.9.2(typescript@5.6.3)
       tailwindcss-scoped-preflight:
         specifier: ^3.4.5
         version: 3.4.5(postcss@8.4.47)(tailwindcss@3.4.13(ts-node@10.9.2(@types/node@22.7.5)(typescript@5.6.3)))
@@ -5738,10 +5735,6 @@ packages:
     resolution: {integrity: sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==}
     engines: {node: '>=10'}
 
-  chalk@5.2.0:
-    resolution: {integrity: sha512-ree3Gqw/nazQAPuJJEy+avdl7QfZMcUvmHIKgEZkGL+xOBzRvup5Hxo6LHuMceSxOabuJLJm5Yp/92R9eMmMvA==}
-    engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
-
   chalk@5.3.0:
     resolution: {integrity: sha512-dLitG79d+GV1Nb/VYcCDFivJeK1hiukt9QjRNVOsUtTy1rR1YJsmpGGTZ3qJos+uw7WmWF4wUwBd9jxjocFC2w==}
     engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
@@ -10219,10 +10212,6 @@ packages:
 
   setprototypeof@1.2.0:
     resolution: {integrity: sha512-E5LDX7Wrp85Kil5bhZv46j8jOeboKq5JMmYM3gVGdGH8xFpPWXUMsNrlODCrkoxMEeNi/XZIwuRvY4XNwYMJpw==}
-
-  shadcn-ui@0.9.2:
-    resolution: {integrity: sha512-tFb/rfWZvOS5fOGkR9NAtrlpcT/xw1UD9iWtj+Su4pUSpL1ihOqrHXphHyNofjdNdidi9DnJ6ZdXnoOwcud3NQ==}
-    hasBin: true
 
   shadcn@2.1.0:
     resolution: {integrity: sha512-lVuOAnibJUFrl2KaFkO3w+9ObCFBH4aLWrs4xWd9ZHvGKVYopdGXOva9qNAo8XqdeKSOUm0Xv5CYImrV80pjkA==}
@@ -18409,8 +18398,6 @@ snapshots:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
 
-  chalk@5.2.0: {}
-
   chalk@5.3.0: {}
 
   change-case@4.1.2:
@@ -23437,32 +23424,6 @@ snapshots:
   setprototypeof@1.1.0: {}
 
   setprototypeof@1.2.0: {}
-
-  shadcn-ui@0.9.2(typescript@5.6.3):
-    dependencies:
-      '@antfu/ni': 0.21.12
-      '@babel/core': 7.24.9
-      '@babel/parser': 7.25.8
-      '@babel/plugin-transform-typescript': 7.25.7(@babel/core@7.24.9)
-      chalk: 5.2.0
-      commander: 10.0.1
-      cosmiconfig: 8.3.6(typescript@5.6.3)
-      diff: 5.2.0
-      execa: 7.2.0
-      fast-glob: 3.3.2
-      fs-extra: 11.2.0
-      https-proxy-agent: 6.2.1
-      lodash.template: 4.5.0
-      node-fetch: 3.3.2
-      ora: 6.3.1
-      prompts: 2.4.2
-      recast: 0.23.9
-      ts-morph: 18.0.0
-      tsconfig-paths: 4.2.0
-      zod: 3.23.8
-    transitivePeerDependencies:
-      - supports-color
-      - typescript
 
   shadcn@2.1.0(typescript@5.6.3):
     dependencies:
