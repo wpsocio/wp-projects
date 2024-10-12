@@ -36,6 +36,7 @@ export const BasicsTab: React.FC = () => {
 								__('Use %s above to set automatically.'),
 								__('Test Token'),
 							)}
+							isRequired
 						>
 							<FormControl className="max-w-[200px]">
 								<Input

@@ -12,10 +12,10 @@ const controlStyles = {
 };
 const placeholderStyles = 'pl-1 py-0.5';
 const selectInputStyles = 'pl-1 py-0.5';
-const valueContainerStyles = 'p-1 gap-1';
+const valueContainerStyles = 'p-1 gap-1 data__values-container';
 const singleValueStyles = 'leading-7 ml-1';
 const multiValueStyles =
-	'bg-accent rounded items-center py-0.5 pl-2 pr-1 gap-1.5';
+	'bg-accent rounded items-center py-0.5 pl-2 pr-1 gap-1.5 data__multi-value';
 const multiValueLabelStyles = 'leading-6 py-0.5';
 const multiValueRemoveStyles =
 	'bg-transparent text-primary opacity-50 hover:opacity-100';

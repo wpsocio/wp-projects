@@ -1,4 +1,4 @@
-import { forwardRef, useCallback, useState } from 'react';
+import { forwardRef, useCallback, useEffect, useState } from 'react';
 import { Switch as SwitchUI } from '../ui/switch.js';
 
 export type SwitchProps = React.ComponentProps<typeof SwitchUI> & {
@@ -18,6 +18,10 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
 			},
 			[onCheckedChange],
 		);
+
+		useEffect(() => {
+			setIsChecked((prevVal) => props.checked ?? prevVal);
+		}, [props.checked]);
 
 		return (
 			<>

@@ -8,7 +8,7 @@ import {
 import { Input } from '@wpsocio/ui-components/wrappers/input.js';
 import { RadioGroup } from '@wpsocio/ui-components/wrappers/radio-group';
 import { Switch } from '@wpsocio/ui-components/wrappers/switch.js';
-import { type DataShape, getFieldLabel, useData } from '../../services';
+import { type DataShape, getFieldLabel } from '../../services';
 import { JoinLinkInfo } from './JoinLinkInfo';
 import { PostTypes } from './PostTypes';
 import { Styles } from './Styles';
@@ -105,8 +105,6 @@ export const JoinLink: React.FC = () => {
 						>
 							<FormControl>
 								<Switch
-									{...field}
-									value={field.value?.toString()}
 									checked={field.value}
 									onCheckedChange={field.onChange}
 								/>

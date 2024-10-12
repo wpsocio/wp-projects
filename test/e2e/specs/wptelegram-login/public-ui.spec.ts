@@ -111,7 +111,7 @@ test.describe('Public UI', () => {
 		admin,
 	}) => {
 		// Select "Any" option for "Show if user is" setting
-		await page.getByLabel('Show if user is').selectOption('Any');
+		await actions.selectOption(page.getByLabel('Show if user is'), 'Any');
 
 		await actions.saveChangesAndWait({
 			apiPath: '/wptelegram-login/v1/settings',

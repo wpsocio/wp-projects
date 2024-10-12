@@ -151,8 +151,8 @@ test.describe('Settings', () => {
 	test('Should save the changes with only bot token and username', async ({
 		page,
 	}) => {
-		const botTokenField = page.getByLabel('Bot Token');
-		const botUsernameField = page.getByLabel('Bot Username');
+		let botTokenField = page.getByLabel('Bot Token');
+		let botUsernameField = page.getByLabel('Bot Username');
 
 		await botTokenField.selectText();
 
@@ -170,10 +170,12 @@ test.describe('Settings', () => {
 		// Reload the page and wait
 		await page.reload();
 
+		botTokenField = page.getByLabel('Bot Token');
+		botUsernameField = page.getByLabel('Bot Username');
+
 		await botTokenField.waitFor();
 
 		expect(await botTokenField.inputValue()).toBe(botToken);
-
 		expect(await botUsernameField.inputValue()).toBe('E2ETestBot');
 	});
 

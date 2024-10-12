@@ -11,6 +11,8 @@ async function setupPostToTelegramSection(page: Page) {
 	await page.getByRole('tab', { name: 'Basics' }).click();
 
 	await page.getByLabel('Bot Token').fill(botToken);
+	await page.getByLabel('Bot Username').dblclick();
+	await page.keyboard.type('E2ETestBot');
 
 	const button = page.getByRole('tab', { name: 'Post to Telegram' });
 
@@ -24,11 +26,9 @@ async function setupPostToTelegramSection(page: Page) {
 	);
 
 	// Now let us activate the section
-	await tabPanel
-		.getByRole('checkbox', { name: 'Active' })
-		.check({ force: true });
+	await tabPanel.getByRole('switch', { name: 'Active' }).check({ force: true });
 
-	await tabPanel.getByRole('button', { name: 'Add Channel' }).click();
+	await tabPanel.getByRole('button', { name: 'Add channel' }).click();
 
 	await tabPanel.getByPlaceholder('@username').last().fill('@WPTelegram');
 
@@ -88,7 +88,7 @@ test.describe('Settings > P2TG', () => {
 			.locator('input[type="radio"][name="p2tg.image_position"]')
 			.first();
 
-		const singleMessage = tabPanel.getByRole('checkbox', {
+		const singleMessage = tabPanel.getByRole('switch', {
 			name: 'Single Message',
 		});
 
@@ -102,11 +102,11 @@ test.describe('Settings > P2TG', () => {
 		await expect(singleMessage).toBeDisabled();
 
 		// Fields that depend on "Disable link preview"
-		const disableLinkPreview = tabPanel.getByRole('checkbox', {
+		const disableLinkPreview = tabPanel.getByRole('switch', {
 			name: 'Disable link preview',
 		});
 		const linkPreviewUrl = tabPanel.getByLabel('Link Preview URL');
-		const showPreviewAboveText = tabPanel.getByRole('checkbox', {
+		const showPreviewAboveText = tabPanel.getByRole('switch', {
 			name: 'Show preview above text',
 		});
 
@@ -120,7 +120,7 @@ test.describe('Settings > P2TG', () => {
 		await expect(showPreviewAboveText).toBeDisabled();
 
 		// Fields that depend on the "Add Inline URL Button" setting
-		const inlineButtonSwitch = tabPanel.getByRole('checkbox', {
+		const inlineButtonSwitch = tabPanel.getByRole('switch', {
 			name: 'Add Inline URL Button',
 		});
 		const inlineButtonText = tabPanel.getByLabel('Inline Button Text');
@@ -139,7 +139,7 @@ test.describe('Settings > P2TG', () => {
 	});
 
 	test('Should show warnings for Single Message', async () => {
-		const singleMessage = tabPanel.getByRole('checkbox', {
+		const singleMessage = tabPanel.getByRole('switch', {
 			name: 'Single Message',
 		});
 
@@ -151,7 +151,7 @@ test.describe('Settings > P2TG', () => {
 			name: 'HTML style',
 		});
 
-		const disableLinkPreview = tabPanel.getByRole('checkbox', {
+		const disableLinkPreview = tabPanel.getByRole('switch', {
 			name: 'Disable link preview',
 		});
 
@@ -186,7 +186,7 @@ test.describe('Settings > P2TG', () => {
 	test('Should clean up message template after saving changes', async ({
 		page,
 	}) => {
-		const templateField = tabPanel.getByLabel('Message Template');
+		let templateField = tabPanel.getByLabel('Message Template');
 
 		templateField.fill(
 			// trailing whitespaces, <div> and <script> tags should be removed
@@ -205,6 +205,10 @@ test.describe('Settings > P2TG', () => {
 		expect(await templateField.inputValue()).toBe(expectedValue);
 
 		await page.reload();
+
+		tabPanel = await setupPostToTelegramSection(page);
+
+		templateField = tabPanel.getByLabel('Message Template');
 
 		await templateField.waitFor();
 
@@ -277,7 +281,7 @@ test.describe('Settings > P2TG', () => {
 		tabPanel = await setupPostToTelegramSection(page);
 
 		await tabPanel
-			.getByRole('checkbox', { name: 'Post edit switch' })
+			.getByRole('switch', { name: 'Post edit switch' })
 			.uncheck({ force: true });
 
 		await actions.saveChangesAndWait({
@@ -353,13 +357,11 @@ test.describe('Settings > P2TG', () => {
 
 		await page.reload();
 
-		const valueContainer = page.locator('.react-select__value-container');
+		const valueContainer = page.locator('.data__values-container');
 
 		await valueContainer.waitFor();
 		// We should two options selected
-		await expect(
-			valueContainer.locator('.react-select__multi-value'),
-		).toHaveCount(2);
+		await expect(valueContainer.locator('.data__multi-value')).toHaveCount(2);
 
 		// Let us add another rule to the group
 		await page.getByRole('button', { name: 'Add another rule' }).click();
@@ -374,12 +376,14 @@ test.describe('Settings > P2TG', () => {
 		).toBeGreaterThan(0);
 
 		// Now let us change the "Rule type"
-
-		await page.getByLabel('Rule type').first().selectOption('Post Tag');
+		await actions.selectOption(
+			page.getByRole('combobox', { name: 'Rule type' }).first(),
+			'Post Tag',
+		);
 
 		// The selected values should be cleared
 		await expect(
-			valueContainer.first().locator('.react-select__multi-value'),
+			valueContainer.first().locator('.data__multi-value'),
 		).toHaveCount(0);
 
 		// Let us remove the first rule, which is now "Post Tag"
@@ -388,11 +392,11 @@ test.describe('Settings > P2TG', () => {
 			.first()
 			.click();
 
-		const ruleType = page.getByLabel('Rule type');
+		const ruleType = page.getByRole('combobox', { name: 'Rule type' });
 
 		await expect(ruleType).toHaveCount(1);
 
-		expect(ruleType).toHaveValue('category');
+		expect(ruleType).toHaveText('Post Category');
 
 		await page
 			.getByRole('combobox', { name: 'Rule values' })

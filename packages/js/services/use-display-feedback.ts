@@ -20,6 +20,7 @@ export const useDisplayFeedback = (): DF => {
 	const displayError = useCallback<DF['displayError']>(
 		(props) => {
 			toast({
+				status: 'error',
 				...props,
 				variant: 'destructive',
 			});
@@ -30,6 +31,7 @@ export const useDisplayFeedback = (): DF => {
 	const displaySuccess = useCallback<DF['displayError']>(
 		(props) => {
 			toast({
+				status: 'success',
 				...props,
 			});
 		},
@@ -48,6 +50,7 @@ export const useDisplayFeedback = (): DF => {
 
 	const displaySubmitErrors = useCallback<DF['displaySubmitErrors']>(
 		({ [FORM_ERROR]: formError, ...errors }, submitError) => {
+			// biome-ignore lint/suspicious/noConsoleLog: <explanation>
 			console.log({ errors, submitError, formError });
 
 			if (submitError || formError) {

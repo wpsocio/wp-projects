@@ -33,8 +33,6 @@ export const MessageKeyboard: React.FC = () => {
 							>
 								<FormControl>
 									<Switch
-										{...field}
-										value={field.value?.toString()}
 										checked={field.value}
 										onCheckedChange={field.onChange}
 									/>

@@ -32,7 +32,9 @@ test.describe('Settings', () => {
 		expect(await page.content()).toContain('INSTRUCTIONS!');
 	});
 
-	test('Should not allow submission without bot token', async ({ page }) => {
+	test('Should not allow submission without bot token or username', async ({
+		page,
+	}) => {
 		const botTokenField = page.getByLabel('Bot Token');
 
 		const validationMessage = await botTokenField.evaluate(
@@ -43,13 +45,16 @@ test.describe('Settings', () => {
 
 		// Should not show validation message before submission.
 		expect(await page.content()).not.toContain('Bot Token required');
+		expect(await page.content()).not.toContain('Bot Username required');
 
 		await actions.saveChangesButton.click();
 
 		// Press tab key to blur the code input to dismiss form validation tooltip.
 		await page.keyboard.press('Tab');
+		await page.keyboard.press('Tab');
 
 		expect(await page.content()).toContain('Bot Token required');
+		expect(await page.content()).toContain('Bot Username required');
 	});
 
 	test('Should not allow submission with invalid bot token', async ({
@@ -69,6 +74,8 @@ test.describe('Settings', () => {
 
 	test('Should save the changes', async ({ page }) => {
 		await page.getByLabel('Bot Token').fill(botToken);
+		await page.getByLabel('Bot Username').dblclick();
+		await page.keyboard.type('E2ETestBot');
 
 		await actions.saveChangesAndWait({
 			apiPath: '/wptelegram/v1/settings',
@@ -83,6 +90,9 @@ test.describe('Settings', () => {
 		await botTokenField.waitFor();
 
 		expect(await botTokenField.inputValue()).toBe(botToken);
+		expect(await page.getByLabel('Bot Username').inputValue()).toBe(
+			'E2ETestBot',
+		);
 	});
 
 	test('Should validate the bot token from API and fill username', async ({
@@ -183,7 +193,7 @@ test.describe('Settings', () => {
 
 			// Now let us activate the section
 			await tabPanel
-				.getByRole('checkbox', { name: 'Active' })
+				.getByRole('switch', { name: 'Active' })
 				.check({ force: true });
 
 			// Assert that fields are not visible
@@ -197,6 +207,8 @@ test.describe('Settings', () => {
 		page,
 	}) => {
 		await page.getByLabel('Bot Token').fill(botToken);
+		await page.getByLabel('Bot Username').dblclick();
+		await page.keyboard.type('E2ETestBot');
 
 		const button = page.getByRole('tab', { name: 'Post to Telegram' });
 
@@ -211,14 +223,14 @@ test.describe('Settings', () => {
 
 		// Now let us activate the section
 		await tabPanel
-			.getByRole('checkbox', { name: 'Active' })
+			.getByRole('switch', { name: 'Active' })
 			.check({ force: true });
 
 		await actions.saveChangesButton.click();
 
 		expect(await page.content()).toContain('At least one channel is required.');
 
-		await tabPanel.getByRole('button', { name: 'Add Channel' }).click();
+		await tabPanel.getByRole('button', { name: 'Add channel' }).click();
 
 		await tabPanel.getByPlaceholder('@username').fill('@WPTelegram');
 
@@ -228,7 +240,7 @@ test.describe('Settings', () => {
 		});
 	});
 
-	test.skip('Should display proxy options conditionally', async ({ page }) => {
+	test('Should display proxy options conditionally', async ({ page }) => {
 		await page.getByLabel('Bot Token').fill(botToken);
 
 		const button = page.getByRole('tab', { name: 'Proxy' });
@@ -244,7 +256,7 @@ test.describe('Settings', () => {
 
 		// Now let us activate the section
 		await tabPanel
-			.getByRole('checkbox', { name: 'Active' })
+			.getByRole('switch', { name: 'Active' })
 			.check({ force: true });
 
 		// Cloudflare proxy should be checked by default
@@ -274,7 +286,7 @@ test.describe('Settings', () => {
 			force: true,
 		});
 		await expect(
-			tabPanel.getByRole('textbox', { name: 'PHP Proxy URL' }),
+			tabPanel.getByRole('textbox', { name: 'Proxy Host' }),
 		).toBeVisible();
 		await expect(
 			tabPanel.getByRole('textbox', { name: 'Google Script URL' }),

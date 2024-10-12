@@ -33,12 +33,7 @@ export const Advanced: React.FC = () => {
 						description={__('Whether your host blocks Telegram.')}
 					>
 						<FormControl>
-							<Switch
-								{...field}
-								value={field.value?.toString()}
-								checked={field.value}
-								onCheckedChange={field.onChange}
-							/>
+							<Switch checked={field.value} onCheckedChange={field.onChange} />
 						</FormControl>
 					</FormItem>
 				)}

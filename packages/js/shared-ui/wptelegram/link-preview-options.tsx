@@ -29,8 +29,6 @@ export const LinkPreviewOptions: React.FC<CommonProps> = ({ prefix }) => {
 						>
 							<FormControl>
 								<Switch
-									{...field}
-									value={field.value?.toString()}
 									checked={field.value}
 									onCheckedChange={field.onChange}
 								/>
@@ -90,11 +88,10 @@ export const LinkPreviewOptions: React.FC<CommonProps> = ({ prefix }) => {
 						>
 							<FormControl>
 								<Switch
-									{...field}
-									value={field.value?.toString()}
 									checked={field.value}
 									onCheckedChange={field.onChange}
 									disabled={link_preview_disabled}
+									aria-readonly={link_preview_disabled}
 								/>
 							</FormControl>
 						</FormItem>

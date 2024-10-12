@@ -66,7 +66,7 @@ export function ChannelsField({
 				variant="secondary"
 			>
 				<Plus className="me-2" size="16" />
-				{__('Add')}
+				{__('Add channel')}
 			</Button>
 		</div>
 	);

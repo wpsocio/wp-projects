@@ -42,13 +42,7 @@ test.describe('Settings', () => {
 			],
 			[
 				'Legacy Widget',
-				[
-					'Username',
-					'Bot Token',
-					'Widget Width',
-					'Author Photo',
-					'Number of Messages',
-				],
+				['Username', 'Bot Token', 'Widget Width', 'Number of Messages'],
 			],
 			[
 				'Join Link',

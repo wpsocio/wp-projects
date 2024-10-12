@@ -14,10 +14,10 @@ export const RuleSetButtons: React.FC<RuleSetButtonsProps> = ({
 	return (
 		<div className="flex flex-row md:flex-col max-w-max justify-center gap-2">
 			<IconButton
-				aria-label={__('Remove the rule')}
+				aria-label={__('Remove this rule')}
 				icon={<Close />}
 				onClick={onRemove}
-				title={__('Remove the rule')}
+				title={__('Remove this rule')}
 				variant="outline"
 				className="text-destructive"
 			/>

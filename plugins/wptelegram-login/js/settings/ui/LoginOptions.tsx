@@ -52,8 +52,6 @@ export const LoginOptions = () => {
 						>
 							<FormControl>
 								<Switch
-									{...field}
-									value={field.value?.toString()}
 									checked={field.value}
 									onCheckedChange={field.onChange}
 								/>
@@ -154,8 +152,6 @@ export const LoginOptions = () => {
 						>
 							<FormControl>
 								<Switch
-									{...field}
-									value={field.value?.toString()}
 									checked={field.value}
 									onCheckedChange={field.onChange}
 								/>

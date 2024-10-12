@@ -86,24 +86,33 @@ export const validationSchema = z.object({
 				)
 				.optional(),
 			message_template: z.string().optional(),
+			// Excerpt settings
 			excerpt_source: z
 				.enum(['post_content', 'before_more', 'post_excerpt'])
 				.optional(),
 			excerpt_length: z.coerce.number().int().min(1).max(300).optional(),
 			excerpt_preserve_eol: z.boolean().optional(),
+			// Image settings
 			send_featured_image: z.boolean().optional(),
 			image_position: z.enum(['before', 'after']).optional(),
 			single_message: z.boolean().optional(),
+			// Additional settings
 			cats_as_tags: z.boolean().optional(),
 			parse_mode: parseModeSchema,
+			protect_content: z.boolean().optional(),
+			// Link preview settings
 			link_preview_disabled: z.boolean().optional(),
 			link_preview_url: z.string().optional(),
 			link_preview_above_text: z.boolean().optional(),
+			// Inline button settings
+			inline_url_button: z.boolean().optional(),
 			inline_button_text: z.string().optional(),
 			inline_button_url: z.string().optional(),
+			// Misc settings
+			post_edit_switch: z.boolean().optional(),
+			plugin_posts: z.boolean().optional(),
 			delay: z.coerce.number().min(0).optional(),
 			disable_notification: z.boolean().optional(),
-			protect_content: z.boolean().optional(),
 		})
 		.refine((value) => !value.active || value.channels?.length, {
 			message: sprintf(

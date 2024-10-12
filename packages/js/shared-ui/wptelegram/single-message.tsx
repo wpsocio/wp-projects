@@ -96,11 +96,10 @@ export const SingleMessage: React.FC<SingleMessageProps> = ({
 				>
 					<FormControl>
 						<Switch
-							{...field}
-							value={field.value?.toString()}
 							checked={field.value}
 							onCheckedChange={field.onChange}
 							disabled={disabled}
+							aria-readonly={disabled}
 						/>
 					</FormControl>
 				</FormItem>

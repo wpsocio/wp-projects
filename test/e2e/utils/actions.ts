@@ -1,4 +1,4 @@
-import type { Page } from '@playwright/test';
+import type { Locator, Page } from '@playwright/test';
 import { type PageUtils, expect } from '@wordpress/e2e-test-utils-playwright';
 
 export class Actions {
@@ -60,8 +60,8 @@ export class Actions {
 			name: 'Notifications',
 		});
 
-		const notificationShown = notifications.locator('div[role="status"]', {
-			has: this.page.locator('span[data-status="success"]'),
+		const notificationShown = notifications.locator('li[role="status"]', {
+			has: this.page.locator('div[data-status="success"]'),
 		});
 
 		await notificationShown.waitFor();
@@ -69,6 +69,21 @@ export class Actions {
 		expect(await notificationShown.textContent()).toContain(
 			'Changes saved successfully.',
 		);
+	}
+
+	/**
+	 * Selects an option from a dropdown for Radix UI
+	 */
+	async selectOption(trigger: Locator, option: string) {
+		await trigger.click();
+
+		await this.page
+			.getByRole('listbox')
+			.locator('div[data-radix-select-viewport][role="presentation"]')
+			.getByRole('option', {
+				name: option,
+			})
+			.click();
 	}
 
 	async logout() {

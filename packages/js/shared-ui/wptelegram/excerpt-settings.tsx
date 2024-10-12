@@ -86,11 +86,10 @@ export const ExcerptSettings: React.FC<CommonProps> = ({ prefix }) => {
 						>
 							<FormControl>
 								<Switch
-									{...field}
-									value={field.value?.toString()}
 									checked={field.value}
 									onCheckedChange={field.onChange}
 									disabled={!hasExcerpt}
+									aria-readonly={!hasExcerpt}
 								/>
 							</FormControl>
 						</FormItem>

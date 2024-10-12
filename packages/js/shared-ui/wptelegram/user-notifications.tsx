@@ -29,12 +29,7 @@ export const UserNotifications: React.FC<UserNotificationsProps> = ({
 						label={getFieldLabel('user_notifications')}
 					>
 						<FormControl>
-							<Switch
-								{...field}
-								value={field.value?.toString()}
-								checked={field.value}
-								onCheckedChange={field.onChange}
-							/>
+							<Switch checked={field.value} onCheckedChange={field.onChange} />
 						</FormControl>
 					</FormItem>
 				)}

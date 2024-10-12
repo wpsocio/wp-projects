@@ -32,7 +32,6 @@ export const ErrorMessageOptions = () => {
 						>
 							<FormControl>
 								<Switch
-									{...field}
 									checked={field.value}
 									onCheckedChange={field.onChange}
 								/>
