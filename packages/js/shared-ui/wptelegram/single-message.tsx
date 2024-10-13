@@ -1,7 +1,8 @@
 import { useWatch } from '@wpsocio/form';
 import { __, isRTL, sprintf } from '@wpsocio/i18n';
-import { FormControl } from '@wpsocio/ui-components/ui/form.jsx';
-import { Switch } from '@wpsocio/ui-components/wrappers/switch.jsx';
+import { FormControl } from '@wpsocio/ui-components/ui/form.js';
+import { Alert } from '@wpsocio/ui-components/wrappers/alert.js';
+import { Switch } from '@wpsocio/ui-components/wrappers/switch.js';
 import { createInterpolateElement } from '@wpsocio/utilities/createInterpolateElement.js';
 import { prefixName } from '@wpsocio/utilities/misc.js';
 import { FormField } from '../form/form-field.js';
@@ -33,10 +34,9 @@ export const SingleMessage: React.FC<SingleMessageProps> = ({
 		(parse_mode === 'none' || link_preview_disabled);
 
 	const warning = showWarning && (
-		<>
-			<p>
+		<Alert type='warning' title={<span>
 				{isRTL() ? '👈' : '👉'}&nbsp;
-				{createInterpolateElement(
+				<span>{createInterpolateElement(
 					sprintf(
 						/* translators: 1 - field name, 2 - value */
 						__('When %1$s is set to %2$s:'),
@@ -47,8 +47,9 @@ export const SingleMessage: React.FC<SingleMessageProps> = ({
 						ImagePosition: <b>{getFieldLabel('image_position')}</b>,
 						Value: <b>{__('After the Text')}</b>,
 					},
-				)}
-			</p>
+				)}</span>
+			</span>}>
+			
 			<ul className="list-disc ms-6">
 				{parse_mode === 'none' && (
 					<li className="text-destructive">
@@ -81,7 +82,7 @@ export const SingleMessage: React.FC<SingleMessageProps> = ({
 					</li>
 				)}
 			</ul>
-		</>
+		</Alert>
 	);
 
 	return (

@@ -4,6 +4,7 @@ import { Instructions as InstructionsUI } from '@wpsocio/shared-ui/components/in
 import { Link } from '@wpsocio/ui-components/wrappers/link.js';
 import { createInterpolateElement } from '@wpsocio/utilities/createInterpolateElement.js';
 import { useData } from '../services';
+import { Alert } from '@wpsocio/ui-components/wrappers/alert.js';
 
 const { location } = window;
 
@@ -12,11 +13,10 @@ export const Instructions: React.FC = () => {
 	return (
 		<InstructionsUI>
 			{wptelegram_active && (
-				<p className="text-red-600 font-medium my-4">
-					{__('Note:')}
-					&nbsp;
-					{__('You can use the same bot for all the WP Telegram plugins.')}
-				</p>
+				<Alert className="font-medium my-4 max-w-max" title={__('Note:')}>
+					
+					<span  className="text-red-600">{__('You can use the same bot for all the WP Telegram plugins.')}</span>
+				</Alert>
 			)}
 			<ol className="ms-8 list-decimal">
 				<li>

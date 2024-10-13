@@ -3,18 +3,18 @@ import { AlertDescription, AlertTitle, Alert as AlertUI } from '../ui/alert.js';
 
 type AlertUIProps = React.ComponentProps<typeof AlertUI>;
 
-export type AlertProps = Omit<AlertUIProps, 'variant'> & {
+export type AlertProps = Omit<AlertUIProps, 'variant' | 'title'> & {
 	icon?: React.ReactNode;
-	title?: string;
-	description?: string;
-	type: 'success' | 'error' | 'warning' | 'info';
+	title?: React.ReactNode;
+	description?: React.ReactNode;
+	type?: 'success' | 'error' | 'warning' | 'info';
 };
 
 export function Alert({
 	title,
 	description,
 	children,
-	type,
+	type = 'info',
 	icon: alertIcon,
 	...props
 }: AlertProps) {

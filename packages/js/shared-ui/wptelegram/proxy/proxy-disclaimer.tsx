@@ -1,11 +1,10 @@
 import { __ } from '@wpsocio/i18n';
+import { Alert } from '@wpsocio/ui-components/wrappers/alert.jsx';
 
 export const ProxyDisclaimer: React.FC = () => {
 	return (
-		<div className="my-2">
-			<span className="text-destructive font-medium">{__('DISCLAIMER!')}</span>
-			&nbsp;
+		<Alert className="my-2 h-max w-max" title={__('DISCLAIMER!')} type="error">
 			<em>{__('Use the proxy at your own risk!')}</em>
-		</div>
+		</Alert>
 	);
 };

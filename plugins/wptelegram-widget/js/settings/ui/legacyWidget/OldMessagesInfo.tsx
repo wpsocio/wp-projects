@@ -1,7 +1,5 @@
-import { __, sprintf } from '@wpsocio/i18n';
+import { __ } from '@wpsocio/i18n';
 import { Alert } from '@wpsocio/ui-components/wrappers/alert.js';
-import { Link } from '@wpsocio/ui-components/wrappers/link.js';
-import { createInterpolateElement } from '@wpsocio/utilities/createInterpolateElement.js';
 
 export function OldMessagesInfo() {
 	return (
