@@ -869,15 +869,9 @@ importers:
       rimraf:
         specifier: ^6.0.1
         version: 6.0.1
-      tsup:
-        specifier: ^8.3.0
-        version: 8.3.0(jiti@1.21.6)(postcss@8.4.47)(typescript@5.6.3)
       typescript:
         specifier: ^5.6.2
         version: 5.6.3
-      wireit:
-        specifier: ^0.14.9
-        version: 0.14.9
 
   tools/vite-wp-react:
     dependencies:
