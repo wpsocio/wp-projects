@@ -226,7 +226,9 @@ test.describe('Settings', () => {
 
 		await actions.saveChangesButton.click();
 
-		expect(await page.content()).toContain('At least one channel is required.');
+		expect(await tabPanel.textContent()).toContain(
+			'At least one channel is required.',
+		);
 
 		await tabPanel.getByRole('button', { name: 'Add channel' }).click();
 
