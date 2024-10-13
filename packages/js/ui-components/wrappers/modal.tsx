@@ -1,4 +1,11 @@
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '../ui/dialog.js';
+import {
+	Dialog,
+	DialogContent,
+	DialogDescription,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
+} from '../ui/dialog.js';
 
 export type ModalProps = React.ComponentProps<typeof Dialog> & {
 	trigger?: React.ReactNode;
@@ -8,14 +15,24 @@ export type ModalProps = React.ComponentProps<typeof Dialog> & {
 	contentClassName?: string;
 };
 
-export function Modal({ trigger, content, children, title, description, contentClassName, ...props }: ModalProps) {
+export function Modal({
+	trigger,
+	content,
+	children,
+	title,
+	description,
+	contentClassName,
+	...props
+}: ModalProps) {
 	return (
 		<Dialog {...props}>
 			{trigger ? <DialogTrigger asChild>{trigger}</DialogTrigger> : null}
 			<DialogContent className={contentClassName}>
 				<DialogHeader>
 					<DialogTitle>{title}</DialogTitle>
-					{description ? <DialogDescription>{description}</DialogDescription> : null}
+					{description ? (
+						<DialogDescription>{description}</DialogDescription>
+					) : null}
 					{content || children}
 				</DialogHeader>
 			</DialogContent>

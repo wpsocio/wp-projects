@@ -26,7 +26,7 @@ export type AvatarProps = React.ButtonHTMLAttributes<HTMLSpanElement> &
 export function Avatar({ name, size, src, className, ...props }: AvatarProps) {
 	return (
 		<span className={cn(avatarVariants({ size, className }))} {...props}>
-			<img src={src} alt={name} className='w-full h-full object-cover' />
+			<img src={src} alt={name} className="w-full h-full object-cover" />
 		</span>
 	);
 }

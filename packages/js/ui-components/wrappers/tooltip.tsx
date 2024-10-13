@@ -1,4 +1,9 @@
-import { TooltipContent, TooltipProvider, TooltipTrigger, Tooltip as TooltipUI } from '../ui/tooltip.js';
+import {
+	TooltipContent,
+	TooltipProvider,
+	TooltipTrigger,
+	Tooltip as TooltipUI,
+} from '../ui/tooltip.js';
 
 export type TooltipProps = React.ComponentProps<typeof TooltipUI> & {
 	trigger: React.ReactNode;

@@ -14,8 +14,9 @@ export const Instructions: React.FC = () => {
 		<InstructionsUI>
 			{wptelegram_active && (
 				<Alert className="font-medium my-4 max-w-max" title={__('Note:')}>
-					
-					<span  className="text-red-600">{__('You can use the same bot for all the WP Telegram plugins.')}</span>
+					<span className="text-red-600">
+						{__('You can use the same bot for all the WP Telegram plugins.')}
+					</span>
 				</Alert>
 			)}
 			<ol className="ms-8 list-decimal">

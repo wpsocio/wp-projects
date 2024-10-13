@@ -34,22 +34,28 @@ export const SingleMessage: React.FC<SingleMessageProps> = ({
 		(parse_mode === 'none' || link_preview_disabled);
 
 	const warning = showWarning && (
-		<Alert type='warning' title={<span>
-				{isRTL() ? '👈' : '👉'}&nbsp;
-				<span>{createInterpolateElement(
-					sprintf(
-						/* translators: 1 - field name, 2 - value */
-						__('When %1$s is set to %2$s:'),
-						'<ImagePosition />',
-						'<Value />',
-					),
-					{
-						ImagePosition: <b>{getFieldLabel('image_position')}</b>,
-						Value: <b>{__('After the Text')}</b>,
-					},
-				)}</span>
-			</span>}>
-			
+		<Alert
+			type="warning"
+			title={
+				<span>
+					{isRTL() ? '👈' : '👉'}&nbsp;
+					<span>
+						{createInterpolateElement(
+							sprintf(
+								/* translators: 1 - field name, 2 - value */
+								__('When %1$s is set to %2$s:'),
+								'<ImagePosition />',
+								'<Value />',
+							),
+							{
+								ImagePosition: <b>{getFieldLabel('image_position')}</b>,
+								Value: <b>{__('After the Text')}</b>,
+							},
+						)}
+					</span>
+				</span>
+			}
+		>
 			<ul className="list-disc ms-6">
 				{parse_mode === 'none' && (
 					<li className="text-destructive">

@@ -14,14 +14,21 @@ export type DropdownMenuProps = React.ComponentProps<typeof DropdownMenuUI> & {
 	children?: Array<React.ReactNode>;
 };
 
-export function DropdownMenu({ trigger, label, children, items, ...props }: DropdownMenuProps) {
+export function DropdownMenu({
+	trigger,
+	label,
+	children,
+	items,
+	...props
+}: DropdownMenuProps) {
 	return (
 		<DropdownMenuUI {...props}>
 			<DropdownMenuTrigger asChild>{trigger}</DropdownMenuTrigger>
 			<DropdownMenuContent>
 				<DropdownMenuLabel>{label}</DropdownMenuLabel>
 				<DropdownMenuSeparator />
-				{children || items?.map((props) => <DropdownMenuItem key={props.id} {...props} />)}
+				{children ||
+					items?.map((props) => <DropdownMenuItem key={props.id} {...props} />)}
 			</DropdownMenuContent>
 		</DropdownMenuUI>
 	);

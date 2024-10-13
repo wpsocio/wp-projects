@@ -1,4 +1,12 @@
-import { Table as TableUI, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '../ui/table.js';
+import {
+	Table as TableUI,
+	TableBody,
+	TableCaption,
+	TableCell,
+	TableHead,
+	TableHeader,
+	TableRow,
+} from '../ui/table.js';
 
 export type TableColumn = {
 	id: string;
@@ -22,7 +30,13 @@ export type TableProps = {
 	data?: Array<TableData>;
 } & Omit<React.ComponentProps<typeof TableUI>, 'children'>;
 
-export function Table({ caption, columns, data, children, ...props }: TableProps) {
+export function Table({
+	caption,
+	columns,
+	data,
+	children,
+	...props
+}: TableProps) {
 	const tableData = data || children || [];
 
 	return (
