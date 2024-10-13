@@ -1,7 +1,5 @@
 import { expect, test } from '@wordpress/e2e-test-utils-playwright';
-import { Actions } from '../../utils/actions.js';
-import { Mocks } from '../../utils/mocks.js';
-import { REST } from '../../utils/rest.js';
+import { Actions, Mocks, REST } from '@wpsocio/e2e-utils';
 
 test.describe('Settings', () => {
 	let actions: Actions;

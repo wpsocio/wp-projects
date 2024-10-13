@@ -1,8 +1,5 @@
 import { expect, test } from '@wordpress/e2e-test-utils-playwright';
-import { Actions } from '../../utils/actions.js';
-import { BlockEditor } from '../../utils/editor/block-editor.js';
-import { ClassicEditor } from '../../utils/editor/classic-editor.js';
-import { REST } from '../../utils/rest.js';
+import { Actions, BlockEditor, ClassicEditor, REST } from '@wpsocio/e2e-utils';
 
 test.describe('Public UI', () => {
 	let actions: Actions;

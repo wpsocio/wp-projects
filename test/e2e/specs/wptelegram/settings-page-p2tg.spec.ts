@@ -1,9 +1,6 @@
 import type { Locator, Page } from '@playwright/test';
 import { expect, test } from '@wordpress/e2e-test-utils-playwright';
-import { Actions } from '../../utils/actions.js';
-import { BlockEditor } from '../../utils/editor/block-editor.js';
-import { ClassicEditor } from '../../utils/editor/classic-editor.js';
-import { REST } from '../../utils/rest.js';
+import { Actions, BlockEditor, ClassicEditor, REST } from '@wpsocio/e2e-utils';
 
 const botToken = '123456789:y7SdjUVdeSA8HRF3WmOqHAA-cOIiz9u04dC';
 
