@@ -80,7 +80,7 @@ export function RuleSetValues({
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
-		setDefaultValues(rule.param || '');
+		setDefaultValues(param);
 	}, []);
 
 	const loadValuesOptions = useCallback(
