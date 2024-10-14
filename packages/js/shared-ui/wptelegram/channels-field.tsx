@@ -16,6 +16,7 @@ export type ChannelsFieldProps = Pick<
 	name: string;
 	label: React.ReactNode;
 	description?: React.ReactNode;
+	addButtonLabel?: React.ReactNode;
 };
 
 export function ChannelsField({
@@ -26,6 +27,7 @@ export function ChannelsField({
 	placeholder,
 	'aria-label': ariaLabel,
 	showMemberCount,
+	addButtonLabel,
 }: ChannelsFieldProps) {
 	const { control } = useFormContext();
 
@@ -66,7 +68,7 @@ export function ChannelsField({
 				variant="secondary"
 			>
 				<Plus className="me-2" size="16" />
-				{__('Add channel')}
+				{addButtonLabel || __('Add channel')}
 			</Button>
 		</div>
 	);

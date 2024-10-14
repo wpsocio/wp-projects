@@ -56,19 +56,23 @@ export class Actions {
 	}
 
 	async assertChangesSaved() {
+		await this.assertNotification('success', 'Changes saved successfully.');
+	}
+
+	async assertNotification(status: 'success' | 'error', message: string) {
 		const notifications = this.page.getByRole('region', {
 			name: 'Notifications',
 		});
 
-		const notificationShown = notifications.locator('li[role="status"]', {
-			has: this.page.locator('div[data-status="success"]'),
-		});
+		const notificationShown = notifications
+			.locator('li[role="status"]', {
+				has: this.page.locator(`div[data-status="${status}"]`),
+			})
+			.last();
 
 		await notificationShown.waitFor();
 
-		expect(await notificationShown.textContent()).toContain(
-			'Changes saved successfully.',
-		);
+		expect(await notificationShown.textContent()).toContain(message);
 	}
 
 	/**
