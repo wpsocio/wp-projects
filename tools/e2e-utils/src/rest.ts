@@ -14,6 +14,36 @@ export class REST {
 		});
 	}
 
+	/**
+	 * Delete all CPT posts using REST API.
+	 *
+	 * @param endpoint The endpoint to delete posts, e.g. "/wp/v2/posts".
+	 */
+	async deleteAllCPTPosts(endpoint: string) {
+		// List all posts.
+		const posts = await this.requestUtils.rest({
+			path: endpoint,
+			params: {
+				per_page: 100,
+				// All possible statuses.
+				status: 'publish,future,draft,pending,private,trash',
+			},
+		});
+
+		// Delete all posts one by one.
+		await Promise.all(
+			posts.map((post: { id: number }) =>
+				this.requestUtils.rest({
+					method: 'DELETE',
+					path: `${endpoint}/${post.id}`,
+					params: {
+						force: true,
+					},
+				}),
+			),
+		);
+	}
+
 	async getInstalledThemes() {
 		return await this.requestUtils.rest<Array<Theme>>({
 			path: '/wp/v2/themes',
