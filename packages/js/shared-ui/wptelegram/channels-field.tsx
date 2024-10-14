@@ -37,7 +37,7 @@ export function ChannelsField({
 
 	return (
 		<div>
-			<div className="space-y-2">
+			<div>
 				<FormLabel className="md:mt-2 md:basis-[30%]" isRequired>
 					{label}
 				</FormLabel>
