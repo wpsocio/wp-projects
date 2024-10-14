@@ -1,5 +1,5 @@
 import type { Locator, Page } from '@playwright/test';
-import { type PageUtils, expect } from '@wordpress/e2e-test-utils-playwright';
+import type { PageUtils } from '@wordpress/e2e-test-utils-playwright';
 
 export class Actions {
 	protected page: Page;
@@ -64,15 +64,12 @@ export class Actions {
 			name: 'Notifications',
 		});
 
-		const notificationShown = notifications
-			.locator('li[role="status"]', {
-				has: this.page.locator(`div[data-status="${status}"]`),
-			})
-			.last();
+		const notificationShown = notifications.locator('li[role="status"]', {
+			has: this.page.locator(`div[data-status="${status}"]`),
+			hasText: message,
+		});
 
 		await notificationShown.waitFor();
-
-		expect(await notificationShown.textContent()).toContain(message);
 	}
 
 	/**
