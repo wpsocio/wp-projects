@@ -1,12 +1,13 @@
-import * as yup from 'yup';
-
-import { __ } from '@wpsocio/i18n';
+import { __, sprintf } from '@wpsocio/i18n';
 import {
 	BOT_TOKEN_REGEX,
 	TG_USERNAME_REGEX,
+} from '@wpsocio/utilities/constants.js';
+import {
 	fieldLabelGetter,
 	getFormErrorMessage,
-} from '@wpsocio/utilities';
+} from '@wpsocio/utilities/fields.js';
+import { z } from 'zod';
 
 export const fieldLabels = {
 	bot_token: () => __('Bot Token'),
@@ -30,71 +31,103 @@ export const fieldLabels = {
 export const getFieldLabel = fieldLabelGetter(fieldLabels);
 
 const ajaxWidgetSchema = {
-	username: yup.string().matches(TG_USERNAME_REGEX, {
-		message: () => getErrorMessage('username', 'invalid'),
-		excludeEmptyString: true,
-	}),
-	width: yup.string().matches(/^[1-9]*?[0-9]*?(?:px|r?em|%)?$/, {
-		message: () => getErrorMessage('width', 'invalid'),
-		excludeEmptyString: true,
-	}),
-	height: yup.string().matches(/^[1-9]*?[0-9]*?(?:px|r?em|%)?$/i, {
-		message: () => getErrorMessage('height', 'invalid'),
-		excludeEmptyString: true,
-	}),
+	username: z.union([
+		z
+			.string()
+			.regex(
+				TG_USERNAME_REGEX,
+				sprintf(__('Invalid %s'), getFieldLabel('username')),
+			)
+			.optional(),
+		z.literal(''),
+	]),
+	width: z
+		.string()
+		.regex(
+			/^[1-9]*?[0-9]*?(?:px|r?em|%)?$/,
+			sprintf(__('Invalid %s'), getFieldLabel('width')),
+		)
+		.optional(),
+	height: z
+		.string()
+		.regex(
+			/^[1-9]*?[0-9]*?(?:px|r?em|%)?$/,
+			sprintf(__('Invalid %s'), getFieldLabel('height')),
+		)
+		.optional(),
 };
 
-export const validationSchema = yup.object({
-	ajax_widget: yup.object(ajaxWidgetSchema),
-	legacy_widget: yup.object({
-		...ajaxWidgetSchema,
-		bot_token: yup
+export const validationSchema = z.object({
+	ajax_widget: z.object(ajaxWidgetSchema),
+	legacy_widget: z
+		.object({
+			...ajaxWidgetSchema,
+			bot_token: z.union([
+				z
+					.string()
+					.regex(
+						BOT_TOKEN_REGEX,
+						sprintf(__('Invalid %s'), getFieldLabel('bot_token')),
+					)
+					.optional(),
+				z.literal(''),
+			]),
+			author_photo: z.enum(['auto', 'always_show', 'always_hide']).optional(),
+			num_messages: z
+				.string()
+				.regex(
+					/^[1-5]?[0-9]?$/,
+					sprintf(__('Invalid %s'), getFieldLabel('num_messages')),
+				)
+				.optional(),
+		})
+		// make bot token required when username is added
+		.refine(
+			(data) => {
+				const result = Boolean(data.username) && !data.bot_token;
+
+				if (result) {
+					return false;
+				}
+
+				return true;
+			},
+			{
+				message: sprintf(__('%s required.'), getFieldLabel('bot_token')),
+				path: ['bot_token'],
+			},
+		),
+	join_link: z.object({
+		url: z.union([
+			z
+				.string()
+				.url(sprintf(__('Invalid %s'), getFieldLabel('url')))
+				.optional(),
+			z.literal(''),
+		]),
+		text: z.string().optional(),
+		bgcolor: z.string().optional(),
+		text_color: z.string().optional(),
+		post_types: z.array(z.string()).optional(),
+		position: z.enum(['before_content', 'after_content']).optional(),
+		priority: z
 			.string()
-			.matches(BOT_TOKEN_REGEX, {
-				message: () => getErrorMessage('bot_token', 'invalid'),
-				excludeEmptyString: true,
-			})
-			// make bot token required when username is added
-			.when('username', {
-				is: (username: string) => Boolean(username),
-				// biome-ignore lint/suspicious/noThenProperty: It comes from Yup
-				then: (schema) =>
-					schema.required(() => getErrorMessage('bot_token', 'required')),
-			}),
-		author_photo: yup
-			.mixed<'auto' | 'always_show' | 'always_hide'>()
-			.oneOf(['auto', 'always_show', 'always_hide']),
-		num_messages: yup.string().matches(/^[1-5]?[0-9]?$/, {
-			message: () => getErrorMessage('num_messages', 'invalid'),
-			excludeEmptyString: true,
-		}),
+			.regex(/^[0-9]*$/, sprintf(__('Invalid %s'), getFieldLabel('priority')))
+			.optional(),
+		open_in_new_tab: z.boolean().optional(),
 	}),
-	join_link: yup.object({
-		url: yup
-			.string()
-			.nullable()
-			.url(() => getErrorMessage('url', 'invalid')),
-		text: yup.string().nullable(),
-		text_color: yup.string().nullable(),
-		bgcolor: yup.string().nullable(),
-		post_types: yup.array().of(yup.string()),
-		position: yup
-			.mixed<'before_content' | 'after_content'>()
-			.oneOf(['before_content', 'after_content']),
-		priority: yup.string().matches(/^[0-9]*$/, {
-			message: () => getErrorMessage('priority', 'invalid'),
-			excludeEmptyString: true,
-		}),
-	}),
-	advanced: yup.object({
-		telegram_blocked: yup.boolean().nullable(),
-		google_script_url: yup
-			.string()
-			.nullable()
-			.url(() => getErrorMessage('google_script_url', 'invalid')),
+	advanced: z.object({
+		telegram_blocked: z.boolean().optional(),
+		google_script_url: z.union([
+			z
+				.string()
+				.url(sprintf(__('Invalid %s'), getFieldLabel('google_script_url')))
+				.optional(),
+			z.literal(''),
+		]),
 	}),
 });
 
-export type DataShape = yup.InferType<typeof validationSchema>;
+export type DataShape = z.infer<typeof validationSchema>;
 
 export const getErrorMessage = getFormErrorMessage(fieldLabels);

@@ -1,17 +1,17 @@
-import { Box, Link, List, ListItem, Text } from '@wpsocio/adapters';
-import { Code, Instructions as InstructionsUI } from '@wpsocio/components';
 import { __, sprintf } from '@wpsocio/i18n';
-import { createInterpolateElement } from '@wpsocio/utilities';
-
+import { Code } from '@wpsocio/shared-ui/components/code';
+import { Instructions as InstructionsUI } from '@wpsocio/shared-ui/components/instructions';
+import { Link } from '@wpsocio/ui-components/wrappers/link.js';
+import { createInterpolateElement } from '@wpsocio/utilities/createInterpolateElement.js';
 import { useData } from '../../services';
 
 export const Instructions: React.FC = () => {
 	const { pullUpdatesUrl } = useData('assets');
 	return (
-		<Box>
-			<InstructionsUI mt="2em" highContrast={false}>
-				<List as="ol" styleType="decimal">
-					<ListItem>
+		<div>
+			<InstructionsUI className="mt-6">
+				<ol className="ms-8 list-decimal">
+					<li>
 						{createInterpolateElement(
 							sprintf(
 								/* translators: 1 command name, 2 bot name */
@@ -32,8 +32,8 @@ export const Instructions: React.FC = () => {
 								),
 							},
 						)}
-					</ListItem>
-					<ListItem>
+					</li>
+					<li>
 						{sprintf(
 							/* translators: %s bot name */
 							__(
@@ -41,8 +41,8 @@ export const Instructions: React.FC = () => {
 							),
 							'@BotFather',
 						)}
-					</ListItem>
-					<ListItem>
+					</li>
+					<li>
 						{createInterpolateElement(
 							`${__(
 								'Copy the token and paste into the Bot Token field below.',
@@ -59,19 +59,15 @@ export const Instructions: React.FC = () => {
 								),
 							},
 						)}
-					</ListItem>
-					<ListItem>
-						{__('Add the Bot as Administrator to your Channel/Group.')}
-					</ListItem>
-					<ListItem>
-						{__('Send a test message to see if we did it right.')}
-					</ListItem>
-					<ListItem>
-						<Text as="span" color="red.600" fontWeight="500">
+					</li>
+					<li>{__('Add the Bot as Administrator to your Channel/Group.')}</li>
+					<li>{__('Send a test message to see if we did it right.')}</li>
+					<li>
+						<span className="text-destructive font-medium">
 							{__('For groups, disable group privacy for the bot.')}
-						</Text>
-						<List styleType="circle" marginInlineStart="1.5em">
-							<ListItem>
+						</span>
+						<ul className="list-disc ms-6">
+							<li>
 								{createInterpolateElement(
 									sprintf(
 										/* translators: 1 command name, 2 bot name, 3 site url */
@@ -92,33 +88,33 @@ export const Instructions: React.FC = () => {
 										),
 									},
 								)}
-							</ListItem>
-							<ListItem>{__('Choose your bot.')}</ListItem>
-							<ListItem>{__('Select "Disable".')}</ListItem>
-						</List>
-					</ListItem>
-				</List>
+							</li>
+							<li>{__('Choose your bot.')}</li>
+							<li>{__('Select "Disable".')}</li>
+						</ul>
+					</li>
+				</ol>
 			</InstructionsUI>
-			<Text color="#396609">
+			<p className="text-[#396609]">
 				<b>
 					{__('Tip!')}
 					{'💡'}
 				</b>
 				&nbsp;
-				<Text as="span">
+				<span>
 					{__(
 						'Updates are pulled every five minutes if someone visits your website.',
 					)}
-				</Text>
+				</span>
 				&nbsp;
-				<Text as="span">
+				<span>
 					{__(
 						'To make sure the updates are pulled in time, it is recommended to set up a cron on your hosting server that hits the below URL every five minutes or so.',
 					)}
-				</Text>
+				</span>
 				<br />
 				<Code>{pullUpdatesUrl}</Code>
-			</Text>
-		</Box>
+			</p>
+		</div>
 	);
 };

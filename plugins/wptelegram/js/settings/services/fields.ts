@@ -3,16 +3,18 @@ import {
 	parseModeSchema,
 	proxySchema,
 	fieldLabels as sharedFieldLabels,
-} from '@wpsocio/shared-wptelegram-ui';
+} from '@wpsocio/shared-ui/wptelegram/fields';
 import {
 	BOT_TOKEN_REGEX,
 	TG_CHAT_ID_REGEX,
 	TG_PRIVATE_CHAT_ID_REGEX,
 	TG_USERNAME_REGEX,
+} from '@wpsocio/utilities/constants.js';
+import {
 	fieldLabelGetter,
 	getFormErrorMessage,
-} from '@wpsocio/utilities';
-import * as yup from 'yup';
+} from '@wpsocio/utilities/fields.js';
+import { z } from 'zod';
 
 export const fieldLabels = {
 	...sharedFieldLabels,
@@ -28,151 +30,140 @@ export const fieldLabels = {
 
 export const getFieldLabel = fieldLabelGetter(fieldLabels);
 
-export const validationSchema = yup.object({
-	bot_token: yup
+export const validationSchema = z.object({
+	bot_token: z
 		.string()
-		.matches(BOT_TOKEN_REGEX, {
-			message: () => getErrorMessage('bot_token', 'invalid'),
-			excludeEmptyString: true,
-		})
-		.required(() => getErrorMessage('bot_token', 'required')),
-	bot_username: yup.string().matches(TG_USERNAME_REGEX, {
-		message: () => getErrorMessage('bot_username', 'invalid'),
-		excludeEmptyString: true,
-	}),
-	p2tg: yup.object({
-		active: yup.boolean(),
-		channels: yup
-			.array()
-			.compact((field) => !field.value)
-			.of(
-				yup.object({
-					value: yup
-						.string()
-						.trim()
-						// match @username and chat ID
-						.matches(TG_CHAT_ID_REGEX, {
-							message: () => getErrorMessage('chat_id', 'invalid'),
-							excludeEmptyString: true,
-						}),
-				}),
-			)
-			.when('active', {
-				is: true,
-				// biome-ignore lint/suspicious/noThenProperty: it's from Yup
-				then: (schema) =>
-					schema
-						.required(
-							sprintf(
-								/* translators: %s: field label */
-								__('At least one %s is required.'),
-								__('channel'),
-							),
-						)
-						.min(
-							1,
-							sprintf(
-								/* translators: %s: field label */
-								__('At least one %s is required.'),
-								__('channel'),
-							),
-						),
-			}),
-		send_when: yup
-			.array()
-			.of(
-				yup
-					.mixed<'new' | 'existing'>()
-					.oneOf(['new', 'existing'], () =>
-						getErrorMessage('send_when', 'invalid'),
-					),
-			),
-		post_types: yup.array().of(yup.string()),
-		rules: yup.array().of(
-			yup.object({
-				value: yup.array().of(
-					yup.object({
-						param: yup.string(),
-						operator: yup.mixed<'in' | 'not_in'>().oneOf(['in', 'not_in']),
-						values: yup.array().of(yup.mixed()),
-					}),
-				),
-			}),
+		.min(1, sprintf(__('%s required.'), getFieldLabel('bot_token')))
+		.regex(
+			BOT_TOKEN_REGEX,
+			sprintf(__('Invalid %s'), getFieldLabel('bot_token')),
 		),
-		message_template: yup.string(),
-		excerpt_source: yup
-			.string()
-			.oneOf<'post_content' | 'before_more' | 'post_excerpt'>([
-				'post_content',
-				'before_more',
-				'post_excerpt',
-			]),
-		excerpt_length: yup
-			.number()
-			.integer()
-			.positive()
-			.typeError(() =>
-				sprintf(
-					/* translators: %s: field label */
-					__('%s must be a number.'),
-					getFieldLabel('excerpt_length'),
-				),
-			)
-			// make sure it's >= 1
-			.min(1)
-			.max(300)
-			.nullable(),
-		excerpt_preserve_eol: yup.boolean(),
-		send_featured_image: yup.boolean(),
-		image_position: yup.mixed<'before' | 'after'>().oneOf(['before', 'after']),
-		single_message: yup.boolean(),
-		cats_as_tags: yup.boolean(),
-		parse_mode: parseModeSchema,
-		link_preview_disabled: yup.boolean(),
-		link_preview_url: yup.string(),
-		link_preview_above_text: yup.boolean(),
-		inline_button_text: yup.string(),
-		inline_button_url: yup.string(),
-		delay: yup
-			.number()
-			.nullable()
-			.typeError(() =>
-				sprintf(
-					/* translators: %s: field label */
-					__('%s must be a number.'),
-					getFieldLabel('delay'),
-				),
-			)
-			.positive()
-			.min(0),
-		disable_notification: yup.boolean(),
-		protect_content: yup.boolean(),
-	}),
-	notify: yup.object({
-		active: yup.boolean(),
-		watch_emails: yup.string(),
-		chat_ids: yup
-			.array()
-			.compact((field) => !field.value)
-			.of(
-				yup.object({
-					value: yup
-						.string()
-						.trim()
-						// match private chat ID.
-						.matches(TG_PRIVATE_CHAT_ID_REGEX, {
-							message: () => getErrorMessage('chat_id', 'invalid'),
-							excludeEmptyString: true,
-						}),
-				}),
+	bot_username: z
+		.string()
+		.min(1, sprintf(__('%s required.'), getFieldLabel('bot_username')))
+		.regex(
+			TG_USERNAME_REGEX,
+			sprintf(__('Invalid %s'), getFieldLabel('bot_username')),
+		),
+	p2tg: z
+		.object({
+			active: z.boolean().optional(),
+			channels: z
+				.array(
+					z.object({
+						value: z.union([
+							z.literal(''),
+							z
+								.string()
+								.trim()
+								// match @username and chat ID
+								.regex(
+									TG_CHAT_ID_REGEX,
+									sprintf(
+										/* translators: %s: field name */
+										__('Invalid %s'),
+										getFieldLabel('channels'),
+									),
+								),
+						]),
+					}),
+				)
+				.optional()
+				.transform((value) => value?.filter(Boolean)),
+			send_when: z.array(z.enum(['new', 'existing'])).optional(),
+			post_types: z.array(z.string()).optional(),
+			rules: z
+				.array(
+					z.object({
+						value: z.array(
+							z.object({
+								param: z.string(),
+								operator: z.enum(['in', 'not_in']),
+								values: z.array(z.any()).optional(),
+							}),
+						),
+					}),
+				)
+				.optional(),
+			message_template: z.string().optional(),
+			// Excerpt settings
+			excerpt_source: z
+				.enum(['post_content', 'before_more', 'post_excerpt'])
+				.optional(),
+			excerpt_length: z.coerce.number().int().min(1).max(300).optional(),
+			excerpt_preserve_eol: z.boolean().optional(),
+			// Image settings
+			send_featured_image: z.boolean().optional(),
+			image_position: z.enum(['before', 'after']).optional(),
+			single_message: z.boolean().optional(),
+			// Additional settings
+			cats_as_tags: z.boolean().optional(),
+			parse_mode: parseModeSchema,
+			protect_content: z.boolean().optional(),
+			// Link preview settings
+			link_preview_disabled: z.boolean().optional(),
+			link_preview_url: z.string().optional(),
+			link_preview_above_text: z.boolean().optional(),
+			// Inline button settings
+			inline_url_button: z.boolean().optional(),
+			inline_button_text: z.string().optional(),
+			inline_button_url: z.string().optional(),
+			// Misc settings
+			post_edit_switch: z.boolean().optional(),
+			plugin_posts: z.boolean().optional(),
+			delay: z.coerce.number().min(0).optional(),
+			disable_notification: z.boolean().optional(),
+		})
+		.refine((value) => !value.active || value.channels?.length, {
+			message: sprintf(
+				/* translators: %s: field label */
+				__('At least one %s is required.'),
+				__('channel'),
 			),
-		message_template: yup.string(),
-		parse_mode: parseModeSchema,
-	}),
+			path: ['channels'],
+		}),
+	notify: z
+		.object({
+			active: z.boolean().optional(),
+			watch_emails: z.string().optional(),
+			chat_ids: z
+				.array(
+					z.object({
+						value: z.union([
+							z.literal(''),
+							z
+								.string()
+								.trim()
+								// match private chat ID.
+								.regex(
+									TG_PRIVATE_CHAT_ID_REGEX,
+									sprintf(__('Invalid %s'), getFieldLabel('chat_id')),
+								),
+						]),
+					}),
+				)
+				.optional()
+				.transform((value) => value?.filter(Boolean)),
+			user_notifications: z.boolean().optional(),
+			message_template: z.string().optional(),
+			parse_mode: parseModeSchema,
+		})
+		.refine((value) => !value.active || value.chat_ids?.length, {
+			message: sprintf(
+				/* translators: %s: field label */
+				__('At least one %s is required.'),
+				__('chat ID'),
+			),
+			path: ['chat_ids'],
+		}),
 	proxy: proxySchema,
-	advanced: yup.object(),
+	advanced: z.object({
+		send_files_by_url: z.boolean().optional(),
+		enable_logs: z.array(z.enum(['bot_api', 'p2tg'])),
+		clean_uninstall: z.boolean().optional(),
+	}),
 });
 
-export type DataShape = yup.InferType<typeof validationSchema>;
+export type DataShape = z.infer<typeof validationSchema>;
 
 export const getErrorMessage = getFormErrorMessage(fieldLabels);

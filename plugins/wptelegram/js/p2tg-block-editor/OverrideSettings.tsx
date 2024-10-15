@@ -1,5 +1,6 @@
 import {
 	Button,
+	Disabled,
 	Modal,
 	TextControl,
 	TextareaControl,
@@ -60,6 +61,8 @@ export const OverrideSettings: React.FC = () => {
 
 	const separator = <div style={separatorStyles} />;
 
+	const disableInputs = !data.override_switch;
+
 	return (
 		<>
 			<Button
@@ -86,46 +89,50 @@ export const OverrideSettings: React.FC = () => {
 								label={__('Override settings')}
 								checked={data.override_switch}
 								onChange={updateField('override_switch')}
+								__nextHasNoMarginBottom
 							/>
-							{separator}
-							<Channels isDisabled={!data.override_switch} />
-							{separator}
-							<Files isDisabled={!data.override_switch} />
-							{separator}
-							<ToggleControl
-								// @ts-ignore
-								disabled={!data.override_switch}
-								label={__('Disable Notifications')}
-								checked={data.disable_notification}
-								onChange={updateField('disable_notification')}
-							/>
-							{separator}
-							<TextControl
-								disabled={!data.override_switch}
-								label={__('Delay in Posting')}
-								value={data.delay || '0.5'}
-								onChange={updateField('delay')}
-								step="0.5"
-								min={0}
-								type="number"
-							/>
-							{separator}
-							<ToggleControl
-								// @ts-ignore
-								disabled={!data.override_switch}
-								label={__('Featured Image')}
-								checked={data.send_featured_image}
-								onChange={updateField('send_featured_image')}
-								help={__('Send Featured Image (if exists).')}
-							/>
-							{separator}
-							<TextareaControl
-								disabled={!data.override_switch}
-								label={__('Message Template')}
-								value={data.message_template || ''}
-								onChange={updateField('message_template')}
-								rows={10}
-							/>
+							<Disabled
+								isDisabled={disableInputs}
+								style={{ opacity: disableInputs ? 0.3 : 1 }}
+							>
+								{separator}
+								<Channels />
+								{separator}
+								<Files />
+								{separator}
+								<ToggleControl
+									label={__('Disable Notifications')}
+									checked={data.disable_notification}
+									onChange={updateField('disable_notification')}
+									__nextHasNoMarginBottom
+								/>
+								{separator}
+								<TextControl
+									label={__('Delay in Posting')}
+									value={data.delay || '0.5'}
+									onChange={updateField('delay')}
+									step="0.5"
+									min={0}
+									type="number"
+									__nextHasNoMarginBottom
+								/>
+								{separator}
+								<ToggleControl
+									label={__('Featured Image')}
+									checked={data.send_featured_image}
+									onChange={updateField('send_featured_image')}
+									help={__('Send Featured Image (if exists).')}
+									__nextHasNoMarginBottom
+								/>
+								{separator}
+								<TextareaControl
+									label={__('Message Template')}
+									value={data.message_template || ''}
+									onChange={updateField('message_template')}
+									rows={10}
+									__nextHasNoMarginBottom
+								/>
+							</Disabled>
 						</div>
 
 						<Button style={buttonStyles} variant="primary" onClick={closeModal}>

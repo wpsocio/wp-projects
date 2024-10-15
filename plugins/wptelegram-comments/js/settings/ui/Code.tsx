@@ -1,24 +1,13 @@
-import $ from 'jquery';
-import { type CSSProperties, useEffect } from 'react';
-
-import { FormField, useFormContext, useWatch } from '@wpsocio/form';
+import { useFormContext, useWatch } from '@wpsocio/form';
 import { __ } from '@wpsocio/i18n';
+import { FormField } from '@wpsocio/shared-ui/form/form-field';
+import { FormItem } from '@wpsocio/shared-ui/form/form-item';
+import { Textarea } from '@wpsocio/ui-components/ui/textarea.js';
+import { FormControl } from '@wpsocio/ui-components/wrappers/form.js';
+import $ from 'jquery';
+import { useEffect } from 'react';
 
 import { type DataShape, getFieldLabel } from '../services';
-
-const style: CSSProperties = {
-	WebkitAppearance: 'none',
-	backgroundColor: 'rgba(0, 0, 0, 0.05)',
-	fontFamily: 'Menlo, Monaco, Consolas, "Courier New", monospace',
-	fontSize: '13px',
-	paddingBottom: '8px',
-	paddingTop: '8px',
-	resize: 'none',
-	textAlign: 'left',
-	whiteSpace: 'pre-wrap',
-	wordBreak: 'break-all',
-	wordWrap: 'break-word',
-};
 
 export const Code: React.FC = () => {
 	const { setValue } = useFormContext<DataShape>();
@@ -48,18 +37,33 @@ export const Code: React.FC = () => {
 	return (
 		<>
 			<FormField
-				cols={60}
-				description={__('Please read the instructions above.')}
-				dir="ltr"
-				fieldType="textarea"
-				isRequired
-				label={getFieldLabel('code')}
 				name="code"
-				rows={4}
-				spellCheck={false}
-				style={style}
+				render={({ field }) => (
+					<FormItem
+						label={getFieldLabel('code')}
+						description={__('Please read the instructions above.')}
+						isRequired
+					>
+						<FormControl>
+							<Textarea
+								className="appearance-none bg-gray-100 font-mono text-xs py-2 resize-none text-left whitespace-pre-wrap break-words"
+								required
+								spellCheck={false}
+								{...field}
+							/>
+						</FormControl>
+					</FormItem>
+				)}
 			/>
-			<FormField fieldType="hidden" name="attributes" />
+
+			<FormField
+				name="attributes"
+				render={({ field }) => (
+					<FormControl>
+						<input type="hidden" {...field} />
+					</FormControl>
+				)}
+			/>
 		</>
 	);
 };

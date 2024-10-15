@@ -1,8 +1,8 @@
-import { Box } from '@wpsocio/adapters';
-import { PluginInfoCard, WPTGSocialIcons } from '@wpsocio/components';
-import { FormDebug } from '@wpsocio/form';
+import { useFormContext } from '@wpsocio/form';
 import { __ } from '@wpsocio/i18n';
-
+import { PluginInfoCard } from '@wpsocio/shared-ui/components/plugin-info/plugin-info-card';
+import { WPTGSocialIcons } from '@wpsocio/shared-ui/components/wptg-social-icons.js';
+import { FormDebug } from '@wpsocio/shared-ui/form/form-debug';
 import { useData } from '../services';
 
 const Sidebar: React.FC = () => {
@@ -10,22 +10,23 @@ const Sidebar: React.FC = () => {
 		pluginInfo: { title },
 		assets: { tgIconUrl },
 	} = useData();
+	const { watch } = useFormContext();
 
 	return (
-		<Box>
+		<div>
 			<PluginInfoCard
-				description={__(
+				description={`${title}: ${__(
 					'Use Telegram Comments widget for your WordPress posts or pages.',
-				)}
-				helpText={__('Get LIVE support on Telegram')}
+				)}`}
+				helpText={__('Join our public chat on Telegram')}
 				reviewLink="https://wordpress.org/support/plugin/wptelegram-comments/reviews/#new-post"
 				supportLink="https://t.me/WPTelegramChat"
 				supportLinkText="@WPTelegramChat"
 				socialIcons={<WPTGSocialIcons tgIconUrl={tgIconUrl} />}
-				title={title}
+				title={__('Support')}
 			/>
-			<FormDebug />
-		</Box>
+			<FormDebug data={watch()} />
+		</div>
 	);
 };
 

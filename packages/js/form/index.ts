@@ -1,8 +1,6 @@
 export * from './Form';
-export * from './FormDebug';
-export * from './FormField';
-export * from './types';
-export { useFieldError } from './hooks';
+
+export { useFieldError } from './hooks/useFieldError.js';
 
 export {
 	useForm,
@@ -20,4 +18,4 @@ export type {
 	UseFormProps,
 } from 'react-hook-form';
 
-export { yupResolver } from '@hookform/resolvers/yup';
+export { zodResolver } from '@hookform/resolvers/zod';

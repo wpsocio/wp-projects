@@ -1,4 +1,4 @@
-import type { AnyObject } from '@wpsocio/utilities';
+import type { AnyObject } from '@wpsocio/utilities/types';
 
 export interface ApiData {
 	admin_url?: string;

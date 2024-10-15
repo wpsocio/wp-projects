@@ -2,6 +2,7 @@ import { InspectorControls } from '@wordpress/block-editor';
 import type { BlockEditProps } from '@wordpress/blocks';
 import {
 	Dashicon,
+	Flex,
 	PanelBody,
 	RadioControl,
 	TextControl,
@@ -52,28 +53,32 @@ export const Edit: React.FC<BlockEditProps<LegacyWidgetAtts>> = ({
 		<>
 			<InspectorControls>
 				<PanelBody title={__('Widget Options')}>
-					<TextControl
-						label={__('Widget Width')}
-						value={widget_width}
-						onChange={onChangeWidth}
-						type="number"
-						min="10"
-						max="100"
-					/>
-					<RadioControl
-						label={__('Author Photo')}
-						selected={author_photo}
-						onChange={onChangeAuthorPhoto}
-						options={getAuthorPhotoOptions()}
-					/>
-					<TextControl
-						label={__('Number of Messages')}
-						value={num_messages}
-						onChange={onChangeNum}
-						type="number"
-						min="1"
-						max="50"
-					/>
+					<Flex direction="column" gap={4}>
+						<TextControl
+							label={__('Widget Width')}
+							value={widget_width}
+							onChange={onChangeWidth}
+							type="number"
+							min="10"
+							max="100"
+							__nextHasNoMarginBottom
+						/>
+						<RadioControl
+							label={__('Author Photo')}
+							selected={author_photo}
+							onChange={onChangeAuthorPhoto}
+							options={getAuthorPhotoOptions()}
+						/>
+						<TextControl
+							label={__('Number of Messages')}
+							value={num_messages}
+							onChange={onChangeNum}
+							type="number"
+							min="1"
+							max="50"
+							__nextHasNoMarginBottom
+						/>
+					</Flex>
 				</PanelBody>
 			</InspectorControls>
 			<div className={className} key="shortcode">

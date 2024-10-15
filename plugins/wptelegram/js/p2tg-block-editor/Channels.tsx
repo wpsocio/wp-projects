@@ -1,4 +1,4 @@
-import { BaseControl, CheckboxControl } from '@wordpress/components';
+import { BaseControl, CheckboxControl, Flex } from '@wordpress/components';
 import { useCallback } from '@wordpress/element';
 
 import { __ } from '@wpsocio/i18n';
@@ -7,9 +7,7 @@ import { useDataState, useUpdateField } from './data';
 
 const allChannels = window.wptelegram?.uiData?.allChannels || [];
 
-export const Channels: React.FC<{ isDisabled?: boolean }> = ({
-	isDisabled,
-}) => {
+export const Channels: React.FC = () => {
 	const { data } = useDataState();
 	const updateField = useUpdateField();
 
@@ -39,17 +37,22 @@ export const Channels: React.FC<{ isDisabled?: boolean }> = ({
 	const label = `${__('Send to')} ${selectedChannels}`;
 
 	return (
-		<BaseControl id="wptg-send-to" label={label}>
-			<div role="group" id="wptg-send-to" aria-label={label}>
+		<BaseControl id="wptg-send-to" label={label} __nextHasNoMarginBottom>
+			<Flex
+				direction="column"
+				role="group"
+				id="wptg-send-to"
+				aria-label={label}
+			>
 				<CheckboxControl
 					checked={allChecked}
-					disabled={isDisabled}
 					indeterminate={isIndeterminate}
 					onChange={(checked) => {
 						const newChannels = checked ? allChannels : [];
 						updateField('channels')(newChannels);
 					}}
 					label={__('Select all')}
+					__nextHasNoMarginBottom
 				/>
 				{allChannels.map((channel, index) => {
 					return (
@@ -57,13 +60,13 @@ export const Channels: React.FC<{ isDisabled?: boolean }> = ({
 							// biome-ignore lint/suspicious/noArrayIndexKey: it's fine
 							key={channel + index}
 							label={channel}
-							disabled={isDisabled}
 							checked={data.channels?.indexOf(channel) !== -1}
 							onChange={onChange(channel)}
+							__nextHasNoMarginBottom
 						/>
 					);
 				})}
-			</div>
+			</Flex>
 		</BaseControl>
 	);
 };

@@ -1,8 +1,10 @@
-import { Link, List, ListItem, Text } from '@wpsocio/adapters';
-import { Code, Instructions as InstructionsUI } from '@wpsocio/components';
 import { __, sprintf } from '@wpsocio/i18n';
-import { createInterpolateElement } from '@wpsocio/utilities';
+import { Code } from '@wpsocio/shared-ui/components/code';
+import { Instructions as InstructionsUI } from '@wpsocio/shared-ui/components/instructions';
+import { Link } from '@wpsocio/ui-components/wrappers/link.js';
+import { createInterpolateElement } from '@wpsocio/utilities/createInterpolateElement.js';
 import { useData } from '../services';
+import { Alert } from '@wpsocio/ui-components/wrappers/alert.js';
 
 const { location } = window;
 
@@ -11,13 +13,14 @@ export const Instructions: React.FC = () => {
 	return (
 		<InstructionsUI>
 			{wptelegram_active && (
-				<Text color="red.600" fontWeight="500">
-					{__('Note:')}{' '}
-					{__('You can use the same bot for all the WP Telegram plugins.')}
-				</Text>
+				<Alert className="font-medium my-4 max-w-max" title={__('Note:')}>
+					<span className="text-red-600">
+						{__('You can use the same bot for all the WP Telegram plugins.')}
+					</span>
+				</Alert>
 			)}
-			<List as="ol" styleType="decimal">
-				<ListItem>
+			<ol className="ms-8 list-decimal">
+				<li>
 					{createInterpolateElement(
 						sprintf(
 							/* translators: 1 command name, 2 bot name */
@@ -38,15 +41,15 @@ export const Instructions: React.FC = () => {
 							),
 						},
 					)}
-				</ListItem>
-				<ListItem>
+				</li>
+				<li>
 					{sprintf(
 						/* translators: %s bot name */
 						__('After completing the steps %s will provide you the Bot Token.'),
 						'@BotFather',
 					)}
-				</ListItem>
-				<ListItem>
+				</li>
+				<li>
 					{createInterpolateElement(
 						`${__(
 							'Copy the token and paste into the Bot Token field below.',
@@ -63,8 +66,8 @@ export const Instructions: React.FC = () => {
 							),
 						},
 					)}
-				</ListItem>
-				<ListItem>
+				</li>
+				<li>
 					{createInterpolateElement(
 						sprintf(
 							/* translators: 1 command name, 2 bot name, 3 site url */
@@ -93,15 +96,15 @@ export const Instructions: React.FC = () => {
 							),
 						},
 					)}
-				</ListItem>
-				<ListItem>
+				</li>
+				<li>
 					{__(
 						'Test your bot token below and fill in the bot username if not filled automatically.',
 					)}
-				</ListItem>
-				<ListItem>{sprintf(__('Hit %s below'), __('Save Changes'))}</ListItem>
-				<ListItem>{__("That's it. You are ready to rock :)")}</ListItem>
-			</List>
+				</li>
+				<li>{sprintf(__('Hit %s below'), __('Save Changes'))}</li>
+				<li>{__("That's it. You are ready to rock :)")}</li>
+			</ol>
 		</InstructionsUI>
 	);
 };

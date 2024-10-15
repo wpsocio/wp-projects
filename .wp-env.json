@@ -13,7 +13,7 @@
 		"tests": {
 			"mappings": {
 				"wp-content/plugins/classic-editor": "WordPress/classic-editor",
-				"wp-content/mu-plugins": "./test/e2e/mu-plugins",
+				"wp-content/mu-plugins": "./tools/e2e-mu-plugins",
 				"wp-content/themes/gutenberg-test-themes/twentytwentyone": "https://downloads.wordpress.org/theme/twentytwentyone.2.3.zip",
 				"wp-content/themes/gutenberg-test-themes/twentytwentyfour": "https://downloads.wordpress.org/theme/twentytwentyfour.1.2.zip"
 			}
