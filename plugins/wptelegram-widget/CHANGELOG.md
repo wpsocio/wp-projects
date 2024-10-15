@@ -1,5 +1,19 @@
 # Changelog
 
+## 2.2.0
+
+### Minor Changes
+
+- [#167](https://github.com/wpsocio/wp-projects/pull/167) [`c111617`](https://github.com/wpsocio/wp-projects/commit/c111617cb5395b94446e115a49d002e3f111aee0) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Improved the UI for small/mobile screens
+
+- [#167](https://github.com/wpsocio/wp-projects/pull/167) [`c111617`](https://github.com/wpsocio/wp-projects/commit/c111617cb5395b94446e115a49d002e3f111aee0) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Refreshed the UI migrating away from Chakra UI
+
+### Patch Changes
+
+- [#167](https://github.com/wpsocio/wp-projects/pull/167) [`c111617`](https://github.com/wpsocio/wp-projects/commit/c111617cb5395b94446e115a49d002e3f111aee0) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Fixed the issue of single post widget author photo always shown
+
+- [#167](https://github.com/wpsocio/wp-projects/pull/167) [`c111617`](https://github.com/wpsocio/wp-projects/commit/c111617cb5395b94446e115a49d002e3f111aee0) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Fixed and improved the a11y issues in settings page UI
+
 ## 2.1.30
 
 ### Patch Changes

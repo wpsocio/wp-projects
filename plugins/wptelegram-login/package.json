@@ -1,7 +1,7 @@
 {
 	"name": "wptelegram-login",
 	"title": "WP Telegram Login",
-	"version": "1.10.24",
+	"version": "1.11.0",
 	"description": "Let the users login to your website with their Telegram and make it simple for them to get connected and let them receive their email notifications on Telegram.",
 	"private": true,
 	"license": "GPL-3.0-or-later",
@@ -72,7 +72,9 @@
 				]
 			},
 			{
-				"paths": ["src/assets/build/dev-server.json"],
+				"paths": [
+					"src/assets/build/dev-server.json"
+				],
 				"rules": [
 					{
 						"value": "NOT_EXISTS"
@@ -84,15 +86,21 @@
 	"wireit": {
 		"build": {
 			"command": "vite build && pnpm run validate-build",
-			"output": ["src/assets/build"]
+			"output": [
+				"src/assets/build"
+			]
 		},
 		"setup:php": {
 			"command": "composer install --ignore-platform-reqs",
-			"dependencies": ["unset-vendor-dir"]
+			"dependencies": [
+				"unset-vendor-dir"
+			]
 		},
 		"setup:php:prod": {
 			"command": "composer install --no-dev && pnpm run unset-vendor-dir",
-			"dependencies": ["set-prod-vendor"]
+			"dependencies": [
+				"set-prod-vendor"
+			]
 		},
 		"set-prod-vendor": {
 			"command": "composer config vendor-dir src/vendor"
