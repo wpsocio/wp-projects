@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.2.1
+
+### Patch Changes
+
+- [#177](https://github.com/wpsocio/wp-projects/pull/177) [`3c61709`](https://github.com/wpsocio/wp-projects/commit/3c61709b222937e457340231533947cdc69a0a6d) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Fixed the last failed deployment
+
 ## 2.2.0
 
 ### Minor Changes
