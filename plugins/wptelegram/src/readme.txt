@@ -4,8 +4,8 @@ Donate link: https://wpsocio.com/donate
 Tags: telegram, notifications, posts, channel, group
 Requires at least: 6.4
 Requires PHP: 7.4
-Tested up to: 6.6.1
-Stable tag: 4.2.0
+Tested up to: 6.6.2
+Stable tag: 4.2.1
 License: GPL-3.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -203,11 +203,7 @@ Automatic updates should work smoothly, but we still recommend you back up your 
 
 == Changelog ==
 
-= 4.2.0 =
-- Fixed the issue of delay in posting not being saved when changed alone
-- Improved the UI for small/mobile screens
-- Fixed the issue of proxy options not showing upon changing proxy type.
-- Refreshed the UI migrating away from Chakra UI
-- Fixed and improved the a11y issues in settings page UI
+= 4.2.1 =
+- Fixed the last failed deployment
 
 [See full changelog](https://github.com/wpsocio/wptelegram/blob/main/CHANGELOG.md)

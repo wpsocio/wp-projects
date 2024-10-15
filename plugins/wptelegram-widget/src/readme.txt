@@ -4,8 +4,8 @@ Donate link: https://wpsocio.com/donate
 Tags: telegram, feed, widget, channel, group
 Requires at least: 6.4
 Requires PHP: 7.4
-Tested up to: 6.6.1
-Stable tag: 2.2.0
+Tested up to: 6.6.2
+Stable tag: 2.2.1
 License: GPL-3.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -193,10 +193,7 @@ Automatic updates should work smoothly, but we still recommend you back up your 
 
 == Changelog ==
 
-= 2.2.0 =
-- Fixed the issue of single post widget author photo always shown
-- Improved the UI for small/mobile screens
-- Refreshed the UI migrating away from Chakra UI
-- Fixed and improved the a11y issues in settings page UI
+= 2.2.1 =
+- Fixed the last failed deployment
 
 [See full changelog](https://github.com/wpsocio/wptelegram-widget/blob/main/CHANGELOG.md)
