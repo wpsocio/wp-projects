@@ -38,6 +38,9 @@ jobs:
           files: "dist/${{ fromJson(needs.details.outputs.result).relativeDir }}-${{ fromJson(needs.details.outputs.result).version }}.zip"
           repo-token: ${{ secrets.ACCESS_TOKEN_IR }}
 
+      - name: Install svn
+        run: sudo apt-get install subversion
+
       - name: Deploy to WordPress.org
         id: deploy
         uses: 10up/action-wordpress-plugin-deploy@stable
