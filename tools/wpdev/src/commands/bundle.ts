@@ -81,7 +81,7 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 			concurrent: true,
 		});
 
-		for (const [name, project] of this.projects) {
+		for (const [_, project] of this.projects) {
 			tasks.add({
 				title: `Preparing ${project.packageJson.name}`,
 				task: async (_, task) => {
