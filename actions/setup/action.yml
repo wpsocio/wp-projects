@@ -16,7 +16,7 @@ inputs:
 
   pnpm-version:
     description: "The version of pnpm to use."
-    default: "latest"
+    default: ""
 
   lockfile:
     description: "The lockfile to use."

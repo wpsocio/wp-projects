@@ -59,9 +59,7 @@
 	},
 	"wireit": {
 		"build": {
-			"dependencies": [
-				"build:all"
-			]
+			"dependencies": ["build:all"]
 		},
 		"build:all": {
 			"command": "pnpm build:tools && pnpm build:projects"
@@ -86,10 +84,7 @@
 			"command": "pnpm -r --filter=./plugins/* exec pnpm rimraf src/assets/build/dev-server.json"
 		},
 		"lint:all": {
-			"dependencies": [
-				"lint:js",
-				"lint:php"
-			]
+			"dependencies": ["lint:js", "lint:php"]
 		},
 		"lint:js": {
 			"command": "biome lint ./"
@@ -99,24 +94,17 @@
 		},
 		"prep-release": {
 			"command": "pnpm run bundle:changed",
-			"dependencies": [
-				"prep-version"
-			]
+			"dependencies": ["prep-version"]
 		},
 		"prep-version": {
 			"command": "changeset version && pnpm -r run version",
-			"dependencies": [
-				"release-status"
-			]
+			"dependencies": ["release-status"]
 		},
 		"release-status": {
 			"command": "changeset status --output=changeset-status.json"
 		},
 		"setup:all": {
-			"dependencies": [
-				"setup:php",
-				"build:all"
-			]
+			"dependencies": ["setup:php", "build:all"]
 		},
 		"setup:php": {
 			"dependencies": [
@@ -133,9 +121,7 @@
 		},
 		"setup:php:projects": {
 			"command": "pnpm -r --filter=./plugins/* --filter=./premium/*/* run setup:php",
-			"dependencies": [
-				"setup:php:packages"
-			]
+			"dependencies": ["setup:php:packages"]
 		},
 		"test:php": {
 			"command": "pnpm -r run test:php"
@@ -160,12 +146,8 @@
 	"wpdev": {
 		"isRoot": true,
 		"operationMode": "wp-monorepo",
-		"projectTypes": [
-			"plugins"
-		],
-		"envFiles": [
-			".env"
-		]
+		"projectTypes": ["plugins"],
+		"envFiles": [".env"]
 	},
-	"packageManager": "pnpm@9.11.0+sha512.0a203ffaed5a3f63242cd064c8fb5892366c103e328079318f78062f24ea8c9d50bc6a47aa3567cabefd824d170e78fa2745ed1f16b132e16436146b7688f19b"
+	"packageManager": "pnpm@9.12.1"
 }
