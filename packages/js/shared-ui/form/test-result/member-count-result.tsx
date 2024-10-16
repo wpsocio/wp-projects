@@ -4,6 +4,7 @@ import type {
 	TestResultType,
 } from '@wpsocio/services/apiFetch/types.js';
 import { cn } from '@wpsocio/ui-components';
+import { Alert } from '@wpsocio/ui-components/wrappers/alert.jsx';
 
 interface MemberCountResultProps {
 	memberCountResult: TestResult;
@@ -14,31 +15,30 @@ export const MemberCountResult: React.FC<MemberCountResultProps> = ({
 	memberCountResult,
 	memberCountResultType,
 }) => {
-	const result = Object.entries(memberCountResult);
+	const [[chat_id, result] = []] = Object.entries(memberCountResult);
 
-	return result.length ? (
+	const resultType = memberCountResultType?.[chat_id ?? ''];
+
+	return result ? (
 		<div className="mt-4">
-			<p className="text-gray-500">{__('Members Count:')}</p>
-			{result.map(([chat_id, result]) => {
-				return (
-					<div className="flex flex-row flex-wrap py-4" key={chat_id}>
-						<div className="min-w-[150px]">
-							<span className="font-bold">{chat_id}</span>
-						</div>
-						<div className="ms-4">
-							<span
-								className={cn('font-bold', {
-									'text-red-600': memberCountResultType?.[chat_id] === 'ERROR',
-									'text-green-600':
-										memberCountResultType?.[chat_id] === 'SUCCESS',
-								})}
-							>
-								{result}
-							</span>
-						</div>
+			<Alert
+				title={__('Members Count:')}
+				type={resultType === 'ERROR' ? 'error' : 'success'}
+				className="max-w-max"
+			>
+				<div className="flex flex-wrap gap-3">
+					<div className="min-w-[150px]">
+						<span className="font-semibold">{chat_id}</span>
 					</div>
-				);
-			})}
+					<span
+						className={cn('font-semibold', {
+							'text-green-600': resultType === 'SUCCESS',
+						})}
+					>
+						{result}
+					</span>
+				</div>
+			</Alert>
 		</div>
 	) : null;
 };
