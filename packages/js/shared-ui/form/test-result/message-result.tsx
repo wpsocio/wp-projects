@@ -4,6 +4,7 @@ import type {
 	TestResultType,
 } from '@wpsocio/services/apiFetch/types.js';
 import { cn } from '@wpsocio/ui-components';
+import { Alert } from '@wpsocio/ui-components/wrappers/alert.jsx';
 
 interface MessageResultProps {
 	messageResult: TestResult;
@@ -14,30 +15,30 @@ export const MessageResult: React.FC<MessageResultProps> = ({
 	messageResult,
 	messageResultType,
 }) => {
-	const testResults = Object.entries(messageResult);
+	const [[chat_id, result] = []] = Object.entries(messageResult);
 
-	return testResults.length ? (
+	const resultType = messageResultType?.[chat_id ?? ''];
+
+	return result ? (
 		<div className="mt-4">
-			<p className="text-gray-500">{__('Result:')}</p>
-			{testResults.map(([chat_id, result]) => {
-				return (
-					<div className="flex py-4 flex-wrap" key={chat_id}>
-						<div className="min-w-[150px]">
-							<span className="font-bold">{chat_id}</span>
-						</div>
-						<div className="ms-4">
-							<span
-								className={cn('font-bold', {
-									'text-red-600': messageResultType?.[chat_id] === 'ERROR',
-									'text-green-600': messageResultType?.[chat_id] === 'SUCCESS',
-								})}
-							>
-								{result}
-							</span>
-						</div>
+			<Alert
+				title={__('Test Result:')}
+				type={resultType === 'ERROR' ? 'error' : 'success'}
+				className="max-w-max"
+			>
+				<div className="flex flex-wrap gap-3" key={chat_id}>
+					<div className="min-w-max">
+						<span className="font-semibold">{chat_id}</span>
 					</div>
-				);
-			})}
+					<span
+						className={cn('font-semibold', {
+							'text-green-600': resultType === 'SUCCESS',
+						})}
+					>
+						{result}
+					</span>
+				</div>
+			</Alert>
 		</div>
 	) : null;
 };

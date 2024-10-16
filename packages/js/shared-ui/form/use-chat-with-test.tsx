@@ -47,7 +47,6 @@ export const useChatWithTest = (
 					return;
 				}
 				const chat_id = fixUsername ? fixChatId(chatId) : chatId;
-				// setMemberCountResult({});
 				await sendTestMessage(
 					{
 						bot_token,
@@ -58,13 +57,11 @@ export const useChatWithTest = (
 						},
 						setResult(result) {
 							setTestResult({
-								...testResult,
 								[chatId]: result,
 							});
 						},
 						setResultType(resultType) {
 							setTestResultType({
-								...testResultType,
 								[chatId]: resultType,
 							});
 						},
@@ -72,12 +69,11 @@ export const useChatWithTest = (
 					event,
 				);
 			},
-		[bot_token, fixUsername, testResult, testResultType],
+		[bot_token, fixUsername],
 	);
 
 	const onBlur = useCallback<React.FocusEventHandler<HTMLInputElement>>(
 		async ({ nativeEvent: e }) => {
-			// setTestResult({});
 			const chatId = (e.target as HTMLInputElement)?.value;
 			if (!bot_token || !chatId || checkingMemberCount[chatId]) {
 				return;
@@ -88,20 +84,17 @@ export const useChatWithTest = (
 				bot_token,
 				chat_id,
 				setInProgress: (val) =>
-					setCheckingMemberCount((prevState) => ({
-						...prevState,
+					setCheckingMemberCount({
 						[chatId]: val,
-					})),
+					}),
 				setResult: (result) =>
-					setMemberCountResult((prevState) => ({
-						...prevState,
+					setMemberCountResult({
 						[chatId]: result,
-					})),
+					}),
 				setResultType: (resultType) =>
-					setMemberCountResultType((prevState) => ({
-						...prevState,
+					setMemberCountResultType({
 						[chatId]: resultType,
-					})),
+					}),
 			});
 		},
 		[bot_token, checkingMemberCount, fixUsername],

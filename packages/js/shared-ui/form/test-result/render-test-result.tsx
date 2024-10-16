@@ -1,5 +1,6 @@
 import { __ } from '@wpsocio/i18n';
 import { cn } from '@wpsocio/ui-components';
+import { Alert } from '@wpsocio/ui-components/wrappers/alert.js';
 
 export type ResultType = 'SUCCESS' | 'ERROR';
 
@@ -13,17 +14,18 @@ export const RenderTestResult: React.FC<RenderTestResultProps> = ({
 	resultType,
 }) => {
 	return result ? (
-		<div>
-			<i className="text-gray-600">{__('Test Result:')}</i>
-			&nbsp;
+		<Alert
+			title={__('Test Result:')}
+			type={resultType === 'ERROR' ? 'error' : 'success'}
+			className="max-w-max"
+		>
 			<span
 				className={cn('font-bold', {
-					'text-red-600': resultType === 'ERROR',
 					'text-green-600': resultType === 'SUCCESS',
 				})}
 			>
 				{result}
 			</span>
-		</div>
+		</Alert>
 	) : null;
 };
