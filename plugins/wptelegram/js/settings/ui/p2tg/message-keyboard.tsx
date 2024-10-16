@@ -4,7 +4,7 @@ import { SectionCard } from '@wpsocio/shared-ui/components/section-card';
 import { VariableButton } from '@wpsocio/shared-ui/components/variable-button';
 import { FormField } from '@wpsocio/shared-ui/form/form-field';
 import { FormItem } from '@wpsocio/shared-ui/form/form-item';
-import { FormControl } from '@wpsocio/ui-components/ui/form.jsx';
+import { FormControl } from '@wpsocio/ui-components/ui/form.js';
 import { Input } from '@wpsocio/ui-components/wrappers/input';
 import { Switch } from '@wpsocio/ui-components/wrappers/switch';
 import { createInterpolateElement } from '@wpsocio/utilities/createInterpolateElement';

@@ -1,5 +1,5 @@
 import { __ } from '@wpsocio/i18n';
-import { VariableButton } from '../components/variable-button.jsx';
+import { VariableButton } from '../components/variable-button.js';
 import { MessageTemplate } from './message-template.js';
 import type { CommonProps } from './types.js';
 

@@ -1,4 +1,4 @@
-import type { APIFetchOptions, BaseApiUtilArgs } from '../apiFetch';
+import type { APIFetchOptions, BaseApiUtilArgs } from '../api-fetch';
 
 export type ApiParams = Partial<Record<'string', unknown>>;
 
@@ -36,14 +36,10 @@ export interface TestBotTokenArgs extends TelegramApiUtilBaseArgs {
 	onComplete?: (bot_token: string, result: unknown) => void;
 }
 
-export type TestBotToken = TelegramApiUtil<TestBotTokenArgs>;
-
 export interface SendTextMessageArgs extends TelegramApiUtilBaseArgs {
 	text: string;
 	parse_mode?: string;
 }
-
-export type SendTextMessage = TelegramApiUtil<SendTextMessageArgs>;
 
 export interface WebhookUtilArgs extends TelegramApiUtilBaseArgs {
 	setStatus: (status: WebhookStatus, getError?: () => unknown) => void;

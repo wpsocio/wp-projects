@@ -1,6 +1,6 @@
 import { __, sprintf } from '@wpsocio/i18n';
-import { FormControl } from '@wpsocio/ui-components/ui/form.jsx';
-import { Switch } from '@wpsocio/ui-components/wrappers/switch.jsx';
+import { FormControl } from '@wpsocio/ui-components/ui/form.js';
+import { Switch } from '@wpsocio/ui-components/wrappers/switch.js';
 import { prefixName } from '@wpsocio/utilities/misc.js';
 import { FormField } from '../form/form-field.js';
 import { FormItem } from '../form/form-item.js';

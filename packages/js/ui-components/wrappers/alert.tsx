@@ -8,6 +8,7 @@ export type AlertProps = Omit<AlertUIProps, 'variant' | 'title'> & {
 	title?: React.ReactNode;
 	description?: React.ReactNode;
 	type?: 'success' | 'error' | 'warning' | 'info';
+	titleClassName?: string;
 };
 
 export function Alert({
@@ -16,6 +17,7 @@ export function Alert({
 	children,
 	type = 'info',
 	icon: alertIcon,
+	titleClassName,
 	...props
 }: AlertProps) {
 	let icon = alertIcon;
@@ -42,7 +44,9 @@ export function Alert({
 	return (
 		<AlertUI {...props} variant={type === 'error' ? 'destructive' : 'default'}>
 			{icon}
-			{title ? <AlertTitle>{title}</AlertTitle> : null}
+			{title ? (
+				<AlertTitle className={titleClassName}>{title}</AlertTitle>
+			) : null}
 			{content ? <AlertDescription>{content}</AlertDescription> : null}
 		</AlertUI>
 	);

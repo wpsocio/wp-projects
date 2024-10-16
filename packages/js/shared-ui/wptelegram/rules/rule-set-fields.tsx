@@ -2,7 +2,7 @@ import { __ } from '@wpsocio/i18n';
 import { FormControl, FormItem } from '@wpsocio/ui-components/wrappers/form.js';
 import { Select } from '@wpsocio/ui-components/wrappers/select.js';
 import type { OptionsType } from '@wpsocio/ui-components/wrappers/types.js';
-import { FormField } from '../../form/form-field.jsx';
+import { FormField } from '../../form/form-field.js';
 import { RuleSetValues, type RuleSetValuesProps } from './rule-set-values.js';
 
 const getOperatorOptions = () => [

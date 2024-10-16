@@ -1,15 +1,15 @@
 import { __ } from '@wpsocio/i18n';
-import { FormControl } from '@wpsocio/ui-components/ui/form.jsx';
-import { Separator } from '@wpsocio/ui-components/ui/separator.jsx';
-import { Link } from '@wpsocio/ui-components/wrappers/link.jsx';
-import { Switch } from '@wpsocio/ui-components/wrappers/switch.jsx';
+import { FormControl } from '@wpsocio/ui-components/ui/form.js';
+import { Separator } from '@wpsocio/ui-components/ui/separator.js';
+import { Link } from '@wpsocio/ui-components/wrappers/link.js';
+import { Switch } from '@wpsocio/ui-components/wrappers/switch.js';
 import type { OptionProps } from '@wpsocio/ui-components/wrappers/types.js';
 import { prefixName } from '@wpsocio/utilities/misc.js';
 import { useMemo } from 'react';
-import { Code } from '../components/code.jsx';
+import { Code } from '../components/code.js';
 import { FormField } from '../form/form-field.js';
 import { FormItem } from '../form/form-item.js';
-import { MultiCheckboxField } from '../form/multi-checkbox-field.jsx';
+import { MultiCheckboxField } from '../form/multi-checkbox-field.js';
 import { getFieldLabel } from './fields.js';
 import type { CommonProps } from './types.js';
 

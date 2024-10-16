@@ -1,7 +1,7 @@
 import { __ } from '@wpsocio/i18n';
-import { FormControl } from '@wpsocio/ui-components/ui/form.jsx';
-import { Link } from '@wpsocio/ui-components/wrappers/link.jsx';
-import { Switch } from '@wpsocio/ui-components/wrappers/switch.jsx';
+import { FormControl } from '@wpsocio/ui-components/ui/form.js';
+import { Link } from '@wpsocio/ui-components/wrappers/link.js';
+import { Switch } from '@wpsocio/ui-components/wrappers/switch.js';
 import { prefixName } from '@wpsocio/utilities/misc.js';
 import { FormField } from '../form/form-field.js';
 import { FormItem } from '../form/form-item.js';

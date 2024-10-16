@@ -1,9 +1,9 @@
 import { useWatch } from '@wpsocio/form';
 import { __ } from '@wpsocio/i18n';
-import { FormControl } from '@wpsocio/ui-components/ui/form.jsx';
-import { Input } from '@wpsocio/ui-components/wrappers/input.jsx';
-import { Select } from '@wpsocio/ui-components/wrappers/select.jsx';
-import { Switch } from '@wpsocio/ui-components/wrappers/switch.jsx';
+import { FormControl } from '@wpsocio/ui-components/ui/form.js';
+import { Input } from '@wpsocio/ui-components/wrappers/input.js';
+import { Select } from '@wpsocio/ui-components/wrappers/select.js';
+import { Switch } from '@wpsocio/ui-components/wrappers/switch.js';
 import { prefixName } from '@wpsocio/utilities/misc.js';
 import { FormField } from '../form/form-field.js';
 import { FormItem } from '../form/form-item.js';

@@ -1,23 +1,22 @@
-import { __ } from '@wpsocio/i18n';
 import { cn } from '@wpsocio/ui-components';
 import {
 	RenderTestResult,
 	type RenderTestResultProps,
 } from './render-test-result.js';
 
-export type MemberCountResultProps = RenderTestResultProps & {
+export type TestMessageResultProps = RenderTestResultProps & {
 	chatId?: string;
 };
 
-export const MemberCountResult: React.FC<MemberCountResultProps> = ({
+export const TestMessageResult: React.FC<TestMessageResultProps> = ({
 	chatId,
 	...props
 }) => {
 	return (
-		<RenderTestResult {...props} title={__('Members Count:')}>
+		<RenderTestResult {...props}>
 			{({ result, resultType }) => (
 				<div className="flex flex-wrap gap-3">
-					<div className="min-w-[150px]">
+					<div className="min-w-max">
 						<span className="font-semibold">{chatId}</span>
 					</div>
 					<span

@@ -1,16 +1,16 @@
 import { __ } from '@wpsocio/i18n';
-import { FormControl } from '@wpsocio/ui-components/ui/form.jsx';
+import { FormControl } from '@wpsocio/ui-components/ui/form.js';
 import { RadioGroup } from '@wpsocio/ui-components/wrappers/radio-group.js';
-import { SectionCard } from '../../components/section-card.jsx';
-import { YouTubeVideo } from '../../components/youtube-video.jsx';
+import { SectionCard } from '../../components/section-card.js';
+import { YouTubeVideo } from '../../components/youtube-video.js';
 import { FormField } from '../../form/form-field.js';
 import { FormItem } from '../../form/form-item.js';
-import { ActiveField } from '../active-field.jsx';
+import { ActiveField } from '../active-field.js';
 import { getFieldLabel } from '../fields.js';
-import { IfActive } from '../if-active.jsx';
+import { IfActive } from '../if-active.js';
 import type { CommonProps } from '../types.js';
-import { ProxyDisclaimer } from './proxy-disclaimer.jsx';
-import { ProxySettings } from './proxy-settings.jsx';
+import { ProxyDisclaimer } from './proxy-disclaimer.js';
+import { ProxySettings } from './proxy-settings.js';
 
 const getProxyOptions = () => [
 	{

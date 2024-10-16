@@ -8,7 +8,7 @@ import { Link } from '@wpsocio/ui-components/wrappers/link.js';
 import { createInterpolateElement } from '@wpsocio/utilities/createInterpolateElement.js';
 import { Fragment } from 'react';
 import { Code } from '../components/code.js';
-import { VariableButton } from '../components/variable-button.jsx';
+import { VariableButton } from '../components/variable-button.js';
 
 export interface TemplateMacro {
 	label: string;

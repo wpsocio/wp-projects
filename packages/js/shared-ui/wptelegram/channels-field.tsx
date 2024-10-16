@@ -1,7 +1,7 @@
 import { useFieldArray, useFieldError, useFormContext } from '@wpsocio/form';
 import { __ } from '@wpsocio/i18n';
 import { Plus } from '@wpsocio/ui-components/icons/index.js';
-import { Button } from '@wpsocio/ui-components/wrappers/button.jsx';
+import { Button } from '@wpsocio/ui-components/wrappers/button.js';
 import {
 	FormDescription,
 	FormLabel,

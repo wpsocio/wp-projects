@@ -1,7 +1,7 @@
 import { FormControl } from '@wpsocio/ui-components/wrappers/form.js';
 import { Switch } from '@wpsocio/ui-components/wrappers/switch.js';
 import { prefixName } from '@wpsocio/utilities/misc.js';
-import { FormField } from '../form/form-field.jsx';
+import { FormField } from '../form/form-field.js';
 import { FormItem } from '../form/form-item.js';
 import { getFieldLabel } from './fields.js';
 import type { CommonProps } from './types.js';

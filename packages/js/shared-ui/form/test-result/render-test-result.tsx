@@ -1,31 +1,47 @@
 import { __ } from '@wpsocio/i18n';
+import type { ResultType } from '@wpsocio/services/api-fetch/types.js';
 import { cn } from '@wpsocio/ui-components';
 import { Alert } from '@wpsocio/ui-components/wrappers/alert.js';
 
-export type ResultType = 'SUCCESS' | 'ERROR';
-
-interface RenderTestResultProps {
-	result: React.ReactNode;
-	resultType: ResultType;
+export interface RenderTestResultProps {
+	title?: string;
+	result?: React.ReactNode;
+	resultType?: ResultType;
+	children?: (
+		props: Pick<RenderTestResultProps, 'result' | 'resultType'>,
+	) => React.ReactNode;
+	className?: string;
 }
 
 export const RenderTestResult: React.FC<RenderTestResultProps> = ({
 	result,
 	resultType,
+	children,
+	title,
+	className,
 }) => {
-	return result ? (
-		<Alert
-			title={__('Test Result:')}
-			type={resultType === 'ERROR' ? 'error' : 'success'}
-			className="max-w-max"
+	if (!result) {
+		return null;
+	}
+
+	const output = children?.({ result, resultType }) || (
+		<div
+			className={cn('font-semibold', {
+				'text-green-600': resultType === 'SUCCESS',
+			})}
 		>
-			<span
-				className={cn('font-bold', {
-					'text-green-600': resultType === 'SUCCESS',
-				})}
-			>
-				{result}
-			</span>
+			{result}
+		</div>
+	);
+
+	return output ? (
+		<Alert
+			title={title || __('Test Result:')}
+			type={resultType === 'ERROR' ? 'error' : 'success'}
+			className={cn('max-w-max mt-4', className)}
+			titleClassName="font-normal mb-2"
+		>
+			{output}
 		</Alert>
 	) : null;
 };
