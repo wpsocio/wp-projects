@@ -1,9 +1,9 @@
 import { cn } from '@wpsocio/ui-components';
-import { Checkbox } from '@wpsocio/ui-components/wrappers/checkbox.jsx';
+import { Checkbox } from '@wpsocio/ui-components/wrappers/checkbox.js';
 import { FormControl } from '@wpsocio/ui-components/wrappers/form.js';
 import type { OptionProps } from '@wpsocio/ui-components/wrappers/types.js';
 import { FormItem } from '../form/form-item.js';
-import { FormField } from './form-field.jsx';
+import { FormField } from './form-field.js';
 
 export type MultiCheckboxFieldProps = {
 	name: string;

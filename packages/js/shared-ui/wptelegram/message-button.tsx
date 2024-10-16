@@ -6,7 +6,7 @@ import {
 	type ButtonProps,
 } from '@wpsocio/ui-components/wrappers/button.js';
 import { ConfirmationDialog } from '@wpsocio/ui-components/wrappers/confirmation-dialog.js';
-import { IconButton } from '@wpsocio/ui-components/wrappers/icon-button.jsx';
+import { IconButton } from '@wpsocio/ui-components/wrappers/icon-button.js';
 import { Popover } from '@wpsocio/ui-components/wrappers/popover.js';
 
 type MessageButtonProps = Omit<ButtonProps, 'value'> & {

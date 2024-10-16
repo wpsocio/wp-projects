@@ -1,6 +1,6 @@
 import { __, sprintf } from '@wpsocio/i18n';
 import { FormControl } from '@wpsocio/ui-components/ui/form.js';
-import { Input } from '@wpsocio/ui-components/wrappers/input.jsx';
+import { Input } from '@wpsocio/ui-components/wrappers/input.js';
 import { RadioGroup } from '@wpsocio/ui-components/wrappers/radio-group.js';
 import { prefixName } from '@wpsocio/utilities/misc.js';
 import { FormField } from '../../form/form-field.js';

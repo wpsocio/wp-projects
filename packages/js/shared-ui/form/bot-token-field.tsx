@@ -3,7 +3,7 @@ import { __ } from '@wpsocio/i18n';
 import { FormControl } from '@wpsocio/ui-components/wrappers/form.js';
 import { Input } from '@wpsocio/ui-components/wrappers/input.js';
 import { useEffect } from 'react';
-import { FormField } from './form-field.jsx';
+import { FormField } from './form-field.js';
 import { FormItem } from './form-item.js';
 import { useBotTokenTest } from './use-bot-token-test.js';
 

@@ -8,7 +8,7 @@ import type {
 	SubmitHandler,
 	UseFormReturn,
 } from 'react-hook-form';
-import { fetchAPI } from './apiFetch';
+import { fetchAPI } from './api-fetch';
 import { useDisplayFeedback } from './use-display-feedback.js';
 
 interface SubmitFormProps<FD extends FieldValues> {

@@ -4,7 +4,7 @@ import { Code } from '@wpsocio/shared-ui/components/code';
 import { FormField } from '@wpsocio/shared-ui/form/form-field';
 import { FormItem } from '@wpsocio/shared-ui/form/form-item';
 import { ChannelsField } from '@wpsocio/shared-ui/wptelegram/channels-field';
-import { FormControl } from '@wpsocio/ui-components/ui/form.jsx';
+import { FormControl } from '@wpsocio/ui-components/ui/form.js';
 import { Input } from '@wpsocio/ui-components/wrappers/input';
 import { createInterpolateElement } from '@wpsocio/utilities/createInterpolateElement';
 import { type DataShape, getFieldLabel } from '../../services/fields';

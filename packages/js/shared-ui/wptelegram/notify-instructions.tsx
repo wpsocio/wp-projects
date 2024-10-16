@@ -1,10 +1,10 @@
 import { __, sprintf } from '@wpsocio/i18n';
-import { Link } from '@wpsocio/ui-components/wrappers/link.jsx';
+import { Link } from '@wpsocio/ui-components/wrappers/link.js';
 import { createInterpolateElement } from '@wpsocio/utilities/createInterpolateElement.js';
-import { Code } from '../components/code.jsx';
+import { Code } from '../components/code.js';
 import { Instructions as InstructionsUI } from '../components/instructions.js';
-import { VariableButton } from '../components/variable-button.jsx';
-import { YouTubeVideo } from '../components/youtube-video.jsx';
+import { VariableButton } from '../components/variable-button.js';
+import { YouTubeVideo } from '../components/youtube-video.js';
 
 export interface NotifyInstructionsProps {
 	botUsername: string;

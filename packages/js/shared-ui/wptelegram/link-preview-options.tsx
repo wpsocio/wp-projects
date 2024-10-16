@@ -5,7 +5,7 @@ import { Input } from '@wpsocio/ui-components/wrappers/input.js';
 import { Switch } from '@wpsocio/ui-components/wrappers/switch.js';
 import createInterpolateElement from '@wpsocio/utilities/createInterpolateElement.js';
 import { prefixName } from '@wpsocio/utilities/misc.js';
-import { Code } from '../components/code.jsx';
+import { Code } from '../components/code.js';
 import { FormField } from '../form/form-field.js';
 import { FormItem } from '../form/form-item.js';
 import { getFieldLabel } from './fields.js';

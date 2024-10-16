@@ -1,4 +1,4 @@
-import { type BaseApiUtilArgs, fetchAPI } from '@wpsocio/services/apiFetch';
+import { type BaseApiUtilArgs, fetchAPI } from '@wpsocio/services/api-fetch';
 import type { OptionsType } from '@wpsocio/ui-components/wrappers/types';
 import { useCallback } from 'react';
 import { useData } from './useData';

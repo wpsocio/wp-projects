@@ -1,8 +1,8 @@
 import { __ } from '@wpsocio/i18n';
 import { FormControl } from '@wpsocio/ui-components/ui/form.js';
-import { Input } from '@wpsocio/ui-components/wrappers/input.jsx';
+import { Input } from '@wpsocio/ui-components/wrappers/input.js';
 import { prefixName } from '@wpsocio/utilities/misc.js';
-import { InstructionsLink } from '../../components/instructions-link.jsx';
+import { InstructionsLink } from '../../components/instructions-link.js';
 import { FormField } from '../../form/form-field.js';
 import { FormItem } from '../../form/form-item.js';
 import { getFieldLabel } from '../fields.js';

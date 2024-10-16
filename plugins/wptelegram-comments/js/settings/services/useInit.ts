@@ -1,4 +1,4 @@
-import botApi from '@wpsocio/services/telegram/TelegramAPI.js';
+import botApi from '@wpsocio/services/telegram/telegram-api.js';
 import { useEffect } from 'react';
 import { useData } from './useData';
 

@@ -1,8 +1,8 @@
 import { useWatch } from '@wpsocio/form';
 import { __ } from '@wpsocio/i18n';
-import { FormControl } from '@wpsocio/ui-components/ui/form.jsx';
+import { FormControl } from '@wpsocio/ui-components/ui/form.js';
 import { RadioGroup } from '@wpsocio/ui-components/wrappers/radio-group.js';
-import { Switch } from '@wpsocio/ui-components/wrappers/switch.jsx';
+import { Switch } from '@wpsocio/ui-components/wrappers/switch.js';
 import { prefixName } from '@wpsocio/utilities/misc.js';
 import { useMemo } from 'react';
 import { FormField } from '../form/form-field.js';

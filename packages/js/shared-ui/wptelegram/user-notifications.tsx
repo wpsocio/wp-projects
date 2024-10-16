@@ -1,6 +1,6 @@
 import { __, sprintf } from '@wpsocio/i18n';
 import { FormControl } from '@wpsocio/ui-components/ui/form.js';
-import { Link } from '@wpsocio/ui-components/wrappers/link.jsx';
+import { Link } from '@wpsocio/ui-components/wrappers/link.js';
 import { Switch } from '@wpsocio/ui-components/wrappers/switch.js';
 import { createInterpolateElement } from '@wpsocio/utilities/createInterpolateElement.js';
 import { prefixName } from '@wpsocio/utilities/misc.js';

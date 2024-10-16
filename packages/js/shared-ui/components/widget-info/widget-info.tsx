@@ -1,10 +1,10 @@
 import { __, sprintf } from '@wpsocio/i18n';
-import { Link } from '@wpsocio/ui-components/wrappers/link.jsx';
+import { Link } from '@wpsocio/ui-components/wrappers/link.js';
 import { createInterpolateElement } from '@wpsocio/utilities/createInterpolateElement.js';
 import { Code } from '../code.js';
 import { PluginInfoItem } from '../plugin-info/plugin-info-item.js';
 import { Smile } from '../smile.js';
-import { WidgetInfoCard } from './widget-info-card.jsx';
+import { WidgetInfoCard } from './widget-info-card.js';
 
 export interface WidgetInfoProps {
 	adminUrl: string;

@@ -9,11 +9,11 @@ import {
 	Tabs,
 } from '@wpsocio/ui-components/wrappers/tabs.js';
 import { useCallback } from 'react';
-import { AdvancedTab } from './advanced/tab.jsx';
+import { AdvancedTab } from './advanced/tab.js';
 import { BasicsTab } from './basics/tab.js';
-import { NotifyTab } from './notify/tab.jsx';
-import { P2TGTab } from './p2tg/tab.jsx';
-import { ProxyTab } from './proxy/tab.jsx';
+import { NotifyTab } from './notify/tab.js';
+import { P2TGTab } from './p2tg/tab.js';
+import { ProxyTab } from './proxy/tab.js';
 
 type TabItem = TabItemProps & { description?: string };
 
@@ -85,7 +85,7 @@ export const TabbedSections: React.FC = () => {
 	);
 
 	const renderTabContent = useCallback(
-		({ id, title, Component, description }: TabItem) => {
+		({ title, Component, description }: TabItem) => {
 			return (
 				<Card
 					title={description ? title : undefined}
