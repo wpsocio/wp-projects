@@ -153,7 +153,7 @@ msgstr "Bot API"
 msgid "Use %s above to set automatically."
 msgstr "Gunakan %s untuk mengatur secara otomatis."
 
-#: ../../packages/js/shared-ui/form/use-bot-token-test.tsx:122
+#: ../../packages/js/shared-ui/form/use-bot-token-test.tsx:67
 #: js/settings/ui/basics/tab.tsx:37
 #: languages/wptelegram-js-translations.php:79
 msgid "Test Token"
@@ -1083,18 +1083,17 @@ msgstr ""
 msgid "Need help?"
 msgstr "Anda Butuh bantuan?"
 
-#: ../../packages/js/shared-ui/form/test-result/member-count-result.tsx:21
+#: ../../packages/js/shared-ui/form/test-result/member-count-result.tsx:17
 #: languages/wptelegram-js-translations.php:65
 msgid "Members Count:"
 msgstr "Jumlah Anggota:"
 
-#: ../../packages/js/shared-ui/form/test-result/message-result.tsx:21
 #: languages/wptelegram-js-translations.php:68
 #, fuzzy
 msgid "Result:"
 msgstr "Hasil tes:"
 
-#: ../../packages/js/shared-ui/form/test-result/render-test-result.tsx:17
+#: ../../packages/js/shared-ui/form/test-result/render-test-result.tsx:39
 #: languages/wptelegram-js-translations.php:71
 msgid "Test Result:"
 msgstr "Hasil tes:"
@@ -1113,43 +1112,43 @@ msgstr "Ikuti %s"
 msgid "Join %s"
 msgstr "Gabung %s"
 
-#: ../../packages/js/shared-ui/form/use-bot-token-test.tsx:121
-#: ../../packages/js/shared-ui/form/use-chat-with-test.tsx:122
+#: ../../packages/js/shared-ui/form/use-bot-token-test.tsx:66
+#: ../../packages/js/shared-ui/form/use-chat-with-test.tsx:95
 #: languages/wptelegram-js-translations.php:75
 msgid "Please wait…"
 msgstr "Silahkan tunggu..."
 
-#: ../../packages/js/shared-ui/form/use-chat-with-test.tsx:123
+#: ../../packages/js/shared-ui/form/use-chat-with-test.tsx:96
 #: languages/wptelegram-js-translations.php:82
 msgid "Send Test"
 msgstr "Kirimkan Ujicoba"
 
-#: ../../packages/js/services/apiFetch/index.ts:36
+#: ../../packages/js/services/api-fetch/index.ts:36
 #: languages/wptelegram-js-translations.php:5
 msgid "Something went wrong"
 msgstr ""
 
-#: ../../packages/js/services/apiFetch/index.ts:38
+#: ../../packages/js/services/api-fetch/index.ts:38
 #: languages/wptelegram-js-translations.php:8
 msgid "Could not connect"
 msgstr "Tidak dapat tersambung"
 
-#: ../../packages/js/services/apiFetch/index.ts:41
+#: ../../packages/js/services/api-fetch/index.ts:41
 #: languages/wptelegram-js-translations.php:11
 msgid "Error:"
 msgstr "Kesalahan:"
 
-#: ../../packages/js/services/telegram/TelegramUtils.ts:128
+#: ../../packages/js/services/telegram/telegram-utils.ts:126
 #: languages/wptelegram-js-translations.php:14
 msgid "A message will be sent to the Channel/Group/Chat. You can modify the text below"
 msgstr "Pesan yang akan terkirim ke chat_ids. Silahkan modifikasi sesuai kebutuhan."
 
-#: ../../packages/js/services/telegram/TelegramUtils.ts:131
+#: ../../packages/js/services/telegram/telegram-utils.ts:129
 #: languages/wptelegram-js-translations.php:17
 msgid "This is a test message"
 msgstr "Ini adalah pesan ujicoba"
 
-#: ../../packages/js/services/telegram/TelegramUtils.ts:153
+#: ../../packages/js/services/telegram/telegram-utils.ts:152
 #: languages/wptelegram-js-translations.php:20
 msgid "Success"
 msgstr "Pengaturan Telah Selesai"
@@ -1385,4 +1384,8 @@ msgstr ""
 #: js/settings/ui/p2tg/destination.tsx:18
 #: languages/wptelegram-js-translations.php:662
 msgid "Channel or group username."
+msgstr ""
+
+#: ../../packages/js/services/telegram/telegram-utils.ts:133
+msgid "Message is empty"
 msgstr ""

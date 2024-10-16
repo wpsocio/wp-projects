@@ -1,13 +1,13 @@
 <?php
 /* THIS IS A GENERATED FILE. DO NOT EDIT DIRECTLY. */
 $generated_i18n_strings = array(
-	// Reference: ../../packages/js/services/apiFetch/index.ts:36
+	// Reference: ../../packages/js/services/api-fetch/index.ts:36
 	__( 'Something went wrong', 'wptelegram-comments' ),
 
-	// Reference: ../../packages/js/services/apiFetch/index.ts:38
+	// Reference: ../../packages/js/services/api-fetch/index.ts:38
 	__( 'Could not connect', 'wptelegram-comments' ),
 
-	// Reference: ../../packages/js/services/apiFetch/index.ts:41
+	// Reference: ../../packages/js/services/api-fetch/index.ts:41
 	__( 'Error:', 'wptelegram-comments' ),
 
 	// Reference: ../../packages/js/services/use-display-feedback.ts:68
