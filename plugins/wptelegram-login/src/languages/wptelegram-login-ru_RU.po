@@ -61,7 +61,7 @@ msgstr ""
 msgid "Ask the user to start a conversation with %s to receive notifications."
 msgstr ""
 
-#: ../../packages/js/services/apiFetch/index.ts:41
+#: ../../packages/js/services/api-fetch/index.ts:41
 #: admin/Admin.php:323
 #: languages/wptelegram-login-js-translations.php:11
 #: shared/LoginHandler.php:75
@@ -420,7 +420,7 @@ msgstr "Настройки Telegram"
 msgid "Use %s above to set automatically."
 msgstr "Используйте %s выше для автоматического заполнения."
 
-#: ../../packages/js/shared-ui/form/use-bot-token-test.tsx:122
+#: ../../packages/js/shared-ui/form/use-bot-token-test.tsx:67
 #: js/settings/ui/TelegramOptions.tsx:41
 #: languages/wptelegram-login-js-translations.php:67
 msgid "Test Token"
@@ -485,7 +485,7 @@ msgstr ""
 msgid "Need help?"
 msgstr "Нужна помощь?"
 
-#: ../../packages/js/shared-ui/form/test-result/render-test-result.tsx:17
+#: ../../packages/js/shared-ui/form/test-result/render-test-result.tsx:39
 #: languages/wptelegram-login-js-translations.php:60
 msgid "Test Result:"
 msgstr ""
@@ -509,32 +509,32 @@ msgstr ""
 msgid "Widget Info"
 msgstr "Вывод виджета кнопки"
 
-#: ../../packages/js/shared-ui/form/use-bot-token-test.tsx:121
+#: ../../packages/js/shared-ui/form/use-bot-token-test.tsx:66
 #: languages/wptelegram-login-js-translations.php:63
 msgid "Please wait…"
 msgstr ""
 
-#: ../../packages/js/services/apiFetch/index.ts:36
+#: ../../packages/js/services/api-fetch/index.ts:36
 #: languages/wptelegram-login-js-translations.php:5
 msgid "Something went wrong"
 msgstr ""
 
-#: ../../packages/js/services/apiFetch/index.ts:38
+#: ../../packages/js/services/api-fetch/index.ts:38
 #: languages/wptelegram-login-js-translations.php:8
 msgid "Could not connect"
 msgstr "Не удалось подключиться"
 
-#: ../../packages/js/services/telegram/TelegramUtils.ts:128
+#: ../../packages/js/services/telegram/telegram-utils.ts:126
 #: languages/wptelegram-login-js-translations.php:14
 msgid "A message will be sent to the Channel/Group/Chat. You can modify the text below"
 msgstr ""
 
-#: ../../packages/js/services/telegram/TelegramUtils.ts:131
+#: ../../packages/js/services/telegram/telegram-utils.ts:129
 #: languages/wptelegram-login-js-translations.php:17
 msgid "This is a test message"
 msgstr ""
 
-#: ../../packages/js/services/telegram/TelegramUtils.ts:153
+#: ../../packages/js/services/telegram/telegram-utils.ts:152
 #: languages/wptelegram-login-js-translations.php:20
 msgid "Success"
 msgstr ""
@@ -665,4 +665,8 @@ msgstr ""
 #: js/settings/ui/Sidebar.tsx:26
 #: languages/wptelegram-login-js-translations.php:252
 msgid "Support"
+msgstr ""
+
+#: ../../packages/js/services/telegram/telegram-utils.ts:133
+msgid "Message is empty"
 msgstr ""

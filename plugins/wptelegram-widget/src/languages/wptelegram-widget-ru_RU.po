@@ -461,17 +461,16 @@ msgstr "Нужна помощь?"
 msgid "Save Changes"
 msgstr ""
 
-#: ../../packages/js/shared-ui/form/test-result/member-count-result.tsx:21
+#: ../../packages/js/shared-ui/form/test-result/member-count-result.tsx:17
 #: languages/wptelegram-widget-js-translations.php:83
 msgid "Members Count:"
 msgstr "Количество подписчиков:"
 
-#: ../../packages/js/shared-ui/form/test-result/message-result.tsx:21
 #: languages/wptelegram-widget-js-translations.php:86
 msgid "Result:"
 msgstr ""
 
-#: ../../packages/js/shared-ui/form/test-result/render-test-result.tsx:17
+#: ../../packages/js/shared-ui/form/test-result/render-test-result.tsx:39
 #: languages/wptelegram-widget-js-translations.php:89
 msgid "Test Result:"
 msgstr ""
@@ -527,48 +526,48 @@ msgstr "В теме шаблона"
 msgid "Widget Info"
 msgstr "Информация виджета"
 
-#: ../../packages/js/shared-ui/form/use-bot-token-test.tsx:121
-#: ../../packages/js/shared-ui/form/use-chat-with-test.tsx:122
+#: ../../packages/js/shared-ui/form/use-bot-token-test.tsx:66
+#: ../../packages/js/shared-ui/form/use-chat-with-test.tsx:95
 #: languages/wptelegram-widget-js-translations.php:93
 msgid "Please wait…"
 msgstr ""
 
-#: ../../packages/js/shared-ui/form/use-bot-token-test.tsx:122
+#: ../../packages/js/shared-ui/form/use-bot-token-test.tsx:67
 #: languages/wptelegram-widget-js-translations.php:96
 msgid "Test Token"
 msgstr "Проверить токен"
 
-#: ../../packages/js/shared-ui/form/use-chat-with-test.tsx:123
+#: ../../packages/js/shared-ui/form/use-chat-with-test.tsx:96
 #: languages/wptelegram-widget-js-translations.php:99
 msgid "Send Test"
 msgstr "Отправить тест"
 
-#: ../../packages/js/services/apiFetch/index.ts:36
+#: ../../packages/js/services/api-fetch/index.ts:36
 #: languages/wptelegram-widget-js-translations.php:5
 msgid "Something went wrong"
 msgstr ""
 
-#: ../../packages/js/services/apiFetch/index.ts:38
+#: ../../packages/js/services/api-fetch/index.ts:38
 #: languages/wptelegram-widget-js-translations.php:8
 msgid "Could not connect"
 msgstr "Не удалось подключиться"
 
-#: ../../packages/js/services/apiFetch/index.ts:41
+#: ../../packages/js/services/api-fetch/index.ts:41
 #: languages/wptelegram-widget-js-translations.php:11
 msgid "Error:"
 msgstr ""
 
-#: ../../packages/js/services/telegram/TelegramUtils.ts:128
+#: ../../packages/js/services/telegram/telegram-utils.ts:126
 #: languages/wptelegram-widget-js-translations.php:14
 msgid "A message will be sent to the Channel/Group/Chat. You can modify the text below"
 msgstr "Сообщение будет отправлено в канал/группу. Вы можете изменить текст ниже."
 
-#: ../../packages/js/services/telegram/TelegramUtils.ts:131
+#: ../../packages/js/services/telegram/telegram-utils.ts:129
 #: languages/wptelegram-widget-js-translations.php:17
 msgid "This is a test message"
 msgstr "Это тестовое сообщение"
 
-#: ../../packages/js/services/telegram/TelegramUtils.ts:153
+#: ../../packages/js/services/telegram/telegram-utils.ts:152
 #: languages/wptelegram-widget-js-translations.php:20
 msgid "Success"
 msgstr "Успешно"
@@ -693,4 +692,8 @@ msgstr ""
 #: js/settings/ui/legacyWidget/OldMessagesInfo.tsx:8
 #: languages/wptelegram-widget-js-translations.php:344
 msgid "Legacy Widget does not show the old messages."
+msgstr ""
+
+#: ../../packages/js/services/telegram/telegram-utils.ts:133
+msgid "Message is empty"
 msgstr ""

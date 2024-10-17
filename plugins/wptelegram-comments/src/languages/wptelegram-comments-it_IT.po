@@ -169,17 +169,17 @@ msgstr "Segui %s"
 msgid "Join %s"
 msgstr "Unisciti %s"
 
-#: ../../packages/js/services/apiFetch/index.ts:36
+#: ../../packages/js/services/api-fetch/index.ts:36
 #: languages/wptelegram-comments-js-translations.php:5
 msgid "Something went wrong"
 msgstr ""
 
-#: ../../packages/js/services/apiFetch/index.ts:38
+#: ../../packages/js/services/api-fetch/index.ts:38
 #: languages/wptelegram-comments-js-translations.php:8
 msgid "Could not connect"
 msgstr ""
 
-#: ../../packages/js/services/apiFetch/index.ts:41
+#: ../../packages/js/services/api-fetch/index.ts:41
 #: languages/wptelegram-comments-js-translations.php:11
 msgid "Error:"
 msgstr ""
