@@ -446,8 +446,10 @@ class AssetManager extends BaseClass {
 			? wp_unslash( $_SERVER['QUERY_STRING'] )
 			: '';
 
-		$query_string = sanitize_text_field(
-			str_replace( [ '&amp%3B', '&amp;' ], '&', $query_string )
+		$query_string = html_entity_decode(
+			sanitize_text_field(
+				str_replace( [ '&amp%3B', '&amp;' ], '&', $query_string )
+			)
 		);
 
 		return wp_parse_args(
