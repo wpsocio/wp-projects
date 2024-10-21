@@ -32,7 +32,12 @@ export const RadioGroup = forwardRef<
 				return (
 					<div className="flex items-center space-x-2" key={inputId}>
 						<RadioGroupItem value={option.value} id={inputId} />
-						<Label htmlFor={inputId} className="font-normal cursor-pointer">
+						<Label
+							htmlFor={inputId}
+							className={cn('font-normal cursor-pointer', {
+								'opacity-50 cursor-not-allowed': props.disabled,
+							})}
+						>
 							{option.label}
 						</Label>
 					</div>

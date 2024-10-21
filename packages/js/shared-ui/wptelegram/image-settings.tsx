@@ -61,6 +61,7 @@ export const ImageSettings: React.FC<CommonProps> = ({ prefix }) => {
 						<FormItem
 							label={getFieldLabel('image_position')}
 							className="flex-col"
+							isDisabled={isDisabled}
 						>
 							<FormControl>
 								<RadioGroup

@@ -74,7 +74,7 @@ export const TabbedSections: React.FC = () => {
 	);
 
 	const renderTabContent = useCallback(
-		({ id, title, Component, description }: WidgetTabItem) => {
+		({ title, Component, description }: WidgetTabItem) => {
 			return (
 				<Card
 					title={description ? title : undefined}

@@ -16,7 +16,7 @@ export function PostTypes() {
 		<FormField
 			control={control}
 			name="join_link.post_types"
-			render={({ field }) => (
+			render={() => (
 				<FormItem
 					label={getFieldLabel('post_types')}
 					description={__(

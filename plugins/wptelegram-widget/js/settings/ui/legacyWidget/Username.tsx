@@ -18,7 +18,7 @@ export const Username: React.FC = () => {
 		name: [`${PREFIX}.bot_token`, `${PREFIX}.username`],
 	});
 
-	const { ButtonComponent, memberCount, result, onBlur } = useChatWithTest(
+	const { ButtonComponent, memberCount, result } = useChatWithTest(
 		bot_token || '',
 	);
 

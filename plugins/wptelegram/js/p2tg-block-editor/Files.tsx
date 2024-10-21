@@ -57,33 +57,34 @@ export const Files: React.FC<{ isDisabled?: boolean }> = ({ isDisabled }) => {
 				help={__('Files to be sent after the message.')}
 				__nextHasNoMarginBottom
 			>
-				<br />
 				<MediaUpload
 					multiple
 					onSelect={onSelect}
 					allowedTypes={allowedTypes}
 					render={render}
 				/>
-				<ul role="group" id="wptg-files" aria-label={__('Files')}>
-					{Object.entries(data.files || {}).map(([id, url], index) => {
-						const urlParts = url.split('/');
-						const name = urlParts[urlParts.length - 1];
-						return (
-							<li
-								// biome-ignore lint/suspicious/noArrayIndexKey: it's fine
-								key={id + index}
-							>
-								<Flex justify="flex-start">
-									<Button
-										icon={<Icon icon="no-alt" />}
-										onClick={onRemove(id)}
-									/>
-									<span>{name}</span>
-								</Flex>
-							</li>
-						);
-					})}
-				</ul>
+				<fieldset>
+					<ul id="wptg-files" aria-label={__('Files')}>
+						{Object.entries(data.files || {}).map(([id, url], index) => {
+							const urlParts = url.split('/');
+							const name = urlParts[urlParts.length - 1];
+							return (
+								<li
+									// biome-ignore lint/suspicious/noArrayIndexKey: it's fine
+									key={id + index}
+								>
+									<Flex justify="flex-start">
+										<Button
+											icon={<Icon icon="no-alt" />}
+											onClick={onRemove(id)}
+										/>
+										<span>{name}</span>
+									</Flex>
+								</li>
+							);
+						})}
+					</ul>
+				</fieldset>
 			</BaseControl>
 		</Disabled>
 	);

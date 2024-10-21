@@ -64,6 +64,7 @@ export const LinkPreviewOptions: React.FC<CommonProps> = ({ prefix }) => {
 									</span>
 								</>
 							}
+							isDisabled={link_preview_disabled}
 						>
 							<FormControl className="max-w-[200px]">
 								<Input
@@ -87,6 +88,7 @@ export const LinkPreviewOptions: React.FC<CommonProps> = ({ prefix }) => {
 							description={__(
 								'Whether the link preview must be shown above the message text.',
 							)}
+							isDisabled={link_preview_disabled}
 						>
 							<FormControl>
 								<Switch

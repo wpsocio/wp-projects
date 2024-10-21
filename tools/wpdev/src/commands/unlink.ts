@@ -13,7 +13,7 @@ export default class Unlink extends Link {
 				});
 			}
 
-			for (const [name, project] of this.projects) {
+			for (const [_, project] of this.projects) {
 				const symlinkPath = this.wpMonorepo.getSymlinkPath(
 					project,
 					this.flags['wp-content-dir'],

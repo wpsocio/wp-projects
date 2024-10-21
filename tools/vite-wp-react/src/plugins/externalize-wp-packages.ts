@@ -31,7 +31,7 @@ export const externalizeWpPackages = (): PluginOption => {
 	return [
 		{
 			name: 'vwpr:externalize-wp-packages',
-			config(config, { command }) {
+			config(_, { command }) {
 				// We need to run this only for the build command
 				if (command !== 'build') {
 					return {};

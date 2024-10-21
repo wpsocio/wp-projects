@@ -39,10 +39,12 @@ export const Channels: React.FC = () => {
 	return (
 		<BaseControl id="wptg-send-to" label={label} __nextHasNoMarginBottom>
 			<Flex
-				direction="column"
+				// biome-ignore lint/a11y/useSemanticElements: It's rendered as a fieldset
 				role="group"
+				direction="column"
 				id="wptg-send-to"
 				aria-label={label}
+				as="fieldset"
 			>
 				<CheckboxControl
 					checked={allChecked}

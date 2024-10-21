@@ -244,7 +244,7 @@ export default class Clean extends WithConfig {
 				connected: true,
 			});
 
-			for (const [name, project] of connectedProjects) {
+			for (const [_, project] of connectedProjects) {
 				const files = child_process.execSync(
 					`git -C ${project.dir} -c core.quotepath=off ls-files --exclude-standard --directory --ignored --other`,
 				);
@@ -267,7 +267,7 @@ export default class Clean extends WithConfig {
 			}
 
 			// We do not want to delete any of the project directories in the monorepo.
-			for (const [name, project] of await wpMonorepo.getAllProjects()) {
+			for (const [_, project] of await wpMonorepo.getAllProjects()) {
 				const entry = // We need posix paths for git
 					pathToPosix(project.relativeDir)
 						// Ensure that the path ends with a slash.

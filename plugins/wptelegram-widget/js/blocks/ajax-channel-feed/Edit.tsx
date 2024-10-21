@@ -65,10 +65,10 @@ export const Edit: React.FC<BlockEditProps<AjaxWidgetAtts>> = ({
 				</PanelBody>
 			</InspectorControls>
 			<div className={className}>
-				<label>
+				<div className="widget-label">
 					<Dashicon icon="shortcode" />
 					<span>{__('Telegram Channel Ajax Feed')}</span>
-				</label>
+				</div>
 				<code className="widget-shortcode">
 					<Output attributes={attributes} />
 				</code>

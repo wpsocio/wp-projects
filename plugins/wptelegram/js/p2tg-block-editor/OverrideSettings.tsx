@@ -1,6 +1,7 @@
 import {
 	Button,
 	Disabled,
+	Flex,
 	Modal,
 	TextControl,
 	TextareaControl,
@@ -20,20 +21,10 @@ const modalStyles: CSSProperties = {
 	maxWidth: '650px',
 };
 
-const bodyStyles: CSSProperties = {
-	display: 'flex',
-	flexDirection: 'column',
-	justifyContent: 'space-between',
-};
-
 const buttonStyles: CSSProperties = {
 	width: '100%',
 	justifyContent: 'center',
 	marginTop: '2em',
-};
-
-const separatorStyles: CSSProperties = {
-	height: '1.5em',
 };
 
 export const OverrideSettings: React.FC = () => {
@@ -59,8 +50,6 @@ export const OverrideSettings: React.FC = () => {
 		[closeModal],
 	);
 
-	const separator = <div style={separatorStyles} />;
-
 	const disableInputs = !data.override_switch;
 
 	return (
@@ -83,8 +72,8 @@ export const OverrideSettings: React.FC = () => {
 					onRequestClose={onRequestClose}
 					style={modalStyles}
 				>
-					<div style={bodyStyles}>
-						<div>
+					<Flex direction="column">
+						<Flex direction="column" gap={8}>
 							<ToggleControl
 								label={__('Override settings')}
 								checked={data.override_switch}
@@ -95,50 +84,46 @@ export const OverrideSettings: React.FC = () => {
 								isDisabled={disableInputs}
 								style={{ opacity: disableInputs ? 0.3 : 1 }}
 							>
-								{separator}
-								<Channels />
-								{separator}
-								<Files />
-								{separator}
-								<ToggleControl
-									label={__('Disable Notifications')}
-									checked={data.disable_notification}
-									onChange={updateField('disable_notification')}
-									__nextHasNoMarginBottom
-								/>
-								{separator}
-								<TextControl
-									label={__('Delay in Posting')}
-									value={data.delay || '0.5'}
-									onChange={updateField('delay')}
-									step="0.5"
-									min={0}
-									type="number"
-									__nextHasNoMarginBottom
-								/>
-								{separator}
-								<ToggleControl
-									label={__('Featured Image')}
-									checked={data.send_featured_image}
-									onChange={updateField('send_featured_image')}
-									help={__('Send Featured Image (if exists).')}
-									__nextHasNoMarginBottom
-								/>
-								{separator}
-								<TextareaControl
-									label={__('Message Template')}
-									value={data.message_template || ''}
-									onChange={updateField('message_template')}
-									rows={10}
-									__nextHasNoMarginBottom
-								/>
+								<Flex direction="column" gap={6}>
+									<Channels />
+									<Files />
+									<ToggleControl
+										label={__('Disable Notifications')}
+										checked={data.disable_notification}
+										onChange={updateField('disable_notification')}
+										__nextHasNoMarginBottom
+									/>
+									<TextControl
+										label={__('Delay in Posting')}
+										value={data.delay || '0.5'}
+										onChange={updateField('delay')}
+										step="0.5"
+										min={0}
+										type="number"
+										__nextHasNoMarginBottom
+									/>
+									<ToggleControl
+										label={__('Featured Image')}
+										checked={data.send_featured_image}
+										onChange={updateField('send_featured_image')}
+										help={__('Send Featured Image (if exists).')}
+										__nextHasNoMarginBottom
+									/>
+									<TextareaControl
+										label={__('Message Template')}
+										value={data.message_template || ''}
+										onChange={updateField('message_template')}
+										rows={10}
+										__nextHasNoMarginBottom
+									/>
+								</Flex>
 							</Disabled>
-						</div>
+						</Flex>
 
 						<Button style={buttonStyles} variant="primary" onClick={closeModal}>
 							{__('Save Changes')}
 						</Button>
-					</div>
+					</Flex>
 				</Modal>
 			)}
 		</>

@@ -17,7 +17,7 @@ export const useLocalStorage = <D extends AnyObject>(
 		let result: string;
 		try {
 			result = storage?.getItem(storageKey) ?? '';
-		} catch (e) {
+		} catch (_) {
 			return {};
 		}
 		return result ? JSON.parse(result) : initialValue;
@@ -27,7 +27,7 @@ export const useLocalStorage = <D extends AnyObject>(
 		(data) => {
 			try {
 				storage.setItem(storageKey, JSON.stringify(data));
-			} catch (e) {
+			} catch (_) {
 				// koi baat nahin ^_^
 			}
 		},
