@@ -57,7 +57,6 @@ export const Files: React.FC<{ isDisabled?: boolean }> = ({ isDisabled }) => {
 				help={__('Files to be sent after the message.')}
 				__nextHasNoMarginBottom
 			>
-				<br />
 				<MediaUpload
 					multiple
 					onSelect={onSelect}
