@@ -50,6 +50,7 @@ export const MessageKeyboard: React.FC = () => {
 							<FormItem
 								label={getFieldLabel('inline_button_text')}
 								className="flex-col"
+								isDisabled={isDisabled}
 							>
 								<FormControl className="max-w-[200px]">
 									<Input
@@ -85,6 +86,7 @@ export const MessageKeyboard: React.FC = () => {
 										)}
 									</p>
 								}
+								isDisabled={isDisabled}
 							>
 								<FormControl className="max-w-[200px]">
 									<Input

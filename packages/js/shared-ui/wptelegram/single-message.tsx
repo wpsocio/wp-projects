@@ -100,6 +100,7 @@ export const SingleMessage: React.FC<SingleMessageProps> = ({
 					description={__('Send both text and image in single message.')}
 					label={getFieldLabel('single_message')}
 					afterMessage={warning}
+					isDisabled={disabled}
 				>
 					<FormControl>
 						<Switch
