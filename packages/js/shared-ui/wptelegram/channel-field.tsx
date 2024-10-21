@@ -1,4 +1,4 @@
-import { useFieldError, useFormContext, useWatch } from '@wpsocio/form';
+import { useFieldError, useWatch } from '@wpsocio/form';
 import { __ } from '@wpsocio/i18n';
 import { Close } from '@wpsocio/ui-components/icons/index.js';
 import { IconButton } from '@wpsocio/ui-components/wrappers/icon-button.js';

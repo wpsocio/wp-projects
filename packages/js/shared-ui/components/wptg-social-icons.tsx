@@ -50,12 +50,7 @@ export const WPTGSocialIcons: React.FC<WPTGSocialIconsProps> = ({
 					className="flex items-center bg-[#17a2b8] rounded-md py-px px-1 whitespace-nowrap"
 					isExternal
 				>
-					<img
-						src={tgIconUrl}
-						role="presentation"
-						alt=""
-						className="me-1 size-3 align-middle"
-					/>
+					<img src={tgIconUrl} alt="" className="me-1 size-3 align-middle" />
 					<small className="text-white text-sm">
 						{sprintf(
 							/* translators: %s: channel name */

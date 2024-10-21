@@ -29,7 +29,7 @@ export const DebugData: React.FC<DebugDataProps> = ({
 	// data may not be serializable
 	try {
 		dataToRender = asJson ? JSON.stringify(data, null, 2) : `${data}`;
-	} catch (error) {
+	} catch (_) {
 		// biome-ignore lint/suspicious/noConsoleLog: <explanation>
 		console.log('ERROR', data);
 	}

@@ -21,7 +21,7 @@ export const Code: React.FC = () => {
 				const el = $(code.trim());
 				if (el.length && 'SCRIPT' === el[0].nodeName) {
 					const attributes: Record<string, string> = {};
-					$.each(el[0].attributes, (i, attr) => {
+					$.each(el[0].attributes, (_, attr) => {
 						attributes[attr.name] = attr.value;
 					});
 

@@ -63,7 +63,7 @@ export class WPMonorepo {
 			execaSync('git', ['check-ignore', project.dir]);
 
 			return 'ignored';
-		} catch (e) {
+		} catch (_) {
 			return 'tracked';
 		}
 	}

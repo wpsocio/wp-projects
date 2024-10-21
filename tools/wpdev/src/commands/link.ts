@@ -33,7 +33,7 @@ export default class Link extends WithProjects<typeof Link> {
 
 	public async run(): Promise<void> {
 		try {
-			for (const [name, project] of this.projects) {
+			for (const [_, project] of this.projects) {
 				const symlinkPath = this.wpMonorepo.getSymlinkPath(
 					project,
 					this.flags['wp-content-dir'],

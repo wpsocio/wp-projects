@@ -23,15 +23,11 @@ export const DelayInPosting: React.FC<DelayInPostingProps> = ({
 					label={getFieldLabel('delay')}
 					description={__('The delay starts after the post gets published.')}
 					afterMessage={
-						<>
-							{is_wp_cron_disabled && (
-								<>
-									<p className="text-destructive">
-										{__('WordPress cron should not be disabled!')}
-									</p>
-								</>
-							)}
-						</>
+						is_wp_cron_disabled && (
+							<p className="text-destructive">
+								{__('WordPress cron should not be disabled!')}
+							</p>
+						)
 					}
 				>
 					<FormControl className="max-w-[100px]">

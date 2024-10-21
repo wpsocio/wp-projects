@@ -2,7 +2,7 @@ import copy from 'copy-to-clipboard';
 /**
  * @source https://chakra-ui.com/docs/hooks/use-clipboard
  */
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export interface UseClipboardOptions {
 	/**

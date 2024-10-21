@@ -93,7 +93,7 @@ export function isFileReadable(file: string) {
 	try {
 		fs.accessSync(file, fs.constants.R_OK);
 		return true;
-	} catch (e) {
+	} catch (_) {
 		return false;
 	}
 }

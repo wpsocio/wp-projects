@@ -82,10 +82,10 @@ export const Edit: React.FC<BlockEditProps<LegacyWidgetAtts>> = ({
 				</PanelBody>
 			</InspectorControls>
 			<div className={className} key="shortcode">
-				<label>
+				<div className="widget-label">
 					<Dashicon icon="shortcode" />
 					<span>{__('Telegram Channel Feed')}</span>
-				</label>
+				</div>
 				<code className="widget-shortcode">
 					<Output attributes={attributes} />
 				</code>

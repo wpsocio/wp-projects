@@ -12,7 +12,7 @@ export const NotifyMessageTemplate: React.FC<CommonProps> = ({ prefix }) => {
 					{__('You can use any text, emojis or these variables in any order.')}
 				</span>
 				&nbsp;
-				{['{email_subject}', '{email_message}'].map((tag, i) => (
+				{['{email_subject}', '{email_message}'].map((tag) => (
 					<VariableButton key={tag} content={tag} />
 				))}
 			</div>
