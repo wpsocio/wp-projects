@@ -1,10 +1,4 @@
-import {
-	BaseControl,
-	Button,
-	Disabled,
-	Flex,
-	Icon,
-} from '@wordpress/components';
+import { BaseControl, Button, Flex, Icon } from '@wordpress/components';
 import { useCallback } from '@wordpress/element';
 import { MediaUpload } from '@wordpress/media-utils';
 
@@ -20,7 +14,7 @@ const render: React.FC<{ open: VoidFunction }> = ({ open }) => (
 
 const allowedTypes: Array<string> = [];
 
-export const Files: React.FC<{ isDisabled?: boolean }> = ({ isDisabled }) => {
+export function Files() {
 	const { data } = useDataState();
 	const updateField = useUpdateField();
 
@@ -47,45 +41,40 @@ export const Files: React.FC<{ isDisabled?: boolean }> = ({ isDisabled }) => {
 	);
 
 	return (
-		<Disabled
-			// @ts-ignore
-			isDisabled={isDisabled}
+		<BaseControl
+			id="wptg-files"
+			label={__('Files')}
+			help={__('Files to be sent after the message.')}
+			__nextHasNoMarginBottom
 		>
-			<BaseControl
-				id="wptg-files"
-				label={__('Files')}
-				help={__('Files to be sent after the message.')}
-				__nextHasNoMarginBottom
-			>
-				<MediaUpload
-					multiple
-					onSelect={onSelect}
-					allowedTypes={allowedTypes}
-					render={render}
-				/>
-				<fieldset>
-					<ul id="wptg-files" aria-label={__('Files')}>
-						{Object.entries(data.files || {}).map(([id, url], index) => {
-							const urlParts = url.split('/');
-							const name = urlParts[urlParts.length - 1];
-							return (
-								<li
-									// biome-ignore lint/suspicious/noArrayIndexKey: it's fine
-									key={id + index}
-								>
-									<Flex justify="flex-start">
-										<Button
-											icon={<Icon icon="no-alt" />}
-											onClick={onRemove(id)}
-										/>
-										<span>{name}</span>
-									</Flex>
-								</li>
-							);
-						})}
-					</ul>
-				</fieldset>
-			</BaseControl>
-		</Disabled>
+			<MediaUpload
+				multiple
+				onSelect={onSelect}
+				allowedTypes={allowedTypes}
+				render={render}
+			/>
+			<fieldset>
+				<ul id="wptg-files" aria-label={__('Files')}>
+					{Object.entries(data.files || {}).map(([id, url], index) => {
+						const urlParts = url.split('/');
+						const name = urlParts[urlParts.length - 1];
+						return (
+							<li
+								// biome-ignore lint/suspicious/noArrayIndexKey: it's fine
+								key={id + index}
+							>
+								<Flex justify="flex-start">
+									<Button
+										icon={<Icon icon="no-alt" />}
+										onClick={onRemove(id)}
+									/>
+									<span>{name}</span>
+								</Flex>
+							</li>
+						);
+					})}
+				</ul>
+			</fieldset>
+		</BaseControl>
 	);
-};
+}
