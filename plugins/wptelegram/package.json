@@ -1,7 +1,7 @@
 {
 	"name": "wptelegram",
 	"title": "WP Telegram",
-	"version": "4.2.2",
+	"version": "4.2.3",
 	"description": "Integrate your WordPress site perfectly with Telegram with full control.",
 	"private": true,
 	"license": "GPL-3.0-or-later",
@@ -77,7 +77,9 @@
 				]
 			},
 			{
-				"paths": ["src/assets/build/dev-server.json"],
+				"paths": [
+					"src/assets/build/dev-server.json"
+				],
 				"rules": [
 					{
 						"value": "NOT_EXISTS"
@@ -89,15 +91,21 @@
 	"wireit": {
 		"build": {
 			"command": "vite build && pnpm run validate-build",
-			"output": ["src/assets/build"]
+			"output": [
+				"src/assets/build"
+			]
 		},
 		"setup:php": {
 			"command": "composer install",
-			"dependencies": ["unset-vendor-dir"]
+			"dependencies": [
+				"unset-vendor-dir"
+			]
 		},
 		"setup:php:prod": {
 			"command": "composer install --no-dev && pnpm run unset-vendor-dir",
-			"dependencies": ["set-prod-vendor"]
+			"dependencies": [
+				"set-prod-vendor"
+			]
 		},
 		"set-prod-vendor": {
 			"command": "composer config vendor-dir src/vendor"
