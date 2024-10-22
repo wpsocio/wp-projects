@@ -534,10 +534,10 @@ $generated_i18n_strings = array(
 	// Reference: js/p2tg-block-editor/Files.tsx:11
 	__( 'Add or Upload Files', 'wptelegram' ),
 
-	// Reference: js/p2tg-block-editor/Files.tsx:47
+	// Reference: js/p2tg-block-editor/Files.tsx:57
 	__( 'Files to be sent after the message.', 'wptelegram' ),
 
-	// Reference: js/p2tg-block-editor/Files.tsx:57
+	// Reference: js/p2tg-block-editor/Files.tsx:67
 	__( 'Files', 'wptelegram' ),
 
 	// Reference: js/p2tg-block-editor/OverrideSettings.tsx:69

@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.2.4
+
+### Patch Changes
+
+- [#191](https://github.com/wpsocio/wp-projects/pull/191) [`1d2b4bd`](https://github.com/wpsocio/wp-projects/commit/1d2b4bd2e92310d60ce9bdb4cbe10b0d71049d4f) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Updated attach files UI to show file size
+
 ## 4.2.3
 
 ### Patch Changes
