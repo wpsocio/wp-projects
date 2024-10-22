@@ -1,5 +1,5 @@
 import { BaseControl, Button, Flex, Icon } from '@wordpress/components';
-import { useCallback } from '@wordpress/element';
+import { useCallback, useState } from '@wordpress/element';
 import { MediaUpload } from '@wordpress/media-utils';
 
 import { __ } from '@wpsocio/i18n';
@@ -14,6 +14,8 @@ const render: React.FC<{ open: VoidFunction }> = ({ open }) => (
 
 const allowedTypes: Array<string> = [];
 
+type FileInfo = { id: number; url: string; filesizeHumanReadable?: string };
+
 export function Files() {
 	const { data } = useDataState();
 	const updateField = useUpdateField();
@@ -26,10 +28,18 @@ export function Files() {
 		[data.files, updateField],
 	);
 
+	const [filesizeMap, setFilesizeMap] = useState<Record<string, string>>({});
+
 	const onSelect = useCallback(
-		(files: Array<{ id: number; url: string }>) => {
+		(files: Array<FileInfo>) => {
 			const newFiles = files.reduce(
-				(acc, { id, url }) => {
+				(acc, { id, url, filesizeHumanReadable }) => {
+					if (filesizeHumanReadable) {
+						setFilesizeMap((prev) => ({
+							...prev,
+							[id]: filesizeHumanReadable,
+						}));
+					}
 					acc[id] = url;
 					return acc;
 				},
@@ -69,6 +79,7 @@ export function Files() {
 										onClick={onRemove(id)}
 									/>
 									<span>{name}</span>
+									{filesizeMap[id] ? <span>({filesizeMap[id]})</span> : null}
 								</Flex>
 							</li>
 						);
