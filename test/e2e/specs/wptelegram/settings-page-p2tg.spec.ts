@@ -339,6 +339,8 @@ test.describe('Settings > P2TG', () => {
 
 		await actions.waitForApiResponse(apiPath);
 
+		await options.waitFor();
+
 		// Now there should be only one option
 		expect(await options.count()).toBe(1);
 		expect(await options.first().textContent()).not.toContain(
