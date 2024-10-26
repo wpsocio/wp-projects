@@ -321,9 +321,9 @@ test.describe('Settings > P2TG', () => {
 
 		await combobox.fill('ABC');
 
-		const listbox = page.getByRole('listbox');
-
 		await actions.waitForApiResponse(apiPath);
+
+		const listbox = page.getByRole('listbox');
 
 		await listbox.waitFor();
 
