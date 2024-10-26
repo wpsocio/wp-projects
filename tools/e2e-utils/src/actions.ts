@@ -36,10 +36,6 @@ export class Actions {
 		return await this.page.waitForResponse((resp) => {
 			const url = new URL(resp.url());
 
-			console.log({ endpoint, query });
-
-			console.log(url);
-
 			let isRestRoute = false;
 
 			// If the URL contains the endpoint, it is a REST route.
@@ -57,23 +53,15 @@ export class Actions {
 				);
 			}
 
-			console.log({ isRestRoute });
-
 			if (!isRestRoute) {
 				return false;
 			}
 
 			for (const [key, value] of Object.entries(query)) {
-				console.log({ key, value, s: url.searchParams.get(key) });
-
 				if (url.searchParams.get(key) !== value) {
-					console.log('Query parameter does not match<<<<<<<<<<<');
-
 					return false;
 				}
 			}
-
-			console.log('API response received>>>>>>>>>>>>>>>>', resp.url());
 
 			return true;
 		});
