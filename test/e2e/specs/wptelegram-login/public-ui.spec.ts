@@ -31,7 +31,7 @@ test.describe('Public UI', () => {
 		await botUsernameField.fill(TEST_BOT_USERNAME);
 
 		await actions.saveChangesAndWait({
-			apiPath: '/wptelegram-login/v1/settings',
+			endpoint: '/wptelegram-login/v1/settings',
 		});
 	});
 
@@ -110,7 +110,7 @@ test.describe('Public UI', () => {
 		await actions.selectOption(page.getByLabel('Show if user is'), 'Any');
 
 		await actions.saveChangesAndWait({
-			apiPath: '/wptelegram-login/v1/settings',
+			endpoint: '/wptelegram-login/v1/settings',
 		});
 
 		await page.goto('/wp-login.php');
@@ -124,7 +124,7 @@ test.describe('Public UI', () => {
 		await page.getByLabel('Hide on default login').check({ force: true });
 
 		await actions.saveChangesAndWait({
-			apiPath: '/wptelegram-login/v1/settings',
+			endpoint: '/wptelegram-login/v1/settings',
 		});
 
 		await page.goto('/wp-login.php');

@@ -16,12 +16,12 @@ export class Actions {
 	}
 
 	async saveChangesAndWait({
-		apiPath,
+		endpoint,
 		assertSaved = false,
-	}: { apiPath: string; assertSaved?: boolean }) {
+	}: { endpoint: string; assertSaved?: boolean }) {
 		await Promise.all([
 			this.saveChangesButton.click(),
-			this.waitForApiResponse(apiPath),
+			this.waitForApiResponse(endpoint),
 		]);
 
 		if (assertSaved) {
@@ -29,15 +29,41 @@ export class Actions {
 		}
 	}
 
-	async waitForApiResponse(apiPath: string) {
+	async waitForApiResponse(
+		endpoint: string,
+		query: Record<string, string> = {},
+	) {
 		return await this.page.waitForResponse((resp) => {
-			const url = resp.url();
+			const url = new URL(resp.url());
 
-			return (
-				url.includes(apiPath) ||
-				// API path can be URL encoded
-				url.includes(encodeURIComponent(apiPath))
-			);
+			let isRestRoute = false;
+
+			// If the URL contains the endpoint, it is a REST route.
+			if (url.pathname.includes(endpoint)) {
+				isRestRoute = true;
+			}
+			// If the URL contains /wp-json, it is a WP REST route with pretty permalinks.
+			else if (url.pathname.startsWith('/wp-json')) {
+				isRestRoute = url.pathname.includes(endpoint);
+			}
+			// If the URL contains rest_route query parameter, it is a WP REST route with ugly permalinks.
+			else if (url.searchParams.has('rest_route')) {
+				isRestRoute = Boolean(
+					url.searchParams.get('rest_route')?.includes(endpoint),
+				);
+			}
+
+			if (!isRestRoute) {
+				return false;
+			}
+
+			for (const [key, value] of Object.entries(query)) {
+				if (url.searchParams.get(key) !== value) {
+					return false;
+				}
+			}
+
+			return true;
 		});
 	}
 

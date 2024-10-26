@@ -73,7 +73,7 @@ test.describe('Settings', () => {
 		}
 
 		await actions.saveChangesAndWait({
-			apiPath: '/wptelegram-widget/v1/settings',
+			endpoint: '/wptelegram-widget/v1/settings',
 			assertSaved: true,
 		});
 	});
@@ -135,7 +135,7 @@ test.describe('Settings', () => {
 		await expect(testButton).toBeEnabled();
 
 		await actions.saveChangesAndWait({
-			apiPath: '/wptelegram-widget/v1/settings',
+			endpoint: '/wptelegram-widget/v1/settings',
 			assertSaved: true,
 		});
 	});

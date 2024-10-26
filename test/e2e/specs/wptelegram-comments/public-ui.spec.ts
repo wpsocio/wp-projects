@@ -64,7 +64,7 @@ test.describe('Public UI', () => {
 						);
 
 					await actions.saveChangesAndWait({
-						apiPath: '/wptelegram-comments/v1/settings',
+						endpoint: '/wptelegram-comments/v1/settings',
 					});
 				});
 
@@ -88,7 +88,7 @@ test.describe('Public UI', () => {
 				await page.getByLabel('Exclude').fill(`${postId}`);
 
 				await actions.saveChangesAndWait({
-					apiPath: '/wptelegram-comments/v1/settings',
+					endpoint: '/wptelegram-comments/v1/settings',
 				});
 
 				await page.goto(`/?p=${postId}`);
@@ -107,7 +107,7 @@ test.describe('Public UI', () => {
 				await page.getByLabel('Exclude').clear();
 
 				await actions.saveChangesAndWait({
-					apiPath: '/wptelegram-comments/v1/settings',
+					endpoint: '/wptelegram-comments/v1/settings',
 				});
 
 				await page.goto(`/?p=${postId}`);

@@ -168,7 +168,7 @@ test.describe('Settings', () => {
 		await botUsernameField.fill(TEST_BOT_USERNAME);
 
 		await actions.saveChangesAndWait({
-			apiPath: '/wptelegram-login/v1/settings',
+			endpoint: '/wptelegram-login/v1/settings',
 			assertSaved: true,
 		});
 

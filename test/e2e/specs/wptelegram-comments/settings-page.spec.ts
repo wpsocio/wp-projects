@@ -59,7 +59,7 @@ test.describe('Settings', () => {
 		await page.getByLabel('Code').fill('<script async></script>');
 
 		await actions.saveChangesAndWait({
-			apiPath: '/wptelegram-comments/v1/settings',
+			endpoint: '/wptelegram-comments/v1/settings',
 			assertSaved: true,
 		});
 
@@ -81,7 +81,7 @@ test.describe('Settings', () => {
 		await page.getByLabel('Exclude').fill('1, 2, 3,invalid,');
 
 		await actions.saveChangesAndWait({
-			apiPath: '/wptelegram-comments/v1/settings',
+			endpoint: '/wptelegram-comments/v1/settings',
 		});
 
 		expect(await page.getByLabel('Code').inputValue()).toBe(

@@ -51,7 +51,7 @@ test.describe('Public UI', () => {
 		}
 
 		await actions.saveChangesAndWait({
-			apiPath: '/wptelegram-widget/v1/settings',
+			endpoint: '/wptelegram-widget/v1/settings',
 		});
 	});
 
@@ -100,7 +100,7 @@ test.describe('Public UI', () => {
 						.check({ force: true });
 
 					await actions.saveChangesAndWait({
-						apiPath: '/wptelegram-widget/v1/settings',
+						endpoint: '/wptelegram-widget/v1/settings',
 					});
 				});
 
@@ -124,7 +124,7 @@ test.describe('Public UI', () => {
 					.uncheck({ force: true });
 
 				await actions.saveChangesAndWait({
-					apiPath: '/wptelegram-widget/v1/settings',
+					endpoint: '/wptelegram-widget/v1/settings',
 				});
 
 				await page.goto(`/?p=${postId}`);

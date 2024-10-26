@@ -74,7 +74,7 @@ test.describe('Settings', () => {
 		await botUsernameField.fill(TEST_BOT_USERNAME);
 
 		await actions.saveChangesAndWait({
-			apiPath: '/wptelegram/v1/settings',
+			endpoint: '/wptelegram/v1/settings',
 			assertSaved: true,
 		});
 
@@ -242,7 +242,7 @@ test.describe('Settings', () => {
 		await tabPanel.getByPlaceholder('@username').fill('@WPTelegram');
 
 		await actions.saveChangesAndWait({
-			apiPath: '/wptelegram/v1/settings',
+			endpoint: '/wptelegram/v1/settings',
 			assertSaved: true,
 		});
 	});
