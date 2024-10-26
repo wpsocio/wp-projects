@@ -192,7 +192,7 @@ test.describe('Settings > P2TG', () => {
 		);
 
 		await actions.saveChangesAndWait({
-			apiPath: '/wptelegram/v1/settings',
+			endpoint: '/wptelegram/v1/settings',
 			assertSaved: true,
 		});
 
@@ -267,7 +267,7 @@ test.describe('Settings > P2TG', () => {
 		tabPanel = await setupPostToTelegramSection(page);
 
 		await actions.saveChangesAndWait({
-			apiPath: '/wptelegram/v1/settings',
+			endpoint: '/wptelegram/v1/settings',
 		});
 
 		// Now the UI should be visible
@@ -283,7 +283,7 @@ test.describe('Settings > P2TG', () => {
 			.uncheck({ force: true });
 
 		await actions.saveChangesAndWait({
-			apiPath: '/wptelegram/v1/settings',
+			endpoint: '/wptelegram/v1/settings',
 		});
 
 		// Now the UI should be hidden
@@ -310,18 +310,18 @@ test.describe('Settings > P2TG', () => {
 
 		tabPanel = await setupPostToTelegramSection(page);
 
-		const apiPath = '/wptelegram/v1/p2tg-rules';
+		const endpoint = '/wptelegram/v1/p2tg-rules';
 
 		await Promise.all([
 			page.getByRole('button', { name: 'Add rule' }).click(),
-			actions.waitForApiResponse(apiPath),
+			actions.waitForApiResponse(endpoint),
 		]);
 
 		const combobox = page.getByRole('combobox', { name: 'Rule values' });
 
 		await combobox.fill('ABC');
 
-		await actions.waitForApiResponse(apiPath);
+		await actions.waitForApiResponse(endpoint, { search: 'ABC' });
 
 		const listbox = page.getByRole('listbox');
 
@@ -338,7 +338,7 @@ test.describe('Settings > P2TG', () => {
 
 		await combobox.fill('ABC');
 
-		await actions.waitForApiResponse(apiPath);
+		await actions.waitForApiResponse(endpoint, { search: 'ABC' });
 
 		await options.waitFor();
 
@@ -352,7 +352,7 @@ test.describe('Settings > P2TG', () => {
 		await options.first().click();
 
 		await actions.saveChangesAndWait({
-			apiPath: '/wptelegram/v1/settings',
+			endpoint: '/wptelegram/v1/settings',
 		});
 
 		await page.reload();
@@ -409,7 +409,7 @@ test.describe('Settings > P2TG', () => {
 		// Now let us save the changes
 		// The rule should be removed because nothing is selected
 		await actions.saveChangesAndWait({
-			apiPath: '/wptelegram/v1/settings',
+			endpoint: '/wptelegram/v1/settings',
 		});
 
 		await expect(valueContainer).toHaveCount(0);
