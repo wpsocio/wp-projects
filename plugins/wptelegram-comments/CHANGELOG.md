@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.3
+
+### Patch Changes
+
+- [#193](https://github.com/wpsocio/wp-projects/pull/193) [`35f1abc`](https://github.com/wpsocio/wp-projects/commit/35f1abc0ad516ad2fa87bd4cbb3406fb77be1bc5) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Performance improvements
+
 ## 1.2.2
 
 ### Patch Changes

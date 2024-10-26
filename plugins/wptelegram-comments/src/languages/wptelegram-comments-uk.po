@@ -67,17 +67,17 @@ msgstr "Типи записів"
 msgid "Please read the instructions above."
 msgstr "Будь ласка, прочитайте інструкцію нижче."
 
-#: js/settings/ui/Configuration.tsx:19
+#: js/settings/ui/Configuration.tsx:20
 #: languages/wptelegram-comments-js-translations.php:68
 msgid "Configuration"
 msgstr "Конфігурація"
 
-#: js/settings/ui/Configuration.tsx:25
+#: js/settings/ui/Configuration.tsx:26
 #: languages/wptelegram-comments-js-translations.php:71
 msgid "The comments widget will be shown on the selected post types."
 msgstr "Віджет з коментарями буде відображений на вибраному типі записів."
 
-#: js/settings/ui/Configuration.tsx:38
+#: js/settings/ui/Configuration.tsx:39
 #: languages/wptelegram-comments-js-translations.php:74
 msgid "To exclude the specific posts, enter the post or page IDs separated by comma."
 msgstr "Щоб виключити специфічні записи введіть ідентифікатори постів або сторінок розділені через кому."
@@ -128,7 +128,7 @@ msgstr "Вставити зкопійований код в поле нижче.
 msgid "Save Changes"
 msgstr "Зберегти зміни"
 
-#: js/settings/ui/Sidebar.tsx:18
+#: js/settings/ui/Sidebar.tsx:19
 #: languages/wptelegram-comments-js-translations.php:100
 msgid "Use Telegram Comments widget for your WordPress posts or pages."
 msgstr "Використовуйте віджет Коментарі з Telegram для ваших постів та сторінок у WordPress."
@@ -164,7 +164,7 @@ msgstr "Підписатися на %s"
 
 #. %s: channel name
 #. translators: %s: channel name
-#: ../../packages/js/shared-ui/components/wptg-social-icons.tsx:62
+#: ../../packages/js/shared-ui/components/wptg-social-icons.tsx:57
 #: languages/wptelegram-comments-js-translations.php:38
 msgid "Join %s"
 msgstr "Приєднати %s"
@@ -242,12 +242,12 @@ msgstr ""
 msgid "WP Telegram"
 msgstr ""
 
-#: js/settings/ui/Sidebar.tsx:21
+#: js/settings/ui/Sidebar.tsx:22
 #: languages/wptelegram-comments-js-translations.php:103
 msgid "Join our public chat on Telegram"
 msgstr ""
 
-#: js/settings/ui/Sidebar.tsx:26
+#: js/settings/ui/Sidebar.tsx:27
 #: languages/wptelegram-comments-js-translations.php:106
 msgid "Support"
 msgstr ""
