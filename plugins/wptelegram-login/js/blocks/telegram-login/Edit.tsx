@@ -13,8 +13,8 @@ import { useCallback, useEffect } from '@wordpress/element';
 import { __ } from '@wpsocio/i18n';
 
 import { Output } from './Output';
+import { getDomData } from './getDomData';
 import type { TelegramLoginAtts } from './types';
-import { useData } from './useData';
 
 const getButtonStyleOptions = () => [
 	{ label: __('Large'), value: 'large' },
@@ -46,7 +46,7 @@ export const Edit: React.FC<BlockEditProps<TelegramLoginAtts>> = ({
 		}
 	}, []);
 
-	const uiData = useData('uiData');
+	const uiData = getDomData('uiData');
 
 	const onChangeButtonStyle = useCallback(
 		(newStyle: string) => setAttributes({ button_style: newStyle }),

@@ -11,7 +11,7 @@ import { Input } from '@wpsocio/ui-components/wrappers/input';
 import { RadioGroup } from '@wpsocio/ui-components/wrappers/radio-group';
 import { Select } from '@wpsocio/ui-components/wrappers/select.js';
 import { Switch } from '@wpsocio/ui-components/wrappers/switch';
-import { getFieldLabel, useData } from '../services';
+import { getDomData, getFieldLabel } from '../services';
 
 const getButtonStyleOptions = () => [
 	{ value: 'large', label: __('Large') },
@@ -19,9 +19,9 @@ const getButtonStyleOptions = () => [
 	{ value: 'small', label: __('Small') },
 ];
 
-export const ButtonOptions = () => {
-	const { uiData } = useData();
+const { uiData } = getDomData();
 
+export const ButtonOptions = () => {
 	const { control } = useFormContext();
 
 	return (

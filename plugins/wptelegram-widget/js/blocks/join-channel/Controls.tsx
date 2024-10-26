@@ -8,8 +8,8 @@ import { Fragment, useCallback, useEffect } from '@wordpress/element';
 
 import { __ } from '@wpsocio/i18n';
 
+import { getDomData } from '../getDomData';
 import type { JoinChannelAtts } from '../types';
-import { useData } from '../useData';
 
 export type ControlsProps = {
 	setAttributes: (newAttributes: Partial<JoinChannelAtts>) => void;
@@ -22,7 +22,7 @@ export const Controls: React.FC<ControlsProps> = ({
 }) => {
 	const { alignment, link, text } = attributes;
 
-	const { join_link_text, join_link_url } = useData('uiData');
+	const { join_link_text, join_link_url } = getDomData('uiData');
 
 	useEffect(() => {
 		if (!link) {

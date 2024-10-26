@@ -1,12 +1,12 @@
-import { usePluginData } from '@wpsocio/services/use-plugin-data.js';
+import { getPluginData } from '@wpsocio/services/get-plugin-data.js';
 import type { WPTelegramCommentsData } from './types';
 
-export const useData = <
+export const getDomData = <
 	K extends keyof WPTelegramCommentsData | undefined = undefined,
 >(
 	key?: K,
 ): K extends keyof WPTelegramCommentsData
 	? WPTelegramCommentsData[K]
 	: WPTelegramCommentsData => {
-	return usePluginData('wptelegram_comments', key);
+	return getPluginData('wptelegram_comments', key);
 };

@@ -1,7 +1,7 @@
 import { type BaseApiUtilArgs, fetchAPI } from '@wpsocio/services/api-fetch';
 import type { OptionsType } from '@wpsocio/ui-components/wrappers/types';
 import { useCallback } from 'react';
-import { useData } from './useData';
+import { getDomData } from './getDomData';
 
 interface FetchRuleValuesArgs extends BaseApiUtilArgs {
 	param: string;
@@ -13,39 +13,35 @@ export type FetchRuleValues = (
 ) => Promise<OptionsType>;
 
 export const useFetchRuleValues = (): FetchRuleValues => {
-	const { rest_namespace } = useData('api');
+	return useCallback(async (args) => {
+		const { rest_namespace } = getDomData('api');
 
-	const path = `${rest_namespace}/p2tg-rules`;
+		const path = `${rest_namespace}/p2tg-rules`;
+		const { setInProgress, setResult, param, search } = args;
 
-	return useCallback(
-		async (args) => {
-			const { setInProgress, setResult, param, search } = args;
+		setInProgress?.(true);
 
-			setInProgress?.(true);
+		try {
+			// convert params to URL query string
+			const urlParams = new URLSearchParams({ param, search: search || '' });
+			const pathWithParams = `${path}?${urlParams.toString()}`;
 
-			try {
-				// convert params to URL query string
-				const urlParams = new URLSearchParams({ param, search: search || '' });
-				const pathWithParams = `${path}?${urlParams.toString()}`;
+			const result = await fetchAPI.GET<OptionsType>({
+				path: pathWithParams,
+			});
 
-				const result = await fetchAPI.GET<OptionsType>({
-					path: pathWithParams,
-				});
+			setResult?.(result);
 
-				setResult?.(result);
+			return result;
+		} catch (error) {
+			// biome-ignore lint/suspicious/noConsoleLog: <explanation>
+			console.log('ERROR', error);
 
-				return result;
-			} catch (error) {
-				// biome-ignore lint/suspicious/noConsoleLog: <explanation>
-				console.log('ERROR', error);
+			setResult?.([]);
 
-				setResult?.([]);
-
-				return [];
-			} finally {
-				setInProgress?.(false);
-			}
-		},
-		[path],
-	);
+			return [];
+		} finally {
+			setInProgress?.(false);
+		}
+	}, []);
 };

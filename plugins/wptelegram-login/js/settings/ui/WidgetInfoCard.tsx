@@ -5,11 +5,11 @@ import { Smile } from '@wpsocio/shared-ui/components/smile.js';
 import { WidgetInfoCard as WidgetInfoCardUI } from '@wpsocio/shared-ui/components/widget-info/widget-info-card.js';
 import { Link } from '@wpsocio/ui-components/wrappers/link.js';
 import { createInterpolateElement } from '@wpsocio/utilities/createInterpolateElement';
-import { useData } from '../services';
+import { getDomData } from '../services';
+
+const { admin_url } = getDomData('api');
 
 export const WidgetInfoCard = () => {
-	const { admin_url } = useData('api');
-
 	return (
 		<WidgetInfoCardUI>
 			<PluginInfoItem>

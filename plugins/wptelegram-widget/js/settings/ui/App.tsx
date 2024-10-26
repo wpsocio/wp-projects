@@ -3,7 +3,7 @@ import { WpAdminContainer } from '@wpsocio/shared-ui/components/wp-admin-contain
 import { SubmitBar } from '@wpsocio/shared-ui/form/submit/submit-bar.js';
 import { ROOT_ID } from '../constants';
 import {
-	useData,
+	getDomData,
 	useInit,
 	useOnInvalid,
 	useOnSubmit,
@@ -15,10 +15,10 @@ import { TabbedSections } from './TabbedSections';
 
 const resolver = zodResolver(validationSchema);
 
+const { savedSettings: defaultValues } = getDomData();
+
 const App: React.FC = () => {
 	useInit();
-
-	const { savedSettings: defaultValues } = useData();
 
 	const form = useForm({ defaultValues, resolver, mode: 'onBlur' });
 
