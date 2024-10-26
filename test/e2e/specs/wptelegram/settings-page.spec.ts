@@ -116,13 +116,19 @@ test.describe('Settings', () => {
 
 		await page.keyboard.type(botToken);
 
+		const resultAlert = page
+			.getByRole('alert')
+			.filter({ has: page.getByRole('heading', { name: 'Test Result:' }) });
+
 		const result = `${json.result.first_name} (@${json.result.username})`;
 
-		expect(await page.content()).not.toContain(result);
+		expect(await resultAlert.count()).toBe(0);
 
 		await actions.testBotTokenAndWait();
 
-		expect(await page.content()).toContain(result);
+		await resultAlert.waitFor();
+
+		expect(await resultAlert.textContent()).toContain(result);
 
 		expect(await botUsernameField.inputValue()).toBe(json.result.username);
 	});
@@ -143,13 +149,19 @@ test.describe('Settings', () => {
 
 		await page.keyboard.type(botToken);
 
+		const resultAlert = page
+			.getByRole('alert')
+			.filter({ has: page.getByRole('heading', { name: 'Test Result:' }) });
+
 		const result = 'Error: 401 (Unauthorized)';
 
-		expect(await page.content()).not.toContain(result);
+		expect(await resultAlert.count()).toBe(0);
 
 		await actions.testBotTokenAndWait();
 
-		expect(await page.content()).toContain(result);
+		await resultAlert.waitFor();
+
+		expect(await resultAlert.textContent()).toContain(result);
 
 		expect(await botUsernameField.inputValue()).toBe('');
 
