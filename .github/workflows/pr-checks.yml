@@ -157,6 +157,7 @@ jobs:
           name: failures-artifacts
           path: |
             artifacts/
+            !artifacts/test-results
           if-no-files-found: ignore
 
       - name: Stop WordPress Environment
