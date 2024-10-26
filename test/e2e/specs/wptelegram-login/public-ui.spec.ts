@@ -1,13 +1,12 @@
 import { expect, test } from '@wordpress/e2e-test-utils-playwright';
 import { Actions, BlockEditor, ClassicEditor, REST } from '@wpsocio/e2e-utils';
+import { TEST_BOT_TOKEN, TEST_BOT_USERNAME } from '../../utils/constants.js';
 
 test.describe('Public UI', () => {
 	let actions: Actions;
 	let rest: REST;
 	let classicEditor: ClassicEditor;
 	let blockEditor: BlockEditor;
-
-	const botToken = '123456789:y7SdjUVdeSA8HRF3WmOqHAA-cOIiz9u04dC';
 
 	test.beforeAll(async ({ requestUtils }) => {
 		rest = new REST(requestUtils);
@@ -25,14 +24,14 @@ test.describe('Public UI', () => {
 
 		// Save the bot token and username
 		const botTokenField = page.getByLabel('Bot Token');
-		await botTokenField.fill(botToken);
+		await botTokenField.fill(TEST_BOT_TOKEN);
 
 		const botUsernameField = page.getByLabel('Bot Username');
 		await botUsernameField.dblclick();
-		await botUsernameField.fill('E2ETestBot');
+		await botUsernameField.fill(TEST_BOT_USERNAME);
 
 		await actions.saveChangesAndWait({
-			apiPath: '/wptelegram-login/v1/settings',
+			endpoint: '/wptelegram-login/v1/settings',
 		});
 	});
 
@@ -111,7 +110,7 @@ test.describe('Public UI', () => {
 		await actions.selectOption(page.getByLabel('Show if user is'), 'Any');
 
 		await actions.saveChangesAndWait({
-			apiPath: '/wptelegram-login/v1/settings',
+			endpoint: '/wptelegram-login/v1/settings',
 		});
 
 		await page.goto('/wp-login.php');
@@ -125,7 +124,7 @@ test.describe('Public UI', () => {
 		await page.getByLabel('Hide on default login').check({ force: true });
 
 		await actions.saveChangesAndWait({
-			apiPath: '/wptelegram-login/v1/settings',
+			endpoint: '/wptelegram-login/v1/settings',
 		});
 
 		await page.goto('/wp-login.php');

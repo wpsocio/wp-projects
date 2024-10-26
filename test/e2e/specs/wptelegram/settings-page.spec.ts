@@ -1,12 +1,11 @@
 import { expect, test } from '@wordpress/e2e-test-utils-playwright';
 import { Actions, Mocks, REST } from '@wpsocio/e2e-utils';
+import { TEST_BOT_TOKEN, TEST_BOT_USERNAME } from '../../utils/constants.js';
 
 test.describe('Settings', () => {
 	let actions: Actions;
 	let rest: REST;
 	let mocks: Mocks;
-
-	const botToken = '123456789:y7SdjUVdeSA8HRF3WmOqHAA-cOIiz9u04dC';
 
 	test.beforeAll(async ({ requestUtils }) => {
 		rest = new REST(requestUtils);
@@ -60,9 +59,7 @@ test.describe('Settings', () => {
 	}) => {
 		const code = page.getByLabel('Bot Token');
 
-		await code.selectText();
-
-		await page.keyboard.type('invalid-token');
+		await code.fill('invalid-token');
 
 		// Press tab key to blur the code input to trigger validation.
 		await page.keyboard.press('Tab');
@@ -71,12 +68,13 @@ test.describe('Settings', () => {
 	});
 
 	test('Should save the changes', async ({ page }) => {
-		await page.getByLabel('Bot Token').fill(botToken);
-		await page.getByLabel('Bot Username').dblclick();
-		await page.keyboard.type('E2ETestBot');
+		await page.getByLabel('Bot Token').fill(TEST_BOT_TOKEN);
+		const botUsernameField = page.getByLabel('Bot Username');
+		await botUsernameField.dblclick();
+		await botUsernameField.fill(TEST_BOT_USERNAME);
 
 		await actions.saveChangesAndWait({
-			apiPath: '/wptelegram/v1/settings',
+			endpoint: '/wptelegram/v1/settings',
 			assertSaved: true,
 		});
 
@@ -87,9 +85,9 @@ test.describe('Settings', () => {
 
 		await botTokenField.waitFor();
 
-		expect(await botTokenField.inputValue()).toBe(botToken);
+		expect(await botTokenField.inputValue()).toBe(TEST_BOT_TOKEN);
 		expect(await page.getByLabel('Bot Username').inputValue()).toBe(
-			'E2ETestBot',
+			TEST_BOT_USERNAME,
 		);
 	});
 
@@ -101,7 +99,7 @@ test.describe('Settings', () => {
 			result: {
 				id: 123,
 				first_name: 'The E2E Test Bot',
-				username: 'E2ETestBot',
+				username: TEST_BOT_USERNAME,
 			},
 		};
 		// Mock the api call
@@ -112,9 +110,7 @@ test.describe('Settings', () => {
 
 		expect(await botUsernameField.inputValue()).toBe('');
 
-		await botTokenField.selectText();
-
-		await page.keyboard.type(botToken);
+		await botTokenField.fill(TEST_BOT_TOKEN);
 
 		const resultAlert = page
 			.getByRole('alert')
@@ -145,9 +141,7 @@ test.describe('Settings', () => {
 		const botTokenField = page.getByLabel('Bot Token');
 		const botUsernameField = page.getByLabel('Bot Username');
 
-		await botTokenField.selectText();
-
-		await page.keyboard.type(botToken);
+		await botTokenField.fill(TEST_BOT_TOKEN);
 
 		const resultAlert = page
 			.getByRole('alert')
@@ -216,9 +210,10 @@ test.describe('Settings', () => {
 	test('Should not allow saving the active sections with required fields', async ({
 		page,
 	}) => {
-		await page.getByLabel('Bot Token').fill(botToken);
-		await page.getByLabel('Bot Username').dblclick();
-		await page.keyboard.type('E2ETestBot');
+		await page.getByLabel('Bot Token').fill(TEST_BOT_TOKEN);
+		const botUsernameField = page.getByLabel('Bot Username');
+		await botUsernameField.dblclick();
+		await botUsernameField.fill(TEST_BOT_USERNAME);
 
 		const button = page.getByRole('tab', { name: 'Post to Telegram' });
 
@@ -247,13 +242,13 @@ test.describe('Settings', () => {
 		await tabPanel.getByPlaceholder('@username').fill('@WPTelegram');
 
 		await actions.saveChangesAndWait({
-			apiPath: '/wptelegram/v1/settings',
+			endpoint: '/wptelegram/v1/settings',
 			assertSaved: true,
 		});
 	});
 
 	test('Should display proxy options conditionally', async ({ page }) => {
-		await page.getByLabel('Bot Token').fill(botToken);
+		await page.getByLabel('Bot Token').fill(TEST_BOT_TOKEN);
 
 		const button = page.getByRole('tab', { name: 'Proxy' });
 
