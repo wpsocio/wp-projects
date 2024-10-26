@@ -7,14 +7,15 @@ import { NotifyInstructions } from '@wpsocio/shared-ui/wptelegram/notify-instruc
 import { UserNotifications } from '@wpsocio/shared-ui/wptelegram/user-notifications.js';
 import { Separator } from '@wpsocio/ui-components/ui/separator';
 import type { DataShape } from '../../services/fields';
-import { useData } from '../../services/useData';
+import { getDomData } from '../../services/getDomData';
 import { IfBotToken } from '../shared/if-bot-token';
 import { PREFIX } from './constants';
 import { MessageSettings } from './message-settings.js';
 import { WatchEmails } from './watch-emails.js';
 
+const { editProfileUrl } = getDomData('assets');
+
 export const NotifyTab: React.FC = () => {
-	const { editProfileUrl } = useData('assets');
 	const bot_username = useWatch<DataShape, 'bot_username'>({
 		name: 'bot_username',
 	});

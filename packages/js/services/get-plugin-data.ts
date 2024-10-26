@@ -1,6 +1,6 @@
 import type { BaseDOMData } from './types';
 
-export const usePluginData = <
+export const getPluginData = <
 	PluginData extends BaseDOMData,
 	K extends keyof PluginData | undefined = undefined,
 >(
@@ -8,6 +8,8 @@ export const usePluginData = <
 	dataKey?: K,
 ): K extends keyof PluginData ? PluginData[K] : PluginData => {
 	const pluginData = window[plugin];
-	// @ts-ignore
-	return dataKey ? pluginData?.[dataKey] : pluginData;
+	return dataKey
+		? // @ts-expect-error
+			pluginData?.[dataKey]
+		: pluginData;
 };

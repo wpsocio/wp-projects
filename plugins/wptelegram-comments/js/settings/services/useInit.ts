@@ -1,12 +1,10 @@
 import botApi from '@wpsocio/services/telegram/telegram-api.js';
 import { useEffect } from 'react';
-import { useData } from './useData';
+import { getDomData } from './getDomData';
 
 export const useInit = () => {
-	const { api } = useData();
-
-	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
+		const { api } = getDomData();
 		botApi.setApiData(api || {});
 	}, []);
 

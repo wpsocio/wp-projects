@@ -1,15 +1,16 @@
 import { __, sprintf } from '@wpsocio/i18n';
 import { Code } from '@wpsocio/shared-ui/components/code';
 import { Instructions as InstructionsUI } from '@wpsocio/shared-ui/components/instructions';
+import { Alert } from '@wpsocio/ui-components/wrappers/alert.js';
 import { Link } from '@wpsocio/ui-components/wrappers/link.js';
 import { createInterpolateElement } from '@wpsocio/utilities/createInterpolateElement.js';
-import { useData } from '../services';
-import { Alert } from '@wpsocio/ui-components/wrappers/alert.js';
+import { getDomData } from '../services';
 
 const { location } = window;
 
+const { wptelegram_active } = getDomData('uiData');
+
 export const Instructions: React.FC = () => {
-	const { wptelegram_active } = useData('uiData');
 	return (
 		<InstructionsUI>
 			{wptelegram_active && (

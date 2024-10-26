@@ -3,10 +3,11 @@ import { Code } from '@wpsocio/shared-ui/components/code';
 import { Instructions as InstructionsUI } from '@wpsocio/shared-ui/components/instructions';
 import { Link } from '@wpsocio/ui-components/wrappers/link.js';
 import { createInterpolateElement } from '@wpsocio/utilities/createInterpolateElement.js';
-import { useData } from '../../services';
+import { getDomData } from '../../services';
+
+const { pullUpdatesUrl } = getDomData('assets');
 
 export const Instructions: React.FC = () => {
-	const { pullUpdatesUrl } = useData('assets');
 	return (
 		<div>
 			<InstructionsUI className="mt-6">

@@ -1,10 +1,10 @@
 import { __ } from '@wpsocio/i18n';
 import { WidgetInfo } from '@wpsocio/shared-ui/components/widget-info/widget-info.js';
-import { useData } from '../../services';
+import { getDomData } from '../../services';
+
+const { admin_url = '' } = getDomData('api');
 
 export const AjaxWidgetInfo = () => {
-	const { admin_url = '' } = useData('api');
-
 	return (
 		<WidgetInfo
 			adminUrl={admin_url}

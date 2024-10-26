@@ -8,11 +8,12 @@ import {
 	FormControl,
 	FormField,
 } from '@wpsocio/ui-components/wrappers/form.js';
-import { type DataShape, getFieldLabel, useData } from '../services';
+import { type DataShape, getDomData, getFieldLabel } from '../services';
 import { Code } from './Code';
 
+const { post_types } = getDomData('uiData');
+
 export const Configuration = () => {
-	const { post_types } = useData('uiData');
 	const { control } = useFormContext<DataShape>();
 
 	return (

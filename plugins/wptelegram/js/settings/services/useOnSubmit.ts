@@ -2,14 +2,14 @@ import type { SubmitHandler, UseFormReturn } from '@wpsocio/form';
 import { useSubmitForm } from '@wpsocio/services/use-submit-form';
 import { useCallback } from 'react';
 import { getErrorMessage } from './fields';
+import { getDomData } from './getDomData';
 import type { DataShape } from './types';
-import { useData } from './useData';
 import { normalizeData, prepDefaultValues } from './utils';
 
 export const useOnSubmit = (
 	form: UseFormReturn<DataShape>,
 ): SubmitHandler<DataShape> => {
-	const { rest_namespace } = useData('api');
+	const { rest_namespace } = getDomData('api');
 
 	const path = `${rest_namespace}/settings/`;
 

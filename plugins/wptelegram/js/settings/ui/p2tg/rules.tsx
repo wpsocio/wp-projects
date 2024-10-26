@@ -5,7 +5,7 @@ import { P2TGCustomRules } from '@wpsocio/shared-ui/wptelegram/rules/p2tg-custom
 import { Separator } from '@wpsocio/ui-components/ui/separator';
 import { VerticalDivider } from '@wpsocio/ui-components/wrappers/vertical-divider.js';
 import { getFieldLabel } from '../../services/fields.js';
-import { useData } from '../../services/useData.js';
+import { getDomData } from '../../services/getDomData.js';
 import { Upsell } from './../shared/pro-upsell.js';
 import { PREFIX } from './constants';
 
@@ -20,12 +20,12 @@ const getSendWhenOptions = () => [
 	},
 ];
 
-export const Rules: React.FC = () => {
-	const {
-		api: { rest_namespace = '' },
-		uiData: { post_types, rule_types },
-	} = useData();
+const {
+	api: { rest_namespace = '' },
+	uiData: { post_types, rule_types },
+} = getDomData();
 
+export const Rules: React.FC = () => {
 	return (
 		<SectionCard title={__('Rules')}>
 			<div className="flex flex-col gap-10 md:gap-4">

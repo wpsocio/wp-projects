@@ -1,11 +1,10 @@
 import { Form, useForm, zodResolver } from '@wpsocio/form';
 import { WpAdminContainer } from '@wpsocio/shared-ui/components/wp-admin-container.js';
 import { SubmitBar } from '@wpsocio/shared-ui/form/submit/submit-bar.js';
-import { useMemo } from 'react';
 import { ROOT_ID } from '../constants';
 import {
+	getDomData,
 	prepDefaultValues,
-	useData,
 	useInit,
 	useOnInvalid,
 	useOnSubmit,
@@ -18,15 +17,10 @@ import Sidebar from './Sidebar';
 
 const resolver = zodResolver(validationSchema);
 
+const defaultValues = prepDefaultValues(getDomData().savedSettings);
+
 const App: React.FC = () => {
 	useInit();
-
-	const { savedSettings } = useData();
-
-	const defaultValues = useMemo(
-		() => prepDefaultValues(savedSettings),
-		[savedSettings],
-	);
 
 	const form = useForm({ defaultValues, resolver, mode: 'onBlur' });
 

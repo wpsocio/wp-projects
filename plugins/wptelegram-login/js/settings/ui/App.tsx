@@ -2,7 +2,7 @@ import { Form, useForm, zodResolver } from '@wpsocio/form';
 import { WpAdminContainer } from '@wpsocio/shared-ui/components/wp-admin-container.js';
 import { SubmitBar } from '@wpsocio/shared-ui/form/submit/submit-bar.js';
 import { ROOT_ID } from '../constants';
-import { useData, validationSchema } from '../services';
+import { getDomData, validationSchema } from '../services';
 import { useInit, useOnInvalid, useOnSubmit } from '../services';
 import { ButtonOptions } from './ButtonOptions';
 import { ErrorMessageOptions } from './ErrorMessageOptions';
@@ -14,10 +14,10 @@ import { TelegramOptions } from './TelegramOptions';
 
 const resolver = zodResolver(validationSchema);
 
+const { savedSettings: defaultValues } = getDomData();
+
 const App: React.FC = () => {
 	useInit();
-
-	const { savedSettings: defaultValues } = useData();
 
 	const form = useForm({ defaultValues, resolver, mode: 'onBlur' });
 

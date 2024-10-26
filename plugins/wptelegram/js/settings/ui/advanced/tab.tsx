@@ -2,11 +2,12 @@ import { useFormContext, useWatch } from '@wpsocio/form';
 import { __ } from '@wpsocio/i18n';
 import { AdvancedSettings } from '@wpsocio/shared-ui/wptelegram/advanced-settings';
 import { useEffect, useMemo } from 'react';
-import { useData } from '../../services/useData';
+import { getDomData } from '../../services/getDomData';
 import { PREFIX } from './constants';
 
+const { assets, uiData } = getDomData();
+
 export const AdvancedTab: React.FC = () => {
-	const { assets, uiData } = useData();
 	const enable_logs = useWatch({ name: `${PREFIX}.enable_logs` });
 	const { setValue } = useFormContext();
 
@@ -30,7 +31,7 @@ export const AdvancedTab: React.FC = () => {
 				viewLink: assets.p2tgLogUrl || '',
 			},
 		],
-		[assets, enable_logs],
+		[enable_logs],
 	);
 
 	return (

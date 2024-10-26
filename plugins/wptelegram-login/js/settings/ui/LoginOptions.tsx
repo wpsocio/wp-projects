@@ -12,7 +12,7 @@ import { RadioGroup } from '@wpsocio/ui-components/wrappers/radio-group';
 import { Select } from '@wpsocio/ui-components/wrappers/select.js';
 import { Switch } from '@wpsocio/ui-components/wrappers/switch.js';
 import { useCallback, useState } from 'react';
-import { type DataShape, getFieldLabel, useData } from '../services';
+import { type DataShape, getDomData, getFieldLabel } from '../services';
 
 const getRedirectOptions = () => [
 	{ value: 'default', label: __('Default') },
@@ -21,10 +21,10 @@ const getRedirectOptions = () => [
 	{ value: 'custom_url', label: __('Custom URL') },
 ];
 
+const { uiData } = getDomData();
+
 export const LoginOptions = () => {
 	const [avatarMetaKeyReadOnly, setAvatarMetaKeyReadOnly] = useState(true);
-
-	const { uiData } = useData();
 
 	const onAvatarMetaDoubleClick = useCallback(
 		() => setAvatarMetaKeyReadOnly(false),

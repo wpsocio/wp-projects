@@ -7,13 +7,13 @@ import { MessageTemplate } from '@wpsocio/shared-ui/wptelegram/message-template.
 import { MiscMessageSettings } from '@wpsocio/shared-ui/wptelegram/misc-message-settings';
 import { TemplateInfo } from '@wpsocio/shared-ui/wptelegram/template-info.js';
 import { Separator } from '@wpsocio/ui-components/ui/separator.js';
-import { useData } from './../../services/useData';
+import { getDomData } from './../../services/getDomData';
 import { Upsell } from './../shared/pro-upsell.js';
 import { PREFIX } from './constants';
 
-export const MessageSettings: React.FC = () => {
-	const { macros } = useData('uiData');
+const { macros } = getDomData('uiData');
 
+export const MessageSettings: React.FC = () => {
 	return (
 		<SectionCard title={__('Message Settings')}>
 			<MessageTemplate prefix={PREFIX} />

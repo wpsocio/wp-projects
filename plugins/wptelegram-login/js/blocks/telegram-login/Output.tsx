@@ -1,12 +1,13 @@
 import type { BlockEditProps } from '@wordpress/blocks';
 
+import { getDomData } from './getDomData';
 import type { TelegramLoginAtts } from './types';
-import { useData } from './useData';
+
+const assets = getDomData('assets');
 
 export const Output: React.FC<
 	Pick<BlockEditProps<TelegramLoginAtts>, 'attributes' | 'className'>
 > = ({ attributes, className }) => {
-	const assets = useData('assets');
 	const { button_style, show_user_photo, corner_radius } = attributes;
 
 	let button_width: string | undefined;
