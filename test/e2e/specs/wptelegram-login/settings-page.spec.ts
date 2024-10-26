@@ -1,12 +1,11 @@
 import { expect, test } from '@wordpress/e2e-test-utils-playwright';
 import { Actions, Mocks, REST } from '@wpsocio/e2e-utils';
+import { TEST_BOT_TOKEN, TEST_BOT_USERNAME } from '../../utils/constants.js';
 
 test.describe('Settings', () => {
 	let actions: Actions;
 	let rest: REST;
 	let mocks: Mocks;
-
-	const botToken = '123456789:y7SdjUVdeSA8HRF3WmOqHAA-cOIiz9u04dC';
 
 	test.beforeAll(async ({ requestUtils }) => {
 		rest = new REST(requestUtils);
@@ -57,9 +56,7 @@ test.describe('Settings', () => {
 
 		expect(await page.content()).toContain('Bot Username required');
 
-		await botTokenField.selectText();
-
-		await page.keyboard.type('invalid-token');
+		await botTokenField.fill('invalid-token');
 
 		const testButton = page.getByRole('button', {
 			name: 'Test Token',
@@ -77,20 +74,21 @@ test.describe('Settings', () => {
 			result: {
 				id: 123,
 				first_name: 'The E2E Test Bot',
-				username: 'E2ETestBot',
+				username: TEST_BOT_USERNAME,
 			},
 		};
 		// Mock the api call
-		const unmock = await mocks.mockRequest(`bot${botToken}/getMe`, { json });
+		const unmock = await mocks.mockRequest(`bot${TEST_BOT_TOKEN}/getMe`, {
+			json,
+		});
 
 		const botTokenField = page.getByLabel('Bot Token');
 		const botUsernameField = page.getByLabel('Bot Username');
 
 		expect(await botUsernameField.inputValue()).toBe('');
 
-		await botTokenField.selectText();
+		await botTokenField.fill(TEST_BOT_TOKEN);
 
-		await page.keyboard.type(botToken);
 		const resultAlert = page
 			.getByRole('alert')
 			.filter({ has: page.getByRole('heading', { name: 'Test Result:' }) });
@@ -99,7 +97,9 @@ test.describe('Settings', () => {
 
 		expect(await resultAlert.count()).toBe(0);
 
-		await actions.testBotTokenAndWait({ endpoint: `/bot${botToken}/getMe` });
+		await actions.testBotTokenAndWait({
+			endpoint: `/bot${TEST_BOT_TOKEN}/getMe`,
+		});
 
 		await resultAlert.waitFor();
 
@@ -113,7 +113,7 @@ test.describe('Settings', () => {
 		const json = { ok: false, error_code: 401, description: 'Unauthorized' };
 
 		// Mock the api call
-		const unmock = await mocks.mockRequest(`bot${botToken}/getMe`, {
+		const unmock = await mocks.mockRequest(`bot${TEST_BOT_TOKEN}/getMe`, {
 			json,
 			status: json.error_code,
 		});
@@ -121,9 +121,7 @@ test.describe('Settings', () => {
 		const botTokenField = page.getByLabel('Bot Token');
 		const botUsernameField = page.getByLabel('Bot Username');
 
-		await botTokenField.selectText();
-
-		await page.keyboard.type(botToken);
+		await botTokenField.fill(TEST_BOT_TOKEN);
 
 		const resultAlert = page
 			.getByRole('alert')
@@ -133,7 +131,9 @@ test.describe('Settings', () => {
 
 		expect(await resultAlert.count()).toBe(0);
 
-		await actions.testBotTokenAndWait({ endpoint: `/bot${botToken}/getMe` });
+		await actions.testBotTokenAndWait({
+			endpoint: `/bot${TEST_BOT_TOKEN}/getMe`,
+		});
 
 		await resultAlert.waitFor();
 
@@ -162,13 +162,10 @@ test.describe('Settings', () => {
 		let botTokenField = page.getByLabel('Bot Token');
 		let botUsernameField = page.getByLabel('Bot Username');
 
-		await botTokenField.selectText();
-
-		await page.keyboard.type(botToken);
+		await botTokenField.fill(TEST_BOT_TOKEN);
 
 		await botUsernameField.dblclick();
-
-		await page.keyboard.type('E2ETestBot');
+		await botUsernameField.fill(TEST_BOT_USERNAME);
 
 		await actions.saveChangesAndWait({
 			apiPath: '/wptelegram-login/v1/settings',
@@ -183,8 +180,8 @@ test.describe('Settings', () => {
 
 		await botTokenField.waitFor();
 
-		expect(await botTokenField.inputValue()).toBe(botToken);
-		expect(await botUsernameField.inputValue()).toBe('E2ETestBot');
+		expect(await botTokenField.inputValue()).toBe(TEST_BOT_TOKEN);
+		expect(await botUsernameField.inputValue()).toBe(TEST_BOT_USERNAME);
 	});
 
 	test('Should display fields conditionally', async ({ page }) => {

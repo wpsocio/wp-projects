@@ -47,11 +47,7 @@ test.describe('Settings', () => {
 	});
 
 	test('Should not allow submission with invalid code', async ({ page }) => {
-		const code = page.getByLabel('Code');
-
-		await code.selectText();
-
-		await page.keyboard.type('invalid-code');
+		await page.getByLabel('Code').fill('invalid-code');
 
 		// Press tab key to blur the code input to trigger validation.
 		await page.keyboard.press('Tab');
@@ -60,9 +56,7 @@ test.describe('Settings', () => {
 	});
 
 	test('Should save the changes', async ({ page }) => {
-		await page.getByLabel('Code').selectText();
-
-		await page.keyboard.type('<script async></script>');
+		await page.getByLabel('Code').fill('<script async></script>');
 
 		await actions.saveChangesAndWait({
 			apiPath: '/wptelegram-comments/v1/settings',
@@ -80,15 +74,11 @@ test.describe('Settings', () => {
 	});
 
 	test('Should clean up the inputs', async ({ page }) => {
-		await page.getByLabel('Code').selectText();
+		await page
+			.getByLabel('Code')
+			.fill('<script async unknown-attr="some-value"></script>');
 
-		await page.keyboard.type(
-			'<script async unknown-attr="some-value"></script>',
-		);
-
-		await page.getByLabel('Exclude').selectText();
-
-		await page.keyboard.type('1, 2, 3,invalid,');
+		await page.getByLabel('Exclude').fill('1, 2, 3,invalid,');
 
 		await actions.saveChangesAndWait({
 			apiPath: '/wptelegram-comments/v1/settings',

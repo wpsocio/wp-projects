@@ -57,11 +57,11 @@ test.describe('Public UI', () => {
 
 					await admin.visitAdminPage('admin.php', 'page=wptelegram_comments');
 
-					await page.getByLabel('Code').selectText();
-
-					await page.keyboard.type(
-						'<script async src="https://comments.app/js/widget.js" data-comments-app-website="abcdefghi" id="e2e-test-comments"></script>',
-					);
+					await page
+						.getByLabel('Code')
+						.fill(
+							'<script async src="https://comments.app/js/widget.js" data-comments-app-website="abcdefghi" id="e2e-test-comments"></script>',
+						);
 
 					await actions.saveChangesAndWait({
 						apiPath: '/wptelegram-comments/v1/settings',
@@ -85,9 +85,7 @@ test.describe('Public UI', () => {
 				// Now let us exclude the post
 				await admin.visitAdminPage('admin.php', 'page=wptelegram_comments');
 
-				await page.getByLabel('Exclude').selectText();
-
-				await page.keyboard.type(`${postId}`);
+				await page.getByLabel('Exclude').fill(`${postId}`);
 
 				await actions.saveChangesAndWait({
 					apiPath: '/wptelegram-comments/v1/settings',

@@ -1,12 +1,11 @@
 import { expect, test } from '@wordpress/e2e-test-utils-playwright';
 import { Actions, Mocks, REST } from '@wpsocio/e2e-utils';
+import { TEST_BOT_TOKEN } from '../../utils/constants.js';
 
 test.describe('Settings', () => {
 	let actions: Actions;
 	let rest: REST;
 	let mocks: Mocks;
-
-	const botToken = '123456789:y7SdjUVdeSA8HRF3WmOqHAA-cOIiz9u04dC';
 
 	test.beforeAll(async ({ requestUtils }) => {
 		rest = new REST(requestUtils);
@@ -127,7 +126,7 @@ test.describe('Settings', () => {
 
 		await expect(testButton).toBeDisabled();
 
-		await botTokenField.fill(botToken);
+		await botTokenField.fill(TEST_BOT_TOKEN);
 
 		await page.keyboard.press('Tab');
 

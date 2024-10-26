@@ -1,15 +1,16 @@
 import type { Locator, Page } from '@playwright/test';
 import { expect, test } from '@wordpress/e2e-test-utils-playwright';
 import { Actions, BlockEditor, ClassicEditor, REST } from '@wpsocio/e2e-utils';
-
-const botToken = '123456789:y7SdjUVdeSA8HRF3WmOqHAA-cOIiz9u04dC';
+import { TEST_BOT_TOKEN, TEST_BOT_USERNAME } from '../../utils/constants.js';
 
 async function setupPostToTelegramSection(page: Page) {
 	await page.getByRole('tab', { name: 'Basics' }).click();
 
-	await page.getByLabel('Bot Token').fill(botToken);
-	await page.getByLabel('Bot Username').dblclick();
-	await page.keyboard.type('E2ETestBot');
+	await page.getByLabel('Bot Token').fill(TEST_BOT_TOKEN);
+	const botUsernameField = page.getByLabel('Bot Username');
+
+	await botUsernameField.dblclick();
+	await botUsernameField.fill(TEST_BOT_USERNAME);
 
 	const button = page.getByRole('tab', { name: 'Post to Telegram' });
 
