@@ -120,7 +120,7 @@ msgstr ""
 
 #: js/p2tg-block-editor/OverrideSettings.tsx:69
 #: js/settings/ui/TabbedSections.tsx:29
-#: js/settings/ui/advanced/tab.tsx:29
+#: js/settings/ui/advanced/tab.tsx:30
 #: languages/wptelegram-js-translations.php:546
 #: modules/p2tg/Admin.php:409
 msgid "Post to Telegram"
@@ -128,7 +128,7 @@ msgstr "文章通知"
 
 #: ../../packages/js/shared-ui/wptelegram/notify-instructions.tsx:119
 #: js/settings/ui/TabbedSections.tsx:37
-#: languages/wptelegram-js-translations.php:296
+#: languages/wptelegram-js-translations.php:292
 msgid "Private Notifications"
 msgstr "私人通知"
 
@@ -143,7 +143,7 @@ msgstr ""
 msgid "Advanced settings"
 msgstr "進階設定"
 
-#: js/settings/ui/advanced/tab.tsx:23
+#: js/settings/ui/advanced/tab.tsx:24
 #: languages/wptelegram-js-translations.php:613
 msgid "Bot API"
 msgstr ""
@@ -232,7 +232,7 @@ msgstr ""
 msgid "The module will watch the Email Notifications sent from this site and deliver them to you on Telegram."
 msgstr "此模組會監看此站寄出的電子郵件通知並且將它們傳送至你的 Telegram"
 
-#: js/settings/ui/notify/tab.tsx:32
+#: js/settings/ui/notify/tab.tsx:33
 #: languages/wptelegram-js-translations.php:646
 msgid "Notification Settings"
 msgstr "通知設定"
@@ -406,13 +406,13 @@ msgstr "傳送給"
 msgid "Add or Upload Files"
 msgstr ""
 
-#: js/p2tg-block-editor/Files.tsx:47
+#: js/p2tg-block-editor/Files.tsx:57
 #: languages/wptelegram-js-translations.php:538
 #: modules/p2tg/Admin.php:454
 msgid "Files to be sent after the message."
 msgstr "檔案在訊息之後傳送."
 
-#: js/p2tg-block-editor/Files.tsx:57
+#: js/p2tg-block-editor/Files.tsx:67
 #: languages/wptelegram-js-translations.php:541
 #: modules/p2tg/Admin.php:453
 msgid "Files"
@@ -559,40 +559,40 @@ msgid "Disables previews for links in the messages."
 msgstr ""
 
 #: ../../packages/js/shared-ui/wptelegram/notify-instructions.tsx:22
-#: languages/wptelegram-js-translations.php:299
+#: languages/wptelegram-js-translations.php:295
 msgid "To receive notifications privately:"
 msgstr "私下接收通知："
 
 #. 1 bot username
 #. translators: 1 bot username
 #: ../../packages/js/shared-ui/wptelegram/notify-instructions.tsx:28
-#: languages/wptelegram-js-translations.php:303
+#: languages/wptelegram-js-translations.php:299
 msgid "Get your Chat ID from %s and enter it below."
 msgstr "從 %s 取得你的 Chat ID 並且在下方輸入。"
 
 #. 1 bot username
 #. translators: 1 bot username
 #: ../../packages/js/shared-ui/wptelegram/notify-instructions.tsx:44
-#: languages/wptelegram-js-translations.php:307
+#: languages/wptelegram-js-translations.php:303
 msgid "Send your own bot %s a message to start the conversation."
 msgstr ""
 
 #: ../../packages/js/shared-ui/wptelegram/notify-instructions.tsx:61
-#: languages/wptelegram-js-translations.php:310
+#: languages/wptelegram-js-translations.php:306
 msgid "To receive notifications into a group:"
 msgstr "在群組中接收通知:"
 
 #. 1 bot username
 #. translators: 1 bot username
 #: ../../packages/js/shared-ui/wptelegram/notify-instructions.tsx:67
-#: languages/wptelegram-js-translations.php:314
+#: languages/wptelegram-js-translations.php:310
 msgid "Add %s to the group to get its Chat ID."
 msgstr "將 %s 新增到群組以取得其 Chat ID。"
 
 #. 1 field name
 #. translators: 1 field name
 #: ../../packages/js/shared-ui/wptelegram/notify-instructions.tsx:86
-#: languages/wptelegram-js-translations.php:318
+#: languages/wptelegram-js-translations.php:314
 msgid "Enter the Chat ID in %s field below."
 msgstr "在下方 %s 中輸入 chat_id。"
 
@@ -605,7 +605,7 @@ msgstr "傳送給"
 #. 1 bot username
 #. translators: 1 bot username
 #: ../../packages/js/shared-ui/wptelegram/notify-instructions.tsx:98
-#: languages/wptelegram-js-translations.php:292
+#: languages/wptelegram-js-translations.php:318
 msgid "Add your own bot %s to the group."
 msgstr ""
 
@@ -1233,7 +1233,7 @@ msgid "Select all"
 msgstr ""
 
 #. Description of the plugin
-#: js/settings/ui/Sidebar.tsx:19
+#: js/settings/ui/Sidebar.tsx:20
 #: wptelegram.php
 #: languages/wptelegram-js-translations.php:583
 msgid "Integrate your WordPress website perfectly with Telegram. Send posts automatically to Telegram when published or updated, whether to a Telegram Channel, Group or private chat, with full control. Get your email notifications on Telegram."
@@ -1355,12 +1355,12 @@ msgstr ""
 msgid "chat ID"
 msgstr ""
 
-#: js/settings/ui/Sidebar.tsx:22
+#: js/settings/ui/Sidebar.tsx:23
 #: languages/wptelegram-js-translations.php:586
 msgid "Join our public chat on Telegram"
 msgstr ""
 
-#: js/settings/ui/Sidebar.tsx:27
+#: js/settings/ui/Sidebar.tsx:28
 #: languages/wptelegram-js-translations.php:589
 msgid "Support"
 msgstr ""
