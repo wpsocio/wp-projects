@@ -7,6 +7,7 @@ import { ReactAsyncSelect } from '@wpsocio/ui-components/wrappers/react-select.j
 import type { OptionsType } from '@wpsocio/ui-components/wrappers/types.js';
 import { usePrevious } from '@wpsocio/utilities/hooks/usePrevious.js';
 import { useCallback, useEffect, useState } from 'react';
+import { useDebouncedCallback } from 'use-debounce';
 import { FormField } from '../../form/form-field.js';
 import type { Rule } from './types.js';
 import { useFetchRuleValues } from './use-fetch-rule-values.js';
@@ -83,7 +84,7 @@ export function RuleSetValues({
 		setDefaultValues(param);
 	}, []);
 
-	const loadValuesOptions = useCallback(
+	const loadValuesOptions = useDebouncedCallback(
 		(inputValue: string, callback: (result: OptionsType) => void) => {
 			fetchRuleValues({
 				param,
@@ -94,7 +95,7 @@ export function RuleSetValues({
 				},
 			});
 		},
-		[fetchRuleValues, param],
+		1000,
 	);
 
 	return (
