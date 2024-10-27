@@ -319,9 +319,10 @@ test.describe('Settings > P2TG', () => {
 
 		const combobox = page.getByRole('combobox', { name: 'Rule values' });
 
-		await combobox.fill('ABC');
-
-		await actions.waitForApiResponse(endpoint, { search: 'ABC' });
+		await Promise.all([
+			combobox.fill('ABC'),
+			actions.waitForApiResponse(endpoint, { search: 'ABC' }),
+		]);
 
 		const listbox = page.getByRole('listbox');
 
@@ -336,9 +337,10 @@ test.describe('Settings > P2TG', () => {
 		// Let us select an option
 		await options.filter({ hasText: 'ABC Cat → ABC Child cat' }).click();
 
-		await combobox.fill('ABC');
-
-		await actions.waitForApiResponse(endpoint, { search: 'ABC' });
+		await Promise.all([
+			combobox.fill('ABC'),
+			actions.waitForApiResponse(endpoint, { search: 'ABC' }),
+		]);
 
 		await options.waitFor();
 
