@@ -21,7 +21,7 @@
 	"module": "./src/index.ts",
 	"main": "./src/index.ts",
 	"dependencies": {
-		"@playwright/test": "^1.48.1",
+		"@playwright/test": "^1.48.2",
 		"@wordpress/e2e-test-utils-playwright": "^1.10.0"
 	},
 	"devDependencies": {

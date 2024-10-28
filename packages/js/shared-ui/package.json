@@ -19,9 +19,9 @@
 		"use-debounce": "^10.0.4"
 	},
 	"devDependencies": {
-		"@types/node": "^22.7.7",
+		"@types/node": "^22.8.1",
 		"@types/ramda": "^0.30.2",
-		"@types/react": "^18.3.11",
+		"@types/react": "^18.3.12",
 		"@types/react-dom": "^18.3.1",
 		"tailwindcss": "^3.4.14"
 	}
