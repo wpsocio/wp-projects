@@ -35,7 +35,7 @@
 		"test:e2e:debug": "wp-scripts test-playwright --config test/e2e/playwright.config.ts --ui",
 		"test:php": "wireit",
 		"typecheck": "wireit",
-		"upgrade-all": "pnpm ncu -u && pnpm -r exec pnpm ncu -u",
+		"upgrade-all": "pnpm ncu -u && pnpm -r exec ncu -u",
 		"wp": "composer run wp -- ",
 		"wp-env": "wp-env"
 	},
