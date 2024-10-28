@@ -30,16 +30,13 @@ const getProxyOptions = () => [
 export const ProxyUI: React.FC<CommonProps> = ({ prefix }) => {
 	return (
 		<>
-			<div className="grid grid-cols-1 xl:grid-cols-2 gap-4 auto-cols-max mb-6">
-				<ProxyDisclaimer />
-				<div>
-					<YouTubeVideo title={__('Proxy')} videoId="J5H0QuSmo-s" asGridCol />
-				</div>
-			</div>
-
 			<ActiveField prefix={prefix} />
 
 			<IfActive name={`${prefix}.active`}>
+				<div className="grid grid-cols-1 xl:grid-cols-2 gap-4 auto-cols-max my-6">
+					<ProxyDisclaimer />
+					<YouTubeVideo title={__('Proxy')} videoId="J5H0QuSmo-s" asGridCol />
+				</div>
 				<SectionCard title={__('Proxy Method')} className="mt-6">
 					<FormField
 						name={`${prefix}.proxy_method`}
