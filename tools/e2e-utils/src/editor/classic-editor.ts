@@ -14,13 +14,11 @@ export class ClassicEditor extends BaseEditor {
 			'input[type="submit"][name="publish"][value="Publish"]',
 		);
 
-		await publishButton.click();
-
 		const publishNotice = this.page
 			.getByRole('paragraph')
 			.filter({ hasText: 'Post published.' });
 
-		await publishNotice.waitFor();
+		await Promise.all([publishButton.click(), publishNotice.waitFor()]);
 
 		const postId = this.page.url().match(/post=(\d+)/)?.[1];
 
