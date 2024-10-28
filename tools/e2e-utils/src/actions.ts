@@ -112,25 +112,4 @@ export class Actions {
 			})
 			.click();
 	}
-
-	async logout() {
-		// If it is logged and in a page different than the dashboard,
-		// move to the dashboard. Some pages may be in full-screen mode,
-		// so they won't have the log-out button available.
-		if (
-			!this.pageUtils.isCurrentURL('wp-login.php') &&
-			!this.pageUtils.isCurrentURL('wp-admin')
-		) {
-			await this.page.goto('wp-admin');
-		}
-
-		await Promise.all([
-			this.page.hover('#wp-admin-bar-my-account'),
-			this.page.waitForSelector('#wp-admin-bar-logout', {
-				state: 'visible',
-			}),
-		]);
-
-		await this.page.click('#wp-admin-bar-logout');
-	}
 }
