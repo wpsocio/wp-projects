@@ -35,7 +35,7 @@
 		"test:e2e:debug": "wp-scripts test-playwright --config test/e2e/playwright.config.ts --ui",
 		"test:php": "wireit",
 		"typecheck": "wireit",
-		"upgrade-all": "pnpm ncu -u && pnpm -r exec pnpm ncu -u",
+		"upgrade-all": "pnpm ncu -u && pnpm -r exec ncu -u",
 		"wp": "composer run wp -- ",
 		"wp-env": "wp-env"
 	},
@@ -43,14 +43,14 @@
 		"@biomejs/biome": "1.9.4",
 		"@changesets/changelog-github": "^0.5.0",
 		"@changesets/cli": "^2.27.9",
-		"@playwright/test": "^1.48.1",
-		"@types/node": "^22.7.7",
+		"@playwright/test": "^1.48.2",
+		"@types/node": "^22.8.1",
 		"@wordpress/e2e-test-utils-playwright": "^1.10.0",
 		"@wordpress/env": "^10.10.0",
 		"@wordpress/scripts": "^30.3.0",
 		"@wpsocio/e2e-utils": "workspace:*",
 		"@wpsocio/wpdev": "workspace:*",
-		"npm-check-updates": "^17.1.4",
+		"npm-check-updates": "^17.1.8",
 		"rimraf": "^6.0.1",
 		"tailwindcss": "^3.4.14",
 		"ts-node": "^10.9.2",
@@ -149,5 +149,5 @@
 		"projectTypes": ["plugins"],
 		"envFiles": [".env"]
 	},
-	"packageManager": "pnpm@9.12.2"
+	"packageManager": "pnpm@9.12.3"
 }

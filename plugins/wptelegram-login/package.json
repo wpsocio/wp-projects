@@ -44,8 +44,8 @@
 		"zod": "^3.23.8"
 	},
 	"devDependencies": {
-		"@types/jquery": "^3.5.31",
-		"@types/react": "^18.3.11",
+		"@types/jquery": "^3.5.32",
+		"@types/react": "^18.3.12",
 		"@types/react-dom": "^18.3.1",
 		"@types/wordpress__block-editor": "^11.5.15",
 		"@types/wordpress__blocks": "^12.5.14",
@@ -72,9 +72,7 @@
 				]
 			},
 			{
-				"paths": [
-					"src/assets/build/dev-server.json"
-				],
+				"paths": ["src/assets/build/dev-server.json"],
 				"rules": [
 					{
 						"value": "NOT_EXISTS"
@@ -86,21 +84,15 @@
 	"wireit": {
 		"build": {
 			"command": "vite build && pnpm run validate-build",
-			"output": [
-				"src/assets/build"
-			]
+			"output": ["src/assets/build"]
 		},
 		"setup:php": {
 			"command": "composer install --ignore-platform-reqs",
-			"dependencies": [
-				"unset-vendor-dir"
-			]
+			"dependencies": ["unset-vendor-dir"]
 		},
 		"setup:php:prod": {
 			"command": "composer install --no-dev && pnpm run unset-vendor-dir",
-			"dependencies": [
-				"set-prod-vendor"
-			]
+			"dependencies": ["set-prod-vendor"]
 		},
 		"set-prod-vendor": {
 			"command": "composer config vendor-dir src/vendor"
