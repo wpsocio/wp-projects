@@ -110,7 +110,7 @@ jobs:
     strategy:
       matrix:
         php: ["7.4", "8.3"] # Least version required and the latest version
-        wp: ["WordPress/WordPress#6.4.0", null] # Least version required and the latest production version
+        wp: ["6.4.0", "master"] # Least version required and the latest production version
 
     steps:
       - name: Checkout this repo
@@ -147,7 +147,7 @@ jobs:
 
       - name: Update wp-env
         run: |
-          contents="$(jq '.core = ${{ matrix.wp }} | .phpVersion = "${{ matrix.php }}"' .wp-env.json)"
+          contents="$(jq '.core = "WordPress/WordPress#${{ matrix.wp }}" | .phpVersion = "${{ matrix.php }}"' .wp-env.json)"
           echo -E "${contents}" > .wp-env.json
 
       - name: Start WordPress Environment
