@@ -130,6 +130,12 @@ jobs:
           repository: ${{ secrets.PREMIUM_PROJECTS_REPO }}
           ref: ${{ fromJSON(steps.remote-refs.outputs.result).premium || 'main' }}
 
+      - name: Update wp-env
+        run: |
+          contents="$(jq '.core = "WordPress/WordPress#${{ matrix.wp }}" | .phpVersion = "${{ matrix.php }}"' .wp-env.json)"
+          echo -E "${contents}" > .wp-env.json
+          cat .wp-env.json
+
       - name: Setup Environment
         uses: ./actions/setup
         with:
@@ -145,11 +151,6 @@ jobs:
       - name: Install Playwright dependencies
         run: |
           npx playwright install chromium firefox webkit --with-deps
-
-      - name: Update wp-env
-        run: |
-          contents="$(jq '.core = "WordPress/WordPress#${{ matrix.wp }}" | .phpVersion = "${{ matrix.php }}"' .wp-env.json)"
-          echo -E "${contents}" > .wp-env.json
 
       - name: Start WordPress Environment
         run: |
