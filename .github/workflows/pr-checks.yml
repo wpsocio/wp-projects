@@ -110,7 +110,7 @@ jobs:
     strategy:
       matrix:
         php: ["7.4", "8.3"] # Least version required and the latest version
-        wp: ["6.4.0", "master"] # Least version required and the latest production version
+        wp: ["6.4", "master"] # Least version required and the latest production version
 
     steps:
       - name: Checkout this repo
@@ -134,6 +134,7 @@ jobs:
         uses: ./actions/setup
         with:
           enable-wireit-cache: true
+          php-version: ${{ matrix.php }}
 
       - name: Setup PHP
         run: "pnpm run setup:php"
