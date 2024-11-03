@@ -164,7 +164,7 @@ jobs:
         uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
-          name: failures-artifacts
+          name: failures-artifacts-wp-${{ matrix.wp }}-php-${{ matrix.php }}
           path: |
             artifacts/
           if-no-files-found: ignore
