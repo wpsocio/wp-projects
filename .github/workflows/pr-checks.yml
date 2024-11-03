@@ -107,6 +107,10 @@ jobs:
     if: github.repository == 'wpsocio/wp-projects'
     timeout-minutes: 15
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ["7.4", "8.3"] # Least version required and the latest version
+        wp: ["WordPress/WordPress#6.4.0", null] # Least version required and the latest production version
 
     steps:
       - name: Checkout this repo
@@ -140,6 +144,11 @@ jobs:
       - name: Install Playwright dependencies
         run: |
           npx playwright install chromium firefox webkit --with-deps
+
+      - name: Update wp-env
+        run: |
+          contents="$(jq '.core = ${{ matrix.wp }} | .phpVersion = "${{ matrix.php }}"' .wp-env.json)"
+          echo -E "${contents}" > .wp-env.json
 
       - name: Start WordPress Environment
         run: |
