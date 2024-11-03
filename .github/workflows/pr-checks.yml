@@ -103,10 +103,14 @@ jobs:
         run: pnpm run bundle:all
 
   e2e-tests:
-    name: "E2E Tests"
+    name: "E2E Tests - WP: ${{ matrix.wp }}, PHP: ${{ matrix.php }}"
     if: github.repository == 'wpsocio/wp-projects'
     timeout-minutes: 15
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ["7.4", "8.3"] # Least version required and the latest version
+        wp: ["6.4", "master"] # Least version required and the latest production version
 
     steps:
       - name: Checkout this repo
@@ -130,6 +134,7 @@ jobs:
         uses: ./actions/setup
         with:
           enable-wireit-cache: true
+          php-version: ${{ matrix.php }}
 
       - name: Setup PHP
         run: "pnpm run setup:php"
@@ -140,6 +145,11 @@ jobs:
       - name: Install Playwright dependencies
         run: |
           npx playwright install chromium firefox webkit --with-deps
+
+      - name: Update wp-env
+        run: |
+          contents="$(jq '.core = "WordPress/WordPress#${{ matrix.wp }}" | .phpVersion = "${{ matrix.php }}"' .wp-env.json)"
+          echo -E "${contents}" > .wp-env.json
 
       - name: Start WordPress Environment
         run: |
@@ -154,7 +164,7 @@ jobs:
         uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
-          name: failures-artifacts
+          name: failures-artifacts-wp-${{ matrix.wp }}-php-${{ matrix.php }}
           path: |
             artifacts/
           if-no-files-found: ignore
