@@ -103,7 +103,7 @@ jobs:
         run: pnpm run bundle:all
 
   e2e-tests:
-    name: "E2E Tests"
+    name: "E2E Tests - WP: ${{ matrix.wp }}, PHP: ${{ matrix.php }}"
     if: github.repository == 'wpsocio/wp-projects'
     timeout-minutes: 15
     runs-on: ubuntu-latest
