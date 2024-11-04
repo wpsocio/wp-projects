@@ -26,7 +26,7 @@ test.describe('Settings', () => {
 	});
 
 	test('Should have instructions', async ({ page }) => {
-		expect(await page.content()).toContain('INSTRUCTIONS!');
+		await expect(page.locator('body')).toContainText('INSTRUCTIONS!');
 	});
 
 	test('Should not allow submission without bot token or username', async ({
@@ -41,8 +41,10 @@ test.describe('Settings', () => {
 		expect(validationMessage).toBe('Please fill out this field.');
 
 		// Should not show validation message before submission.
-		expect(await page.content()).not.toContain('Bot Token required');
-		expect(await page.content()).not.toContain('Bot Username required');
+		await expect(page.locator('body')).not.toContainText('Bot Token required');
+		await expect(page.locator('body')).not.toContainText(
+			'Bot Username required',
+		);
 
 		await actions.saveChangesButton.click();
 
@@ -50,8 +52,9 @@ test.describe('Settings', () => {
 		await page.keyboard.press('Tab');
 		await page.keyboard.press('Tab');
 
-		expect(await page.content()).toContain('Bot Token required');
-		expect(await page.content()).toContain('Bot Username required');
+		await expect(page.locator('body')).toContainText('Bot Token required');
+		await expect(page.locator('body')).toContainText('Bot Token required');
+		await expect(page.locator('body')).toContainText('Bot Username required');
 	});
 
 	test('Should not allow submission with invalid bot token', async ({
@@ -64,7 +67,7 @@ test.describe('Settings', () => {
 		// Press tab key to blur the code input to trigger validation.
 		await page.keyboard.press('Tab');
 
-		expect(await page.content()).toContain('Invalid Bot Token');
+		await expect(page.locator('body')).toContainText('Invalid Bot Token');
 	});
 
 	test('Should save the changes', async ({ page }) => {
@@ -85,8 +88,8 @@ test.describe('Settings', () => {
 
 		await botTokenField.waitFor();
 
-		expect(await botTokenField.inputValue()).toBe(TEST_BOT_TOKEN);
-		expect(await page.getByLabel('Bot Username').inputValue()).toBe(
+		await expect(botTokenField).toHaveValue(TEST_BOT_TOKEN);
+		await expect(page.getByLabel('Bot Username')).toHaveValue(
 			TEST_BOT_USERNAME,
 		);
 	});
@@ -108,7 +111,7 @@ test.describe('Settings', () => {
 		const botTokenField = page.getByLabel('Bot Token');
 		const botUsernameField = page.getByLabel('Bot Username');
 
-		expect(await botUsernameField.inputValue()).toBe('');
+		await expect(botUsernameField).toHaveValue('');
 
 		await botTokenField.fill(TEST_BOT_TOKEN);
 
@@ -118,15 +121,15 @@ test.describe('Settings', () => {
 
 		const result = `${json.result.first_name} (@${json.result.username})`;
 
-		expect(await resultAlert.count()).toBe(0);
+		await expect(resultAlert).toHaveCount(0);
 
 		await actions.testBotTokenAndWait();
 
 		await resultAlert.waitFor();
 
-		expect(await resultAlert.textContent()).toContain(result);
+		await expect(resultAlert).toContainText(result);
 
-		expect(await botUsernameField.inputValue()).toBe(json.result.username);
+		await expect(botUsernameField).toHaveValue(json.result.username);
 	});
 
 	test('Should handle the API call for invalid token', async ({ page }) => {
@@ -149,15 +152,15 @@ test.describe('Settings', () => {
 
 		const result = 'Error: 401 (Unauthorized)';
 
-		expect(await resultAlert.count()).toBe(0);
+		await expect(resultAlert).toHaveCount(0);
 
 		await actions.testBotTokenAndWait();
 
 		await resultAlert.waitFor();
 
-		expect(await resultAlert.textContent()).toContain(result);
+		await expect(resultAlert).toContainText(result);
 
-		expect(await botUsernameField.inputValue()).toBe('');
+		await expect(botUsernameField).toHaveValue('');
 
 		await unmock();
 	});
@@ -233,9 +236,7 @@ test.describe('Settings', () => {
 
 		await actions.saveChangesButton.click();
 
-		expect(await tabPanel.textContent()).toContain(
-			'At least one channel is required.',
-		);
+		await expect(tabPanel).toContainText('At least one channel is required.');
 
 		await tabPanel.getByRole('button', { name: 'Add channel' }).click();
 

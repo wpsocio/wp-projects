@@ -111,13 +111,13 @@ test.describe('Settings', () => {
 
 		await page.keyboard.press('Tab');
 
-		expect(await page.content()).toContain('Bot Token required');
+		await expect(page.locator('body')).toContainText('Bot Token required');
 
 		await botTokenField.fill('invalid-token');
 
 		await page.keyboard.press('Tab');
 
-		expect(await page.content()).toContain('Invalid Bot Token');
+		await expect(page.locator('body')).toContainText('Invalid Bot Token');
 
 		const testButton = page.getByRole('button', {
 			name: 'Test Token',
@@ -130,7 +130,7 @@ test.describe('Settings', () => {
 
 		await page.keyboard.press('Tab');
 
-		expect(await page.content()).not.toContain('Invalid Bot Token');
+		await expect(page.locator('body')).not.toContainText('Invalid Bot Token');
 
 		await expect(testButton).toBeEnabled();
 

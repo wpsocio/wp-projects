@@ -99,7 +99,7 @@ test.describe('Public UI', () => {
 
 		await expect(script).toHaveCount(1);
 
-		expect(await script.getAttribute('data-userpic')).toBe('false');
+		await expect(script).toHaveAttribute('data-userpic', 'false');
 	});
 
 	test('Should show or hide the Telegram login on default login page.', async ({

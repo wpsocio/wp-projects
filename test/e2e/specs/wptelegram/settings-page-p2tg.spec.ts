@@ -124,7 +124,7 @@ test.describe('Settings > P2TG', () => {
 		const inlineButtonText = tabPanel.getByLabel('Inline Button Text');
 		const inlineButtonUrl = tabPanel.getByLabel('Inline Button URL');
 
-		expect(await inlineButtonSwitch.isChecked()).toBe(false); // By default, it is OFF
+		await expect(inlineButtonSwitch).not.toBeChecked(); // By default, it is OFF
 
 		await expect(inlineButtonText).toBeDisabled();
 		await expect(inlineButtonUrl).toBeDisabled();
@@ -200,7 +200,7 @@ test.describe('Settings > P2TG', () => {
 			'<b>{post_title}</b>\n\n{post_excerpt}\n\n<a href="{full_url}">View post</a>';
 
 		// Should reflect immediately and after reload as well
-		expect(await templateField.inputValue()).toBe(expectedValue);
+		await expect(templateField).toHaveValue(expectedValue);
 
 		await page.reload();
 
@@ -210,7 +210,7 @@ test.describe('Settings > P2TG', () => {
 
 		await templateField.waitFor();
 
-		expect(await templateField.inputValue()).toBe(expectedValue);
+		await expect(templateField).toHaveValue(expectedValue);
 	});
 
 	test('Should show/hide the post edit page UI', async ({
@@ -331,8 +331,8 @@ test.describe('Settings > P2TG', () => {
 		const options = listbox.getByRole('option');
 
 		// Assert that there are only two options
-		expect(await options.count()).toBe(2);
-		expect(await listbox.textContent()).toContain('ABC Cat → ABC Child cat');
+		await expect(options).toHaveCount(2);
+		await expect(listbox).toContainText('ABC Cat → ABC Child cat');
 
 		// Let us select an option
 		await options.filter({ hasText: 'ABC Cat → ABC Child cat' }).click();
@@ -345,11 +345,9 @@ test.describe('Settings > P2TG', () => {
 		await options.waitFor();
 
 		// Now there should be only one option
-		expect(await options.count()).toBe(1);
-		expect(await options.first().textContent()).not.toContain(
-			'ABC Cat → ABC Child cat',
-		);
-		expect(await options.first().textContent()).toContain('ABC Cat');
+		await expect(options).toHaveCount(1);
+		await expect(options.first()).not.toContainText('ABC Cat → ABC Child cat');
+		await expect(options.first()).toContainText('ABC Cat');
 		// Let us select another option
 		await options.first().click();
 
@@ -398,7 +396,7 @@ test.describe('Settings > P2TG', () => {
 
 		await expect(ruleType).toHaveCount(1);
 
-		expect(ruleType).toHaveText('Post Category');
+		await expect(ruleType).toHaveText('Post Category');
 
 		await page
 			.getByRole('combobox', { name: 'Rule values' })
