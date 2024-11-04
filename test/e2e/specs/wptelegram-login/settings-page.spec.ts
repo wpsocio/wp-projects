@@ -27,7 +27,7 @@ test.describe('Settings', () => {
 	});
 
 	test('Should have instructions', async ({ page }) => {
-		expect(await page.content()).toContain('INSTRUCTIONS!');
+		await expect(page.locator('body')).toContainText('INSTRUCTIONS!');
 	});
 
 	test('Should validate the bot token and username inputs', async ({
@@ -42,19 +42,19 @@ test.describe('Settings', () => {
 		expect(validationMessage).toBe('Please fill out this field.');
 
 		// Should not show validation message before submission.
-		expect(await page.content()).not.toContain('Bot Token required');
+		await expect(page.locator('body')).not.toContainText('Bot Token required');
 
 		await actions.saveChangesButton.click();
 
 		await page.keyboard.press('Tab');
 
-		expect(await page.content()).toContain('Bot Token required');
+		await expect(page.locator('body')).toContainText('Bot Token required');
 
 		await page.getByLabel('Bot Username').focus();
 
 		await page.keyboard.press('Tab');
 
-		expect(await page.content()).toContain('Bot Username required');
+		await expect(page.locator('body')).toContainText('Bot Username required');
 
 		await botTokenField.fill('invalid-token');
 
@@ -85,7 +85,7 @@ test.describe('Settings', () => {
 		const botTokenField = page.getByLabel('Bot Token');
 		const botUsernameField = page.getByLabel('Bot Username');
 
-		expect(await botUsernameField.inputValue()).toBe('');
+		await expect(botUsernameField).toHaveValue('');
 
 		await botTokenField.fill(TEST_BOT_TOKEN);
 
@@ -95,7 +95,7 @@ test.describe('Settings', () => {
 
 		const result = `${json.result.first_name} (@${json.result.username})`;
 
-		expect(await resultAlert.count()).toBe(0);
+		await expect(resultAlert).toHaveCount(0);
 
 		await actions.testBotTokenAndWait({
 			endpoint: `/bot${TEST_BOT_TOKEN}/getMe`,
@@ -103,8 +103,8 @@ test.describe('Settings', () => {
 
 		await resultAlert.waitFor();
 
-		expect(await resultAlert.textContent()).toContain(result);
-		expect(await botUsernameField.inputValue()).toBe(json.result.username);
+		await expect(resultAlert).toContainText(result);
+		await expect(botUsernameField).toHaveValue(json.result.username);
 
 		await unmock();
 	});
@@ -129,7 +129,7 @@ test.describe('Settings', () => {
 
 		const result = 'Error: 401 (Unauthorized)';
 
-		expect(await resultAlert.count()).toBe(0);
+		await expect(resultAlert).toHaveCount(0);
 
 		await actions.testBotTokenAndWait({
 			endpoint: `/bot${TEST_BOT_TOKEN}/getMe`,
@@ -137,9 +137,9 @@ test.describe('Settings', () => {
 
 		await resultAlert.waitFor();
 
-		expect(await resultAlert.textContent()).toContain(result);
+		await expect(resultAlert).toContainText(result);
 
-		expect(await botUsernameField.inputValue()).toBe('');
+		await expect(botUsernameField).toHaveValue('');
 
 		await unmock();
 	});
@@ -180,8 +180,8 @@ test.describe('Settings', () => {
 
 		await botTokenField.waitFor();
 
-		expect(await botTokenField.inputValue()).toBe(TEST_BOT_TOKEN);
-		expect(await botUsernameField.inputValue()).toBe(TEST_BOT_USERNAME);
+		await expect(botTokenField).toHaveValue(TEST_BOT_TOKEN);
+		await expect(botUsernameField).toHaveValue(TEST_BOT_USERNAME);
 	});
 
 	test('Should display fields conditionally', async ({ page }) => {

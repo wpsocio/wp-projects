@@ -76,11 +76,10 @@ test.describe('Public UI', () => {
 
 				await expect(script).toHaveCount(1);
 
-				const value = await script.evaluate((el) =>
-					el.getAttribute('data-comments-app-website'),
+				await expect(script).toHaveAttribute(
+					'data-comments-app-website',
+					'abcdefghi',
 				);
-
-				expect(value).toBe('abcdefghi');
 
 				// Now let us exclude the post
 				await admin.visitAdminPage('admin.php', 'page=wptelegram_comments');

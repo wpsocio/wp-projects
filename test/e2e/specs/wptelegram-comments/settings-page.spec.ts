@@ -23,7 +23,7 @@ test.describe('Settings', () => {
 	});
 
 	test('Should have instructions', async ({ page }) => {
-		expect(await page.content()).toContain('INSTRUCTIONS!');
+		await expect(page.locator('body')).toContainText('INSTRUCTIONS!');
 	});
 
 	test('Should not allow submission without code', async ({ page }) => {
@@ -36,14 +36,14 @@ test.describe('Settings', () => {
 		expect(validationMessage).toBe('Please fill out this field.');
 
 		// Should not show validation message before submission.
-		expect(await page.content()).not.toContain('Code required');
+		await expect(page.locator('body')).not.toContainText('Code required');
 
 		await actions.saveChangesButton.click();
 
 		// Press tab key to blur the code input to dismiss form validation tooltip.
 		await page.keyboard.press('Tab');
 
-		expect(await page.content()).toContain('Code required');
+		await expect(page.locator('body')).toContainText('Code required');
 	});
 
 	test('Should not allow submission with invalid code', async ({ page }) => {
@@ -52,7 +52,7 @@ test.describe('Settings', () => {
 		// Press tab key to blur the code input to trigger validation.
 		await page.keyboard.press('Tab');
 
-		expect(await page.content()).toContain('Invalid Code');
+		await expect(page.locator('body')).toContainText('Invalid Code');
 	});
 
 	test('Should save the changes', async ({ page }) => {
@@ -70,7 +70,7 @@ test.describe('Settings', () => {
 
 		await code.waitFor();
 
-		expect(await code.inputValue()).toBe('<script async></script>');
+		await expect(code).toHaveValue('<script async></script>');
 	});
 
 	test('Should clean up the inputs', async ({ page }) => {
@@ -84,10 +84,10 @@ test.describe('Settings', () => {
 			endpoint: '/wptelegram-comments/v1/settings',
 		});
 
-		expect(await page.getByLabel('Code').inputValue()).toBe(
+		await expect(page.getByLabel('Code')).toHaveValue(
 			'<script async></script>',
 		);
 
-		expect(await page.getByLabel('Exclude').inputValue()).toBe('1,2,3');
+		await expect(page.getByLabel('Exclude')).toHaveValue('1,2,3');
 	});
 });

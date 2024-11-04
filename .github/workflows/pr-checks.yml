@@ -6,7 +6,7 @@ on:
 
 jobs:
   php-lint-test:
-    name: "PHP: Lint, Test"
+    name: "PHP ${{ matrix.php }}: Lint, Test"
     if: github.repository == 'wpsocio/wp-projects'
     timeout-minutes: 15
     runs-on: ubuntu-latest
@@ -103,14 +103,15 @@ jobs:
         run: pnpm run bundle:all
 
   e2e-tests:
-    name: "E2E Tests - WP: ${{ matrix.wp }}, PHP: ${{ matrix.php }}"
+    name: "E2E Tests - PHP: ${{ matrix.php }}, WP: ${{ matrix.wp }}"
     if: github.repository == 'wpsocio/wp-projects'
     timeout-minutes: 15
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php: ["7.4", "8.3"] # Least version required and the latest version
-        wp: ["6.4", "master"] # Least version required and the latest production version
+        # Least version required and the latest version
+        php: ["7.4", "8.3"]
+        wp: ["6.4", "master"]
 
     steps:
       - name: Checkout this repo
@@ -164,7 +165,7 @@ jobs:
         uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
-          name: failures-artifacts-wp-${{ matrix.wp }}-php-${{ matrix.php }}
+          name: e2e-artifacts-wp-${{ matrix.wp }}-php-${{ matrix.php }}
           path: |
             artifacts/
           if-no-files-found: ignore

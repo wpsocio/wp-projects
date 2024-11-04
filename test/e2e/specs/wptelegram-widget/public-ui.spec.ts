@@ -112,9 +112,7 @@ test.describe('Public UI', () => {
 
 				await expect(link).toBeVisible();
 
-				const href = await link.getAttribute('href');
-
-				expect(href).toBe('https://t.me/WPTelegram');
+				await expect(link).toHaveAttribute('href', 'https://t.me/WPTelegram');
 
 				// Now let us disable widget on posts
 				await admin.visitAdminPage('admin.php', 'page=wptelegram_widget');
@@ -174,9 +172,7 @@ test.describe('Public UI', () => {
 
 					await expect(link).toBeVisible();
 
-					const linkHref = await link.getAttribute('href');
-
-					expect(linkHref).toBe(href);
+					await expect(link).toHaveAttribute('href', href);
 				}
 			});
 
@@ -218,8 +214,8 @@ test.describe('Public UI', () => {
 
 				expect(src).toContain('SomeChannelUsername');
 
-				expect(await iframe.getAttribute('width')).toBe('110%');
-				expect(await iframe.getAttribute('height')).toBe('555px');
+				await expect(iframe).toHaveAttribute('width', '110%');
+				await expect(iframe).toHaveAttribute('height', '555px');
 			});
 
 			await test.step(`Clean up the ${type} editor`, async () => {
@@ -262,7 +258,7 @@ test.describe('Public UI', () => {
 
 		expect(src).toContain('SomeUsernameHere');
 
-		expect(await iframe.getAttribute('width')).toBe('111%');
-		expect(await iframe.getAttribute('height')).toBe('444px');
+		await expect(iframe).toHaveAttribute('width', '111%');
+		await expect(iframe).toHaveAttribute('height', '444px');
 	});
 });
