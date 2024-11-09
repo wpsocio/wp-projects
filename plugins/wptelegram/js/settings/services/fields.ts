@@ -114,14 +114,21 @@ export const validationSchema = z.object({
 			delay: z.coerce.number().min(0).optional(),
 			disable_notification: z.boolean().optional(),
 		})
-		.refine((value) => !value.active || value.channels?.length, {
-			message: sprintf(
-				/* translators: %s: field label */
-				__('At least one %s is required.'),
-				__('channel'),
-			),
-			path: ['channels'],
-		}),
+		.refine(
+			(value) =>
+				// If the section is not active, we are good.
+				!value.active ||
+				// Otherwise, we need at least one channel.
+				value.channels?.filter((c) => c.value.trim())?.length,
+			{
+				message: sprintf(
+					/* translators: %s: field label */
+					__('At least one %s is required.'),
+					__('channel'),
+				),
+				path: ['channels'],
+			},
+		),
 	notify: z
 		.object({
 			active: z.boolean().optional(),
@@ -148,14 +155,23 @@ export const validationSchema = z.object({
 			message_template: z.string().optional(),
 			parse_mode: parseModeSchema,
 		})
-		.refine((value) => !value.active || value.chat_ids?.length, {
-			message: sprintf(
-				/* translators: %s: field label */
-				__('At least one %s is required.'),
-				__('chat ID'),
-			),
-			path: ['chat_ids'],
-		}),
+		.refine(
+			(value) =>
+				// If the section is not active, we are good.
+				!value.active ||
+				// Otherwise, we need at least one chat ID.
+				value.chat_ids?.filter((c) => c.value.trim())?.length ||
+				// or user notifications enabled.
+				value.user_notifications,
+			{
+				message: sprintf(
+					/* translators: %s: field label */
+					__('At least one %s is required.'),
+					__('chat ID'),
+				),
+				path: ['chat_ids'],
+			},
+		),
 	proxy: proxySchema,
 	advanced: z.object({
 		send_files_by_url: z.boolean().optional(),
