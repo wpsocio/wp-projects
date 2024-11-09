@@ -160,7 +160,9 @@ export const validationSchema = z.object({
 				// If the section is not active, we are good.
 				!value.active ||
 				// Otherwise, we need at least one chat ID.
-				value.chat_ids?.filter((c) => c.value.trim())?.length,
+				value.chat_ids?.filter((c) => c.value.trim())?.length ||
+				// or user notifications enabled.
+				value.user_notifications,
 			{
 				message: sprintf(
 					/* translators: %s: field label */
