@@ -29,10 +29,10 @@
 		"version": "composer run gen:docs"
 	},
 	"dependencies": {
-		"@wordpress/block-editor": "^14.5.0",
-		"@wordpress/blocks": "^13.10.0",
-		"@wordpress/components": "^28.10.0",
-		"@wordpress/element": "^6.10.0",
+		"@wordpress/block-editor": "^14.6.0",
+		"@wordpress/blocks": "^14.0.0",
+		"@wordpress/components": "^28.11.0",
+		"@wordpress/element": "^6.11.0",
 		"@wpsocio/form": "workspace:*",
 		"@wpsocio/i18n": "workspace:*",
 		"@wpsocio/services": "workspace:*",
@@ -54,7 +54,7 @@
 		"autoprefixer": "^10.4.20",
 		"tailwindcss": "^3.4.14",
 		"typescript": "^5.6.3",
-		"vite": "^5.4.9",
+		"vite": "^5.4.10",
 		"wireit": "^0.14.9"
 	},
 	"build-utils": {

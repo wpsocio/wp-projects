@@ -6,6 +6,6 @@
 	"type": "module",
 	"module": "index.ts",
 	"dependencies": {
-		"@wordpress/i18n": "^5.10.0"
+		"@wordpress/i18n": "^5.11.0"
 	}
 }
