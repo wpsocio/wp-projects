@@ -53,34 +53,34 @@ msgstr ""
 msgid "Please contact your hosting provider to ensure the above requirements are met."
 msgstr ""
 
-#: js/blocks/ajax-channel-feed/Edit.tsx:38
-#: js/blocks/channel-feed/Edit.tsx:55
+#: js/blocks/ajax-channel-feed/Edit.tsx:37
+#: js/blocks/channel-feed/Edit.tsx:54
 #: languages/wptelegram-widget-js-translations.php:114
 msgid "Widget Options"
 msgstr "Опции виджета"
 
-#: js/blocks/ajax-channel-feed/Edit.tsx:41
+#: js/blocks/ajax-channel-feed/Edit.tsx:40
 #: js/settings/services/fields.ts:16
 #: languages/wptelegram-widget-js-translations.php:118
 #: shared/widgets/Ajax.php:127
 msgid "Username"
 msgstr ""
 
-#: js/blocks/ajax-channel-feed/Edit.tsx:46
+#: js/blocks/ajax-channel-feed/Edit.tsx:45
 #: js/settings/ui/ajaxWidget/AjaxWidget.tsx:26
 #: languages/wptelegram-widget-js-translations.php:122
 #: shared/widgets/Ajax.php:129
 msgid "Channel username."
 msgstr ""
 
-#: js/blocks/ajax-channel-feed/Edit.tsx:47
+#: js/blocks/ajax-channel-feed/Edit.tsx:46
 #: languages/wptelegram-widget-js-translations.php:125
 #: shared/widgets/Ajax.php:129
 msgid "Leave empty for default."
 msgstr ""
 
-#: js/blocks/ajax-channel-feed/Edit.tsx:53
-#: js/blocks/channel-feed/Edit.tsx:58
+#: js/blocks/ajax-channel-feed/Edit.tsx:52
+#: js/blocks/channel-feed/Edit.tsx:57
 #: js/settings/services/fields.ts:17
 #: languages/wptelegram-widget-js-translations.php:130
 #: shared/widgets/Ajax.php:133
@@ -95,13 +95,13 @@ msgstr "Ширина виджета"
 msgid "Widget Height"
 msgstr ""
 
-#: js/blocks/ajax-channel-feed/Edit.tsx:70
-#: js/blocks/ajax-channel-feed/index.tsx:12
+#: js/blocks/ajax-channel-feed/Edit.tsx:71
+#: js/blocks/ajax-channel-feed/index.tsx:14
 #: languages/wptelegram-widget-js-translations.php:138
 msgid "Telegram Channel Ajax Feed"
 msgstr ""
 
-#: js/blocks/channel-feed/Edit.tsx:67
+#: js/blocks/channel-feed/Edit.tsx:64
 #: js/blocks/single-post/Controls.tsx:37
 #: js/settings/services/fields.ts:19
 #: languages/wptelegram-widget-js-translations.php:143
@@ -109,15 +109,15 @@ msgstr ""
 msgid "Author Photo"
 msgstr "Фото автора"
 
-#: js/blocks/channel-feed/Edit.tsx:73
+#: js/blocks/channel-feed/Edit.tsx:70
 #: js/settings/services/fields.ts:20
 #: languages/wptelegram-widget-js-translations.php:147
 #: shared/widgets/Legacy.php:144
 msgid "Number of Messages"
 msgstr "Номер сообщения"
 
-#: js/blocks/channel-feed/Edit.tsx:87
-#: js/blocks/channel-feed/index.tsx:11
+#: js/blocks/channel-feed/Edit.tsx:84
+#: js/blocks/channel-feed/index.tsx:13
 #: languages/wptelegram-widget-js-translations.php:151
 msgid "Telegram Channel Feed"
 msgstr ""
@@ -171,7 +171,7 @@ msgstr ""
 msgid "Embed"
 msgstr ""
 
-#: js/blocks/single-post/index.tsx:9
+#: js/blocks/single-post/index.tsx:10
 #: languages/wptelegram-widget-js-translations.php:187
 msgid "Telegram Single Post"
 msgstr ""
@@ -267,6 +267,8 @@ msgid "This is the default username, you can override it in widgets and shortcod
 msgstr ""
 
 #: ../../packages/js/shared-ui/components/widget-info/widget-info.tsx:59
+#: js/blocks/ajax-channel-feed/Edit.tsx:62
+#: js/blocks/channel-feed/Edit.tsx:60
 #: js/settings/ui/ajaxWidget/AjaxWidget.tsx:54
 #: js/settings/ui/legacyWidget/LegacyWidget.tsx:40
 #: languages/wptelegram-widget-js-translations.php:69
@@ -617,8 +619,8 @@ msgstr ""
 msgid "Display the Telegram Public Channel or Group Feed in a widget"
 msgstr "Отображать Telegram канал или Чат в виджете."
 
-#: js/blocks/single-post/Edit.tsx:145
-#: js/blocks/single-post/index.tsx:46
+#: js/blocks/single-post/Edit.tsx:148
+#: js/blocks/single-post/index.tsx:48
 #: languages/wptelegram-widget-js-translations.php:178
 msgid "Telegram post"
 msgstr ""
@@ -632,7 +634,7 @@ msgstr ""
 
 #. Plugin Name of the plugin
 #: wptelegram-widget.php
-#: includes/Main.php:421
+#: includes/Main.php:422
 msgid "WP Telegram Widget"
 msgstr ""
 

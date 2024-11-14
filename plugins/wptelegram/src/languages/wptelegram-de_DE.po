@@ -85,7 +85,7 @@ msgid "Post type"
 msgstr "Inhaltstyp"
 
 #: ../../packages/js/shared-ui/wptelegram/fields.ts:38
-#: ../../packages/js/shared-ui/wptelegram/proxy/proxy.tsx:43
+#: ../../packages/js/shared-ui/wptelegram/proxy/proxy.tsx:40
 #: js/settings/services/fields.ts:26
 #: languages/wptelegram-js-translations.php:221
 msgid "Proxy Method"
@@ -103,12 +103,12 @@ msgstr "Falls die Email geht an"
 
 #. %s: field label
 #. translators: %s: field label
-#: js/settings/services/fields.ts:154
+#: js/settings/services/fields.ts:169
 #: languages/wptelegram-js-translations.php:559
 msgid "At least one %s is required."
 msgstr "Mindestens ein %s ist erforderlich."
 
-#: js/settings/services/fields.ts:121
+#: js/settings/services/fields.ts:127
 #: languages/wptelegram-js-translations.php:555
 msgid "channel"
 msgstr "Channel"
@@ -132,7 +132,7 @@ msgstr "An Telegram posten"
 msgid "Private Notifications"
 msgstr "Persönliche Benachrichtigungen"
 
-#: ../../packages/js/shared-ui/wptelegram/proxy/proxy.tsx:36
+#: ../../packages/js/shared-ui/wptelegram/proxy/proxy.tsx:38
 #: js/settings/ui/TabbedSections.tsx:45
 #: languages/wptelegram-js-translations.php:434
 msgid "Proxy"
@@ -479,18 +479,18 @@ msgstr "Die Einstellungen in diesem Bereich sollten nicht geändert werden, sofe
 msgid "Turn off to upload the files/images instead of passing the url."
 msgstr "Deaktivieren, um die Dateien/Bilder auf dem Server zu speichern statt eine URL anzugeben."
 
-#: ../../packages/js/shared-ui/wptelegram/delay-in-posting.tsx:24
+#: ../../packages/js/shared-ui/wptelegram/delay-in-posting.tsx:29
 #: languages/wptelegram-js-translations.php:100
 msgid "The delay starts after the post gets published."
 msgstr "Die Versandverzögerung beginnt mit dem Zeitpunkt, an dem ein Beitrag veröffentlicht wird."
 
-#: ../../packages/js/shared-ui/wptelegram/delay-in-posting.tsx:36
+#: ../../packages/js/shared-ui/wptelegram/delay-in-posting.tsx:46
 #: languages/wptelegram-js-translations.php:106
 #: modules/p2tg/Admin.php:465
 msgid "Minute(s)"
 msgstr "Minute(n)"
 
-#: ../../packages/js/shared-ui/wptelegram/delay-in-posting.tsx:28
+#: ../../packages/js/shared-ui/wptelegram/delay-in-posting.tsx:38
 #: languages/wptelegram-js-translations.php:103
 msgid "WordPress cron should not be disabled!"
 msgstr "Wordpress Cron sollte deaktiviert werden!"
@@ -834,7 +834,7 @@ msgstr "PHP Proxy"
 msgid "The module will help you bypass the ban on Telegram by making use of proxy."
 msgstr "Dieses Modul hilft, eine Telegram-Sperre zu umgehen, indem ein Proxy verwendet wird."
 
-#: ../../packages/js/shared-ui/wptelegram/proxy/proxy.tsx:49
+#: ../../packages/js/shared-ui/wptelegram/proxy/proxy.tsx:46
 #: languages/wptelegram-js-translations.php:437
 msgid "Cloudflare worker is preferred."
 msgstr "Cloudflare Worker wird bevorzugt."
@@ -884,22 +884,22 @@ msgstr "Regel-Typ"
 msgid "Rule operator"
 msgstr "Regel-Operator"
 
-#: ../../packages/js/shared-ui/wptelegram/rules/rule-set-values.tsx:120
+#: ../../packages/js/shared-ui/wptelegram/rules/rule-set-values.tsx:121
 #: languages/wptelegram-js-translations.php:474
 msgid "Select..."
 msgstr "Wählen..."
 
-#: ../../packages/js/shared-ui/wptelegram/rules/rule-set-values.tsx:19
+#: ../../packages/js/shared-ui/wptelegram/rules/rule-set-values.tsx:20
 #: languages/wptelegram-js-translations.php:477
 msgid "Loading..."
 msgstr "Wird geladen …"
 
-#: ../../packages/js/shared-ui/wptelegram/rules/rule-set-values.tsx:20
+#: ../../packages/js/shared-ui/wptelegram/rules/rule-set-values.tsx:21
 #: languages/wptelegram-js-translations.php:480
 msgid "No options available"
 msgstr "Keine Optionen verfügbar"
 
-#: ../../packages/js/shared-ui/wptelegram/rules/rule-set-values.tsx:109
+#: ../../packages/js/shared-ui/wptelegram/rules/rule-set-values.tsx:110
 #: languages/wptelegram-js-translations.php:471
 msgid "Rule values"
 msgstr "Regel-Werte"
@@ -1152,7 +1152,7 @@ msgid "Changes saved successfully."
 msgstr "Die Änderungen wurden erfolgreich gespeichert."
 
 #: ../../packages/js/utilities/fields.ts:35
-#: js/settings/services/fields.ts:140
+#: js/settings/services/fields.ts:147
 #: languages/wptelegram-js-translations.php:519
 msgid "Invalid %s"
 msgstr "%s ungültig"
@@ -1344,7 +1344,7 @@ msgstr ""
 msgid "Click to copy"
 msgstr ""
 
-#: js/settings/services/fields.ts:155
+#: js/settings/services/fields.ts:170
 #: languages/wptelegram-js-translations.php:562
 msgid "chat ID"
 msgstr ""
@@ -1377,4 +1377,8 @@ msgstr ""
 #: ../../packages/js/services/telegram/telegram-utils.ts:133
 #: languages/wptelegram-js-translations.php:20
 msgid "Message is empty"
+msgstr ""
+
+#: ../../packages/js/shared-ui/wptelegram/delay-in-posting.tsx:34
+msgid "Warning"
 msgstr ""
