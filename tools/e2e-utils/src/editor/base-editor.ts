@@ -28,12 +28,12 @@ export abstract class BaseEditor {
 
 	async tearDown() {}
 
-	async setTitle(title: string): Promise<void> {
-		await this.page.getByRole('textbox', { name: 'Add title' }).fill(title);
-	}
-
 	async createNewPost() {
 		await this.admin.visitAdminPage('post-new.php');
+	}
+
+	async setTitle(title: string): Promise<void> {
+		await this.page.getByRole('textbox', { name: 'Add title' }).fill(title);
 	}
 
 	abstract publishPost(): Promise<number | null>;

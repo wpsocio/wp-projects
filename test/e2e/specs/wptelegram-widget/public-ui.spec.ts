@@ -69,7 +69,7 @@ test.describe('Public UI', () => {
 		const { postId, activeTheme } = await test.step('Prepare', async () => {
 			await admin.createNewPost();
 
-			await page
+			await editor.canvas
 				.getByRole('textbox', { name: 'Add title' })
 				.fill('A published post');
 
@@ -231,7 +231,7 @@ test.describe('Public UI', () => {
 	}) => {
 		await admin.createNewPost();
 
-		await page
+		await editor.canvas
 			.getByRole('textbox', { name: 'Add title' })
 			.fill('Test post for Telegram Login block');
 
