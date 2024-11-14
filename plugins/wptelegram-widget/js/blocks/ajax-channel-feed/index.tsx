@@ -1,3 +1,4 @@
+import { useBlockProps } from '@wordpress/block-editor';
 import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wpsocio/i18n';
 
@@ -9,6 +10,7 @@ import { blockAttributes } from './constants';
 import './style.scss';
 
 registerBlockType<AjaxWidgetAtts>('wptelegram/widget-ajax-channel-feed', {
+	apiVersion: 3,
 	title: __('Telegram Channel Ajax Feed'),
 	icon: 'format-aside',
 	category: 'wptelegram',
@@ -16,7 +18,7 @@ registerBlockType<AjaxWidgetAtts>('wptelegram/widget-ajax-channel-feed', {
 	edit: Edit,
 	save: ({ attributes }) => {
 		return (
-			<div>
+			<div {...useBlockProps.save()}>
 				<Output attributes={attributes} />
 			</div>
 		);

@@ -1,4 +1,4 @@
-import { InspectorControls } from '@wordpress/block-editor';
+import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import type { BlockEditProps } from '@wordpress/blocks';
 import { Dashicon, Flex, PanelBody, TextControl } from '@wordpress/components';
 import { useCallback } from '@wordpress/element';
@@ -14,7 +14,6 @@ const savedSettings = (window.wptelegram_widget?.savedSettings ||
 export const Edit: React.FC<BlockEditProps<AjaxWidgetAtts>> = ({
 	attributes,
 	setAttributes,
-	className,
 }) => {
 	const { widget_width, widget_height, username } = attributes;
 
@@ -53,18 +52,20 @@ export const Edit: React.FC<BlockEditProps<AjaxWidgetAtts>> = ({
 							label={__('Widget Width')}
 							value={widget_width}
 							onChange={onChangeWidth}
+							placeholder={`300 ${__('or')} 100%`}
 							__nextHasNoMarginBottom
 						/>
 						<TextControl
 							label={__('Widget Height')}
 							value={widget_height}
 							onChange={onChangeHeight}
+							placeholder={`300 ${__('or')} 100%`}
 							__nextHasNoMarginBottom
 						/>
 					</Flex>
 				</PanelBody>
 			</InspectorControls>
-			<div className={className}>
+			<div {...useBlockProps()}>
 				<div className="widget-label">
 					<Dashicon icon="shortcode" />
 					<span>{__('Telegram Channel Ajax Feed')}</span>
