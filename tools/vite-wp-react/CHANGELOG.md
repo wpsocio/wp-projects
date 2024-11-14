@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.5
+
+### Patch Changes
+
+- [#203](https://github.com/wpsocio/wp-projects/pull/203) [`7a04095`](https://github.com/wpsocio/wp-projects/commit/7a04095a95df81c2657f2498dd916eb3e325cbcb) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Fixed vite peer dependency
+
 ## 1.0.4
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.2.4
+
+### Patch Changes
+
+- [#205](https://github.com/wpsocio/wp-projects/pull/205) [`1ebd6ae`](https://github.com/wpsocio/wp-projects/commit/1ebd6ae009f2285c9bbef0dc85a44f0d031c7ff8) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Fixed the issue of block editor Zoom out not being visible when the plugin is active
+
 ## 2.2.3
 
 ### Patch Changes

@@ -64,6 +64,8 @@ $generated_i18n_strings = array(
 	__( 'Inside the theme templates', 'wptelegram-widget' ),
 
 	// Reference: ../../packages/js/shared-ui/components/widget-info/widget-info.tsx:59
+	// Reference: js/blocks/ajax-channel-feed/Edit.tsx:62
+	// Reference: js/blocks/channel-feed/Edit.tsx:60
 	// Reference: js/settings/ui/ajaxWidget/AjaxWidget.tsx:54
 	// Reference: js/settings/ui/legacyWidget/LegacyWidget.tsx:40
 	__( 'or', 'wptelegram-widget' ),
@@ -109,23 +111,23 @@ $generated_i18n_strings = array(
 	// Reference: ../../packages/js/utilities/fields.ts:42
 	__( 'Changes could not be saved.', 'wptelegram-widget' ),
 
-	// Reference: js/blocks/ajax-channel-feed/Edit.tsx:38
-	// Reference: js/blocks/channel-feed/Edit.tsx:55
+	// Reference: js/blocks/ajax-channel-feed/Edit.tsx:37
+	// Reference: js/blocks/channel-feed/Edit.tsx:54
 	__( 'Widget Options', 'wptelegram-widget' ),
 
-	// Reference: js/blocks/ajax-channel-feed/Edit.tsx:41
+	// Reference: js/blocks/ajax-channel-feed/Edit.tsx:40
 	// Reference: js/settings/services/fields.ts:16
 	__( 'Username', 'wptelegram-widget' ),
 
-	// Reference: js/blocks/ajax-channel-feed/Edit.tsx:46
+	// Reference: js/blocks/ajax-channel-feed/Edit.tsx:45
 	// Reference: js/settings/ui/ajaxWidget/AjaxWidget.tsx:26
 	__( 'Channel username.', 'wptelegram-widget' ),
 
-	// Reference: js/blocks/ajax-channel-feed/Edit.tsx:47
+	// Reference: js/blocks/ajax-channel-feed/Edit.tsx:46
 	__( 'Leave empty for default.', 'wptelegram-widget' ),
 
-	// Reference: js/blocks/ajax-channel-feed/Edit.tsx:53
-	// Reference: js/blocks/channel-feed/Edit.tsx:58
+	// Reference: js/blocks/ajax-channel-feed/Edit.tsx:52
+	// Reference: js/blocks/channel-feed/Edit.tsx:57
 	// Reference: js/settings/services/fields.ts:17
 	__( 'Widget Width', 'wptelegram-widget' ),
 
@@ -133,21 +135,21 @@ $generated_i18n_strings = array(
 	// Reference: js/settings/services/fields.ts:18
 	__( 'Widget Height', 'wptelegram-widget' ),
 
-	// Reference: js/blocks/ajax-channel-feed/Edit.tsx:70
-	// Reference: js/blocks/ajax-channel-feed/index.tsx:12
+	// Reference: js/blocks/ajax-channel-feed/Edit.tsx:71
+	// Reference: js/blocks/ajax-channel-feed/index.tsx:14
 	__( 'Telegram Channel Ajax Feed', 'wptelegram-widget' ),
 
-	// Reference: js/blocks/channel-feed/Edit.tsx:67
+	// Reference: js/blocks/channel-feed/Edit.tsx:64
 	// Reference: js/blocks/single-post/Controls.tsx:37
 	// Reference: js/settings/services/fields.ts:19
 	__( 'Author Photo', 'wptelegram-widget' ),
 
-	// Reference: js/blocks/channel-feed/Edit.tsx:73
+	// Reference: js/blocks/channel-feed/Edit.tsx:70
 	// Reference: js/settings/services/fields.ts:20
 	__( 'Number of Messages', 'wptelegram-widget' ),
 
-	// Reference: js/blocks/channel-feed/Edit.tsx:87
-	// Reference: js/blocks/channel-feed/index.tsx:11
+	// Reference: js/blocks/channel-feed/Edit.tsx:84
+	// Reference: js/blocks/channel-feed/index.tsx:13
 	__( 'Telegram Channel Feed', 'wptelegram-widget' ),
 
 	// Reference: js/blocks/join-channel/Controls.tsx:53
@@ -173,8 +175,8 @@ $generated_i18n_strings = array(
 	// Reference: js/blocks/single-post/Edit.tsx:131
 	__( 'Loading…', 'wptelegram-widget' ),
 
-	// Reference: js/blocks/single-post/Edit.tsx:145
-	// Reference: js/blocks/single-post/index.tsx:46
+	// Reference: js/blocks/single-post/Edit.tsx:148
+	// Reference: js/blocks/single-post/index.tsx:48
 	__( 'Telegram post', 'wptelegram-widget' ),
 
 	// Reference: js/blocks/single-post/Edit.tsx:27
@@ -183,7 +185,7 @@ $generated_i18n_strings = array(
 	// Reference: js/blocks/single-post/Placeholder.tsx:40
 	__( 'Embed', 'wptelegram-widget' ),
 
-	// Reference: js/blocks/single-post/index.tsx:9
+	// Reference: js/blocks/single-post/index.tsx:10
 	__( 'Telegram Single Post', 'wptelegram-widget' ),
 
 	// Reference: js/settings/services/fields.ts:13
