@@ -393,6 +393,7 @@ class Main {
 
 		add_action( 'wp_enqueue_scripts', [ $asset_manager, 'enqueue_public_assets' ] );
 		add_action( 'admin_enqueue_scripts', [ $asset_manager, 'enqueue_public_assets' ] );
+		add_action( 'enqueue_block_assets', [ $asset_manager, 'enqueue_public_assets' ] );
 
 		add_action( 'admin_enqueue_scripts', [ $asset_manager, 'enqueue_admin_assets' ] );
 

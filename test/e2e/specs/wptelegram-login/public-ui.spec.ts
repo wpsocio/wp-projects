@@ -82,7 +82,7 @@ test.describe('Public UI', () => {
 	}) => {
 		await admin.createNewPost();
 
-		await page
+		await editor.canvas
 			.getByRole('textbox', { name: 'Add title' })
 			.fill('Test post for Telegram Login block');
 

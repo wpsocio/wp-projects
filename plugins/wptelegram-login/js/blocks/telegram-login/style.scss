@@ -1,14 +1,10 @@
 /**
  * #.# Editor Styles
  */
-.wp-block {
-    .wp-block-wptelegram-login {
-        text-align: center;
-
-        img {
-            cursor: pointer;
-            vertical-align: middle;
-            margin-left: 6px;
-        }
-    }
+.wp-block-wptelegram-login {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
 }

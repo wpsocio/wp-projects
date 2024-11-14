@@ -1,4 +1,4 @@
-import { InspectorControls } from '@wordpress/block-editor';
+import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import type { BlockEditProps } from '@wordpress/blocks';
 import {
 	Dashicon,
@@ -23,7 +23,6 @@ const getAuthorPhotoOptions = () => [
 export const Edit: React.FC<BlockEditProps<LegacyWidgetAtts>> = ({
 	attributes,
 	setAttributes,
-	className,
 }) => {
 	const { widget_width, author_photo, num_messages } = attributes;
 
@@ -44,7 +43,7 @@ export const Edit: React.FC<BlockEditProps<LegacyWidgetAtts>> = ({
 	const onChangeNum = useCallback(
 		(newValue: string) =>
 			setAttributes({
-				num_messages: Number.parseInt(newValue) || 5,
+				num_messages: (Number.parseInt(newValue) || 5).toString(),
 			}),
 		[setAttributes],
 	);
@@ -58,9 +57,7 @@ export const Edit: React.FC<BlockEditProps<LegacyWidgetAtts>> = ({
 							label={__('Widget Width')}
 							value={widget_width}
 							onChange={onChangeWidth}
-							type="number"
-							min="10"
-							max="100"
+							placeholder={`300 ${__('or')} 100%`}
 							__nextHasNoMarginBottom
 						/>
 						<RadioControl
@@ -81,7 +78,7 @@ export const Edit: React.FC<BlockEditProps<LegacyWidgetAtts>> = ({
 					</Flex>
 				</PanelBody>
 			</InspectorControls>
-			<div className={className} key="shortcode">
+			<div {...useBlockProps()} key="shortcode">
 				<div className="widget-label">
 					<Dashicon icon="shortcode" />
 					<span>{__('Telegram Channel Feed')}</span>

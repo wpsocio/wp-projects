@@ -1,3 +1,4 @@
+import { useBlockProps } from '@wordpress/block-editor';
 import type { BlockEditProps } from '@wordpress/blocks';
 import { Spinner } from '@wordpress/components';
 import { useFocusableIframe, useMergeRefs } from '@wordpress/compose';
@@ -21,7 +22,6 @@ export function Edit(props: BlockEditProps<SinglePostAtts>) {
 	);
 	const [iframeHeight, setIframeHeight] = useState(0);
 
-	const { className } = props;
 	const { alignment, iframe_src } = props.attributes;
 
 	const label = __('Telegram post URL');
@@ -132,7 +132,10 @@ export function Edit(props: BlockEditProps<SinglePostAtts>) {
 				</div>
 			)}
 
-			<div className={`${className} wptelegram-widget-message`}>
+			<div
+				{...useBlockProps()}
+				className={`${useBlockProps().className} wptelegram-widget-message`}
+			>
 				<div className={'wp-block-embed__content-wrapper'}>
 					<iframe
 						ref={ref}

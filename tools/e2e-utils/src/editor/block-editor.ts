@@ -18,6 +18,12 @@ export class BlockEditor extends BaseEditor {
 		await this.admin.createNewPost();
 	}
 
+	async setTitle(title: string): Promise<void> {
+		await this.editor.canvas
+			.getByRole('textbox', { name: 'Add title' })
+			.fill(title);
+	}
+
 	async publishPost() {
 		return await this.editor.publishPost();
 	}

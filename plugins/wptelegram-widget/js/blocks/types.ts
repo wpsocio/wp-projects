@@ -31,7 +31,7 @@ export type AjaxWidgetAtts = {
 export interface LegacyWidgetAtts {
 	widget_width: string;
 	author_photo: 'auto' | 'always_show' | 'always_hide';
-	num_messages: number;
+	num_messages: string;
 }
 
 export type SinglePostAtts = {

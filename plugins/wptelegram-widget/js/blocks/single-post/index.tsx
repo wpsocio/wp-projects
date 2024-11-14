@@ -6,6 +6,7 @@ import { Edit } from './Edit';
 import { blockAttributes } from './constants';
 
 registerBlockType('wptelegram/widget-single-post', {
+	apiVersion: 3,
 	title: __('Telegram Single Post'),
 	icon: 'format-aside',
 	category: 'wptelegram',
@@ -26,6 +27,7 @@ registerBlockType('wptelegram/widget-single-post', {
 		return (
 			<div
 				className={`wp-block-wptelegram-widget-single-post wptelegram-widget-message align${alignment}`}
+				// {...useBlockProps.save()}
 			>
 				<iframe title={__('Telegram post')} src={iframe_src}>
 					Your Browser Does Not Support iframes!

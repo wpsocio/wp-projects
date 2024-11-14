@@ -1,4 +1,5 @@
 import { InspectorControls } from '@wordpress/block-editor';
+import { useBlockProps } from '@wordpress/block-editor';
 import type { BlockEditProps } from '@wordpress/blocks';
 import {
 	Flex,
@@ -9,7 +10,6 @@ import {
 	ToggleControl,
 } from '@wordpress/components';
 import { useCallback, useEffect } from '@wordpress/element';
-
 import { __ } from '@wpsocio/i18n';
 
 import { Output } from './Output';
@@ -28,7 +28,6 @@ const savedSettings = (window.wptelegram_login?.savedSettings ||
 export const Edit: React.FC<BlockEditProps<TelegramLoginAtts>> = ({
 	attributes,
 	setAttributes,
-	className,
 }) => {
 	const {
 		button_style,
@@ -70,6 +69,8 @@ export const Edit: React.FC<BlockEditProps<TelegramLoginAtts>> = ({
 		(value: string) => setAttributes({ lang: value }),
 		[setAttributes],
 	);
+
+	const blockProps = useBlockProps();
 
 	return (
 		<>
@@ -114,7 +115,9 @@ export const Edit: React.FC<BlockEditProps<TelegramLoginAtts>> = ({
 					</Flex>
 				</PanelBody>
 			</InspectorControls>
-			<Output attributes={attributes} className={className} />
+			<div {...blockProps}>
+				<Output attributes={attributes} className={blockProps.className} />
+			</div>
 		</>
 	);
 };
