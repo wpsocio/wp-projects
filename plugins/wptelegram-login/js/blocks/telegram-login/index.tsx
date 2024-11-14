@@ -17,6 +17,7 @@ const savedSettings = (window.wptelegram_login?.savedSettings ||
 	{}) as TelegramLoginAtts;
 
 registerBlockType<TelegramLoginAtts>('wptelegram/login', {
+	apiVersion: 3,
 	title: __('WP Telegram Login'),
 	icon: 'smartphone',
 	category: 'wptelegram',
