@@ -245,10 +245,10 @@ class Admin extends BaseClass {
 
 		foreach ( (array) $updates as $update ) {
 
-			$message_id = $this->process_update( $update );
+			list($message_id, $username) = $this->process_update( $update );
 
 			if ( $message_id ) {
-				$new_messages[] = $message_id;
+				$new_messages[ $username ][] = $message_id;
 			}
 		}
 
@@ -257,9 +257,11 @@ class Admin extends BaseClass {
 		$this->plugin()->options()->set( 'last_update_id', $update_id );
 
 		if ( ! empty( $new_messages ) ) {
-			$username = $this->plugin()->options()->get_path( 'legacy_widget.username', '' );
-
-			$this->save_messages( $new_messages, $username );
+			foreach ( $new_messages as $username => $messages ) {
+				if ( ! empty( $messages ) ) {
+					$this->save_messages( $messages, $username );
+				}
+			}
 		}
 
 		/**
@@ -273,6 +275,8 @@ class Admin extends BaseClass {
 	 *
 	 * @param array $update    Update object.
 	 *
+	 * @return array|bool
+	 *
 	 * @since    1.3.0
 	 */
 	private function process_update( $update ) {
@@ -285,23 +289,23 @@ class Admin extends BaseClass {
 		$update_type = $this->get_update_type( $update );
 
 		if ( ! $update_type ) {
-			return false;
+			return [ 0, '' ];
 		}
 
 		$message = $update[ $update_type ];
 
-		$verified = $this->verify_username( $message );
+		$username = $this->get_verified_username( $message );
 
-		if ( ! $verified ) {
-			return false;
+		if ( ! $username ) {
+			return [ 0, '' ];
 		}
 
 		/**
 		 * Fires after doing everything
 		 */
-		do_action( 'wptelegram_widget_process_update_finish', $update, $message, $verified );
+		do_action( 'wptelegram_widget_process_update_finish', $update, $message, $username );
 
-		return $message['message_id'];
+		return [ $message['message_id'], $username ];
 	}
 
 	/**
@@ -326,6 +330,22 @@ class Admin extends BaseClass {
 		}
 
 		return apply_filters( 'wptelegram_widget_update_type', $update_type, $update );
+	}
+
+	/**
+	 * Get the verified username.
+	 *
+	 * @since x.y.z
+	 *
+	 * @param array $message The message object.
+	 *
+	 * @return string
+	 */
+	public function get_verified_username( $message ) {
+
+		$verified_username = $this->verify_username( $message ) ? $message['chat']['username'] : '';
+
+		return apply_filters( 'wptelegram_widget_verified_username', $verified_username, $message );
 	}
 
 	/**
@@ -415,19 +435,14 @@ class Admin extends BaseClass {
 
 		$result = $res->get_result();
 
-		if ( empty( $result['chat']['username'] ) ) {
-			return;
-		}
+		$verified_username = $this->get_verified_username( $result );
 
-		$used_username  = strtolower( $result['chat']['username'] );
-		$saved_username = strtolower( $this->plugin()->options()->get_path( 'legacy_widget.username' ) );
-
-		if ( $used_username !== $saved_username ) {
+		if ( ! $verified_username ) {
 			return;
 		}
 
 		$messages = [ $result['message_id'] ];
 
-		$this->save_messages( $messages, $saved_username );
+		$this->save_messages( $messages, $verified_username );
 	}
 }
