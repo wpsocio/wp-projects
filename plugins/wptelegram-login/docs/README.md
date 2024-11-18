@@ -107,7 +107,7 @@ Argument | Type | Description
 `$wp_user_id` | `int` | The WordPress user ID.
 `$userdata` | `array` | The user data.
 
-Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 578](../src/shared/LoginHandler.php#L578-L584)
+Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 579](../src/shared/LoginHandler.php#L579-L585)
 
 ### `wptelegram_login_after_update_user`
 
@@ -120,7 +120,7 @@ Argument | Type | Description
 `$wp_user_id` | `int` | The WordPress user ID.
 `$userdata` | `array` | The user data.
 
-Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 614](../src/shared/LoginHandler.php#L614-L620)
+Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 615](../src/shared/LoginHandler.php#L615-L621)
 
 ### `wptelegram_login_after_update_user_meta`
 
@@ -132,7 +132,7 @@ Argument | Type | Description
 -------- | ---- | -----------
 `$wp_user_id` | `int` | The WordPress user ID.
 
-Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 634](../src/shared/LoginHandler.php#L634-L639)
+Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 635](../src/shared/LoginHandler.php#L635-L640)
 
 ## Filters
 
@@ -281,7 +281,7 @@ Argument | Type | Description
 `$validation_query_params` | `array` | The validation query parameters.
 `$input` | `array` | The input data.
 
-Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 203](../src/shared/LoginHandler.php#L203-L209)
+Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 204](../src/shared/LoginHandler.php#L204-L210)
 
 ### `wptelegram_login_clean_input`
 
@@ -294,7 +294,7 @@ Argument | Type | Description
 `$clean_input` | `array` | The cleaned input.
 `$input` | `array` | The input data.
 
-Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 213](../src/shared/LoginHandler.php#L213-L219)
+Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 214](../src/shared/LoginHandler.php#L214-L220)
 
 ### `wptelegram_login_valid_auth_data`
 
@@ -307,7 +307,7 @@ Argument | Type | Description
 `$auth_data` | `array` | The valid auth data.
 `$input_data` | `array` | The input data.
 
-Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 263](../src/shared/LoginHandler.php#L263-L269)
+Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 264](../src/shared/LoginHandler.php#L264-L270)
 
 ### `wptelegram_login_hash_auth_data`
 
@@ -321,7 +321,7 @@ Argument | Type | Description
 `$auth_data` | `array` | The auth data received.
 `$secret_key` | `string` | The secret key.
 
-Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 297](../src/shared/LoginHandler.php#L297-L304)
+Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 298](../src/shared/LoginHandler.php#L298-L305)
 
 ### `wptelegram_login_get_secret_key`
 
@@ -335,7 +335,7 @@ Argument | Type | Description
 `$data_source` | `string` | The data source.
 `$bot_token` | `string` | The bot token.
 
-Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 343](../src/shared/LoginHandler.php#L343-L350)
+Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 344](../src/shared/LoginHandler.php#L344-L351)
 
 ### `wptelegram_login_random_email_host`
 
@@ -348,7 +348,7 @@ Argument | Type | Description
 `$host` | `string` | The host for the random email.
 `$user` | `\WP_User` | The current user.
 
-Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 364](../src/shared/LoginHandler.php#L364-L370)
+Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 365](../src/shared/LoginHandler.php#L365-L371)
 
 ### `wptelegram_login_random_email_user`
 
@@ -361,7 +361,7 @@ Argument | Type | Description
 `$random_user` | `string` | The username for the random email.
 `$user` | `\WP_User` | The current user.
 
-Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 373](../src/shared/LoginHandler.php#L373-L379)
+Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 374](../src/shared/LoginHandler.php#L374-L380)
 
 ### `wptelegram_login_random_email`
 
@@ -376,7 +376,7 @@ Argument | Type | Description
 `$random_user` | `string` | The username for the random email.
 `$host` | `string` | The host for the random email.
 
-Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 383](../src/shared/LoginHandler.php#L383-L391)
+Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 384](../src/shared/LoginHandler.php#L384-L392)
 
 ### `wptelegram_login_disable_signup`
 
@@ -391,7 +391,7 @@ Argument | Type | Description
 `$disable_signup` | `bool` | Whether to disable sign up via Telegram.
 `$data` | `array` | The user details.
 
-Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 474](../src/shared/LoginHandler.php#L474-L482)
+Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 475](../src/shared/LoginHandler.php#L475-L483)
 
 ### `wptelegram_login_always_update_user_data`
 
@@ -409,7 +409,7 @@ Argument | Type | Description
 `$data` | `array` | The user details.
 `$existing_user_id` | `int\|null` | Existing WP User ID.
 
-Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 492](../src/shared/LoginHandler.php#L492-L503)
+Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 493](../src/shared/LoginHandler.php#L493-L504)
 
 ### `wptelegram_login_save_user_data`
 
@@ -422,7 +422,7 @@ Argument | Type | Description
 `$data` | `array` | The user details.
 `$wp_user_id` | `int\|null` | Existing WP User ID.
 
-Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 526](../src/shared/LoginHandler.php#L526-L532)
+Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 527](../src/shared/LoginHandler.php#L527-L533)
 
 ### `wptelegram_login_unique_username`
 
@@ -434,7 +434,7 @@ Argument | Type | Description
 -------- | ---- | -----------
 `$unique_username` | `string` | The unique username.
 
-Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 551](../src/shared/LoginHandler.php#L551-L556)
+Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 552](../src/shared/LoginHandler.php#L552-L557)
 
 ### `wptelegram_login_insert_user_data`
 
@@ -446,7 +446,7 @@ Argument | Type | Description
 -------- | ---- | -----------
 `$userdata` | `array` | The user data.
 
-Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 565](../src/shared/LoginHandler.php#L565-L570)
+Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 566](../src/shared/LoginHandler.php#L566-L571)
 
 ### `wptelegram_login_update_user_data`
 
@@ -460,7 +460,7 @@ Argument | Type | Description
 -------- | ---- | -----------
 `$userdata` | `array` | The user data.
 
-Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 594](../src/shared/LoginHandler.php#L594-L601)
+Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 595](../src/shared/LoginHandler.php#L595-L602)
 
 ### `wptelegram_login_user_redirect_to`
 
@@ -473,7 +473,7 @@ Argument | Type | Description
 `$redirect_to` | `string` | The redirect URL.
 `$user` | `\WP_User` | The logged in user.
 
-Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 682](../src/shared/LoginHandler.php#L682-L688)
+Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 683](../src/shared/LoginHandler.php#L683-L689)
 
 ### `wptelegram_login_web_app_login_data`
 
