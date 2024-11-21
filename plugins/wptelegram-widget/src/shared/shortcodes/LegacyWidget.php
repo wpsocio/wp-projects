@@ -35,18 +35,13 @@ class LegacyWidget {
 			$atts['width'] = $atts['widget_width'];
 		}
 
-		// fetch messages.
-		$messages = WPTG_Widget()->options()->get( 'messages', [] );
 		$username = strtolower( WPTG_Widget()->options()->get_path( 'legacy_widget.username', '' ) );
-
-		if ( empty( $messages[ $username ] ) ) {
-			return;
-		}
 
 		$defaults = [
 			'num_messages' => 5,
 			'width'        => 100,
 			'author_photo' => 'auto',
+			'username'     => $username,
 		];
 
 		// use global options.
@@ -57,6 +52,15 @@ class LegacyWidget {
 		$args = shortcode_atts( $defaults, $atts, 'wptelegram-widget' );
 
 		$args = array_map( 'sanitize_text_field', $args );
+
+		// Get messages.
+		$messages = WPTG_Widget()->options()->get( 'messages', [] );
+
+		$username = $args['username'];
+
+		if ( empty( $messages[ $username ] ) ) {
+			return;
+		}
 
 		$num_messages = absint( $args['num_messages'] );
 
@@ -107,14 +111,14 @@ class LegacyWidget {
 			 * if either the child theme or the parent theme have overridden the template.
 			 */
 			if ( Utils::is_valid_template( $overridden_template ) ) {
-				load_template( $overridden_template );
+				load_template( $overridden_template, false );
 			}
 		} else {
 			/*
 			 * If neither the child nor parent theme have overridden the template,
 			 * we load the template from the 'partials' sub-directory of the directory this file is in.
 			 */
-			load_template( __DIR__ . '/../partials/legacy-widget.php' );
+			load_template( __DIR__ . '/../partials/legacy-widget.php', false );
 		}
 		$html = ob_get_clean();
 		return $html;
