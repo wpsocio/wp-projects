@@ -46,7 +46,9 @@ export function ChannelsField({
 				{description ? (
 					<FormDescription className="mb-12">{description}</FormDescription>
 				) : null}
-				{errorMessage ? <FormMessage>{errorMessage}</FormMessage> : null}
+				{errorMessage ? (
+					<FormMessage className="mb-4">{errorMessage}</FormMessage>
+				) : null}
 				<div className="flex flex-col gap-10">
 					{fields.map((field, index) => (
 						<div key={field.id}>
