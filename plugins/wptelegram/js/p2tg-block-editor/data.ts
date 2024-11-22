@@ -1,13 +1,9 @@
-import { select as coreSelect, useDispatch, useSelect } from '@wordpress/data';
+import { useDispatch, useSelect } from '@wordpress/data';
 import { store as editorStore } from '@wordpress/editor';
 import { useCallback } from '@wordpress/element';
 
 import { __KEY__ } from './constants';
 import type { DataShape, DataState } from './types';
-
-const editorSelector = () => coreSelect('core/editor');
-
-type Editor = ReturnType<typeof editorSelector>;
 
 type UpdateField = <K extends keyof DataShape>(
 	field: K,
@@ -52,7 +48,7 @@ export const useDataState = (): DataState => {
 			isSavingPost,
 			isPublishingPost,
 			isEditedPostDirty,
-		} = select(editorStore) as Editor;
+		} = select(editorStore);
 
 		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 		const savedData = getEditedPostAttribute(__KEY__ as any) as DataShape;
