@@ -28,12 +28,12 @@
 		"validate-build": "pnpm build-utils validate"
 	},
 	"dependencies": {
-		"@wordpress/block-editor": "^14.6.0",
-		"@wordpress/blocks": "^14.0.0",
-		"@wordpress/components": "^28.11.0",
-		"@wordpress/compose": "^7.11.0",
-		"@wordpress/element": "^6.11.0",
-		"@wordpress/url": "^4.11.0",
+		"@wordpress/block-editor": "^14.7.0",
+		"@wordpress/blocks": "^14.1.0",
+		"@wordpress/components": "^28.12.0",
+		"@wordpress/compose": "^7.12.0",
+		"@wordpress/element": "^6.12.0",
+		"@wordpress/url": "^4.12.0",
 		"@wpsocio/form": "workspace:*",
 		"@wpsocio/i18n": "workspace:*",
 		"@wpsocio/services": "workspace:*",
@@ -53,7 +53,7 @@
 		"@wpsocio/build-utils": "workspace:*",
 		"@wpsocio/vite-wp-react": "workspace:*",
 		"autoprefixer": "^10.4.20",
-		"tailwindcss": "^3.4.14",
+		"tailwindcss": "^3.4.15",
 		"typescript": "^5.6.3",
 		"vite": "^5.4.10",
 		"wireit": "^0.14.9"
@@ -73,9 +73,7 @@
 				]
 			},
 			{
-				"paths": [
-					"src/assets/build/dev-server.json"
-				],
+				"paths": ["src/assets/build/dev-server.json"],
 				"rules": [
 					{
 						"value": "NOT_EXISTS"
@@ -87,21 +85,15 @@
 	"wireit": {
 		"build": {
 			"command": "vite build && pnpm run validate-build",
-			"output": [
-				"src/assets/build"
-			]
+			"output": ["src/assets/build"]
 		},
 		"setup:php": {
 			"command": "composer install",
-			"dependencies": [
-				"unset-vendor-dir"
-			]
+			"dependencies": ["unset-vendor-dir"]
 		},
 		"setup:php:prod": {
 			"command": "composer install --no-dev && pnpm run unset-vendor-dir",
-			"dependencies": [
-				"set-prod-vendor"
-			]
+			"dependencies": ["set-prod-vendor"]
 		},
 		"set-prod-vendor": {
 			"command": "composer config vendor-dir src/vendor"
