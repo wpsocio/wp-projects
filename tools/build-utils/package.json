@@ -39,10 +39,10 @@
 	},
 	"devDependencies": {
 		"@manypkg/get-packages": "^2.2.2",
-		"@types/node": "^22.9.1",
-		"oclif": "^4.15.28",
+		"@types/node": "^22.9.3",
+		"oclif": "^4.15.29",
 		"tsup": "^8.3.5",
-		"typescript": "^5.6.3",
+		"typescript": "^5.7.2",
 		"wireit": "^0.14.9"
 	},
 	"oclif": {
