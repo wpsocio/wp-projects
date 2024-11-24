@@ -1,5 +1,19 @@
 import { dashToCamelCase } from './dash-to-camel-case.js';
 
+/**
+ * WordPress packages that are bundled.
+ * 
+ * The list is the output of this snippet:
+ * 
+$assets = include ABSPATH . WPINC . '/assets/script-loader-packages.php';
+print json_encode(
+	array_map(
+		fn( $asset ) => str_replace( '.js', '', $asset ),
+		array_keys( $assets )
+	),
+	JSON_PRETTY_PRINT
+);
+ */
 export const WP_PACKAGES: Record<string, string> = Object.fromEntries(
 	[
 		'a11y',
@@ -12,8 +26,10 @@ export const WP_PACKAGES: Record<string, string> = Object.fromEntries(
 		'block-library',
 		'block-serialization-default-parser',
 		'blocks',
+		'commands',
 		'components',
 		'compose',
+		'core-commands',
 		'core-data',
 		'customize-widgets',
 		'data',
@@ -39,14 +55,17 @@ export const WP_PACKAGES: Record<string, string> = Object.fromEntries(
 		'media-utils',
 		'notices',
 		'nux',
+		'patterns',
 		'plugins',
 		'preferences',
 		'preferences-persistence',
 		'primitives',
 		'priority-queue',
+		'private-apis',
 		'redux-routine',
 		'reusable-blocks',
 		'rich-text',
+		'router',
 		'server-side-render',
 		'shortcode',
 		'style-engine',
