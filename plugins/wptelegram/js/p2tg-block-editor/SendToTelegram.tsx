@@ -29,21 +29,17 @@ export const SendToTelegram: React.FC = () => {
 	}, [data.send2tg, isDirty, isSaving, savedData, updateField]);
 
 	return (
-		<PluginPostStatusInfo
-			// @ts-expect-error @wordpress/editor is badly typed
-			// biome-ignore lint/correctness/noChildrenProp: Remove it when the issue is fixed
-			children={
-				<div style={wrapperStyle}>
-					<ToggleControl
-						// the basic switch
-						label={__('Send to Telegram')}
-						checked={data.send2tg}
-						onChange={updateField('send2tg')}
-						__nextHasNoMarginBottom
-					/>
-					<OverrideSettings />
-				</div>
-			}
-		/>
+		<PluginPostStatusInfo>
+			<div style={wrapperStyle}>
+				<ToggleControl
+					// the basic switch
+					label={__('Send to Telegram')}
+					checked={data.send2tg}
+					onChange={updateField('send2tg')}
+					__nextHasNoMarginBottom
+				/>
+				<OverrideSettings />
+			</div>
+		</PluginPostStatusInfo>
 	);
 };

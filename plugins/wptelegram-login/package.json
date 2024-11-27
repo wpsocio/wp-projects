@@ -29,10 +29,10 @@
 		"version": "composer run gen:docs"
 	},
 	"dependencies": {
-		"@wordpress/block-editor": "^14.7.0",
-		"@wordpress/blocks": "^14.1.0",
-		"@wordpress/components": "^28.12.0",
-		"@wordpress/element": "^6.12.0",
+		"@wordpress/block-editor": "^14.8.0",
+		"@wordpress/blocks": "^14.2.0",
+		"@wordpress/components": "^28.13.0",
+		"@wordpress/element": "^6.13.0",
 		"@wpsocio/form": "workspace:*",
 		"@wpsocio/i18n": "workspace:*",
 		"@wpsocio/services": "workspace:*",
@@ -48,13 +48,13 @@
 		"@types/react": "^18.3.12",
 		"@types/react-dom": "^18.3.1",
 		"@types/wordpress__block-editor": "^11.5.15",
-		"@types/wordpress__blocks": "^12.5.14",
+		"@types/wordpress__blocks": "^12.5.15",
 		"@wpsocio/build-utils": "workspace:*",
 		"@wpsocio/vite-wp-react": "workspace:*",
 		"autoprefixer": "^10.4.20",
 		"tailwindcss": "^3.4.15",
 		"typescript": "^5.7.2",
-		"vite": "^5.4.10",
+		"vite": "^6.0.1",
 		"wireit": "^0.14.9"
 	},
 	"build-utils": {
