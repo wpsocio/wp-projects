@@ -4,7 +4,7 @@ import typographyPlugin from '@tailwindcss/typography';
 import type { Config } from 'tailwindcss';
 import animatePlugin from 'tailwindcss-animate';
 import {
-	// @ts-expect-error isolateInsideOfContainer is not exported in types
+	// @ts-ignore isolateInsideOfContainer is not exported in types
 	isolateInsideOfContainer,
 	scopedPreflightStyles,
 } from 'tailwindcss-scoped-preflight';
