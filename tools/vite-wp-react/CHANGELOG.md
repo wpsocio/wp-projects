@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.6
+
+### Patch Changes
+
+- [#214](https://github.com/wpsocio/wp-projects/pull/214) [`22074b1`](https://github.com/wpsocio/wp-projects/commit/22074b1fc7aaa540b143a9ce2c90df2198f75e8e) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Added support for Vite 6
+
 ## 1.0.5
 
 ### Patch Changes

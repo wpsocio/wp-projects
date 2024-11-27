@@ -335,7 +335,7 @@ class Admin extends BaseClass {
 	/**
 	 * Get the verified username.
 	 *
-	 * @since x.y.z
+	 * @since 2.2.5
 	 *
 	 * @param array $message The message object.
 	 *
