@@ -176,7 +176,7 @@ $generated_i18n_strings = array(
 	__( 'Loading…', 'wptelegram-widget' ),
 
 	// Reference: js/blocks/single-post/Edit.tsx:148
-	// Reference: js/blocks/single-post/index.tsx:48
+	// Reference: js/blocks/single-post/index.tsx:47
 	__( 'Telegram post', 'wptelegram-widget' ),
 
 	// Reference: js/blocks/single-post/Edit.tsx:27

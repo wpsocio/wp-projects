@@ -5,7 +5,7 @@ Tags: telegram, feed, widget, channel, group
 Requires at least: 6.4
 Requires PHP: 7.4
 Tested up to: 6.7
-Stable tag: 2.2.4
+Stable tag: 2.2.5
 License: GPL-3.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -193,7 +193,7 @@ Automatic updates should work smoothly, but we still recommend you back up your 
 
 == Changelog ==
 
-= 2.2.4 =
-- Fixed the issue of block editor Zoom out not being visible when the plugin is active
+= 2.2.5 =
+- Added multi-group support for legacy widget via custom code
 
 [See full changelog](https://github.com/wpsocio/wptelegram-widget/blob/main/CHANGELOG.md)

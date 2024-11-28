@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.2.5
+
+### Patch Changes
+
+- [#206](https://github.com/wpsocio/wp-projects/pull/206) [`8a05b5d`](https://github.com/wpsocio/wp-projects/commit/8a05b5d71d00d1fb49164b30bc8715d0049beefb) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Added multi-group support for legacy widget via custom code
+
 ## 2.2.4
 
 ### Patch Changes
