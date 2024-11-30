@@ -46,7 +46,7 @@
 	"devDependencies": {
 		"@tailwindcss/forms": "^0.5.9",
 		"@tailwindcss/typography": "^0.5.15",
-		"@types/node": "^22.10.0",
+		"@types/node": "^22.10.1",
 		"@types/postcss-js": "^4.0.4",
 		"@types/react": "^18.3.12",
 		"@types/react-dom": "^18.3.1",
