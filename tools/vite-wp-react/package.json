@@ -62,14 +62,13 @@
 		"@vitejs/plugin-react": "^4.3.4",
 		"@wordpress/babel-plugin-makepot": "^6.13.0",
 		"esbuild": "^0.24.0",
-		"rollup": "^4.27.4",
 		"rollup-plugin-external-globals": "^0.13.0",
-		"sass": "^1.81.0",
 		"vite-plugin-external": "^4.3.1"
 	},
 	"devDependencies": {
 		"@types/node": "^22.10.1",
 		"rimraf": "^6.0.1",
+		"rollup": "^4.28.0",
 		"tsup": "^8.3.5",
 		"typescript": "^5.7.2",
 		"wireit": "^0.14.9"
