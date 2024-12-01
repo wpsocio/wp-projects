@@ -53,6 +53,15 @@ class LoginHandler extends BaseClass {
 		try {
 			$auth_data = $this->validate_auth_data( $input );
 
+			// Add a lock using transients to prevent multiple concurrent requests.
+			$transient_key = 'wptelegram_login_' . $auth_data['id'];
+
+			if ( get_transient( $transient_key ) ) {
+				sleep( 5 ); // Wait for 5 seconds.
+			}
+
+			set_transient( $transient_key, current_time( 'mysql' ), 10 );
+
 			/**
 			 * Fires before the user data is saved after validation.
 			 *
@@ -261,6 +270,10 @@ class LoginHandler extends BaseClass {
 			$auth_data = ! empty( $auth_data['user'] ) ? Utils::sanitize( json_decode( $auth_data['user'], true ) ) : [];
 		}
 
+		if ( empty( $auth_data['id'] ) || empty( $auth_data['first_name'] ) ) {
+			throw new Exception( esc_html__( 'Invalid! The data is incomplete', 'wptelegram-login' ) );
+		}
+
 		/**
 		 * Filter the validated auth data.
 		 *
@@ -439,10 +452,6 @@ class LoginHandler extends BaseClass {
 	 * @throws Exception The exception.
 	 */
 	public function save_telegram_user_data( $data ) {
-
-		if ( empty( $data['id'] ) || empty( $data['first_name'] ) ) {
-			throw new Exception( esc_html__( 'Invalid! The data is incomplete', 'wptelegram-login' ) );
-		}
 
 		$data = array_map( 'htmlspecialchars', $data );
 
