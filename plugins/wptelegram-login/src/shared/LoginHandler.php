@@ -683,7 +683,7 @@ class LoginHandler extends BaseClass {
 	 * @param WP_User $user The logged in user.
 	 */
 	private function redirect( $user ) {
-		$redirect_to = isset( $_REQUEST['redirect_to'] ) ? remove_query_arg( 'reauth', wp_unslash( $_REQUEST['redirect_to'] ) ) : ''; // phpcs:ignore
+		$redirect_to = isset( $_REQUEST['redirect_to'] ) ? remove_query_arg( 'reauth', sanitize_url( wp_unslash( $_REQUEST['redirect_to'] ) ) ) : '';
 
 		/**
 		 * Filter the redirect URL after login.

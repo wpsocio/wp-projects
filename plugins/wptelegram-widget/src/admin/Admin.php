@@ -109,17 +109,21 @@ class Admin extends BaseClass {
 	}
 
 	/**
-	 * Create our feed widget
+	 * Register widgets.
 	 *
 	 * @since    1.0.0
 	 */
 	public function register_widgets() {
 
-		register_widget( '\WPTelegram\Widget\shared\widgets\Legacy' );
+		$widgets = [
+			\WPTelegram\Widget\shared\widgets\Legacy::class,
+			\WPTelegram\Widget\shared\widgets\Ajax::class,
+			\WPTelegram\Widget\shared\widgets\JoinChannel::class,
+		];
 
-		register_widget( '\WPTelegram\Widget\shared\widgets\Ajax' );
-
-		register_widget( '\WPTelegram\Widget\shared\widgets\JoinChannel' );
+		foreach ( $widgets as $widget ) {
+			register_widget( $widget );
+		}
 	}
 
 	/**

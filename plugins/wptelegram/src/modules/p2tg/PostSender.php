@@ -137,6 +137,8 @@ class PostSender extends BaseClass {
 			return;
 		}
 
+		// phpcs:disable WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+
 		if ( RequestCheck::if_is( RequestCheck::REST_REQUEST ) ) {
 			$raw_body = file_get_contents( 'php://input' );
 
@@ -162,13 +164,11 @@ class PostSender extends BaseClass {
 			}
 		} else {
 
-			if ( isset( $_POST[ Main::PREFIX . 'send2tg' ] ) ) { // phpcs:ignore
-				// phpcs:ignore
+			if ( isset( $_POST[ Main::PREFIX . 'send2tg' ] ) ) {
 				$this->form_data['send2tg'] = sanitize_text_field( wp_unslash( $_POST[ Main::PREFIX . 'send2tg' ] ) );
 			}
 
-			if ( isset( $_POST[ Main::PREFIX . 'override_switch' ] ) ) { // phpcs:ignore
-				// phpcs:ignore
+			if ( isset( $_POST[ Main::PREFIX . 'override_switch' ] ) ) {
 				$override_switch = sanitize_text_field( wp_unslash( $_POST[ Main::PREFIX . 'override_switch' ] ) );
 
 				$this->form_data['override_switch'] = 'on' === $override_switch;
@@ -178,25 +178,26 @@ class PostSender extends BaseClass {
 			if ( $this->defaults_overridden() ) {
 
 				// if no destination channel is selected.
-				if ( empty( $_POST[ Main::PREFIX . 'channels' ] ) ) { // phpcs:ignore
+
+				if ( empty( $_POST[ Main::PREFIX . 'channels' ] ) ) {
 					$this->form_data['channels'] = [];
 				} else {
 					// override the default channels.
-					$this->form_data['channels'] = MainUtils::sanitize( (array) $_POST[ Main::PREFIX . 'channels' ] ); // phpcs:ignore
+					$this->form_data['channels'] = MainUtils::sanitize( (array) wp_unslash( $_POST[ Main::PREFIX . 'channels' ] ) );
 				}
 
 				// if the template is set.
-				if ( isset( $_POST[ Main::PREFIX . 'message_template' ] ) ) { // phpcs:ignore
+				if ( isset( $_POST[ Main::PREFIX . 'message_template' ] ) ) {
 					// sanitize the template.
-					$template = MainUtils::sanitize_message_template( wp_unslash( $_POST[ Main::PREFIX . 'message_template' ] ) ); // phpcs:ignore
+					$template = MainUtils::sanitize_message_template( wp_unslash( $_POST[ Main::PREFIX . 'message_template' ] ) );
 					// override the default template.
 					$this->form_data['message_template'] = $template;
 				}
 
 				// if files included.
-				if ( ! empty( $_POST[ Main::PREFIX . 'files' ] ) ) { // phpcs:ignore
+				if ( ! empty( $_POST[ Main::PREFIX . 'files' ] ) ) {
 					// sanitize the values.
-					$files = array_filter( MainUtils::sanitize( (array) $_POST[ Main::PREFIX . 'files' ] ) ); // phpcs:ignore
+					$files = array_filter( MainUtils::sanitize( (array) wp_unslash( $_POST[ Main::PREFIX . 'files' ] ) ) );
 					if ( ! empty( $files ) ) {
 						// add the files to the options.
 						$this->form_data['files'] = $files;
@@ -204,23 +205,25 @@ class PostSender extends BaseClass {
 				}
 
 				// if delay overridden.
-				if ( isset( $_POST[ Main::PREFIX . 'delay' ] ) ) { // phpcs:ignore
+				if ( isset( $_POST[ Main::PREFIX . 'delay' ] ) ) {
 					// sanitize the value.
-					$this->form_data['delay'] = MainUtils::sanitize( $_POST[ Main::PREFIX . 'delay' ], true ); // phpcs:ignore
+					$this->form_data['delay'] = MainUtils::sanitize( wp_unslash( $_POST[ Main::PREFIX . 'delay' ] ), true );
 				}
 
 				// if notifications are to be disabled.
-				if ( isset( $_POST[ Main::PREFIX . 'disable_notification' ] ) ) { // phpcs:ignore
+				if ( isset( $_POST[ Main::PREFIX . 'disable_notification' ] ) ) {
 					$this->form_data['disable_notification'] = true;
 				}
 
 				// if send featured image.
-				if ( isset( $_POST[ Main::PREFIX . 'send_featured_image' ] ) ) { // phpcs:ignore
-					$send_featured_image = MainUtils::sanitize( $_POST[ Main::PREFIX . 'send_featured_image' ] ); // phpcs:ignore
+				if ( isset( $_POST[ Main::PREFIX . 'send_featured_image' ] ) ) {
+					$send_featured_image = MainUtils::sanitize( wp_unslash( $_POST[ Main::PREFIX . 'send_featured_image' ] ) );
+
 					$this->form_data['send_featured_image'] = 'on' === $send_featured_image;
 				}
 			}
 		}
+		// phpcs:enable WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
 		do_action( 'wptelegram_p2tg_set_form_data', $this->form_data, $this->post );
 	}
@@ -355,7 +358,7 @@ class PostSender extends BaseClass {
 				$previous_post = $GLOBALS['post'];
 			}
 
-			// phpcs:ignore
+			// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 			$GLOBALS['post'] = $post;
 
 			setup_postdata( $post );
@@ -376,7 +379,7 @@ class PostSender extends BaseClass {
 
 		if ( 'delayed_post' === $trigger ) {
 
-			// phpcs:ignore
+			// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 			$GLOBALS['post'] = $previous_post;
 
 			if ( $previous_post ) {
@@ -1587,8 +1590,10 @@ class PostSender extends BaseClass {
 
 					if ( ! empty( $r['body'][ $type ] ) && file_exists( $r['body'][ $type ] ) ) {
 
-						$r['body'][ $type ] = curl_file_create( $r['body'][ $type ] ); // phpcs:ignore
-						curl_setopt( $handle, CURLOPT_POSTFIELDS, $r['body'] ); // phpcs:ignore
+						// phpcs:ignore WordPress.WP.AlternativeFunctions.curl_curl_file_create
+						$r['body'][ $type ] = curl_file_create( $r['body'][ $type ] );
+						// phpcs:ignore WordPress.WP.AlternativeFunctions.curl_curl_setopt
+						curl_setopt( $handle, CURLOPT_POSTFIELDS, $r['body'] );
 						break;
 					}
 				}
