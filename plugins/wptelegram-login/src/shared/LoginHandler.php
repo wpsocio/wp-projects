@@ -623,7 +623,12 @@ class LoginHandler extends BaseClass {
 
 		// Save the telegram user ID and username.
 		update_user_meta( $wp_user_id, WPTELEGRAM_USER_ID_META_KEY, $id );
-		update_user_meta( $wp_user_id, WPTELEGRAM_USERNAME_META_KEY, $tg_username );
+
+		if ( $tg_username ) {
+			update_user_meta( $wp_user_id, WPTELEGRAM_USERNAME_META_KEY, $tg_username );
+		} else {
+			delete_user_meta( $wp_user_id, WPTELEGRAM_USERNAME_META_KEY );
+		}
 
 		if ( ! empty( $photo_url ) ) {
 			$meta_key = WPTG_Login()->options()->get( 'avatar_meta_key' );
