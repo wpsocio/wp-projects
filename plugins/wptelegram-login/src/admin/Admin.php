@@ -379,14 +379,32 @@ class Admin extends BaseClass {
 	 */
 	public function register_custom_user_column_view( $output, $column_name, $user_id ) {
 
-		if ( WPTELEGRAM_USER_ID_META_KEY === $column_name ) {
+		if ( WPTELEGRAM_USER_ID_META_KEY !== $column_name ) {
+			return $output;
+		}
 
-			$user = get_user_by( 'id', $user_id );
+		$telegram_id = get_user_meta( $user_id, WPTELEGRAM_USER_ID_META_KEY, true );
 
-			if ( $user && $user instanceof WP_User ) {
+		if ( ! $telegram_id ) {
+			return $output;
+		}
 
-				return $user->{WPTELEGRAM_USER_ID_META_KEY};
-			}
+		// By default, the output is the Telegram user ID.
+		$output = sprintf(
+			'<a href="%1$s" target="_blank" rel="noreferrer noopener">%2$s</a>',
+			esc_url( 'tg://user?id=' . $telegram_id, [ 'tg' ] ),
+			esc_html( $telegram_id )
+		);
+
+		$telegram_username = get_user_meta( $user_id, WPTELEGRAM_USERNAME_META_KEY, true );
+
+		// If the user has a Telegram username, append it to the output.
+		if ( $telegram_username ) {
+			$output .= sprintf(
+				' (<a href="%1$s" target="_blank" rel="noreferrer noopener">@%2$s</a>)',
+				esc_url( 'https://t.me/' . $telegram_username ),
+				esc_html( $telegram_username )
+			);
 		}
 		return $output;
 	}
