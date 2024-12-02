@@ -79,7 +79,7 @@ register_deactivation_hook( __FILE__, 'deactivate_wptelegram' );
  *
  * @return \WPTelegram\Core\includes\Main
  */
-function WPTG() { // phpcs:ignore
+function WPTG() { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName.FunctionNameInvalid
 	return \WPTelegram\Core\includes\Main::instance();
 }
 

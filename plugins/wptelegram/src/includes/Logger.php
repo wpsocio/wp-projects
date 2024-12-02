@@ -135,10 +135,12 @@ class Logger extends BaseClass {
 	 */
 	public function view_log() {
 
-		// phpcs:ignore
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( isset( $_GET['action'], $_GET['hash'], $_GET['type'] ) && 'wptelegram_view_log' === $_GET['action'] && isset( $_GET['hash'] ) ) {
-			$hash = sanitize_text_field( wp_unslash( $_GET['hash'] ) ); // phpcs:ignore
-			$type = sanitize_text_field( wp_unslash( $_GET['type'] ) ); // phpcs:ignore
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$hash = sanitize_text_field( wp_unslash( $_GET['hash'] ) );
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$type = sanitize_text_field( wp_unslash( $_GET['type'] ) );
 
 			if ( ! empty( $hash ) && ! empty( $type ) ) {
 
@@ -152,7 +154,8 @@ class Logger extends BaseClass {
 
 				header( 'Content-Type: text/plain' );
 
-				exit( $contents ); // phpcs:ignore
+				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				exit( $contents );
 			}
 		}
 	}

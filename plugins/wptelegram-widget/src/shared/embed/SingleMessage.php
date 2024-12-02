@@ -175,8 +175,10 @@ class SingleMessage {
 		$args = [
 			'embed' => true,
 		];
-		if ( isset( $_GET['userpic'] ) ) { // phpcs:ignore
-			$args['userpic'] = sanitize_text_field( wp_unslash( $_GET['userpic'] ) ); // phpcs:ignore
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( isset( $_GET['userpic'] ) ) {
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$args['userpic'] = sanitize_text_field( wp_unslash( $_GET['userpic'] ) );
 		}
 
 		$url = add_query_arg( $args, $url );

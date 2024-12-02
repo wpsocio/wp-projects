@@ -181,7 +181,7 @@ class Shared extends BaseClass {
 	 * @since 1.5.0
 	 */
 	public function may_be_fire_pull_updates() {
-		// phpcs:ignore
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( isset( $_GET['action'] ) && 'wptelegram_widget_pull_updates' === $_GET['action'] ) {
 			do_action( 'wptelegram_widget_pull_the_updates' );
 			exit( ':)' );
