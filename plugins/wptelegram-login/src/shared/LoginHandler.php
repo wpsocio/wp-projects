@@ -453,8 +453,6 @@ class LoginHandler extends BaseClass {
 	 */
 	public function save_telegram_user_data( $data ) {
 
-		$data = array_map( 'htmlspecialchars', $data );
-
 		// Check if the request is from a logged in user.
 		$cur_user = wp_get_current_user();
 
