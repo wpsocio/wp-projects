@@ -2,4 +2,4 @@
 "wptelegram-login": patch
 ---
 
-Fixed WP Telegram Login race condition to prevent duplicate Mini App users
+Fixed a race condition to prevent duplicate Mini App users
