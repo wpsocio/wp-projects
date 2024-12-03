@@ -56,8 +56,11 @@ class LoginHandler extends BaseClass {
 			// Add a lock using transients to prevent multiple concurrent requests.
 			$transient_key = 'wptelegram_login_' . $auth_data['id'];
 
-			if ( get_transient( $transient_key ) ) {
-				sleep( 5 ); // Wait for 5 seconds.
+			$retry_count = 0;
+			$max_retries = 10;
+			while ( get_transient( $transient_key ) && $retry_count <= $max_retries ) {
+				++$retry_count;
+				sleep( 1 );
 			}
 
 			set_transient( $transient_key, current_time( 'mysql' ), 10 );
@@ -78,6 +81,8 @@ class LoginHandler extends BaseClass {
 			 * @param array $auth_data  The authenticated user data.
 			 */
 			do_action( 'wptelegram_login_after_save_user_data', $wp_user_id, $auth_data );
+
+			delete_transient( $transient_key );
 
 		} catch ( Exception $e ) {
 			// phpcs:ignore WordPress.Security.EscapeOutput
