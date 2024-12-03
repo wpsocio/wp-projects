@@ -23,7 +23,7 @@ jobs:
           token: ${{ secrets.ACCESS_TOKEN_IR }}
 
       - name: Setup Environment
-        uses: ./actions/setup
+        uses: ./.github/actions/setup
         with:
           enable-wireit-cache: true
 
@@ -81,7 +81,7 @@ jobs:
           token: ${{ secrets.ACCESS_TOKEN_IR }}
 
       - name: Setup Environment
-        uses: ./actions/setup
+        uses: ./.github/actions/setup
         with:
           enable-wireit-cache: true
 

@@ -20,7 +20,7 @@ jobs:
           token: ${{ secrets.ACCESS_TOKEN_IR }}
 
       - name: Remote refs
-        uses: ./actions/upstream-refs
+        uses: ./.github/actions/upstream-refs
         id: remote-refs
 
       - name: Checkout premium projects repo
@@ -32,7 +32,7 @@ jobs:
           ref: ${{ fromJSON(steps.remote-refs.outputs.result).premium || 'main' }}
 
       - name: Setup Environment
-        uses: ./actions/setup
+        uses: ./.github/actions/setup
         with:
           php-version: ${{ matrix.php }}
           enable-wireit-cache: true
@@ -74,7 +74,7 @@ jobs:
           token: ${{ secrets.ACCESS_TOKEN_IR }}
 
       - name: Remote refs
-        uses: ./actions/upstream-refs
+        uses: ./.github/actions/upstream-refs
         id: remote-refs
 
       - name: Checkout premium projects repo
@@ -86,7 +86,7 @@ jobs:
           ref: ${{ fromJSON(steps.remote-refs.outputs.result).premium || 'main' }}
 
       - name: Setup Environment
-        uses: ./actions/setup
+        uses: ./.github/actions/setup
         with:
           enable-wireit-cache: true
 
@@ -120,7 +120,7 @@ jobs:
           token: ${{ secrets.ACCESS_TOKEN_IR }}
 
       - name: Remote refs
-        uses: ./actions/upstream-refs
+        uses: ./.github/actions/upstream-refs
         id: remote-refs
 
       - name: Checkout premium projects repo
@@ -132,7 +132,7 @@ jobs:
           ref: ${{ fromJSON(steps.remote-refs.outputs.result).premium || 'main' }}
 
       - name: Setup Environment
-        uses: ./actions/setup
+        uses: ./.github/actions/setup
         with:
           enable-wireit-cache: true
           php-version: ${{ matrix.php }}
