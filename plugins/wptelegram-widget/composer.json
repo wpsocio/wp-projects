@@ -12,7 +12,7 @@
 		"wpsocio/wp-utils": "dev-main"
 	},
 	"require-dev": {
-		"wp-coding-standards/wpcs": "^3.0"
+		"wp-coding-standards/wpcs": "^3.1"
 	},
 	"repositories": {
 		"local": {

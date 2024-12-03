@@ -20,8 +20,8 @@
 		"test": "\"vendor/bin/pest\""
 	},
 	"require-dev": {
-		"wp-coding-standards/wpcs": "^3.0.1",
-		"pestphp/pest": "^1.22"
+		"wp-coding-standards/wpcs": "^3.1",
+		"pestphp/pest": "^1.23"
 	},
 	"config": {
 		"allow-plugins": {

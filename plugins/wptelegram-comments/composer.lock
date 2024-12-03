@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9312e5d551913dabdc4109a5ea9a2857",
+    "content-hash": "10c3cbbac3c50d75b926c67840a147cc",
     "packages": [
         {
             "name": "wpsocio/wp-utils",
@@ -12,11 +12,11 @@
             "dist": {
                 "type": "path",
                 "url": "../../packages/php/wp-utils",
-                "reference": "b071b3faa1787b0a761ff5808467ef6967d189d9"
+                "reference": "bcf7c54c0b2cea258490bcb1fe7b23740f9e505c"
             },
             "require-dev": {
-                "pestphp/pest": "^1.22",
-                "wp-coding-standards/wpcs": "^3.0.1"
+                "pestphp/pest": "^1.23",
+                "wp-coding-standards/wpcs": "^3.1"
             },
             "type": "library",
             "autoload": {
@@ -300,16 +300,16 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "3.10.3",
+            "version": "3.11.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPCSStandards/PHP_CodeSniffer.git",
-                "reference": "62d32998e820bddc40f99f8251958aed187a5c9c"
+                "reference": "19473c30efe4f7b3cd42522d0b2e6e7f243c6f87"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/62d32998e820bddc40f99f8251958aed187a5c9c",
-                "reference": "62d32998e820bddc40f99f8251958aed187a5c9c",
+                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/19473c30efe4f7b3cd42522d0b2e6e7f243c6f87",
+                "reference": "19473c30efe4f7b3cd42522d0b2e6e7f243c6f87",
                 "shasum": ""
             },
             "require": {
@@ -376,7 +376,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2024-09-18T10:38:58+00:00"
+            "time": "2024-11-16T12:02:36+00:00"
         },
         {
             "name": "wp-coding-standards/wpcs",

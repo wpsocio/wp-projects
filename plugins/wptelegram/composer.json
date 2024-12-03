@@ -13,8 +13,8 @@
 		"wpsocio/wp-utils": "dev-main"
 	},
 	"require-dev": {
-		"wp-coding-standards/wpcs": "^3.0",
-		"wpackagist-plugin/cmb2": ">=2.9.0"
+		"wp-coding-standards/wpcs": "^3.1",
+		"wpackagist-plugin/cmb2": "^2.11"
 	},
 	"repositories": {
 		"wppackagist": {
