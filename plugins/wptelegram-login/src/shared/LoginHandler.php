@@ -53,6 +53,18 @@ class LoginHandler extends BaseClass {
 		try {
 			$auth_data = $this->validate_auth_data( $input );
 
+			// Add a lock using transients to prevent multiple concurrent requests.
+			$transient_key = 'wptelegram_login_' . $auth_data['id'];
+
+			$retry_count = 0;
+			$max_retries = 5;
+			while ( get_transient( $transient_key ) && $retry_count <= $max_retries ) {
+				++$retry_count;
+				sleep( 1 );
+			}
+
+			set_transient( $transient_key, current_time( 'mysql' ), $max_retries );
+
 			/**
 			 * Fires before the user data is saved after validation.
 			 *
@@ -69,6 +81,8 @@ class LoginHandler extends BaseClass {
 			 * @param array $auth_data  The authenticated user data.
 			 */
 			do_action( 'wptelegram_login_after_save_user_data', $wp_user_id, $auth_data );
+
+			delete_transient( $transient_key );
 
 		} catch ( Exception $e ) {
 			// phpcs:ignore WordPress.Security.EscapeOutput
@@ -261,6 +275,10 @@ class LoginHandler extends BaseClass {
 			$auth_data = ! empty( $auth_data['user'] ) ? Utils::sanitize( json_decode( $auth_data['user'], true ) ) : [];
 		}
 
+		if ( empty( $auth_data['id'] ) || empty( $auth_data['first_name'] ) ) {
+			throw new Exception( esc_html__( 'Invalid! The data is incomplete', 'wptelegram-login' ) );
+		}
+
 		/**
 		 * Filter the validated auth data.
 		 *
@@ -435,22 +453,16 @@ class LoginHandler extends BaseClass {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param array $data The user data received from Telegram.
+	 * @param array $auth_data The user data received from Telegram.
 	 * @throws Exception The exception.
 	 */
-	public function save_telegram_user_data( $data ) {
-
-		if ( empty( $data['id'] ) || empty( $data['first_name'] ) ) {
-			throw new Exception( esc_html__( 'Invalid! The data is incomplete', 'wptelegram-login' ) );
-		}
-
-		$data = array_map( 'htmlspecialchars', $data );
+	public function save_telegram_user_data( $auth_data ) {
 
 		// Check if the request is from a logged in user.
 		$cur_user = wp_get_current_user();
 
 		// Check if the user is signing in again.
-		$ret_user = Utils::get_user_by_telegram_id( $data['id'] );
+		$ret_user = Utils::get_user_by_telegram_id( $auth_data['id'] );
 
 		$existing_user_id = null;
 
@@ -478,9 +490,9 @@ class LoginHandler extends BaseClass {
 			 * It means that the user must first create an account and connect it to Telegram to be able to use Telegram Login.
 			 *
 			 * @param bool  $disable_signup Whether to disable sign up via Telegram.
-			 * @param array $data           The user details.
+			 * @param array $auth_data      The user data from Telegram.
 			 */
-			$disable_signup = (bool) apply_filters( 'wptelegram_login_disable_signup', $disable_signup, $data );
+			$disable_signup = (bool) apply_filters( 'wptelegram_login_disable_signup', $disable_signup, $auth_data );
 
 			if ( $disable_signup ) {
 
@@ -498,16 +510,16 @@ class LoginHandler extends BaseClass {
 		 * - [Examples](./examples/always_update_user_data.md)
 		 *
 		 * @param bool     $always_update    Whether to always update the user data.
-		 * @param array    $data             The user details.
+		 * @param array    $auth_data        The user data from Telegram.
 		 * @param int|NULL $existing_user_id Existing WP User ID.
 		 */
-		$always_update_user_data = apply_filters( 'wptelegram_login_always_update_user_data', $always_update, $data, $existing_user_id );
+		$always_update_user_data = apply_filters( 'wptelegram_login_always_update_user_data', $always_update, $auth_data, $existing_user_id );
 
 		if ( $existing_user_id && ! $always_update_user_data ) {
 			return $existing_user_id;
 		}
 
-		return $this->save_user_data( $data, $existing_user_id );
+		return $this->save_user_data( $auth_data, $existing_user_id );
 	}
 
 	/**
@@ -515,29 +527,29 @@ class LoginHandler extends BaseClass {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param  array    $data       The user details.
+	 * @param  array    $auth_data  The user data from Telegram.
 	 * @param  int|NULL $wp_user_id Existing WP User ID.
 	 *
 	 * @throws Exception The exception.
 	 *
 	 * @return int|WP_Error The newly created user's ID or a WP_Error object if the user could not be created
 	 */
-	public function save_user_data( $data, $wp_user_id = null ) {
+	public function save_user_data( $auth_data, $wp_user_id = null ) {
 
 		/**
 		 * Filter the user data before saving the user in the database.
 		 *
-		 * @param array    $data       The user details.
+		 * @param array    $auth_data  The user data from Telegram.
 		 * @param int|NULL $wp_user_id Existing WP User ID.
 		 */
-		$data = apply_filters( 'wptelegram_login_save_user_data', $data, $wp_user_id );
+		$auth_data = apply_filters( 'wptelegram_login_save_user_data', $auth_data, $wp_user_id );
 
 		// The data fields received.
-		$id          = $data['id'];
-		$first_name  = $data['first_name'];
-		$last_name   = isset( $data['last_name'] ) ? $data['last_name'] : '';
-		$tg_username = isset( $data['username'] ) ? $data['username'] : '';
-		$photo_url   = isset( $data['photo_url'] ) ? $data['photo_url'] : '';
+		$id          = $auth_data['id'];
+		$first_name  = $auth_data['first_name'];
+		$last_name   = isset( $auth_data['last_name'] ) ? $auth_data['last_name'] : '';
+		$tg_username = isset( $auth_data['username'] ) ? $auth_data['username'] : '';
+		$photo_url   = isset( $auth_data['photo_url'] ) ? $auth_data['photo_url'] : '';
 		$username    = $tg_username;
 
 		if ( is_null( $wp_user_id ) ) { // New user.
@@ -566,9 +578,10 @@ class LoginHandler extends BaseClass {
 			/**
 			 * Filter the user data before inserting the user into the database.
 			 *
-			 * @param array $userdata The user data.
+			 * @param array $userdata  The user data to insert into the database.
+			 * @param array $auth_data The user data from Telegram.
 			 */
-			$userdata = apply_filters( 'wptelegram_login_insert_user_data', $userdata );
+			$userdata = apply_filters( 'wptelegram_login_insert_user_data', $userdata, $auth_data );
 
 			$wp_user_id = wp_insert_user( $userdata );
 
@@ -580,10 +593,10 @@ class LoginHandler extends BaseClass {
 			 * Fires after the user is successfully inserted into the database.
 			 *
 			 * @param int   $wp_user_id The WordPress user ID.
-			 * @param array $userdata   The user data.
+			 * @param array $userdata   The user data inserted into the database.
+			 * @param array $auth_data  The user data from Telegram.
 			 */
-			do_action( 'wptelegram_login_after_insert_user', $wp_user_id, $userdata );
-
+			do_action( 'wptelegram_login_after_insert_user', $wp_user_id, $userdata, $auth_data );
 		}
 
 		/* Update the user */
