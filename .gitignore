@@ -12,7 +12,6 @@ vendor/
 !/.changeset/
 !/.github/
 !/.vscode/
-!/actions/
 !/config/
 !/packages/
 !/plugins/
