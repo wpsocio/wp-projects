@@ -568,12 +568,12 @@ class LoginHandler extends BaseClass {
 			 */
 			$user_login = apply_filters( 'wptelegram_login_unique_username', $unique_username );
 
-			$user_pass = wp_generate_password();
-
-			$role = WPTG_Login()->options()->get( 'user_role' );
-
 			// Create the user without first and last name to avoid wp_insert_user() failing on multi-byte characters.
-			$userdata = compact( 'user_pass', 'user_login', 'role' );
+			$userdata = [
+				'user_pass'  => wp_generate_password(),
+				'user_login' => $user_login,
+				'role'       => WPTG_Login()->options()->get( 'user_role' ),
+			];
 
 			/**
 			 * Filter the user data before inserting the user into the database.
@@ -582,6 +582,14 @@ class LoginHandler extends BaseClass {
 			 * @param array $auth_data The user data from Telegram.
 			 */
 			$userdata = apply_filters( 'wptelegram_login_insert_user_data', $userdata, $auth_data );
+
+			/**
+			 * Fires before the user is inserted into the database.
+			 *
+			 * @param array $userdata   The user data inserted into the database.
+			 * @param array $auth_data  The user data from Telegram.
+			 */
+			do_action( 'wptelegram_login_pre_insert_user', $userdata, $auth_data );
 
 			$wp_user_id = wp_insert_user( $userdata );
 
@@ -601,9 +609,11 @@ class LoginHandler extends BaseClass {
 
 		/* Update the user */
 
-		$ID = $wp_user_id; // phpcs:ignore WordPress.NamingConventions.ValidVariableName -- Ignore  snake_case
-
-		$userdata = compact( 'ID', 'first_name', 'last_name' );
+		$userdata = [
+			'ID'         => $wp_user_id,
+			'first_name' => $first_name,
+			'last_name'  => $last_name,
+		];
 
 		/**
 		 * Filter the user data before updating the user in the database.
