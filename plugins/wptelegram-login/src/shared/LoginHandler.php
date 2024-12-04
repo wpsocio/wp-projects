@@ -586,8 +586,8 @@ class LoginHandler extends BaseClass {
 			/**
 			 * Fires before the user is inserted into the database.
 			 *
-			 * @param array $userdata   The user data inserted into the database.
-			 * @param array $auth_data  The user data from Telegram.
+			 * @param array $userdata  The user data inserted into the database.
+			 * @param array $auth_data The user data from Telegram.
 			 */
 			do_action( 'wptelegram_login_pre_insert_user', $userdata, $auth_data );
 
