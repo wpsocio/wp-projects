@@ -52,9 +52,9 @@
 		"@wpsocio/build-utils": "workspace:*",
 		"@wpsocio/vite-wp-react": "workspace:*",
 		"autoprefixer": "^10.4.20",
-		"tailwindcss": "^3.4.15",
+		"tailwindcss": "^3.4.16",
 		"typescript": "^5.7.2",
-		"vite": "^6.0.1",
+		"vite": "^6.0.3",
 		"wireit": "^0.14.9"
 	},
 	"build-utils": {
