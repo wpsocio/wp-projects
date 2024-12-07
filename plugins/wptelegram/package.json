@@ -51,13 +51,13 @@
 		"@types/ramda": "^0.30.2",
 		"@types/react": "^18.3.12",
 		"@types/react-dom": "^18.3.1",
-		"@types/wordpress__edit-post": "^8.4.1",
+		"@types/wordpress__edit-post": "^8.4.2",
 		"@wpsocio/build-utils": "workspace:*",
 		"@wpsocio/vite-wp-react": "workspace:*",
 		"autoprefixer": "^10.4.20",
-		"tailwindcss": "^3.4.15",
+		"tailwindcss": "^3.4.16",
 		"typescript": "^5.7.2",
-		"vite": "^6.0.1",
+		"vite": "^6.0.3",
 		"wireit": "^0.14.9"
 	},
 	"build-utils": {
