@@ -2,4 +2,4 @@
 "@wpsocio/vite-wp-react": patch
 ---
 
-Fixed vite-wp-react depencencies
+Fixed peer depencencies to support vite 6.0
