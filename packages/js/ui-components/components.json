@@ -10,6 +10,8 @@
 	},
 	"aliases": {
 		"components": "@",
-		"utils": "@/lib/utils.js"
+		"utils": "@/lib/utils.js",
+		"lib": "@/lib",
+		"hooks": "@/ui/hooks"
 	}
 }
