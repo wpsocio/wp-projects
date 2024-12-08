@@ -1,7 +1,6 @@
 import { cn } from '../lib/utils.js';
 import {
 	AccordionContent,
-	type AccordionHeaderProps,
 	AccordionItem,
 	AccordionTrigger,
 	Accordion as AccordionUI,
@@ -16,7 +15,7 @@ export type AccordionItemProps = {
 	content?: Content;
 	className?: string;
 	wrapperClassName?: string;
-} & AccordionHeaderProps;
+};
 
 export type AccordionProps = Partial<
 	Pick<React.ComponentProps<typeof AccordionUI>, 'type' | 'className'>

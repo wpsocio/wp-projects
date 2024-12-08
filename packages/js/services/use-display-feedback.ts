@@ -1,5 +1,8 @@
 import { __ } from '@wpsocio/i18n';
-import { type Toast, useToast } from '@wpsocio/ui-components/ui/use-toast.js';
+import {
+	type Toast,
+	useToast,
+} from '@wpsocio/ui-components/ui/hooks/use-toast.js';
 import { FORM_ERROR } from '@wpsocio/utilities/constants.js';
 import { getErrorStrings } from '@wpsocio/utilities/misc.js';
 import type { AnyObject } from '@wpsocio/utilities/types.js';

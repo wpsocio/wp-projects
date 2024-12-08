@@ -4,11 +4,6 @@ import { ChevronDown } from "lucide-react"
 
 import { cn } from "../lib/utils.js"
 
-export type AccordionHeaderProps = {
-  beforeTrigger?: React.ReactNode
-  afterTrigger?: React.ReactNode
-}
-
 const Accordion = AccordionPrimitive.Root
 
 const AccordionItem = React.forwardRef<
@@ -25,10 +20,9 @@ AccordionItem.displayName = "AccordionItem"
 
 const AccordionTrigger = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger> & AccordionHeaderProps
->(({ className, children, beforeTrigger, afterTrigger, ...props }, ref) => (
-  <AccordionPrimitive.Header className="flex items-center gap-1">
-    {beforeTrigger}
+  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>
+>(({ className, children, ...props }, ref) => (
+  <AccordionPrimitive.Header className="flex">
     <AccordionPrimitive.Trigger
       ref={ref}
       className={cn(
@@ -40,7 +34,6 @@ const AccordionTrigger = React.forwardRef<
       {children}
       <ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200" />
     </AccordionPrimitive.Trigger>
-    {afterTrigger}
   </AccordionPrimitive.Header>
 ))
 AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName
@@ -51,12 +44,7 @@ const AccordionContent = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
   <AccordionPrimitive.Content
     ref={ref}
-    className={cn(
-      'overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down',
-      {
-        'data-[state=closed]:h-0 data-[state=closed]:invisible': props.forceMount,
-      }
-    )}
+    className="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
     {...props}
   >
     <div className={cn("pb-4 pt-0", className)}>{children}</div>

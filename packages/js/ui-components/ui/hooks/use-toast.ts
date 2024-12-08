@@ -4,7 +4,13 @@ import * as React from "react"
 import type {
   ToastActionElement,
   ToastProps,
-} from "./toast.js"
+} from "../toast.js"
+
+/**
+ * Customizations:
+ * - TOAST_LIMIT = 5
+ * - status?: prop
+ */
 
 const TOAST_LIMIT = 5
 const TOAST_REMOVE_DELAY = 1000000
