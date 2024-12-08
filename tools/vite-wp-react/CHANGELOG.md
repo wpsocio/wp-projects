@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.7
+
+### Patch Changes
+
+- [#216](https://github.com/wpsocio/wp-projects/pull/216) [`85fac93`](https://github.com/wpsocio/wp-projects/commit/85fac93c47341b7e5fcd1de3abed4d3eae1b12f0) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Fixed peer depencencies to support vite 6.0
+
 ## 1.0.6
 
 ### Patch Changes
