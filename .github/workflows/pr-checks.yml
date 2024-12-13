@@ -110,7 +110,7 @@ jobs:
     strategy:
       matrix:
         # Least version required and the latest version
-        php: ["7.4", "8.4"]
+        php: ["7.4", "8.3"]
         wp: ["6.4", "master"]
 
     steps:
