@@ -33,14 +33,14 @@
 		}
 	},
 	"dependencies": {
-		"@oclif/core": "^4.0.34",
+		"@oclif/core": "^4.0.37",
 		"chalk": "^5.3.0",
-		"zod": "^3.23.8"
+		"zod": "^3.24.1"
 	},
 	"devDependencies": {
 		"@manypkg/get-packages": "^2.2.2",
-		"@types/node": "^22.10.1",
-		"oclif": "^4.16.0",
+		"@types/node": "^22.10.2",
+		"oclif": "^4.16.2",
 		"tsup": "^8.3.5",
 		"typescript": "^5.7.2",
 		"wireit": "^0.14.9"
