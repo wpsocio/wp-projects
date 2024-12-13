@@ -28,13 +28,13 @@
 		"validate-build": "pnpm build-utils validate"
 	},
 	"dependencies": {
-		"@wordpress/components": "^28.13.0",
-		"@wordpress/data": "^10.13.0",
-		"@wordpress/edit-post": "^8.13.0",
-		"@wordpress/editor": "^14.13.0",
-		"@wordpress/element": "^6.13.0",
-		"@wordpress/media-utils": "^5.13.0",
-		"@wordpress/plugins": "^7.13.0",
+		"@wordpress/components": "^29.0.0",
+		"@wordpress/data": "^10.14.0",
+		"@wordpress/edit-post": "^8.14.0",
+		"@wordpress/editor": "^14.14.0",
+		"@wordpress/element": "^6.14.0",
+		"@wordpress/media-utils": "^5.14.0",
+		"@wordpress/plugins": "^7.14.0",
 		"@wpsocio/form": "workspace:*",
 		"@wpsocio/i18n": "workspace:*",
 		"@wpsocio/services": "workspace:*",
@@ -44,7 +44,7 @@
 		"ramda": "^0.30.1",
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1",
-		"zod": "^3.23.8"
+		"zod": "^3.24.1"
 	},
 	"devDependencies": {
 		"@types/jquery": "^3.5.32",
