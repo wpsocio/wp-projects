@@ -179,6 +179,7 @@ Yes, all you need to do is to setup **Private Notifications** module and use the
 11. Advanced Settings
 12. Post Edit Page (Classic Editor)
 13. Post Edit Page (Block Editor)
+14. Instant Send to Telegram
 
 == Installation ==
 
