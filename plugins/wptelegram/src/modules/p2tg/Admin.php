@@ -652,7 +652,7 @@ class Admin extends BaseClass {
 	/**
 	 * Add instant send to Telegram action to posts.
 	 *
-	 * @since x.y.z
+	 * @since 4.2.6
 	 *
 	 * @param array   $actions Array of actions.
 	 * @param WP_Post $post Post object.
