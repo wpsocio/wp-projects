@@ -497,20 +497,20 @@ class PostSender extends BaseClass {
 			}
 		}
 
-		if ( 'no' === $this->form_data['send2tg'] && $this->is_valid_status() ) {
+		if ( 'no' === $this->form_data['send2tg'] && Utils::is_valid_status( $this->post ) ) {
 			$this->clear_scheduled_hook();
 
 			$result .= ':' . __LINE__;
 		}
 
 		// if some rules should be bypassed.
-		if ( $ok && 'non_wp' === $trigger ) {
+		if ( $ok && in_array( $trigger, [ 'non_wp', 'instant' ], true ) ) {
 			$this->bypass_rules( $force );
 		}
 
 		$rules_apply = $ok && $this->rules_apply();
 
-		if ( $this->is_status_of_type( 'non_live' ) || ( $ok && ( $delay = $this->delay_in_posting( $trigger ) ) ) ) { //phpcs:ignore
+		if ( Utils::is_status_of_type( $this->post, 'non_live' ) || ( $ok && ( $delay = $this->delay_in_posting( $trigger ) ) ) ) { //phpcs:ignore
 
 			$this->may_be_save_options();
 
@@ -545,52 +545,6 @@ class PostSender extends BaseClass {
 		do_action( 'wptelegram_p2tg_post_finish', $this->post, $trigger, $ok, $this->options, self::$processed_posts );
 
 		return $result;
-	}
-
-	/**
-	 * The post statuses that are valid/allowed.
-	 *
-	 * @since 2.1.2
-	 */
-	public function get_valid_post_statuses() {
-		$valid_statuses = [
-			'live'     => [ // The ones that are live/visible.
-				'publish',
-				'private',
-			],
-			'non_live' => [ // The that are not yet live for the audience.
-				'future',
-				'draft',
-				'pending',
-			],
-		];
-		return (array) apply_filters( 'wptelegram_p2tg_valid_post_statuses', $valid_statuses, $this->post );
-	}
-
-	/**
-	 * If it's a valid status that the should be handled.
-	 *
-	 * @since 2.0.11
-	 */
-	public function is_valid_status() {
-
-		$valid_statuses = call_user_func_array( 'array_merge', array_values( $this->get_valid_post_statuses() ) );
-
-		return in_array( $this->post->post_status, $valid_statuses, true );
-	}
-
-	/**
-	 * If it's a live/non_live status.
-	 *
-	 * @param string $type The status type.
-	 *
-	 * @since 2.1.2
-	 */
-	public function is_status_of_type( $type ) {
-
-		$valid_statuses = $this->get_valid_post_statuses();
-
-		return in_array( $this->post->post_status, $valid_statuses[ $type ], true );
 	}
 
 	/**
@@ -649,8 +603,8 @@ class PostSender extends BaseClass {
 	 */
 	public function delay_in_posting( $trigger = '' ) {
 
-		// avoid infinite loop.
-		if ( 'delayed_post' === $trigger ) {
+		// No delay for instant posts or delayed posts.
+		if ( 'delayed_post' === $trigger || 'instant' === $trigger ) {
 			return 0;
 		}
 
@@ -787,7 +741,7 @@ class PostSender extends BaseClass {
 		}
 
 		// If not a valid status.
-		if ( ! $this->is_valid_status() ) {
+		if ( ! Utils::is_valid_status( $this->post ) ) {
 			return __LINE__;
 		}
 
@@ -847,7 +801,7 @@ class PostSender extends BaseClass {
 
 		$is_initial_rest_request = RequestCheck::if_is( RequestCheck::REST_PRE_INSERT, $this->post );
 
-		if ( $this->is_status_of_type( 'live' ) && ! $is_gb_metabox && ! $is_initial_rest_request ) {
+		if ( Utils::is_status_of_type( $this->post, 'live' ) && ! $is_gb_metabox && ! $is_initial_rest_request ) {
 			delete_post_meta( $this->post->ID, Main::PREFIX . 'options' );
 			delete_post_meta( $this->post->ID, Main::PREFIX . 'send2tg' );
 		}
