@@ -660,16 +660,17 @@ class Admin extends BaseClass {
 	 */
 	public function add_instant_post_action( $actions, $post ) {
 
-		$enable_instant_posting = apply_filters( 'wptelegram_p2tg_enable_instant_posting', true, $post, $actions );
-
-		if ( ! $enable_instant_posting ) {
+		if ( ! Utils::is_status_of_type( $post, 'live' ) || ! current_user_can( 'edit_posts' ) ) {
 			return $actions;
 		}
 
 		global $typenow;
 		$post_types = $this->get_override_meta_box_screens();
 
-		if ( in_array( $typenow, $post_types, true ) && current_user_can( 'edit_posts' ) && Utils::is_status_of_type( $post, 'live' ) ) {
+		$enable_instant_posting = in_array( $typenow, $post_types, true );
+		$enable_instant_posting = apply_filters( 'wptelegram_p2tg_enable_instant_posting', $enable_instant_posting, $post, $actions );
+
+		if ( $enable_instant_posting ) {
 
 			$link = add_query_arg(
 				[
