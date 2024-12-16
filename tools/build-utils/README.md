@@ -24,7 +24,7 @@ $ npm install -g @wpsocio/build-utils
 $ build-utils COMMAND
 running command...
 $ build-utils (--version)
-@wpsocio/build-utils/0.0.1 linux-x64 node-v22.11.0
+@wpsocio/build-utils/0.0.1 linux-x64 node-v22.12.0
 $ build-utils --help [COMMAND]
 USAGE
   $ build-utils COMMAND
