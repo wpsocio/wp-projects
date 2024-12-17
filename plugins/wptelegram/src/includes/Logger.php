@@ -184,7 +184,6 @@ class Logger extends BaseClass {
 		add_filter( 'wptelegram_p2tg_rules_apply', [ $this, 'add_rules_apply' ], 999, 3 );
 		add_filter( 'wptelegram_p2tg_bypass_post_date_rules', [ $this, 'add_bypass_post_date_rules' ], 999, 2 );
 		add_filter( 'wptelegram_p2tg_bypass_post_type_rules', [ $this, 'add_bypass_post_type_rules' ], 999, 2 );
-		add_filter( 'wptelegram_p2tg_is_post_new', [ $this, 'add_is_new_post' ], 999, 3 );
 		add_filter( 'wptelegram_p2tg_rules_send_new_post', [ $this, 'add_send_new_post' ], 999, 2 );
 		add_filter( 'wptelegram_p2tg_rules_send_existing_post', [ $this, 'add_send_existing_post' ], 999, 2 );
 		add_filter( 'wptelegram_p2tg_rules_send_post_type', [ $this, 'add_send_post_type' ], 999, 2 );
@@ -208,7 +207,7 @@ class Logger extends BaseClass {
 	/**
 	 * Get the current request type.
 	 *
-	 * @param WP_Post $post    The post being handled.
+	 * @param WP_Post $post The post being handled.
 	 */
 	private function get_request_type( $post ) {
 
@@ -231,6 +230,8 @@ class Logger extends BaseClass {
 	 * @param string  $trigger The source trigger.
 	 */
 	public function before_p2tg_log( $result, $post, $trigger ) {
+		// `is_new_post` is in a static class, so we want to add it only when Sending to Telegram.
+		add_filter( 'wptelegram_p2tg_is_post_new', [ $this, 'add_is_new_post' ], 999, 3 );
 
 		// create a an entry from post ID and its status.
 		$key = $this->get_key( $post );
@@ -276,9 +277,9 @@ class Logger extends BaseClass {
 	/**
 	 * Add delay post info.
 	 *
-	 * @param float   $delay       Delay in posting.
-	 * @param WP_Post $post        The post being handled.
-	 * @param array   $result      The result of delay handler.
+	 * @param float   $delay  Delay in posting.
+	 * @param WP_Post $post   The post being handled.
+	 * @param array   $result The result of delay handler.
 	 */
 	public function add_delay_post( $delay, $post, $result ) {
 
@@ -348,8 +349,8 @@ class Logger extends BaseClass {
 	/**
 	 * Add send_new_post info.
 	 *
-	 * @param boolean $send_new  Whether to send new post.
-	 * @param WP_Post $post      The post being handled.
+	 * @param boolean $send_new Whether to send new post.
+	 * @param WP_Post $post     The post being handled.
 	 */
 	public function add_send_new_post( $send_new, $post ) {
 
@@ -364,8 +365,8 @@ class Logger extends BaseClass {
 	/**
 	 * Add send_existing_post info.
 	 *
-	 * @param boolean $send_existing  Whether to send new post.
-	 * @param WP_Post $post      The post being handled.
+	 * @param boolean $send_existing Whether to send new post.
+	 * @param WP_Post $post          The post being handled.
 	 */
 	public function add_send_existing_post( $send_existing, $post ) {
 
@@ -396,8 +397,8 @@ class Logger extends BaseClass {
 	/**
 	 * Add send_post_type info.
 	 *
-	 * @param boolean $send_post_type  Whether the post is new.
-	 * @param WP_Post $post    The post being handled.
+	 * @param boolean $send_post_type Whether the post is new.
+	 * @param WP_Post $post           The post being handled.
 	 */
 	public function add_send_post_type( $send_post_type, $post ) {
 
@@ -498,8 +499,8 @@ class Logger extends BaseClass {
 	/**
 	 * Handle the debug action.
 	 *
-	 * @param Response $response  The API response.
-	 * @param API      $tg_api    The post being handled.
+	 * @param Response $response The API response.
+	 * @param API      $tg_api   The post being handled.
 	 */
 	public function add_bot_api_debug( $response, $tg_api ) {
 
