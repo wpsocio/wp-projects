@@ -52,7 +52,7 @@ class Utils {
 		// if the meta value is empty - it's new.
 		$is_new = empty( $sent2tg ) && ! $is_more_than_a_day_old;
 
-		return (bool) apply_filters( 'wptelegram_p2tg_is_post_new', $is_new, $post );
+		return (bool) apply_filters( 'wptelegram_p2tg_is_post_new', $is_new, $post, $is_more_than_a_day_old );
 	}
 
 	/**
