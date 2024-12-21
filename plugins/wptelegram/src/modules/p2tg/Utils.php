@@ -58,7 +58,7 @@ class Utils {
 	/**
 	 * The post statuses that are valid/allowed.
 	 *
-	 * @since x.y.z
+	 * @since 4.2.6
 	 *
 	 * @param WP_Post $post The post object.
 	 *
@@ -82,7 +82,7 @@ class Utils {
 	/**
 	 * If it's a valid status that the should be handled.
 	 *
-	 * @since x.y.z
+	 * @since 4.2.6
 	 *
 	 * @param WP_Post $post The post object.
 	 *
@@ -98,7 +98,7 @@ class Utils {
 	/**
 	 * If it's a live/non_live status.
 	 *
-	 * @since x.y.z
+	 * @since 4.2.6
 	 *
 	 * @param WP_Post $post The post object.
 	 * @param string  $status_type The type of status.
