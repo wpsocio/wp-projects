@@ -1,9 +1,11 @@
 import type { UserConfig } from 'vite';
 import viteWpReact, { type ViteWpReactOptions } from './index.js';
+import type { DevServerOptions } from './plugins/dev-server.js';
 import type { ReactMakePotOptions } from './plugins/react-make-pot.js';
 
 export type CreateViteConfigOptions = ViteWpReactOptions & {
 	makePot?: ReactMakePotOptions;
+	corsOrigin?: DevServerOptions['corsOrigin'];
 };
 
 /**
@@ -13,6 +15,7 @@ export function createViteConfig({
 	outDir,
 	input,
 	makePot,
+	corsOrigin,
 }: CreateViteConfigOptions): UserConfig {
 	return {
 		plugins: [
@@ -23,6 +26,7 @@ export function createViteConfig({
 					externalizeWpPackages: true,
 					enableReact: true,
 					makePot,
+					corsOrigin,
 				},
 			),
 		],
