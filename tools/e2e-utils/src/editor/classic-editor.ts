@@ -26,7 +26,17 @@ export class ClassicEditor extends BaseEditor {
 	}
 
 	async enableCodeEditor() {
-		await this.page.getByRole('button', { name: 'Text', exact: true }).click();
+		const button = this.page.getByRole('button', { name: 'Text', exact: true });
+
+		// The button was changed to "Code" in WordPress 6.7.2
+		if (await button.count()) {
+			await button.click();
+		} else {
+			await this.page
+				.getByRole('button', { name: 'Code', exact: true })
+				.first()
+				.click();
+		}
 	}
 
 	async insertShortCode(shortCode: string) {
