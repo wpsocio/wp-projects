@@ -168,7 +168,6 @@ jobs:
           name: e2e-artifacts-wp-${{ matrix.wp }}-php-${{ matrix.php }}
           path: |
             artifacts/
-            !artifacts/test-results
           if-no-files-found: ignore
 
       - name: Stop WordPress Environment
