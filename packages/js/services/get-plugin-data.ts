@@ -11,5 +11,6 @@ export const getPluginData = <
 	return dataKey
 		? // @ts-expect-error
 			pluginData?.[dataKey]
-		: pluginData;
+		: // @ts-ignore
+			pluginData;
 };

@@ -2,6 +2,7 @@ import viteReact from '@vitejs/plugin-react';
 import type { InputOption } from 'rollup';
 import type { Plugin, PluginOption } from 'vite';
 import {
+	type DevServerOptions,
 	type ExtractWpDependenciesOptions,
 	type ReactMakePotOptions,
 	devServer,
@@ -53,6 +54,11 @@ export type ViteWpReactConfig = {
 	 * Whether to enable React support.
 	 */
 	enableReact?: boolean;
+
+	/**
+	 * cors.origin value for the dev server.
+	 */
+	corsOrigin?: DevServerOptions['corsOrigin'];
 };
 
 export function viteWpReact(
@@ -82,7 +88,10 @@ export function viteWpReact(
 		},
 	};
 
-	const plugins: PluginOption = [mainPlugin, devServer()];
+	const plugins: PluginOption = [
+		mainPlugin,
+		devServer({ corsOrigin: config.corsOrigin }),
+	];
 
 	if (config.externalizeWpPackages) {
 		plugins.push(externalizeWpPackages());

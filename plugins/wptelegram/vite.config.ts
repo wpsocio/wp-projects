@@ -12,5 +12,6 @@ export default defineConfig(
 		makePot: {
 			output: 'src/languages/js-translations.pot',
 		},
+		corsOrigin: true,
 	}),
 );

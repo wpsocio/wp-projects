@@ -3,14 +3,15 @@ import path from 'node:path';
 import type { Plugin, ResolvedConfig } from 'vite';
 import { checkAvailablePort } from '../utils/check-available-port.js';
 
-type Options = {
+export type DevServerOptions = {
 	outDir?: string;
 	fileName?: string;
+	corsOrigin?: Array<string> | boolean;
 };
 
 const TARGET_PLUGINS = ['vite:react-refresh'];
 
-export function devServer(options: Options = {}): Plugin {
+export function devServer(options: DevServerOptions = {}): Plugin {
 	let resolvedConfig: ResolvedConfig;
 
 	function getTargetDir() {
@@ -56,6 +57,9 @@ export function devServer(options: Options = {}): Plugin {
 						port,
 						host,
 						protocol: hmrProtocol,
+					},
+					cors: {
+						origin: options.corsOrigin,
 					},
 				},
 			};
