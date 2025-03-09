@@ -570,7 +570,7 @@ msgstr "Это тестовое сообщение"
 msgid "Success"
 msgstr "Успешно"
 
-#: ../../packages/js/services/use-display-feedback.ts:68
+#: ../../packages/js/services/use-display-feedback.ts:71
 #: languages/wptelegram-widget-js-translations.php:26
 msgid "Lets fix these errors first."
 msgstr ""

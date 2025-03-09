@@ -163,6 +163,20 @@ Argument | Type | Description
 
 Source: [src/includes/Utils.php](../src/includes/Utils.php), [line 111](../src/includes/Utils.php#L111-L117)
 
+### `wptelegram_login_intercept_request_on`
+
+*Filter the hook and priority to use for intercepting the login request.*
+
+- [Examples](./examples/intercept_request_on.md)
+
+**Arguments**
+
+Argument | Type | Description
+-------- | ---- | -----------
+`$hook_and_priority` | `array` | The hook and priority.
+
+Source: [src/includes/Main.php](../src/includes/Main.php), [line 392](../src/includes/Main.php#L392-L399)
+
 ### `wptelegram_login_web_app_login_data`
 
 *Filters the data for the web app login.*
@@ -189,20 +203,6 @@ Argument | Type | Description
 `$translations` | `array` | The available translations.
 
 Source: [src/includes/AssetManager.php](../src/includes/AssetManager.php), [line 410](../src/includes/AssetManager.php#L410-L416)
-
-### `wptelegram_login_intercept_request_on`
-
-*Filter the hook and priority to use for intercepting the login request.*
-
-- [Examples](./examples/intercept_request_on.md)
-
-**Arguments**
-
-Argument | Type | Description
--------- | ---- | -----------
-`$hook_and_priority` | `array` | The hook and priority.
-
-Source: [src/includes/Main.php](../src/includes/Main.php), [line 392](../src/includes/Main.php#L392-L399)
 
 ### `wptelegram_login_validation_query_params`
 
@@ -410,6 +410,26 @@ Argument | Type | Description
 
 Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 711](../src/shared/LoginHandler.php#L711-L717)
 
+### `widget_title`
+
+*Filters the widget title.*
+
+**Arguments**
+
+Argument | Type | Description
+-------- | ---- | -----------
+`$title` | `string` | The widget title. Default 'Pages'.
+`$instance` | `array` | Array of settings for the current widget.
+`$this->id_base` |  | 
+
+**Changelog**
+
+Version | Description
+------- | -----------
+`1.0.0` | 
+
+Source: [src/shared/widgets/Primary.php](../src/shared/widgets/Primary.php), [line 46](../src/shared/widgets/Primary.php#L46-L55)
+
 ### `wptelegram_login_redirect_to`
 
 *Filters the redirect URL for the login button*
@@ -428,7 +448,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | 
 
-Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 125](../src/shared/Shared.php#L125-L134)
+Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 124](../src/shared/Shared.php#L124-L133)
 
 ### `wptelegram_login_telegram_callback_url`
 
@@ -448,7 +468,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | 
 
-Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 154](../src/shared/Shared.php#L154-L163)
+Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 153](../src/shared/Shared.php#L153-L162)
 
 ### `wptelegram_login_show_if_user_connected`
 
@@ -463,7 +483,7 @@ Argument | Type | Description
 `$show_if_connected` | `bool` | Whether to show the button if user is already connected.
 `$current_user_telegram_id` | `int` | The current user's Telegram ID.
 
-Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 218](../src/shared/Shared.php#L218-L226)
+Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 217](../src/shared/Shared.php#L217-L225)
 
 ### `wptelegram_login_show_if_user_is`
 
@@ -490,7 +510,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | 
 
-Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 232](../src/shared/Shared.php#L232-L248)
+Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 231](../src/shared/Shared.php#L231-L247)
 
 ### `wptelegram_login_use_telegram_avatar`
 
@@ -508,7 +528,7 @@ Argument | Type | Description
 `$url` | `string` | Avatar URL.
 `$id_or_email` | `mixed` | user id or email.
 
-Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 307](../src/shared/Shared.php#L307-L318)
+Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 306](../src/shared/Shared.php#L306-L317)
 
 ### `wptelegram_login_custom_avatar_url`
 
@@ -522,27 +542,7 @@ Argument | Type | Description
 `$url` | `string` | Avatar URL.
 `$id_or_email` | `mixed` | user id or email.
 
-Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 352](../src/shared/Shared.php#L352-L359)
-
-### `widget_title`
-
-*Filters the widget title.*
-
-**Arguments**
-
-Argument | Type | Description
--------- | ---- | -----------
-`$title` | `string` | The widget title. Default 'Pages'.
-`$instance` | `array` | Array of settings for the current widget.
-`$this->id_base` |  | 
-
-**Changelog**
-
-Version | Description
-------- | -----------
-`1.0.0` | 
-
-Source: [src/shared/widgets/Primary.php](../src/shared/widgets/Primary.php), [line 46](../src/shared/widgets/Primary.php#L46-L55)
+Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 351](../src/shared/Shared.php#L351-L358)
 
 
 <p align="center"><a href="https://github.com/pronamic/wp-documentor"><img src="https://cdn.jsdelivr.net/gh/pronamic/wp-documentor@main/logos/pronamic-wp-documentor.svgo-min.svg" alt="Pronamic WordPress Documentor" width="32" height="32"></a><br><em>Generated by <a href="https://github.com/pronamic/wp-documentor">Pronamic WordPress Documentor</a> <code>1.2.0</code></em><p>
