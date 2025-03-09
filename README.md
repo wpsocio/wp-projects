@@ -16,3 +16,12 @@ The monorepo contains tools to develop WordPress plugins/themes.
 
 - [`@wpsocio/wpdev`](./tools/wpdev)
 - [`@wpsocio/vite-wp-react`](./tools/vite-wp-react)
+
+## Getting started
+
+- Install Docker
+- Run
+  - `pnpm install`
+  - `pnpm setup:all`
+  - `pnpm env-start`
+  - `pnpm test:e2e`
