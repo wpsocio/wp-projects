@@ -184,7 +184,7 @@ msgstr ""
 msgid "Error:"
 msgstr ""
 
-#: ../../packages/js/services/use-display-feedback.ts:68
+#: ../../packages/js/services/use-display-feedback.ts:71
 #: languages/wptelegram-comments-js-translations.php:14
 msgid "Lets fix these errors first."
 msgstr "Idemo prvo popraviti greške."

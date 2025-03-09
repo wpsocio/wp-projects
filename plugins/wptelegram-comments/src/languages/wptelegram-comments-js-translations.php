@@ -10,7 +10,7 @@ $generated_i18n_strings = array(
 	// Reference: ../../packages/js/services/api-fetch/index.ts:41
 	__( 'Error:', 'wptelegram-comments' ),
 
-	// Reference: ../../packages/js/services/use-display-feedback.ts:68
+	// Reference: ../../packages/js/services/use-display-feedback.ts:71
 	__( 'Lets fix these errors first.', 'wptelegram-comments' ),
 
 	// Reference: ../../packages/js/services/use-submit-form.ts:64

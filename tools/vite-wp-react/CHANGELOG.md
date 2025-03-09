@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.8
+
+### Patch Changes
+
+- [#235](https://github.com/wpsocio/wp-projects/pull/235) [`c80bab1`](https://github.com/wpsocio/wp-projects/commit/c80bab15c194e0bc945a9152e27d83a6fb6d0b12) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Added corsOrigin option to vite-wp-react options to deal with latest Vite API
+
 ## 1.0.7
 
 ### Patch Changes
