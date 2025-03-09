@@ -149,5 +149,10 @@
 		"projectTypes": ["plugins"],
 		"envFiles": [".env"]
 	},
+	"pnpm": {
+		"overrides": {
+			"vite": "6.2.1"
+		}
+	},
 	"packageManager": "pnpm@9.15.0"
 }
