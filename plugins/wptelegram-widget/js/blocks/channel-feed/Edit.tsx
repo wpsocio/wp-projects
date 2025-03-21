@@ -59,6 +59,7 @@ export const Edit: React.FC<BlockEditProps<LegacyWidgetAtts>> = ({
 							onChange={onChangeWidth}
 							placeholder={`300 ${__('or')} 100%`}
 							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 						/>
 						<RadioControl
 							label={__('Author Photo')}
@@ -74,6 +75,7 @@ export const Edit: React.FC<BlockEditProps<LegacyWidgetAtts>> = ({
 							min="1"
 							max="50"
 							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 						/>
 					</Flex>
 				</PanelBody>

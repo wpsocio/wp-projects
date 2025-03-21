@@ -97,6 +97,7 @@ export const Edit: React.FC<BlockEditProps<TelegramLoginAtts>> = ({
 							min="0"
 							max="20"
 							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 						/>
 						<SelectControl
 							label={__('Language')}
@@ -104,6 +105,7 @@ export const Edit: React.FC<BlockEditProps<TelegramLoginAtts>> = ({
 							onChange={onChangeLang}
 							options={uiData.lang}
 							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 						/>
 						<SelectControl
 							label={__('Show if user is')}
@@ -111,6 +113,7 @@ export const Edit: React.FC<BlockEditProps<TelegramLoginAtts>> = ({
 							onChange={onChangeShowIfUserIs}
 							options={uiData.show_if_user_is}
 							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 						/>
 					</Flex>
 				</PanelBody>
