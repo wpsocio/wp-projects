@@ -102,6 +102,8 @@ class PostData {
 
 		$value = '';
 
+		$json_encode = 0;
+
 		switch ( $field ) {
 
 			case 'id':
@@ -265,6 +267,9 @@ class PostData {
 
 					$_field = preg_replace( '/^' . $match[1] . ':/i', '', $field );
 
+					// If the field name ends with :json, $json_encode will become 1.
+					$_field = preg_replace( '/:json$/i', '', $_field, 1, $json_encode );
+
 					switch ( $match[1] ) {
 
 						case 'terms': // if taxonomy.
@@ -303,16 +308,28 @@ class PostData {
 				break;
 		}
 
+		if ( $json_encode ) {
+			$value = wp_json_encode( $value );
+		}
+
 		$value = apply_filters( 'wptelegram_p2tg_post_data_field_value', $value, $field, $this->post, $options );
+
+		$value = apply_filters( "wptelegram_p2tg_post_data_{$field}_value", $value, $this->post, $options );
+
+		// If the value can't be converted to string.
+		if ( ! is_scalar( $value ) ) {
+			return '';
+		}
 
 		$remove_multi_eol = apply_filters( 'wptelegram_p2tg_post_data_remove_multi_eol', true, $this->post );
 
-		if ( $remove_multi_eol ) {
+		if ( $remove_multi_eol && ! $json_encode ) {
 			// remove multiple newlines.
 			$value = preg_replace( '/\n[\n\r\s]*\n[\n\r\s]*\n/u', "\n\n", $value );
 		}
 
-		return (string) apply_filters( "wptelegram_p2tg_post_data_{$field}_value", $value, $this->post, $options );
+		// If the value can be converted to string.
+		return (string) $value;
 	}
 
 	/**
