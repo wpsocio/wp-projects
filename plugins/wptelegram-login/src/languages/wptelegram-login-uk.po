@@ -181,14 +181,14 @@ msgstr "Показувати фото користувача"
 msgid "Corner Radius"
 msgstr "Кутовий радіус"
 
-#: js/blocks/telegram-login/Edit.tsx:102
+#: js/blocks/telegram-login/Edit.tsx:103
 #: js/settings/services/fields.ts:25
 #: languages/wptelegram-login-js-translations.php:85
 #: shared/widgets/Primary.php:175
 msgid "Language"
 msgstr ""
 
-#: js/blocks/telegram-login/Edit.tsx:109
+#: js/blocks/telegram-login/Edit.tsx:111
 #: js/settings/services/fields.ts:24
 #: languages/wptelegram-login-js-translations.php:89
 #: shared/widgets/Primary.php:183

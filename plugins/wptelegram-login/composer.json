@@ -1,6 +1,6 @@
 {
 	"name": "wpsocio/wptelegram-login",
-	"version": "1.11.8",
+	"version": "1.11.9",
 	"description": "Let the users login to your website with their Telegram and make it simple for them to get connected and let them receive their email notifications on Telegram.",
 	"scripts": {
 		"gen:docs": "\"vendor/bin/wp-documentor\" parse src --format=markdown --output=docs/README.md --relative=docs",

@@ -79,7 +79,7 @@ msgstr ""
 msgid "Leave empty for default."
 msgstr ""
 
-#: js/blocks/ajax-channel-feed/Edit.tsx:52
+#: js/blocks/ajax-channel-feed/Edit.tsx:53
 #: js/blocks/channel-feed/Edit.tsx:57
 #: js/settings/services/fields.ts:17
 #: languages/wptelegram-widget-js-translations.php:132
@@ -88,20 +88,20 @@ msgstr ""
 msgid "Widget Width"
 msgstr "Ширина виджета"
 
-#: js/blocks/ajax-channel-feed/Edit.tsx:59
+#: js/blocks/ajax-channel-feed/Edit.tsx:61
 #: js/settings/services/fields.ts:18
 #: languages/wptelegram-widget-js-translations.php:136
 #: shared/widgets/Ajax.php:138
 msgid "Widget Height"
 msgstr ""
 
-#: js/blocks/ajax-channel-feed/Edit.tsx:71
+#: js/blocks/ajax-channel-feed/Edit.tsx:74
 #: js/blocks/ajax-channel-feed/index.tsx:14
 #: languages/wptelegram-widget-js-translations.php:140
 msgid "Telegram Channel Ajax Feed"
 msgstr ""
 
-#: js/blocks/channel-feed/Edit.tsx:64
+#: js/blocks/channel-feed/Edit.tsx:65
 #: js/blocks/single-post/Controls.tsx:37
 #: js/settings/services/fields.ts:19
 #: languages/wptelegram-widget-js-translations.php:145
@@ -109,14 +109,14 @@ msgstr ""
 msgid "Author Photo"
 msgstr "Фото автора"
 
-#: js/blocks/channel-feed/Edit.tsx:70
+#: js/blocks/channel-feed/Edit.tsx:71
 #: js/settings/services/fields.ts:20
 #: languages/wptelegram-widget-js-translations.php:149
 #: shared/widgets/Legacy.php:144
 msgid "Number of Messages"
 msgstr "Номер сообщения"
 
-#: js/blocks/channel-feed/Edit.tsx:84
+#: js/blocks/channel-feed/Edit.tsx:86
 #: js/blocks/channel-feed/index.tsx:13
 #: languages/wptelegram-widget-js-translations.php:153
 msgid "Telegram Channel Feed"
@@ -134,7 +134,7 @@ msgstr ""
 msgid "Channel Link"
 msgstr ""
 
-#: js/blocks/join-channel/Controls.tsx:63
+#: js/blocks/join-channel/Controls.tsx:64
 #: js/settings/services/fields.ts:24
 #: languages/wptelegram-widget-js-translations.php:164
 #: shared/widgets/JoinChannel.php:122
@@ -267,7 +267,7 @@ msgid "This is the default username, you can override it in widgets and shortcod
 msgstr ""
 
 #: ../../packages/js/shared-ui/components/widget-info/widget-info.tsx:59
-#: js/blocks/ajax-channel-feed/Edit.tsx:62
+#: js/blocks/ajax-channel-feed/Edit.tsx:64
 #: js/blocks/channel-feed/Edit.tsx:60
 #: js/settings/ui/ajaxWidget/AjaxWidget.tsx:54
 #: js/settings/ui/legacyWidget/LegacyWidget.tsx:40

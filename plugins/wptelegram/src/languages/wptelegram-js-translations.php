@@ -60,7 +60,7 @@ $generated_i18n_strings = array(
 
 	// Reference: ../../packages/js/shared-ui/form/submit/submit-button.tsx:12
 	// Reference: ../../packages/js/shared-ui/wptelegram/p2tg-instructions.tsx:120
-	// Reference: js/p2tg-block-editor/OverrideSettings.tsx:124
+	// Reference: js/p2tg-block-editor/OverrideSettings.tsx:125
 	// Reference: js/settings/ui/basics/instructions.tsx:70
 	__( 'Save Changes', 'wptelegram' ),
 
@@ -196,7 +196,7 @@ $generated_i18n_strings = array(
 	__( 'Image Position', 'wptelegram' ),
 
 	// Reference: ../../packages/js/shared-ui/wptelegram/fields.ts:31
-	// Reference: js/p2tg-block-editor/OverrideSettings.tsx:113
+	// Reference: js/p2tg-block-editor/OverrideSettings.tsx:114
 	__( 'Message Template', 'wptelegram' ),
 
 	// Reference: ../../packages/js/shared-ui/wptelegram/fields.ts:32
@@ -236,7 +236,7 @@ $generated_i18n_strings = array(
 	__( 'Username', 'wptelegram' ),
 
 	// Reference: ../../packages/js/shared-ui/wptelegram/fields.ts:43
-	// Reference: js/p2tg-block-editor/OverrideSettings.tsx:106
+	// Reference: js/p2tg-block-editor/OverrideSettings.tsx:107
 	__( 'Featured Image', 'wptelegram' ),
 
 	// Reference: ../../packages/js/shared-ui/wptelegram/fields.ts:44
@@ -259,7 +259,7 @@ $generated_i18n_strings = array(
 	__( 'After the Text', 'wptelegram' ),
 
 	// Reference: ../../packages/js/shared-ui/wptelegram/image-settings.tsx:43
-	// Reference: js/p2tg-block-editor/OverrideSettings.tsx:109
+	// Reference: js/p2tg-block-editor/OverrideSettings.tsx:110
 	__( 'Send Featured Image (if exists).', 'wptelegram' ),
 
 	// Reference: ../../packages/js/shared-ui/wptelegram/link-preview-options.tsx:28

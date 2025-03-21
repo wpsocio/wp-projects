@@ -64,7 +64,7 @@ $generated_i18n_strings = array(
 	__( 'Inside the theme templates', 'wptelegram-widget' ),
 
 	// Reference: ../../packages/js/shared-ui/components/widget-info/widget-info.tsx:59
-	// Reference: js/blocks/ajax-channel-feed/Edit.tsx:62
+	// Reference: js/blocks/ajax-channel-feed/Edit.tsx:64
 	// Reference: js/blocks/channel-feed/Edit.tsx:60
 	// Reference: js/settings/ui/ajaxWidget/AjaxWidget.tsx:54
 	// Reference: js/settings/ui/legacyWidget/LegacyWidget.tsx:40
@@ -126,29 +126,29 @@ $generated_i18n_strings = array(
 	// Reference: js/blocks/ajax-channel-feed/Edit.tsx:46
 	__( 'Leave empty for default.', 'wptelegram-widget' ),
 
-	// Reference: js/blocks/ajax-channel-feed/Edit.tsx:52
+	// Reference: js/blocks/ajax-channel-feed/Edit.tsx:53
 	// Reference: js/blocks/channel-feed/Edit.tsx:57
 	// Reference: js/settings/services/fields.ts:17
 	__( 'Widget Width', 'wptelegram-widget' ),
 
-	// Reference: js/blocks/ajax-channel-feed/Edit.tsx:59
+	// Reference: js/blocks/ajax-channel-feed/Edit.tsx:61
 	// Reference: js/settings/services/fields.ts:18
 	__( 'Widget Height', 'wptelegram-widget' ),
 
-	// Reference: js/blocks/ajax-channel-feed/Edit.tsx:71
+	// Reference: js/blocks/ajax-channel-feed/Edit.tsx:74
 	// Reference: js/blocks/ajax-channel-feed/index.tsx:14
 	__( 'Telegram Channel Ajax Feed', 'wptelegram-widget' ),
 
-	// Reference: js/blocks/channel-feed/Edit.tsx:64
+	// Reference: js/blocks/channel-feed/Edit.tsx:65
 	// Reference: js/blocks/single-post/Controls.tsx:37
 	// Reference: js/settings/services/fields.ts:19
 	__( 'Author Photo', 'wptelegram-widget' ),
 
-	// Reference: js/blocks/channel-feed/Edit.tsx:70
+	// Reference: js/blocks/channel-feed/Edit.tsx:71
 	// Reference: js/settings/services/fields.ts:20
 	__( 'Number of Messages', 'wptelegram-widget' ),
 
-	// Reference: js/blocks/channel-feed/Edit.tsx:84
+	// Reference: js/blocks/channel-feed/Edit.tsx:86
 	// Reference: js/blocks/channel-feed/index.tsx:13
 	__( 'Telegram Channel Feed', 'wptelegram-widget' ),
 
@@ -159,7 +159,7 @@ $generated_i18n_strings = array(
 	// Reference: js/settings/services/fields.ts:23
 	__( 'Channel Link', 'wptelegram-widget' ),
 
-	// Reference: js/blocks/join-channel/Controls.tsx:63
+	// Reference: js/blocks/join-channel/Controls.tsx:64
 	// Reference: js/settings/services/fields.ts:24
 	__( 'Button text', 'wptelegram-widget' ),
 
