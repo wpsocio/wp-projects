@@ -101,6 +101,7 @@ export const OverrideSettings: React.FC = () => {
 										min={0}
 										type="number"
 										__nextHasNoMarginBottom
+										__next40pxDefaultSize
 									/>
 									<ToggleControl
 										label={__('Featured Image')}
