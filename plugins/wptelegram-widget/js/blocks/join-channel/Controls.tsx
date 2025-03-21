@@ -58,12 +58,14 @@ export const Controls: React.FC<ControlsProps> = ({
 							onChange={onChangeChannelLink}
 							type="url"
 							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 						/>
 						<TextControl
 							label={__('Button text')}
 							value={text || ''}
 							onChange={onChangeButtonText}
 							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 						/>
 					</Flex>
 				</PanelBody>

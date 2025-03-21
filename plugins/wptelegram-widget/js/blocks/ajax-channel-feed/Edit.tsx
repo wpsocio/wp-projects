@@ -47,6 +47,7 @@ export const Edit: React.FC<BlockEditProps<AjaxWidgetAtts>> = ({
 							)}
 							placeholder={savedSettings?.username || 'WPTelegram'}
 							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 						/>
 						<TextControl
 							label={__('Widget Width')}
@@ -54,6 +55,7 @@ export const Edit: React.FC<BlockEditProps<AjaxWidgetAtts>> = ({
 							onChange={onChangeWidth}
 							placeholder={`300 ${__('or')} 100%`}
 							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 						/>
 						<TextControl
 							label={__('Widget Height')}
@@ -61,6 +63,7 @@ export const Edit: React.FC<BlockEditProps<AjaxWidgetAtts>> = ({
 							onChange={onChangeHeight}
 							placeholder={`300 ${__('or')} 100%`}
 							__nextHasNoMarginBottom
+							__next40pxDefaultSize
 						/>
 					</Flex>
 				</PanelBody>
