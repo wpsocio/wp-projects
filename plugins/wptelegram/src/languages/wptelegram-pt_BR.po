@@ -215,7 +215,7 @@ msgstr "Bata %s abaixo."
 
 #: ../../packages/js/shared-ui/form/submit/submit-button.tsx:12
 #: ../../packages/js/shared-ui/wptelegram/p2tg-instructions.tsx:120
-#: js/p2tg-block-editor/OverrideSettings.tsx:124
+#: js/p2tg-block-editor/OverrideSettings.tsx:125
 #: js/settings/ui/basics/instructions.tsx:70
 #: languages/wptelegram-js-translations.php:65
 msgid "Save Changes"
@@ -418,21 +418,21 @@ msgid "Files"
 msgstr ""
 
 #: ../../packages/js/shared-ui/wptelegram/fields.ts:43
-#: js/p2tg-block-editor/OverrideSettings.tsx:106
+#: js/p2tg-block-editor/OverrideSettings.tsx:107
 #: languages/wptelegram-js-translations.php:240
 #: modules/p2tg/Admin.php:485
 msgid "Featured Image"
 msgstr "Imagem em destaque"
 
 #: ../../packages/js/shared-ui/wptelegram/image-settings.tsx:43
-#: js/p2tg-block-editor/OverrideSettings.tsx:109
+#: js/p2tg-block-editor/OverrideSettings.tsx:110
 #: languages/wptelegram-js-translations.php:263
 #: modules/p2tg/Admin.php:486
 msgid "Send Featured Image (if exists)."
 msgstr "Enviar imagem em destaque (se existir)."
 
 #: ../../packages/js/shared-ui/wptelegram/fields.ts:31
-#: js/p2tg-block-editor/OverrideSettings.tsx:113
+#: js/p2tg-block-editor/OverrideSettings.tsx:114
 #: languages/wptelegram-js-translations.php:200
 #: modules/p2tg/Admin.php:497
 msgid "Message Template"

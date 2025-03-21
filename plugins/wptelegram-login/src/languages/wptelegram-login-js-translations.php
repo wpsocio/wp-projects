@@ -80,11 +80,11 @@ $generated_i18n_strings = array(
 	// Reference: ../../packages/js/utilities/fields.ts:42
 	__( 'Changes could not be saved.', 'wptelegram-login' ),
 
-	// Reference: js/blocks/telegram-login/Edit.tsx:102
+	// Reference: js/blocks/telegram-login/Edit.tsx:103
 	// Reference: js/settings/services/fields.ts:25
 	__( 'Language', 'wptelegram-login' ),
 
-	// Reference: js/blocks/telegram-login/Edit.tsx:109
+	// Reference: js/blocks/telegram-login/Edit.tsx:111
 	// Reference: js/settings/services/fields.ts:24
 	__( 'Show if user is', 'wptelegram-login' ),
 

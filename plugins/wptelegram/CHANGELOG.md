@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.2.8
+
+### Patch Changes
+
+- [#237](https://github.com/wpsocio/wp-projects/pull/237) [`265291b`](https://github.com/wpsocio/wp-projects/commit/265291ba56732da83041f1aac502caad7169f733) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Add support for {cf:field-name:json} for custom fields
+
+- [#237](https://github.com/wpsocio/wp-projects/pull/237) [`265291b`](https://github.com/wpsocio/wp-projects/commit/265291ba56732da83041f1aac502caad7169f733) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Fix PHP warning for array to string conversion
+
 ## 4.2.7
 
 ### Patch Changes
