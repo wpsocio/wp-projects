@@ -51,18 +51,18 @@
 	},
 	"dependencies": {
 		"@vitejs/plugin-react": "^4.3.4",
-		"@wordpress/babel-plugin-makepot": "^6.14.0",
-		"esbuild": "^0.24.2",
+		"@wordpress/babel-plugin-makepot": "^6.20.0",
+		"esbuild": "^0.25.1",
 		"rollup-plugin-external-globals": "^0.13.0",
-		"vite-plugin-external": "^4.3.1"
+		"vite-plugin-external": "^6.0.1"
 	},
 	"devDependencies": {
-		"@types/node": "^22.10.2",
+		"@types/node": "^22.13.11",
 		"rimraf": "^6.0.1",
-		"rollup": "^4.29.0",
-		"tsup": "^8.3.5",
-		"typescript": "^5.7.2",
-		"wireit": "^0.14.9"
+		"rollup": "^4.37.0",
+		"tsup": "^8.4.0",
+		"typescript": "^5.8.2",
+		"wireit": "^0.14.11"
 	},
 	"peerDependencies": {
 		"vite": "^4.2.0 || ^5 || ^6"
