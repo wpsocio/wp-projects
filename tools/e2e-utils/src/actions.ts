@@ -86,14 +86,14 @@ export class Actions {
 	}
 
 	async assertNotification(status: 'success' | 'error', message: string) {
-		const notifications = this.page.getByRole('region', {
-			name: 'Notifications',
-		});
+		const notifications = this.page.locator('section[aria-live="polite"]');
 
-		const notificationShown = notifications.locator('li[role="status"]', {
-			has: this.page.locator(`div[data-status="${status}"]`),
-			hasText: message,
-		});
+		const notificationShown = notifications.locator(
+			`li[data-type="${status}"]`,
+			{
+				hasText: message,
+			},
+		);
 
 		await notificationShown.waitFor();
 	}
