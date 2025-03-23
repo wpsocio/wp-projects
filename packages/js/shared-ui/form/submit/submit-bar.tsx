@@ -1,5 +1,5 @@
 import { useFormState } from '@wpsocio/form';
-import { Separator } from '@wpsocio/ui-components/ui/separator.js';
+import { Separator } from '@wpsocio/ui/components/separator';
 import { useCallback } from 'react';
 import { ResetButton } from './reset-button.js';
 import { SubmitButton } from './submit-button.js';

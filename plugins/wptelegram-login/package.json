@@ -37,7 +37,7 @@
 		"@wpsocio/i18n": "workspace:*",
 		"@wpsocio/services": "workspace:*",
 		"@wpsocio/shared-ui": "workspace:*",
-		"@wpsocio/ui-components": "workspace:*",
+		"@wpsocio/ui": "workspace:*",
 		"@wpsocio/utilities": "workspace:*",
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1",
@@ -51,8 +51,7 @@
 		"@types/wordpress__blocks": "^12.5.16",
 		"@wpsocio/build-utils": "workspace:*",
 		"@wpsocio/vite-wp-react": "workspace:*",
-		"autoprefixer": "^10.4.20",
-		"tailwindcss": "^3.4.17",
+		"tailwindcss": "^4.0.15",
 		"typescript": "^5.7.2",
 		"vite": "^6.2.1",
 		"wireit": "^0.14.9"
@@ -72,9 +71,7 @@
 				]
 			},
 			{
-				"paths": [
-					"src/assets/build/dev-server.json"
-				],
+				"paths": ["src/assets/build/dev-server.json"],
 				"rules": [
 					{
 						"value": "NOT_EXISTS"
@@ -86,21 +83,15 @@
 	"wireit": {
 		"build": {
 			"command": "vite build && pnpm run validate-build",
-			"output": [
-				"src/assets/build"
-			]
+			"output": ["src/assets/build"]
 		},
 		"setup:php": {
 			"command": "composer install --ignore-platform-reqs",
-			"dependencies": [
-				"unset-vendor-dir"
-			]
+			"dependencies": ["unset-vendor-dir"]
 		},
 		"setup:php:prod": {
 			"command": "composer install --no-dev && pnpm run unset-vendor-dir",
-			"dependencies": [
-				"set-prod-vendor"
-			]
+			"dependencies": ["set-prod-vendor"]
 		},
 		"set-prod-vendor": {
 			"command": "composer config vendor-dir src/vendor"

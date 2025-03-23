@@ -1,8 +1,8 @@
 import { useWatch } from '@wpsocio/form';
 import { __, sprintf } from '@wpsocio/i18n';
-import { FormControl } from '@wpsocio/ui-components/ui/form.js';
-import { Input } from '@wpsocio/ui-components/wrappers/input.js';
-import { Switch } from '@wpsocio/ui-components/wrappers/switch.js';
+import { FormControl } from '@wpsocio/ui/components/form';
+import { Input } from '@wpsocio/ui/wrappers/input';
+import { Switch } from '@wpsocio/ui/wrappers/switch';
 import createInterpolateElement from '@wpsocio/utilities/createInterpolateElement.js';
 import { prefixName } from '@wpsocio/utilities/misc.js';
 import { Code } from '../components/code.js';

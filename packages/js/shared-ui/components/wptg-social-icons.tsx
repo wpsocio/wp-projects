@@ -1,5 +1,5 @@
 import { __, sprintf } from '@wpsocio/i18n';
-import { Link } from '@wpsocio/ui-components/wrappers/link.js';
+import { Link } from '@wpsocio/ui/wrappers/link';
 import { insertScript } from '@wpsocio/utilities/misc.js';
 import { useEffect } from 'react';
 

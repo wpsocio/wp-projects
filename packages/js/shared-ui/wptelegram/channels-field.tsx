@@ -1,12 +1,12 @@
 import { useFieldArray, useFieldError, useFormContext } from '@wpsocio/form';
 import { __ } from '@wpsocio/i18n';
-import { Plus } from '@wpsocio/ui-components/icons/index.js';
-import { Button } from '@wpsocio/ui-components/wrappers/button.js';
+import { Plus } from '@wpsocio/ui/icons';
+import { Button } from '@wpsocio/ui/wrappers/button';
 import {
 	FormDescription,
 	FormLabel,
 	FormMessage,
-} from '@wpsocio/ui-components/wrappers/form.js';
+} from '@wpsocio/ui/wrappers/form';
 import { ChannelField, type ChannelFieldProps } from './channel-field.js';
 
 export type ChannelsFieldProps = Pick<

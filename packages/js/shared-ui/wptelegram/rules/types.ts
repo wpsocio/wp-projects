@@ -1,5 +1,5 @@
 import type { ArrayField, RepeatableValue } from '@wpsocio/form/types.js';
-import type { OptionsType } from '@wpsocio/ui-components/wrappers/types.js';
+import type { OptionsType } from '@wpsocio/ui/wrappers/types';
 
 export type Rule = Partial<
 	ArrayField<{

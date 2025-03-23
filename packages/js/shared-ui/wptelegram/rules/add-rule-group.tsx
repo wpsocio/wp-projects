@@ -1,6 +1,6 @@
 import { __ } from '@wpsocio/i18n';
-import { Plus } from '@wpsocio/ui-components/icons/index.js';
-import { Button } from '@wpsocio/ui-components/wrappers/button.js';
+import { Plus } from '@wpsocio/ui/icons';
+import { Button } from '@wpsocio/ui/wrappers/button';
 
 type AddRuleGroupProps = {
 	onAdd: VoidFunction;

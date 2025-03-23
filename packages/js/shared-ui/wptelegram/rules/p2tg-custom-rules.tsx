@@ -1,7 +1,7 @@
 import { useFieldArray } from '@wpsocio/form';
 import { __ } from '@wpsocio/i18n';
-import { cn } from '@wpsocio/ui-components';
-import { VerticalDivider } from '@wpsocio/ui-components/wrappers/vertical-divider.js';
+import { cn } from '@wpsocio/ui/lib/utils';
+import { VerticalDivider } from '@wpsocio/ui/wrappers/vertical-divider';
 import { prefixName } from '@wpsocio/utilities/misc.js';
 import { AddRuleGroup } from './add-rule-group.js';
 import { DEFAULT_RULE } from './constants.js';

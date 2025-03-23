@@ -2,8 +2,8 @@ import { useFormContext, useWatch } from '@wpsocio/form';
 import { __ } from '@wpsocio/i18n';
 import { FormField } from '@wpsocio/shared-ui/form/form-field';
 import { FormItem } from '@wpsocio/shared-ui/form/form-item';
-import { Textarea } from '@wpsocio/ui-components/ui/textarea.js';
-import { FormControl } from '@wpsocio/ui-components/wrappers/form.js';
+import { Textarea } from '@wpsocio/ui/components/textarea';
+import { FormControl } from '@wpsocio/ui/wrappers/form';
 import $ from 'jquery';
 import { useEffect } from 'react';
 

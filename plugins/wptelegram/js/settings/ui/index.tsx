@@ -1,7 +1,7 @@
 import './styles.scss';
 
 import { cleanup, setI18nData } from '@wpsocio/services/utils.js';
-import { Toaster } from '@wpsocio/ui-components/ui/toaster';
+import { Toaster } from '@wpsocio/ui/components/sonner';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { ROOT_ID } from '../constants';
@@ -9,8 +9,8 @@ import App from './App';
 
 const root = document.getElementById(ROOT_ID);
 
-// clea up notifications etc.
-cleanup(ROOT_ID);
+// clean up notifications etc.
+cleanup(ROOT_ID, { disableCommonCSS: true });
 
 window.__WPSOCIO_UI_ROOT_SELECTOR = `#${ROOT_ID}`;
 

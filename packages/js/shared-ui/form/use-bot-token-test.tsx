@@ -1,7 +1,7 @@
 import { __ } from '@wpsocio/i18n';
 import type { ResultType } from '@wpsocio/services/api-fetch/types.js';
 import { testBotToken } from '@wpsocio/services/telegram/telegram-utils.js';
-import { Button } from '@wpsocio/ui-components/wrappers/button.js';
+import { Button } from '@wpsocio/ui/wrappers/button';
 import { BOT_TOKEN_REGEX } from '@wpsocio/utilities/constants.js';
 import type React from 'react';
 import { useCallback, useMemo, useState } from 'react';

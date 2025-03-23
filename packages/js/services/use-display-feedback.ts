@@ -1,12 +1,11 @@
 import { __ } from '@wpsocio/i18n';
-import {
-	type Toast,
-	useToast,
-} from '@wpsocio/ui-components/ui/hooks/use-toast.js';
+import { type ToastProps, toast } from '@wpsocio/ui/wrappers/toast';
 import { FORM_ERROR } from '@wpsocio/utilities/constants.js';
 import { getErrorStrings } from '@wpsocio/utilities/misc.js';
 import type { AnyObject } from '@wpsocio/utilities/types.js';
 import { useCallback, useMemo } from 'react';
+
+type Toast = ToastProps & { title: string };
 
 interface DisplayFeedback {
 	displayError: (props: Toast) => void;
@@ -18,27 +17,18 @@ interface DisplayFeedback {
 type DF = DisplayFeedback;
 
 export const useDisplayFeedback = (): DF => {
-	const { toast } = useToast();
-
 	const displayError = useCallback<DF['displayError']>(
-		(props) => {
-			toast({
-				status: 'error',
-				...props,
-				variant: 'destructive',
-			});
+		({ title, ...props }) => {
+			toast.error(title, props);
 		},
-		[toast],
+		[],
 	);
 
 	const displaySuccess = useCallback<DF['displayError']>(
-		(props) => {
-			toast({
-				status: 'success',
-				...props,
-			});
+		({ title, ...props }) => {
+			toast.success(title, props);
 		},
-		[toast],
+		[],
 	);
 
 	const displayErrors = useCallback(
@@ -58,7 +48,7 @@ export const useDisplayFeedback = (): DF => {
 
 			if (submitError || formError) {
 				const title = submitError ?? formError;
-				displayError({ title, variant: 'destructive' });
+				displayError({ title });
 			}
 			displayErrors(errors);
 		},
@@ -70,7 +60,7 @@ export const useDisplayFeedback = (): DF => {
 			const title =
 				typeof error === 'string' ? error : __('Lets fix these errors first.');
 			displayErrors(errors);
-			displayError({ title, variant: 'destructive' });
+			displayError({ title });
 		},
 		[displayError, displayErrors],
 	);

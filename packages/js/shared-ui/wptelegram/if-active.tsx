@@ -2,7 +2,7 @@ import { useWatch } from '@wpsocio/form';
 import {
 	Collapsible,
 	CollapsibleContent,
-} from '@wpsocio/ui-components/ui/collapsible.js';
+} from '@wpsocio/ui/components/collapsible';
 
 export type IfActiveProps = {
 	name: string;

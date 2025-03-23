@@ -1,9 +1,9 @@
 import { __ } from '@wpsocio/i18n';
-import { FormControl } from '@wpsocio/ui-components/ui/form.js';
-import { Separator } from '@wpsocio/ui-components/ui/separator.js';
-import { Link } from '@wpsocio/ui-components/wrappers/link.js';
-import { Switch } from '@wpsocio/ui-components/wrappers/switch.js';
-import type { OptionProps } from '@wpsocio/ui-components/wrappers/types.js';
+import { FormControl } from '@wpsocio/ui/components/form';
+import { Separator } from '@wpsocio/ui/components/separator';
+import { Link } from '@wpsocio/ui/wrappers/link';
+import { Switch } from '@wpsocio/ui/wrappers/switch';
+import type { OptionProps } from '@wpsocio/ui/wrappers/types';
 import { prefixName } from '@wpsocio/utilities/misc.js';
 import { useMemo } from 'react';
 import { Code } from '../components/code.js';

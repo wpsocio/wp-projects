@@ -1,7 +1,7 @@
 import { __, sprintf } from '@wpsocio/i18n';
 import { Code } from '@wpsocio/shared-ui/components/code.js';
 import { Instructions as InstructionsUI } from '@wpsocio/shared-ui/components/instructions.js';
-import { Link } from '@wpsocio/ui-components/wrappers/link.js';
+import { Link } from '@wpsocio/ui/wrappers/link';
 import { createInterpolateElement } from '@wpsocio/utilities/createInterpolateElement.js';
 
 export const Instructions: React.FC = () => {

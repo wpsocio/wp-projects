@@ -1,5 +1,5 @@
 import { type BaseApiUtilArgs, fetchAPI } from '@wpsocio/services/api-fetch';
-import type { OptionsType } from '@wpsocio/ui-components/wrappers/types';
+import type { OptionsType } from '@wpsocio/ui/wrappers/types';
 import { useCallback } from 'react';
 import { getDomData } from './getDomData';
 

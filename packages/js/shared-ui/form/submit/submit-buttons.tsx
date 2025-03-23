@@ -1,4 +1,4 @@
-import { cn } from '@wpsocio/ui-components';
+import { cn } from '@wpsocio/ui/lib/utils';
 
 export const SubmitButtons: React.FC<React.HTMLAttributes<HTMLDivElement>> = (
 	props,

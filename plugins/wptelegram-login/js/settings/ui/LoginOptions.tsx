@@ -2,15 +2,12 @@ import { useFormContext, useWatch } from '@wpsocio/form';
 import { __ } from '@wpsocio/i18n';
 import { SectionCard } from '@wpsocio/shared-ui/components/section-card.js';
 import { FormItem } from '@wpsocio/shared-ui/form/form-item';
-import { cn } from '@wpsocio/ui-components';
-import {
-	FormControl,
-	FormField,
-} from '@wpsocio/ui-components/wrappers/form.js';
-import { Input } from '@wpsocio/ui-components/wrappers/input';
-import { RadioGroup } from '@wpsocio/ui-components/wrappers/radio-group';
-import { Select } from '@wpsocio/ui-components/wrappers/select.js';
-import { Switch } from '@wpsocio/ui-components/wrappers/switch.js';
+import { cn } from '@wpsocio/ui/lib/utils';
+import { FormControl, FormField } from '@wpsocio/ui/wrappers/form';
+import { Input } from '@wpsocio/ui/wrappers/input';
+import { RadioGroup } from '@wpsocio/ui/wrappers/radio-group';
+import { Select } from '@wpsocio/ui/wrappers/select';
+import { Switch } from '@wpsocio/ui/wrappers/switch';
 import { useCallback, useState } from 'react';
 import { type DataShape, getDomData, getFieldLabel } from '../services';
 

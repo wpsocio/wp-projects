@@ -1,6 +1,6 @@
 import { __ } from '@wpsocio/i18n';
-import { FormControl } from '@wpsocio/ui-components/ui/form.js';
-import { RadioGroup } from '@wpsocio/ui-components/wrappers/radio-group.js';
+import { FormControl } from '@wpsocio/ui/components/form';
+import { RadioGroup } from '@wpsocio/ui/wrappers/radio-group';
 import { SectionCard } from '../../components/section-card.js';
 import { YouTubeVideo } from '../../components/youtube-video.js';
 import { FormField } from '../../form/form-field.js';

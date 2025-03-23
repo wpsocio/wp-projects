@@ -8,7 +8,7 @@
 			"node_modules/*",
 			"vendor/*",
 			".wireit/*",
-			"./packages/js/ui-components/ui/*"
+			"./packages/js/ui/src/components/*"
 		]
 	},
 	"organizeImports": {

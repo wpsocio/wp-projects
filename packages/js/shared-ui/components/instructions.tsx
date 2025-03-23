@@ -1,5 +1,5 @@
 import { __ } from '@wpsocio/i18n';
-import { cn } from '@wpsocio/ui-components';
+import { cn } from '@wpsocio/ui/lib/utils';
 import { SectionCard, type SectionCardProps } from './section-card.js';
 
 export interface InstructionsProps extends SectionCardProps {

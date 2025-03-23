@@ -1,13 +1,10 @@
 import { useFormContext } from '@wpsocio/form';
 import { __ } from '@wpsocio/i18n';
 import { FormItem } from '@wpsocio/shared-ui/form/form-item';
-import {
-	FormControl,
-	FormField,
-} from '@wpsocio/ui-components/wrappers/form.js';
-import { Input } from '@wpsocio/ui-components/wrappers/input.js';
-import { RadioGroup } from '@wpsocio/ui-components/wrappers/radio-group';
-import { Switch } from '@wpsocio/ui-components/wrappers/switch.js';
+import { FormControl, FormField } from '@wpsocio/ui/wrappers/form';
+import { Input } from '@wpsocio/ui/wrappers/input';
+import { RadioGroup } from '@wpsocio/ui/wrappers/radio-group';
+import { Switch } from '@wpsocio/ui/wrappers/switch';
 import { type DataShape, getFieldLabel } from '../../services';
 import { JoinLinkInfo } from './JoinLinkInfo';
 import { PostTypes } from './PostTypes';

@@ -1,6 +1,6 @@
 import { __ } from '@wpsocio/i18n';
-import { Close, Plus } from '@wpsocio/ui-components/icons';
-import { IconButton } from '@wpsocio/ui-components/wrappers/icon-button.js';
+import { Close, Plus } from '@wpsocio/ui/icons';
+import { IconButton } from '@wpsocio/ui/wrappers/icon-button';
 
 export type RuleSetButtonsProps = {
 	onAdd: VoidFunction;

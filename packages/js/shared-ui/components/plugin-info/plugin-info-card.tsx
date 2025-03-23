@@ -1,8 +1,8 @@
 import { __, sprintf } from '@wpsocio/i18n';
-import { cn } from '@wpsocio/ui-components';
-import { useMediaQuery } from '@wpsocio/ui-components/hooks/useMediaQuery.js';
-import { Accordion } from '@wpsocio/ui-components/wrappers/accordion.js';
-import { Link } from '@wpsocio/ui-components/wrappers/link.js';
+import { cn } from '@wpsocio/ui/lib/utils';
+import { useMediaQuery } from '@wpsocio/ui/hooks/useMediaQuery';
+import { Accordion } from '@wpsocio/ui/wrappers/accordion';
+import { Link } from '@wpsocio/ui/wrappers/link';
 import { Description } from '../description.js';
 import { Smile } from '../smile.js';
 import { PluginInfoItem } from './plugin-info-item.js';

@@ -1,12 +1,9 @@
 import { useFormContext, useWatch } from '@wpsocio/form';
 import { FormItem } from '@wpsocio/shared-ui/form/form-item';
 import { TelegramIcon } from '@wpsocio/shared-ui/wptelegram/telegram-icon.js';
-import { ColorInputPicker } from '@wpsocio/ui-components/wrappers/color-input-picker.js';
-import {
-	FormControl,
-	FormField,
-} from '@wpsocio/ui-components/wrappers/form.js';
-import { Link } from '@wpsocio/ui-components/wrappers/link';
+import { Link } from '@wpsocio/ui/wrappers/link';
+import { ColorInputPicker } from '@wpsocio/ui/wrappers/color-input-picker';
+import { FormControl, FormField } from '@wpsocio/ui/wrappers/form';
 import { useEffect } from 'react';
 import { ROOT_ID } from '../../constants';
 import { type DataShape, getFieldLabel } from '../../services';

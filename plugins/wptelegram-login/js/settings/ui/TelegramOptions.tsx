@@ -3,11 +3,8 @@ import { __, sprintf } from '@wpsocio/i18n';
 import { SectionCard } from '@wpsocio/shared-ui/components/section-card.js';
 import { BotTokenField } from '@wpsocio/shared-ui/form/bot-token-field';
 import { FormItem } from '@wpsocio/shared-ui/form/form-item';
-import {
-	FormControl,
-	FormField,
-} from '@wpsocio/ui-components/wrappers/form.js';
-import { Input } from '@wpsocio/ui-components/wrappers/input.js';
+import { FormControl, FormField } from '@wpsocio/ui/wrappers/form';
+import { Input } from '@wpsocio/ui/wrappers/input';
 import { useCallback, useState } from 'react';
 import { getFieldLabel } from '../services';
 

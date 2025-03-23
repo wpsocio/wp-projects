@@ -1,0 +1,28 @@
+/**
+ * Resets some of the default WordPress styles.
+ */
+@mixin reset-wp-common-css {
+    @layer wp {
+        body {
+    
+            font-size: initial !important;
+    
+            p {
+                font-size: initial !important;
+            }
+        }
+    }
+}
+
+/**
+ * Scope TailwindCSS preflight to a specific selector.
+ *
+ * @param {string} $scope-to The selector to scope the preflight to.
+ */
+@mixin scope-tw-preflight($scope-to) {
+    @layer wp {
+        #{$scope-to} {
+            @import "tailwindcss/preflight.css";
+        }
+    }
+}

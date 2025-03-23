@@ -1,4 +1,4 @@
-import { Accordion } from '@wpsocio/ui-components/wrappers/accordion.js';
+import { Accordion } from '@wpsocio/ui/wrappers/accordion';
 import { isDev } from '@wpsocio/utilities/constants.js';
 
 const style: React.CSSProperties = {

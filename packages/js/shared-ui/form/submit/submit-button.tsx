@@ -1,9 +1,6 @@
 import { __ } from '@wpsocio/i18n';
-import { Save } from '@wpsocio/ui-components/icons/index.js';
-import {
-	Button,
-	type ButtonProps,
-} from '@wpsocio/ui-components/wrappers/button.js';
+import { Save } from '@wpsocio/ui/icons';
+import { Button, type ButtonProps } from '@wpsocio/ui/wrappers/button';
 
 export const SubmitButton: React.FC<ButtonProps> = (props) => {
 	return (

@@ -1,6 +1,6 @@
 import { useFieldArray } from '@wpsocio/form';
 import { __ } from '@wpsocio/i18n';
-import { VerticalDivider } from '@wpsocio/ui-components/wrappers/vertical-divider.js';
+import { VerticalDivider } from '@wpsocio/ui/wrappers/vertical-divider';
 import { Fragment, useEffect } from 'react';
 import { DEFAULT_RULE } from './constants.js';
 import { RuleSet, type RuleSetProps } from './rule-set.js';

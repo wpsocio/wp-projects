@@ -1,6 +1,6 @@
 import { __ } from '@wpsocio/i18n';
-import { Textarea } from '@wpsocio/ui-components/ui/textarea.js';
-import { FormControl } from '@wpsocio/ui-components/wrappers/form.js';
+import { Textarea } from '@wpsocio/ui/components/textarea';
+import { FormControl } from '@wpsocio/ui/wrappers/form';
 import { prefixName } from '@wpsocio/utilities/misc.js';
 import { FormField } from '../form/form-field.js';
 import { FormItem } from '../form/form-item.js';

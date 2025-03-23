@@ -6,7 +6,7 @@ import type {
 import type { ProxyFields } from '@wpsocio/shared-ui/wptelegram/proxy/types.js';
 import type { Rules } from '@wpsocio/shared-ui/wptelegram/rules/types.js';
 import type { ChatIds } from '@wpsocio/shared-ui/wptelegram/types.js';
-import type { OptionsType } from '@wpsocio/ui-components/wrappers/types.js';
+import type { OptionsType } from '@wpsocio/ui/wrappers/types';
 import type { ParseMode } from '@wpsocio/utilities/types';
 import type { DataShape } from './fields';
 

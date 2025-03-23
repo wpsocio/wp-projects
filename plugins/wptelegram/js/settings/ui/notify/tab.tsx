@@ -5,7 +5,7 @@ import { ActiveField } from '@wpsocio/shared-ui/wptelegram/active-field.js';
 import { IfActive } from '@wpsocio/shared-ui/wptelegram/if-active.js';
 import { NotifyInstructions } from '@wpsocio/shared-ui/wptelegram/notify-instructions.js';
 import { UserNotifications } from '@wpsocio/shared-ui/wptelegram/user-notifications.js';
-import { Separator } from '@wpsocio/ui-components/ui/separator';
+import { Separator } from '@wpsocio/ui/components/separator';
 import type { DataShape } from '../../services/fields';
 import { getDomData } from '../../services/getDomData';
 import { IfBotToken } from '../shared/if-bot-token';

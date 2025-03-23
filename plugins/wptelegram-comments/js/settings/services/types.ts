@@ -3,7 +3,7 @@ import type {
 	BaseDOMData,
 	BasePluginData,
 } from '@wpsocio/services/types';
-import type { OptionsType } from '@wpsocio/ui-components/wrappers/types.js';
+import type { OptionsType } from '@wpsocio/ui/wrappers/types';
 import type { DataShape } from './fields';
 
 export type { DataShape };

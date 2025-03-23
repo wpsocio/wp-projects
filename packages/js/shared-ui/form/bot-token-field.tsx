@@ -1,7 +1,7 @@
 import { useFormContext, useWatch } from '@wpsocio/form';
 import { __ } from '@wpsocio/i18n';
-import { FormControl } from '@wpsocio/ui-components/wrappers/form.js';
-import { Input } from '@wpsocio/ui-components/wrappers/input.js';
+import { FormControl } from '@wpsocio/ui/wrappers/form';
+import { Input } from '@wpsocio/ui/wrappers/input';
 import { useEffect } from 'react';
 import { FormField } from './form-field.js';
 import { FormItem } from './form-item.js';

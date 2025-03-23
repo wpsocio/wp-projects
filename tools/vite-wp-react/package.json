@@ -16,10 +16,7 @@
 	"bugs": {
 		"url": "https://github.com/wpsocio/wp-projects/issues"
 	},
-	"files": [
-		"dist",
-		"src"
-	],
+	"files": ["dist", "src"],
 	"publishConfig": {
 		"access": "public"
 	},
@@ -47,15 +44,9 @@
 	},
 	"typesVersions": {
 		"*": {
-			"config": [
-				"./dist/config.d.ts"
-			],
-			"utils": [
-				"./dist/utils/index.d.ts"
-			],
-			"plugins": [
-				"./dist/plugins/index.d.ts"
-			]
+			"config": ["./dist/config.d.ts"],
+			"utils": ["./dist/utils/index.d.ts"],
+			"plugins": ["./dist/plugins/index.d.ts"]
 		}
 	},
 	"dependencies": {
@@ -88,26 +79,16 @@
 		"build": {
 			"command": "tsup",
 			"clean": "if-file-deleted",
-			"files": [
-				"src/",
-				"tsconfig.json",
-				"tsup.config.ts"
-			],
-			"output": [
-				"dist/**"
-			]
+			"files": ["src/", "tsconfig.json", "tsup.config.ts"],
+			"output": ["dist/**"]
 		},
 		"build:local": {
 			"command": "tsc --emitDeclarationOnly --declaration",
-			"dependencies": [
-				"build"
-			]
+			"dependencies": ["build"]
 		},
 		"prepublishOnly": {
 			"command": "pnpm run build",
-			"dependencies": [
-				"clean"
-			]
+			"dependencies": ["clean"]
 		}
 	}
 }
