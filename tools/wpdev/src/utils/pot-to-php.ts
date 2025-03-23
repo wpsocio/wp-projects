@@ -3,7 +3,7 @@
  */
 
 import fs from 'node:fs';
-import gettextParser, { type GetTextTranslation } from 'gettext-parser';
+import { type GetTextTranslation, po } from 'gettext-parser';
 
 const TAB = '\t';
 const NEWLINE = '\n';
@@ -104,7 +104,7 @@ export function convertPOTToPHP(
 	options: ConvertPOTToPHPOptions,
 ) {
 	const poContents = fs.readFileSync(potFile);
-	const parsedPO = gettextParser.po.parse(poContents);
+	const parsedPO = po.parse(poContents);
 
 	let output: Array<string> = [];
 
