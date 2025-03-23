@@ -2,7 +2,10 @@ import $ from 'jquery';
 
 import { setLocaleData } from '@wpsocio/i18n';
 
-export const cleanup = (removeSiblingsOf = '', {disableFormCSS = true, disableCommonCSS = false} = {}) => {
+export const cleanup = (
+	removeSiblingsOf = '',
+	{ disableFormCSS = true, disableCommonCSS = false } = {},
+) => {
 	const id = removeSiblingsOf?.replace(/^#?/, '#');
 	$(() => {
 		if (id && $(id).length) {

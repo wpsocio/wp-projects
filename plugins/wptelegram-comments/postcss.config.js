@@ -1,1 +1,1 @@
-export { default } from "@wpsocio/ui/postcss.config";
+export { default } from '@wpsocio/ui/postcss.config';

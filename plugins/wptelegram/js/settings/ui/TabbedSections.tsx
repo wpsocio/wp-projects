@@ -4,10 +4,7 @@ import { useActiveTab } from '@wpsocio/services/use-active-tab.js';
 import { cn } from '@wpsocio/ui/lib/utils';
 import { AlertCircle as WarningIcon } from '@wpsocio/ui/icons';
 import { Card } from '@wpsocio/ui/wrappers/card';
-import {
-	type TabItemProps,
-	Tabs,
-} from '@wpsocio/ui/wrappers/tabs';
+import { type TabItemProps, Tabs } from '@wpsocio/ui/wrappers/tabs';
 import { useCallback } from 'react';
 import { AdvancedTab } from './advanced/tab.js';
 import { BasicsTab } from './basics/tab.js';

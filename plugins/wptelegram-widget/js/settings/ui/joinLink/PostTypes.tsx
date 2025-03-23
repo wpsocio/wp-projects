@@ -2,10 +2,7 @@ import { useFormContext } from '@wpsocio/form';
 import { __ } from '@wpsocio/i18n';
 import { FormItem } from '@wpsocio/shared-ui/form/form-item';
 import { Checkbox } from '@wpsocio/ui/wrappers/checkbox';
-import {
-	FormControl,
-	FormField,
-} from '@wpsocio/ui/wrappers/form';
+import { FormControl, FormField } from '@wpsocio/ui/wrappers/form';
 import { type DataShape, getDomData, getFieldLabel } from '../../services';
 
 const { post_types } = getDomData('uiData');

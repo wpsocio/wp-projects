@@ -4,10 +4,7 @@ import { useActiveTab } from '@wpsocio/services/use-active-tab.js';
 import { cn } from '@wpsocio/ui/lib/utils';
 import { Warning } from '@wpsocio/ui/icons';
 import { Card } from '@wpsocio/ui/wrappers/card';
-import {
-	type TabItemProps,
-	Tabs,
-} from '@wpsocio/ui/wrappers/tabs';
+import { type TabItemProps, Tabs } from '@wpsocio/ui/wrappers/tabs';
 import { useCallback } from 'react';
 import { Advanced } from './advanced';
 import { AjaxWidget } from './ajaxWidget';

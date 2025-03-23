@@ -4,10 +4,7 @@ import { SectionCard } from '@wpsocio/shared-ui/components/section-card.js';
 import { FormItem } from '@wpsocio/shared-ui/form/form-item';
 import { MultiCheckboxField } from '@wpsocio/shared-ui/form/multi-checkbox-field.js';
 import { Textarea } from '@wpsocio/ui/components/textarea';
-import {
-	FormControl,
-	FormField,
-} from '@wpsocio/ui/wrappers/form';
+import { FormControl, FormField } from '@wpsocio/ui/wrappers/form';
 import { type DataShape, getDomData, getFieldLabel } from '../services';
 import { Code } from './Code';
 

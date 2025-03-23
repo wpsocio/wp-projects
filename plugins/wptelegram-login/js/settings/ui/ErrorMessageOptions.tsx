@@ -3,10 +3,7 @@ import { __ } from '@wpsocio/i18n';
 import { SectionCard } from '@wpsocio/shared-ui/components/section-card.js';
 import { FormItem } from '@wpsocio/shared-ui/form/form-item';
 import { cn } from '@wpsocio/ui/lib/utils';
-import {
-	FormControl,
-	FormField,
-} from '@wpsocio/ui/wrappers/form';
+import { FormControl, FormField } from '@wpsocio/ui/wrappers/form';
 import { Input } from '@wpsocio/ui/wrappers/input';
 import { Switch } from '@wpsocio/ui/wrappers/switch';
 import { getFieldLabel } from '../services';

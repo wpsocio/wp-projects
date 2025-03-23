@@ -7,7 +7,11 @@ import {
 } from 'react';
 import { HexColorPicker } from 'react-colorful';
 import { useDebouncedCallback } from 'use-debounce';
-import { Popover, PopoverContent, PopoverTrigger } from '../components/popover.js';
+import {
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from '../components/popover.js';
 import { Button } from './button.js';
 import { Input, type InputProps } from './input.js';
 

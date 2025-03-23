@@ -1,10 +1,7 @@
 import { useFormContext, useWatch } from '@wpsocio/form';
 import { __ } from '@wpsocio/i18n';
 import { FormItem } from '@wpsocio/shared-ui/form/form-item';
-import {
-	FormControl,
-	FormField,
-} from '@wpsocio/ui/wrappers/form';
+import { FormControl, FormField } from '@wpsocio/ui/wrappers/form';
 import { Input } from '@wpsocio/ui/wrappers/input';
 import { Link } from '@wpsocio/ui/wrappers/link';
 import { Switch } from '@wpsocio/ui/wrappers/switch';

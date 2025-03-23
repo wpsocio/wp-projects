@@ -1,10 +1,7 @@
 import { __, sprintf } from '@wpsocio/i18n';
 import { cn } from '@wpsocio/ui/lib/utils';
 import { ArrowRight, Copy, Edit, Trash } from '@wpsocio/ui/icons';
-import {
-	Button,
-	type ButtonProps,
-} from '@wpsocio/ui/wrappers/button';
+import { Button, type ButtonProps } from '@wpsocio/ui/wrappers/button';
 import { ConfirmationDialog } from '@wpsocio/ui/wrappers/confirmation-dialog';
 import { IconButton } from '@wpsocio/ui/wrappers/icon-button';
 import { Popover } from '@wpsocio/ui/wrappers/popover';

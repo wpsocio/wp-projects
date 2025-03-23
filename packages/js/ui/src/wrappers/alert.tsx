@@ -1,5 +1,9 @@
 import { AlertCircle, Info, Success, Warning } from '../icons/index.js';
-import { AlertDescription, AlertTitle, Alert as AlertUI } from '../components/alert.js';
+import {
+	AlertDescription,
+	AlertTitle,
+	Alert as AlertUI,
+} from '../components/alert.js';
 
 type AlertUIProps = React.ComponentProps<typeof AlertUI>;
 
