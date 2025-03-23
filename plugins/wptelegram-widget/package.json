@@ -52,7 +52,6 @@
 		"@types/wordpress__blocks": "^12.5.16",
 		"@wpsocio/build-utils": "workspace:*",
 		"@wpsocio/vite-wp-react": "workspace:*",
-		"autoprefixer": "^10.4.20",
 		"tailwindcss": "^4.0.15",
 		"typescript": "^5.7.2",
 		"vite": "^6.2.1",

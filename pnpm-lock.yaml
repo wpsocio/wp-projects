@@ -439,9 +439,6 @@ importers:
       '@wpsocio/vite-wp-react':
         specifier: workspace:*
         version: link:../../tools/vite-wp-react
-      autoprefixer:
-        specifier: ^10.4.20
-        version: 10.4.20(postcss@8.5.3)
       tailwindcss:
         specifier: ^4.0.15
         version: 4.0.15
@@ -500,9 +497,6 @@ importers:
       '@wpsocio/vite-wp-react':
         specifier: workspace:*
         version: link:../../tools/vite-wp-react
-      autoprefixer:
-        specifier: ^10.4.20
-        version: 10.4.20(postcss@8.5.3)
       tailwindcss:
         specifier: ^4.0.15
         version: 4.0.15
@@ -579,9 +573,6 @@ importers:
       '@wpsocio/vite-wp-react':
         specifier: workspace:*
         version: link:../../tools/vite-wp-react
-      autoprefixer:
-        specifier: ^10.4.20
-        version: 10.4.20(postcss@8.5.3)
       tailwindcss:
         specifier: ^4.0.15
         version: 4.0.15
@@ -664,9 +655,6 @@ importers:
       '@wpsocio/vite-wp-react':
         specifier: workspace:*
         version: link:../../tools/vite-wp-react
-      autoprefixer:
-        specifier: ^10.4.20
-        version: 10.4.20(postcss@8.5.3)
       tailwindcss:
         specifier: ^4.0.15
         version: 4.0.15
@@ -794,9 +782,6 @@ importers:
       '@wpsocio/vite-wp-react':
         specifier: workspace:*
         version: link:../../../tools/vite-wp-react
-      autoprefixer:
-        specifier: ^10.4.20
-        version: 10.4.20(postcss@8.5.3)
       tailwindcss:
         specifier: ^4.0.15
         version: 4.0.15
@@ -9503,9 +9488,6 @@ packages:
   pend@1.2.0:
     resolution: {integrity: sha512-F3asv42UuXchdzt+xXqfW1OGlVBe+mxa2mqI0pg5yAHZPvFmY3Y6drSf/GQ1A86WgWEN9Kzh/WrgKa6iGcHXLg==}
 
-  picocolors@1.1.0:
-    resolution: {integrity: sha512-TQ92mBOW0l3LeMeyLV6mzy/kWr8lkd/hp3mTg7wYK7zJhuBStmGMBG0BdeDZS/dZx1IukaX6Bk11zcln25o1Aw==}
-
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
 
@@ -12814,7 +12796,7 @@ snapshots:
       '@babel/traverse': 7.25.9
       '@babel/types': 7.26.0
       convert-source-map: 2.0.0
-      debug: 4.4.0(supports-color@8.1.1)
+      debug: 4.3.7
       gensync: 1.0.0-beta.2
       json5: 2.2.3
       semver: 6.3.1
@@ -17186,7 +17168,7 @@ snapshots:
 
   '@types/babel__template@7.4.4':
     dependencies:
-      '@babel/parser': 7.25.8
+      '@babel/parser': 7.26.2
       '@babel/types': 7.25.8
 
   '@types/babel__traverse@7.20.5':
@@ -19160,7 +19142,7 @@ snapshots:
 
   agent-base@6.0.2:
     dependencies:
-      debug: 4.3.7
+      debug: 4.4.0(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -19383,18 +19365,8 @@ snapshots:
       caniuse-lite: 1.0.30001668
       fraction.js: 4.3.7
       normalize-range: 0.1.2
-      picocolors: 1.1.0
+      picocolors: 1.1.1
       postcss: 8.4.49
-      postcss-value-parser: 4.2.0
-
-  autoprefixer@10.4.20(postcss@8.5.3):
-    dependencies:
-      browserslist: 4.24.0
-      caniuse-lite: 1.0.30001668
-      fraction.js: 4.3.7
-      normalize-range: 0.1.2
-      picocolors: 1.1.0
-      postcss: 8.5.3
       postcss-value-parser: 4.2.0
 
   autosize@4.0.4: {}
@@ -21807,7 +21779,7 @@ snapshots:
     dependencies:
       '@tootallnate/once': 2.0.0
       agent-base: 6.0.2
-      debug: 4.3.7
+      debug: 4.4.0(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -21851,7 +21823,7 @@ snapshots:
   https-proxy-agent@5.0.1:
     dependencies:
       agent-base: 6.0.2
-      debug: 4.3.7
+      debug: 4.4.0(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -23678,8 +23650,6 @@ snapshots:
 
   pend@1.2.0: {}
 
-  picocolors@1.1.0: {}
-
   picocolors@1.1.1: {}
 
   picomatch@2.3.1: {}
@@ -24903,7 +24873,7 @@ snapshots:
   simple-peer@9.11.1:
     dependencies:
       buffer: 6.0.3
-      debug: 4.3.7
+      debug: 4.4.0(supports-color@8.1.1)
       err-code: 3.0.1
       get-browser-rtc: 1.1.0
       queue-microtask: 1.2.3
