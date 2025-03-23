@@ -1,6 +1,6 @@
 import { fetchAPI } from '@wpsocio/services/api-fetch';
 import type { BaseApiUtilArgs } from '@wpsocio/services/api-fetch/types.js';
-import type { OptionsType } from '@wpsocio/ui-components/wrappers/types.js';
+import type { OptionsType } from '@wpsocio/ui/wrappers/types';
 import { useCallback } from 'react';
 
 interface FetchRuleValuesArgs extends BaseApiUtilArgs {

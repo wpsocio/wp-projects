@@ -1,5 +1,5 @@
 import { __ } from '@wpsocio/i18n';
-import { Alert } from '@wpsocio/ui-components/wrappers/alert.js';
+import { Alert } from '@wpsocio/ui/wrappers/alert';
 
 export const ProxyDisclaimer: React.FC = () => {
 	return (

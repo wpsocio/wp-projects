@@ -1,10 +1,10 @@
-import { cn } from '@wpsocio/ui-components';
+import { cn } from '@wpsocio/ui/lib/utils';
 import {
 	FormDescription,
 	FormItem as FormItemUI,
 	FormLabel,
 	FormMessage,
-} from '@wpsocio/ui-components/wrappers/form.js';
+} from '@wpsocio/ui/wrappers/form';
 
 export interface FormItemProps extends React.HTMLAttributes<HTMLDivElement> {
 	label?: React.ReactNode;

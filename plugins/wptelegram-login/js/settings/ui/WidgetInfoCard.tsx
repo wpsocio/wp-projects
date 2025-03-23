@@ -3,7 +3,7 @@ import { Code } from '@wpsocio/shared-ui/components/code.js';
 import { PluginInfoItem } from '@wpsocio/shared-ui/components/plugin-info/plugin-info-item.js';
 import { Smile } from '@wpsocio/shared-ui/components/smile.js';
 import { WidgetInfoCard as WidgetInfoCardUI } from '@wpsocio/shared-ui/components/widget-info/widget-info-card.js';
-import { Link } from '@wpsocio/ui-components/wrappers/link.js';
+import { Link } from '@wpsocio/ui/wrappers/link';
 import { createInterpolateElement } from '@wpsocio/utilities/createInterpolateElement';
 import { getDomData } from '../services';
 

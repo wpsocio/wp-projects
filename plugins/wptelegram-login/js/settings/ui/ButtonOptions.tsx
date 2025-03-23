@@ -5,12 +5,12 @@ import { FormItem } from '@wpsocio/shared-ui/form/form-item';
 import {
 	FormControl,
 	FormField,
-} from '@wpsocio/ui-components/wrappers/form.js';
+} from '@wpsocio/ui/wrappers/form';
 
-import { Input } from '@wpsocio/ui-components/wrappers/input';
-import { RadioGroup } from '@wpsocio/ui-components/wrappers/radio-group';
-import { Select } from '@wpsocio/ui-components/wrappers/select.js';
-import { Switch } from '@wpsocio/ui-components/wrappers/switch';
+import { Input } from '@wpsocio/ui/wrappers/input';
+import { RadioGroup } from '@wpsocio/ui/wrappers/radio-group';
+import { Select } from '@wpsocio/ui/wrappers/select';
+import { Switch } from '@wpsocio/ui/wrappers/switch';
 import { getDomData, getFieldLabel } from '../services';
 
 const getButtonStyleOptions = () => [

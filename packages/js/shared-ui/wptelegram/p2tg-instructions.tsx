@@ -1,5 +1,5 @@
 import { __, sprintf } from '@wpsocio/i18n';
-import { Link } from '@wpsocio/ui-components/wrappers/link.js';
+import { Link } from '@wpsocio/ui/wrappers/link';
 import { createInterpolateElement } from '@wpsocio/utilities/createInterpolateElement.js';
 import { Code } from '../components/code.js';
 import { Instructions as InstructionsUI } from '../components/instructions.js';

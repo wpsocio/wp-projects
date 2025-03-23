@@ -5,8 +5,8 @@ import { useChatWithTest } from '@wpsocio/shared-ui/form/use-chat-with-test.js';
 import {
 	FormControl,
 	FormField,
-} from '@wpsocio/ui-components/wrappers/form.js';
-import { Input } from '@wpsocio/ui-components/wrappers/input.js';
+} from '@wpsocio/ui/wrappers/form';
+import { Input } from '@wpsocio/ui/wrappers/input';
 import { type DataShape, getFieldLabel } from '../../services';
 import { PREFIX } from './constants';
 

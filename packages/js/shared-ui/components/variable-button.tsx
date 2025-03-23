@@ -1,5 +1,5 @@
 import { __ } from '@wpsocio/i18n';
-import { Tooltip } from '@wpsocio/ui-components/wrappers/tooltip.js';
+import { Tooltip } from '@wpsocio/ui/wrappers/tooltip';
 import { useClipboard } from '@wpsocio/utilities/hooks/useClipboard.js';
 import { Code } from './code.js';
 

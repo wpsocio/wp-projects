@@ -1,7 +1,7 @@
 import { __ } from '@wpsocio/i18n';
-import { FormControl } from '@wpsocio/ui-components/ui/form.js';
-import { Link } from '@wpsocio/ui-components/wrappers/link.js';
-import { RadioGroup } from '@wpsocio/ui-components/wrappers/radio-group.js';
+import { FormControl } from '@wpsocio/ui/components/form';
+import { Link } from '@wpsocio/ui/wrappers/link';
+import { RadioGroup } from '@wpsocio/ui/wrappers/radio-group';
 import { prefixName } from '@wpsocio/utilities/misc.js';
 import { FormField } from '../form/form-field.js';
 import { FormItem } from '../form/form-item.js';

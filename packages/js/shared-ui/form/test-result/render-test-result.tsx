@@ -1,7 +1,7 @@
 import { __ } from '@wpsocio/i18n';
 import type { ResultType } from '@wpsocio/services/api-fetch/types.js';
-import { cn } from '@wpsocio/ui-components';
-import { Alert } from '@wpsocio/ui-components/wrappers/alert.js';
+import { cn } from '@wpsocio/ui/lib/utils';
+import { Alert } from '@wpsocio/ui/wrappers/alert';
 
 export interface RenderTestResultProps {
 	title?: string;

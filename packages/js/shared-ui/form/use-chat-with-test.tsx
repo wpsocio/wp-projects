@@ -7,7 +7,7 @@ import {
 import {
 	Button,
 	type ButtonProps,
-} from '@wpsocio/ui-components/wrappers/button.js';
+} from '@wpsocio/ui/wrappers/button';
 import { fixChatId } from '@wpsocio/utilities/misc.js';
 import { memo, useCallback, useMemo, useState } from 'react';
 import {

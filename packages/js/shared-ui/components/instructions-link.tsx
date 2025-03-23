@@ -1,5 +1,5 @@
 import { __ } from '@wpsocio/i18n';
-import { Link } from '@wpsocio/ui-components/wrappers/link.js';
+import { Link } from '@wpsocio/ui/wrappers/link';
 
 interface InstructionsLinkProps {
 	link: string;

@@ -4,10 +4,10 @@ import { FormItem } from '@wpsocio/shared-ui/form/form-item';
 import {
 	FormControl,
 	FormField,
-} from '@wpsocio/ui-components/wrappers/form.js';
-import { Input } from '@wpsocio/ui-components/wrappers/input.js';
-import { Link } from '@wpsocio/ui-components/wrappers/link';
-import { Switch } from '@wpsocio/ui-components/wrappers/switch';
+} from '@wpsocio/ui/wrappers/form';
+import { Input } from '@wpsocio/ui/wrappers/input';
+import { Link } from '@wpsocio/ui/wrappers/link';
+import { Switch } from '@wpsocio/ui/wrappers/switch';
 import { type DataShape, getFieldLabel } from '../../services';
 
 const prefix = 'advanced' as const;

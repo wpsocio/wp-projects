@@ -8,7 +8,7 @@
 	"dependencies": {
 		"@wordpress/api-fetch": "7.14.0",
 		"@wpsocio/i18n": "workspace:*",
-		"@wpsocio/ui-components": "workspace:*",
+		"@wpsocio/ui": "workspace:*",
 		"@wpsocio/utilities": "workspace:*",
 		"ramda": "^0.30.1"
 	},

@@ -1,11 +1,8 @@
 import { useFieldError, useWatch } from '@wpsocio/form';
 import { __ } from '@wpsocio/i18n';
-import { Close } from '@wpsocio/ui-components/icons/index.js';
-import { IconButton } from '@wpsocio/ui-components/wrappers/icon-button.js';
-import {
-	Input,
-	type InputProps,
-} from '@wpsocio/ui-components/wrappers/input.js';
+import { Close } from '@wpsocio/ui/icons';
+import { IconButton } from '@wpsocio/ui/wrappers/icon-button';
+import { Input, type InputProps } from '@wpsocio/ui/wrappers/input';
 import { FormField } from '../form/form-field.js';
 import { useChatWithTest } from '../form/use-chat-with-test.js';
 

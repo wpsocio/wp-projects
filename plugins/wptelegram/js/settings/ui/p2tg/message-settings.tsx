@@ -6,7 +6,7 @@ import { LinkPreviewOptions } from '@wpsocio/shared-ui/wptelegram/link-preview-o
 import { MessageTemplate } from '@wpsocio/shared-ui/wptelegram/message-template.js';
 import { MiscMessageSettings } from '@wpsocio/shared-ui/wptelegram/misc-message-settings';
 import { TemplateInfo } from '@wpsocio/shared-ui/wptelegram/template-info.js';
-import { Separator } from '@wpsocio/ui-components/ui/separator.js';
+import { Separator } from '@wpsocio/ui/components/separator';
 import { getDomData } from './../../services/getDomData';
 import { Upsell } from './../shared/pro-upsell.js';
 import { PREFIX } from './constants';

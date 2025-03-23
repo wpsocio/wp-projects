@@ -3,8 +3,8 @@ import {
 	Collapsible,
 	CollapsibleContent,
 	CollapsibleTrigger,
-} from '@wpsocio/ui-components/ui/collapsible.js';
-import { Link } from '@wpsocio/ui-components/wrappers/link.js';
+} from '@wpsocio/ui/components/collapsible';
+import { Link } from '@wpsocio/ui/wrappers/link';
 import { createInterpolateElement } from '@wpsocio/utilities/createInterpolateElement.js';
 import { Fragment } from 'react';
 import { Code } from '../components/code.js';

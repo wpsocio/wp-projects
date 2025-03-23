@@ -1,6 +1,6 @@
 import { __, sprintf } from '@wpsocio/i18n';
-import { cn } from '@wpsocio/ui-components';
-import { Link, type LinkProps } from '@wpsocio/ui-components/wrappers/link';
+import { cn } from '@wpsocio/ui/lib/utils';
+import { Link, type LinkProps } from '@wpsocio/ui/wrappers/link';
 
 type Location =
 	| 'header'

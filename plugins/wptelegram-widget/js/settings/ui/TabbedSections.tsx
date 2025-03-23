@@ -1,13 +1,13 @@
 import { useFormState } from '@wpsocio/form';
 import { __ } from '@wpsocio/i18n';
 import { useActiveTab } from '@wpsocio/services/use-active-tab.js';
-import { cn } from '@wpsocio/ui-components';
-import { Warning } from '@wpsocio/ui-components/icons';
-import { Card } from '@wpsocio/ui-components/wrappers/card.js';
+import { cn } from '@wpsocio/ui/lib/utils';
+import { Warning } from '@wpsocio/ui/icons';
+import { Card } from '@wpsocio/ui/wrappers/card';
 import {
 	type TabItemProps,
 	Tabs,
-} from '@wpsocio/ui-components/wrappers/tabs.js';
+} from '@wpsocio/ui/wrappers/tabs';
 import { useCallback } from 'react';
 import { Advanced } from './advanced';
 import { AjaxWidget } from './ajaxWidget';

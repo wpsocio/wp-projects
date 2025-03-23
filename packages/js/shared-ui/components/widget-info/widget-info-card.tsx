@@ -1,7 +1,7 @@
 import { __ } from '@wpsocio/i18n';
-import { cn } from '@wpsocio/ui-components';
-import { useMediaQuery } from '@wpsocio/ui-components/hooks/useMediaQuery.js';
-import { Accordion } from '@wpsocio/ui-components/wrappers/accordion.js';
+import { cn } from '@wpsocio/ui/lib/utils';
+import { useMediaQuery } from '@wpsocio/ui/hooks/useMediaQuery';
+import { Accordion } from '@wpsocio/ui/wrappers/accordion';
 
 export interface WidgetInfoCardProps {
 	className?: string;
