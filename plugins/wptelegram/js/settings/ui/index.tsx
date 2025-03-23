@@ -1,7 +1,7 @@
 import './styles.scss';
 
 import { cleanup, setI18nData } from '@wpsocio/services/utils.js';
-import { Toaster } from '@wpsocio/ui/components/toaster';
+import { Toaster } from '@wpsocio/ui/components/sonner';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { ROOT_ID } from '../constants';

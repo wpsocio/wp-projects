@@ -8,8 +8,7 @@
 			"node_modules/*",
 			"vendor/*",
 			".wireit/*",
-			"./packages/js/ui/src/components/*",
-			"./packages/js/ui/src/hooks/use-toast.ts"
+			"./packages/js/ui/src/components/*"
 		]
 	},
 	"organizeImports": {
