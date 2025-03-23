@@ -14,7 +14,6 @@
 		"./mixins.scss": "./src/styles/mixins.scss",
 		"./postcss.config": "./postcss.config.mjs",
 		"./lib/*": "./src/lib/*.ts",
-		"./plugins/*": "./src/plugins/*.ts",
 		"./components/*": "./src/components/*.tsx",
 		"./wrappers": "./src/wrappers/index.ts",
 		"./wrappers/*": "./src/wrappers/*.tsx",
