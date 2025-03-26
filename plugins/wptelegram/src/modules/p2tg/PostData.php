@@ -301,6 +301,20 @@ class PostData {
 							break;
 
 						case 'cf': // if custom field.
+							if ( '__debug__' === strtolower( $_field ) ) {
+								// Instead of directly using the serialized values,
+								// we will use the keys to get the unserialized values below.
+								$meta_keys = array_keys( get_post_meta( $this->post->ID ) );
+
+								$value = [];
+
+								foreach ( $meta_keys as $meta_key ) {
+									$value[ $meta_key ] = get_post_meta( $this->post->ID, $meta_key, true );
+								}
+
+								$json_encode = 1;
+								break;
+							}
 							$value = get_post_meta( $this->post->ID, $_field, true );
 							break;
 					}

@@ -6,8 +6,6 @@ import {
 } from '@wpsocio/ui/components/collapsible';
 import { Link } from '@wpsocio/ui/wrappers/link';
 import { createInterpolateElement } from '@wpsocio/utilities/createInterpolateElement.js';
-import { Fragment } from 'react';
-import { Code } from '../components/code.js';
 import { VariableButton } from '../components/variable-button.js';
 
 export interface TemplateMacro {
@@ -30,7 +28,7 @@ export const TemplateInfo: React.FC<
 > = ({ children, docsLink, macros }) => {
 	return (
 		<Collapsible>
-			<CollapsibleTrigger>
+			<CollapsibleTrigger className="text-start leading-6">
 				{sprintf(
 					'%s %s',
 					isRTL() ? '👈' : '👉',
@@ -47,39 +45,41 @@ export const TemplateInfo: React.FC<
 							{__('Learn more')}
 						</Link>
 					</p>
-					<table className="form-table">
-						<tbody>
-							{Object.values(macros).map((group, i) => {
-								const { label, macros = [], info } = group;
-								return (
-									<Fragment key={i.toString()}>
-										<tr>
-											<th>{label}</th>
-											<td>
-												{macros.map((macro, key) => {
-													return (
-														<VariableButton
-															key={key.toString()}
-															content={macro}
-														/>
-													);
-												})}
-											</td>
-										</tr>
-										{info ? (
-											<tr>
-												<td colSpan={2}>
-													<span>
-														{createInterpolateElement(info, { code: <Code /> })}
-													</span>
-												</td>
-											</tr>
-										) : null}
-									</Fragment>
-								);
-							})}
-						</tbody>
-					</table>
+					<div className="flex flex-col gap-8 my-4">
+						{Object.values(macros).map((group, i) => {
+							const { label, macros = [], info } = group;
+							return (
+								<section key={i.toString()} className="flex flex-col gap-3">
+									<div className="grid gap-2 grid-cols-1 xl:grid-cols-5">
+										<h4 className="text-md font-semibold col-span-1">
+											{label}
+										</h4>
+										<div className="col-span-4">
+											{macros.map((macro, key) => {
+												return (
+													<VariableButton
+														key={key.toString()}
+														content={macro}
+													/>
+												);
+											})}
+										</div>
+									</div>
+									{info ? (
+										<p className="text-foreground/70">
+											{createInterpolateElement(
+												info.replaceAll('\n', '<br />'),
+												{
+													code: <VariableButton />,
+													br: <br />,
+												},
+											)}
+										</p>
+									) : null}
+								</section>
+							);
+						})}
+					</div>
 				</div>
 				{children}
 			</CollapsibleContent>
