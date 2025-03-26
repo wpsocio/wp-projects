@@ -189,7 +189,7 @@ Argument | Type | Description
 -------- | ---- | -----------
 `$data` | `array` | The data for the web app login.
 
-Source: [src/includes/AssetManager.php](../src/includes/AssetManager.php), [line 274](../src/includes/AssetManager.php#L274-L281)
+Source: [src/includes/AssetManager.php](../src/includes/AssetManager.php), [line 290](../src/includes/AssetManager.php#L290-L297)
 
 ### `wptelegram_login_language_options`
 
@@ -202,7 +202,7 @@ Argument | Type | Description
 `$data` | `array` | The language options.
 `$translations` | `array` | The available translations.
 
-Source: [src/includes/AssetManager.php](../src/includes/AssetManager.php), [line 410](../src/includes/AssetManager.php#L410-L416)
+Source: [src/includes/AssetManager.php](../src/includes/AssetManager.php), [line 426](../src/includes/AssetManager.php#L426-L432)
 
 ### `wptelegram_login_validation_query_params`
 
