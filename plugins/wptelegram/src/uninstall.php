@@ -29,16 +29,8 @@ function uninstall_wptelegram() {
 		return;
 	}
 
-	$uninstall_options = [
-		'wptelegram',
-		'wptelegram_ver',
-	];
-
-	$uninstall_options = (array) apply_filters( 'wptelegram_uninstall_options', $uninstall_options );
-
-	foreach ( $uninstall_options as $option ) {
-		delete_option( $option );
-	}
+	delete_option( 'wptelegram' );
+	delete_option( 'wptelegram_ver' );
 }
 
 uninstall_wptelegram();
