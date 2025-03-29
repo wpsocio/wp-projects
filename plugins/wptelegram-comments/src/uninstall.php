@@ -13,3 +13,5 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) || ! WP_UNINSTALL_PLUGIN || dirname( WP_
 	status_header( 404 );
 	exit;
 }
+
+delete_option( 'wptelegram_comments' );
