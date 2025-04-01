@@ -411,9 +411,6 @@ importers:
       react:
         specifier: ^18.3.1
         version: 18.3.1
-      react-dom:
-        specifier: ^18.3.1
-        version: 18.3.1(react@18.3.1)
       zod:
         specifier: ^3.24.2
         version: 3.24.2
@@ -475,9 +472,6 @@ importers:
       react:
         specifier: ^18.3.1
         version: 18.3.1
-      react-dom:
-        specifier: ^18.3.1
-        version: 18.3.1(react@18.3.1)
       zod:
         specifier: ^3.24.2
         version: 3.24.2
@@ -545,9 +539,6 @@ importers:
       react:
         specifier: ^18.3.1
         version: 18.3.1
-      react-dom:
-        specifier: ^18.3.1
-        version: 18.3.1(react@18.3.1)
       zod:
         specifier: ^3.24.2
         version: 3.24.2
@@ -627,9 +618,6 @@ importers:
       react:
         specifier: ^18.3.1
         version: 18.3.1
-      react-dom:
-        specifier: ^18.3.1
-        version: 18.3.1(react@18.3.1)
       zod:
         specifier: ^3.24.2
         version: 3.24.2
@@ -742,18 +730,12 @@ importers:
       '@wpsocio/utilities':
         specifier: workspace:*
         version: link:../../../packages/js/utilities
-      jquery:
-        specifier: ^3.7.1
-        version: 3.7.1
       ramda:
         specifier: ^0.30.1
         version: 0.30.1
       react:
         specifier: ^18.3.1
         version: 18.3.1
-      react-dom:
-        specifier: ^18.3.1
-        version: 18.3.1(react@18.3.1)
       zod:
         specifier: ^3.24.2
         version: 3.24.2
@@ -7734,9 +7716,6 @@ packages:
 
   jpeg-js@0.4.4:
     resolution: {integrity: sha512-WZzeDOEtTOBK4Mdsar0IqEU5sMr3vSV2RqkAIzUEV2BHnUfKGyswWFPFwK5EeDo93K3FohSHbLAjj0s1Wzd+dg==}
-
-  jquery@3.7.1:
-    resolution: {integrity: sha512-m4avr8yL8kmFN8psrbFFFmB/If14iN5o9nw/NgnnM+kybDJpRsAynV2BsfpTYrTRysYUdADVD7CkUUizgkpLfg==}
 
   js-library-detector@6.7.0:
     resolution: {integrity: sha512-c80Qupofp43y4cJ7+8TTDN/AsDwLi5oOm/plBrWI+iQt485vKXCco+yVmOwEgdo9VOdsYTuV0UlTeetVPTriXA==}
@@ -21025,8 +21004,6 @@ snapshots:
   joycon@3.1.1: {}
 
   jpeg-js@0.4.4: {}
-
-  jquery@3.7.1: {}
 
   js-library-detector@6.7.0: {}
 
