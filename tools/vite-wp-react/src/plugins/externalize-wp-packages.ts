@@ -54,17 +54,11 @@ export function defaultExternalizeCallback(name: string): string {
 export const externalizeWpPackages = (
 	callback = defaultExternalizeCallback,
 ): PluginOption => {
-	if ('development' === process.env.NODE_ENV) {
-		return [createExternal({ externals: callback })];
-	}
 	return [
 		{
 			name: 'vwpr:externalize-wp-packages',
-			config(_, { command }) {
-				// We need to run this only for the build command
-				if (command !== 'build') {
-					return {};
-				}
+			apply: 'build',
+			config() {
 				return {
 					build: {
 						rollupOptions: {
@@ -84,6 +78,10 @@ export const externalizeWpPackages = (
 					},
 				};
 			},
+		},
+		{
+			...createExternal({ externals: callback }),
+			apply: 'serve',
 		},
 	];
 };
