@@ -78,24 +78,7 @@ export const externalizeWpPackages = (
 								 *
 								 * @see https://github.com/vitejs/vite-plugin-react/issues/3
 								 */
-								rollupGlobals((name) => {
-									if (!shouldExternalizePakage(name)) {
-										return '';
-									}
-
-									if (name in NON_WP_PACKAGES) {
-										return NON_WP_PACKAGES[name];
-									}
-
-									if (name.startsWith('@wordpress/')) {
-										const variable = dashToCamelCase(
-											name.replace('@wordpress/', ''),
-										);
-										return `wp.${variable}`;
-									}
-
-									return '';
-								}),
+								rollupGlobals(callback),
 							],
 						},
 					},
