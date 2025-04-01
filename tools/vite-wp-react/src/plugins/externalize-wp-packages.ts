@@ -11,16 +11,12 @@ const createExternal =
 	// viteExternalPlugin is not typed well
 	viteExternalPlugin as unknown as (typeof viteExternalPlugin)['default'];
 
-function shouldExternalizePakage(name: string) {
+export function shouldExternalizePakage(name: string) {
 	if (BUNDLED_WP_PACKAGES.includes(name)) {
 		return false;
 	}
 
-	const isWpPackage = name.startsWith('@wordpress/');
-
-	const isNonWpPackage = name in NON_WP_PACKAGES;
-
-	return isWpPackage || isNonWpPackage;
+	return name in NON_WP_PACKAGES || name.startsWith('@wordpress/');
 }
 
 /**
