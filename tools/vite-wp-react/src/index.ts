@@ -35,8 +35,11 @@ export type ViteWpReactConfig = {
 	/**
 	 * Whether to externalize WordPress packages.
 	 * i.e. `@wordpress/*` imports will be removed from the bundle and replaced with `window.wp.*`.
+	 *
+	 * You can pass a function to customize the externalization.
+	 * The function will receive the package name and should return the variable name to use.
 	 */
-	externalizeWpPackages?: boolean;
+	externalizeWpPackages?: boolean | ((name: string) => string);
 
 	/**
 	 * Whether to extract WordPress dependencies.
@@ -94,7 +97,12 @@ export function viteWpReact(
 	];
 
 	if (config.externalizeWpPackages) {
-		plugins.push(externalizeWpPackages());
+		const callback =
+			'function' === typeof config.externalizeWpPackages
+				? config.externalizeWpPackages
+				: undefined;
+
+		plugins.push(externalizeWpPackages(callback));
 	}
 
 	if (config.extractWpDependencies) {

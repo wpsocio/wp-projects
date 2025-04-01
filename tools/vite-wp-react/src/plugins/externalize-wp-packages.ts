@@ -51,9 +51,11 @@ export function defaultExternalizeCallback(name: string): string {
 /**
  * Updates the vite config to externalize all WordPress packages.
  */
-export const externalizeWpPackages = (): PluginOption => {
+export const externalizeWpPackages = (
+	callback = defaultExternalizeCallback,
+): PluginOption => {
 	if ('development' === process.env.NODE_ENV) {
-		return [createExternal({ externals: defaultExternalizeCallback })];
+		return [createExternal({ externals: callback })];
 	}
 	return [
 		{
