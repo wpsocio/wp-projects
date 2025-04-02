@@ -842,8 +842,8 @@ importers:
         specifier: 6.2.1
         version: 6.2.1(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(sass@1.81.0)(terser@5.34.1)
       vite-plugin-external:
-        specifier: ^6.1.0-rc.2
-        version: 6.1.0-rc.2
+        specifier: ^6.1.0-rc.3
+        version: 6.1.0-rc.3
     devDependencies:
       '@types/node':
         specifier: ^22.13.11
@@ -10630,8 +10630,8 @@ packages:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
     engines: {node: '>= 0.8'}
 
-  vite-plugin-external@6.1.0-rc.2:
-    resolution: {integrity: sha512-0SQ4TrhpKlbjK59I80bJlQnZclKw4s5ZgINaF9+QwRAFlYu1gqmhW1TtEhKSzedciaH6jzITcIM06SkahtLi4g==}
+  vite-plugin-external@6.1.0-rc.3:
+    resolution: {integrity: sha512-yFAfo8ZLEgqlqCYsNo3JqgaXTtXWvwYLPAuBOchzPFWazDSQF8ZHU/Iv8yhHID8a54i2233CtmrUjuic9QbSHQ==}
     engines: {node: '>=14.18.0', vite: '>=3.1.0'}
 
   vite@6.2.1:
@@ -10673,6 +10673,10 @@ packages:
         optional: true
       yaml:
         optional: true
+
+  vp-runtime-helper@1.0.2:
+    resolution: {integrity: sha512-luvbb5tvfi6/7qpADjhgTLuEjjjwLgZrtZIP1tOVCLaLIyqbmtmiLs7neZy0VaegpbLJK9CUyzm73WAYYbltkQ==}
+    engines: {node: '>=14.18.0', vite: '>=3.1.0'}
 
   w3c-xmlserializer@4.0.0:
     resolution: {integrity: sha512-d+BFHzbiCx6zGfz0HyQ6Rg69w9k19nviJspaj4yNscGjrHu94sVP+aRm75yEbCh+r2/yR+7q6hux9LVtbuTGBw==}
@@ -24041,14 +24045,12 @@ snapshots:
 
   vary@1.1.2: {}
 
-  vite-plugin-external@6.1.0-rc.2:
+  vite-plugin-external@6.1.0-rc.3:
     dependencies:
       base-log-factory: 2.0.10
       blf-colorful-appender: 1.0.3
-      cross-spawn: 7.0.6
-      figlet: 1.8.0
       fs-extra: 11.2.0
-      picocolors: 1.1.1
+      vp-runtime-helper: 1.0.2
 
   vite@6.2.1(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(sass@1.81.0)(terser@5.34.1):
     dependencies:
@@ -24062,6 +24064,11 @@ snapshots:
       lightningcss: 1.29.2
       sass: 1.81.0
       terser: 5.34.1
+
+  vp-runtime-helper@1.0.2:
+    dependencies:
+      figlet: 1.8.0
+      picocolors: 1.1.1
 
   w3c-xmlserializer@4.0.0:
     dependencies:
