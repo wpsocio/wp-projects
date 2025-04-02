@@ -30,11 +30,11 @@ export function FormItem({
 	return (
 		<FormItemUI
 			{...props}
-			className={cn('md:flex md:gap-2 md:py-4', props.className)}
+			className={cn('flex flex-col md:flex-row gap-2 md:py-4', props.className)}
 		>
 			{label ? (
 				<FormLabel
-					className={cn('md:mt-2 md:basis-[30%]', {
+					className={cn('md:basis-[30%] mb-0 mt-0', {
 						'opacity-50 cursor-not-allowed': isDisabled,
 					})}
 					isRequired={isRequired}

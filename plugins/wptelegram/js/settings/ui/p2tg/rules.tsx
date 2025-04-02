@@ -36,7 +36,7 @@ export const Rules: React.FC = () => {
 							description={__('When the post should be sent to Telegram.')}
 							label={getFieldLabel('send_when')}
 							options={getSendWhenOptions()}
-							wrapperClassName="flex flex-col gap-2"
+							wrapperClassName="md:flex-col"
 						/>
 					</div>
 					<div className="basis-[48%]">
@@ -45,7 +45,7 @@ export const Rules: React.FC = () => {
 							description={__('Which post types should be sent.')}
 							label={getFieldLabel('post_types')}
 							options={post_types}
-							wrapperClassName="flex flex-col gap-2"
+							wrapperClassName="md:flex-col"
 						/>
 					</div>
 				</div>

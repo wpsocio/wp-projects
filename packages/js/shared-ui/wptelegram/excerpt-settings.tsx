@@ -38,7 +38,7 @@ export const ExcerptSettings: React.FC<CommonProps> = ({ prefix }) => {
 					render={({ field }) => (
 						<FormItem
 							label={getFieldLabel('excerpt_source')}
-							className="flex-col"
+							className="md:flex-col"
 							isDisabled={!hasExcerpt}
 						>
 							<FormControl>
@@ -61,7 +61,7 @@ export const ExcerptSettings: React.FC<CommonProps> = ({ prefix }) => {
 						<FormItem
 							label={getFieldLabel('excerpt_length')}
 							description={__('Number of words for the excerpt.')}
-							className="flex-col"
+							className="md:flex-col"
 							isDisabled={!hasExcerpt}
 						>
 							<FormControl className="max-w-[100px]">
@@ -84,7 +84,7 @@ export const ExcerptSettings: React.FC<CommonProps> = ({ prefix }) => {
 						<FormItem
 							label={getFieldLabel('excerpt_preserve_eol')}
 							description={__('Preserve newlines in Post Excerpt.')}
-							className="flex-col"
+							className="md:flex-col"
 							isDisabled={!hasExcerpt}
 						>
 							<FormControl>

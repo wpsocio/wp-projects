@@ -23,7 +23,7 @@ export const LinkPreviewOptions: React.FC<CommonProps> = ({ prefix }) => {
 					name={prefixName('link_preview_disabled', prefix)}
 					render={({ field }) => (
 						<FormItem
-							className="flex-col"
+							className="md:flex-col"
 							label={getFieldLabel('link_preview_disabled')}
 							description={__('Disables previews for links in the messages.')}
 						>
@@ -44,7 +44,7 @@ export const LinkPreviewOptions: React.FC<CommonProps> = ({ prefix }) => {
 					name={prefixName('link_preview_url', prefix)}
 					render={({ field }) => (
 						<FormItem
-							className="flex-col"
+							className="md:flex-col"
 							label={getFieldLabel('link_preview_url')}
 							description={
 								<>
@@ -83,7 +83,7 @@ export const LinkPreviewOptions: React.FC<CommonProps> = ({ prefix }) => {
 					name={prefixName('link_preview_above_text', prefix)}
 					render={({ field }) => (
 						<FormItem
-							className="flex-col"
+							className="md:flex-col"
 							label={getFieldLabel('link_preview_above_text')}
 							description={__(
 								'Whether the link preview must be shown above the message text.',
