@@ -58,15 +58,16 @@ export const externalizeWpPackages = (
 				return {
 					build: {
 						rollupOptions: {
-							external(source) {
-								return shouldExternalizePakage(source);
-							},
 							plugins: [
 								/**
-								 * Add the plugin to rollup to ensure react imports don't end up in the bundle
-								 * framer-motion causes the issue by using namespace imports
+								 * Use the rollup plugin to ensure that
+								 * imports for externalized dependencies like "react"
+								 * don't end up in the production bundles
 								 *
 								 * @see https://github.com/vitejs/vite-plugin-react/issues/3
+								 *
+								 * "vite-plugin-external" does not work well for production builds
+								 * @see https://github.com/fengxinming/vite-plugins/issues/5
 								 */
 								rollupGlobals(callback),
 							],
