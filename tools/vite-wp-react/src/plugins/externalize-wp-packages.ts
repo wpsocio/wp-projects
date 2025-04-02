@@ -1,4 +1,3 @@
-import rollupGlobals from 'rollup-plugin-external-globals';
 import type { PluginOption } from 'vite';
 import viteExternalPlugin from 'vite-plugin-external';
 import {
@@ -50,35 +49,5 @@ export function defaultExternalizeCallback(name: string): string {
 export const externalizeWpPackages = (
 	callback = defaultExternalizeCallback,
 ): PluginOption => {
-	return [
-		{
-			name: 'vwpr:externalize-wp-packages',
-			apply: 'build',
-			config() {
-				return {
-					build: {
-						rollupOptions: {
-							plugins: [
-								/**
-								 * Use the rollup plugin to ensure that
-								 * imports for externalized dependencies like "react"
-								 * don't end up in the production bundles
-								 *
-								 * @see https://github.com/vitejs/vite-plugin-react/issues/3
-								 *
-								 * "vite-plugin-external" does not work well for production builds
-								 * @see https://github.com/fengxinming/vite-plugins/issues/5
-								 */
-								rollupGlobals(callback),
-							],
-						},
-					},
-				};
-			},
-		},
-		{
-			...createExternal({ externals: callback }),
-			apply: 'serve',
-		},
-	];
+	return [createExternal({ interop: 'auto', externals: callback })];
 };
