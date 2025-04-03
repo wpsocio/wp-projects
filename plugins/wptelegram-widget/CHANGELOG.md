@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.2.8
+
+### Patch Changes
+
+- [#248](https://github.com/wpsocio/wp-projects/pull/248) [`3b97611`](https://github.com/wpsocio/wp-projects/commit/3b97611b83c693f995a6294257321a56bca5f3f4) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Improved form field spacing for small screens
+
 ## 2.2.7
 
 ### Patch Changes
