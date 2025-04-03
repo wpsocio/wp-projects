@@ -32,7 +32,7 @@ export const ParseModeField: React.FC<ParseModeFieldProps> = ({
 			name={prefixName('parse_mode', prefix)}
 			render={({ field }) => (
 				<FormItem
-					className={asColumn ? 'flex-col' : ''}
+					className={asColumn ? 'md:flex-col' : ''}
 					label={getFieldLabel('parse_mode')}
 					description={
 						<Link

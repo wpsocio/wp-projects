@@ -68,8 +68,8 @@ export const AdvancedSettings: React.FC<AdvancedSettingsProps> = ({
 				inlineDescription
 			/>
 			<Separator className="my-6" />
-			<div className="space-y-2 md:flex md:gap-2 md:py-4">
-				<span className="font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-base md:mt-2 md:basis-[30%]">
+			<div className="space-y-2 flex flex-col md:flex-row gap-2 md:py-4">
+				<span className="font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-base mb-0 mt-0 md:basis-[30%]">
 					{getFieldLabel('debug_info')}
 				</span>
 				<div>

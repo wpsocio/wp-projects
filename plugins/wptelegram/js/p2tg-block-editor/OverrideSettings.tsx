@@ -63,7 +63,6 @@ export const OverrideSettings: React.FC = () => {
 			/>
 			{isOpen && (
 				<Modal
-					isDismissible={false}
 					title={sprintf(
 						'%s (%s)',
 						__('Post to Telegram'),

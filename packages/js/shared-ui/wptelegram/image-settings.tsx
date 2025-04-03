@@ -38,7 +38,7 @@ export const ImageSettings: React.FC<CommonProps> = ({ prefix }) => {
 					name={prefixName('send_featured_image', prefix)}
 					render={({ field }) => (
 						<FormItem
-							className="flex-col"
+							className="md:flex-col"
 							label={getFieldLabel('send_featured_image')}
 							description={__('Send Featured Image (if exists).')}
 						>
@@ -60,7 +60,7 @@ export const ImageSettings: React.FC<CommonProps> = ({ prefix }) => {
 					render={({ field }) => (
 						<FormItem
 							label={getFieldLabel('image_position')}
-							className="flex-col"
+							className="md:flex-col"
 							isDisabled={isDisabled}
 						>
 							<FormControl>

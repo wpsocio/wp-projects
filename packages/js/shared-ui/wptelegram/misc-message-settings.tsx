@@ -17,7 +17,7 @@ export const MiscMessageSettings: React.FC<CommonProps> = ({ prefix }) => {
 					name={prefixName('cats_as_tags', prefix)}
 					render={({ field }) => (
 						<FormItem
-							className="flex-col"
+							className="md:flex-col"
 							label={getFieldLabel('cats_as_tags')}
 							description={__('Send categories as hashtags.')}
 						>
@@ -41,7 +41,7 @@ export const MiscMessageSettings: React.FC<CommonProps> = ({ prefix }) => {
 					name={prefixName('protect_content', prefix)}
 					render={({ field }) => (
 						<FormItem
-							className="flex-col"
+							className="md:flex-col"
 							description={
 								<>
 									{__(

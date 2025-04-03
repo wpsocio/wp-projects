@@ -29,7 +29,7 @@ export const MessageKeyboard: React.FC = () => {
 								description={__(
 									'Add an inline clickable button for the post URL just below the message.',
 								)}
-								className="flex-col"
+								className="md:flex-col"
 							>
 								<FormControl>
 									<Switch
@@ -49,7 +49,7 @@ export const MessageKeyboard: React.FC = () => {
 						render={({ field }) => (
 							<FormItem
 								label={getFieldLabel('inline_button_text')}
-								className="flex-col"
+								className="md:flex-col"
 								isDisabled={isDisabled}
 							>
 								<FormControl className="max-w-[200px]">
@@ -71,7 +71,7 @@ export const MessageKeyboard: React.FC = () => {
 							<FormItem
 								label={getFieldLabel('inline_button_url')}
 								description={__('Source of the button URL.')}
-								className="flex-col"
+								className="md:flex-col"
 								afterMessage={
 									<p>
 										{createInterpolateElement(

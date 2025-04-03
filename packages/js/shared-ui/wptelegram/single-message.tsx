@@ -96,7 +96,7 @@ export const SingleMessage: React.FC<SingleMessageProps> = ({
 			name={prefixName('single_message', prefix)}
 			render={({ field }) => (
 				<FormItem
-					className="flex-col"
+					className="md:flex-col"
 					description={__('Send both text and image in single message.')}
 					label={getFieldLabel('single_message')}
 					afterMessage={warning}
