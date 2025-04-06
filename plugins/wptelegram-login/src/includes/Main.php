@@ -388,7 +388,7 @@ class Main {
 
 		$login_handler = LoginHandler::instance();
 
-		$hook_and_priority = [ 'init', 5 ];
+		$hook_and_priority = [ 'init', 20 ];
 		/**
 		 * Filter the hook and priority to use for intercepting the login request.
 		 *
