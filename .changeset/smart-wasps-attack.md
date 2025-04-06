@@ -2,4 +2,4 @@
 "wptelegram-login": patch
 ---
 
-Delay request intercept on init from 5 to 12
+Delay request intercept to fix fatal error caused by Buddypress
