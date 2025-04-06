@@ -842,8 +842,8 @@ importers:
         specifier: 6.2.1
         version: 6.2.1(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(sass@1.81.0)(terser@5.34.1)
       vite-plugin-external:
-        specifier: ^6.1.0-rc.3
-        version: 6.1.0-rc.3
+        specifier: ^6.1.0
+        version: 6.1.0
     devDependencies:
       '@types/node':
         specifier: ^22.13.11
@@ -4037,6 +4037,9 @@ packages:
   '@types/cookie@0.6.0':
     resolution: {integrity: sha512-4Kh9a6B2bQciAhf7FSuMRRkUWecJgJu9nPnx3yzpsfXX/c50REIqpHY4C82bXP90qrLtXtkDxTZosYO3UpOwlA==}
 
+  '@types/debug@4.1.12':
+    resolution: {integrity: sha512-vIChWdVG3LG1SMxEvI/AK+FWJthlrqlTu7fbrlywTkkaONwk/UAGaULXRlf8vkzFBLVm0zkMdCquhL5aOjhXPQ==}
+
   '@types/eslint-scope@3.7.7':
     resolution: {integrity: sha512-MzMFlSLBqNF2gcHWO0G1vP/YQyfvrxZ0bF+u7mzUdZ1/xK4A4sru+nraZz5i3iEIk1l1uyicaDVTB4QbbEkAYg==}
 
@@ -4114,6 +4117,9 @@ packages:
 
   '@types/mousetrap@1.6.15':
     resolution: {integrity: sha512-qL0hyIMNPow317QWW/63RvL1x5MVMV+Ru3NaY9f/CuEpCqrmb7WeuK2071ZY5hczOnm38qExWM2i2WtkXLSqFw==}
+
+  '@types/ms@2.1.0':
+    resolution: {integrity: sha512-GsCCIZDE/p3i96vtEqx+7dBUGXrc7zeSK3wwPHIaRThS+9OhWIXRqzs4d6k1SVU8g91DrNRWxWUGhp5KXQb2VA==}
 
   '@types/mute-stream@0.0.4':
     resolution: {integrity: sha512-CPM9nzrCPPJHQNA9keH9CVkVI+WR5kMa+7XEs5jcGQ0VoAGnLv242w8lIVgwAEfmE4oufJRaTc9PNLQl0ioAow==}
@@ -5273,8 +5279,8 @@ packages:
   bare-stream@2.3.0:
     resolution: {integrity: sha512-pVRWciewGUeCyKEuRxwv06M079r+fRjAQjBEK2P6OYGrO43O+Z0LrPZZEjlc4mB6C2RpZ9AxJ1s7NLEtOHO6eA==}
 
-  base-log-factory@2.0.10:
-    resolution: {integrity: sha512-Po6aMYHfF2K2HZjhzwNCz4SceA0az3I92iLcrj2L/MaA9EKm9oB28U0r/B6tEGuAjFtYk1GWYDRmb7Are6+yAw==}
+  base-log-factory@2.1.1:
+    resolution: {integrity: sha512-5wf/6XuvFQKIomadCPLC5xsjtH3SmwEFH8bdrCsFydyv6QEN9o+7/ajmfwWz1wu5/+ZFkW5BkzRqplsY3UxZJw==}
 
   base64-js@1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
@@ -5302,6 +5308,9 @@ packages:
 
   blf-colorful-appender@1.0.3:
     resolution: {integrity: sha512-WuO0re78Ly1k5Y1V0ZxXFAgKEbgAjnuwtl9xZmNl4uObGiTPxYCubpeo0WJ1n2/pLU7E58fm8RuJOk2KWhddbQ==}
+
+  blf-debug-appender@1.0.2:
+    resolution: {integrity: sha512-6R0B4j7qEXI+Q/7nhSk1Vy2hilQHo8MH4Z0lc+iQVY7mrNUWiAFms7kowx96etq5THsHGEYXaZMti0r6b9Dv+w==}
 
   body-parser@1.20.3:
     resolution: {integrity: sha512-7rAxByjUMqQ3/bHJy7D6OGXvx/MMc4IqBn/X0fcM1QUcAItpZrBEYhWGem+tzXH90c+G01ypMcYJBO9Y30203g==}
@@ -7464,8 +7473,8 @@ packages:
     resolution: {integrity: sha512-LvIm3/KWzS9oRFHugab7d+M/GcBXuXX5xZkzPmN+NxihdQlZUQ4dWuSV1xR/sq6upL1TJEDrfBgRepHFdBtSNQ==}
     engines: {node: '>= 0.4'}
 
-  is-what-type@1.0.0:
-    resolution: {integrity: sha512-SJpquPU+sgaQ7hIDdFmKU5LU9TgF4tN1VkICF7Q5QKUw86H/pO00oi/VenQvjF6BPHWMw7MORsj7iBzsutXMkg==}
+  is-what-type@1.0.1:
+    resolution: {integrity: sha512-P+HoXz2S7Zt096sozC+e+rKR+ZDgxnzL0BQsQUGoe1yQQjEZ1Doo5g6Xn0GA4q10TDkzCpftrtKn6ygpyOpPzw==}
 
   is-windows@0.2.0:
     resolution: {integrity: sha512-n67eJYmXbniZB7RF4I/FTjK1s6RPOCTxhYrVYLRaCt3lF0mpWZPKr3T2LSZAqyjQsxR2qMmGYXXzK0YWwcPM1Q==}
@@ -10630,8 +10639,8 @@ packages:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
     engines: {node: '>= 0.8'}
 
-  vite-plugin-external@6.1.0-rc.3:
-    resolution: {integrity: sha512-yFAfo8ZLEgqlqCYsNo3JqgaXTtXWvwYLPAuBOchzPFWazDSQF8ZHU/Iv8yhHID8a54i2233CtmrUjuic9QbSHQ==}
+  vite-plugin-external@6.1.0:
+    resolution: {integrity: sha512-m2jXHuJXvXEE6qXLgI8dlngys66SkJhWPaz6VdZK7zH/rO0oBMX173Qa7MwxfY1ZRwa4MjyeAmpZdWTccrC88Q==}
     engines: {node: '>=14.18.0', vite: '>=3.1.0'}
 
   vite@6.2.1:
@@ -10674,8 +10683,8 @@ packages:
       yaml:
         optional: true
 
-  vp-runtime-helper@1.0.2:
-    resolution: {integrity: sha512-luvbb5tvfi6/7qpADjhgTLuEjjjwLgZrtZIP1tOVCLaLIyqbmtmiLs7neZy0VaegpbLJK9CUyzm73WAYYbltkQ==}
+  vp-runtime-helper@1.0.5:
+    resolution: {integrity: sha512-yHf+xTO5eZoao5CsaKx6m+0vhQ38Jiv/RvGCdX1Aa1uXFeWF5AVAnZrMn8Lx0Zhx++/swLFv2+G9yH/FtVZ5Fw==}
     engines: {node: '>=14.18.0', vite: '>=3.1.0'}
 
   w3c-xmlserializer@4.0.0:
@@ -15604,6 +15613,10 @@ snapshots:
 
   '@types/cookie@0.6.0': {}
 
+  '@types/debug@4.1.12':
+    dependencies:
+      '@types/ms': 2.1.0
+
   '@types/eslint-scope@3.7.7':
     dependencies:
       '@types/eslint': 9.6.1
@@ -15698,6 +15711,8 @@ snapshots:
   '@types/minimist@1.2.5': {}
 
   '@types/mousetrap@1.6.15': {}
+
+  '@types/ms@2.1.0': {}
 
   '@types/mute-stream@0.0.4':
     dependencies:
@@ -18082,9 +18097,10 @@ snapshots:
       streamx: 2.20.1
     optional: true
 
-  base-log-factory@2.0.10:
+  base-log-factory@2.1.1:
     dependencies:
       date-manip: 2.0.4
+      is-what-type: 1.0.1
 
   base64-js@1.5.1: {}
 
@@ -18108,8 +18124,18 @@ snapshots:
 
   blf-colorful-appender@1.0.3:
     dependencies:
-      base-log-factory: 2.0.10
+      base-log-factory: 2.1.1
       picocolors: 1.1.1
+
+  blf-debug-appender@1.0.2:
+    dependencies:
+      '@types/debug': 4.1.12
+      base-log-factory: 2.1.1
+      blf-colorful-appender: 1.0.3
+      date-manip: 2.0.4
+      debug: 4.4.0(supports-color@8.1.1)
+    transitivePeerDependencies:
+      - supports-color
 
   body-parser@1.20.3:
     dependencies:
@@ -18822,7 +18848,7 @@ snapshots:
 
   date-manip@2.0.4:
     dependencies:
-      is-what-type: 1.0.0
+      is-what-type: 1.0.1
 
   debounce@1.2.1: {}
 
@@ -20518,7 +20544,7 @@ snapshots:
       call-bind: 1.0.7
       get-intrinsic: 1.2.4
 
-  is-what-type@1.0.0: {}
+  is-what-type@1.0.1: {}
 
   is-windows@0.2.0: {}
 
@@ -24045,12 +24071,13 @@ snapshots:
 
   vary@1.1.2: {}
 
-  vite-plugin-external@6.1.0-rc.3:
+  vite-plugin-external@6.1.0:
     dependencies:
-      base-log-factory: 2.0.10
-      blf-colorful-appender: 1.0.3
       fs-extra: 11.2.0
-      vp-runtime-helper: 1.0.2
+      is-what-type: 1.0.1
+      vp-runtime-helper: 1.0.5
+    transitivePeerDependencies:
+      - supports-color
 
   vite@6.2.1(@types/node@22.13.11)(jiti@2.4.2)(lightningcss@1.29.2)(sass@1.81.0)(terser@5.34.1):
     dependencies:
@@ -24065,10 +24092,14 @@ snapshots:
       sass: 1.81.0
       terser: 5.34.1
 
-  vp-runtime-helper@1.0.2:
+  vp-runtime-helper@1.0.5:
     dependencies:
+      base-log-factory: 2.1.1
+      blf-debug-appender: 1.0.2
       figlet: 1.8.0
       picocolors: 1.1.1
+    transitivePeerDependencies:
+      - supports-color
 
   w3c-xmlserializer@4.0.0:
     dependencies:

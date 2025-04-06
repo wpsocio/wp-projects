@@ -33,7 +33,8 @@ export default defineConfig(
     makePot: {
       output: "src/languages/js-translations.pot",
     },
-  })
+    corsOrigin: true,
+  }),
 );
 ```
 
@@ -41,7 +42,7 @@ Or use the vite plugin:
 
 ```ts
 // vite.config.ts
-import viteWpReact from "@wpsocio/vite-wp-react";
+import { viteWpReact } from "@wpsocio/vite-wp-react";
 import { defineConfig } from "vite";
 
 export default defineConfig({
@@ -62,10 +63,16 @@ export default defineConfig({
         makePot: {
           output: "src/languages/js-translations.pot",
         },
-      }
+        corsOrigin: true,
+      },
     ),
   ],
 });
 ```
 
-You can also use the plugins separately.
+You can pass a callback to `extractWpDependencies` to control which dependencies to extract.
+
+```ts
+
+You can also import and use the plugins individually.
+```
