@@ -24,11 +24,11 @@ export function shouldExternalizePakage(name: string) {
  * and non-WordPress packages to their global variable names.
  *
  * @param name The package name.
- * @returns The externalized variable name.
+ * @returns The externalized variable name or undefined.
  */
-export function defaultExternalizeCallback(name: string): string {
+export function defaultExternalizeCallback(name: string) {
 	if (!shouldExternalizePakage(name)) {
-		return '';
+		return;
 	}
 
 	if (name in NON_WP_PACKAGES) {
@@ -39,8 +39,6 @@ export function defaultExternalizeCallback(name: string): string {
 		const variable = dashToCamelCase(name.replace('@wordpress/', ''));
 		return `wp.${variable}`;
 	}
-
-	return '';
 }
 
 /**
