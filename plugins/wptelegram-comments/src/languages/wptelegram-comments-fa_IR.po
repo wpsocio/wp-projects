@@ -21,7 +21,7 @@ msgstr ""
 msgid "Telegram Comments"
 msgstr "تلگرام کامنت"
 
-#: includes/AssetManager.php:141
+#: includes/AssetManager.php:157
 msgid "With this plugin, you can add comments to posts/pages on your WordPress website by using Telegram Comments Widget."
 msgstr "با استفاده از این افزونه شما قادر خواهید بود به پست ها یا پیج های سایت وردپرسی خود توسط تلگرام، کامنت اضافه کنید."
 
@@ -67,17 +67,17 @@ msgstr "پست تایپ"
 msgid "Please read the instructions above."
 msgstr "لطفا دستورالعمل فوق را مطالعه کنید."
 
-#: js/settings/ui/Configuration.tsx:20
+#: js/settings/ui/Configuration.tsx:17
 #: languages/wptelegram-comments-js-translations.php:68
 msgid "Configuration"
 msgstr "پیکربندی"
 
-#: js/settings/ui/Configuration.tsx:26
+#: js/settings/ui/Configuration.tsx:23
 #: languages/wptelegram-comments-js-translations.php:71
 msgid "The comments widget will be shown on the selected post types."
 msgstr "ویجت کامنت در پست مورد نظر شما نمایش داده خواهد شد."
 
-#: js/settings/ui/Configuration.tsx:39
+#: js/settings/ui/Configuration.tsx:36
 #: languages/wptelegram-comments-js-translations.php:74
 msgid "To exclude the specific posts, enter the post or page IDs separated by comma."
 msgstr "برای مستثنی کردن یک پست خاص، آی-دی پیج یا پست را وارد و با کاما جدا کنید."
@@ -122,7 +122,7 @@ msgstr "روی %1$s و %2$s ها کلیک کنید."
 msgid "Paste the copied code in the field below."
 msgstr "کد کپی شده را در فیلد زیر جایگذاری (پیست) کنید."
 
-#: ../../packages/js/shared-ui/form/submit/submit-button.tsx:12
+#: ../../packages/js/shared-ui/form/submit/submit-button.tsx:9
 #: js/settings/ui/Instructions.tsx:90
 #: languages/wptelegram-comments-js-translations.php:42
 msgid "Save Changes"
@@ -184,7 +184,7 @@ msgstr ""
 msgid "Error:"
 msgstr ""
 
-#: ../../packages/js/services/use-display-feedback.ts:71
+#: ../../packages/js/services/use-display-feedback.ts:61
 #: languages/wptelegram-comments-js-translations.php:14
 msgid "Lets fix these errors first."
 msgstr "ابتدا این خطاها را برطرف کنید۔"

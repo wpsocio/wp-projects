@@ -173,9 +173,9 @@ Source: [src/includes/Utils.php](../src/includes/Utils.php), [line 111](../src/i
 
 Argument | Type | Description
 -------- | ---- | -----------
-`$hook_and_priority` | `array` | The hook and priority.
+`$hook_and_priority` | `array` | A tuple containing the hook name and priority.
 
-Source: [src/includes/Main.php](../src/includes/Main.php), [line 392](../src/includes/Main.php#L392-L399)
+Source: [src/includes/Utils.php](../src/includes/Utils.php), [line 131](../src/includes/Utils.php#L131-L138)
 
 ### `wptelegram_login_web_app_login_data`
 
