@@ -6,7 +6,7 @@
 	"type": "module",
 	"module": "index.ts",
 	"dependencies": {
-		"@wordpress/api-fetch": "7.20.0",
+		"@wordpress/api-fetch": "7.22.0",
 		"@wpsocio/i18n": "workspace:*",
 		"@wpsocio/ui": "workspace:*",
 		"@wpsocio/utilities": "workspace:*",
@@ -18,7 +18,7 @@
 	},
 	"devDependencies": {
 		"@types/jquery": "^3.5.32",
-		"@types/node": "^22.13.11",
+		"@types/node": "^22.14.1",
 		"@types/ramda": "^0.30.2",
 		"@types/react": "^18.3.12"
 	}

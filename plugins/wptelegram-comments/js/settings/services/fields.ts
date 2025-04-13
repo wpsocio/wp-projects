@@ -26,6 +26,6 @@ export const validationSchema = z.object({
 	post_types: z.array(z.string()).optional(),
 });
 
-export type DataShape = z.infer<typeof validationSchema>;
+export type DataShape = z.input<typeof validationSchema>;
 
 export const getErrorMessage = getFormErrorMessage(fieldLabels);

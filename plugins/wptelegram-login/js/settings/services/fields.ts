@@ -78,6 +78,6 @@ export const validationSchema = z.object({
 	custom_error_message: z.string().optional(),
 });
 
-export type DataShape = z.infer<typeof validationSchema>;
+export type DataShape = z.input<typeof validationSchema>;
 
 export const getErrorMessage = getFormErrorMessage(fieldLabels);
