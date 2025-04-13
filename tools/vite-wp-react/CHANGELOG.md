@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.9
+
+### Patch Changes
+
+- [#246](https://github.com/wpsocio/wp-projects/pull/246) [`ebc843a`](https://github.com/wpsocio/wp-projects/commit/ebc843a58a85873207f97746ce26b343b67906ae) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Added an option to pass a callback for externalization
+
+- [#246](https://github.com/wpsocio/wp-projects/pull/246) [`ebc843a`](https://github.com/wpsocio/wp-projects/commit/ebc843a58a85873207f97746ce26b343b67906ae) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Improved handling of dependency externalization by using a dynamic callback
+
 ## 1.0.8
 
 ### Patch Changes

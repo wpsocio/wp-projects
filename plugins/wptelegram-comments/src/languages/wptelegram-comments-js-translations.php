@@ -10,7 +10,7 @@ $generated_i18n_strings = array(
 	// Reference: ../../packages/js/services/api-fetch/index.ts:41
 	__( 'Error:', 'wptelegram-comments' ),
 
-	// Reference: ../../packages/js/services/use-display-feedback.ts:71
+	// Reference: ../../packages/js/services/use-display-feedback.ts:61
 	__( 'Lets fix these errors first.', 'wptelegram-comments' ),
 
 	// Reference: ../../packages/js/services/use-submit-form.ts:64
@@ -37,7 +37,7 @@ $generated_i18n_strings = array(
 	/* translators: %s: channel name */
 	__( 'Join %s', 'wptelegram-comments' ),
 
-	// Reference: ../../packages/js/shared-ui/form/submit/submit-button.tsx:12
+	// Reference: ../../packages/js/shared-ui/form/submit/submit-button.tsx:9
 	// Reference: js/settings/ui/Instructions.tsx:90
 	__( 'Save Changes', 'wptelegram-comments' ),
 
@@ -64,13 +64,13 @@ $generated_i18n_strings = array(
 	// Reference: js/settings/ui/Code.tsx:44
 	__( 'Please read the instructions above.', 'wptelegram-comments' ),
 
-	// Reference: js/settings/ui/Configuration.tsx:20
+	// Reference: js/settings/ui/Configuration.tsx:17
 	__( 'Configuration', 'wptelegram-comments' ),
 
-	// Reference: js/settings/ui/Configuration.tsx:26
+	// Reference: js/settings/ui/Configuration.tsx:23
 	__( 'The comments widget will be shown on the selected post types.', 'wptelegram-comments' ),
 
-	// Reference: js/settings/ui/Configuration.tsx:39
+	// Reference: js/settings/ui/Configuration.tsx:36
 	__( 'To exclude the specific posts, enter the post or page IDs separated by comma.', 'wptelegram-comments' ),
 
 	// Reference: js/settings/ui/Instructions.tsx:15

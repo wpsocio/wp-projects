@@ -21,7 +21,7 @@ msgstr ""
 msgid "Telegram Comments"
 msgstr "Komentar Telegram"
 
-#: includes/AssetManager.php:141
+#: includes/AssetManager.php:157
 msgid "With this plugin, you can add comments to posts/pages on your WordPress website by using Telegram Comments Widget."
 msgstr "Dengan plugin ini, Anda dapat menambahkan komentar pada tulisan/laman pada situs web WordPress menggunakan Widget Komentar Telegram."
 
@@ -67,17 +67,17 @@ msgstr "Jenis kiriman"
 msgid "Please read the instructions above."
 msgstr "Harap baca instruksi di atas."
 
-#: js/settings/ui/Configuration.tsx:20
+#: js/settings/ui/Configuration.tsx:17
 #: languages/wptelegram-comments-js-translations.php:68
 msgid "Configuration"
 msgstr "Konfigurasi"
 
-#: js/settings/ui/Configuration.tsx:26
+#: js/settings/ui/Configuration.tsx:23
 #: languages/wptelegram-comments-js-translations.php:71
 msgid "The comments widget will be shown on the selected post types."
 msgstr "Widget komentar akan ditampilkan pada jenis kiriman yang dipilih."
 
-#: js/settings/ui/Configuration.tsx:39
+#: js/settings/ui/Configuration.tsx:36
 #: languages/wptelegram-comments-js-translations.php:74
 msgid "To exclude the specific posts, enter the post or page IDs separated by comma."
 msgstr "Untuk mengecualikan kiriman tertentu, masukkan ID tulisan atau laman, pisahkan dengan koma."
@@ -122,7 +122,7 @@ msgstr "Klik %1$s dan %2$s."
 msgid "Paste the copied code in the field below."
 msgstr "Tempelkan kode yang disalin pada ruas berikut."
 
-#: ../../packages/js/shared-ui/form/submit/submit-button.tsx:12
+#: ../../packages/js/shared-ui/form/submit/submit-button.tsx:9
 #: js/settings/ui/Instructions.tsx:90
 #: languages/wptelegram-comments-js-translations.php:42
 msgid "Save Changes"
@@ -184,7 +184,7 @@ msgstr ""
 msgid "Error:"
 msgstr ""
 
-#: ../../packages/js/services/use-display-feedback.ts:71
+#: ../../packages/js/services/use-display-feedback.ts:61
 #: languages/wptelegram-comments-js-translations.php:14
 msgid "Lets fix these errors first."
 msgstr "Mari pebaiki galat berikut terlebih dahulu."

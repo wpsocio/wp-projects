@@ -120,7 +120,7 @@ class Utils extends \WPSocio\WPUtils\Helpers {
 	/**
 	 * Get the hook details to use for intercepting the login.
 	 *
-	 * @since x.y.z
+	 * @since 1.11.10
 	 *
 	 * @return array Hook and priority.
 	 */

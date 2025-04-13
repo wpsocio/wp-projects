@@ -21,7 +21,7 @@ msgstr ""
 msgid "Telegram Comments"
 msgstr "Telegram Comments"
 
-#: includes/AssetManager.php:141
+#: includes/AssetManager.php:157
 msgid "With this plugin, you can add comments to posts/pages on your WordPress website by using Telegram Comments Widget."
 msgstr "Con questo plugin, è possibile aggiungere I commenti ai messaggi/pagine sul tuo sito web WordPress utilizzando il widget Telegram Comments."
 
@@ -67,17 +67,17 @@ msgstr "Tipi di messaggi"
 msgid "Please read the instructions above."
 msgstr "Si prega di leggere le istruzioni sopra."
 
-#: js/settings/ui/Configuration.tsx:20
+#: js/settings/ui/Configuration.tsx:17
 #: languages/wptelegram-comments-js-translations.php:68
 msgid "Configuration"
 msgstr "Configurazione"
 
-#: js/settings/ui/Configuration.tsx:26
+#: js/settings/ui/Configuration.tsx:23
 #: languages/wptelegram-comments-js-translations.php:71
 msgid "The comments widget will be shown on the selected post types."
 msgstr "Il widget dei commenti sarà mostrato sui tipi di post selezionati."
 
-#: js/settings/ui/Configuration.tsx:39
+#: js/settings/ui/Configuration.tsx:36
 #: languages/wptelegram-comments-js-translations.php:74
 msgid "To exclude the specific posts, enter the post or page IDs separated by comma."
 msgstr "Per escludere i messaggi specifici, inserisci il post o gli ID pagina separati da virgola."
@@ -122,7 +122,7 @@ msgstr "Clicca su %1$s e %2$s."
 msgid "Paste the copied code in the field below."
 msgstr "Incolla il codice copiato nel campo sottostante."
 
-#: ../../packages/js/shared-ui/form/submit/submit-button.tsx:12
+#: ../../packages/js/shared-ui/form/submit/submit-button.tsx:9
 #: js/settings/ui/Instructions.tsx:90
 #: languages/wptelegram-comments-js-translations.php:42
 msgid "Save Changes"
@@ -184,7 +184,7 @@ msgstr ""
 msgid "Error:"
 msgstr ""
 
-#: ../../packages/js/services/use-display-feedback.ts:71
+#: ../../packages/js/services/use-display-feedback.ts:61
 #: languages/wptelegram-comments-js-translations.php:14
 msgid "Lets fix these errors first."
 msgstr "Correggi questi errori prima."
