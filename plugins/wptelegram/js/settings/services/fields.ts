@@ -180,6 +180,6 @@ export const validationSchema = z.object({
 	}),
 });
 
-export type DataShape = z.infer<typeof validationSchema>;
+export type DataShape = z.input<typeof validationSchema>;
 
 export const getErrorMessage = getFormErrorMessage(fieldLabels);

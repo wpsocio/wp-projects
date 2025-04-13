@@ -40,14 +40,14 @@
 		"archiver": "^7.0.1",
 		"chalk": "^5.4.1",
 		"cssnano": "^7.0.6",
-		"dotenv": "^16.4.7",
+		"dotenv": "^16.5.0",
 		"enquirer": "^2.4.1",
 		"execa": "^9.5.2",
 		"fast-glob": "^3.3.3",
 		"find-up": "^7.0.0",
 		"gettext-parser": "^8.0.0",
-		"listr2": "^8.2.5",
-		"parse-json": "^8.2.0",
+		"listr2": "^8.3.2",
+		"parse-json": "^8.3.0",
 		"postcss": "^8.5.3",
 		"rimraf": "^6.0.1",
 		"semver": "^7.7.1",
@@ -56,11 +56,11 @@
 	"devDependencies": {
 		"@types/archiver": "^6.0.3",
 		"@types/gettext-parser": "^8.0.0",
-		"@types/semver": "^7.5.8",
-		"oclif": "^4.17.40",
+		"@types/semver": "^7.7.0",
+		"oclif": "^4.17.44",
 		"tsup": "^8.4.0",
-		"typescript": "^5.8.2",
-		"wireit": "^0.14.11"
+		"typescript": "^5.8.3",
+		"wireit": "^0.14.12"
 	},
 	"oclif": {
 		"bin": "wpdev",

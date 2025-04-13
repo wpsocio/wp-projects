@@ -39,11 +39,11 @@
 	},
 	"devDependencies": {
 		"@manypkg/get-packages": "^2.2.2",
-		"@types/node": "^22.13.11",
-		"oclif": "^4.17.40",
+		"@types/node": "^22.14.1",
+		"oclif": "^4.17.44",
 		"tsup": "^8.4.0",
-		"typescript": "^5.8.2",
-		"wireit": "^0.14.11"
+		"typescript": "^5.8.3",
+		"wireit": "^0.14.12"
 	},
 	"oclif": {
 		"bin": "build-utils",
