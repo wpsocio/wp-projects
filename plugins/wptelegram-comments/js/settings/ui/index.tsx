@@ -9,7 +9,7 @@ import App from './App';
 
 const root = document.getElementById(ROOT_ID);
 
-// clea up notifications etc.
+// clean up notifications etc.
 cleanup(ROOT_ID, { disableCommonCSS: true });
 
 setI18nData('wptelegram_comments', 'wptelegram-comments');
