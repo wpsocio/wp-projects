@@ -106,7 +106,9 @@ test.describe('Settings', () => {
 			},
 		};
 		// Mock the api call
-		await mocks.mockRequest('/wptelegram-bot/v1/getMe', { json });
+		const unmock = await mocks.mockRequest('/wptelegram-bot/v1/base', {
+			json,
+		});
 
 		const botTokenField = page.getByLabel('Bot Token');
 		const botUsernameField = page.getByLabel('Bot Username');
@@ -130,13 +132,15 @@ test.describe('Settings', () => {
 		await expect(resultAlert).toContainText(result);
 
 		await expect(botUsernameField).toHaveValue(json.result.username);
+
+		await unmock();
 	});
 
 	test('Should handle the API call for invalid token', async ({ page }) => {
 		const json = { ok: false, error_code: 401, description: 'Unauthorized' };
 
 		// Mock the api call
-		const unmock = await mocks.mockRequest('/wptelegram-bot/v1/getMe', {
+		const unmock = await mocks.mockRequest('/wptelegram-bot/v1/base', {
 			json,
 			status: json.error_code,
 		});

@@ -99,6 +99,7 @@ test.describe('Settings', () => {
 
 		await actions.testBotTokenAndWait({
 			endpoint: `/bot${TEST_BOT_TOKEN}/getMe`,
+			query: {},
 		});
 
 		await resultAlert.waitFor();
@@ -133,6 +134,7 @@ test.describe('Settings', () => {
 
 		await actions.testBotTokenAndWait({
 			endpoint: `/bot${TEST_BOT_TOKEN}/getMe`,
+			query: {},
 		});
 
 		await resultAlert.waitFor();

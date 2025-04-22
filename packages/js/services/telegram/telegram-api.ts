@@ -75,7 +75,7 @@ class ApiClient implements TelegramApi {
 					api_params: apiParams,
 				},
 				// use WP REST relative path
-				path: `${this.path}/${apiMethod}/`,
+				path: `${this.path}/base?api_method=${apiMethod}`,
 			};
 		}
 
