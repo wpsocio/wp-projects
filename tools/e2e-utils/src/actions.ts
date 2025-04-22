@@ -68,8 +68,9 @@ export class Actions {
 	}
 
 	async testBotTokenAndWait({
-		endpoint = '/wptelegram-bot/v1/getMe',
-	}: { endpoint?: string } = {}) {
+		endpoint = '/wptelegram-bot/v1/base',
+		query = { api_method: 'getMe' },
+	}: { endpoint?: string; query?: Record<string, string> } = {}) {
 		const testButton = this.page.getByRole('button', {
 			name: 'Test Token',
 			exact: true,
@@ -77,7 +78,7 @@ export class Actions {
 
 		return await Promise.all([
 			testButton.click(),
-			this.waitForApiResponse(endpoint),
+			this.waitForApiResponse(endpoint, query),
 		]);
 	}
 
