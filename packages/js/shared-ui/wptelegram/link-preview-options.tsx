@@ -5,7 +5,7 @@ import { Input } from '@wpsocio/ui/wrappers/input';
 import { Switch } from '@wpsocio/ui/wrappers/switch';
 import createInterpolateElement from '@wpsocio/utilities/createInterpolateElement.js';
 import { prefixName } from '@wpsocio/utilities/misc.js';
-import { Code } from '../components/code.js';
+import { VariableButton } from '../components/variable-button.jsx';
 import { FormField } from '../form/form-field.js';
 import { FormItem } from '../form/form-item.js';
 import { getFieldLabel } from './fields.js';
@@ -55,10 +55,10 @@ export const LinkPreviewOptions: React.FC<CommonProps> = ({ prefix }) => {
 											sprintf(
 												/* translators: %s code example */
 												__('For example %s'),
-												'<Ex />',
+												'<Macro />',
 											),
 											{
-												Ex: <Code>{'{full_url}'}</Code>,
+												Macro: <VariableButton content="{full_url}" />,
 											},
 										)}
 									</span>
