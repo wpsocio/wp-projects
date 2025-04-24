@@ -4,9 +4,9 @@
 @mixin reset-wp-common-css {
     @layer wp {
         body {
-    
+
             font-size: initial !important;
-    
+
             p {
                 font-size: initial !important;
             }
@@ -16,6 +16,84 @@
             background-color: var(--background);
             color: var(--foreground);
         }
+    }
+
+    p {
+        font-size: revert-layer;
+        line-height: revert-layer;
+        margin: revert-layer;
+    }
+
+    h1 {
+        color: revert-layer;
+        font-size: revert-layer;
+        margin: revert-layer;
+    }
+
+    h2,
+    h3 {
+        color: revert-layer;
+        font-size: revert-layer;
+        margin: revert-layer;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        display: revert-layer;
+        font-weight: revert-layer;
+    }
+
+    h5 {
+        font-size: revert-layer;
+        margin: revert-layer;
+    }
+
+    h6 {
+        font-size: revert-layer;
+        margin: revert-layer;
+    }
+
+    ul,
+    ol {
+        padding: revert-layer;
+    }
+
+    ul {
+        list-style: revert-layer;
+    }
+
+    ol {
+        list-style-type: revert-layer;
+        margin-left: revert-layer;
+    }
+
+    code {
+        font-family: revert-layer;
+        direction: revert-layer;
+        unicode-bidi: revert-layer;
+    }
+
+    kbd,
+    code {
+        padding: revert-layer;
+        margin: revert-layer;
+        background: revert-layer;
+        background: revert-layer;
+        font-size: revert-layer;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+        box-sizing: revert-layer;
+        font-family: revert-layer;
+        font-size: revert-layer;
+        font-weight: revert-layer;
     }
 }
 

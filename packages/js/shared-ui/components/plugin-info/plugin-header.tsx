@@ -29,9 +29,9 @@ export const PluginHeader: React.FC<PluginHeaderProps> = ({
 						/>
 					)}
 					<div className="w-full flex items-baseline">
-						<h4 className="text-xl font-semibold inline-block m-0 max-w-[80%] whitespace-nowrap overflow-hidden overflow-ellipsis line-h-[1.3]">
+						<span className="text-xl font-semibold inline-block m-0 max-w-[80%] whitespace-nowrap overflow-hidden overflow-ellipsis line-h-[1.3]">
 							{title}
-						</h4>
+						</span>
 						<span className="text-sm text-gray-500 italic">
 							&nbsp;v{version}
 						</span>
