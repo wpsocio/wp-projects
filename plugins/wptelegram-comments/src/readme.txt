@@ -77,6 +77,6 @@ Automatic updates should work smoothly, but we still recommend you back up your 
 == Changelog ==
 
 = 1.2.6 =
-- Fixed background color for the setting page
+- Fixed background color for the settings page
 
 [See full changelog](https://github.com/wpsocio/wptelegram-comments/blob/main/CHANGELOG.md)
