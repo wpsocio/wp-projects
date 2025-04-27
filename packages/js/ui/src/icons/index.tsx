@@ -8,6 +8,7 @@ export {
 	Info,
 	X as Close,
 	ChevronDown,
+	ChevronUp,
 	Save,
 	PlusIcon as Plus,
 	Trash,
