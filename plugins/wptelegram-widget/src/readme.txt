@@ -5,7 +5,7 @@ Tags: telegram, feed, widget, channel, group
 Requires at least: 6.5
 Requires PHP: 7.4
 Tested up to: 6.8
-Stable tag: 2.2.8
+Stable tag: 2.2.9
 License: GPL-3.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -193,7 +193,8 @@ Automatic updates should work smoothly, but we still recommend you back up your 
 
 == Changelog ==
 
-= 2.2.8 =
-- Improved form field spacing for small screens
+= 2.2.9 =
+- Fixed Bot Token and Message tests not working for lowercase URLs
+- Fixed background color for the setting page
 
 [See full changelog](https://github.com/wpsocio/wptelegram-widget/blob/main/CHANGELOG.md)
