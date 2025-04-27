@@ -207,7 +207,7 @@ Automatic updates should work smoothly, but we still recommend you back up your 
 = 4.2.10 =
 - Updated Message Template info UI to make it more visible
 - Fixed Bot Token and Message tests not working for lowercase URLs
-- Fixed background color for the setting page
+- Fixed background color for the settings page
 - Added support for post modified and post time variables
 
 [See full changelog](https://github.com/wpsocio/wptelegram/blob/main/CHANGELOG.md)

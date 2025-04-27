@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- [#257](https://github.com/wpsocio/wp-projects/pull/257) [`150dc9f`](https://github.com/wpsocio/wp-projects/commit/150dc9f501e39e1d412da6a433d0855000e7a7ea) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Fixed background color for the setting page
+- [#257](https://github.com/wpsocio/wp-projects/pull/257) [`150dc9f`](https://github.com/wpsocio/wp-projects/commit/150dc9f501e39e1d412da6a433d0855000e7a7ea) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Fixed background color for the settings page
 
 ## 1.2.5
 

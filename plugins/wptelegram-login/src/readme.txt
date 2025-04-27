@@ -156,6 +156,6 @@ Automatic updates should work smoothly, but we still recommend you back up your 
 
 = 1.11.11 =
 - Fixed Bot Token and Message tests not working for lowercase URLs
-- Fixed background color for the setting page
+- Fixed background color for the settings page
 
 [See full changelog](https://github.com/wpsocio/wptelegram-login/blob/main/CHANGELOG.md)
