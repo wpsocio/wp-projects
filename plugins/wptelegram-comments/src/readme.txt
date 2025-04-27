@@ -5,7 +5,7 @@ Tags: telegram, comments, discuss, social, widget
 Requires at least: 6.5
 Requires PHP: 7.4
 Tested up to: 6.8
-Stable tag: 1.2.5
+Stable tag: 1.2.6
 License: GPL-3.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -76,8 +76,7 @@ Automatic updates should work smoothly, but we still recommend you back up your 
 
 == Changelog ==
 
-= 1.2.5 =
-- Improved form field spacing for small screens
-- Fixed clean up logic on uninstall
+= 1.2.6 =
+- Fixed background color for the setting page
 
 [See full changelog](https://github.com/wpsocio/wptelegram-comments/blob/main/CHANGELOG.md)

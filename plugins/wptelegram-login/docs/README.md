@@ -150,59 +150,119 @@ Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 663
 
 ## Filters
 
-### `wptelegram_login_get_user_by_telegram_id`
+### `wptelegram_login_redirect_to`
 
-*Filter the user found by its Telegram ID.*
+*Filters the redirect URL for the login button*
 
-**Arguments**
-
-Argument | Type | Description
--------- | ---- | -----------
-`$user` | `\WPTelegram\Login\includes\WP_User\|false` | The user object or false.
-`$tg_user_id` | `int\|string` | Telegram User ID.
-
-Source: [src/includes/Utils.php](../src/includes/Utils.php), [line 111](../src/includes/Utils.php#L111-L117)
-
-### `wptelegram_login_intercept_request_on`
-
-*Filter the hook and priority to use for intercepting the login request.*
-
-- [Examples](./examples/intercept_request_on.md)
+It can be used to fix the wrong URL in case the website is in subdirectory and the URL is invalid.
 
 **Arguments**
 
 Argument | Type | Description
 -------- | ---- | -----------
-`$hook_and_priority` | `array` | A tuple containing the hook name and priority.
+`$redirect_to` | `string` | The redirect URL.
 
-Source: [src/includes/Utils.php](../src/includes/Utils.php), [line 131](../src/includes/Utils.php#L131-L138)
+**Changelog**
 
-### `wptelegram_login_web_app_login_data`
+Version | Description
+------- | -----------
+`1.0.0` | 
 
-*Filters the data for the web app login.*
+Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 124](../src/shared/Shared.php#L124-L133)
 
-This can be used to customize the messages etc. for the web app login UI.
+### `wptelegram_login_telegram_callback_url`
 
-**Arguments**
+*Filters the callback URL for the login button*
 
-Argument | Type | Description
--------- | ---- | -----------
-`$data` | `array` | The data for the web app login.
-
-Source: [src/includes/AssetManager.php](../src/includes/AssetManager.php), [line 290](../src/includes/AssetManager.php#L290-L297)
-
-### `wptelegram_login_language_options`
-
-*Filters the language options for the settings page.*
+It can be used to fix the wrong URL in case the website is in subdirectory and the URL is invalid.
 
 **Arguments**
 
 Argument | Type | Description
 -------- | ---- | -----------
-`$data` | `array` | The language options.
-`$translations` | `array` | The available translations.
+`$callback_url` | `string` | The callback URL.
 
-Source: [src/includes/AssetManager.php](../src/includes/AssetManager.php), [line 426](../src/includes/AssetManager.php#L426-L432)
+**Changelog**
+
+Version | Description
+------- | -----------
+`1.0.0` | 
+
+Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 153](../src/shared/Shared.php#L153-L162)
+
+### `wptelegram_login_show_if_user_connected`
+
+*Filters whether to show the button if user is already connected.*
+
+- [Examples](./examples/show_if_user_connected.md)
+
+**Arguments**
+
+Argument | Type | Description
+-------- | ---- | -----------
+`$show_if_connected` | `bool` | Whether to show the button if user is already connected.
+`$current_user_telegram_id` | `int` | The current user's Telegram ID.
+
+Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 217](../src/shared/Shared.php#L217-L225)
+
+### `wptelegram_login_show_if_user_is`
+
+*Filters when to show the login button*
+
+Possible values:
+"logged_out", "logged_in", "author", "subscriber" etc.
+
+You can also pass a user role e.g "editor" or a comma separated list or an array of roles
+to display the button for specific user roles
+
+Passing an empty value will display the button
+for both logged in and logged out users
+
+**Arguments**
+
+Argument | Type | Description
+-------- | ---- | -----------
+`$show_if_user_is` | `string` | When to show the button.
+
+**Changelog**
+
+Version | Description
+------- | -----------
+`1.0.0` | 
+
+Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 231](../src/shared/Shared.php#L231-L247)
+
+### `wptelegram_login_use_telegram_avatar`
+
+*Filters whether to use the Telegram avatar.*
+
+Pass `false` to disable the Telegram avatar.
+
+- [Examples](./examples/use_telegram_avatar.md)
+
+**Arguments**
+
+Argument | Type | Description
+-------- | ---- | -----------
+`$use_telegram_avatar` | `bool` | Whether to use the Telegram avatar.
+`$url` | `string` | Avatar URL.
+`$id_or_email` | `mixed` | user id or email.
+
+Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 306](../src/shared/Shared.php#L306-L317)
+
+### `wptelegram_login_custom_avatar_url`
+
+*Filters the custom avatar URL.*
+
+**Arguments**
+
+Argument | Type | Description
+-------- | ---- | -----------
+`$avatar_url` | `string` | The custom avatar URL.
+`$url` | `string` | Avatar URL.
+`$id_or_email` | `mixed` | user id or email.
+
+Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 351](../src/shared/Shared.php#L351-L358)
 
 ### `wptelegram_login_validation_query_params`
 
@@ -430,119 +490,59 @@ Version | Description
 
 Source: [src/shared/widgets/Primary.php](../src/shared/widgets/Primary.php), [line 46](../src/shared/widgets/Primary.php#L46-L55)
 
-### `wptelegram_login_redirect_to`
+### `wptelegram_login_web_app_login_data`
 
-*Filters the redirect URL for the login button*
+*Filters the data for the web app login.*
 
-It can be used to fix the wrong URL in case the website is in subdirectory and the URL is invalid.
-
-**Arguments**
-
-Argument | Type | Description
--------- | ---- | -----------
-`$redirect_to` | `string` | The redirect URL.
-
-**Changelog**
-
-Version | Description
-------- | -----------
-`1.0.0` | 
-
-Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 124](../src/shared/Shared.php#L124-L133)
-
-### `wptelegram_login_telegram_callback_url`
-
-*Filters the callback URL for the login button*
-
-It can be used to fix the wrong URL in case the website is in subdirectory and the URL is invalid.
+This can be used to customize the messages etc. for the web app login UI.
 
 **Arguments**
 
 Argument | Type | Description
 -------- | ---- | -----------
-`$callback_url` | `string` | The callback URL.
+`$data` | `array` | The data for the web app login.
 
-**Changelog**
+Source: [src/includes/AssetManager.php](../src/includes/AssetManager.php), [line 290](../src/includes/AssetManager.php#L290-L297)
 
-Version | Description
-------- | -----------
-`1.0.0` | 
+### `wptelegram_login_language_options`
 
-Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 153](../src/shared/Shared.php#L153-L162)
-
-### `wptelegram_login_show_if_user_connected`
-
-*Filters whether to show the button if user is already connected.*
-
-- [Examples](./examples/show_if_user_connected.md)
+*Filters the language options for the settings page.*
 
 **Arguments**
 
 Argument | Type | Description
 -------- | ---- | -----------
-`$show_if_connected` | `bool` | Whether to show the button if user is already connected.
-`$current_user_telegram_id` | `int` | The current user's Telegram ID.
+`$data` | `array` | The language options.
+`$translations` | `array` | The available translations.
 
-Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 217](../src/shared/Shared.php#L217-L225)
+Source: [src/includes/AssetManager.php](../src/includes/AssetManager.php), [line 426](../src/includes/AssetManager.php#L426-L432)
 
-### `wptelegram_login_show_if_user_is`
+### `wptelegram_login_get_user_by_telegram_id`
 
-*Filters when to show the login button*
-
-Possible values:
-"logged_out", "logged_in", "author", "subscriber" etc.
-
-You can also pass a user role e.g "editor" or a comma separated list or an array of roles
-to display the button for specific user roles
-
-Passing an empty value will display the button
-for both logged in and logged out users
+*Filter the user found by its Telegram ID.*
 
 **Arguments**
 
 Argument | Type | Description
 -------- | ---- | -----------
-`$show_if_user_is` | `string` | When to show the button.
+`$user` | `\WPTelegram\Login\includes\WP_User\|false` | The user object or false.
+`$tg_user_id` | `int\|string` | Telegram User ID.
 
-**Changelog**
+Source: [src/includes/Utils.php](../src/includes/Utils.php), [line 111](../src/includes/Utils.php#L111-L117)
 
-Version | Description
-------- | -----------
-`1.0.0` | 
+### `wptelegram_login_intercept_request_on`
 
-Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 231](../src/shared/Shared.php#L231-L247)
+*Filter the hook and priority to use for intercepting the login request.*
 
-### `wptelegram_login_use_telegram_avatar`
-
-*Filters whether to use the Telegram avatar.*
-
-Pass `false` to disable the Telegram avatar.
-
-- [Examples](./examples/use_telegram_avatar.md)
+- [Examples](./examples/intercept_request_on.md)
 
 **Arguments**
 
 Argument | Type | Description
 -------- | ---- | -----------
-`$use_telegram_avatar` | `bool` | Whether to use the Telegram avatar.
-`$url` | `string` | Avatar URL.
-`$id_or_email` | `mixed` | user id or email.
+`$hook_and_priority` | `array` | A tuple containing the hook name and priority.
 
-Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 306](../src/shared/Shared.php#L306-L317)
-
-### `wptelegram_login_custom_avatar_url`
-
-*Filters the custom avatar URL.*
-
-**Arguments**
-
-Argument | Type | Description
--------- | ---- | -----------
-`$avatar_url` | `string` | The custom avatar URL.
-`$url` | `string` | Avatar URL.
-`$id_or_email` | `mixed` | user id or email.
-
-Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 351](../src/shared/Shared.php#L351-L358)
+Source: [src/includes/Utils.php](../src/includes/Utils.php), [line 131](../src/includes/Utils.php#L131-L138)
 
 
 <p align="center"><a href="https://github.com/pronamic/wp-documentor"><img src="https://cdn.jsdelivr.net/gh/pronamic/wp-documentor@main/logos/pronamic-wp-documentor.svgo-min.svg" alt="Pronamic WordPress Documentor" width="32" height="32"></a><br><em>Generated by <a href="https://github.com/pronamic/wp-documentor">Pronamic WordPress Documentor</a> <code>1.2.0</code></em><p>
