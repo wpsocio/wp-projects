@@ -7,7 +7,7 @@ import { createInterpolateElement } from '@wpsocio/utilities/createInterpolateEl
 export const Instructions: React.FC = () => {
 	return (
 		<InstructionsUI>
-			<ol className="ms-8 list-decimal">
+			<ol className="ms-6 sm:ms-8 list-decimal">
 				<li>
 					{createInterpolateElement(
 						sprintf(
