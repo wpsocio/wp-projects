@@ -32,7 +32,7 @@ export function ChannelField({
 			name={name}
 			render={({ field }) => (
 				<div>
-					<div className="flex gap-3 items-center flex-row border p-2 rounded max-w-[35rem]">
+					<div className="flex gap-3 items-center flex-row border p-2 rounded max-w-[40rem]">
 						<div className="grid grid-cols-1 gap-2 sm:grid-cols-3 w-full">
 							<Input
 								type="text"

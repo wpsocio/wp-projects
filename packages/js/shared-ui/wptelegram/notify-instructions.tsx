@@ -17,7 +17,7 @@ export const NotifyInstructions: React.FC<NotifyInstructionsProps> = ({
 		<InstructionsUI className="mt-6">
 			<div className="grid grid-cols-1 xl:grid-cols-2 gap-4 auto-cols-max">
 				<div>
-					<ol className="ms-8 list-decimal">
+					<ol className="ms-6 sm:ms-8 list-decimal">
 						<li>
 							{__('To receive notifications privately:')}
 							<ol className="ms-4 list-decimal">

@@ -19,7 +19,7 @@ export const P2TGInstructions: React.FC<P2TGInstructionsProps> = ({
 		<InstructionsUI className="mt-6">
 			<div className="grid grid-cols-1 xl:grid-cols-2 gap-4 auto-cols-max">
 				<div>
-					<ol className="ms-8 list-decimal">
+					<ol className="ms-6 sm:ms-8 list-decimal">
 						<li>{__('Create a Telegram channel or group.')}</li>
 						<li>
 							{createInterpolateElement(
