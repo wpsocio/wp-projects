@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { cn } from '../lib/utils.js';
 import { Label as LabelUI } from '../components/label.js';
+import { cn } from '../lib/utils.js';
 
 export type LabelProps = React.ComponentProps<typeof LabelUI> & {
 	isRequired?: boolean;
@@ -14,16 +14,18 @@ export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
 				{...props}
 				className={cn('text-base', props.className)}
 			>
-				{children}
-				{isRequired && (
-					<span
-						role="presentation"
-						aria-hidden="true"
-						className="text-destructive ms-1"
-					>
-						{'*'}
-					</span>
-				)}
+				<>
+					{children}
+					{isRequired && (
+						<span
+							role="presentation"
+							aria-hidden="true"
+							className="text-destructive ms-1"
+						>
+							{'*'}
+						</span>
+					)}
+				</>
 			</LabelUI>
 		);
 	},
