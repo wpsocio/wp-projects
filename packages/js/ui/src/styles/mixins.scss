@@ -18,23 +18,69 @@
         }
     }
 
+    html,
+    body {
+        height: revert-layer;
+        margin: revert-layer;
+        padding: revert-layer;
+    }
+
+    body {
+        background: revert-layer;
+        color: revert-layer;
+        font-family: revert-layer;
+        font-size: revert-layer;
+        line-height: revert-layer;
+        min-width: revert-layer;
+    }
+
+    iframe,
+    img {
+        border: revert-layer;
+    }
+
+    td {
+        font-family: revert-layer;
+        font-size: revert-layer;
+        font-weight: revert-layer;
+        line-height: revert-layer;
+    }
+
+    a {
+        color: revert-layer;
+        transition-property: revert-layer;
+        transition-duration: revert-layer;
+        transition-timing-function: revert-layer;
+    }
+
+    a,
+    div {
+        outline: revert-layer;
+    }
+
+    a:hover,
+    a:active {
+        color: revert-layer;
+    }
+
+    blockquote,
+    q {
+        quotes: revert-layer;
+    }
+
     p {
         font-size: revert-layer;
         line-height: revert-layer;
         margin: revert-layer;
     }
 
-    h1 {
-        color: revert-layer;
-        font-size: revert-layer;
+    blockquote {
         margin: revert-layer;
     }
 
-    h2,
-    h3 {
-        color: revert-layer;
-        font-size: revert-layer;
-        margin: revert-layer;
+    li,
+    dd {
+        margin-bottom: revert-layer;
     }
 
     h1,
@@ -45,16 +91,14 @@
     h6 {
         display: revert-layer;
         font-weight: revert-layer;
-    }
-
-    h5 {
         font-size: revert-layer;
         margin: revert-layer;
     }
 
-    h6 {
-        font-size: revert-layer;
-        margin: revert-layer;
+    h1,
+    h2,
+    h3 {
+        color: revert-layer;
     }
 
     ul,
@@ -86,15 +130,48 @@
         font-size: revert-layer;
     }
 
-    button,
-    input,
-    select,
-    textarea {
-        box-sizing: revert-layer;
-        font-family: revert-layer;
-        font-size: revert-layer;
+
+    strong,
+    b {
         font-weight: revert-layer;
     }
+
+    hr {
+        border: revert-layer;
+        border-top: revert-layer;
+        border-bottom: revert-layer;
+    }
+
+
+    fieldset {
+        border: revert-layer;
+        padding: revert-layer;
+        margin: revert-layer;
+    }
+
+    img {
+        border: revert-layer;
+    }
+
+
+    @media screen and (max-width: 782px) {
+
+        body {
+            min-width: revert-layer;
+            overflow-x: revert-layer;
+        }
+
+        body * {
+            -webkit-tap-highlight-color: revert-layer;
+        }
+
+        code {
+            word-wrap: revert-layer;
+            word-wrap: revert-layer;
+            word-break: revert-layer;
+        }
+    }
+
 }
 
 /**
