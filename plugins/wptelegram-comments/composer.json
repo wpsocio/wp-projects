@@ -17,7 +17,7 @@
 			"type": "path",
 			"url": "../../packages/php/*",
 			"options": {
-				"symlink": false
+				"symlink": true
 			}
 		}
 	},

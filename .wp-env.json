@@ -7,7 +7,8 @@
 		"wp-content/plugins/wptelegram": "./plugins/wptelegram",
 		"wp-content/plugins/wptelegram-comments": "./plugins/wptelegram-comments",
 		"wp-content/plugins/wptelegram-login": "./plugins/wptelegram-login",
-		"wp-content/plugins/wptelegram-widget": "./plugins/wptelegram-widget"
+		"wp-content/plugins/wptelegram-widget": "./plugins/wptelegram-widget",
+		"wp-content/packages/php": "./packages/php"
 	},
 	"env": {
 		"tests": {
