@@ -11,7 +11,7 @@
 		"@wpsocio/ui": "workspace:*",
 		"@wpsocio/utilities": "workspace:*",
 		"ramda": "^0.30.1",
-		"zod": "^3.24.2"
+		"zod": "^3.24.3"
 	},
 	"peerDependencies": {
 		"react": "^18.3.1",
@@ -19,11 +19,11 @@
 		"use-debounce": "^10.0.4"
 	},
 	"devDependencies": {
-		"@types/node": "^22.14.1",
+		"@types/node": "^22.15.3",
 		"@types/ramda": "^0.30.2",
-		"@types/react": "^18.3.12",
-		"@types/react-dom": "^18.3.1",
+		"@types/react": "^18.3.20",
+		"@types/react-dom": "^18.3.6",
 		"typescript": "^5.8.3",
-		"tailwindcss": "^4.1.3"
+		"tailwindcss": "^4.1.4"
 	}
 }
