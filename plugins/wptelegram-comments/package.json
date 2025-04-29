@@ -17,13 +17,7 @@
 	"bugs": {
 		"url": "https://github.com/wpsocio/wp-projects/issues"
 	},
-	"keywords": [
-		"telegram",
-		"comments",
-		"discuss",
-		"social",
-		"widget"
-	],
+	"keywords": ["telegram", "comments", "discuss", "social", "widget"],
 	"type": "module",
 	"scripts": {
 		"dev": "vite --port=5003",
@@ -48,57 +42,24 @@
 		"@types/jquery": "^3.5.32",
 		"@types/react": "^18.3.12",
 		"@types/react-dom": "^18.3.1",
-		"@wpsocio/build-utils": "workspace:*",
 		"@wpsocio/vite-wp-react": "workspace:*",
 		"tailwindcss": "^4.1.3",
 		"typescript": "^5.8.3",
 		"vite": "^6.2.6",
 		"wireit": "^0.14.12"
 	},
-	"build-utils": {
-		"validate": [
-			{
-				"paths": [
-					"src/assets/build/dependencies.json",
-					"src/assets/build/manifest.json"
-				],
-				"rules": [
-					{
-						"value": "EXISTS",
-						"message": "Could not verify the build output: {path}"
-					}
-				]
-			},
-			{
-				"paths": [
-					"src/assets/build/dev-server.json"
-				],
-				"rules": [
-					{
-						"value": "NOT_EXISTS"
-					}
-				]
-			}
-		]
-	},
 	"wireit": {
 		"build": {
-			"command": "vite build && pnpm run validate-build",
-			"output": [
-				"src/assets/build"
-			]
+			"command": "vite build",
+			"output": ["src/assets/build"]
 		},
 		"setup:php": {
 			"command": "composer install",
-			"dependencies": [
-				"unset-vendor-dir"
-			]
+			"dependencies": ["unset-vendor-dir"]
 		},
 		"setup:php:prod": {
 			"command": "composer install --no-dev && pnpm run unset-vendor-dir",
-			"dependencies": [
-				"set-prod-vendor"
-			]
+			"dependencies": ["set-prod-vendor"]
 		},
 		"set-prod-vendor": {
 			"command": "composer config vendor-dir src/vendor"
