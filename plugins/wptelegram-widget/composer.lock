@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4be25cf2cb1a803bbf1725c42b51c5b0",
+    "content-hash": "15316c6c5adc55413e03d08be65e3476",
     "packages": [
         {
             "name": "wpsocio/wp-utils",
@@ -12,7 +12,7 @@
             "dist": {
                 "type": "path",
                 "url": "../../packages/php/wp-utils",
-                "reference": "de838c3794441783260047ade24191af27800633"
+                "reference": "f96967230d969e4a86210db22d73c65790e1327d"
             },
             "require-dev": {
                 "pestphp/pest": "^1.23",
@@ -48,7 +48,6 @@
             ],
             "description": "Utilities for WordPress plugins and themes",
             "transport-options": {
-                "symlink": true,
                 "relative": true
             }
         },
@@ -58,7 +57,7 @@
             "dist": {
                 "type": "path",
                 "url": "../../packages/php/wptelegram-bot-api",
-                "reference": "4b6655dd213f34d3c21ce9517b945f7b06f67347"
+                "reference": "39ae80131677fcd4d1dc092d7cf1f56c6fa648c7"
             },
             "require-dev": {
                 "pestphp/pest": "^1.23",
@@ -110,7 +109,6 @@
             ],
             "description": "Telegram Bot API library for WordPress.",
             "transport-options": {
-                "symlink": true,
                 "relative": true
             }
         }
@@ -518,12 +516,12 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "wpsocio/wptelegram-bot-api": 20,
-        "wpsocio/wp-utils": 20
+        "wpsocio/wp-utils": 20,
+        "wpsocio/wptelegram-bot-api": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
-    "platform-dev": [],
+    "platform": {},
+    "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }

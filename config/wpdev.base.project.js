@@ -40,9 +40,6 @@ export const getBundleConfig = ({ slug, key, version, textDomain }) => {
 						type: 'packageJson',
 					},
 					{
-						type: 'composerJson',
-					},
-					{
 						type: 'readmeFiles',
 					},
 					{
