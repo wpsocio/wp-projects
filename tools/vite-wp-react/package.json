@@ -59,15 +59,15 @@
 		}
 	},
 	"dependencies": {
-		"@vitejs/plugin-react": "^4.3.4",
+		"@vitejs/plugin-react": "^4.4.1",
 		"@wordpress/babel-plugin-makepot": "^6.22.0",
-		"esbuild": "^0.25.2",
+		"esbuild": "^0.25.3",
 		"vite-plugin-external": "^6.2.1"
 	},
 	"devDependencies": {
-		"@types/node": "^22.14.1",
+		"@types/node": "^22.15.3",
 		"rimraf": "^6.0.1",
-		"rollup": "^4.40.0",
+		"rollup": "^4.40.1",
 		"tsup": "^8.4.0",
 		"typescript": "^5.8.3",
 		"wireit": "^0.14.12"
