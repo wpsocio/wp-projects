@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "59071c72b2be91ce420ace5f2d2d3efb",
+    "content-hash": "de73fe2e885c38dafe8d8fba7753e345",
     "packages": [
         {
             "name": "wpsocio/telegram-format-text",
@@ -12,7 +12,7 @@
             "dist": {
                 "type": "path",
                 "url": "../../packages/php/telegram-format-text",
-                "reference": "5eaa123b1b341d85111b95ed585e7edb6a3f9bdf"
+                "reference": "d4851dadff009d4865fed4ce7e26dc4f212ab51a"
             },
             "require-dev": {
                 "pestphp/pest": "^1.23",
@@ -58,7 +58,6 @@
             ],
             "description": "HTML to Text converter/formatter for Telegram Bot API",
             "transport-options": {
-                "symlink": true,
                 "relative": true
             }
         },
@@ -68,7 +67,7 @@
             "dist": {
                 "type": "path",
                 "url": "../../packages/php/wp-utils",
-                "reference": "de838c3794441783260047ade24191af27800633"
+                "reference": "f96967230d969e4a86210db22d73c65790e1327d"
             },
             "require-dev": {
                 "pestphp/pest": "^1.23",
@@ -104,7 +103,6 @@
             ],
             "description": "Utilities for WordPress plugins and themes",
             "transport-options": {
-                "symlink": true,
                 "relative": true
             }
         },
@@ -114,7 +112,7 @@
             "dist": {
                 "type": "path",
                 "url": "../../packages/php/wptelegram-bot-api",
-                "reference": "4b6655dd213f34d3c21ce9517b945f7b06f67347"
+                "reference": "39ae80131677fcd4d1dc092d7cf1f56c6fa648c7"
             },
             "require-dev": {
                 "pestphp/pest": "^1.23",
@@ -166,7 +164,6 @@
             ],
             "description": "Telegram Bot API library for WordPress.",
             "transport-options": {
-                "symlink": true,
                 "relative": true
             }
         }
@@ -739,12 +736,12 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "wpsocio/telegram-format-text": 20,
-        "wpsocio/wptelegram-bot-api": 20,
-        "wpsocio/wp-utils": 20
+        "wpsocio/wp-utils": 20,
+        "wpsocio/wptelegram-bot-api": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
-    "platform-dev": [],
+    "platform": {},
+    "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }
