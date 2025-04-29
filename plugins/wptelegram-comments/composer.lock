@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3dbefcd0b9705e99d20d775d2bcd3041",
+    "content-hash": "d8a367268670ea639b8501a3a66a4b2e",
     "packages": [
         {
             "name": "wpsocio/wp-utils",
@@ -12,7 +12,7 @@
             "dist": {
                 "type": "path",
                 "url": "../../packages/php/wp-utils",
-                "reference": "de838c3794441783260047ade24191af27800633"
+                "reference": "f96967230d969e4a86210db22d73c65790e1327d"
             },
             "require-dev": {
                 "pestphp/pest": "^1.23",
@@ -48,7 +48,6 @@
             ],
             "description": "Utilities for WordPress plugins and themes",
             "transport-options": {
-                "symlink": true,
                 "relative": true
             }
         }

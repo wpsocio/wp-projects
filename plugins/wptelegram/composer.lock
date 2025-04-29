@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "38d46157e5bbb5a39a3ad084439f8735",
+    "content-hash": "59071c72b2be91ce420ace5f2d2d3efb",
     "packages": [
         {
             "name": "wpsocio/telegram-format-text",
