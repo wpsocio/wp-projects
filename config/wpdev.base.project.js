@@ -132,6 +132,30 @@ export const getBundleConfig = ({ slug, key, version, textDomain }) => {
 				},
 			},
 			{
+				type: 'validate-files',
+				data: [
+					{
+						paths: [
+							'src/assets/build/dependencies.json',
+							'src/assets/build/manifest.json',
+						],
+						rules: [
+							{
+								value: 'EXISTS',
+							},
+						],
+					},
+					{
+						paths: ['src/assets/build/dev-server.json'],
+						rules: [
+							{
+								value: 'NOT_EXISTS',
+							},
+						],
+					},
+				],
+			},
+			{
 				type: 'copy-files',
 				data: {},
 			},

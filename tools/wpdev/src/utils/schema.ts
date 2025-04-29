@@ -10,29 +10,6 @@ const targetFilesSchema = z.object({
 		.describe('The glob pattern for files to ignore.'),
 });
 
-const copyFilesData = z.object({
-	stripFromPath: z
-		.string()
-		.optional()
-		.default('src')
-		.describe(
-			'The string/path to strip from the source file paths before copying them.',
-		),
-	files: targetFilesSchema.shape.files
-		.optional()
-		.default(['src/**/*', 'CHANGELOG.md']),
-	ignore: targetFilesSchema.shape.ignore,
-});
-
-const createArchiveData = z.object({
-	outPath: z
-		.string()
-		.optional()
-		.describe(
-			'The path to the output file. Defaults to "{slug}-{version}.zip".',
-		),
-});
-
 const generatePotData = z.object({
 	source: z
 		.string()
@@ -214,9 +191,46 @@ const updateVersionData = z.array(
 	]),
 );
 
+const copyFilesData = z.object({
+	stripFromPath: z
+		.string()
+		.optional()
+		.default('src')
+		.describe(
+			'The string/path to strip from the source file paths before copying them.',
+		),
+	files: targetFilesSchema.shape.files
+		.optional()
+		.default(['src/**/*', 'CHANGELOG.md']),
+	ignore: targetFilesSchema.shape.ignore,
+});
+
+const validateFilesData = z.array(
+	z.object({
+		paths: z.array(z.string()),
+		rules: z.array(
+			z.object({
+				value: z.union([z.literal('EXISTS'), z.literal('NOT_EXISTS')]),
+				message: z.string().optional(),
+			}),
+		),
+	}),
+);
+
+const createArchiveData = z.object({
+	outPath: z
+		.string()
+		.optional()
+		.describe(
+			'The path to the output file. Defaults to "{slug}-{version}.zip".',
+		),
+});
+
 export type UpdateChangelogOptions = z.infer<typeof updateChangelogData>;
 
 export type UpdateVersionInput = z.input<typeof updateVersionData>;
+
+export type ValidateFilesInput = z.input<typeof validateFilesData>;
 
 export const bundleSchema = z
 	.object({
@@ -225,10 +239,6 @@ export const bundleSchema = z
 				z.object({
 					type: z.literal('run-scripts'),
 					data: scriptsData,
-				}),
-				z.object({
-					type: z.literal('copy-files'),
-					data: copyFilesData,
 				}),
 				z.object({
 					type: z.literal('update-requirements'),
@@ -269,6 +279,14 @@ export const bundleSchema = z
 				z.object({
 					type: z.literal('minify-styles'),
 					data: processStylesData,
+				}),
+				z.object({
+					type: z.literal('validate-files'),
+					data: validateFilesData,
+				}),
+				z.object({
+					type: z.literal('copy-files'),
+					data: copyFilesData,
 				}),
 				z.object({
 					type: z.literal('create-archive'),

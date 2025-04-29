@@ -22,6 +22,7 @@ import {
 } from '../utils/projects.js';
 import { updateRequirements } from '../utils/requirements.js';
 import { minifyStyles } from '../utils/styles.js';
+import { validateFiles } from '../utils/validate-files.js';
 import { updateVersion } from '../utils/versions.js';
 
 type TaskWrapper = Parameters<ListrTask['task']>[1];
@@ -322,6 +323,18 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 							title: 'Minify CSS',
 							task: async () => {
 								return await minifyStyles(projectDir, taskData);
+							},
+						};
+
+					case 'validate-files':
+						return {
+							title: 'Validate files',
+							task: async () => {
+								const error = await validateFiles(project.dir, taskData);
+
+								if (error) {
+									this.error(chalk.red(error));
+								}
 							},
 						};
 
