@@ -65,7 +65,7 @@
 			"dependencies": ["unset-vendor-dir"]
 		},
 		"setup:php:prod": {
-			"command": "composer install --no-dev && pnpm run unset-vendor-dir",
+			"command": "COMPOSER_MIRROR_PATH_REPOS=1 composer install --no-dev && pnpm run unset-vendor-dir",
 			"dependencies": ["set-prod-vendor"]
 		},
 		"set-prod-vendor": {
