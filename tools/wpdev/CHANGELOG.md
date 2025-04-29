@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.8
+
+### Patch Changes
+
+- [#269](https://github.com/wpsocio/wp-projects/pull/269) [`241ab38`](https://github.com/wpsocio/wp-projects/commit/241ab38729a1e2a971736374d959c8b1b309cf6d) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Added support for 'validate-files' tasks for bundle command
+
 ## 1.0.7
 
 ### Patch Changes
