@@ -1,7 +1,6 @@
 {
-	"name": "wptelegram/core",
-	"version": "4.0.14",
-	"description": "Integrate your WordPress site perfectly with Telegram with full control.",
+	"name": "wp-projects/core",
+	"description": "WP Projects from WP Socio",
 	"require-dev": {
 		"wp-coding-standards/wpcs": "^3.1",
 		"wp-cli/wp-cli-bundle": "^2.11"
