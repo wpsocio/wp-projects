@@ -16,6 +16,7 @@ const Sidebar: React.FC = () => {
 	return (
 		<div>
 			<PluginInfoCard
+				pluginTitle={title}
 				description={`${title}: ${__(
 					'Use Telegram Comments widget for your WordPress posts or pages.',
 				)}`}

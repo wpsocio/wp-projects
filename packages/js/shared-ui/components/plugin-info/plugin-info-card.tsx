@@ -1,6 +1,6 @@
 import { __, sprintf } from '@wpsocio/i18n';
-import { cn } from '@wpsocio/ui/lib/utils';
 import { useMediaQuery } from '@wpsocio/ui/hooks/useMediaQuery';
+import { cn } from '@wpsocio/ui/lib/utils';
 import { Accordion } from '@wpsocio/ui/wrappers/accordion';
 import { Link } from '@wpsocio/ui/wrappers/link';
 import { Description } from '../description.js';
@@ -10,6 +10,7 @@ import { PluginInfoItem } from './plugin-info-item.js';
 export interface PluginInfoCardProps {
 	description?: string;
 	title: string;
+	pluginTitle: string;
 	reviewLink?: string;
 	socialIcons?: React.ReactNode;
 	helpText?: string;
@@ -20,15 +21,16 @@ export interface PluginInfoCardProps {
 }
 
 export const PluginInfoCard: React.FC<PluginInfoCardProps> = ({
+	className,
 	description,
 	helpText,
+	pluginTitle,
 	reviewLink,
 	socialIcons,
 	supportLink,
 	supportLinkText,
 	title,
 	upsell,
-	className,
 }) => {
 	const isLargeScreen = useMediaQuery('(min-width: 768px)');
 
@@ -55,7 +57,7 @@ export const PluginInfoCard: React.FC<PluginInfoCardProps> = ({
 										{sprintf(
 											/* translators: %s: plugin name */
 											__('Do you like %s?'),
-											title,
+											pluginTitle,
 										)}
 									</p>
 									<div>

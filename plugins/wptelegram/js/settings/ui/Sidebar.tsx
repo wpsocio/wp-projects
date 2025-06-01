@@ -17,6 +17,7 @@ export const Sidebar: React.FC = () => {
 	return (
 		<div>
 			<PluginInfoCard
+				pluginTitle={title}
 				description={`${title}: ${__(
 					'Integrate your WordPress website perfectly with Telegram. Send posts automatically to Telegram when published or updated, whether to a Telegram Channel, Group or private chat, with full control. Get your email notifications on Telegram.',
 				)}`}
