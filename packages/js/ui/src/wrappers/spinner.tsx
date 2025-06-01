@@ -6,6 +6,6 @@ export type SpinnerProps = React.ComponentProps<typeof Loader2>;
 
 export function Spinner({ className, ...props }: SpinnerProps) {
 	return (
-		<Loader2 className={cn('h-4 w-4 animate-spin', className)} {...props} />
+		<Loader2 className={cn('size-4 animate-spin', className)} {...props} />
 	);
 }
