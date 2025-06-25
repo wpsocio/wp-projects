@@ -16,11 +16,12 @@ export function createViteConfig({
 	input,
 	makePot,
 	corsOrigin,
+	assetsDir = 'dist',
 }: CreateViteConfigOptions): UserConfig {
 	return {
 		plugins: [
 			viteWpReact(
-				{ outDir, input, assetsDir: 'dist' },
+				{ outDir, input, assetsDir },
 				{
 					extractWpDependencies: true,
 					externalizeWpPackages: true,
