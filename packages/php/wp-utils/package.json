@@ -4,8 +4,22 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
+		"dev": "vite --port=5008",
+		"build": "vite build",
 		"lint:php": "composer run lint",
 		"test:php": "composer run test",
 		"setup:php": "composer install --ignore-platform-reqs"
+	},
+	"dependencies": {
+		"react": "^18.3.1"
+	},
+	"devDependencies": {
+		"@types/jquery": "^3.5.32",
+		"@types/node": "^22.15.3",
+		"@types/react": "^18.3.20",
+		"@types/react-dom": "^18.3.6",
+		"@wpsocio/vite-wp-react": "workspace:*",
+		"typescript": "^5.8.3",
+		"vite": "^6.3.3"
 	}
 }
