@@ -72,9 +72,7 @@ class Admin extends BaseClass {
 			);
 		}
 
-		?>
-			<div id="wptelegram-settings"></div>
-		<?php
+		$this->plugin()->iframed_wp_admin()->render_root();
 	}
 
 	/**

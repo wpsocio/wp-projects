@@ -53,6 +53,8 @@ class AssetManager extends BaseClass {
 	 */
 	public function register_assets() {
 
+		$this->plugin()->iframed_wp_admin()->register_assets();
+
 		$build_dir = $this->plugin()->dir( '/assets/build' );
 
 		$dependencies = new JsDependencies( $build_dir );
@@ -105,30 +107,35 @@ class AssetManager extends BaseClass {
 	 * @param string $hook_suffix The current admin page.
 	 */
 	public function enqueue_admin_assets( $hook_suffix ) {
-		wp_enqueue_style( self::WPTELEGRAM_MENU_HANDLE );
 
-		$assets = $this->plugin()->assets();
+		wp_enqueue_style( self::WPTELEGRAM_MENU_HANDLE );
 
 		// Load only on settings page.
 		if ( $this->is_settings_page( $hook_suffix ) ) {
-
-			$assets->enqueue(
-				self::ADMIN_SETTINGS_ENTRY,
+			$this->plugin()->iframed_wp_admin()->enqueue_assets(
+				$this->plugin()->name() . '-' . self::ADMIN_SETTINGS_ENTRY,
 				[
-					'inline-style' => [
-						'dev-dependency' => 'wp-admin',
-						/**
-						 * We need to move common css to the wp layer
-						 * to avoid it overriding Tailwind preflight CSS.
-						 * We will disable the actual loading of the common CSS via JS.
-						 */
-						'data'           => sprintf(
-							'@import url("%s") layer(wp);',
-							wp_admin_css_uri( 'css/common' )
-						),
+					'props' => [
+						'title' => __( 'Settings', 'wptelegram' ),
 					],
 				]
 			);
+		}
+	}
+
+	/**
+	 * Enqueue the assets inside the iframed admin area.
+	 *
+	 * @since x.y.z
+	 * @param string $entry_id The the asset entry.
+	 */
+	public function enqueue_iframed_assets( $entry_id ) {
+
+		$assets = $this->plugin()->assets();
+
+		if ( $this->plugin()->name() . '-' . self::ADMIN_SETTINGS_ENTRY === $entry_id ) {
+
+			$assets->enqueue( self::ADMIN_SETTINGS_ENTRY );
 
 			$this->add_inline_script( self::ADMIN_SETTINGS_ENTRY );
 		}

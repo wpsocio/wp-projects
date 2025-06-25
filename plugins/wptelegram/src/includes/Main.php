@@ -14,6 +14,7 @@
 
 namespace WPTelegram\Core\includes;
 
+use WPSocio\WPUtils\IframedWPAdmin;
 use WPSocio\WPUtils\ViteWPReactAssets as Assets;
 use WPSocio\WPUtils\Options;
 use WPTelegram\Core\admin\Admin;
@@ -94,6 +95,15 @@ final class Main {
 	 * @var      Assets $assets The assets handler.
 	 */
 	protected $assets;
+
+	/**
+	 * The assets handler.
+	 *
+	 * @since    x.y.z
+	 * @access   protected
+	 * @var      IframedWPAdmin $iframed_wp_admin The iframed WP admin handler.
+	 */
+	protected $iframed_wp_admin;
 
 	/**
 	 * Main class Instance.
@@ -282,6 +292,26 @@ final class Main {
 	}
 
 	/**
+	 * Get the iframed WP admin handler.
+	 *
+	 * @since x.y.z
+	 * @access   public
+	 *
+	 * @return IframedWPAdmin The iframed WP admin instance.
+	 */
+	public function iframed_wp_admin() {
+		if ( ! $this->iframed_wp_admin ) {
+			$this->iframed_wp_admin = new IframedWPAdmin(
+				// Since the vendor directory can be one level up in dev mode, we need to account for that.
+				dirname( WPTELEGRAM_MAIN_FILE ) . '/vendor/wpsocio/wp-utils',
+				plugins_url( 'vendor/wpsocio/wp-utils', WPTELEGRAM_MAIN_FILE )
+			);
+		}
+
+		return $this->iframed_wp_admin;
+	}
+
+	/**
 	 * Register all of the hooks related to the admin area functionality
 	 * of the plugin.
 	 *
@@ -305,7 +335,9 @@ final class Main {
 		// Ensure that the assets are registered before any other hooks.
 		add_action( 'admin_init', [ $asset_manager, 'register_assets' ], 5 );
 
-		add_action( 'admin_enqueue_scripts', [ $asset_manager, 'enqueue_admin_assets' ] );
+		add_action( 'admin_enqueue_scripts', [ $asset_manager, 'enqueue_admin_assets' ], 10, 1 );
+
+		add_action( 'wpsocio_iframed_wp_admin_enqueue_assets', [ $asset_manager, 'enqueue_iframed_assets' ], 10, 1 );
 
 		// Load the integrations.
 		new Integrations();
