@@ -75,6 +75,13 @@ class ViteWPReactAssets {
 	private $registered_assets = [];
 
 	/**
+	 * The registered global assets.
+	 *
+	 * @var array
+	 */
+	private static $global_assets = [];
+
+	/**
 	 * ViteAssets constructor.
 	 *
 	 * @param string $assets_path Path to assets directory.
@@ -208,6 +215,11 @@ class ViteWPReactAssets {
 			'skip-script'            => false,
 			'skip-style'             => false,
 			'inline-script-data'     => '',
+			/**
+			 *  Whether the script is global or not.
+			 *  Pass true if a script is shared between different instances of this class.
+			 */
+			'is-global'              => false,
 			/**
 			 * Should be an array with the following keys:
 			 * - 'dev-dependency' (Optional): The script handle to use as a dependency in development.
@@ -494,6 +506,15 @@ class ViteWPReactAssets {
 	}
 
 	/**
+	 * Get the registered global assets.
+	 *
+	 * @return array
+	 */
+	public function get_global_assets(): array {
+		return self::$global_assets;
+	}
+
+	/**
 	 * Get the registered script handle for a given entry.
 	 *
 	 * @param string $entry Entry name.
@@ -501,7 +522,7 @@ class ViteWPReactAssets {
 	 * @return string
 	 */
 	public function get_entry_script_handle( string $entry ): string {
-		return $this->registered_assets[ $entry ]['script'] ?? '';
+		return $this->registered_assets[ $entry ]['script'] ?? self::$global_assets[ $entry ]['script'] ?? '';
 	}
 
 	/**
@@ -512,7 +533,7 @@ class ViteWPReactAssets {
 	 * @return array
 	 */
 	public function get_entry_style_handles( string $entry ): array {
-		return $this->registered_assets[ $entry ]['styles'] ?? [];
+		return $this->registered_assets[ $entry ]['styles'] ?? self::$global_assets[ $entry ]['styles'] ?? [];
 	}
 
 	/**
@@ -525,7 +546,8 @@ class ViteWPReactAssets {
 	public function is_registered( string $entry, string $as = 'script' ): bool {
 		$key = 'style' === $as ? 'styles' : 'script';
 
-		return ! empty( $this->registered_assets[ $entry ][ $key ] );
+		return ! empty( $this->registered_assets[ $entry ][ $key ] )
+		|| ! empty( self::$global_assets[ $entry ][ $key ] );
 	}
 
 	/**
@@ -540,9 +562,20 @@ class ViteWPReactAssets {
 
 		$options = $this->parse_options( $options );
 
+		$registered = $this->registered_assets[ $entry ] ?? self::$global_assets[ $entry ] ?? null;
+
+		// If the entry is already registered, return the existing data.
+		if ( $registered ) {
+			return $registered;
+		}
+
 		$data = $this->is_dev() ? $this->register_for_dev( $entry, $options ) : $this->register_for_prod( $entry, $options );
 
-		$this->registered_assets[ $entry ] = $data;
+		if ( $options['is-global'] ) {
+			self::$global_assets[ $entry ] = $data;
+		} else {
+			$this->registered_assets[ $entry ] = $data;
+		}
 
 		return $data;
 	}
