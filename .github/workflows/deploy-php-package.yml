@@ -25,10 +25,14 @@ jobs:
         run: |
           # Change dir to the package
           cd ${{ fromJson(needs.details.outputs.result).path }}
+          # Build the package
+          pnpm run --if-present build
           # Create a temp dir and move the files to it
           mkdir -p temp
           # Move only the files that are needed
-          mv -t temp/ composer.json src/ LICENSE README.md CHANGELOG.md .gitignore
+          mv composer.json src/ dist/ LICENSE README.md CHANGELOG.md .gitignore temp/
+          # Move the dist/ directory if it exists
+          if [ -d dist ]; then
           # Reset pwd
           cd -
 
