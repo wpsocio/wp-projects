@@ -1,1 +1,1 @@
-export const ROOT_ID = 'wptelegram-comments-settings';
+export const ROOT_ID = 'root';

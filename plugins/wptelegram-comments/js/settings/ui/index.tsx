@@ -1,6 +1,6 @@
 import './styles.scss';
 
-import { cleanup, setI18nData } from '@wpsocio/services/utils';
+import { setI18nData } from '@wpsocio/services/utils';
 import { Toaster } from '@wpsocio/ui/components/sonner';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -8,9 +8,6 @@ import { ROOT_ID } from '../constants';
 import App from './App';
 
 const root = document.getElementById(ROOT_ID);
-
-// clean up notifications etc.
-cleanup(ROOT_ID, { disableCommonCSS: true });
 
 setI18nData('wptelegram_comments', 'wptelegram-comments');
 

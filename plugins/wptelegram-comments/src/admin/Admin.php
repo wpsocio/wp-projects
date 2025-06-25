@@ -60,8 +60,7 @@ class Admin extends BaseClass {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
 		}
-		?>
-			<div id="wptelegram-comments-settings"></div>
-		<?php
+
+		$this->plugin()->iframed_wp_admin()->render_root();
 	}
 }
