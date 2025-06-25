@@ -193,9 +193,8 @@ class Admin extends BaseClass {
 				esc_html__( 'Please reload the page.', 'wptelegram-login' )
 			);
 		}
-		?>
-			<div id="wptelegram-login-settings"></div>
-		<?php
+
+		$this->plugin()->iframed_wp_admin()->render_root();
 	}
 
 	/**

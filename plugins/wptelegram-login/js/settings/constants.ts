@@ -1,1 +1,1 @@
-export const ROOT_ID = 'wptelegram-login-settings';
+export const ROOT_ID = 'root';
