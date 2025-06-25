@@ -11,7 +11,6 @@
 
 namespace WPTelegram\Widget\includes;
 
-use WPSocio\WPUtils\ViteWPReactAssets as Assets;
 use WPTelegram\Widget\admin\Admin;
 use WPTelegram\Widget\shared\Shared;
 use WPTelegram\Widget\shared\embed\AjaxWidget as EmbedAjaxWidget;
@@ -19,7 +18,9 @@ use WPTelegram\Widget\shared\embed\SingleMessage as EmbedSingleMessage;
 use WPTelegram\Widget\shared\shortcodes\AjaxWidget as AjaxWidgetShortcode;
 use WPTelegram\Widget\shared\shortcodes\JoinChannel as JoinChannelShortcode;
 use WPTelegram\Widget\shared\shortcodes\LegacyWidget as LegacyWidgetShortcode;
+use WPSocio\WPUtils\IframedWPAdmin;
 use WPSocio\WPUtils\Options;
+use WPSocio\WPUtils\ViteWPReactAssets as Assets;
 
 /**
  * The core plugin class.
@@ -97,6 +98,15 @@ class Main {
 	 * @var      string    $assets    The assets handler.
 	 */
 	protected $assets;
+
+	/**
+	 * The assets handler.
+	 *
+	 * @since    x.y.z
+	 * @access   protected
+	 * @var      IframedWPAdmin $iframed_wp_admin The iframed WP admin handler.
+	 */
+	protected $iframed_wp_admin;
 
 	/**
 	 * The asset manager.
@@ -280,6 +290,26 @@ class Main {
 	}
 
 	/**
+	 * Get the iframed WP admin handler.
+	 *
+	 * @since x.y.z
+	 * @access   public
+	 *
+	 * @return IframedWPAdmin The iframed WP admin instance.
+	 */
+	public function iframed_wp_admin() {
+		if ( ! $this->iframed_wp_admin ) {
+			$this->iframed_wp_admin = new IframedWPAdmin(
+				// Since the vendor directory can be one level up in dev mode, we need to account for that.
+				dirname( WPTELEGRAM_WIDGET_MAIN_FILE ) . '/vendor/wpsocio/wp-utils',
+				plugins_url( 'vendor/wpsocio/wp-utils', WPTELEGRAM_WIDGET_MAIN_FILE )
+			);
+		}
+
+		return $this->iframed_wp_admin;
+	}
+
+	/**
 	 * Set the asset manager.
 	 *
 	 * @since    2.1.0
@@ -395,7 +425,9 @@ class Main {
 		add_action( 'admin_enqueue_scripts', [ $asset_manager, 'enqueue_public_assets' ] );
 		add_action( 'enqueue_block_assets', [ $asset_manager, 'enqueue_public_assets' ] );
 
-		add_action( 'admin_enqueue_scripts', [ $asset_manager, 'enqueue_admin_assets' ] );
+		add_action( 'admin_enqueue_scripts', [ $asset_manager, 'enqueue_admin_assets' ], 10, 1 );
+
+		add_action( 'wpsocio_iframed_wp_admin_enqueue_assets', [ $asset_manager, 'enqueue_iframed_assets' ], 10, 1 );
 
 		add_action( 'enqueue_block_assets', [ $asset_manager, 'enqueue_block_assets' ] );
 

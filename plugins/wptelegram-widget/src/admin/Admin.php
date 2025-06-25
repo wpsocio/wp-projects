@@ -103,9 +103,8 @@ class Admin extends BaseClass {
 				esc_html__( 'Please reload the page.', 'wptelegram-widget' )
 			);
 		}
-		?>
-			<div id="wptelegram-widget-settings"></div>
-		<?php
+
+		$this->plugin()->iframed_wp_admin()->render_root();
 	}
 
 	/**

@@ -1,9 +1,5 @@
-@use '@wpsocio/ui/mixins.scss' as *;
 @import '@wpsocio/ui/globals.css';
 
 @source "./**/*.{ts,tsx}";
 @source "../../../node_modules/@wpsocio/shared-ui/{components,form}/**/*.{ts,tsx}";
 @source "../../../node_modules/@wpsocio/ui/src/**/*.{ts,tsx}";
-
-@include reset-wp-common-css;
-@include scope-tw-preflight('#wptelegram-widget-settings');
