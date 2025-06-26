@@ -11,6 +11,7 @@
 	},
 	"exports": {
 		"./globals.css": "./src/styles/globals.css",
+		"./globals-stale.css": "./src/styles/globals-stale.css",
 		"./mixins.scss": "./src/styles/mixins.scss",
 		"./postcss.config": "./postcss.config.mjs",
 		"./lib/*": "./src/lib/*.ts",
