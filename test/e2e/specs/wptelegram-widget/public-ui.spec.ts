@@ -1,5 +1,12 @@
+import type { FrameLocator } from '@playwright/test';
 import { expect, test } from '@wordpress/e2e-test-utils-playwright';
-import { Actions, BlockEditor, ClassicEditor, REST } from '@wpsocio/e2e-utils';
+import {
+	Actions,
+	BlockEditor,
+	ClassicEditor,
+	IframedWPAdmin,
+	REST,
+} from '@wpsocio/e2e-utils';
 import { DEFAULT_THEME } from '../../config/constants.js';
 
 test.describe('Public UI', () => {
@@ -7,16 +14,19 @@ test.describe('Public UI', () => {
 	let rest: REST;
 	let classicEditor: ClassicEditor;
 	let blockEditor: BlockEditor;
+	let iframe: FrameLocator;
 
 	test.beforeAll(async ({ requestUtils }) => {
 		rest = new REST(requestUtils);
 		await requestUtils.activatePlugin('wp-telegram-widget');
 	});
 
-	test.beforeEach(async ({ admin, page, pageUtils, requestUtils, editor }) => {
+	test.beforeEach(async ({ admin, pageUtils, requestUtils, editor }) => {
 		actions = new Actions(pageUtils);
 		classicEditor = new ClassicEditor({ admin, pageUtils, requestUtils });
 		blockEditor = new BlockEditor({ admin, pageUtils, requestUtils, editor });
+		iframe = new IframedWPAdmin(pageUtils).contentFrame();
+
 		await rest.deleteOption('wptelegram_widget');
 
 		await admin.visitAdminPage('admin.php', 'page=wptelegram_widget');
@@ -35,13 +45,13 @@ test.describe('Public UI', () => {
 		];
 
 		for (const [tabName, fields] of tabFields) {
-			const button = page.getByRole('tab', { name: tabName });
+			const button = iframe.getByRole('tab', { name: tabName });
 
 			await button.click();
 			const buttonId = await button.getAttribute('id');
 
 			// Get the tab panel that the button controls
-			const tabPanel = page.locator(
+			const tabPanel = iframe.locator(
 				`div[role="tabpanel"][aria-labelledby="${buttonId}"]`,
 			);
 
@@ -95,7 +105,7 @@ test.describe('Public UI', () => {
 				await test.step('Reset settings', async () => {
 					await admin.visitAdminPage('admin.php', 'page=wptelegram_widget');
 
-					await page
+					await iframe
 						.getByRole('checkbox', { name: 'Post (post)', exact: true })
 						.check({ force: true });
 
@@ -117,7 +127,7 @@ test.describe('Public UI', () => {
 				// Now let us disable widget on posts
 				await admin.visitAdminPage('admin.php', 'page=wptelegram_widget');
 
-				await page
+				await iframe
 					.getByRole('checkbox', { name: 'Post (post)', exact: true })
 					.uncheck({ force: true });
 

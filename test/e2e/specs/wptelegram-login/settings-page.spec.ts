@@ -1,11 +1,13 @@
+import type { FrameLocator } from '@playwright/test';
 import { expect, test } from '@wordpress/e2e-test-utils-playwright';
-import { Actions, Mocks, REST } from '@wpsocio/e2e-utils';
+import { Actions, IframedWPAdmin, Mocks, REST } from '@wpsocio/e2e-utils';
 import { TEST_BOT_TOKEN, TEST_BOT_USERNAME } from '../../utils/constants.js';
 
 test.describe('Settings', () => {
 	let actions: Actions;
 	let rest: REST;
 	let mocks: Mocks;
+	let iframe: FrameLocator;
 
 	test.beforeAll(async ({ requestUtils }) => {
 		rest = new REST(requestUtils);
@@ -15,6 +17,7 @@ test.describe('Settings', () => {
 	test.beforeEach(async ({ admin, pageUtils }) => {
 		actions = new Actions(pageUtils);
 		mocks = new Mocks(pageUtils);
+		iframe = new IframedWPAdmin(pageUtils).contentFrame();
 
 		await rest.deleteOption('wptelegram_login');
 		await admin.visitAdminPage('admin.php', 'page=wptelegram_login');
@@ -26,14 +29,14 @@ test.describe('Settings', () => {
 		await rest.deleteOption('wptelegram_login');
 	});
 
-	test('Should have instructions', async ({ page }) => {
-		await expect(page.locator('body')).toContainText('INSTRUCTIONS!');
+	test('Should have instructions', async () => {
+		await expect(iframe.locator('body')).toContainText('INSTRUCTIONS!');
 	});
 
 	test('Should validate the bot token and username inputs', async ({
 		page,
 	}) => {
-		const botTokenField = page.getByLabel('Bot Token');
+		const botTokenField = iframe.getByLabel('Bot Token');
 
 		const validationMessage = await botTokenField.evaluate(
 			(el: HTMLInputElement) => el.validationMessage,
@@ -42,23 +45,25 @@ test.describe('Settings', () => {
 		expect(validationMessage).toBe('Please fill out this field.');
 
 		// Should not show validation message before submission.
-		await expect(page.locator('body')).not.toContainText('Bot Token required');
+		await expect(iframe.locator('body')).not.toContainText(
+			'Bot Token required',
+		);
 
 		await actions.saveChangesButton.click();
 
 		await page.keyboard.press('Tab');
 
-		await expect(page.locator('body')).toContainText('Bot Token required');
+		await expect(iframe.locator('body')).toContainText('Bot Token required');
 
-		await page.getByLabel('Bot Username').focus();
+		await iframe.getByLabel('Bot Username').focus();
 
 		await page.keyboard.press('Tab');
 
-		await expect(page.locator('body')).toContainText('Bot Username required');
+		await expect(iframe.locator('body')).toContainText('Bot Username required');
 
 		await botTokenField.fill('invalid-token');
 
-		const testButton = page.getByRole('button', {
+		const testButton = iframe.getByRole('button', {
 			name: 'Test Token',
 			exact: true,
 		});
@@ -66,9 +71,7 @@ test.describe('Settings', () => {
 		await expect(testButton).toBeDisabled();
 	});
 
-	test('Should validate the bot token from API and fill username', async ({
-		page,
-	}) => {
+	test('Should validate the bot token from API and fill username', async () => {
 		const json = {
 			ok: true,
 			result: {
@@ -82,16 +85,16 @@ test.describe('Settings', () => {
 			json,
 		});
 
-		const botTokenField = page.getByLabel('Bot Token');
-		const botUsernameField = page.getByLabel('Bot Username');
+		const botTokenField = iframe.getByLabel('Bot Token');
+		const botUsernameField = iframe.getByLabel('Bot Username');
 
 		await expect(botUsernameField).toHaveValue('');
 
 		await botTokenField.fill(TEST_BOT_TOKEN);
 
-		const resultAlert = page
+		const resultAlert = iframe
 			.getByRole('alert')
-			.filter({ has: page.getByRole('heading', { name: 'Test Result:' }) });
+			.filter({ has: iframe.getByRole('heading', { name: 'Test Result:' }) });
 
 		const result = `${json.result.first_name} (@${json.result.username})`;
 
@@ -110,7 +113,7 @@ test.describe('Settings', () => {
 		await unmock();
 	});
 
-	test('Should handle the API call for invalid token', async ({ page }) => {
+	test('Should handle the API call for invalid token', async () => {
 		const json = { ok: false, error_code: 401, description: 'Unauthorized' };
 
 		// Mock the api call
@@ -119,14 +122,14 @@ test.describe('Settings', () => {
 			status: json.error_code,
 		});
 
-		const botTokenField = page.getByLabel('Bot Token');
-		const botUsernameField = page.getByLabel('Bot Username');
+		const botTokenField = iframe.getByLabel('Bot Token');
+		const botUsernameField = iframe.getByLabel('Bot Username');
 
 		await botTokenField.fill(TEST_BOT_TOKEN);
 
-		const resultAlert = page
+		const resultAlert = iframe
 			.getByRole('alert')
-			.filter({ has: page.getByRole('heading', { name: 'Test Result:' }) });
+			.filter({ has: iframe.getByRole('heading', { name: 'Test Result:' }) });
 
 		const result = 'Error: 401 (Unauthorized)';
 
@@ -146,10 +149,8 @@ test.describe('Settings', () => {
 		await unmock();
 	});
 
-	test('That the bot username field is readonly by default', async ({
-		page,
-	}) => {
-		const botUsernameField = page.getByLabel('Bot Username');
+	test('That the bot username field is readonly by default', async () => {
+		const botUsernameField = iframe.getByLabel('Bot Username');
 
 		await expect(botUsernameField).toHaveAttribute('readonly');
 
@@ -161,8 +162,8 @@ test.describe('Settings', () => {
 	test('Should save the changes with only bot token and username', async ({
 		page,
 	}) => {
-		let botTokenField = page.getByLabel('Bot Token');
-		let botUsernameField = page.getByLabel('Bot Username');
+		let botTokenField = iframe.getByLabel('Bot Token');
+		let botUsernameField = iframe.getByLabel('Bot Username');
 
 		await botTokenField.fill(TEST_BOT_TOKEN);
 
@@ -177,8 +178,8 @@ test.describe('Settings', () => {
 		// Reload the page and wait
 		await page.reload();
 
-		botTokenField = page.getByLabel('Bot Token');
-		botUsernameField = page.getByLabel('Bot Username');
+		botTokenField = iframe.getByLabel('Bot Token');
+		botUsernameField = iframe.getByLabel('Bot Username');
 
 		await botTokenField.waitFor();
 
@@ -186,34 +187,34 @@ test.describe('Settings', () => {
 		await expect(botUsernameField).toHaveValue(TEST_BOT_USERNAME);
 	});
 
-	test('Should display fields conditionally', async ({ page }) => {
+	test('Should display fields conditionally', async () => {
 		// Fields that depend on the "Disable Sign up" checkbox
-		const userRoleFiel = page.getByLabel('User Role');
-		const randomEmailField = page.getByLabel('Random Email');
-		const disableSignUpField = page.getByLabel('Disable Sign up');
+		const userRoleField = iframe.getByLabel('User Role');
+		const randomEmailField = iframe.getByLabel('Random Email');
+		const disableSignUpField = iframe.getByLabel('Disable Sign up');
 
-		await expect(userRoleFiel).toBeVisible();
+		await expect(userRoleField).toBeVisible();
 		await expect(randomEmailField).toBeVisible();
 
 		await disableSignUpField.check({ force: true });
 
-		await expect(userRoleFiel).not.toBeVisible();
+		await expect(userRoleField).not.toBeVisible();
 		await expect(randomEmailField).not.toBeVisible();
 
 		// Fields that depend on the "Custom URL" radio
-		const customUrlField = page.getByRole('textbox', { name: 'Custom URL' });
+		const customUrlField = iframe.getByRole('textbox', { name: 'Custom URL' });
 
 		await expect(customUrlField).not.toBeVisible();
 
-		const customUrlRadio = page.getByRole('radio', { name: 'Custom URL' });
+		const customUrlRadio = iframe.getByRole('radio', { name: 'Custom URL' });
 
 		await customUrlRadio.check({ force: true });
 
 		await expect(customUrlField).toBeVisible();
 
 		// Fields that depend on the "Show error message" option
-		const showErrorMessageField = page.getByLabel('Show error message');
-		const errorMessageTextField = page.getByRole('textbox', {
+		const showErrorMessageField = iframe.getByLabel('Show error message');
+		const errorMessageTextField = iframe.getByRole('textbox', {
 			name: 'Error message text',
 		});
 

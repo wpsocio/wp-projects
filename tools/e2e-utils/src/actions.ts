@@ -1,15 +1,24 @@
-import type { Locator, Page } from '@playwright/test';
+import type { FrameLocator, Locator, Page } from '@playwright/test';
 import type { PageUtils } from '@wordpress/e2e-test-utils-playwright';
+import { IframedWPAdmin } from './iframed-wp-admin.js';
 
 export class Actions {
 	protected page: Page;
+	protected contentFrame: Page | FrameLocator;
 
-	constructor(protected pageUtils: PageUtils) {
+	constructor(
+		protected pageUtils: PageUtils,
+		protected isIframed = true,
+	) {
 		this.page = pageUtils.page;
+
+		this.contentFrame = this.isIframed
+			? new IframedWPAdmin(pageUtils).contentFrame()
+			: this.page;
 	}
 
 	get saveChangesButton() {
-		return this.page.getByRole('button', {
+		return this.contentFrame.getByRole('button', {
 			name: 'Save Changes',
 			exact: true,
 		});
@@ -71,7 +80,7 @@ export class Actions {
 		endpoint = '/wptelegram-bot/v1/base',
 		query = { api_method: 'getMe' },
 	}: { endpoint?: string; query?: Record<string, string> } = {}) {
-		const testButton = this.page.getByRole('button', {
+		const testButton = this.contentFrame.getByRole('button', {
 			name: 'Test Token',
 			exact: true,
 		});
@@ -87,7 +96,9 @@ export class Actions {
 	}
 
 	async assertNotification(status: 'success' | 'error', message: string) {
-		const notifications = this.page.locator('section[aria-live="polite"]');
+		const notifications = this.contentFrame.locator(
+			'section[aria-live="polite"]',
+		);
 
 		const notificationShown = notifications.locator(
 			`li[data-type="${status}"]`,
@@ -105,7 +116,7 @@ export class Actions {
 	async selectOption(trigger: Locator, option: string) {
 		await trigger.click();
 
-		await this.page
+		await this.contentFrame
 			.getByRole('listbox')
 			.locator('div[data-radix-select-viewport][role="presentation"]')
 			.getByRole('option', {

@@ -1,9 +1,15 @@
-import type { Locator, Page } from '@playwright/test';
+import type { FrameLocator, Locator, Page } from '@playwright/test';
 import { expect, test } from '@wordpress/e2e-test-utils-playwright';
-import { Actions, BlockEditor, ClassicEditor, REST } from '@wpsocio/e2e-utils';
+import {
+	Actions,
+	BlockEditor,
+	ClassicEditor,
+	IframedWPAdmin,
+	REST,
+} from '@wpsocio/e2e-utils';
 import { TEST_BOT_TOKEN, TEST_BOT_USERNAME } from '../../utils/constants.js';
 
-async function setupPostToTelegramSection(page: Page) {
+async function setupPostToTelegramSection(page: Page | FrameLocator) {
 	await page.getByRole('tab', { name: 'Basics' }).click();
 
 	await page.getByLabel('Bot Token').fill(TEST_BOT_TOKEN);
@@ -37,20 +43,22 @@ test.describe('Settings > P2TG', () => {
 	let actions: Actions;
 	let rest: REST;
 	let tabPanel: Locator;
+	let iframe: FrameLocator;
 
 	test.beforeAll(async ({ requestUtils }) => {
 		rest = new REST(requestUtils);
 		await requestUtils.activatePlugin('wp-telegram');
 	});
 
-	test.beforeEach(async ({ admin, pageUtils, page }) => {
+	test.beforeEach(async ({ admin, pageUtils }) => {
 		actions = new Actions(pageUtils);
+		iframe = new IframedWPAdmin(pageUtils).contentFrame();
 
 		await rest.deleteOption('wptelegram');
 
 		await admin.visitAdminPage('admin.php', 'page=wptelegram');
 
-		tabPanel = await setupPostToTelegramSection(page);
+		tabPanel = await setupPostToTelegramSection(iframe);
 	});
 
 	test.afterAll(async ({ requestUtils }) => {
@@ -204,7 +212,7 @@ test.describe('Settings > P2TG', () => {
 
 		await page.reload();
 
-		tabPanel = await setupPostToTelegramSection(page);
+		tabPanel = await setupPostToTelegramSection(iframe);
 
 		templateField = tabPanel.getByLabel('Message Template');
 
@@ -264,7 +272,7 @@ test.describe('Settings > P2TG', () => {
 
 		await admin.visitAdminPage('admin.php', 'page=wptelegram');
 
-		tabPanel = await setupPostToTelegramSection(page);
+		tabPanel = await setupPostToTelegramSection(iframe);
 
 		await actions.saveChangesAndWait({
 			endpoint: '/wptelegram/v1/settings',
@@ -276,7 +284,7 @@ test.describe('Settings > P2TG', () => {
 		await admin.visitAdminPage('admin.php', 'page=wptelegram');
 
 		// Now lets us turn OFF post edit switch
-		tabPanel = await setupPostToTelegramSection(page);
+		tabPanel = await setupPostToTelegramSection(iframe);
 
 		await tabPanel
 			.getByRole('switch', { name: 'Post edit switch' })
@@ -308,23 +316,23 @@ test.describe('Settings > P2TG', () => {
 
 		await admin.visitAdminPage('admin.php', 'page=wptelegram');
 
-		tabPanel = await setupPostToTelegramSection(page);
+		tabPanel = await setupPostToTelegramSection(iframe);
 
 		const endpoint = '/wptelegram/v1/p2tg-rules';
 
 		await Promise.all([
-			page.getByRole('button', { name: 'Add rule' }).click(),
+			iframe.getByRole('button', { name: 'Add rule' }).click(),
 			actions.waitForApiResponse(endpoint),
 		]);
 
-		const combobox = page.getByRole('combobox', { name: 'Rule values' });
+		const combobox = iframe.getByRole('combobox', { name: 'Rule values' });
 
 		await Promise.all([
 			combobox.fill('ABC'),
 			actions.waitForApiResponse(endpoint, { search: 'ABC' }),
 		]);
 
-		const listbox = page.getByRole('listbox');
+		const listbox = iframe.getByRole('listbox');
 
 		await listbox.waitFor();
 
@@ -357,27 +365,27 @@ test.describe('Settings > P2TG', () => {
 
 		await page.reload();
 
-		const valueContainer = page.locator('.data__values-container');
+		const valueContainer = iframe.locator('.data__values-container');
 
 		await valueContainer.waitFor();
 		// We should two options selected
 		await expect(valueContainer.locator('.data__multi-value')).toHaveCount(2);
 
 		// Let us add another rule to the group
-		await page.getByRole('button', { name: 'Add another rule' }).click();
-		await page.getByRole('combobox', { name: 'Rule values' }).last().click();
+		await iframe.getByRole('button', { name: 'Add another rule' }).click();
+		await iframe.getByRole('combobox', { name: 'Rule values' }).last().click();
 		// The options should be readily available without making an API call
 		// The listbox should not show "Loading..."
 
-		await expect(page.getByRole('listbox')).not.toContainText('Loading');
+		await expect(iframe.getByRole('listbox')).not.toContainText('Loading');
 
 		expect(
-			await page.getByRole('listbox').getByRole('option').count(),
+			await iframe.getByRole('listbox').getByRole('option').count(),
 		).toBeGreaterThan(0);
 
 		// Now let us change the "Rule type"
 		await actions.selectOption(
-			page.getByRole('combobox', { name: 'Rule type' }).first(),
+			iframe.getByRole('combobox', { name: 'Rule type' }).first(),
 			'Post Tag',
 		);
 
@@ -387,22 +395,22 @@ test.describe('Settings > P2TG', () => {
 		).toHaveCount(0);
 
 		// Let us remove the first rule, which is now "Post Tag"
-		await page
+		await iframe
 			.getByRole('button', { name: 'Remove this rule' })
 			.first()
 			.click();
 
-		const ruleType = page.getByRole('combobox', { name: 'Rule type' });
+		const ruleType = iframe.getByRole('combobox', { name: 'Rule type' });
 
 		await expect(ruleType).toHaveCount(1);
 
 		await expect(ruleType).toHaveText('Post Category');
 
-		await page
+		await iframe
 			.getByRole('combobox', { name: 'Rule values' })
 			.fill('non-existent');
 
-		await expect(page.getByRole('listbox')).toContainText(
+		await expect(iframe.getByRole('listbox')).toContainText(
 			'No options available',
 		);
 

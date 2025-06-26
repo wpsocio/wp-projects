@@ -1,5 +1,12 @@
+import type { FrameLocator } from '@playwright/test';
 import { expect, test } from '@wordpress/e2e-test-utils-playwright';
-import { Actions, BlockEditor, ClassicEditor, REST } from '@wpsocio/e2e-utils';
+import {
+	Actions,
+	BlockEditor,
+	ClassicEditor,
+	IframedWPAdmin,
+	REST,
+} from '@wpsocio/e2e-utils';
 import { TEST_BOT_TOKEN, TEST_BOT_USERNAME } from '../../utils/constants.js';
 
 test.describe('Public UI', () => {
@@ -7,26 +14,28 @@ test.describe('Public UI', () => {
 	let rest: REST;
 	let classicEditor: ClassicEditor;
 	let blockEditor: BlockEditor;
+	let iframe: FrameLocator;
 
 	test.beforeAll(async ({ requestUtils }) => {
 		rest = new REST(requestUtils);
 		await requestUtils.activatePlugin('wp-telegram-login');
 	});
 
-	test.beforeEach(async ({ admin, page, pageUtils, requestUtils, editor }) => {
+	test.beforeEach(async ({ admin, pageUtils, requestUtils, editor }) => {
 		actions = new Actions(pageUtils);
 		classicEditor = new ClassicEditor({ admin, pageUtils, requestUtils });
 		blockEditor = new BlockEditor({ admin, pageUtils, requestUtils, editor });
+		iframe = new IframedWPAdmin(pageUtils).contentFrame();
 
 		await rest.deleteOption('wptelegram_login');
 
 		await admin.visitAdminPage('admin.php', 'page=wptelegram_login');
 
 		// Save the bot token and username
-		const botTokenField = page.getByLabel('Bot Token');
+		const botTokenField = iframe.getByLabel('Bot Token');
 		await botTokenField.fill(TEST_BOT_TOKEN);
 
-		const botUsernameField = page.getByLabel('Bot Username');
+		const botUsernameField = iframe.getByLabel('Bot Username');
 		await botUsernameField.dblclick();
 		await botUsernameField.fill(TEST_BOT_USERNAME);
 
@@ -107,7 +116,7 @@ test.describe('Public UI', () => {
 		admin,
 	}) => {
 		// Select "Any" option for "Show if user is" setting
-		await actions.selectOption(page.getByLabel('Show if user is'), 'Any');
+		await actions.selectOption(iframe.getByLabel('Show if user is'), 'Any');
 
 		await actions.saveChangesAndWait({
 			endpoint: '/wptelegram-login/v1/settings',
@@ -121,7 +130,7 @@ test.describe('Public UI', () => {
 
 		await admin.visitAdminPage('admin.php', 'page=wptelegram_login');
 
-		await page.getByLabel('Hide on default login').check({ force: true });
+		await iframe.getByLabel('Hide on default login').check({ force: true });
 
 		await actions.saveChangesAndWait({
 			endpoint: '/wptelegram-login/v1/settings',

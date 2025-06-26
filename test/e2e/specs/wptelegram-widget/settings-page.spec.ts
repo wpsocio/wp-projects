@@ -1,11 +1,13 @@
+import type { FrameLocator } from '@playwright/test';
 import { expect, test } from '@wordpress/e2e-test-utils-playwright';
-import { Actions, Mocks, REST } from '@wpsocio/e2e-utils';
+import { Actions, IframedWPAdmin, Mocks, REST } from '@wpsocio/e2e-utils';
 import { TEST_BOT_TOKEN } from '../../utils/constants.js';
 
 test.describe('Settings', () => {
 	let actions: Actions;
 	let rest: REST;
 	let mocks: Mocks;
+	let iframe: FrameLocator;
 
 	test.beforeAll(async ({ requestUtils }) => {
 		rest = new REST(requestUtils);
@@ -15,6 +17,7 @@ test.describe('Settings', () => {
 	test.beforeEach(async ({ admin, pageUtils }) => {
 		actions = new Actions(pageUtils);
 		mocks = new Mocks(pageUtils);
+		iframe = new IframedWPAdmin(pageUtils).contentFrame();
 
 		await rest.deleteOption('wptelegram_widget');
 		await admin.visitAdminPage('admin.php', 'page=wptelegram_widget');
@@ -26,7 +29,7 @@ test.describe('Settings', () => {
 		await rest.deleteOption('wptelegram_widget');
 	});
 
-	test('Should save the settings without any changes', async ({ page }) => {
+	test('Should save the settings without any changes', async () => {
 		const tabFields: Array<[string, Array<string>]> = [
 			[
 				'Ajax Widget',
@@ -56,14 +59,14 @@ test.describe('Settings', () => {
 
 		// Let us touch all the fields and then save the settings
 		for (const [tab, fields] of tabFields) {
-			const button = page.getByRole('tab', { name: tab });
+			const button = iframe.getByRole('tab', { name: tab });
 
 			await button.click();
 
 			const buttonId = await button.getAttribute('id');
 
 			// Get the tab panel that the button controls
-			const tabPanel = page.locator(
+			const tabPanel = iframe.locator(
 				`div[role="tabpanel"][aria-labelledby="${buttonId}"]`,
 			);
 
@@ -81,13 +84,13 @@ test.describe('Settings', () => {
 	test('Should make the bot token required for legacy widget if username is set.', async ({
 		page,
 	}) => {
-		const button = page.getByRole('tab', { name: 'Legacy Widget' });
+		const button = iframe.getByRole('tab', { name: 'Legacy Widget' });
 
 		await button.click();
 		const buttonId = await button.getAttribute('id');
 
 		// Get the tab panel that the button controls
-		const tabPanel = page.locator(
+		const tabPanel = iframe.locator(
 			`div[role="tabpanel"][aria-labelledby="${buttonId}"]`,
 		);
 
@@ -111,15 +114,15 @@ test.describe('Settings', () => {
 
 		await page.keyboard.press('Tab');
 
-		await expect(page.locator('body')).toContainText('Bot Token required');
+		await expect(iframe.locator('body')).toContainText('Bot Token required');
 
 		await botTokenField.fill('invalid-token');
 
 		await page.keyboard.press('Tab');
 
-		await expect(page.locator('body')).toContainText('Invalid Bot Token');
+		await expect(iframe.locator('body')).toContainText('Invalid Bot Token');
 
-		const testButton = page.getByRole('button', {
+		const testButton = iframe.getByRole('button', {
 			name: 'Test Token',
 			exact: true,
 		});
@@ -130,7 +133,7 @@ test.describe('Settings', () => {
 
 		await page.keyboard.press('Tab');
 
-		await expect(page.locator('body')).not.toContainText('Invalid Bot Token');
+		await expect(iframe.locator('body')).not.toContainText('Invalid Bot Token');
 
 		await expect(testButton).toBeEnabled();
 

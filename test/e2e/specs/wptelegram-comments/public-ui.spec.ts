@@ -1,10 +1,12 @@
+import type { FrameLocator } from '@playwright/test';
 import { expect, test } from '@wordpress/e2e-test-utils-playwright';
-import { Actions, REST } from '@wpsocio/e2e-utils';
+import { Actions, IframedWPAdmin, REST } from '@wpsocio/e2e-utils';
 import { DEFAULT_THEME } from '../../config/constants.js';
 
 test.describe('Public UI', () => {
 	let actions: Actions;
 	let rest: REST;
+	let iframe: FrameLocator;
 
 	test.beforeAll(async ({ requestUtils }) => {
 		rest = new REST(requestUtils);
@@ -13,6 +15,7 @@ test.describe('Public UI', () => {
 
 	test.beforeEach(async ({ pageUtils }) => {
 		actions = new Actions(pageUtils);
+		iframe = new IframedWPAdmin(pageUtils).contentFrame();
 	});
 
 	test.afterAll(async ({ requestUtils }) => {
@@ -57,7 +60,7 @@ test.describe('Public UI', () => {
 
 					await admin.visitAdminPage('admin.php', 'page=wptelegram_comments');
 
-					await page
+					await iframe
 						.getByLabel('Code')
 						.fill(
 							'<script async src="https://comments.app/js/widget.js" data-comments-app-website="abcdefghi" id="e2e-test-comments"></script>',
@@ -84,7 +87,7 @@ test.describe('Public UI', () => {
 				// Now let us exclude the post
 				await admin.visitAdminPage('admin.php', 'page=wptelegram_comments');
 
-				await page.getByLabel('Exclude').fill(`${postId}`);
+				await iframe.getByLabel('Exclude').fill(`${postId}`);
 
 				await actions.saveChangesAndWait({
 					endpoint: '/wptelegram-comments/v1/settings',
@@ -99,11 +102,11 @@ test.describe('Public UI', () => {
 				// Now let us disable comments on posts
 				await admin.visitAdminPage('admin.php', 'page=wptelegram_comments');
 
-				await page
+				await iframe
 					.getByRole('checkbox', { name: 'Post (post)', exact: true })
 					.uncheck({ force: true });
 
-				await page.getByLabel('Exclude').clear();
+				await iframe.getByLabel('Exclude').clear();
 
 				await actions.saveChangesAndWait({
 					endpoint: '/wptelegram-comments/v1/settings',
