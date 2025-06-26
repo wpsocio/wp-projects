@@ -13,6 +13,7 @@
 	"scripts": {
 		"build": "wireit",
 		"build:tools": "wireit",
+		"build:packages": "wireit",
 		"build:projects": "wireit",
 		"bundle:all": "wpdev bundle --all",
 		"bundle:changed": "wireit",
@@ -62,10 +63,13 @@
 			"dependencies": ["build:all"]
 		},
 		"build:all": {
-			"command": "pnpm build:tools && pnpm build:projects"
+			"command": "pnpm build:tools && pnpm build:packages && pnpm build:projects"
 		},
 		"build:tools": {
 			"command": "pnpm -r --filter=./tools/* run build:local"
+		},
+		"build:packages": {
+			"command": "pnpm -r --filter=./packages/* run build"
 		},
 		"build:projects": {
 			"command": "pnpm -r --filter=!./tools run build"
