@@ -363,7 +363,33 @@ importers:
 
   packages/php/telegram-format-text: {}
 
-  packages/php/wp-utils: {}
+  packages/php/wp-utils:
+    dependencies:
+      react:
+        specifier: ^18.3.1
+        version: 18.3.1
+    devDependencies:
+      '@types/jquery':
+        specifier: ^3.5.32
+        version: 3.5.32
+      '@types/node':
+        specifier: ^22.15.3
+        version: 22.15.3
+      '@types/react':
+        specifier: ^18.3.20
+        version: 18.3.20
+      '@types/react-dom':
+        specifier: ^18.3.6
+        version: 18.3.6(@types/react@18.3.20)
+      '@wpsocio/vite-wp-react':
+        specifier: workspace:*
+        version: link:../../../tools/vite-wp-react
+      typescript:
+        specifier: ^5.8.3
+        version: 5.8.3
+      vite:
+        specifier: 6.2.1
+        version: 6.2.1(@types/node@22.15.3)(jiti@2.4.2)(lightningcss@1.29.2)(sass@1.81.0)(terser@5.34.1)
 
   packages/php/wptelegram-bot-api: {}
 
@@ -10211,6 +10237,9 @@ packages:
   third-party-web@0.26.6:
     resolution: {integrity: sha512-GsjP92xycMK8qLTcQCacgzvffYzEqe29wyz3zdKVXlfRD5Kz1NatCTOZEeDaSd6uCZXvGd2CNVtQ89RNIhJWvA==}
 
+  third-party-web@0.27.0:
+    resolution: {integrity: sha512-h0JYX+dO2Zr3abCQpS6/uFjujaOjA1DyDzGQ41+oFn9VW/ARiq9g5ln7qEP9+BTzDpOMyIfsfj4OvfgXAsMUSA==}
+
   through@2.3.8:
     resolution: {integrity: sha512-w89qg7PI8wAdvX60bMDP+bFoD5Dvhm9oLheFp5O4a2QF0cSBGsBX4qZmadPMvVqlLJBBci+WqGGOAPvcDeNSVg==}
 
@@ -14085,7 +14114,7 @@ snapshots:
 
   '@paulirish/trace_engine@0.0.39':
     dependencies:
-      third-party-web: 0.26.6
+      third-party-web: 0.27.0
 
   '@pkgjs/parseargs@0.11.0':
     optional: true
@@ -16079,17 +16108,17 @@ snapshots:
   '@webpack-cli/configtest@2.1.1(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2)(webpack@5.97.1))(webpack@5.97.1)':
     dependencies:
       webpack: 5.97.1(webpack-cli@5.1.4)
-      webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2)(webpack@5.97.1)
+      webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2(webpack-cli@5.1.4)(webpack@5.97.1))(webpack@5.97.1(webpack-cli@5.1.4))
 
   '@webpack-cli/info@2.0.2(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2)(webpack@5.97.1))(webpack@5.97.1)':
     dependencies:
       webpack: 5.97.1(webpack-cli@5.1.4)
-      webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2)(webpack@5.97.1)
+      webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2(webpack-cli@5.1.4)(webpack@5.97.1))(webpack@5.97.1(webpack-cli@5.1.4))
 
   '@webpack-cli/serve@2.0.5(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2)(webpack@5.97.1))(webpack-dev-server@4.15.2)(webpack@5.97.1)':
     dependencies:
       webpack: 5.97.1(webpack-cli@5.1.4)
-      webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2)(webpack@5.97.1)
+      webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2(webpack-cli@5.1.4)(webpack@5.97.1))(webpack@5.97.1(webpack-cli@5.1.4))
     optionalDependencies:
       webpack-dev-server: 4.15.2(webpack-cli@5.1.4)(webpack@5.97.1)
 
@@ -17306,7 +17335,7 @@ snapshots:
       url-loader: 4.1.1(webpack@5.97.1)
       webpack: 5.97.1(webpack-cli@5.1.4)
       webpack-bundle-analyzer: 4.10.2
-      webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2)(webpack@5.97.1)
+      webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2(webpack-cli@5.1.4)(webpack@5.97.1))(webpack@5.97.1(webpack-cli@5.1.4))
       webpack-dev-server: 4.15.2(webpack-cli@5.1.4)(webpack@5.97.1)
     transitivePeerDependencies:
       - '@rspack/core'
@@ -23555,6 +23584,8 @@ snapshots:
 
   third-party-web@0.26.6: {}
 
+  third-party-web@0.27.0: {}
+
   through@2.3.8: {}
 
   thunky@1.1.0: {}
@@ -24006,7 +24037,7 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2)(webpack@5.97.1):
+  webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2(webpack-cli@5.1.4)(webpack@5.97.1))(webpack@5.97.1(webpack-cli@5.1.4)):
     dependencies:
       '@discoveryjs/json-ext': 0.5.7
       '@webpack-cli/configtest': 2.1.1(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2)(webpack@5.97.1))(webpack@5.97.1)
@@ -24069,7 +24100,7 @@ snapshots:
       ws: 8.18.0
     optionalDependencies:
       webpack: 5.97.1(webpack-cli@5.1.4)
-      webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2)(webpack@5.97.1)
+      webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2(webpack-cli@5.1.4)(webpack@5.97.1))(webpack@5.97.1(webpack-cli@5.1.4))
     transitivePeerDependencies:
       - bufferutil
       - debug
@@ -24110,7 +24141,7 @@ snapshots:
       watchpack: 2.4.2
       webpack-sources: 3.2.3
     optionalDependencies:
-      webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2)(webpack@5.97.1)
+      webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2(webpack-cli@5.1.4)(webpack@5.97.1))(webpack@5.97.1(webpack-cli@5.1.4))
     transitivePeerDependencies:
       - '@swc/core'
       - esbuild
