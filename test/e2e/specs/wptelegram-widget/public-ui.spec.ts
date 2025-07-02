@@ -238,8 +238,8 @@ test.describe('Public UI', () => {
 		await editor.insertBlock({ name: 'wptelegram/widget-ajax-channel-feed' });
 
 		const panel = page
-			// .getByRole('tabpanel') // This doesn't work in WP 6.4
 			.getByRole('region', { name: 'Editor settings' })
+			.getByRole('tabpanel')
 			.filter({ hasText: 'Telegram Channel Ajax Feed' });
 
 		await panel.getByLabel('Username').fill('SomeUsernameHere');
