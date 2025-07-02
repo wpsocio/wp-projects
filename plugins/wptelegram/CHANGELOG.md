@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.2.11
+
+### Patch Changes
+
+- [#274](https://github.com/wpsocio/wp-projects/pull/274) [`8dee1eb`](https://github.com/wpsocio/wp-projects/commit/8dee1eb67500bdf6339b2045f64b38f3989d369f) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Fixed help text label in the sidebar.
+
 ## 4.2.10
 
 ### Patch Changes

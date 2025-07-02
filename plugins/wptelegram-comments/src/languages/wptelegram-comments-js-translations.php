@@ -19,14 +19,14 @@ $generated_i18n_strings = array(
 	// Reference: ../../packages/js/shared-ui/components/instructions.tsx:17
 	__( 'INSTRUCTIONS!', 'wptelegram-comments' ),
 
-	// Reference: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:57
+	// Reference: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:59
 	/* translators: %s: plugin name */
 	__( 'Do you like %s?', 'wptelegram-comments' ),
 
-	// Reference: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:69
+	// Reference: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:71
 	__( 'Write a review', 'wptelegram-comments' ),
 
-	// Reference: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:85
+	// Reference: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:87
 	__( 'Need help?', 'wptelegram-comments' ),
 
 	// Reference: ../../packages/js/shared-ui/components/wptg-social-icons.tsx:42
@@ -96,13 +96,13 @@ $generated_i18n_strings = array(
 	// Reference: js/settings/ui/Instructions.tsx:89
 	__( 'Paste the copied code in the field below.', 'wptelegram-comments' ),
 
-	// Reference: js/settings/ui/Sidebar.tsx:19
+	// Reference: js/settings/ui/Sidebar.tsx:20
 	__( 'Use Telegram Comments widget for your WordPress posts or pages.', 'wptelegram-comments' ),
 
-	// Reference: js/settings/ui/Sidebar.tsx:22
+	// Reference: js/settings/ui/Sidebar.tsx:23
 	__( 'Join our public chat on Telegram', 'wptelegram-comments' ),
 
-	// Reference: js/settings/ui/Sidebar.tsx:27
+	// Reference: js/settings/ui/Sidebar.tsx:28
 	__( 'Support', 'wptelegram-comments' )
 );
 /* THIS IS THE END OF THE GENERATED FILE */

@@ -34,14 +34,14 @@ $generated_i18n_strings = array(
 	// Reference: ../../packages/js/shared-ui/components/instructions.tsx:17
 	__( 'INSTRUCTIONS!', 'wptelegram' ),
 
-	// Reference: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:57
+	// Reference: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:59
 	/* translators: %s: plugin name */
 	__( 'Do you like %s?', 'wptelegram' ),
 
-	// Reference: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:69
+	// Reference: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:71
 	__( 'Write a review', 'wptelegram' ),
 
-	// Reference: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:85
+	// Reference: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:87
 	__( 'Need help?', 'wptelegram' ),
 
 	// Reference: ../../packages/js/shared-ui/components/variable-button.tsx:25
@@ -588,13 +588,13 @@ $generated_i18n_strings = array(
 	// Reference: js/settings/services/fields.ts:28
 	__( 'If Email goes to', 'wptelegram' ),
 
-	// Reference: js/settings/ui/Sidebar.tsx:20
+	// Reference: js/settings/ui/Sidebar.tsx:21
 	__( 'Integrate your WordPress website perfectly with Telegram. Send posts automatically to Telegram when published or updated, whether to a Telegram Channel, Group or private chat, with full control. Get your email notifications on Telegram.', 'wptelegram' ),
 
-	// Reference: js/settings/ui/Sidebar.tsx:23
+	// Reference: js/settings/ui/Sidebar.tsx:24
 	__( 'Join our public chat on Telegram', 'wptelegram' ),
 
-	// Reference: js/settings/ui/Sidebar.tsx:28
+	// Reference: js/settings/ui/Sidebar.tsx:29
 	__( 'Support', 'wptelegram' ),
 
 	// Reference: js/settings/ui/TabbedSections.tsx:20
