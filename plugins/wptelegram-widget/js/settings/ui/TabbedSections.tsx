@@ -1,8 +1,8 @@
 import { useFormState } from '@wpsocio/form';
 import { __ } from '@wpsocio/i18n';
 import { useActiveTab } from '@wpsocio/services/use-active-tab.js';
-import { cn } from '@wpsocio/ui/lib/utils';
 import { Warning } from '@wpsocio/ui/icons';
+import { cn } from '@wpsocio/ui/lib/utils';
 import { Card } from '@wpsocio/ui/wrappers/card';
 import { type TabItemProps, Tabs } from '@wpsocio/ui/wrappers/tabs';
 import { useCallback } from 'react';
@@ -75,7 +75,7 @@ export const TabbedSections: React.FC = () => {
 			return (
 				<Card
 					title={description ? title : undefined}
-					className="w-full border-0"
+					className="w-full border-0 shadow-none"
 					description={description}
 					titleClassName="text-xl"
 				>
