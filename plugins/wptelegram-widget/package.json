@@ -1,7 +1,7 @@
 {
 	"name": "wptelegram-widget",
 	"title": "WP Telegram Widget",
-	"version": "2.2.9",
+	"version": "2.2.10",
 	"description": "Display the Telegram Public Channel or Group Feed in a WordPress widget or anywhere you want using a shortcode.",
 	"private": true,
 	"license": "GPL-3.0-or-later",
@@ -58,18 +58,24 @@
 	"wireit": {
 		"build": {
 			"command": "vite build",
-			"output": ["src/assets/build"]
+			"output": [
+				"src/assets/build"
+			]
 		},
 		"setup:php": {
 			"command": "composer install",
-			"dependencies": ["unset-vendor-dir"]
+			"dependencies": [
+				"unset-vendor-dir"
+			]
 		},
 		"setup:php:prod": {
 			"command": "composer install --no-dev && pnpm run unset-vendor-dir",
 			"env": {
 				"COMPOSER_MIRROR_PATH_REPOS": "1"
 			},
-			"dependencies": ["set-prod-vendor"]
+			"dependencies": [
+				"set-prod-vendor"
+			]
 		},
 		"set-prod-vendor": {
 			"command": "composer config vendor-dir src/vendor"
