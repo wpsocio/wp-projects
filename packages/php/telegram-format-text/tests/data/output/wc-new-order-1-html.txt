@@ -22,7 +22,7 @@ John Doe
 Some Street
 Some Address
 Some state here
-+123456789
+<a href="tel:+123456789">+123456789</a>
 someone@example.com
 
 Congratulations on the sale.
