@@ -26,7 +26,7 @@ John Doe
 Some Street
 Some Address
 Some state here
-\+123456789
+[\+123456789](tel:+123456789)
 someone@example\.com
 
 Thanks for using example\.com\!
