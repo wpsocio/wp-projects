@@ -34,6 +34,7 @@ export interface UiData {
 	post_types: OptionsType;
 	rule_types: OptionsType;
 	is_wp_cron_disabled?: boolean;
+	action_scheduler?: 'active' | 'inactive';
 	macros: {
 		post: TemplateMacro;
 		terms: TemplateMacro;
