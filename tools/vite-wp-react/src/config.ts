@@ -18,6 +18,8 @@ export function createViteConfig({
 	corsOrigin,
 }: CreateViteConfigOptions): UserConfig {
 	return {
+		// Ensure that the asset paths are relative.
+		base: './',
 		plugins: [
 			viteWpReact(
 				{ outDir, input, assetsDir: 'dist' },
