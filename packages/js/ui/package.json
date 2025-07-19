@@ -10,15 +10,19 @@
 		"typecheck": "tsc --noEmit"
 	},
 	"exports": {
+		"./base-styles.scss": "./base-styles.scss",
 		"./globals.css": "./src/styles/globals.css",
 		"./mixins.scss": "./src/styles/mixins.scss",
 		"./postcss.config": "./postcss.config.mjs",
 		"./lib/*": "./src/lib/*.ts",
 		"./components/*": "./src/components/*.tsx",
+		"./wp-base-styles.scss": "./wp-base-styles.scss",
 		"./wrappers": "./src/wrappers/index.ts",
+		"./wp/*": "./src/wp/*/index.tsx",
 		"./wrappers/*": "./src/wrappers/*.tsx",
 		"./wrappers/types": "./src/wrappers/types.ts",
 		"./icons": "./src/icons/index.tsx",
+		"./icons/wp": "./src/icons/wp.ts",
 		"./hooks/*": "./src/hooks/*.ts"
 	},
 	"dependencies": {
@@ -40,6 +44,9 @@
 		"@radix-ui/react-tabs": "^1.1.13",
 		"@radix-ui/react-toast": "^1.2.15",
 		"@radix-ui/react-tooltip": "^1.2.8",
+		"@wordpress/base-styles": "^6.2.0",
+		"@wordpress/components": "^29.8.0",
+		"@wordpress/icons": "^10.22.0",
 		"class-variance-authority": "^0.7.1",
 		"clsx": "^2.1.1",
 		"copy-to-clipboard": "^3.3.3",
