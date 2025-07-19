@@ -2,4 +2,4 @@
 "wptelegram": patch
 ---
 
-Added support for action scheduler for better reliablility for delay in posting.
+Added support for the Action Scheduler plugin for better reliability for delay in posting.
