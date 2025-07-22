@@ -30,10 +30,11 @@ export interface TemplateMacro {
 }
 
 export interface UiData {
-	debug_info?: string;
+	debug_info?: Record<string, string>;
 	post_types: OptionsType;
 	rule_types: OptionsType;
 	is_wp_cron_disabled?: boolean;
+	action_scheduler?: 'active' | 'inactive';
 	macros: {
 		post: TemplateMacro;
 		terms: TemplateMacro;

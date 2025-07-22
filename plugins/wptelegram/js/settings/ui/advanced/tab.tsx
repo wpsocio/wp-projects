@@ -38,7 +38,7 @@ export const AdvancedTab: React.FC = () => {
 		<AdvancedSettings
 			prefix={PREFIX}
 			log_options={log_options}
-			debug_info={uiData?.debug_info || ''}
+			debug_info={uiData?.debug_info}
 		/>
 	);
 };

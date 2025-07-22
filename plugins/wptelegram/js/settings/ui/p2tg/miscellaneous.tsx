@@ -8,7 +8,7 @@ import { getDomData } from '../../services/getDomData';
 import { Upsell } from '../shared/pro-upsell';
 import { PREFIX } from './constants';
 
-const { is_wp_cron_disabled } = getDomData('uiData');
+const { is_wp_cron_disabled, action_scheduler } = getDomData('uiData');
 
 export const Miscellaneous: React.FC = () => {
 	return (
@@ -18,6 +18,7 @@ export const Miscellaneous: React.FC = () => {
 			<DelayInPosting
 				prefix={PREFIX}
 				is_wp_cron_disabled={is_wp_cron_disabled}
+				is_action_scheduler_active={action_scheduler === 'active'}
 			/>
 			<Upsell location="delay" />
 			<Separator className="my-8 md:my-4" />
