@@ -15,7 +15,7 @@ import type { CommonProps } from './types.js';
 
 export interface AdvancedSettingsProps extends CommonProps {
 	log_options: Array<OptionProps & { viewLink: string }>;
-	debug_info: string;
+	debug_info?: Record<string, string>;
 }
 
 export const AdvancedSettings: React.FC<AdvancedSettingsProps> = ({
@@ -68,14 +68,29 @@ export const AdvancedSettings: React.FC<AdvancedSettingsProps> = ({
 				inlineDescription
 			/>
 			<Separator className="my-6" />
-			<div className="space-y-2 flex flex-col md:flex-row gap-2 md:py-4">
-				<span className="font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-base mb-0 mt-0 md:basis-[30%]">
-					{getFieldLabel('debug_info')}
-				</span>
-				<div>
-					<Code className="p-0">{debug_info}</Code>
+			{debug_info ? (
+				<div className="space-y-2 flex flex-col md:flex-row gap-2 md:py-4">
+					<span className="font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-base mb-0 mt-0 md:basis-[30%]">
+						{getFieldLabel('debug_info')}
+					</span>
+					<div>
+						<table className="border-separate border-spacing-y-2">
+							<tbody>
+								{Object.entries(debug_info).map(([key, value]) => (
+									<tr key={key}>
+										<td>
+											<Code className="p-0">{key}:</Code>
+										</td>
+										<td>
+											<Code className="ms-2">{value}</Code>
+										</td>
+									</tr>
+								))}
+							</tbody>
+						</table>
+					</div>
 				</div>
-			</div>
+			) : null}
 			<Separator className="my-6" />
 			<FormField
 				name={prefixName('clean_uninstall', prefix)}
