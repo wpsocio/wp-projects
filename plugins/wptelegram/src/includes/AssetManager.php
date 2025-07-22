@@ -203,11 +203,12 @@ class AssetManager extends BaseClass {
 	 */
 	public function get_debug_info() {
 
-		$info  = 'PHP:         ' . PHP_VERSION . PHP_EOL;
-		$info .= 'WP:          ' . get_bloginfo( 'version' ) . PHP_EOL;
-		$info .= 'Plugin:      ' . $this->plugin()->name() . ':v' . $this->plugin()->version() . PHP_EOL;
-		$info .= 'DOMDocument: ' . ( class_exists( DOMDocument::class ) ? '✓' : '✕' ) . PHP_EOL;
-		$info .= 'DOMXPath:    ' . ( class_exists( DOMXPath::class ) ? '✓' : '✕' ) . PHP_EOL;
+		$info  = 'PHP:              ' . PHP_VERSION . PHP_EOL;
+		$info .= 'WP:               ' . get_bloginfo( 'version' ) . PHP_EOL;
+		$info .= 'Plugin:           ' . $this->plugin()->name() . ':v' . $this->plugin()->version() . PHP_EOL;
+		$info .= 'Action Scheduler: ' . ( class_exists( 'ActionScheduler_Versions' ) ? '✓' : '✕' ) . PHP_EOL;
+		$info .= 'DOMDocument:      ' . ( class_exists( DOMDocument::class ) ? '✓' : '✕' ) . PHP_EOL;
+		$info .= 'DOMXPath:         ' . ( class_exists( DOMXPath::class ) ? '✓' : '✕' ) . PHP_EOL;
 
 		return $info;
 	}
