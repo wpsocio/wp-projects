@@ -66,10 +66,10 @@ importers:
     dependencies:
       '@hookform/error-message':
         specifier: ^2.0.1
-        version: 2.0.1(react-dom@18.3.1(react@18.3.1))(react-hook-form@7.56.1(react@18.3.1))(react@18.3.1)
+        version: 2.0.1(react-dom@18.3.1(react@18.3.1))(react-hook-form@7.60.0(react@18.3.1))(react@18.3.1)
       '@hookform/resolvers':
-        specifier: ^5.0.1
-        version: 5.0.1(react-hook-form@7.56.1(react@18.3.1))
+        specifier: ^5.1.1
+        version: 5.1.1(react-hook-form@7.60.0(react@18.3.1))
       '@wpsocio/i18n':
         specifier: workspace:*
         version: link:../i18n
@@ -89,8 +89,8 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
       react-hook-form:
-        specifier: ^7.56.1
-        version: 7.56.1(react@18.3.1)
+        specifier: ^7.60.0
+        version: 7.60.0(react@18.3.1)
     devDependencies:
       '@types/node':
         specifier: ^22.15.3
@@ -132,8 +132,8 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1
       react-hook-form:
-        specifier: ^7.52.1
-        version: 7.56.1(react@18.3.1)
+        specifier: ^7
+        version: 7.60.0(react@18.3.1)
     devDependencies:
       '@types/jquery':
         specifier: ^3.5.32
@@ -178,8 +178,8 @@ importers:
         specifier: ^10.0.4
         version: 10.0.4(react@18.3.1)
       zod:
-        specifier: ^3.24.3
-        version: 3.24.3
+        specifier: ^4.0.5
+        version: 4.0.5
     devDependencies:
       '@types/node':
         specifier: ^22.15.3
@@ -203,8 +203,8 @@ importers:
   packages/js/ui:
     dependencies:
       '@hookform/resolvers':
-        specifier: ^5.0.1
-        version: 5.0.1(react-hook-form@7.56.1(react@18.3.1))
+        specifier: ^5.1.1
+        version: 5.1.1(react-hook-form@7.60.0(react@18.3.1))
       '@radix-ui/react-accordion':
         specifier: ^1.2.4
         version: 1.2.4(@types/react-dom@18.3.6(@types/react@18.3.20))(@types/react@18.3.20)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -278,8 +278,8 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
       react-hook-form:
-        specifier: ^7.56.1
-        version: 7.56.1(react@18.3.1)
+        specifier: ^7.60.0
+        version: 7.60.0(react@18.3.1)
       react-select:
         specifier: ^5.10.1
         version: 5.10.1(@types/react@18.3.20)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -296,8 +296,8 @@ importers:
         specifier: ^10.0.4
         version: 10.0.4(react@18.3.1)
       zod:
-        specifier: ^3.24.3
-        version: 3.24.3
+        specifier: ^4.0.5
+        version: 4.0.5
     devDependencies:
       '@tailwindcss/forms':
         specifier: ^0.5.10
@@ -415,8 +415,8 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1
       zod:
-        specifier: ^3.24.3
-        version: 3.24.3
+        specifier: ^4.0.5
+        version: 4.0.5
     devDependencies:
       '@types/jquery':
         specifier: ^3.5.32
@@ -473,8 +473,8 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1
       zod:
-        specifier: ^3.24.3
-        version: 3.24.3
+        specifier: ^4.0.5
+        version: 4.0.5
     devDependencies:
       '@types/jquery':
         specifier: ^3.5.32
@@ -537,8 +537,8 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1
       zod:
-        specifier: ^3.24.3
-        version: 3.24.3
+        specifier: ^4.0.5
+        version: 4.0.5
     devDependencies:
       '@types/jquery':
         specifier: ^3.5.32
@@ -613,8 +613,8 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1
       zod:
-        specifier: ^3.24.3
-        version: 3.24.3
+        specifier: ^4.0.5
+        version: 4.0.5
     devDependencies:
       '@types/jquery':
         specifier: ^3.5.32
@@ -728,8 +728,8 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1
       zod:
-        specifier: ^3.24.3
-        version: 3.24.3
+        specifier: ^4.0.5
+        version: 4.0.5
     devDependencies:
       '@types/jquery':
         specifier: ^3.5.32
@@ -875,8 +875,8 @@ importers:
         specifier: ^7.7.1
         version: 7.7.1
       zod:
-        specifier: ^3.24.3
-        version: 3.24.3
+        specifier: ^4.0.5
+        version: 4.0.5
     devDependencies:
       '@types/archiver':
         specifier: ^6.0.3
@@ -2196,8 +2196,8 @@ packages:
       react-dom: '>=16.8.0'
       react-hook-form: ^7.0.0
 
-  '@hookform/resolvers@5.0.1':
-    resolution: {integrity: sha512-u/+Jp83luQNx9AdyW2fIPGY6Y7NG68eN2ZW8FOJYL+M0i4s49+refdJdOp/A9n9HFQtQs3HIDHQvX3ZET2o7YA==}
+  '@hookform/resolvers@5.1.1':
+    resolution: {integrity: sha512-J/NVING3LMAEvexJkyTLjruSm7aOFx7QX21pzkiJfMoNG0wl5aFEjLTl7ay7IQb9EWY6AkrBy7tHL2Alijpdcg==}
     peerDependencies:
       react-hook-form: ^7.55.0
 
@@ -9317,8 +9317,8 @@ packages:
       react: '>=16.4.0'
       react-dom: '>=16.4.0'
 
-  react-hook-form@7.56.1:
-    resolution: {integrity: sha512-qWAVokhSpshhcEuQDSANHx3jiAEFzu2HAaaQIzi/r9FNPm1ioAvuJSD4EuZzWd7Al7nTRKcKPnBKO7sRn+zavQ==}
+  react-hook-form@7.60.0:
+    resolution: {integrity: sha512-SBrYOvMbDB7cV8ZfNpaiLcgjH/a1c7aK0lK+aNigpf4xWLO8q+o4tcvVurv3c4EOyzn/3dCsYt4GKD42VvJ/+A==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18 || ^19
@@ -10211,6 +10211,9 @@ packages:
   third-party-web@0.26.6:
     resolution: {integrity: sha512-GsjP92xycMK8qLTcQCacgzvffYzEqe29wyz3zdKVXlfRD5Kz1NatCTOZEeDaSd6uCZXvGd2CNVtQ89RNIhJWvA==}
 
+  third-party-web@0.27.0:
+    resolution: {integrity: sha512-h0JYX+dO2Zr3abCQpS6/uFjujaOjA1DyDzGQ41+oFn9VW/ARiq9g5ln7qEP9+BTzDpOMyIfsfj4OvfgXAsMUSA==}
+
   through@2.3.8:
     resolution: {integrity: sha512-w89qg7PI8wAdvX60bMDP+bFoD5Dvhm9oLheFp5O4a2QF0cSBGsBX4qZmadPMvVqlLJBBci+WqGGOAPvcDeNSVg==}
 
@@ -10990,6 +10993,9 @@ packages:
 
   zod@3.24.3:
     resolution: {integrity: sha512-HhY1oqzWCQWuUqvBFnsyrtZRhyPeR7SUGv+C4+MsisMuVfSPx8HpwWqH8tRahSlt6M3PiFAcoeFhZAqIXTxoSg==}
+
+  zod@4.0.5:
+    resolution: {integrity: sha512-/5UuuRPStvHXu7RS+gmvRf4NXrNxpSllGwDnCBcJZtQsKrviYXm54yDGV2KYNLT5kq0lHGcl7lqWJLgSaG+tgA==}
 
 snapshots:
 
@@ -13512,16 +13518,16 @@ snapshots:
     dependencies:
       '@hapi/hoek': 9.3.0
 
-  '@hookform/error-message@2.0.1(react-dom@18.3.1(react@18.3.1))(react-hook-form@7.56.1(react@18.3.1))(react@18.3.1)':
+  '@hookform/error-message@2.0.1(react-dom@18.3.1(react@18.3.1))(react-hook-form@7.60.0(react@18.3.1))(react@18.3.1)':
     dependencies:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
-      react-hook-form: 7.56.1(react@18.3.1)
+      react-hook-form: 7.60.0(react@18.3.1)
 
-  '@hookform/resolvers@5.0.1(react-hook-form@7.56.1(react@18.3.1))':
+  '@hookform/resolvers@5.1.1(react-hook-form@7.60.0(react@18.3.1))':
     dependencies:
       '@standard-schema/utils': 0.3.0
-      react-hook-form: 7.56.1(react@18.3.1)
+      react-hook-form: 7.60.0(react@18.3.1)
 
   '@humanwhocodes/config-array@0.13.0':
     dependencies:
@@ -14085,7 +14091,7 @@ snapshots:
 
   '@paulirish/trace_engine@0.0.39':
     dependencies:
-      third-party-web: 0.26.6
+      third-party-web: 0.27.0
 
   '@pkgjs/parseargs@0.11.0':
     optional: true
@@ -16079,17 +16085,17 @@ snapshots:
   '@webpack-cli/configtest@2.1.1(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2)(webpack@5.97.1))(webpack@5.97.1)':
     dependencies:
       webpack: 5.97.1(webpack-cli@5.1.4)
-      webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2)(webpack@5.97.1)
+      webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2(webpack-cli@5.1.4)(webpack@5.97.1))(webpack@5.97.1(webpack-cli@5.1.4))
 
   '@webpack-cli/info@2.0.2(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2)(webpack@5.97.1))(webpack@5.97.1)':
     dependencies:
       webpack: 5.97.1(webpack-cli@5.1.4)
-      webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2)(webpack@5.97.1)
+      webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2(webpack-cli@5.1.4)(webpack@5.97.1))(webpack@5.97.1(webpack-cli@5.1.4))
 
   '@webpack-cli/serve@2.0.5(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2)(webpack@5.97.1))(webpack-dev-server@4.15.2)(webpack@5.97.1)':
     dependencies:
       webpack: 5.97.1(webpack-cli@5.1.4)
-      webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2)(webpack@5.97.1)
+      webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2(webpack-cli@5.1.4)(webpack@5.97.1))(webpack@5.97.1(webpack-cli@5.1.4))
     optionalDependencies:
       webpack-dev-server: 4.15.2(webpack-cli@5.1.4)(webpack@5.97.1)
 
@@ -17306,7 +17312,7 @@ snapshots:
       url-loader: 4.1.1(webpack@5.97.1)
       webpack: 5.97.1(webpack-cli@5.1.4)
       webpack-bundle-analyzer: 4.10.2
-      webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2)(webpack@5.97.1)
+      webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2(webpack-cli@5.1.4)(webpack@5.97.1))(webpack@5.97.1(webpack-cli@5.1.4))
       webpack-dev-server: 4.15.2(webpack-cli@5.1.4)(webpack@5.97.1)
     transitivePeerDependencies:
       - '@rspack/core'
@@ -22443,7 +22449,7 @@ snapshots:
       react-dom: 18.3.1(react@18.3.1)
       tslib: 2.6.2
 
-  react-hook-form@7.56.1(react@18.3.1):
+  react-hook-form@7.60.0(react@18.3.1):
     dependencies:
       react: 18.3.1
 
@@ -23555,6 +23561,8 @@ snapshots:
 
   third-party-web@0.26.6: {}
 
+  third-party-web@0.27.0: {}
+
   through@2.3.8: {}
 
   thunky@1.1.0: {}
@@ -24006,7 +24014,7 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2)(webpack@5.97.1):
+  webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2(webpack-cli@5.1.4)(webpack@5.97.1))(webpack@5.97.1(webpack-cli@5.1.4)):
     dependencies:
       '@discoveryjs/json-ext': 0.5.7
       '@webpack-cli/configtest': 2.1.1(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2)(webpack@5.97.1))(webpack@5.97.1)
@@ -24069,7 +24077,7 @@ snapshots:
       ws: 8.18.0
     optionalDependencies:
       webpack: 5.97.1(webpack-cli@5.1.4)
-      webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2)(webpack@5.97.1)
+      webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2(webpack-cli@5.1.4)(webpack@5.97.1))(webpack@5.97.1(webpack-cli@5.1.4))
     transitivePeerDependencies:
       - bufferutil
       - debug
@@ -24110,7 +24118,7 @@ snapshots:
       watchpack: 2.4.2
       webpack-sources: 3.2.3
     optionalDependencies:
-      webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2)(webpack@5.97.1)
+      webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2(webpack-cli@5.1.4)(webpack@5.97.1))(webpack@5.97.1(webpack-cli@5.1.4))
     transitivePeerDependencies:
       - '@swc/core'
       - esbuild
@@ -24369,3 +24377,5 @@ snapshots:
   zod@3.23.8: {}
 
   zod@3.24.3: {}
+
+  zod@4.0.5: {}
