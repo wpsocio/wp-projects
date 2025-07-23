@@ -1,4 +1,3 @@
-import { __ } from '@wpsocio/i18n';
 import { useGlobalNotices } from '@wpsocio/ui/wp/global-notices';
 import { FORM_ERROR } from '@wpsocio/utilities/constants.js';
 import { getErrorStrings } from '@wpsocio/utilities/misc.js';
@@ -6,6 +5,7 @@ import type { AnyObject } from '@wpsocio/utilities/types.js';
 import { useCallback, useMemo } from 'react';
 
 interface DisplayFeedback {
+	clearNotices: VoidFunction;
 	displayValidationErrors: (errors: AnyObject, error?: string) => void;
 	displaySubmitErrors: (errors: AnyObject, submitError?: string) => void;
 }
@@ -13,7 +13,7 @@ interface DisplayFeedback {
 type DF = DisplayFeedback;
 
 export const useDisplayFeedback = (): DF => {
-	const { createErrorNotice } = useGlobalNotices();
+	const { createErrorNotice, removeAllNotices } = useGlobalNotices();
 
 	const displayErrors = useCallback(
 		(errors: AnyObject) => {
@@ -25,35 +25,38 @@ export const useDisplayFeedback = (): DF => {
 		[createErrorNotice],
 	);
 
+	const clearNotices = useCallback(() => {
+		removeAllNotices('snackbar');
+	}, [removeAllNotices]);
+
 	const displaySubmitErrors = useCallback<DF['displaySubmitErrors']>(
 		({ [FORM_ERROR]: formError, ...errors }, submitError) => {
 			// biome-ignore lint/suspicious/noConsoleLog: <explanation>
 			console.log({ errors, submitError, formError });
+			clearNotices();
 
 			if (submitError || formError) {
-				const title = submitError ?? formError;
-				createErrorNotice(title);
+				createErrorNotice(submitError || formError);
 			}
 			displayErrors(errors);
 		},
-		[displayErrors, createErrorNotice],
+		[displayErrors, createErrorNotice, clearNotices],
 	);
 
 	const displayValidationErrors = useCallback<DF['displayValidationErrors']>(
-		(errors, error) => {
-			const title =
-				typeof error === 'string' ? error : __('Lets fix these errors first.');
-			createErrorNotice(title);
+		(errors) => {
+			clearNotices();
 			displayErrors(errors);
 		},
-		[createErrorNotice, displayErrors],
+		[displayErrors, clearNotices],
 	);
 
 	return useMemo(
 		() => ({
+			clearNotices,
 			displaySubmitErrors,
 			displayValidationErrors,
 		}),
-		[displaySubmitErrors, displayValidationErrors],
+		[clearNotices, displaySubmitErrors, displayValidationErrors],
 	);
 };
