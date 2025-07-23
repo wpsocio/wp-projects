@@ -21,7 +21,7 @@ const generatePotData = z.object({
 		.optional()
 		.describe('The text domain. Defaults to slug.'),
 	headers: z
-		.record(z.string())
+		.record(z.string(), z.string())
 		.optional()
 		.describe('The headers to pass to wp-cli i18n make-pot.'),
 	mergeFiles: z
@@ -30,7 +30,7 @@ const generatePotData = z.object({
 		.default(['src/languages/js-translations.pot'])
 		.describe('The list of POT files to merge.'),
 	makePotArgs: z
-		.record(z.string())
+		.record(z.string(), z.string())
 		.optional()
 		.describe('The additional arguments to pass to wp-cli i18n make-pot.'),
 });

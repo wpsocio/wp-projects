@@ -40,7 +40,7 @@
 		"@wpsocio/ui": "workspace:*",
 		"@wpsocio/utilities": "workspace:*",
 		"react": "^18.3.1",
-		"zod": "^3.24.3"
+		"zod": "^4.0.5"
 	},
 	"devDependencies": {
 		"@types/jquery": "^3.5.32",
