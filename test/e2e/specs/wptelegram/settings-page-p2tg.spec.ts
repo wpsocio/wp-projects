@@ -8,8 +8,6 @@ async function setupPostToTelegramSection(page: Page) {
 
 	await page.getByLabel('Bot Token').fill(TEST_BOT_TOKEN);
 	const botUsernameField = page.getByLabel('Bot Username');
-
-	await botUsernameField.dblclick();
 	await botUsernameField.fill(TEST_BOT_USERNAME);
 
 	const button = page.getByRole('tab', { name: 'Post to Telegram' });

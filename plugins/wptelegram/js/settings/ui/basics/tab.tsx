@@ -4,18 +4,11 @@ import { FormField } from '@wpsocio/shared-ui/form/form-field';
 import { FormItem } from '@wpsocio/shared-ui/form/form-item';
 import { FormControl } from '@wpsocio/ui/wrappers/form';
 import { Input } from '@wpsocio/ui/wrappers/input';
-import { useCallback, useState } from 'react';
 import { getFieldLabel } from '../../services/fields';
 import { Upsell } from '../shared/pro-upsell';
 import { Instructions } from './instructions';
 
 export const BasicsTab: React.FC = () => {
-	const [botUsernameReadOnly, setBotUsernameReadOnly] = useState(true);
-	const botUsernameDoubleClick = useCallback(
-		() => setBotUsernameReadOnly(false),
-		[],
-	);
-
 	return (
 		<>
 			<Instructions />
@@ -39,14 +32,7 @@ export const BasicsTab: React.FC = () => {
 							isRequired
 						>
 							<FormControl className="max-w-[200px]">
-								<Input
-									addonStart="@"
-									required
-									autoComplete="off"
-									readOnly={botUsernameReadOnly}
-									onDoubleClick={botUsernameDoubleClick}
-									{...field}
-								/>
+								<Input addonStart="@" required autoComplete="off" {...field} />
 							</FormControl>
 						</FormItem>
 					)}
