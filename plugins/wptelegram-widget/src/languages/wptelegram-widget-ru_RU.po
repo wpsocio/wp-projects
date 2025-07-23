@@ -36,16 +36,19 @@ msgstr ""
 
 #. translators: %s: Version number
 #: includes/Requirements.php:97
+#, php-format
 msgid "Current version: %s"
 msgstr ""
 
 #. translators: %s: Version number
 #: includes/Requirements.php:105
+#, php-format
 msgid "Minimum required version: %s"
 msgstr ""
 
 #. translators: %s: comma separated list of missing extensions
 #: includes/Requirements.php:123
+#, php-format
 msgid "Missing PHP extensions: %s"
 msgstr ""
 
@@ -322,6 +325,7 @@ msgstr "Для уверенности, что обновление пройдё�
 #. translators: 1 command name, 2 bot name
 #: js/settings/ui/legacyWidget/Instructions.tsx:19
 #: languages/wptelegram-widget-js-translations.php:289
+#, php-format
 msgid "Create a Bot by sending %1$s command to %2$s."
 msgstr ""
 
@@ -329,6 +333,7 @@ msgstr ""
 #. translators: %s bot name
 #: js/settings/ui/legacyWidget/Instructions.tsx:40
 #: languages/wptelegram-widget-js-translations.php:293
+#, php-format
 msgid "After completing the steps %s will provide you the Bot Token."
 msgstr "После завершения шага c %s Вы получите токен бота."
 
@@ -341,6 +346,7 @@ msgstr "Скопируйте и вставьте в поле Токен бота
 #. translators: %s application name
 #: js/settings/ui/legacyWidget/Instructions.tsx:52
 #: languages/wptelegram-widget-js-translations.php:300
+#, php-format
 msgid "For ease, use %s"
 msgstr "Для удобства используйте %s"
 
@@ -368,6 +374,7 @@ msgstr ""
 #. translators: 1 command name, 2 bot name, 3 site url
 #: js/settings/ui/legacyWidget/Instructions.tsx:75
 #: languages/wptelegram-widget-js-translations.php:316
+#, php-format
 msgid "Send %1$s command to %2$s."
 msgstr ""
 
@@ -443,17 +450,18 @@ msgstr "ИНСТРУКЦИЯ!"
 
 #. %s: plugin name
 #. translators: %s: plugin name
-#: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:57
+#: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:59
 #: languages/wptelegram-widget-js-translations.php:36
+#, php-format
 msgid "Do you like %s?"
 msgstr ""
 
-#: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:69
+#: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:71
 #: languages/wptelegram-widget-js-translations.php:39
 msgid "Write a review"
 msgstr ""
 
-#: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:85
+#: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:87
 #: languages/wptelegram-widget-js-translations.php:42
 msgid "Need help?"
 msgstr "Нужна помощь?"
@@ -477,6 +485,7 @@ msgstr ""
 #. translators: %s: social handle
 #: ../../packages/js/shared-ui/components/wptg-social-icons.tsx:42
 #: languages/wptelegram-widget-js-translations.php:75
+#, php-format
 msgid "Follow %s"
 msgstr "Подписаться %s"
 
@@ -484,6 +493,7 @@ msgstr "Подписаться %s"
 #. translators: %s: channel name
 #: ../../packages/js/shared-ui/components/wptg-social-icons.tsx:57
 #: languages/wptelegram-widget-js-translations.php:79
+#, php-format
 msgid "Join %s"
 msgstr "присоединиться %s"
 
@@ -491,6 +501,7 @@ msgstr "присоединиться %s"
 #. translators: 1, 2 Menu names
 #: ../../packages/js/shared-ui/components/widget-info/widget-info.tsx:30
 #: languages/wptelegram-widget-js-translations.php:49
+#, php-format
 msgid "Goto %1$s and click/drag %2$s and place it where you want it to be."
 msgstr "Перейдите в %1$s и добавьте или перетащите %2$s в необходимое для Вас место."
 
@@ -581,14 +592,16 @@ msgid "Changes saved successfully."
 msgstr ""
 
 #: ../../packages/js/utilities/fields.ts:35
-#: js/settings/services/fields.ts:124
+#: js/settings/services/fields.ts:121
 #: languages/wptelegram-widget-js-translations.php:105
+#, php-format
 msgid "Invalid %s"
 msgstr "Недопустимый %s"
 
 #: ../../packages/js/utilities/fields.ts:39
 #: js/settings/services/fields.ts:96
 #: languages/wptelegram-widget-js-translations.php:109
+#, php-format
 msgid "%s required."
 msgstr ""
 
@@ -626,7 +639,7 @@ msgid "Telegram post"
 msgstr ""
 
 #. Description of the plugin
-#: js/settings/ui/Sidebar.tsx:19
+#: js/settings/ui/Sidebar.tsx:20
 #: wptelegram-widget.php
 #: languages/wptelegram-widget-js-translations.php:219
 msgid "Display the Telegram Public Channel or Group Feed in a WordPress widget or anywhere you want using a shortcode."
@@ -667,12 +680,12 @@ msgstr ""
 msgid "WP Telegram"
 msgstr ""
 
-#: js/settings/ui/Sidebar.tsx:22
+#: js/settings/ui/Sidebar.tsx:23
 #: languages/wptelegram-widget-js-translations.php:222
 msgid "Join our public chat on Telegram"
 msgstr ""
 
-#: js/settings/ui/joinLink/PostTypes.tsx:20
+#: js/settings/ui/joinLink/PostTypes.tsx:11
 #: languages/wptelegram-widget-js-translations.php:276
 msgid "The join link will be automatically added to the selected post types."
 msgstr ""

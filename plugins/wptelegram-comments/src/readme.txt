@@ -4,8 +4,8 @@ Donate link: https://wpsocio.com/donate
 Tags: telegram, comments, discuss, social, widget
 Requires at least: 6.5
 Requires PHP: 7.4
-Tested up to: 6.8
-Stable tag: 1.2.6
+Tested up to: 6.8.2
+Stable tag: 1.2.7
 License: GPL-3.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -76,7 +76,8 @@ Automatic updates should work smoothly, but we still recommend you back up your 
 
 == Changelog ==
 
-= 1.2.6 =
-- Fixed background color for the settings page
+= 1.2.7 =
+- Updated error notices to show specific errors first.
+- Fixed help text label in the sidebar.
 
 [See full changelog](https://github.com/wpsocio/wptelegram-comments/blob/main/CHANGELOG.md)

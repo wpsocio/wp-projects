@@ -31,14 +31,14 @@ $generated_i18n_strings = array(
 	// Reference: ../../packages/js/shared-ui/components/instructions.tsx:17
 	__( 'INSTRUCTIONS!', 'wptelegram-widget' ),
 
-	// Reference: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:57
+	// Reference: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:59
 	/* translators: %s: plugin name */
 	__( 'Do you like %s?', 'wptelegram-widget' ),
 
-	// Reference: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:69
+	// Reference: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:71
 	__( 'Write a review', 'wptelegram-widget' ),
 
-	// Reference: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:85
+	// Reference: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:87
 	__( 'Need help?', 'wptelegram-widget' ),
 
 	// Reference: ../../packages/js/shared-ui/components/widget-info/widget-info-card.tsx:24
@@ -101,7 +101,7 @@ $generated_i18n_strings = array(
 	__( 'Send Test', 'wptelegram-widget' ),
 
 	// Reference: ../../packages/js/utilities/fields.ts:35
-	// Reference: js/settings/services/fields.ts:124
+	// Reference: js/settings/services/fields.ts:121
 	__( 'Invalid %s', 'wptelegram-widget' ),
 
 	// Reference: ../../packages/js/utilities/fields.ts:39
@@ -215,10 +215,10 @@ $generated_i18n_strings = array(
 	// Reference: js/settings/services/fields.ts:28
 	__( 'Open in new tab', 'wptelegram-widget' ),
 
-	// Reference: js/settings/ui/Sidebar.tsx:19
+	// Reference: js/settings/ui/Sidebar.tsx:20
 	__( 'Display the Telegram Public Channel or Group Feed in a WordPress widget or anywhere you want using a shortcode.', 'wptelegram-widget' ),
 
-	// Reference: js/settings/ui/Sidebar.tsx:22
+	// Reference: js/settings/ui/Sidebar.tsx:23
 	__( 'Join our public chat on Telegram', 'wptelegram-widget' ),
 
 	// Reference: js/settings/ui/TabbedSections.tsx:19
@@ -272,7 +272,7 @@ $generated_i18n_strings = array(
 	// Reference: js/settings/ui/joinLink/JoinLinkInfo.tsx:12
 	__( 'WP Telegram Join Channel', 'wptelegram-widget' ),
 
-	// Reference: js/settings/ui/joinLink/PostTypes.tsx:20
+	// Reference: js/settings/ui/joinLink/PostTypes.tsx:11
 	__( 'The join link will be automatically added to the selected post types.', 'wptelegram-widget' ),
 
 	// Reference: js/settings/ui/legacyWidget/Instructions.tsx:101
