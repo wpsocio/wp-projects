@@ -121,11 +121,12 @@ export const validationSchema = z.object({
 				// Otherwise, we need at least one channel.
 				value.channels?.filter((c) => c.value.trim())?.length,
 			{
-				message: sprintf(
-					/* translators: %s: field label */
-					__('At least one %s is required.'),
-					__('channel'),
-				),
+				error: () =>
+					sprintf(
+						/* translators: %s: field label */
+						__('At least one %s is required.'),
+						__('channel'),
+					),
 				path: ['channels'],
 			},
 		),
@@ -164,11 +165,12 @@ export const validationSchema = z.object({
 				// or user notifications enabled.
 				value.user_notifications,
 			{
-				message: sprintf(
-					/* translators: %s: field label */
-					__('At least one %s is required.'),
-					__('chat ID'),
-				),
+				error: () =>
+					sprintf(
+						/* translators: %s: field label */
+						__('At least one %s is required.'),
+						__('chat ID'),
+					),
 				path: ['chat_ids'],
 			},
 		),

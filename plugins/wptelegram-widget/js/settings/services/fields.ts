@@ -93,16 +93,13 @@ export const validationSchema = z.object({
 				return true;
 			},
 			{
-				message: sprintf(__('%s required.'), getFieldLabel('bot_token')),
+				error: () => sprintf(__('%s required.'), getFieldLabel('bot_token')),
 				path: ['bot_token'],
 			},
 		),
 	join_link: z.object({
 		url: z.union([
-			z
-				.string()
-				.url(sprintf(__('Invalid %s'), getFieldLabel('url')))
-				.optional(),
+			z.url(sprintf(__('Invalid %s'), getFieldLabel('url'))).optional(),
 			z.literal(''),
 		]),
 		text: z.string().optional(),
