@@ -73,7 +73,6 @@ test.describe('Settings', () => {
 	test('Should save the changes', async ({ page }) => {
 		await page.getByLabel('Bot Token').fill(TEST_BOT_TOKEN);
 		const botUsernameField = page.getByLabel('Bot Username');
-		await botUsernameField.dblclick();
 		await botUsernameField.fill(TEST_BOT_USERNAME);
 
 		await actions.saveChangesAndWait({
@@ -169,18 +168,6 @@ test.describe('Settings', () => {
 		await unmock();
 	});
 
-	test('That the bot username field is readonly by default', async ({
-		page,
-	}) => {
-		const botUsernameField = page.getByLabel('Bot Username');
-
-		await expect(botUsernameField).toHaveAttribute('readonly');
-
-		await botUsernameField.dblclick();
-
-		await expect(botUsernameField).not.toHaveAttribute('readonly');
-	});
-
 	test('Should hide the fields for sections that require bot token', async ({
 		page,
 	}) => {
@@ -219,7 +206,6 @@ test.describe('Settings', () => {
 	}) => {
 		await page.getByLabel('Bot Token').fill(TEST_BOT_TOKEN);
 		const botUsernameField = page.getByLabel('Bot Username');
-		await botUsernameField.dblclick();
 		await botUsernameField.fill(TEST_BOT_USERNAME);
 
 		const button = page.getByRole('tab', { name: 'Post to Telegram' });
