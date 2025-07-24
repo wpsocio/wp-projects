@@ -1,4 +1,5 @@
 import { Button, __experimentalGrid as Grid } from '@wordpress/components';
+import { useCallback } from 'react';
 import { FieldsetAsLabel } from '../fieldset-as-label/index.js';
 
 type Option = {
@@ -19,15 +20,18 @@ export interface ButtonGroupControlProps {
 export function ButtonGroupControl({
 	label,
 	options,
-	value,
+	value = [],
 	onChange,
 }: ButtonGroupControlProps) {
-	const toggleValue = (val: string) => {
-		const newValue = value.includes(val)
-			? value.filter((v) => v !== val)
-			: [...value, val];
-		onChange(newValue);
-	};
+	const toggleValue = useCallback(
+		(val: string) => {
+			const newValue = value.includes(val)
+				? value.filter((v) => v !== val)
+				: [...value, val];
+			onChange(newValue);
+		},
+		[value, onChange],
+	);
 
 	return (
 		<FieldsetAsLabel label={label}>
