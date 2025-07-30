@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.2.10
+
+### Patch Changes
+
+- [#281](https://github.com/wpsocio/wp-projects/pull/281) [`77aaa4f`](https://github.com/wpsocio/wp-projects/commit/77aaa4f6537f8927861a89045ffb03539f4343df) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Updated error notices to show specific errors first.
+
+- [#274](https://github.com/wpsocio/wp-projects/pull/274) [`8dee1eb`](https://github.com/wpsocio/wp-projects/commit/8dee1eb67500bdf6339b2045f64b38f3989d369f) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Fixed help text label in the sidebar.
+
 ## 2.2.9
 
 ### Patch Changes
