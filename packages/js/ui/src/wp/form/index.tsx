@@ -190,3 +190,5 @@ export {
 	FormMessage,
 	FormField,
 };
+
+export type { ControllerProps, FieldPath, FieldValues };
