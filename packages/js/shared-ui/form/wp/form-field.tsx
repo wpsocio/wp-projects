@@ -1,10 +1,18 @@
 import { useFormContext } from '@wpsocio/form';
-import { FormField as FormFieldUI } from '@wpsocio/ui/wp/form';
+import {
+	type ControllerProps,
+	type FieldPath,
+	type FieldValues,
+	FormField as FormFieldUI,
+} from '@wpsocio/ui/wp/form';
 
-export const FormField: React.FC<React.ComponentProps<typeof FormFieldUI>> = (
-	props,
-) => {
-	const { control } = useFormContext();
+export const FormField = <
+	TFieldValues extends FieldValues = FieldValues,
+	TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+>({
+	...props
+}: ControllerProps<TFieldValues, TName>) => {
+	const { control } = useFormContext<TFieldValues>();
 
 	return <FormFieldUI control={control} {...props} />;
 };
