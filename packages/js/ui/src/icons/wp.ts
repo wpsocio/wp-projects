@@ -6,4 +6,5 @@ export {
 	check,
 	cloud,
 	trash,
+	edit,
 } from '@wordpress/icons';
