@@ -35,7 +35,7 @@ class LegacyWidget {
 			$atts['width'] = $atts['widget_width'];
 		}
 
-		$username = strtolower( WPTG_Widget()->options()->get_path( 'legacy_widget.username', '' ) );
+		$username = WPTG_Widget()->options()->get_path( 'legacy_widget.username', '' );
 
 		$defaults = [
 			'num_messages' => 5,
@@ -56,7 +56,7 @@ class LegacyWidget {
 		// Get messages.
 		$messages = WPTG_Widget()->options()->get( 'messages', [] );
 
-		$username = $args['username'];
+		$username = strtolower( $args['username'] );
 
 		if ( empty( $messages[ $username ] ) ) {
 			return;
