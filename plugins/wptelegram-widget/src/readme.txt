@@ -5,7 +5,7 @@ Tags: telegram, feed, widget, channel, group
 Requires at least: 6.5
 Requires PHP: 7.4
 Tested up to: 6.8.2
-Stable tag: 2.2.10
+Stable tag: 2.2.11
 License: GPL-3.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -193,8 +193,7 @@ Automatic updates should work smoothly, but we still recommend you back up your 
 
 == Changelog ==
 
-= 2.2.10 =
-- Updated error notices to show specific errors first.
-- Fixed help text label in the sidebar.
+= 2.2.11 =
+- Fixed Legacy Widget expecting a lowercase username.
 
 [See full changelog](https://github.com/wpsocio/wptelegram-widget/blob/main/CHANGELOG.md)

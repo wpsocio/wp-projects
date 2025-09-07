@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.2.11
+
+### Patch Changes
+
+- [#286](https://github.com/wpsocio/wp-projects/pull/286) [`a50be3f`](https://github.com/wpsocio/wp-projects/commit/a50be3f6889413e94668a3f1ca3937b262e69bc7) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Fixed Legacy Widget expecting a lowercase username.
+
 ## 2.2.10
 
 ### Patch Changes
