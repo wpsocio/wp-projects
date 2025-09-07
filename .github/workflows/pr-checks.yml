@@ -147,16 +147,8 @@ jobs:
         run: |
           sudo apt-get update --allow-releaseinfo-change
 
-      - name: Cache Playwright browsers
-        uses: actions/cache@v4
-        id: playwright-cache
-        with:
-          path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-${{ hashFiles('pnpm-lock.yaml') }}
-
-      - name: Install Playwright browsers
-        if: steps.playwright-cache.outputs.cache-hit != 'true'
-        run: npx playwright install --with-deps
+      - name: Setup Playwright
+        uses: ./.github/actions/setup-playwright
 
       - name: Update wp-env
         run: |
