@@ -7,7 +7,7 @@
 	<!-- Add source codes in the report -->
 	<arg value="s" />
 
-	<config name="installed_paths" value="../../phpcsstandards/phpcsextra,../../phpcsstandards/phpcsutils,../../wp-coding-standards/wpcs"/>
+	<config name="installed_paths" value="../../phpcsstandards/phpcsextra,../../phpcsstandards/phpcsutils,../../wp-coding-standards/wpcs,../../slevomat/coding-standard"/>
 
 	<file>.</file>
     <exclude-pattern>/.git/</exclude-pattern>
@@ -61,6 +61,12 @@
 	<rule ref="Squiz.Commenting.FunctionComment">
 		<properties>
 			<property name="skipIfInheritdoc" value="true" />
+		</properties>
+	</rule>
+
+	<rule ref="SlevomatCodingStandard.Namespaces.UnusedUses">
+		<properties>
+			<property name="searchAnnotations" value="true"/>
 		</properties>
 	</rule>
 </ruleset>

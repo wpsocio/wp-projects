@@ -21,7 +21,8 @@
 	},
 	"require-dev": {
 		"wp-coding-standards/wpcs": "^3.1",
-		"pestphp/pest": "^1.23"
+		"pestphp/pest": "^1.23",
+		"slevomat/coding-standard": "^8.15"
 	},
 	"config": {
 		"allow-plugins": {
