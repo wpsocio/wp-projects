@@ -6,7 +6,7 @@ runs:
     - name: Extract Playwright version
       id: playwright-version
       shell: bash
-      run: echo "PLAYWRIGHT_VERSION=$(jq -r '.devDependencies.playwright' package.json)" >> $GITHUB_ENV
+      run: echo "PLAYWRIGHT_VERSION=$(jq -r '.devDependencies["@wordpress/scripts"]' package.json)" >> $GITHUB_ENV
 
     - name: Cache Playwright
       id: playwright-cache
