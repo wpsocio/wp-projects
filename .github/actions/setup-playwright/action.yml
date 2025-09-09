@@ -17,4 +17,5 @@ runs:
 
     - name: Install Playwright dependencies
       shell: bash
+      if: steps.playwright-cache.outputs.cache-hit != 'true'
       run: pnpm exec playwright install --with-deps --only-shell
