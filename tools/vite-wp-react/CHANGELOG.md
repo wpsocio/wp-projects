@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.10
+
+### Patch Changes
+
+- [#289](https://github.com/wpsocio/wp-projects/pull/289) [`cc66748`](https://github.com/wpsocio/wp-projects/commit/cc667483c222b2eb01a7ff4f4eb16cd0f57d2ccd) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Updated the base path to use relative paths for emitted assets
+
 ## 1.0.9
 
 ### Patch Changes
