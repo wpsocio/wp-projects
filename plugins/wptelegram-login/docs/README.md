@@ -150,33 +150,6 @@ Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 663
 
 ## Filters
 
-### `wptelegram_login_get_user_by_telegram_id`
-
-*Filter the user found by its Telegram ID.*
-
-**Arguments**
-
-Argument | Type | Description
--------- | ---- | -----------
-`$user` | `\WPTelegram\Login\includes\WP_User\|false` | The user object or false.
-`$tg_user_id` | `int\|string` | Telegram User ID.
-
-Source: [src/includes/Utils.php](../src/includes/Utils.php), [line 111](../src/includes/Utils.php#L111-L117)
-
-### `wptelegram_login_intercept_request_on`
-
-*Filter the hook and priority to use for intercepting the login request.*
-
-- [Examples](./examples/intercept_request_on.md)
-
-**Arguments**
-
-Argument | Type | Description
--------- | ---- | -----------
-`$hook_and_priority` | `array` | A tuple containing the hook name and priority.
-
-Source: [src/includes/Utils.php](../src/includes/Utils.php), [line 131](../src/includes/Utils.php#L131-L138)
-
 ### `wptelegram_login_web_app_login_data`
 
 *Filters the data for the web app login.*
@@ -203,6 +176,33 @@ Argument | Type | Description
 `$translations` | `array` | The available translations.
 
 Source: [src/includes/AssetManager.php](../src/includes/AssetManager.php), [line 426](../src/includes/AssetManager.php#L426-L432)
+
+### `wptelegram_login_get_user_by_telegram_id`
+
+*Filter the user found by its Telegram ID.*
+
+**Arguments**
+
+Argument | Type | Description
+-------- | ---- | -----------
+`$user` | `\WPTelegram\Login\includes\WP_User\|false` | The user object or false.
+`$tg_user_id` | `int\|string` | Telegram User ID.
+
+Source: [src/includes/Utils.php](../src/includes/Utils.php), [line 111](../src/includes/Utils.php#L111-L117)
+
+### `wptelegram_login_intercept_request_on`
+
+*Filter the hook and priority to use for intercepting the login request.*
+
+- [Examples](./examples/intercept_request_on.md)
+
+**Arguments**
+
+Argument | Type | Description
+-------- | ---- | -----------
+`$hook_and_priority` | `array` | A tuple containing the hook name and priority.
+
+Source: [src/includes/Utils.php](../src/includes/Utils.php), [line 131](../src/includes/Utils.php#L131-L138)
 
 ### `wptelegram_login_validation_query_params`
 
@@ -428,7 +428,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | 
 
-Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 124](../src/shared/Shared.php#L124-L133)
+Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 133](../src/shared/Shared.php#L133-L142)
 
 ### `wptelegram_login_telegram_callback_url`
 
@@ -448,7 +448,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | 
 
-Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 153](../src/shared/Shared.php#L153-L162)
+Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 162](../src/shared/Shared.php#L162-L171)
 
 ### `wptelegram_login_show_if_user_connected`
 
@@ -463,7 +463,7 @@ Argument | Type | Description
 `$show_if_connected` | `bool` | Whether to show the button if user is already connected.
 `$current_user_telegram_id` | `int` | The current user's Telegram ID.
 
-Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 217](../src/shared/Shared.php#L217-L225)
+Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 226](../src/shared/Shared.php#L226-L234)
 
 ### `wptelegram_login_show_if_user_is`
 
@@ -490,7 +490,7 @@ Version | Description
 ------- | -----------
 `1.0.0` | 
 
-Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 231](../src/shared/Shared.php#L231-L247)
+Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 240](../src/shared/Shared.php#L240-L256)
 
 ### `wptelegram_login_use_telegram_avatar`
 
@@ -508,7 +508,7 @@ Argument | Type | Description
 `$url` | `string` | Avatar URL.
 `$id_or_email` | `mixed` | user id or email.
 
-Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 306](../src/shared/Shared.php#L306-L317)
+Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 315](../src/shared/Shared.php#L315-L326)
 
 ### `wptelegram_login_custom_avatar_url`
 
@@ -522,7 +522,7 @@ Argument | Type | Description
 `$url` | `string` | Avatar URL.
 `$id_or_email` | `mixed` | user id or email.
 
-Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 351](../src/shared/Shared.php#L351-L358)
+Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 360](../src/shared/Shared.php#L360-L367)
 
 ### `widget_title`
 
