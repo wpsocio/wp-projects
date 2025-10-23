@@ -73,7 +73,7 @@ msgstr "Ошибка:"
 msgid "Please Enter a valid Chat ID"
 msgstr ""
 
-#: admin/Admin.php:371
+#: admin/Admin.php:378
 msgid "Telegram User ID"
 msgstr "ID Польз. Telegram"
 
