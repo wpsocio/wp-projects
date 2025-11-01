@@ -1,0 +1,25 @@
+@use '@wpsocio/ui/wp-base-styles.scss' as wp;
+
+:global(#wpcontent) {
+    padding-inline: 0 !important;
+}
+:global(#wpwrap) {
+    background: #fff;
+}
+
+.container {
+    max-width: 64rem;
+    padding: 0.75rem;
+
+    &:global(.components-flex) {
+        width: auto;
+    }
+
+    @include wp.break-small {
+        padding: 1.5rem;
+    }
+
+    .view {
+        width: 100%;
+    }
+}
