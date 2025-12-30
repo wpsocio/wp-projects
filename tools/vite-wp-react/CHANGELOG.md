@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.11
+
+### Patch Changes
+
+- [#297](https://github.com/wpsocio/wp-projects/pull/297) [`29fbf9b`](https://github.com/wpsocio/wp-projects/commit/29fbf9b4068d2c1e553c6ef4573b31eaa08c0a73) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Update WP bundled and external packages list.
+
 ## 1.0.10
 
 ### Patch Changes

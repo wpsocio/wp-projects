@@ -163,7 +163,7 @@ msgstr "URL bearbeiten"
 msgid "Telegram post URL"
 msgstr "Beitrags-URL von Telegram"
 
-#: js/blocks/single-post/Edit.tsx:131
+#: js/blocks/single-post/Edit.tsx:133
 #: languages/wptelegram-widget-js-translations.php:176
 msgid "Loading…"
 msgstr "Wird geladen..."
@@ -432,7 +432,7 @@ msgstr "Anzahl der Nachrichten, die im Widget angezeigt werden sollen."
 msgid "WP Telegram Legacy Widget"
 msgstr "WP Telegram abgekündigtes Widget"
 
-#: js/settings/ui/legacyWidget/Username.tsx:38
+#: js/settings/ui/legacyWidget/Username.tsx:37
 #: languages/wptelegram-widget-js-translations.php:349
 msgid "Channel or group username."
 msgstr ""
@@ -455,12 +455,12 @@ msgstr "ANLEITUNG:"
 msgid "Do you like %s?"
 msgstr "Gefällt dir %s?"
 
-#: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:71
+#: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:69
 #: languages/wptelegram-widget-js-translations.php:39
 msgid "Write a review"
 msgstr ""
 
-#: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:87
+#: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:85
 #: languages/wptelegram-widget-js-translations.php:42
 msgid "Need help?"
 msgstr "Hilfe benötigt?"
@@ -565,22 +565,22 @@ msgstr "Verbindung konnte nicht hergestellt werden"
 msgid "Error:"
 msgstr ""
 
-#: ../../packages/js/services/telegram/telegram-utils.ts:126
+#: ../../packages/js/services/telegram/telegram-utils.ts:122
 #: languages/wptelegram-widget-js-translations.php:14
 msgid "A message will be sent to the Channel/Group/Chat. You can modify the text below"
 msgstr "Eine Nachricht wird an die chat_ids gesendet. Du kannst den Text im Folgenden ändern"
 
-#: ../../packages/js/services/telegram/telegram-utils.ts:129
+#: ../../packages/js/services/telegram/telegram-utils.ts:125
 #: languages/wptelegram-widget-js-translations.php:17
 msgid "This is a test message"
 msgstr "Das ist eine Testnachricht"
 
-#: ../../packages/js/services/telegram/telegram-utils.ts:152
+#: ../../packages/js/services/telegram/telegram-utils.ts:148
 #: languages/wptelegram-widget-js-translations.php:23
 msgid "Success"
 msgstr "Erfolgreich"
 
-#: ../../packages/js/services/use-display-feedback.ts:61
+#: ../../packages/js/services/use-display-feedback.ts:60
 #: languages/wptelegram-widget-js-translations.php:26
 msgid "Lets fix these errors first."
 msgstr ""
@@ -644,7 +644,7 @@ msgstr "Zeigt einen öffentlichen Telegram Channel oder Gruppen-Feed in einem Wi
 #~ msgid "Display the Telegram Public Channel or Group Feed in a WordPress widget or anywhere you want using a shortcode."
 #~ msgstr "Zeigt einen öffentlichen Telegram Channel oder Gruppen-Feed in einem Widget oder per Shortcode an beliebiger Stelle an."
 
-#: js/blocks/single-post/Edit.tsx:148
+#: js/blocks/single-post/Edit.tsx:150
 #: js/blocks/single-post/index.tsx:47
 #: languages/wptelegram-widget-js-translations.php:180
 msgid "Telegram post"
@@ -704,7 +704,7 @@ msgstr ""
 msgid "Legacy Widget does not show the old messages."
 msgstr ""
 
-#: ../../packages/js/services/telegram/telegram-utils.ts:133
+#: ../../packages/js/services/telegram/telegram-utils.ts:129
 #: languages/wptelegram-widget-js-translations.php:20
 msgid "Message is empty"
 msgstr ""

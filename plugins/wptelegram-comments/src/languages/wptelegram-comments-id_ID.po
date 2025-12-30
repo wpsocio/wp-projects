@@ -64,7 +64,7 @@ msgstr "Kecualikan"
 msgid "Post types"
 msgstr "Jenis kiriman"
 
-#: js/settings/ui/Code.tsx:44
+#: js/settings/ui/Code.tsx:45
 #: languages/wptelegram-comments-js-translations.php:65
 msgid "Please read the instructions above."
 msgstr "Harap baca instruksi di atas."
@@ -153,12 +153,12 @@ msgstr "INSTRUKSI!"
 msgid "Do you like %s?"
 msgstr "Anda menyukai %s?"
 
-#: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:71
+#: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:69
 #: languages/wptelegram-comments-js-translations.php:27
 msgid "Write a review"
 msgstr ""
 
-#: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:87
+#: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:85
 #: languages/wptelegram-comments-js-translations.php:30
 msgid "Need help?"
 msgstr "Perlu bantuan?"
@@ -194,7 +194,7 @@ msgstr ""
 msgid "Error:"
 msgstr ""
 
-#: ../../packages/js/services/use-display-feedback.ts:61
+#: ../../packages/js/services/use-display-feedback.ts:60
 #: languages/wptelegram-comments-js-translations.php:14
 msgid "Lets fix these errors first."
 msgstr "Mari pebaiki galat berikut terlebih dahulu."

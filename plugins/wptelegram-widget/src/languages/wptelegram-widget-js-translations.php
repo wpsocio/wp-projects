@@ -10,19 +10,19 @@ $generated_i18n_strings = array(
 	// Reference: ../../packages/js/services/api-fetch/index.ts:41
 	__( 'Error:', 'wptelegram-widget' ),
 
-	// Reference: ../../packages/js/services/telegram/telegram-utils.ts:126
+	// Reference: ../../packages/js/services/telegram/telegram-utils.ts:122
 	__( 'A message will be sent to the Channel/Group/Chat. You can modify the text below', 'wptelegram-widget' ),
 
-	// Reference: ../../packages/js/services/telegram/telegram-utils.ts:129
+	// Reference: ../../packages/js/services/telegram/telegram-utils.ts:125
 	__( 'This is a test message', 'wptelegram-widget' ),
 
-	// Reference: ../../packages/js/services/telegram/telegram-utils.ts:133
+	// Reference: ../../packages/js/services/telegram/telegram-utils.ts:129
 	__( 'Message is empty', 'wptelegram-widget' ),
 
-	// Reference: ../../packages/js/services/telegram/telegram-utils.ts:152
+	// Reference: ../../packages/js/services/telegram/telegram-utils.ts:148
 	__( 'Success', 'wptelegram-widget' ),
 
-	// Reference: ../../packages/js/services/use-display-feedback.ts:61
+	// Reference: ../../packages/js/services/use-display-feedback.ts:60
 	__( 'Lets fix these errors first.', 'wptelegram-widget' ),
 
 	// Reference: ../../packages/js/services/use-submit-form.ts:64
@@ -35,10 +35,10 @@ $generated_i18n_strings = array(
 	/* translators: %s: plugin name */
 	__( 'Do you like %s?', 'wptelegram-widget' ),
 
-	// Reference: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:71
+	// Reference: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:69
 	__( 'Write a review', 'wptelegram-widget' ),
 
-	// Reference: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:87
+	// Reference: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:85
 	__( 'Need help?', 'wptelegram-widget' ),
 
 	// Reference: ../../packages/js/shared-ui/components/widget-info/widget-info-card.tsx:24
@@ -172,10 +172,10 @@ $generated_i18n_strings = array(
 	// Reference: js/blocks/single-post/Controls.tsx:50
 	__( 'Edit URL', 'wptelegram-widget' ),
 
-	// Reference: js/blocks/single-post/Edit.tsx:131
+	// Reference: js/blocks/single-post/Edit.tsx:133
 	__( 'Loading…', 'wptelegram-widget' ),
 
-	// Reference: js/blocks/single-post/Edit.tsx:148
+	// Reference: js/blocks/single-post/Edit.tsx:150
 	// Reference: js/blocks/single-post/index.tsx:47
 	__( 'Telegram post', 'wptelegram-widget' ),
 
@@ -345,7 +345,7 @@ $generated_i18n_strings = array(
 	// Reference: js/settings/ui/legacyWidget/OldMessagesInfo.tsx:8
 	__( 'Legacy Widget does not show the old messages.', 'wptelegram-widget' ),
 
-	// Reference: js/settings/ui/legacyWidget/Username.tsx:38
+	// Reference: js/settings/ui/legacyWidget/Username.tsx:37
 	__( 'Channel or group username.', 'wptelegram-widget' )
 );
 /* THIS IS THE END OF THE GENERATED FILE */

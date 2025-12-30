@@ -28,7 +28,7 @@ $ npm install -g @wpsocio/wpdev
 $ wpdev COMMAND
 running command...
 $ wpdev (--version)
-@wpsocio/wpdev/1.0.8 linux-x64 node-v22.20.0
+@wpsocio/wpdev/1.0.8 linux-x64 node-v24.12.0
 $ wpdev --help [COMMAND]
 USAGE
   $ wpdev COMMAND
@@ -56,7 +56,7 @@ USAGE
     <value> | -t major|minor|patch|premajor|preminor|prepatch|prerelease] [--tasks <value>]
 
 ARGUMENTS
-  PROJECTS...  Project(s) to target.
+  [PROJECTS...]  Project(s) to target.
 
 FLAGS
   -c, --[no-]archive               Create a compressed archive (zip) of the bundled project.
@@ -101,7 +101,7 @@ USAGE
     <value>...] [-i ignored|node_modules|composer.lock|vendor...] [--all]
 
 ARGUMENTS
-  PATH  Path to clean. Relative to root directory
+  [PATH]  Path to clean. Relative to root directory
 
 FLAGS
   -e, --env-file=<value>...        Environment file(s) to load
@@ -135,10 +135,10 @@ USAGE
     [-e <value>...] [--all] [--from-changeset --changeset-json <value>] [-d <value>]
 
 ARGUMENTS
-  PROJECTS...  Project(s) to target.
+  [PROJECTS...]  Project(s) to target.
 
 FLAGS
-  -d, --wp-content-dir=<value>     Path to the WordPress content directory.
+  -d, --wp-content-dir=<value>     [env: WP_CONTENT_DIR] Path to the WordPress content directory.
   -e, --env-file=<value>...        Environment file(s) to load
   -m, --operation-mode=<option>    Operation mode.
                                    <options: wp-monorepo|standalone>
@@ -173,7 +173,7 @@ USAGE
     [-e <value>...] [--all] [--from-changeset --changeset-json <value>] [--pretty]
 
 ARGUMENTS
-  PROJECTS...  Project(s) to target.
+  [PROJECTS...]  Project(s) to target.
 
 FLAGS
   -e, --env-file=<value>...        Environment file(s) to load
@@ -211,10 +211,10 @@ USAGE
     [-e <value>...] [--all] [--from-changeset --changeset-json <value>] [-d <value>]
 
 ARGUMENTS
-  PROJECTS...  Project(s) to target.
+  [PROJECTS...]  Project(s) to target.
 
 FLAGS
-  -d, --wp-content-dir=<value>     Path to the WordPress content directory.
+  -d, --wp-content-dir=<value>     [env: WP_CONTENT_DIR] Path to the WordPress content directory.
   -e, --env-file=<value>...        Environment file(s) to load
   -m, --operation-mode=<option>    Operation mode.
                                    <options: wp-monorepo|standalone>
