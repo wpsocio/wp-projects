@@ -135,6 +135,7 @@ export default class Clean extends WithConfig {
 	}
 
 	async cleanFiles(filesToDelete: Array<string>, args: CleanArgs) {
+		// biome-ignore lint/suspicious/noConsole: Console error is fine here
 		console.error(chalk.green('Cleaning files! You may grab a coffee...'));
 
 		for (const file of filesToDelete) {
@@ -142,6 +143,7 @@ export default class Clean extends WithConfig {
 				this.log(`Cleaning ${file}`);
 				fs.rmSync(file, { recursive: true, force: true });
 			} catch (e) {
+				// biome-ignore lint/suspicious/noConsole: Console error is fine here
 				console.error(chalk.red((e as { message: string }).message));
 				process.exitCode = 1;
 				return;

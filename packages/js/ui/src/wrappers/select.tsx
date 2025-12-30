@@ -40,7 +40,7 @@ function getPortalContainer() {
 	}
 }
 
-export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
+const Select = React.forwardRef(
 	(
 		{
 			options,
@@ -51,13 +51,13 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
 			isLoading,
 			portalContainer,
 			...props
-		},
-		ref,
+		}: SelectProps,
+		ref: React.Ref<HTMLButtonElement>,
 	) => {
 		return (
 			<SelectUI {...props} key={props.value}>
 				<SelectTrigger
-					className={cn('w-[180px]', triggerClassName)}
+					className={cn('w-45', triggerClassName)}
 					id={id}
 					aria-label={ariaLabel}
 					ref={ref}
@@ -109,4 +109,10 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
 			</SelectUI>
 		);
 	},
-);
+) as React.ForwardRefExoticComponent<
+	SelectProps & React.RefAttributes<HTMLButtonElement>
+>;
+
+Select.displayName = 'Select';
+
+export { Select };

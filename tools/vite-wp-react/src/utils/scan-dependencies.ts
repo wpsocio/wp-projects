@@ -1,6 +1,6 @@
 import path from 'node:path';
-import { build as esBuild } from 'esbuild';
 import type { Plugin as EsBuildPlugin } from 'esbuild';
+import { build as esBuild } from 'esbuild';
 import type { InputOption } from 'rollup';
 
 export const IMPORTS_TO_IGNORE =
@@ -107,6 +107,7 @@ export async function scanDependencies({
 
 		onComplete?.(source);
 	} catch (error) {
+		// biome-ignore lint/suspicious/noConsole: Console error is fine here
 		console.error('ERROR EXTRACTING DEPENDENCIES', error);
 	}
 }

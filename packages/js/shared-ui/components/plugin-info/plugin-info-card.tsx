@@ -66,11 +66,9 @@ export const PluginInfoCard: React.FC<PluginInfoCardProps> = ({
 											rel="noopener noreferrer"
 											target="_blank"
 											className="p-2"
+											aria-label={__('Write a review')}
 										>
-											<span
-												aria-label={__('Write a review')}
-												className="text-orange-300 text-2xl"
-											>
+											<span className="text-orange-300 text-2xl">
 												{'★★★★★'}
 											</span>
 										</Link>

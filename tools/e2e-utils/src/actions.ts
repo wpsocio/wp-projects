@@ -18,7 +18,10 @@ export class Actions {
 	async saveChangesAndWait({
 		endpoint,
 		assertSaved = false,
-	}: { endpoint: string; assertSaved?: boolean }) {
+	}: {
+		endpoint: string;
+		assertSaved?: boolean;
+	}) {
 		await Promise.all([
 			this.saveChangesButton.click(),
 			this.waitForApiResponse(endpoint),
@@ -70,7 +73,10 @@ export class Actions {
 	async testBotTokenAndWait({
 		endpoint = '/wptelegram-bot/v1/base',
 		query = { api_method: 'getMe' },
-	}: { endpoint?: string; query?: Record<string, string> } = {}) {
+	}: {
+		endpoint?: string;
+		query?: Record<string, string>;
+	} = {}) {
 		const testButton = this.page.getByRole('button', {
 			name: 'Test Token',
 			exact: true,

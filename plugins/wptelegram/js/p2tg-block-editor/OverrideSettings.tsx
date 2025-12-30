@@ -7,7 +7,6 @@ import {
 	TextareaControl,
 	ToggleControl,
 } from '@wordpress/components';
-import type { ModalProps } from '@wordpress/components/build-types/modal/types';
 import { useCallback, useState } from '@wordpress/element';
 import { __, sprintf } from '@wpsocio/i18n';
 import type { CSSProperties } from 'react';
@@ -15,6 +14,8 @@ import { Channels } from './Channels';
 import { Files } from './Files';
 import { GearIcon } from './GearIcon';
 import { useDataState, useUpdateField } from './data';
+
+type ModalProps = React.ComponentProps<typeof Modal>;
 
 const modalStyles: CSSProperties = {
 	width: '100%',

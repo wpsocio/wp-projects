@@ -1,3 +1,4 @@
+import { TG_USERNAME_REGEX } from '@wpsocio/utilities/constants';
 import {
 	assocPath,
 	concat,
@@ -14,11 +15,9 @@ import {
 	trim,
 } from 'ramda';
 
-import { TG_USERNAME_REGEX } from '@wpsocio/utilities/constants';
-
 import type { DataShape } from './types';
 
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+// biome-ignore lint/suspicious/noExplicitAny: Any is fine here
 export const processData = (predicate: any) => {
 	return (data: DataShape): DataShape => {
 		// adjust `value` prop in repeatable fields

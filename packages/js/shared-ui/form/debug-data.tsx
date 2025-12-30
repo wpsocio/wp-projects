@@ -30,7 +30,6 @@ export const DebugData: React.FC<DebugDataProps> = ({
 	try {
 		dataToRender = asJson ? JSON.stringify(data, null, 2) : `${data}`;
 	} catch (_) {
-		// biome-ignore lint/suspicious/noConsoleLog: <explanation>
 		console.log('ERROR', data);
 	}
 

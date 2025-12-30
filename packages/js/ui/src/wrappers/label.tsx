@@ -14,6 +14,7 @@ export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
 				{...props}
 				className={cn('text-base', props.className)}
 			>
+				{/** biome-ignore lint/complexity/noUselessFragments: We need a single child here */}
 				<>
 					{children}
 					{isRequired && (

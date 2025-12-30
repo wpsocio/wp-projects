@@ -28,6 +28,7 @@ export const Code: React.FC = () => {
 					attributesJSON = JSON.stringify(attributes);
 				}
 			} catch (error) {
+				// biome-ignore lint/suspicious/noConsole: Console error is fine here
 				console.error('CODE ERROR', error);
 			}
 		}

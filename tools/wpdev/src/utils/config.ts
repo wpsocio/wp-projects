@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { findUp, pathExists } from 'find-up';
+import { findUp } from 'find-up';
+import { pathExists } from 'path-exists';
 import parseJson from 'parse-json';
 import {
 	type UserConfig,

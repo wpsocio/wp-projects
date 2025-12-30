@@ -12,24 +12,33 @@ export const setLocaleData = (data: wpI18n.LocaleData, domain: string) => {
 	i18n.setLocaleData(data, domain);
 };
 
-export const __ = (text: string): string => {
+export const __ = <Text extends string>(
+	text: Text,
+): wpI18n.TranslatableText<Text> => {
 	return i18n.__(text, TEXT_DOMAIN);
 };
 
-export const _n = (single: string, plural: string, number: number): string => {
+export const _n = <Single extends string, Plural extends string>(
+	single: Single,
+	plural: Plural,
+	number: number,
+): wpI18n.TranslatableText<Single | Plural> => {
 	return i18n._n(single, plural, number, TEXT_DOMAIN);
 };
 
-export const _nx = (
-	single: string,
-	plural: string,
+export const _nx = <Single extends string, Plural extends string>(
+	single: Single,
+	plural: Plural,
 	number: number,
 	context: string,
-): string => {
+): wpI18n.TranslatableText<Single | Plural> => {
 	return i18n._nx(single, plural, number, context, TEXT_DOMAIN);
 };
 
-export const _x = (single: string, context: string): string => {
+export const _x = <Single extends string>(
+	single: Single,
+	context: string,
+): wpI18n.TranslatableText<Single> => {
 	return i18n._x(single, context, TEXT_DOMAIN);
 };
 

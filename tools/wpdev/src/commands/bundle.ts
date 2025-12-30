@@ -15,10 +15,10 @@ import {
 } from '../utils/i18n.js';
 import { copyFiles, getDistIgnorePattern, zipDir } from '../utils/misc.js';
 import {
-	type WPProject,
 	getNextVersion,
 	getProjectBundleConfig,
 	runScript,
+	type WPProject,
 } from '../utils/projects.js';
 import { updateRequirements } from '../utils/requirements.js';
 import { minifyStyles } from '../utils/styles.js';
@@ -179,6 +179,7 @@ export default class Bundle extends WithProjects<typeof Bundle> {
 		}
 
 		return task.newListr(
+			// biome-ignore lint/suspicious/useIterableCallbackReturn: map return is fine here
 			taskList.map(({ type: taskType, data: taskData }) => {
 				switch (taskType) {
 					case 'run-scripts':

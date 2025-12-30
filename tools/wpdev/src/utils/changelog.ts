@@ -80,6 +80,7 @@ export function updateChangelog({
 			const summary = changesetsMap.get(changeset);
 
 			if (!summary) {
+				// biome-ignore lint/suspicious/noConsole: Console warning is fine here
 				console.warn(
 					`Could not find changeset summary for changeset: "${changeset}"`,
 				);

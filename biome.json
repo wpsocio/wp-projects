@@ -1,19 +1,22 @@
 {
-	"$schema": "https://biomejs.dev/schemas/1.4.1/schema.json",
+	"$schema": "https://biomejs.dev/schemas/2.3.10/schema.json",
 	"files": {
-		"include": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", "**/*.json"],
-		"ignore": [
-			"dist/*",
-			"build/*",
-			"node_modules/*",
-			"vendor/*",
-			".wireit/*",
-			"./packages/js/ui/src/components/*"
+		"includes": [
+			"**/*.js",
+			"**/*.jsx",
+			"**/*.ts",
+			"**/*.tsx",
+			"**/*.json",
+			"!**/dist/**/*",
+			"!**/build/**/*",
+			"!**/node_modules/**/*",
+			"!**/vendor/**/*",
+			"!**/.wireit/**/*",
+			"!**/custom-plugins/*",
+			"!packages/js/ui/src/components/**/*"
 		]
 	},
-	"organizeImports": {
-		"enabled": true
-	},
+	"assist": { "actions": { "source": { "organizeImports": "on" } } },
 	"javascript": {
 		"formatter": {
 			"quoteStyle": "single",
@@ -35,9 +38,7 @@
 				"noUnusedVariables": "warn"
 			},
 			"suspicious": {
-				"noConsoleLog": {
-					"level": "warn"
-				}
+				"noConsole": { "level": "warn", "options": { "allow": ["log"] } }
 			}
 		}
 	}

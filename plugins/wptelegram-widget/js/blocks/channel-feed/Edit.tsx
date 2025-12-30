@@ -43,7 +43,7 @@ export const Edit: React.FC<BlockEditProps<LegacyWidgetAtts>> = ({
 	const onChangeNum = useCallback(
 		(newValue: string) =>
 			setAttributes({
-				num_messages: (Number.parseInt(newValue) || 5).toString(),
+				num_messages: (Number.parseInt(newValue, 10) || 5).toString(),
 			}),
 		[setAttributes],
 	);

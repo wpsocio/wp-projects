@@ -34,7 +34,6 @@ export const setWebhook: WebhookUtil = async (args, event) => {
 			setResult?.(getErrorMessage(data));
 		}
 	} catch (error) {
-		// biome-ignore lint/suspicious/noConsoleLog: <explanation>
 		console.log('ERROR', error);
 
 		setStatus('ERROR');
@@ -57,7 +56,6 @@ export const deleteWebhook: WebhookUtil = async (args, event) => {
 		setResultType?.('SUCCESS');
 		setResult?.('');
 	} catch (error) {
-		// biome-ignore lint/suspicious/noConsoleLog: <explanation>
 		console.log('ERROR', error);
 
 		setStatus('ERROR');
@@ -88,7 +86,6 @@ export const checkWebhookInfo: WebhookUtil = async (args, event) => {
 			setStatus('NOT_SET');
 		}
 	} catch (error) {
-		// biome-ignore lint/suspicious/noConsoleLog: <explanation>
 		console.log('ERROR', error);
 
 		setStatus('ERROR', () => getErrorMessage(error));
@@ -109,7 +106,6 @@ export async function checkMemberCount(
 
 		return ['SUCCESS', Number(result).toString()];
 	} catch (error) {
-		// biome-ignore lint/suspicious/noConsoleLog: <explanation>
 		console.log('ERROR', error);
 
 		return ['ERROR', getErrorMessage(error)];
@@ -151,7 +147,6 @@ export async function sendTextMessage(
 
 		return ['SUCCESS', __('Success')];
 	} catch (error) {
-		// biome-ignore lint/suspicious/noConsoleLog: <explanation>
 		console.log('ERROR', error);
 
 		return ['ERROR', getErrorMessage(error)];
@@ -169,7 +164,6 @@ export async function testBotToken(
 
 		return ['SUCCESS', result];
 	} catch (error) {
-		// biome-ignore lint/suspicious/noConsoleLog: <explanation>
 		console.log('ERROR', error);
 
 		return ['ERROR', getErrorMessage(error)];

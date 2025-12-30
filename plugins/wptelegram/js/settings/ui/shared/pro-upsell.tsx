@@ -45,7 +45,7 @@ export const Upsell: React.FC<UpsellProps> = ({
 	location,
 	className,
 }) => {
-	let message = __('Want an absolute integration with Telegram?');
+	let message: string = __('Want an absolute integration with Telegram?');
 
 	switch (location) {
 		case 'bot':

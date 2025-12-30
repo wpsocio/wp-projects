@@ -101,6 +101,8 @@ export function Edit(props: BlockEditProps<SinglePostAtts>) {
 		};
 	}, []);
 
+	const blockProps = useBlockProps();
+
 	if (isEditingURL || !iframe_src) {
 		return (
 			<Placeholder
@@ -133,8 +135,8 @@ export function Edit(props: BlockEditProps<SinglePostAtts>) {
 			)}
 
 			<div
-				{...useBlockProps()}
-				className={`${useBlockProps().className} wptelegram-widget-message`}
+				{...blockProps}
+				className={`${blockProps.className} wptelegram-widget-message`}
 			>
 				<div className={'wp-block-embed__content-wrapper'}>
 					<iframe

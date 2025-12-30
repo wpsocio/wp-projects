@@ -23,4 +23,5 @@ root
 				<Toaster />
 			</React.StrictMode>,
 		)
-	: console.error(`Root element not found: ${ROOT_ID}`);
+	: // biome-ignore lint/suspicious/noConsole: Console error is fine
+		console.error(`Root element not found: ${ROOT_ID}`);

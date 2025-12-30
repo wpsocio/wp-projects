@@ -1,16 +1,16 @@
-import apiFetch from '@wordpress/api-fetch';
 import type { APIFetchOptions } from '@wordpress/api-fetch';
+import apiFetch from '@wordpress/api-fetch';
 
 import { __, sprintf } from '@wpsocio/i18n';
 
 export const fetchAPI = {
-	GET: async <T>(options: APIFetchOptions) => {
+	GET: async <T>(options: APIFetchOptions<true>) => {
 		return await apiFetch<T>({ method: 'GET', ...options });
 	},
-	POST: async <T>(options: APIFetchOptions) => {
+	POST: async <T>(options: APIFetchOptions<true>) => {
 		return await apiFetch<T>({ method: 'POST', ...options });
 	},
-	PUT: async <T>(options: APIFetchOptions) => {
+	PUT: async <T>(options: APIFetchOptions<true>) => {
 		return await apiFetch<T>({ method: 'PUT', ...options });
 	},
 };
@@ -23,7 +23,7 @@ export const getErrorMessage = (error: unknown): string => {
 			description,
 			code, // From WP REST API
 			message,
-			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+			// biome-ignore lint/suspicious/noExplicitAny: Any is fine here
 		} = (error || {}) as any;
 
 		const errorCode = error_code || code;

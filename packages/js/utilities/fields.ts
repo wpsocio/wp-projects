@@ -42,7 +42,11 @@ export const getFormErrorMessage = <Fields extends string>(
 				return { [FORM_ERROR]: __('Changes could not be saved.') };
 		}
 
-		return sprintf(message, getFieldLabel(fieldName));
+		return sprintf(
+			message,
+			// @ts-expect-error
+			getFieldLabel(fieldName),
+		);
 	};
 
 	return callback;
