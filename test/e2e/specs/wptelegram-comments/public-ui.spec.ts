@@ -46,7 +46,7 @@ test.describe('Public UI', () => {
 			},
 			{
 				type: 'block-based',
-				theme: 'twentytwentyfour',
+				theme: 'twentytwentyfive',
 			},
 		];
 

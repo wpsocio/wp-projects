@@ -12,7 +12,7 @@ inputs:
 
   php-version:
     description: "The version of PHP to use."
-    default: "8.3"
+    default: "8.4"
 
   pnpm-version:
     description: "The version of pnpm to use."
