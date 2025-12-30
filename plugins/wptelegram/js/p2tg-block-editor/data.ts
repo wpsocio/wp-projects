@@ -50,7 +50,7 @@ export const useDataState = (): DataState => {
 			isEditedPostDirty,
 		} = select(editorStore);
 
-		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+		// biome-ignore lint/suspicious/noExplicitAny: Any is fine here
 		const savedData = getEditedPostAttribute(__KEY__ as any) as DataShape;
 
 		return {

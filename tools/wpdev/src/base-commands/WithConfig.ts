@@ -1,7 +1,7 @@
 import path from 'node:path';
 import { Command, Flags } from '@oclif/core';
 import dotenv from 'dotenv';
-import { pathExists } from 'find-up';
+import { pathExists } from 'path-exists';
 import { type ParsedUserConfig, parseUserConfig } from '../utils/config.js';
 import type { UserConfig } from '../utils/tools.js';
 

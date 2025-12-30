@@ -45,7 +45,10 @@ class ApiClient implements TelegramApi {
 		this.event = (event?.nativeEvent || event) as unknown as React.MouseEvent;
 	};
 
-	getOptions = (apiMethod: string, apiParams: ApiParams): APIFetchOptions => {
+	getOptions = (
+		apiMethod: string,
+		apiParams: ApiParams,
+	): APIFetchOptions<true> => {
 		// if testing on playground, use browser
 		if (location.hostname === 'playground.wordpress.net') {
 			this.apiData.use = 'BROWSER';
@@ -58,7 +61,7 @@ class ApiClient implements TelegramApi {
 				this.apiData.use = 'SERVER';
 			}
 		}
-		let options: APIFetchOptions = {};
+		let options: APIFetchOptions<true> = {};
 
 		if (this.apiData.use === 'BROWSER') {
 			options = {
@@ -93,13 +96,13 @@ class ApiClient implements TelegramApi {
 	sendRequest = async <T>(
 		apiMethod: string,
 		apiParams: ApiParams,
-		options?: APIFetchOptions,
+		options?: APIFetchOptions<true>,
 	): Promise<T> => {
 		if (!this.botToken) {
 			throw new Error('Bot token is empty');
 		}
 
-		const fetchOptions: APIFetchOptions = {
+		const fetchOptions: APIFetchOptions<true> = {
 			...this.getOptions(apiMethod, apiParams),
 			...options,
 		};
@@ -114,7 +117,10 @@ const botApi = new window.Proxy(new ApiClient(), {
 		const prop = key as keyof typeof client;
 
 		if ('undefined' === typeof client[prop]) {
-			return async <T>(apiParams: ApiParams, options?: APIFetchOptions) => {
+			return async <T>(
+				apiParams: ApiParams,
+				options?: APIFetchOptions<true>,
+			) => {
 				return await client.sendRequest<T>(prop as string, apiParams, options);
 			};
 		}

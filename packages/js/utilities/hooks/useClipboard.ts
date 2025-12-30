@@ -43,7 +43,6 @@ export function useClipboard(
 	const onCopy = useCallback(() => {
 		const didCopy = copy(valueState, copyOptions);
 		setHasCopied(didCopy);
-		// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	}, [valueState, copyOptions]);
 
 	useEffect(() => {

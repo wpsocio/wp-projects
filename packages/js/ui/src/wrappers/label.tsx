@@ -14,18 +14,16 @@ export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
 				{...props}
 				className={cn('text-base', props.className)}
 			>
-				<>
-					{children}
-					{isRequired && (
-						<span
-							role="presentation"
-							aria-hidden="true"
-							className="text-destructive ms-1"
-						>
-							{'*'}
-						</span>
-					)}
-				</>
+				{children}
+				{isRequired && (
+					<span
+						role="presentation"
+						aria-hidden="true"
+						className="text-destructive ms-1"
+					>
+						{'*'}
+					</span>
+				)}
 			</LabelUI>
 		);
 	},

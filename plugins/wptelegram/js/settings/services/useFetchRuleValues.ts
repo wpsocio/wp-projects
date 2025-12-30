@@ -34,7 +34,6 @@ export const useFetchRuleValues = (): FetchRuleValues => {
 
 			return result;
 		} catch (error) {
-			// biome-ignore lint/suspicious/noConsoleLog: <explanation>
 			console.log('ERROR', error);
 
 			setResult?.([]);

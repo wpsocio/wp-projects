@@ -37,8 +37,8 @@ export function MultiCheckboxField({
 		<FormField
 			name={name}
 			render={() => (
+				// biome-ignore lint/a11y/useSemanticElements: role="group" is fine
 				<div
-					// biome-ignore lint/a11y/useSemanticElements: <explanation>
 					role="group"
 					aria-labelledby={`${id}-legend`}
 					aria-describedby={`${id}-description`}

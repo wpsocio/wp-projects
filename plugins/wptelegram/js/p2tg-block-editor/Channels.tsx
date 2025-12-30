@@ -39,7 +39,6 @@ export const Channels: React.FC = () => {
 	return (
 		<BaseControl id="wptg-send-to" label={label} __nextHasNoMarginBottom>
 			<Flex
-				// biome-ignore lint/a11y/useSemanticElements: It's rendered as a fieldset
 				role="group"
 				direction="column"
 				id="wptg-send-to"

@@ -1,19 +1,23 @@
 // @ts-nocheck
+/** biome-ignore-all lint/suspicious/noImplicitAnyLet: No linting for this file */
+/** biome-ignore-all lint/correctness/noSwitchDeclarations: No linting for this file */
 
 /**
  * The code is copied from @wordpress/element as is
  */
 
-import { Fragment, cloneElement, createElement, isValidElement } from 'react';
+import {
+	cloneElement,
+	createElement,
+	Fragment,
+	isValidElement,
+	type Element as ReactElement,
+} from 'react';
 
-/**
- * Object containing a React element.
- *
- * @typedef {import('react').ReactElement} Element
- */
-
-// biome-ignore lint/style/useSingleVarDeclarator lint/suspicious/noImplicitAnyLet: <explanation>
-let indoc, offset, output, stack;
+let indoc: string;
+let offset: number;
+let output: (string | ReactElement)[];
+let stack: Frame[];
 
 /**
  * Matches tags in the localized string
@@ -27,28 +31,40 @@ let indoc, offset, output, stack;
  * isClosing: The closing slash, if it exists.
  * name: The name portion of the tag (strong, br) (if )
  * isSelfClosed: The slash on a self closing tag, if it exists.
- *
- * @type {RegExp}
  */
 const tokenizer = /<(\/)?(\w+)\s*(\/)?>/g;
 
-/**
- * The stack frame tracking parse progress.
- *
- * @typedef Frame
- *
- * @property {Element}   element            A parent element which may still have
- * @property {number}    tokenStart         Offset at which parent element first
- *                                          appears.
- * @property {number}    tokenLength        Length of string marking start of parent
- *                                          element.
- * @property {number}    [prevOffset]       Running offset at which parsing should
- *                                          continue.
- * @property {number}    [leadingTextStart] Offset at which last closing element
- *                                          finished, used for finding text between
- *                                          elements.
- * @property {Element[]} children           Children.
- */
+interface Frame {
+	/**
+	 * A parent element which may still have nested children not yet parsed.
+	 */
+	element: ReactElement;
+
+	/**
+	 * Offset at which parent element first appears.
+	 */
+	tokenStart: number;
+
+	/**
+	 * Length of string marking start of parent element.
+	 */
+	tokenLength: number;
+
+	/**
+	 * Running offset at which parsing should continue.
+	 */
+	prevOffset?: number;
+
+	/**
+	 * Offset at which last closing element finished, used for finding text between elements.
+	 */
+	leadingTextStart?: number | null;
+
+	/**
+	 * Children.
+	 */
+	children: (string | ReactElement)[];
+}
 
 /**
  * Tracks recursive-descent parse state.
@@ -57,27 +73,27 @@ const tokenizer = /<(\/)?(\w+)\s*(\/)?>/g;
  * parsed.
  *
  * @private
- * @param {Element} element            A parent element which may still have
- *                                     nested children not yet parsed.
- * @param {number}  tokenStart         Offset at which parent element first
- *                                     appears.
- * @param {number}  tokenLength        Length of string marking start of parent
- *                                     element.
- * @param {number}  [prevOffset]       Running offset at which parsing should
- *                                     continue.
- * @param {number}  [leadingTextStart] Offset at which last closing element
- *                                     finished, used for finding text between
- *                                     elements.
+ * @param element          A parent element which may still have
+ *                         nested children not yet parsed.
+ * @param tokenStart       Offset at which parent element first
+ *                         appears.
+ * @param tokenLength      Length of string marking start of parent
+ *                         element.
+ * @param prevOffset       Running offset at which parsing should
+ *                         continue.
+ * @param leadingTextStart Offset at which last closing element
+ *                         finished, used for finding text between
+ *                         elements.
  *
- * @return {Frame} The stack frame tracking parse progress.
+ * @return The stack frame tracking parse progress.
  */
 function createFrame(
-	element,
-	tokenStart,
-	tokenLength,
-	prevOffset,
-	leadingTextStart,
-) {
+	element: ReactElement,
+	tokenStart: number,
+	tokenLength: number,
+	prevOffset?: number,
+	leadingTextStart?: number | null,
+): Frame {
 	return {
 		element,
 		tokenStart,
@@ -109,13 +125,16 @@ function createFrame(
  * }
  * ```
  *
- * @param {string}                  interpolatedString The interpolation string to be parsed.
- * @param {Record<string, Element>} conversionMap      The map used to convert the string to
- *                                                     a react element.
+ * @param  interpolatedString The interpolation string to be parsed.
+ * @param  conversionMap      The map used to convert the string to
+ *                            a react element.
  * @throws {TypeError}
- * @return {Element}  A wp element.
+ * @return A wp element.
  */
-export const createInterpolateElement = (interpolatedString, conversionMap) => {
+export const createInterpolateElement = (
+	interpolatedString: string,
+	conversionMap: Record<string, ReactElement>,
+): ReactElement => {
 	indoc = interpolatedString;
 	offset = 0;
 	output = [];
@@ -142,35 +161,42 @@ export const createInterpolateElement = (interpolatedString, conversionMap) => {
  *
  * @private
  *
- * @param {Object} conversionMap The map being validated.
+ * @param conversionMap The map being validated.
  *
- * @return {boolean}  True means the map is valid.
+ * @return True means the map is valid.
  */
-const isValidConversionMap = (conversionMap) => {
-	const isObject = typeof conversionMap === 'object';
+const isValidConversionMap = (
+	conversionMap: Record<string, ReactElement>,
+): boolean => {
+	const isObject = typeof conversionMap === 'object' && conversionMap !== null;
 	const values = isObject && Object.values(conversionMap);
 	return (
 		isObject &&
-		values.length &&
+		values.length > 0 &&
 		values.every((element) => isValidElement(element))
 	);
 };
+
+type TokenType = 'no-more-tokens' | 'self-closed' | 'opener' | 'closer';
+type TokenResult =
+	| [TokenType & 'no-more-tokens']
+	| [TokenType & ('self-closed' | 'opener' | 'closer'), string, number, number];
 
 /**
  * This is the iterator over the matches in the string.
  *
  * @private
  *
- * @param {Object} conversionMap The conversion map for the string.
+ * @param conversionMap The conversion map for the string.
  *
- * @return {boolean} true for continuing to iterate, false for finished.
+ * @return true for continuing to iterate, false for finished.
  */
-function proceed(conversionMap) {
+function proceed(conversionMap: Record<string, ReactElement>): boolean {
 	const next = nextToken();
 	const [tokenType, name, startOffset, tokenLength] = next;
 	const stackDepth = stack.length;
 	const leadingTextStart = startOffset > offset ? offset : null;
-	if (!conversionMap[name]) {
+	if (name && !conversionMap[name]) {
 		addText();
 		return false;
 	}
@@ -223,16 +249,13 @@ function proceed(conversionMap) {
 
 			// Otherwise we're nested and we have to close out the current
 			// block and add it as a innerBlock to the parent.
-			// biome-ignore lint/correctness/noSwitchDeclarations: <explanation>
 			const stackTop = stack.pop();
-			// biome-ignore lint/correctness/noSwitchDeclarations: <explanation>
 			const text = indoc.substr(
 				stackTop.prevOffset,
 				startOffset - stackTop.prevOffset,
 			);
 			stackTop.children.push(text);
 			stackTop.prevOffset = startOffset + tokenLength;
-			// biome-ignore lint/correctness/noSwitchDeclarations: <explanation>
 			const frame = createFrame(
 				stackTop.element,
 				stackTop.tokenStart,
@@ -255,9 +278,9 @@ function proceed(conversionMap) {
  *
  * @private
  *
- * @return {Array}  An array of details for the token matched.
+ * @return An array of details for the token matched.
  */
-function nextToken() {
+function nextToken(): TokenResult {
 	const matches = tokenizer.exec(indoc);
 	// We have no more tokens.
 	if (null === matches) {
@@ -282,7 +305,7 @@ function nextToken() {
  *
  * @private
  */
-function addText() {
+function addText(): void {
 	const length = indoc.length - offset;
 	if (0 === length) {
 		return;
@@ -299,7 +322,7 @@ function addText() {
  * @param {Frame} frame The Frame containing the child element and it's
  *                      token information.
  */
-function addChild(frame) {
+function addChild(frame: Frame): void {
 	const { element, tokenStart, tokenLength, prevOffset, children } = frame;
 	const parent = stack[stack.length - 1];
 	const text = indoc.substr(parent.prevOffset, tokenStart - parent.prevOffset);
@@ -324,7 +347,7 @@ function addChild(frame) {
  *                           helps capture any remaining nested text nodes in
  *                           the element.
  */
-function closeOuterElement(endOffset) {
+function closeOuterElement(endOffset: number): void {
 	const { element, leadingTextStart, prevOffset, tokenStart, children } =
 		stack.pop();
 

@@ -22,5 +22,9 @@ export const cleanup = (
 
 export const setI18nData = (plugin: string, domain: string) => {
 	const i18nData = window[plugin].i18n;
-	setLocaleData(i18nData, domain);
+	setLocaleData(
+		// @ts-expect-error
+		i18nData,
+		domain,
+	);
 };

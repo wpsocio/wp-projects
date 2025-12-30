@@ -46,7 +46,7 @@ export function RuleSetValues({
 
 	const previousParam = usePrevious(param);
 
-	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+	// biome-ignore lint/correctness/useExhaustiveDependencies: Only when param changes
 	useEffect(() => {
 		// reset values if param changes
 		if (previousParam && previousParam !== param) {
@@ -79,7 +79,7 @@ export function RuleSetValues({
 		[fetchRuleValues, getItem, setItem],
 	);
 
-	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+	// biome-ignore lint/correctness/useExhaustiveDependencies: Only on mount
 	useEffect(() => {
 		setDefaultValues(param);
 	}, []);

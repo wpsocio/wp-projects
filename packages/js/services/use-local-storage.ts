@@ -38,7 +38,7 @@ export const useLocalStorage = <D extends AnyObject>(
 		(itemKey, defaultValue) => {
 			const value = getData()?.[itemKey];
 
-			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+			// biome-ignore lint/suspicious/noExplicitAny: Any is fine here
 			return (value ?? defaultValue) as any;
 		},
 		[getData],

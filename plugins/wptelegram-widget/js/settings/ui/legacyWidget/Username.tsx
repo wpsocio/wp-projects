@@ -22,33 +22,31 @@ export const Username: React.FC = () => {
 	const { control } = useFormContext<DataShape>();
 
 	return (
-		<>
-			<FormField
-				control={control}
-				name={`${PREFIX}.username`}
-				render={({ field }) => (
-					<FormItem
-						label={getFieldLabel('username')}
-						afterMessage={
-							<>
-								{memberCount}
-								{result}
-							</>
-						}
-						description={__('Channel or group username.')}
-					>
-						<FormControl className="max-w-[200px]">
-							<Input
-								wrapperClassName="max-w-max"
-								addonStart="@"
-								autoComplete="off"
-								{...field}
-							/>
-						</FormControl>
-						<ButtonComponent chat_id={chat_id || ''} />
-					</FormItem>
-				)}
-			/>
-		</>
+		<FormField
+			control={control}
+			name={`${PREFIX}.username`}
+			render={({ field }) => (
+				<FormItem
+					label={getFieldLabel('username')}
+					afterMessage={
+						<>
+							{memberCount}
+							{result}
+						</>
+					}
+					description={__('Channel or group username.')}
+				>
+					<FormControl className="max-w-[200px]">
+						<Input
+							wrapperClassName="max-w-max"
+							addonStart="@"
+							autoComplete="off"
+							{...field}
+						/>
+					</FormControl>
+					<ButtonComponent chat_id={chat_id || ''} />
+				</FormItem>
+			)}
+		/>
 	);
 };

@@ -36,7 +36,7 @@ export function getFileDataFromString(
 	const data: Record<string, string> = {};
 
 	for (const [field, regex] of Object.entries(headers)) {
-		const re = new RegExp(`^[ \t\/*#@]*${regex}:(.*)$`, 'mi');
+		const re = new RegExp(`^[ \t/*#@]*${regex}:(.*)$`, 'mi');
 
 		const match = text.match(re);
 

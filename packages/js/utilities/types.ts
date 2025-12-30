@@ -1,4 +1,4 @@
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+// biome-ignore lint/suspicious/noExplicitAny: Fine
 export interface AnyObject<T = any> {
 	[key: string]: T;
 }

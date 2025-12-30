@@ -6,7 +6,7 @@ export interface BaseApiUtilArgs {
 
 export type ResultType = 'SUCCESS' | 'ERROR';
 
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+// biome-ignore lint/suspicious/noExplicitAny: Any is fine here
 export type TestResult<T = any> = {
 	// e.g. {[id]: result}
 	[key: string]: T;

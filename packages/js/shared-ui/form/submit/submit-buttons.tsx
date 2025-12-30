@@ -4,6 +4,7 @@ export const SubmitButtons: React.FC<React.HTMLAttributes<HTMLDivElement>> = (
 	props,
 ) => {
 	return (
+		// biome-ignore lint/a11y/useSemanticElements: role="group" is fine
 		<div
 			role="group"
 			{...props}

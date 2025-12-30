@@ -45,7 +45,7 @@ export const useSubmitForm = <FD extends FieldValues>({
 		if (resetForm && isSubmitted && isSubmitSuccessful) {
 			const defaultValues = prepDefaultValues(result.current);
 
-			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+			// biome-ignore lint/suspicious/noExplicitAny: Any is fine here
 			form.reset(defaultValues as any);
 		}
 	}, [isSubmitted, isSubmitSuccessful, prepDefaultValues, resetForm, form]);
@@ -64,7 +64,6 @@ export const useSubmitForm = <FD extends FieldValues>({
 					displaySuccess({ title: __('Changes saved successfully.') });
 				}
 			} catch (error) {
-				// biome-ignore lint/suspicious/noConsoleLog: <explanation>
 				console.log('ERROR', error);
 				let errors: Record<string, unknown> = {};
 
@@ -101,7 +100,7 @@ export const useSubmitForm = <FD extends FieldValues>({
 						for (const key of error.data.params) {
 							const path = strToPath(key);
 							const error = {
-								// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+								// biome-ignore lint/suspicious/noExplicitAny: Any is fine here
 								message: getErrorMessage(last(path) as any, 'required'),
 								type: 'submit',
 							};
@@ -113,7 +112,7 @@ export const useSubmitForm = <FD extends FieldValues>({
 				// if form is provided, set field errors
 				if (form?.setError) {
 					for (const [key, error] of Object.entries(errors)) {
-						// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+						// biome-ignore lint/suspicious/noExplicitAny: Any is fine here
 						form.setError(key as any, error as any);
 					}
 				}
@@ -121,7 +120,7 @@ export const useSubmitForm = <FD extends FieldValues>({
 				errors = Object.assign(
 					{},
 					formatErrors(errors),
-					// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+					// biome-ignore lint/suspicious/noExplicitAny: Any is fine here
 					getErrorMessage(null as any, null as any) as any,
 				);
 

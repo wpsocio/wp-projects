@@ -7,7 +7,11 @@ import { PLUGIN_NAME } from './constants';
 
 const i18nData = window.wptelegram?.i18n;
 
-setLocaleData(i18nData, 'wptelegram');
+setLocaleData(
+	// @ts-expect-error
+	i18nData,
+	'wptelegram',
+);
 
 registerPlugin(PLUGIN_NAME, {
 	render: SendToTelegram,
