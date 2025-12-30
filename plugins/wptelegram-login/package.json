@@ -29,10 +29,10 @@
 		"version": "composer run gen:docs"
 	},
 	"dependencies": {
-		"@wordpress/block-editor": "^14.17.0",
-		"@wordpress/blocks": "^14.11.0",
-		"@wordpress/components": "^29.8.0",
-		"@wordpress/element": "^6.22.0",
+		"@wordpress/block-editor": "^15.10.0",
+		"@wordpress/blocks": "^15.10.0",
+		"@wordpress/components": "^31.0.0",
+		"@wordpress/element": "^6.37.0",
 		"@wpsocio/form": "workspace:*",
 		"@wpsocio/i18n": "workspace:*",
 		"@wpsocio/services": "workspace:*",
@@ -40,18 +40,18 @@
 		"@wpsocio/ui": "workspace:*",
 		"@wpsocio/utilities": "workspace:*",
 		"react": "^18.3.1",
-		"zod": "^4.0.5"
+		"zod": "^4.2.1"
 	},
 	"devDependencies": {
-		"@types/jquery": "^3.5.32",
-		"@types/react": "^18.3.20",
-		"@types/react-dom": "^18.3.6",
-		"@types/wordpress__block-editor": "^11.5.16",
-		"@types/wordpress__blocks": "^12.5.17",
+		"@types/jquery": "^3.5.33",
+		"@types/react": "^18.3.27",
+		"@types/react-dom": "^18.3.7",
+		"@types/wordpress__block-editor": "^14.21.7",
+		"@types/wordpress__blocks": "^12.5.18",
 		"@wpsocio/vite-wp-react": "workspace:*",
-		"tailwindcss": "^4.1.4",
-		"typescript": "^5.8.3",
-		"vite": "^6.3.3",
+		"tailwindcss": "^4.1.18",
+		"typescript": "^5.9.3",
+		"vite": "^7.3.0",
 		"wireit": "^0.14.12"
 	},
 	"wireit": {

@@ -21,12 +21,12 @@
 	"module": "./src/index.ts",
 	"main": "./src/index.ts",
 	"dependencies": {
-		"@playwright/test": "^1.52.0",
-		"@wordpress/e2e-test-utils-playwright": "^1.22.0"
+		"@playwright/test": "^1.57.0",
+		"@wordpress/e2e-test-utils-playwright": "^1.37.0"
 	},
 	"devDependencies": {
-		"rimraf": "^6.0.1",
-		"typescript": "^5.8.3"
+		"rimraf": "^6.1.2",
+		"typescript": "^5.9.3"
 	},
 	"scripts": {
 		"typecheck": "tsc --noEmit"
