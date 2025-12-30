@@ -1,1 +1,1 @@
-export const DEFAULT_THEME = 'twentytwentyfour';
+export const DEFAULT_THEME = 'twentytwentyfive';
