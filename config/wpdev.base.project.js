@@ -20,8 +20,8 @@ export const getBundleConfig = ({ slug, key, version, textDomain }) => {
 					requirements: {
 						// When updating these values, also update them in the E2E test workflow
 						requiresPHP: '7.4',
-						requiresAtLeast: '6.5',
-						testedUpTo: '6.8.3',
+						requiresAtLeast: '6.6',
+						testedUpTo: '6.9',
 					},
 					target: {
 						files: [
