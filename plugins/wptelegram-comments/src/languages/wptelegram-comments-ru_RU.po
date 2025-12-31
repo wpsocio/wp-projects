@@ -64,7 +64,7 @@ msgstr "Исключить"
 msgid "Post types"
 msgstr "Типы записей"
 
-#: js/settings/ui/Code.tsx:44
+#: js/settings/ui/Code.tsx:45
 #: languages/wptelegram-comments-js-translations.php:65
 msgid "Please read the instructions above."
 msgstr "Пожалуйста, прочтите инструкции выше."
@@ -153,12 +153,12 @@ msgstr "ИНСТРУКЦИИ!"
 msgid "Do you like %s?"
 msgstr "Вам нравится %s?"
 
-#: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:71
+#: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:69
 #: languages/wptelegram-comments-js-translations.php:27
 msgid "Write a review"
 msgstr ""
 
-#: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:87
+#: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:85
 #: languages/wptelegram-comments-js-translations.php:30
 msgid "Need help?"
 msgstr "Требуется помощь?"
@@ -194,7 +194,7 @@ msgstr ""
 msgid "Error:"
 msgstr ""
 
-#: ../../packages/js/services/use-display-feedback.ts:61
+#: ../../packages/js/services/use-display-feedback.ts:60
 #: languages/wptelegram-comments-js-translations.php:14
 msgid "Lets fix these errors first."
 msgstr "Давайте сперва исправим эти ошибки."

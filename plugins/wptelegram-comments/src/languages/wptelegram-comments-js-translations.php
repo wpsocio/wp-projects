@@ -10,7 +10,7 @@ $generated_i18n_strings = array(
 	// Reference: ../../packages/js/services/api-fetch/index.ts:41
 	__( 'Error:', 'wptelegram-comments' ),
 
-	// Reference: ../../packages/js/services/use-display-feedback.ts:61
+	// Reference: ../../packages/js/services/use-display-feedback.ts:60
 	__( 'Lets fix these errors first.', 'wptelegram-comments' ),
 
 	// Reference: ../../packages/js/services/use-submit-form.ts:64
@@ -23,10 +23,10 @@ $generated_i18n_strings = array(
 	/* translators: %s: plugin name */
 	__( 'Do you like %s?', 'wptelegram-comments' ),
 
-	// Reference: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:71
+	// Reference: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:69
 	__( 'Write a review', 'wptelegram-comments' ),
 
-	// Reference: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:87
+	// Reference: ../../packages/js/shared-ui/components/plugin-info/plugin-info-card.tsx:85
 	__( 'Need help?', 'wptelegram-comments' ),
 
 	// Reference: ../../packages/js/shared-ui/components/wptg-social-icons.tsx:42
@@ -61,7 +61,7 @@ $generated_i18n_strings = array(
 	// Reference: js/settings/services/fields.ts:9
 	__( 'Code', 'wptelegram-comments' ),
 
-	// Reference: js/settings/ui/Code.tsx:44
+	// Reference: js/settings/ui/Code.tsx:45
 	__( 'Please read the instructions above.', 'wptelegram-comments' ),
 
 	// Reference: js/settings/ui/Configuration.tsx:17

@@ -1,6 +1,6 @@
 {
 	"name": "wptelegram-comments",
-	"version": "1.2.7",
+	"version": "1.2.8",
 	"title": "WP Telegram Comments",
 	"description": "Add comments to posts/pages on your WordPress website by using Telegram Comments Widget",
 	"private": true,
