@@ -39,4 +39,5 @@ export const BUNDLED_WP_PACKAGES = [
 	'@wordpress/upload-media',
 	'@wordpress/fields',
 	'@wordpress/views',
+	'@wordpress/ui',
 ];
