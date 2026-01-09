@@ -1,15 +1,15 @@
-# Copyright (C) 2025 WP Socio
+# Copyright (C) 2026 WP Socio
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: WP Telegram Widget 2.2.12\n"
+"Project-Id-Version: WP Telegram Widget 2.2.13\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wptelegram-widget\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-12-30T08:34:25+00:00\n"
+"POT-Creation-Date: 2026-01-09T11:29:28+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "language: en_US\n"
@@ -485,24 +485,34 @@ msgstr ""
 msgid "The join link will be automatically added to the selected post types."
 msgstr ""
 
-#: js/settings/ui/legacyWidget/Instructions.tsx:101
+#: js/settings/ui/legacyWidget/Instructions.tsx:103
+#: languages/wptelegram-widget-js-translations.php:319
+msgid "Choose your bot."
+msgstr ""
+
+#: js/settings/ui/legacyWidget/Instructions.tsx:104
+#: languages/wptelegram-widget-js-translations.php:322
+msgid "Select \"Disable\"."
+msgstr ""
+
+#: js/settings/ui/legacyWidget/Instructions.tsx:112
 #: languages/wptelegram-widget-js-translations.php:279
 msgid "Tip!"
 msgstr ""
 
-#: js/settings/ui/legacyWidget/Instructions.tsx:106
+#: js/settings/ui/legacyWidget/Instructions.tsx:117
 #: languages/wptelegram-widget-js-translations.php:282
 msgid "Updates are pulled every five minutes if someone visits your website."
 msgstr ""
 
-#: js/settings/ui/legacyWidget/Instructions.tsx:112
+#: js/settings/ui/legacyWidget/Instructions.tsx:123
 #: languages/wptelegram-widget-js-translations.php:285
 msgid "To make sure the updates are pulled in time, it is recommended to set up a cron on your hosting server that hits the below URL every five minutes or so."
 msgstr ""
 
 #. 1 command name, 2 bot name
 #. translators: 1 command name, 2 bot name
-#: js/settings/ui/legacyWidget/Instructions.tsx:19
+#: js/settings/ui/legacyWidget/Instructions.tsx:29
 #: languages/wptelegram-widget-js-translations.php:289
 #, php-format
 msgid "Create a Bot by sending %1$s command to %2$s."
@@ -510,61 +520,51 @@ msgstr ""
 
 #. %s bot name
 #. translators: %s bot name
-#: js/settings/ui/legacyWidget/Instructions.tsx:40
+#: js/settings/ui/legacyWidget/Instructions.tsx:50
 #: languages/wptelegram-widget-js-translations.php:293
 #, php-format
 msgid "After completing the steps %s will provide you the Bot Token."
 msgstr ""
 
-#: js/settings/ui/legacyWidget/Instructions.tsx:48
+#: js/settings/ui/legacyWidget/Instructions.tsx:58
 #: languages/wptelegram-widget-js-translations.php:296
 msgid "Copy the token and paste into the Bot Token field below."
 msgstr ""
 
 #. %s application name
 #. translators: %s application name
-#: js/settings/ui/legacyWidget/Instructions.tsx:52
+#: js/settings/ui/legacyWidget/Instructions.tsx:62
 #: languages/wptelegram-widget-js-translations.php:300
 #, php-format
 msgid "For ease, use %s"
 msgstr ""
 
-#: js/settings/ui/legacyWidget/Instructions.tsx:58
+#: js/settings/ui/legacyWidget/Instructions.tsx:68
 #: languages/wptelegram-widget-js-translations.php:303
 msgid "Telegram Desktop"
 msgstr ""
 
-#: js/settings/ui/legacyWidget/Instructions.tsx:64
+#: js/settings/ui/legacyWidget/Instructions.tsx:74
 #: languages/wptelegram-widget-js-translations.php:306
 msgid "Add the Bot as Administrator to your Channel/Group."
 msgstr ""
 
-#: js/settings/ui/legacyWidget/Instructions.tsx:65
+#: js/settings/ui/legacyWidget/Instructions.tsx:75
 #: languages/wptelegram-widget-js-translations.php:309
 msgid "Send a test message to see if we did it right."
 msgstr ""
 
-#: js/settings/ui/legacyWidget/Instructions.tsx:68
+#: js/settings/ui/legacyWidget/Instructions.tsx:78
 #: languages/wptelegram-widget-js-translations.php:312
 msgid "For groups, disable group privacy for the bot."
 msgstr ""
 
 #. 1 command name, 2 bot name, 3 site url
 #. translators: 1 command name, 2 bot name, 3 site url
-#: js/settings/ui/legacyWidget/Instructions.tsx:75
+#: js/settings/ui/legacyWidget/Instructions.tsx:85
 #: languages/wptelegram-widget-js-translations.php:316
 #, php-format
 msgid "Send %1$s command to %2$s."
-msgstr ""
-
-#: js/settings/ui/legacyWidget/Instructions.tsx:93
-#: languages/wptelegram-widget-js-translations.php:319
-msgid "Choose your bot."
-msgstr ""
-
-#: js/settings/ui/legacyWidget/Instructions.tsx:94
-#: languages/wptelegram-widget-js-translations.php:322
-msgid "Select \"Disable\"."
 msgstr ""
 
 #: js/settings/ui/legacyWidget/LegacyWidget.tsx:16
@@ -638,21 +638,21 @@ msgstr ""
 msgid "https://wpsocio.com"
 msgstr ""
 
-#: admin/Admin.php:56
+#: admin/Admin.php:57
 #: includes/Utils.php:279
 #: includes/Utils.php:280
 msgid "WP Telegram"
 msgstr ""
 
-#: admin/Admin.php:82
+#: admin/Admin.php:83
 msgid "Telegram Widget"
 msgstr ""
 
-#: admin/Admin.php:102
+#: admin/Admin.php:103
 msgid "Plugin data has been upgraded."
 msgstr ""
 
-#: admin/Admin.php:103
+#: admin/Admin.php:104
 msgid "Please reload the page."
 msgstr ""
 
@@ -690,7 +690,7 @@ msgstr ""
 msgid "Please contact your hosting provider to ensure the above requirements are met."
 msgstr ""
 
-#: shared/Shared.php:210
+#: shared/Shared.php:237
 msgid "Every 5 Minutes"
 msgstr ""
 
