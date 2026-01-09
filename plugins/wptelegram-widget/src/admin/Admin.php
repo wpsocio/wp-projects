@@ -12,6 +12,7 @@
 namespace WPTelegram\Widget\admin;
 
 use WPTelegram\Widget\includes\BaseClass;
+use WPTelegram\Widget\includes\Utils;
 use WPTelegram\BotAPI\API as BotAPI;
 
 /**
@@ -132,6 +133,30 @@ class Admin extends BaseClass {
 	 * @since    1.5.0
 	 */
 	public function fire_pull_updates() {
+		$bot_token = $this->plugin()->options()->get_path( 'legacy_widget.bot_token' );
+
+		// No bot token configured.
+		if ( empty( $bot_token ) ) {
+			return;
+		}
+
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$provided_secret = isset( $_GET['secret'] ) ? sanitize_text_field( wp_unslash( $_GET['secret'] ) ) : '';
+
+		if ( empty( $provided_secret ) ) {
+			status_header( 401 );
+			exit( 'Secret is missing.' );
+		}
+
+		// Generate a secret hash from the bot token.
+		$secret = Utils::generate_secret( $bot_token );
+
+		// Verify the secret to prevent unauthorized access.
+		if ( ! hash_equals( $secret, $provided_secret ) ) {
+			status_header( 403 );
+			exit( 'Forbidden' );
+		}
+
 		do_action( 'wptelegram_widget_pull_the_updates' );
 	}
 

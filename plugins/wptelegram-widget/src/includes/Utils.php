@@ -312,4 +312,16 @@ class Utils {
 
 		unset( $submenu['wptelegram'][ $key ] );
 	}
+
+	/**
+	 * Generate a secret from the given text.
+	 *
+	 * @since x.y.z
+	 *
+	 * @param string $text The input text.
+	 * @return string The generated secret.
+	 */
+	public static function generate_secret( $text ): string {
+		return substr( hash( 'sha256', $text . wp_salt() ), 0, 32 );
+	}
 }

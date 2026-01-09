@@ -222,11 +222,19 @@ class AssetManager extends BaseClass {
 		// Not to expose bot token to non-admins.
 		if ( self::ADMIN_SETTINGS_ENTRY === $for && current_user_can( 'manage_options' ) ) {
 
+			$bot_token = $this->plugin()->options()->get_path( 'legacy_widget.bot_token' );
+
 			$data['savedSettings'] = SettingsController::get_default_settings();
 
 			$data['uiData']['post_types'] = $this->get_post_type_options();
 
-			$data['assets']['pullUpdatesUrl'] = add_query_arg( [ 'action' => 'wptelegram_widget_pull_updates' ], site_url() );
+			$data['assets']['pullUpdatesUrl'] = add_query_arg(
+				[
+					'action' => 'wptelegram_widget_pull_updates',
+					'secret' => $bot_token ? Utils::generate_secret( $bot_token ) : null,
+				],
+				site_url()
+			);
 		}
 
 		if ( self::BLOCKS_ENTRY === $for ) {

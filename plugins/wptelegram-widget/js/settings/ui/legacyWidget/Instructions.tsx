@@ -1,13 +1,23 @@
+import { useWatch } from '@wpsocio/form';
 import { __, sprintf } from '@wpsocio/i18n';
 import { Code } from '@wpsocio/shared-ui/components/code';
 import { Instructions as InstructionsUI } from '@wpsocio/shared-ui/components/instructions';
 import { Link } from '@wpsocio/ui/wrappers/link';
 import { createInterpolateElement } from '@wpsocio/utilities/createInterpolateElement.js';
-import { getDomData } from '../../services';
+import { type DataShape, getDomData } from '../../services';
+import { PREFIX } from './constants';
 
 const { pullUpdatesUrl } = getDomData('assets');
 
+const { bot_token: savedBotToken } = getDomData('savedSettings').legacy_widget;
+
 export const Instructions: React.FC = () => {
+	const currentBotToken = useWatch<DataShape>({
+		name: `${PREFIX}.bot_token` as const,
+	});
+
+	const showTip = savedBotToken && savedBotToken === currentBotToken;
+
 	return (
 		<div>
 			<InstructionsUI className="mt-6">
@@ -96,26 +106,28 @@ export const Instructions: React.FC = () => {
 					</li>
 				</ol>
 			</InstructionsUI>
-			<p className="text-[#396609]">
-				<b>
-					{__('Tip!')}
-					{'💡'}
-				</b>
-				&nbsp;
-				<span>
-					{__(
-						'Updates are pulled every five minutes if someone visits your website.',
-					)}
-				</span>
-				&nbsp;
-				<span>
-					{__(
-						'To make sure the updates are pulled in time, it is recommended to set up a cron on your hosting server that hits the below URL every five minutes or so.',
-					)}
-				</span>
-				<br />
-				<Code>{pullUpdatesUrl}</Code>
-			</p>
+			{showTip && (
+				<p className="text-[#396609]">
+					<b>
+						{__('Tip!')}
+						{'💡'}
+					</b>
+					&nbsp;
+					<span>
+						{__(
+							'Updates are pulled every five minutes if someone visits your website.',
+						)}
+					</span>
+					&nbsp;
+					<span>
+						{__(
+							'To make sure the updates are pulled in time, it is recommended to set up a cron on your hosting server that hits the below URL every five minutes or so.',
+						)}
+					</span>
+					<br />
+					<Code className="mt-4 px-0">{pullUpdatesUrl}</Code>
+				</p>
+			)}
 		</div>
 	);
 };
