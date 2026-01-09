@@ -6,11 +6,11 @@ import { Input } from '@wpsocio/ui/wrappers/input';
 import { RadioGroup } from '@wpsocio/ui/wrappers/radio-group';
 import { type DataShape, getFieldLabel } from '../../services';
 import { BotToken } from './BotToken';
+import { PREFIX } from './constants';
 import { Instructions } from './Instructions';
 import { LegacyWidgetInfo } from './LegacyWidgetInfo';
 import { OldMessagesInfo } from './OldMessagesInfo';
 import { Username } from './Username';
-import { PREFIX } from './constants';
 
 const getAuthorPhotoOptions = () => [
 	{ value: 'auto', label: __('Auto') },
@@ -33,7 +33,7 @@ export const LegacyWidget: React.FC = () => {
 					name={`${PREFIX}.width`}
 					render={({ field }) => (
 						<FormItem label={getFieldLabel('width')}>
-							<FormControl className="max-w-[130px]">
+							<FormControl className="max-w-32.5">
 								<Input placeholder={`300 ${__('or')} 100%`} {...field} />
 							</FormControl>
 						</FormItem>
@@ -66,7 +66,7 @@ export const LegacyWidget: React.FC = () => {
 							label={getFieldLabel('num_messages')}
 							description={__('Number of messages to display in the widget.')}
 						>
-							<FormControl className="max-w-[100px]">
+							<FormControl className="max-w-25">
 								<Input
 									type="number"
 									max={50}
