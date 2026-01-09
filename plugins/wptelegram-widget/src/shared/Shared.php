@@ -13,6 +13,7 @@ namespace WPTelegram\Widget\shared;
 
 use WPTelegram\Widget\includes\BaseClass;
 use WPTelegram\Widget\includes\AssetManager;
+use WPTelegram\Widget\includes\Utils;
 use WPTelegram\Widget\shared\shortcodes\JoinChannel;
 
 /**
@@ -182,10 +183,36 @@ class Shared extends BaseClass {
 	 */
 	public function may_be_fire_pull_updates() {
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		if ( isset( $_GET['action'] ) && 'wptelegram_widget_pull_updates' === $_GET['action'] ) {
-			do_action( 'wptelegram_widget_pull_the_updates' );
-			exit( ':)' );
+		if ( ! isset( $_GET['action'] ) || 'wptelegram_widget_pull_updates' !== $_GET['action'] ) {
+			return;
 		}
+
+		$bot_token = $this->plugin()->options()->get_path( 'legacy_widget.bot_token' );
+
+		// No bot token configured.
+		if ( empty( $bot_token ) ) {
+			return;
+		}
+
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$provided_secret = isset( $_GET['secret'] ) ? sanitize_text_field( wp_unslash( $_GET['secret'] ) ) : '';
+
+		if ( empty( $provided_secret ) ) {
+			status_header( 401 );
+			exit( 'Secret is missing.' );
+		}
+
+		// Generate a secret hash from the bot token.
+		$secret = Utils::generate_secret( $bot_token );
+
+		// Verify the secret to prevent unauthorized access.
+		if ( ! hash_equals( $secret, $provided_secret ) ) {
+			status_header( 403 );
+			exit( 'Forbidden' );
+		}
+
+		do_action( 'wptelegram_widget_pull_the_updates' );
+		exit( ':)' );
 	}
 
 	/**
