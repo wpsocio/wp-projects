@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.2.13
+
+### Patch Changes
+
+- [#302](https://github.com/wpsocio/wp-projects/pull/302) [`c14841a`](https://github.com/wpsocio/wp-projects/commit/c14841ab59cb551178abb50102198899767c0b30) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Update the pull updates URL to add a hash to avoid hitting Telegram API rate limit.
+
 ## 2.2.12
 
 ### Patch Changes

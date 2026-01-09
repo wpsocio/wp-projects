@@ -316,7 +316,7 @@ class Utils {
 	/**
 	 * Generate a secret from the given text.
 	 *
-	 * @since x.y.z
+	 * @since 2.2.13
 	 *
 	 * @param string $text The input text.
 	 * @return string The generated secret.

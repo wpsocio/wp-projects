@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.12
+
+### Patch Changes
+
+- [#300](https://github.com/wpsocio/wp-projects/pull/300) [`f3797de`](https://github.com/wpsocio/wp-projects/commit/f3797de4db0607864a9a4cb48105c433271fd243) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Update bundled packages list.
+
 ## 1.0.11
 
 ### Patch Changes
