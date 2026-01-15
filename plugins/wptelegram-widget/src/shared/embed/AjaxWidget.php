@@ -37,7 +37,7 @@ class AjaxWidget {
 
 			$url = sanitize_text_field( wp_unslash( $_GET['url'] ) );
 
-			if ( ! preg_match( '/\Ahttps:\/\/t\.me\/s\/' . $username . '.*/i', $url ) ) {
+			if ( ! preg_match( '/\Ahttps:\/\/t\.me\/s\/' . preg_quote( $username, '/' ) . '.*/i', $url ) ) {
 				exit;
 			}
 
@@ -140,7 +140,7 @@ class AjaxWidget {
 	 */
 	public static function replace_tg_links( $content, $username ) {
 
-		$pattern = '/(?<=href=")\/s\/' . $username . '\?[^"]*?(?:before|after)=\d+[^"]*?(?=")/i';
+		$pattern = '/(?<=href=")\/s\/' . preg_quote( $username, '/' ) . '\?[^"]*?(?:before|after)=\d+[^"]*?(?=")/i';
 
 		// Replace the ajax links.
 		$content = preg_replace_callback(
@@ -170,7 +170,7 @@ class AjaxWidget {
 		$content = preg_replace_callback(
 			$pattern,
 			function ( $matches ) use ( $username ) {
-				return str_replace( $matches[1], "https://t.me/{$username}", $matches[0] );
+				return str_replace( $matches[1], 'https://t.me/' . esc_attr( $username ), $matches[0] );
 			},
 			$content
 		);
@@ -201,7 +201,7 @@ class AjaxWidget {
 
 			foreach ( $fields as $name => $value ) {
 
-				$html .= '<input type="hidden" name="' . $name . '" value="' . $value . '" />';
+				$html .= '<input type="hidden" name="' . esc_attr( $name ) . '" value="' . esc_attr( $value ) . '" />';
 			}
 		}
 
