@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.2.14
+
+### Patch Changes
+
+- [#303](https://github.com/wpsocio/wp-projects/pull/303) [`1846500`](https://github.com/wpsocio/wp-projects/commit/184650060a80b10bec80fa7468e7fd2918da0689) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Fix username regex escaping.
+
 ## 2.2.13
 
 ### Patch Changes
