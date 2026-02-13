@@ -46,3 +46,5 @@ changeset-status.json
 oclif.lock
 oclif.manifest.json
 .DS_Store
+
+.phpunit.cache/
