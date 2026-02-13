@@ -1,0 +1,5 @@
+Here is a post with an image and a caption.
+
+And some more text after the figure.
+
+The end.
