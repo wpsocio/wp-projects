@@ -204,6 +204,140 @@ Argument | Type | Description
 
 Source: [src/includes/Utils.php](../src/includes/Utils.php), [line 131](../src/includes/Utils.php#L131-L138)
 
+### `wptelegram_login_redirect_to`
+
+*Filters the redirect URL for the login button*
+
+It can be used to fix the wrong URL in case the website is in subdirectory and the URL is invalid.
+
+**Arguments**
+
+Argument | Type | Description
+-------- | ---- | -----------
+`$redirect_to` | `string` | The redirect URL.
+
+**Changelog**
+
+Version | Description
+------- | -----------
+`1.0.0` | 
+
+Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 133](../src/shared/Shared.php#L133-L142)
+
+### `wptelegram_login_telegram_callback_url`
+
+*Filters the callback URL for the login button*
+
+It can be used to fix the wrong URL in case the website is in subdirectory and the URL is invalid.
+
+**Arguments**
+
+Argument | Type | Description
+-------- | ---- | -----------
+`$callback_url` | `string` | The callback URL.
+
+**Changelog**
+
+Version | Description
+------- | -----------
+`1.0.0` | 
+
+Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 162](../src/shared/Shared.php#L162-L171)
+
+### `wptelegram_login_show_if_user_connected`
+
+*Filters whether to show the button if user is already connected.*
+
+- [Examples](./examples/show_if_user_connected.md)
+
+**Arguments**
+
+Argument | Type | Description
+-------- | ---- | -----------
+`$show_if_connected` | `bool` | Whether to show the button if user is already connected.
+`$current_user_telegram_id` | `int` | The current user's Telegram ID.
+
+Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 226](../src/shared/Shared.php#L226-L234)
+
+### `wptelegram_login_show_if_user_is`
+
+*Filters when to show the login button*
+
+Possible values:
+"logged_out", "logged_in", "author", "subscriber" etc.
+
+You can also pass a user role e.g "editor" or a comma separated list or an array of roles
+to display the button for specific user roles
+
+Passing an empty value will display the button
+for both logged in and logged out users
+
+**Arguments**
+
+Argument | Type | Description
+-------- | ---- | -----------
+`$show_if_user_is` | `string` | When to show the button.
+
+**Changelog**
+
+Version | Description
+------- | -----------
+`1.0.0` | 
+
+Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 240](../src/shared/Shared.php#L240-L256)
+
+### `wptelegram_login_use_telegram_avatar`
+
+*Filters whether to use the Telegram avatar.*
+
+Pass `false` to disable the Telegram avatar.
+
+- [Examples](./examples/use_telegram_avatar.md)
+
+**Arguments**
+
+Argument | Type | Description
+-------- | ---- | -----------
+`$use_telegram_avatar` | `bool` | Whether to use the Telegram avatar.
+`$url` | `string` | Avatar URL.
+`$id_or_email` | `mixed` | user id or email.
+
+Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 315](../src/shared/Shared.php#L315-L326)
+
+### `wptelegram_login_custom_avatar_url`
+
+*Filters the custom avatar URL.*
+
+**Arguments**
+
+Argument | Type | Description
+-------- | ---- | -----------
+`$avatar_url` | `string` | The custom avatar URL.
+`$url` | `string` | Avatar URL.
+`$id_or_email` | `mixed` | user id or email.
+
+Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 360](../src/shared/Shared.php#L360-L367)
+
+### `widget_title`
+
+*Filters the widget title.*
+
+**Arguments**
+
+Argument | Type | Description
+-------- | ---- | -----------
+`$title` | `string` | The widget title. Default 'Pages'.
+`$instance` | `array` | Array of settings for the current widget.
+`$this->id_base` |  | 
+
+**Changelog**
+
+Version | Description
+------- | -----------
+`1.0.0` | 
+
+Source: [src/shared/widgets/Primary.php](../src/shared/widgets/Primary.php), [line 46](../src/shared/widgets/Primary.php#L46-L55)
+
 ### `wptelegram_login_validation_query_params`
 
 *Filter the validation query parameters that the plugin uses.*
@@ -409,140 +543,6 @@ Argument | Type | Description
 `$user` | `\WP_User` | The logged in user.
 
 Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 711](../src/shared/LoginHandler.php#L711-L717)
-
-### `wptelegram_login_redirect_to`
-
-*Filters the redirect URL for the login button*
-
-It can be used to fix the wrong URL in case the website is in subdirectory and the URL is invalid.
-
-**Arguments**
-
-Argument | Type | Description
--------- | ---- | -----------
-`$redirect_to` | `string` | The redirect URL.
-
-**Changelog**
-
-Version | Description
-------- | -----------
-`1.0.0` | 
-
-Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 133](../src/shared/Shared.php#L133-L142)
-
-### `wptelegram_login_telegram_callback_url`
-
-*Filters the callback URL for the login button*
-
-It can be used to fix the wrong URL in case the website is in subdirectory and the URL is invalid.
-
-**Arguments**
-
-Argument | Type | Description
--------- | ---- | -----------
-`$callback_url` | `string` | The callback URL.
-
-**Changelog**
-
-Version | Description
-------- | -----------
-`1.0.0` | 
-
-Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 162](../src/shared/Shared.php#L162-L171)
-
-### `wptelegram_login_show_if_user_connected`
-
-*Filters whether to show the button if user is already connected.*
-
-- [Examples](./examples/show_if_user_connected.md)
-
-**Arguments**
-
-Argument | Type | Description
--------- | ---- | -----------
-`$show_if_connected` | `bool` | Whether to show the button if user is already connected.
-`$current_user_telegram_id` | `int` | The current user's Telegram ID.
-
-Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 226](../src/shared/Shared.php#L226-L234)
-
-### `wptelegram_login_show_if_user_is`
-
-*Filters when to show the login button*
-
-Possible values:
-"logged_out", "logged_in", "author", "subscriber" etc.
-
-You can also pass a user role e.g "editor" or a comma separated list or an array of roles
-to display the button for specific user roles
-
-Passing an empty value will display the button
-for both logged in and logged out users
-
-**Arguments**
-
-Argument | Type | Description
--------- | ---- | -----------
-`$show_if_user_is` | `string` | When to show the button.
-
-**Changelog**
-
-Version | Description
-------- | -----------
-`1.0.0` | 
-
-Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 240](../src/shared/Shared.php#L240-L256)
-
-### `wptelegram_login_use_telegram_avatar`
-
-*Filters whether to use the Telegram avatar.*
-
-Pass `false` to disable the Telegram avatar.
-
-- [Examples](./examples/use_telegram_avatar.md)
-
-**Arguments**
-
-Argument | Type | Description
--------- | ---- | -----------
-`$use_telegram_avatar` | `bool` | Whether to use the Telegram avatar.
-`$url` | `string` | Avatar URL.
-`$id_or_email` | `mixed` | user id or email.
-
-Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 315](../src/shared/Shared.php#L315-L326)
-
-### `wptelegram_login_custom_avatar_url`
-
-*Filters the custom avatar URL.*
-
-**Arguments**
-
-Argument | Type | Description
--------- | ---- | -----------
-`$avatar_url` | `string` | The custom avatar URL.
-`$url` | `string` | Avatar URL.
-`$id_or_email` | `mixed` | user id or email.
-
-Source: [src/shared/Shared.php](../src/shared/Shared.php), [line 360](../src/shared/Shared.php#L360-L367)
-
-### `widget_title`
-
-*Filters the widget title.*
-
-**Arguments**
-
-Argument | Type | Description
--------- | ---- | -----------
-`$title` | `string` | The widget title. Default 'Pages'.
-`$instance` | `array` | Array of settings for the current widget.
-`$this->id_base` |  | 
-
-**Changelog**
-
-Version | Description
-------- | -----------
-`1.0.0` | 
-
-Source: [src/shared/widgets/Primary.php](../src/shared/widgets/Primary.php), [line 46](../src/shared/widgets/Primary.php#L46-L55)
 
 
 <p align="center"><a href="https://github.com/pronamic/wp-documentor"><img src="https://cdn.jsdelivr.net/gh/pronamic/wp-documentor@main/logos/pronamic-wp-documentor.svgo-min.svg" alt="Pronamic WordPress Documentor" width="32" height="32"></a><br><em>Generated by <a href="https://github.com/pronamic/wp-documentor">Pronamic WordPress Documentor</a> <code>1.2.0</code></em><p>
