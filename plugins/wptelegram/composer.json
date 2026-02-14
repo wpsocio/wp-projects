@@ -4,7 +4,8 @@
 	"scripts": {
 		"lint": "\"vendor/bin/phpcs\" --standard=../../phpcs.xml --extensions=php src/ dev.php",
 		"lint:skip-warnings": "\"vendor/bin/phpcs\" --standard=../../phpcs.xml --extensions=php -n src/ dev.php",
-		"lint:fix": "\"vendor/bin/phpcbf\" --standard=../../phpcs.xml --extensions=php src/ dev.php"
+		"lint:fix": "\"vendor/bin/phpcbf\" --standard=../../phpcs.xml --extensions=php src/ dev.php",
+		"test": "vendor/bin/phpunit"
 	},
 	"require": {
 		"wpsocio/telegram-format-text": "dev-main",
@@ -13,7 +14,16 @@
 	},
 	"require-dev": {
 		"wp-coding-standards/wpcs": "^3.1",
-		"wpackagist-plugin/cmb2": "^2.11"
+		"wpackagist-plugin/cmb2": "^2.11",
+		"phpunit/phpunit": "^9.6",
+		"yoast/phpunit-polyfills": "^2.0",
+		"wp-phpunit/wp-phpunit": "^6.6",
+		"php-stubs/wordpress-stubs": "^6.6"
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"WPTelegram\\Tests\\": "tests/"
+		}
 	},
 	"repositories": {
 		"wppackagist": {

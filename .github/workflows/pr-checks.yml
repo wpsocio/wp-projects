@@ -13,6 +13,8 @@ jobs:
     strategy:
       matrix:
         php: ["8.0", "8.1", "8.2", "8.3", "8.4", "8.5"]
+    env:
+      RUN_TESTS: ${{ matrix.php == '8.4' || matrix.php == '8.5' }}
     steps:
       - name: Checkout this repo
         uses: actions/checkout@v4
@@ -59,7 +61,25 @@ jobs:
 
       - name: Test
         run: "pnpm run test:php"
-        if: matrix.php == '8.4' || matrix.php == '8.5'
+        if: env.RUN_TESTS == 'true'
+
+      - name: Update wp-env PHP version
+        if: env.RUN_TESTS == 'true'
+        run: |
+          contents="$(jq '.phpVersion = "${{ matrix.php }}"' .wp-env.json)"
+          echo -E "${contents}" > .wp-env.json
+
+      - name: Start WordPress Environment
+        if: env.RUN_TESTS == 'true'
+        run: pnpm run env-start
+
+      - name: Run plugin tests
+        if: env.RUN_TESTS == 'true'
+        run: pnpm --filter wptelegram run test:php
+
+      - name: Stop WordPress Environment
+        if: env.RUN_TESTS == 'true'
+        run: pnpm run env-stop
 
   js-lint-build:
     name: "JS: Lint, Build and Test"
