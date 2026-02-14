@@ -5,6 +5,25 @@
 
 ## Actions
 
+### `wptelegram_login_upgrade_error`
+
+*Upgrade to a specific version*
+
+**Arguments**
+
+Argument | Type | Description
+-------- | ---- | -----------
+`$error` |  | 
+`$version` | `string` | The plugin version to upgrade to.
+
+**Changelog**
+
+Version | Description
+------- | -----------
+`1.5.1` | 
+
+Source: [src/includes/Upgrade.php](../src/includes/Upgrade.php), [line 85](../src/includes/Upgrade.php#L85-L108)
+
 ### `wptelegram_login_init`
 
 *Fires before the login process starts.*
