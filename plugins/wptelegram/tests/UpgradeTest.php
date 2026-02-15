@@ -7,8 +7,11 @@
  * @phpcs:disable Squiz.Commenting.FunctionComment, Squiz.Commenting.ClassComment
  */
 
+namespace WPTelegram\Core\Tests;
+
+use WP_UnitTestCase;
 use WPTelegram\Core\includes\Upgrade;
-use WPTelegram\Tests\Helpers\UpgradeHelper;
+use WPTelegram\Core\Tests\Helpers\UpgradeHelper;
 
 /**
  * Note on test ordering:
