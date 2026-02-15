@@ -59,21 +59,18 @@ jobs:
         # Add premium/plugins/ to the lint path
         run: "composer run lint -- premium/plugins/"
 
-      - name: Update wp-env PHP version
+      - name: Set up wp-env
         if: env.RUN_TESTS == 'true'
         run: |
           contents="$(jq '.phpVersion = "${{ matrix.php }}"' .wp-env.json)"
           echo -E "${contents}" > .wp-env.json
-
-      - name: Start WordPress Environment
-        if: env.RUN_TESTS == 'true'
-        run: pnpm run env-start
+          pnpm run env-start
 
       - name: Test
         run: "pnpm run test:php"
         if: env.RUN_TESTS == 'true'
 
-      - name: Stop WordPress Environment
+      - name: Stop wp-env
         if: env.RUN_TESTS == 'true'
         run: pnpm run env-stop
 
