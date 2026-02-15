@@ -854,7 +854,7 @@ class PostSender extends BaseClass {
 
 			$saved_options = $this->get_saved_options();
 		} else {
-			$saved_options = json_decode( $saved_options, true );
+			$saved_options = array_merge( self::get_defaults(), (array) json_decode( $saved_options, true ) );
 		}
 
 		// clone.
