@@ -25,6 +25,7 @@
 		"setup:php": "wireit",
 		"setup:php:prod": "wireit",
 		"unset-vendor-dir": "composer config vendor-dir --unset",
+		"test:php": "cd ../.. && wp-env run tests-cli --env-cwd=wp-content/plugins/wptelegram php -d auto_prepend_file=tests/prepend.php vendor/bin/phpunit",
 		"validate-build": "pnpm build-utils validate"
 	},
 	"dependencies": {
