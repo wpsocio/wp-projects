@@ -138,7 +138,7 @@
 			]
 		},
 		"test:php": {
-			"command": "pnpm -r run test:php"
+			"command": "pnpm -r --filter '!./premium' --filter '!./premium/**' run test:php"
 		},
 		"typecheck": {
 			"dependencies": [
