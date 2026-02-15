@@ -22,7 +22,8 @@
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"WPTelegram\\Tests\\": "tests/"
+			"WPTelegram\\Tests\\": "tests/",
+			"WPTelegram\\Tests\\Helpers\\": "tests/helpers/"
 		}
 	},
 	"repositories": {
