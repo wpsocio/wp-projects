@@ -4,12 +4,12 @@
  *
  * Provides singleton resets, options setup, and Telegram API mocking.
  *
- * @package WPTelegram\Tests
+ * @package WPTelegram\Core\Tests
  *
  * @phpcs:disable Squiz.Commenting.FunctionComment
  */
 
-namespace WPTelegram\Tests\Helpers;
+namespace WPTelegram\Core\Tests\Helpers;
 
 use ReflectionClass;
 use WPTelegram\Core\modules\BaseClass as ModulesBaseClass;
@@ -21,7 +21,7 @@ use WPTelegram\Core\modules\p2tg\RequestCheck;
 /**
  * Class PostSenderHelper
  *
- * @package WPTelegram\Tests\Helpers
+ * @package WPTelegram\Core\Tests\Helpers
  */
 class PostSenderHelper {
 

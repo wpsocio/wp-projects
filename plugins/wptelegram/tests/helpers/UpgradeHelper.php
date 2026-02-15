@@ -2,10 +2,10 @@
 /**
  * Helper for resetting singletons between tests.
  *
- * @package WPTelegram\Tests
+ * @package WPTelegram\Core\Tests
  */
 
-namespace WPTelegram\Tests\Helpers;
+namespace WPTelegram\Core\Tests\Helpers;
 
 use ReflectionClass;
 use WPTelegram\Core\includes\BaseClass;

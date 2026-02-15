@@ -5,14 +5,18 @@
  * All tests go through send_post() and verify observable outcomes:
  * API calls made, request params, post meta, actions/filters fired, cron events.
  *
- * @package WPTelegram\Tests
+ * @package WPTelegram\Core\Tests
  *
  * @phpcs:disable Squiz.Commenting.FunctionComment, Squiz.Commenting.ClassComment
  */
 
+namespace WPTelegram\Core\Tests;
+
+use WP_Post;
+use WP_UnitTestCase;
 use WPTelegram\Core\modules\p2tg\PostSender;
 use WPTelegram\Core\modules\p2tg\Main as P2tgMain;
-use WPTelegram\Tests\Helpers\PostSenderHelper;
+use WPTelegram\Core\Tests\Helpers\PostSenderHelper;
 
 class PostSenderTest extends WP_UnitTestCase {
 

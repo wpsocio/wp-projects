@@ -88,7 +88,7 @@ class PostSender extends BaseClass {
 	/**
 	 * The form data that was submitted.
 	 *
-	 * @var Options $form_data The form data.
+	 * @var array $form_data The form data.
 	 */
 	protected $form_data;
 
