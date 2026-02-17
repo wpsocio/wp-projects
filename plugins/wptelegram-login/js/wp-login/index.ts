@@ -11,7 +11,7 @@ $(() => {
 		const submit = form.find('p.submit');
 
 		// Set the form styles.
-		form.css({ position: 'relative' });
+		form.css({ position: 'relative', visibility: 'visible' });
 
 		// Append the overflow
 		form.append(overflow);
