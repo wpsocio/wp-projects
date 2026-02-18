@@ -1,6 +1,6 @@
 import { __, sprintf } from '@wpsocio/i18n';
-import { cn } from '@wpsocio/ui/lib/utils';
 import { ArrowRight, Copy, Edit, Trash } from '@wpsocio/ui/icons';
+import { cn } from '@wpsocio/ui/lib/utils';
 import { Button, type ButtonProps } from '@wpsocio/ui/wrappers/button';
 import { ConfirmationDialog } from '@wpsocio/ui/wrappers/confirmation-dialog';
 import { IconButton } from '@wpsocio/ui/wrappers/icon-button';
@@ -17,6 +17,7 @@ type MessageButtonProps = Omit<ButtonProps, 'value'> & {
 	confirmDeletion?: boolean;
 	deletionWarning?: React.ReactNode;
 	description?: React.ReactNode;
+	style: 'default' | 'success' | 'primary' | 'danger' | undefined;
 };
 
 export const MessageButton: React.FC<MessageButtonProps> = ({
@@ -31,6 +32,7 @@ export const MessageButton: React.FC<MessageButtonProps> = ({
 	confirmDeletion,
 	deletionWarning,
 	description,
+	style = 'default',
 	...rest
 }) => {
 	const title = [value, label].filter(Boolean).join(' | ');
@@ -40,6 +42,16 @@ export const MessageButton: React.FC<MessageButtonProps> = ({
 			title={title}
 			className={cn(
 				'px-4 font-normal relative bg-foreground/20 text-foreground hover:bg-foreground/10 focus:bg-foreground/10 active:bg-foreground/20',
+				{
+					'bg-foreground/20 text-foreground hover:bg-foreground/30 focus:bg-foreground/30 active:bg-foreground/40':
+						style === 'default',
+					'bg-sky-600 text-white hover:text-white hover:bg-sky-700 focus:bg-sky-700 active:bg-sky-800':
+						style === 'primary',
+					'bg-green-600 text-white hover:text-white hover:bg-green-700 focus:bg-green-700 active:bg-green-800':
+						style === 'success',
+					'bg-red-600 text-white hover:text-white hover:bg-red-700 focus:bg-red-700 active:bg-red-800':
+						style === 'danger',
+				},
 				className,
 			)}
 			size="sm"

@@ -18,6 +18,7 @@ export type MessageButton = {
 	label: string;
 	value?: string;
 	type: 'url' | 'reaction' | 'login_url' | 'web_app';
+	style: 'default' | 'success' | 'primary' | 'danger' | undefined;
 };
 
 export type ChatIdParts = {
