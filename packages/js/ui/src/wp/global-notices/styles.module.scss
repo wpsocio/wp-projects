@@ -1,0 +1,28 @@
+@use '../../../wp-base-styles.scss' as gb;
+
+.global-notices {
+
+    &:global(.components-snackbar-list) {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+
+        position: fixed;
+        inset-block-start: auto; // top
+        inset-block-end: 0.5rem; // bottom
+        inset-inline: 0; // left and right
+        // Modals have 100000, so this needs to be above them
+        z-index: 100001;
+
+        @include gb.break-small {
+            width: auto;
+            inset-inline: unset; // left and right
+            inset-block-end: 3rem;
+            inset-inline-end: 1rem;
+        }
+
+        @include gb.break-medium {
+            inset-block-end: 2rem;
+        }
+    }
+}

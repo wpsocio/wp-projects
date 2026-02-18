@@ -1,0 +1,24 @@
+@use '@wpsocio/ui/wp-base-styles.scss' as wp;
+
+.container {
+    padding-block: 1rem;
+
+    .header {
+        // padding to account for back button icon padding
+        padding-inline-end: 1rem;
+        width: auto;
+    }
+
+    .title {
+        @include wp.heading-x-large();
+    }
+
+    .description {
+        @include wp.body-large();
+        color: wp.$gray-700;
+    }
+
+    .content {
+        padding: 2rem 1rem;
+    }
+}

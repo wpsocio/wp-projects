@@ -5,11 +5,14 @@
 	"license": "MIT",
 	"type": "module",
 	"dependencies": {
+		"@wordpress/base-styles": "^6.2.0",
+		"@wordpress/components": "^29.8.0",
 		"@wpsocio/form": "workspace:*",
 		"@wpsocio/i18n": "workspace:*",
 		"@wpsocio/services": "workspace:*",
 		"@wpsocio/ui": "workspace:*",
 		"@wpsocio/utilities": "workspace:*",
+		"clsx": "^2.1.1",
 		"ramda": "^0.32.0",
 		"zod": "^4.2.1"
 	},
