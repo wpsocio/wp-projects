@@ -173,7 +173,7 @@ msgstr "Wird geladen..."
 msgid "Embed"
 msgstr "Einbetten"
 
-#: js/blocks/single-post/index.tsx:10
+#: js/blocks/single-post/index.tsx:9
 #: languages/wptelegram-widget-js-translations.php:189
 msgid "Telegram Single Post"
 msgstr "einzelner Telegram-Beitrag"
@@ -645,7 +645,7 @@ msgstr "Zeigt einen öffentlichen Telegram Channel oder Gruppen-Feed in einem Wi
 #~ msgstr "Zeigt einen öffentlichen Telegram Channel oder Gruppen-Feed in einem Widget oder per Shortcode an beliebiger Stelle an."
 
 #: js/blocks/single-post/Edit.tsx:150
-#: js/blocks/single-post/index.tsx:47
+#: js/blocks/single-post/index.tsx:44
 #: languages/wptelegram-widget-js-translations.php:180
 msgid "Telegram post"
 msgstr ""

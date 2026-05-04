@@ -176,7 +176,7 @@ $generated_i18n_strings = array(
 	__( 'Loading…', 'wptelegram-widget' ),
 
 	// Reference: js/blocks/single-post/Edit.tsx:150
-	// Reference: js/blocks/single-post/index.tsx:47
+	// Reference: js/blocks/single-post/index.tsx:44
 	__( 'Telegram post', 'wptelegram-widget' ),
 
 	// Reference: js/blocks/single-post/Edit.tsx:27
@@ -185,7 +185,7 @@ $generated_i18n_strings = array(
 	// Reference: js/blocks/single-post/Placeholder.tsx:40
 	__( 'Embed', 'wptelegram-widget' ),
 
-	// Reference: js/blocks/single-post/index.tsx:10
+	// Reference: js/blocks/single-post/index.tsx:9
 	__( 'Telegram Single Post', 'wptelegram-widget' ),
 
 	// Reference: js/settings/services/fields.ts:13
