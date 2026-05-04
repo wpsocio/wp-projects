@@ -174,7 +174,7 @@ msgstr ""
 msgid "Embed"
 msgstr ""
 
-#: js/blocks/single-post/index.tsx:10
+#: js/blocks/single-post/index.tsx:9
 #: languages/wptelegram-widget-js-translations.php:189
 msgid "Telegram Single Post"
 msgstr ""
@@ -633,7 +633,7 @@ msgid "Display the Telegram Public Channel or Group Feed in a widget"
 msgstr "Отображать Telegram канал или Чат в виджете."
 
 #: js/blocks/single-post/Edit.tsx:150
-#: js/blocks/single-post/index.tsx:47
+#: js/blocks/single-post/index.tsx:44
 #: languages/wptelegram-widget-js-translations.php:180
 msgid "Telegram post"
 msgstr ""

@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.2.16
+
+### Patch Changes
+
+- [#319](https://github.com/wpsocio/wp-projects/pull/319) [`2b165e8`](https://github.com/wpsocio/wp-projects/commit/2b165e89fc3658256235009bc5279a3d9890edc3) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Remove iframe browser support text.
+
 ## 2.2.15
 
 ### Patch Changes
