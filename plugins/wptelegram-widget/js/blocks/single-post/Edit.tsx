@@ -148,9 +148,7 @@ export function Edit(props: BlockEditProps<SinglePostAtts>) {
 						}}
 						height={iframe_height}
 						title={__('Telegram post')}
-					>
-						Your Browser Does Not Support iframes!
-					</iframe>
+					></iframe>
 				</div>
 			</div>
 		</Fragment>
