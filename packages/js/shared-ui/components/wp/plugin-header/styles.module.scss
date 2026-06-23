@@ -1,0 +1,34 @@
+@use '@wpsocio/ui/wp-base-styles.scss' as wp;
+
+.container {
+    .logo {
+        height: 2rem;
+        width: 2rem;
+
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
+        }
+    }
+
+    .title {
+        @include wp.heading-x-large();
+        font-size: 1.5rem;
+    }
+
+    .version {
+        @include wp.body-medium();
+        color: wp.$gray-700;
+        font-style: italic;
+    }
+
+    .description {
+        @include wp.body-large();
+        color: wp.$gray-700;
+    }
+
+    hr {
+        color: wp.$gray-200;
+    }
+}

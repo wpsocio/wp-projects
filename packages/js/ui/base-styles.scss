@@ -1,0 +1,5 @@
+@use "./wp-base-styles.scss" as wp;
+
+p {
+    @include wp.body-large();
+}

@@ -1,0 +1,25 @@
+@use '../../../wp-base-styles.scss' as wp;
+
+.form-label {
+    @include wp.body-large();
+    font-weight: 500;
+
+    &--error {
+        color: wp.$alert-red;
+    }
+
+    &--required {
+        color: wp.$alert-red;
+        margin-inline-start: 0.25rem;
+    }
+}
+
+.form-description {
+    color: wp.$gray-700;
+    @include wp.body-medium();
+}
+
+.form-message {
+    color: wp.$alert-red;
+    @include wp.body-medium();
+}
