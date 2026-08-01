@@ -13,11 +13,13 @@ import type { CommonProps } from './types.js';
 
 export type ImageSettingsProps = CommonProps & {
 	disabled?: boolean;
+	disabledReason?: React.ReactNode;
 };
 
 export const ImageSettings: React.FC<ImageSettingsProps> = ({
 	prefix,
 	disabled = false,
+	disabledReason,
 }) => {
 	const sendFeaturedImage = useWatch({
 		name: prefixName('send_featured_image', prefix),
@@ -48,7 +50,16 @@ export const ImageSettings: React.FC<ImageSettingsProps> = ({
 						<FormItem
 							className="md:flex-col"
 							label={getFieldLabel('send_featured_image')}
-							description={__('Send Featured Image (if exists).')}
+							description={
+								<>
+									{__('Send Featured Image (if exists).')}
+									{disabled && disabledReason ? (
+										<span className="block text-destructive">
+											{disabledReason}
+										</span>
+									) : null}
+								</>
+							}
 							isDisabled={disabled}
 						>
 							<FormControl>
