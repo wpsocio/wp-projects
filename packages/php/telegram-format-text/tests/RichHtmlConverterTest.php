@@ -94,3 +94,61 @@ it(
 		expect( ( new RichHtmlConverter() )->safeTrim( $input, 'chars', 5 ) )->toBe( '<p>Hello</p>' );
 	}
 );
+
+it(
+	'keeps the ellipsis out of elements that accept only element children',
+	function () {
+		$converter = new RichHtmlConverter();
+
+		// The trailing media block is dropped, so the figure must not receive the ellipsis.
+		expect( $converter->safeTrim( '<p>abcde</p><figure><img src="https://example.com/a.jpg"></figure>', 'chars', 3 ) )
+			->toBe( '<p>abc…</p>' );
+
+		// An emptied table must not hold a bare text node.
+		expect( $converter->safeTrim( '<p>abc</p><table><tr><td>defgh</td></tr></table>', 'chars', 3 ) )
+			->toBe( '<p>abc…</p>' );
+
+		// A partially retained table keeps the ellipsis inside the last cell.
+		expect( $converter->safeTrim( '<table><tr><td>abcdefghij</td></tr></table>', 'chars', 5 ) )
+			->toBe( '<table><tr><td>abcde…</td></tr></table>' );
+	}
+);
+
+it(
+	'preserves every documented rich block family',
+	function () {
+		$input = '<h1>H</h1><p>Text</p><pre><code class="language-php">echo 1;</code></pre><footer>F</footer><hr>'
+			. '<ul><li><input type="checkbox" checked>Task</li></ul><ol start="2"><li>Item</li></ol>'
+			. '<blockquote>Quote<br>More<cite>Author</cite></blockquote><aside>Pull<cite>Author</cite></aside>'
+			. '<figure><audio src="https://example.com/a.mp3"></audio><figcaption>Cap<cite>Credit</cite></figcaption></figure>'
+			. '<tg-map lat="41.9" long="12.5" zoom="14"></tg-map><tg-collage><img src="https://example.com/a.jpg"></tg-collage>'
+			. '<tg-slideshow><video src="https://example.com/v.mp4"></video></tg-slideshow>'
+			. '<table bordered><caption>C</caption><tr><th>H</th></tr><tr><td>V</td></tr></table>'
+			. '<details open><summary>S</summary>Body</details><tg-math-block>E = mc^2</tg-math-block>'
+			. '<p><tg-emoji emoji-id="5368324170671202286"></tg-emoji><tg-time unix="1647531900" format="wDT">soon</tg-time>'
+			. '<tg-math>x^2</tg-math><tg-reference name="note-1">Ref</tg-reference><a href="#note-1">Link</a>'
+			. '<mark>m</mark><sub>s</sub><sup>S</sup><tg-spoiler>sp</tg-spoiler></p>';
+
+		expect( ( new RichHtmlConverter() )->convert( $input ) )->toBe( $input );
+	}
+);
+
+it(
+	'drops table sections that Telegram does not support',
+	function () {
+		$input = '<table><thead><tr><th>H</th></tr></thead><tbody><tr><td>C</td></tr></tbody></table>';
+
+		expect( ( new RichHtmlConverter() )->convert( $input ) )->toBe( '<table><tr><th>H</th></tr><tr><td>C</td></tr></table>' );
+	}
+);
+
+it(
+	'restores the libxml error state',
+	function () {
+		$previous = libxml_use_internal_errors( false );
+
+		( new RichHtmlConverter() )->convert( '<p>Hello</p>' );
+
+		expect( libxml_use_internal_errors( $previous ) )->toBeFalse();
+	}
+);

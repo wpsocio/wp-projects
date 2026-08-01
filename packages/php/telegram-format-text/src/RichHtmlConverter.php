@@ -125,6 +125,20 @@ class RichHtmlConverter implements HtmlConverterInterface {
 	];
 
 	/**
+	 * Elements that never contain text of their own.
+	 *
+	 * @var string[]
+	 */
+	private const TEXTLESS_ELEMENTS = [ 'figure', 'ol', 'table', 'tg-collage', 'tg-slideshow', 'tr', 'ul' ];
+
+	/**
+	 * Elements that cannot hold child nodes.
+	 *
+	 * @var string[]
+	 */
+	private const VOID_ELEMENTS = [ 'audio', 'br', 'hr', 'img', 'input', 'tg-map', 'video' ];
+
+	/**
 	 * Ellipsis appended after truncated content.
 	 *
 	 * @var string
@@ -216,12 +230,13 @@ class RichHtmlConverter implements HtmlConverterInterface {
 		$document->strictErrorChecking = false;
 		$document->recover             = true;
 
-		libxml_use_internal_errors( true );
-		$loaded = $document->loadHTML(
+		$internal_errors = libxml_use_internal_errors( true );
+		$loaded          = $document->loadHTML(
 			'<?xml encoding="UTF-8"><div id="tg-rich-root">' . $html . '</div>',
 			LIBXML_NOWARNING | LIBXML_NOERROR | LIBXML_NONET | LIBXML_PARSEHUGE
 		);
 		libxml_clear_errors();
+		libxml_use_internal_errors( $internal_errors );
 
 		$root = $document->getElementById( 'tg-rich-root' );
 		if ( ! $loaded || ! $root ) {
@@ -513,9 +528,17 @@ class RichHtmlConverter implements HtmlConverterInterface {
 	 */
 	private function appendEllipsis( DOMElement $root, DOMDocument $document ) {
 		$target = $root;
-		while ( $target->lastChild instanceof DOMElement && ! in_array( strtolower( $target->lastChild->tagName ), [ 'br', 'hr', 'img', 'input', 'tg-map' ], true ) ) {
+
+		// Descend to the innermost trailing element that can hold children.
+		while ( $target->lastChild instanceof DOMElement && ! in_array( strtolower( $target->lastChild->tagName ), self::VOID_ELEMENTS, true ) ) {
 			$target = $target->lastChild;
 		}
+
+		// Climb back out of tables and lists, which accept only element children.
+		while ( $target !== $root && in_array( strtolower( $target->tagName ), self::TEXTLESS_ELEMENTS, true ) ) {
+			$target = $target->parentNode;
+		}
+
 		$target->appendChild( $document->createTextNode( $this->elipsis ) );
 	}
 
