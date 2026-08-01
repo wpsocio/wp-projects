@@ -212,7 +212,10 @@ class RichHtmlConverter implements HtmlConverterInterface {
 			return $converted;
 		}
 
-		$this->trimNode( $root, $limitBy, $limit );
+		// Keep room for the ellipsis so the result stays within the limit.
+		$remaining = max( 0, $limit - $this->getTextLength( $this->elipsis, $limitBy ) );
+
+		$this->trimNode( $root, $limitBy, $remaining );
 		$this->appendEllipsis( $root, $document );
 
 		return $this->serializeChildren( $root );
@@ -357,14 +360,17 @@ class RichHtmlConverter implements HtmlConverterInterface {
 	 */
 	private function isValidAttribute( string $tag, string $name, string $value ) {
 		if ( 'href' === $name ) {
-			return (bool) preg_match( '~^(?:https?://|mailto:|tel:|tg://user\?id=|#[A-Za-z0-9_.:-]+)~i', $value );
+			return (bool) preg_match(
+				'~^(?:https?://\S+|mailto:[^\s@]+@\S+|tel:\+?[\d\s().-]+|tg://user\?id=\d+|#[A-Za-z0-9_.:-]+)\z~iu',
+				$value
+			);
 		}
 
 		if ( 'src' === $name ) {
-			if ( 'img' === $tag && preg_match( '#^tg://emoji\?id=\d+$#', $value ) ) {
+			if ( 'img' === $tag && preg_match( '#^tg://emoji\?id=\d+\z#', $value ) ) {
 				return true;
 			}
-			return (bool) preg_match( '#^https?://#i', $value );
+			return (bool) preg_match( '#^https?://\S+\z#iu', $value );
 		}
 
 		if ( 'class' === $name ) {

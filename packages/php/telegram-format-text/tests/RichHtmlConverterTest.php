@@ -70,7 +70,7 @@ it(
 		$input = '<h1>😀😀</h1><p>abcdef <strong>ghij</strong></p><p>removed</p>';
 
 		expect( ( new RichHtmlConverter() )->safeTrim( $input, 'chars', 9 ) )->toBe(
-			'<h1>😀😀</h1><p>abcdef …</p>'
+			'<h1>😀😀</h1><p>abcdef…</p>'
 		);
 	}
 );
@@ -80,9 +80,23 @@ it(
 	function () {
 		$input = '<p>A<img src="tg://emoji?id=123" alt="👍">BC</p>';
 
-		expect( ( new RichHtmlConverter() )->safeTrim( $input, 'chars', 2 ) )->toBe(
+		expect( ( new RichHtmlConverter() )->safeTrim( $input, 'chars', 3 ) )->toBe(
 			'<p>A<img src="tg://emoji?id=123" alt="👍">…</p>'
 		);
+	}
+);
+
+it(
+	'counts the ellipsis toward the requested limit',
+	function () {
+		$converter = new RichHtmlConverter();
+		$input     = '<p>abcdefghij</p><p>more</p>';
+
+		foreach ( [ 1, 2, 5, 9 ] as $limit ) {
+			$trimmed = $converter->safeTrim( $input, 'chars', $limit );
+
+			expect( mb_strlen( strip_tags( $trimmed ) ) )->toBeLessThanOrEqual( $limit );
+		}
 	}
 );
 
@@ -101,15 +115,15 @@ it(
 		$converter = new RichHtmlConverter();
 
 		// The trailing media block is dropped, so the figure must not receive the ellipsis.
-		expect( $converter->safeTrim( '<p>abcde</p><figure><img src="https://example.com/a.jpg"></figure>', 'chars', 3 ) )
+		expect( $converter->safeTrim( '<p>abcde</p><figure><img src="https://example.com/a.jpg"></figure>', 'chars', 4 ) )
 			->toBe( '<p>abc…</p>' );
 
 		// An emptied table must not hold a bare text node.
-		expect( $converter->safeTrim( '<p>abc</p><table><tr><td>defgh</td></tr></table>', 'chars', 3 ) )
+		expect( $converter->safeTrim( '<p>abc</p><table><tr><td>defgh</td></tr></table>', 'chars', 4 ) )
 			->toBe( '<p>abc…</p>' );
 
 		// A partially retained table keeps the ellipsis inside the last cell.
-		expect( $converter->safeTrim( '<table><tr><td>abcdefghij</td></tr></table>', 'chars', 5 ) )
+		expect( $converter->safeTrim( '<table><tr><td>abcdefghij</td></tr></table>', 'chars', 6 ) )
 			->toBe( '<table><tr><td>abcde…</td></tr></table>' );
 	}
 );
@@ -130,6 +144,22 @@ it(
 			. '<mark>m</mark><sub>s</sub><sup>S</sup><tg-spoiler>sp</tg-spoiler></p>';
 
 		expect( ( new RichHtmlConverter() )->convert( $input ) )->toBe( $input );
+	}
+);
+
+it(
+	'validates complete link and media values',
+	function () {
+		$converter = new RichHtmlConverter();
+
+		$valid = '<p><a href="https://example.com/a?b=c#d">a</a><a href="mailto:user@example.com">b</a>'
+			. '<a href="tel:+123456789">c</a><a href="tg://user?id=123456789">d</a><a href="#note-1">e</a></p>';
+
+		expect( $converter->convert( $valid ) )->toBe( $valid );
+
+		// A non-numeric user id and a trailing-garbage URL must lose the attribute and unwrap.
+		expect( $converter->convert( '<p><a href="tg://user?id=abc">a</a><a href="https://ok.test/ b">b</a></p>' ) )
+			->toBe( '<p>ab</p>' );
 	}
 );
 
