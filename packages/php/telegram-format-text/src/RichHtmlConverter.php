@@ -248,16 +248,16 @@ class RichHtmlConverter implements HtmlConverterInterface {
 					$parent->removeChild( $child );
 				} elseif ( ! isset( self::ALLOWED_HTML[ $tag ] ) ) {
 					$this->sanitizeChildren( $child );
-					while ( $child->firstChild ) {
-						$parent->insertBefore( $child->firstChild, $child );
-					}
-					$parent->removeChild( $child );
+					$this->unwrapElement( $child );
 				} else {
 					$this->sanitizeAttributes( $child, $tag );
 					if ( in_array( $tag, [ 'audio', 'img', 'video' ], true ) && ! $child->hasAttribute( 'src' ) ) {
 						$parent->removeChild( $child );
 					} elseif ( 'input' === $tag && 'checkbox' !== $child->getAttribute( 'type' ) ) {
 						$parent->removeChild( $child );
+					} elseif ( $this->isIncompleteElement( $child, $tag ) ) {
+						$this->sanitizeChildren( $child );
+						$this->unwrapElement( $child );
 					} else {
 						$this->sanitizeChildren( $child );
 					}
@@ -268,6 +268,46 @@ class RichHtmlConverter implements HtmlConverterInterface {
 
 			$child = $next;
 		}
+	}
+
+	/**
+	 * Whether a semantic element is missing a required attribute.
+	 *
+	 * @param DOMElement $element Element to inspect.
+	 * @param string     $tag     Element tag.
+	 * @return bool
+	 */
+	private function isIncompleteElement( DOMElement $element, string $tag ) {
+		switch ( $tag ) {
+			case 'a':
+				return ! $element->hasAttribute( 'href' ) && ! $element->hasAttribute( 'name' );
+			case 'tg-emoji':
+				return ! $element->hasAttribute( 'emoji-id' );
+			case 'tg-reference':
+				return ! $element->hasAttribute( 'name' );
+			case 'tg-time':
+				return ! $element->hasAttribute( 'unix' );
+			default:
+				return false;
+		}
+	}
+
+	/**
+	 * Replace an element with its children.
+	 *
+	 * @param DOMElement $element Element to unwrap.
+	 * @return void
+	 */
+	private function unwrapElement( DOMElement $element ) {
+		$parent = $element->parentNode;
+		if ( ! $parent ) {
+			return;
+		}
+
+		while ( $element->firstChild ) {
+			$parent->insertBefore( $element->firstChild, $element );
+		}
+		$parent->removeChild( $element );
 	}
 
 	/**
@@ -314,6 +354,14 @@ class RichHtmlConverter implements HtmlConverterInterface {
 
 		if ( 'class' === $name ) {
 			return 'code' === $tag && (bool) preg_match( '/^language-[A-Za-z0-9_+-]+$/', $value );
+		}
+
+		if ( 'emoji-id' === $name ) {
+			return (bool) preg_match( '/^\d+$/', $value );
+		}
+
+		if ( 'name' === $name ) {
+			return '' !== trim( $value );
 		}
 
 		if ( in_array( $name, [ 'colspan', 'rowspan', 'start', 'unix', 'value', 'zoom' ], true ) ) {

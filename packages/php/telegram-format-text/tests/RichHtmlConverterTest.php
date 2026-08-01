@@ -26,7 +26,18 @@ it(
 		$input = '<script>alert(1)</script><p onclick="alert(1)">Safe <a href="javascript:alert(1)">link</a></p><img src="data:image/png;base64,x"><video src="ftp://example.com/video.mp4"></video><tg-thinking>Draft</tg-thinking>';
 
 		expect( ( new RichHtmlConverter() )->convert( $input ) )->toBe(
-			'<p>Safe <a>link</a></p>'
+			'<p>Safe link</p>'
+		);
+	}
+);
+
+it(
+	'unwraps semantic tags missing required attributes',
+	function () {
+		$input = '<p><a>Link</a> <tg-emoji>🙂</tg-emoji> <tg-time format="r">Tomorrow</tg-time> <tg-reference>Note</tg-reference></p>';
+
+		expect( ( new RichHtmlConverter() )->convert( $input ) )->toBe(
+			'<p>Link 🙂 Tomorrow Note</p>'
 		);
 	}
 );
