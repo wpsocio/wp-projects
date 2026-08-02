@@ -1,3 +1,4 @@
+import { cn } from '../lib/utils.js';
 import {
 	Dialog,
 	DialogContent,
@@ -27,7 +28,8 @@ export function Modal({
 	return (
 		<Dialog {...props}>
 			{trigger ? <DialogTrigger asChild>{trigger}</DialogTrigger> : null}
-			<DialogContent className={contentClassName}>
+			{/* `wpsocio-tw` scopes the Tailwind preflight to the portalled content. */}
+			<DialogContent className={cn('wpsocio-tw', contentClassName)}>
 				<DialogHeader>
 					<DialogTitle>{title}</DialogTitle>
 					{description ? (
