@@ -4,8 +4,12 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
+		"clean": "rimraf .phpunit.cache .phpunit.result.cache",
 		"lint:php": "composer run lint",
 		"test:php": "composer run test",
 		"setup:php": "composer install --ignore-platform-reqs"
+	},
+	"devDependencies": {
+		"rimraf": "^6.1.2"
 	}
 }

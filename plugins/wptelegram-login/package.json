@@ -21,6 +21,7 @@
 	"scripts": {
 		"dev": "vite --port=5004",
 		"build": "wireit",
+		"clean": "rimraf .wireit src/assets/build src/languages/js-translations.pot .phpunit.cache .phpunit.result.cache",
 		"lint:php": "composer run lint",
 		"setup:php": "wireit",
 		"setup:php:prod": "wireit",
@@ -49,6 +50,7 @@
 		"@types/wordpress__block-editor": "^14.21.7",
 		"@types/wordpress__blocks": "^12.5.18",
 		"@wpsocio/vite-wp-react": "workspace:*",
+		"rimraf": "^6.1.2",
 		"tailwindcss": "^4.3.3",
 		"tailwindcss-scoped-preflight": "^4.0.6",
 		"typescript": "^5.9.3",

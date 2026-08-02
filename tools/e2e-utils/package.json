@@ -29,6 +29,7 @@
 		"typescript": "^5.9.3"
 	},
 	"scripts": {
+		"clean": "rimraf tsconfig.tsbuildinfo",
 		"typecheck": "tsc --noEmit"
 	}
 }
