@@ -52,7 +52,7 @@
 		"@wpsocio/wpdev": "workspace:*",
 		"npm-check-updates": "^19.2.0",
 		"rimraf": "^6.1.2",
-		"tailwindcss": "^4.1.18",
+		"tailwindcss": "^4.3.3",
 		"ts-node": "^10.9.2",
 		"typescript": "^5.9.3",
 		"wireit": "^0.14.12"

@@ -1,6 +1,6 @@
-@layer wp, theme, base, components, utilities;
-@import "tailwindcss/theme.css" layer(theme);
-@import "tailwindcss/utilities.css" layer(utilities);
+@import "tailwindcss/theme.css";
+/* `important` is what keeps the utilities ahead of the unlayered WP admin CSS. */
+@import "tailwindcss/utilities.css" important;
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
@@ -103,11 +103,18 @@
 	--breakpoint-md-wp: 782px;
 }
 
-@layer base {
-	* {
-		@apply border-border outline-ring/50;
-	}
-	body {
-		@apply bg-background text-foreground;
-	}
+/* Must stay unlayered so it overrides the hoisted preflight, which is emitted first. */
+* {
+	@apply border-border outline-ring/50;
+}
+body {
+	@apply bg-background text-foreground;
+}
+
+/* Radix portals land in the body, next to #adminmenuwrap (9990) and #wpadminbar (99999).
+   `:has()` picks up the dialog overlay, the sibling right before the content. */
+body > .wpsocio-tw,
+body > *:has(+ .wpsocio-tw),
+body > [data-radix-popper-content-wrapper] {
+	z-index: 100000 !important;
 }

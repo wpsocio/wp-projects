@@ -14,6 +14,8 @@
 		"source.organizeImports.biome": "explicit"
 	},
 	"js/ts.tsdk.path": "node_modules/typescript/lib",
+	"css.lint.unknownAtRules": "ignore",
+	"scss.lint.unknownAtRules": "ignore",
 	"tailwindCSS.experimental.configFile": {
 		"tailwind.config.css": ["**/*.tsx"]
 	}

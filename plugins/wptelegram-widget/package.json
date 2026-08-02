@@ -50,7 +50,8 @@
 		"@types/wordpress__block-editor": "^14.21.7",
 		"@types/wordpress__blocks": "^12.5.18",
 		"@wpsocio/vite-wp-react": "workspace:*",
-		"tailwindcss": "^4.1.18",
+		"tailwindcss": "^4.3.3",
+		"tailwindcss-scoped-preflight": "^4.0.6",
 		"typescript": "^5.9.3",
 		"vite": "^7.3.0",
 		"wireit": "^0.14.12"

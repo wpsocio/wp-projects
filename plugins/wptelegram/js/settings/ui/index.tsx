@@ -10,7 +10,7 @@ import App from './App';
 const root = document.getElementById(ROOT_ID);
 
 // clean up notifications etc.
-cleanup(ROOT_ID, { disableCommonCSS: true });
+cleanup(ROOT_ID);
 
 window.__WPSOCIO_UI_ROOT_SELECTOR = `#${ROOT_ID}`;
 

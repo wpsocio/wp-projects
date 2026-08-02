@@ -47,7 +47,7 @@ export const ErrorMessageOptions = () => {
 							label={getFieldLabel('custom_error_message')}
 							description={__('Leave empty for default.')}
 							className={cn({
-								'!hidden': !show_message_on_error,
+								hidden: !show_message_on_error,
 							})}
 						>
 							<FormControl>

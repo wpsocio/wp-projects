@@ -6,4 +6,5 @@
 @source "../../../node_modules/@wpsocio/ui/src/**/*.{ts,tsx}";
 
 @include reset-wp-common-css;
-@include scope-tw-preflight('#wptelegram-widget-settings');
+// The join link preview mirrors the front end button, so it stays out of Tailwind's reach.
+@include scope-tw-preflight('#wptelegram-widget-settings', '.wp-block-wptelegram-widget-join-channel');

@@ -65,7 +65,7 @@ export const LoginOptions = () => {
 						<FormItem
 							label={getFieldLabel('user_role')}
 							description={__('The default role to assign for the new users.')}
-							className={cn({ '!hidden': disableSignup })}
+							className={cn({ hidden: disableSignup })}
 						>
 							<FormControl>
 								<Select
@@ -106,7 +106,7 @@ export const LoginOptions = () => {
 					render={({ field }) => (
 						<FormItem
 							label={getFieldLabel('redirect_url')}
-							className={cn({ '!hidden': redirectTo !== 'custom_url' })}
+							className={cn({ hidden: redirectTo !== 'custom_url' })}
 						>
 							<FormControl>
 								<Input {...field} />
@@ -125,7 +125,7 @@ export const LoginOptions = () => {
 							)}
 							label={getFieldLabel('avatar_meta_key')}
 						>
-							<FormControl className="max-w-[200px]">
+							<FormControl className="max-w-50">
 								<Input
 									autoComplete="off"
 									readOnly={avatarMetaKeyReadOnly}
@@ -147,7 +147,7 @@ export const LoginOptions = () => {
 							)} ${__(
 								'Useful when you want the users to be able to receive private notifications.',
 							)}`}
-							className={cn({ '!hidden': disableSignup })}
+							className={cn({ hidden: disableSignup })}
 						>
 							<FormControl>
 								<Switch

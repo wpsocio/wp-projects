@@ -39,7 +39,8 @@ export function ConfirmationDialog({
 	return (
 		<AlertDialog>
 			<AlertDialogTrigger asChild>{trigger}</AlertDialogTrigger>
-			<AlertDialogContent>
+			{/* `wpsocio-tw` scopes the Tailwind preflight to the portalled content. */}
+			<AlertDialogContent className="wpsocio-tw">
 				<AlertDialogHeader>
 					<AlertDialogTitle>{title}</AlertDialogTitle>
 					<AlertDialogDescription>
