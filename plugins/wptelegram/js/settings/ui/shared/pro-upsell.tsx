@@ -32,7 +32,7 @@ const UpsellButton: React.FC<LinkProps> = ({ children, ...props }) => {
 		<Link
 			href="https://wptelegram.pro"
 			isExternal
-			className="button-primary text-neutral-50"
+			className="button button-primary button-small text-neutral-50"
 			{...props}
 		>
 			{children || __('Upgrade to Pro')}
