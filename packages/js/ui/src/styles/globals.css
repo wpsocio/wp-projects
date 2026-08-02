@@ -110,3 +110,11 @@
 body {
 	@apply bg-background text-foreground;
 }
+
+/* Radix portals land in the body, next to #adminmenuwrap (9990) and #wpadminbar (99999).
+   `:has()` picks up the dialog overlay, the sibling right before the content. */
+body > .wpsocio-tw,
+body > *:has(+ .wpsocio-tw),
+body > [data-radix-popper-content-wrapper] {
+	z-index: 100000 !important;
+}
