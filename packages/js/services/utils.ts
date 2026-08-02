@@ -4,7 +4,7 @@ import { setLocaleData } from '@wpsocio/i18n';
 
 export const cleanup = (
 	removeSiblingsOf = '',
-	{ disableFormCSS = true, disableCommonCSS = false } = {},
+	{ disableFormCSS = true } = {},
 ) => {
 	const id = removeSiblingsOf?.replace(/^#?/, '#');
 	$(() => {
@@ -13,9 +13,6 @@ export const cleanup = (
 		}
 		if (disableFormCSS) {
 			$('#forms-css').prop('disabled', true);
-		}
-		if (disableCommonCSS) {
-			$('#common-css').prop('disabled', true);
 		}
 	});
 };
