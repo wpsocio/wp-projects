@@ -1,6 +1,18 @@
 // @ts-check
 
 /**
+ * PHP versions the CI matrices run against.
+ * The first one is the minimum required, the last one is the latest.
+ */
+export const phpVersions = ['8.0', '8.1', '8.2', '8.3', '8.4', '8.5'];
+
+/**
+ * WordPress versions the CI matrices run against.
+ * The first one is the minimum required.
+ */
+export const wpVersions = ['6.7', 'master'];
+
+/**
  * @type {import("@wpsocio/wpdev").ProjectConfig['getBundleConfig']}
  */
 export const getBundleConfig = ({ slug, key, version, textDomain }) => {
@@ -18,9 +30,8 @@ export const getBundleConfig = ({ slug, key, version, textDomain }) => {
 				type: 'update-requirements',
 				data: {
 					requirements: {
-						// When updating these values, also update them in the E2E test workflow
-						requiresPHP: '8.0',
-						requiresAtLeast: '6.7',
+						requiresPHP: phpVersions[0],
+						requiresAtLeast: wpVersions[0],
 						testedUpTo: '7.0.2',
 					},
 					target: {
