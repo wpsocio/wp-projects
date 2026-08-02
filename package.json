@@ -55,7 +55,7 @@
 		"rimraf": "^6.1.2",
 		"tailwindcss": "^4.3.3",
 		"ts-node": "^10.9.2",
-		"typescript": "^5.9.3",
+		"typescript": "^6.0.3",
 		"wireit": "^0.14.12"
 	},
 	"wireit": {

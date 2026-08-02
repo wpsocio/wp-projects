@@ -68,6 +68,6 @@
 		"shadcn": "^3.6.2",
 		"tailwindcss": "^4.3.3",
 		"tailwindcss-scoped-preflight": "^4.0.6",
-		"typescript": "^5.9.3"
+		"typescript": "^6.0.3"
 	}
 }
