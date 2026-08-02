@@ -7,3 +7,6 @@ packages:
     - "premium"
     - "premium/plugins/*"
     - "tools/*"
+
+overrides:
+    vite: "6.2.1"

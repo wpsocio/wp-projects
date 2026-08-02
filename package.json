@@ -16,6 +16,7 @@
 		"build:projects": "wireit",
 		"bundle:all": "wpdev bundle --all",
 		"bundle:changed": "wireit",
+		"clean": "pnpm -r --if-present --no-bail run clean && rimraf .wireit ./artifacts dist changeset-status.json",
 		"dev": "wireit",
 		"dev:cleanup": "wireit",
 		"env-start": "wp-env start",
@@ -169,11 +170,6 @@
 		"envFiles": [
 			".env"
 		]
-	},
-	"pnpm": {
-		"overrides": {
-			"vite": "6.2.1"
-		}
 	},
 	"packageManager": "pnpm@10.26.2"
 }

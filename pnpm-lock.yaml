@@ -364,9 +364,17 @@ importers:
         specifier: ^18.3.27
         version: 18.3.27
 
-  packages/php/telegram-format-text: {}
+  packages/php/telegram-format-text:
+    devDependencies:
+      rimraf:
+        specifier: ^6.1.2
+        version: 6.1.2
 
-  packages/php/wp-utils: {}
+  packages/php/wp-utils:
+    devDependencies:
+      rimraf:
+        specifier: ^6.1.2
+        version: 6.1.2
 
   packages/php/wptelegram-bot-api: {}
 
@@ -439,6 +447,9 @@ importers:
       '@wpsocio/vite-wp-react':
         specifier: workspace:*
         version: link:../../tools/vite-wp-react
+      rimraf:
+        specifier: ^6.1.2
+        version: 6.1.2
       tailwindcss:
         specifier: ^4.3.3
         version: 4.3.3
@@ -494,6 +505,9 @@ importers:
       '@wpsocio/vite-wp-react':
         specifier: workspace:*
         version: link:../../tools/vite-wp-react
+      rimraf:
+        specifier: ^6.1.2
+        version: 6.1.2
       tailwindcss:
         specifier: ^4.3.3
         version: 4.3.3
@@ -567,6 +581,9 @@ importers:
       '@wpsocio/vite-wp-react':
         specifier: workspace:*
         version: link:../../tools/vite-wp-react
+      rimraf:
+        specifier: ^6.1.2
+        version: 6.1.2
       tailwindcss:
         specifier: ^4.3.3
         version: 4.3.3
@@ -646,6 +663,9 @@ importers:
       '@wpsocio/vite-wp-react':
         specifier: workspace:*
         version: link:../../tools/vite-wp-react
+      rimraf:
+        specifier: ^6.1.2
+        version: 6.1.2
       tailwindcss:
         specifier: ^4.3.3
         version: 4.3.3
@@ -682,6 +702,9 @@ importers:
       '@wpsocio/e2e-utils':
         specifier: workspace:*
         version: link:../tools/e2e-utils
+      rimraf:
+        specifier: ^6.1.2
+        version: 6.1.2
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
@@ -767,6 +790,9 @@ importers:
       '@wpsocio/vite-wp-react':
         specifier: workspace:*
         version: link:../../../tools/vite-wp-react
+      rimraf:
+        specifier: ^6.1.2
+        version: 6.1.2
       tailwindcss:
         specifier: ^4.3.3
         version: 4.3.3
@@ -18378,17 +18404,17 @@ snapshots:
   '@webpack-cli/configtest@2.1.1(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2)(webpack@5.97.1))(webpack@5.97.1)':
     dependencies:
       webpack: 5.97.1(webpack-cli@5.1.4)
-      webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2)(webpack@5.97.1)
+      webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2(webpack-cli@5.1.4)(webpack@5.97.1))(webpack@5.97.1(webpack-cli@5.1.4))
 
   '@webpack-cli/info@2.0.2(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2)(webpack@5.97.1))(webpack@5.97.1)':
     dependencies:
       webpack: 5.97.1(webpack-cli@5.1.4)
-      webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2)(webpack@5.97.1)
+      webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2(webpack-cli@5.1.4)(webpack@5.97.1))(webpack@5.97.1(webpack-cli@5.1.4))
 
   '@webpack-cli/serve@2.0.5(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2)(webpack@5.97.1))(webpack-dev-server@4.15.2)(webpack@5.97.1)':
     dependencies:
       webpack: 5.97.1(webpack-cli@5.1.4)
-      webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2)(webpack@5.97.1)
+      webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2(webpack-cli@5.1.4)(webpack@5.97.1))(webpack@5.97.1(webpack-cli@5.1.4))
     optionalDependencies:
       webpack-dev-server: 4.15.2(webpack-cli@5.1.4)(webpack@5.97.1)
 
@@ -19827,7 +19853,7 @@ snapshots:
       url-loader: 4.1.1(webpack@5.97.1)
       webpack: 5.97.1(webpack-cli@5.1.4)
       webpack-bundle-analyzer: 4.10.2
-      webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2)(webpack@5.97.1)
+      webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2(webpack-cli@5.1.4)(webpack@5.97.1))(webpack@5.97.1(webpack-cli@5.1.4))
       webpack-dev-server: 4.15.2(webpack-cli@5.1.4)(webpack@5.97.1)
     optionalDependencies:
       '@wordpress/env': 10.37.0(@types/node@25.0.3)
@@ -27125,7 +27151,7 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2)(webpack@5.97.1):
+  webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2(webpack-cli@5.1.4)(webpack@5.97.1))(webpack@5.97.1(webpack-cli@5.1.4)):
     dependencies:
       '@discoveryjs/json-ext': 0.5.7
       '@webpack-cli/configtest': 2.1.1(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2)(webpack@5.97.1))(webpack@5.97.1)
@@ -27188,7 +27214,7 @@ snapshots:
       ws: 8.18.0
     optionalDependencies:
       webpack: 5.97.1(webpack-cli@5.1.4)
-      webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2)(webpack@5.97.1)
+      webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2(webpack-cli@5.1.4)(webpack@5.97.1))(webpack@5.97.1(webpack-cli@5.1.4))
     transitivePeerDependencies:
       - bufferutil
       - debug
@@ -27229,7 +27255,7 @@ snapshots:
       watchpack: 2.4.2
       webpack-sources: 3.2.3
     optionalDependencies:
-      webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2)(webpack@5.97.1)
+      webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2(webpack-cli@5.1.4)(webpack@5.97.1))(webpack@5.97.1(webpack-cli@5.1.4))
     transitivePeerDependencies:
       - '@swc/core'
       - esbuild

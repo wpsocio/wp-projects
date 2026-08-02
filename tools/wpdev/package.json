@@ -64,6 +64,7 @@
 		"@types/gettext-parser": "^8.0.0",
 		"@types/semver": "^7.7.1",
 		"oclif": "^4.22.61",
+		"rimraf": "^6.1.2",
 		"tsup": "^8.5.1",
 		"typescript": "^5.9.3",
 		"wireit": "^0.14.12"
