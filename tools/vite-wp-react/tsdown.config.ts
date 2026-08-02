@@ -7,13 +7,6 @@ const commonConfig: UserConfig = {
 	format: ['esm', 'cjs'],
 	outDir: 'dist',
 	fixedExtension: true,
-	/*
-	 * Pin CJS output to named exports. Entries mixing named and default exports
-	 * resolve to this anyway, so it only silences the MIXED_EXPORTS warning.
-	 */
-	cjsDefault: false,
-	/* Keep third party types imported rather than inlined into our .d.ts files. */
-	deps: { dts: { neverBundle: true } },
 };
 
 export default defineConfig([

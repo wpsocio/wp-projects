@@ -1,6 +1,5 @@
 import viteReact from '@vitejs/plugin-react';
-import type { InputOption } from 'rollup';
-import type { Plugin, PluginOption } from 'vite';
+import type { Plugin, PluginOption, Rollup } from 'vite';
 import {
 	type DevServerOptions,
 	devServer,
@@ -17,7 +16,7 @@ export type ViteWpReactOptions = {
 	 * The entry point to your application. Defaults to `js/main.js`.
 	 * @default 'js/main.js'
 	 */
-	input?: InputOption;
+	input?: Rollup.InputOption;
 
 	/**
 	 * The directory to write the build to. Defaults to `build`.
