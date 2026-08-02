@@ -1,15 +1,25 @@
 import viteReact from '@vitejs/plugin-react';
 import type { Plugin, PluginOption, Rollup } from 'vite';
+import { devServer } from './plugins/dev-server/index.js';
+import { externals as externalsPlugin } from './plugins/externals/index.js';
 import {
-	type DevServerOptions,
-	devServer,
-	type ExtractWpDependenciesOptions,
-	externalizeWpPackages,
-	extractWpDependencies,
-	getMakePotReactConfig,
-	type ReactMakePotOptions,
-	reactMakePot,
-} from './plugins/index.js';
+	type WpDependenciesOptions,
+	wpDependencies as wpDependenciesPlugin,
+} from './plugins/wp-dependencies/index.js';
+
+export type { WpDependenciesOptions };
+
+export {
+	BUNDLED_WP_PACKAGES,
+	NON_WP_PACKAGES,
+	PACKAGE_HANDLES,
+} from './utils/wp-packages.js';
+
+export type MakePotOptions = {
+	output?: string;
+	headers?: Record<string, string>;
+	functions?: Record<string, Array<string | null>>;
+};
 
 export type ViteWpReactOptions = {
 	/**
@@ -28,49 +38,52 @@ export type ViteWpReactOptions = {
 	 * The directory to write assets to.
 	 */
 	assetsDir?: string;
-};
 
-export type ViteWpReactConfig = {
 	/**
 	 * Whether to externalize WordPress packages.
 	 * i.e. `@wordpress/*` imports will be removed from the bundle and replaced with `window.wp.*`.
 	 *
-	 * You can pass a function to customize the externalization.
-	 * The function will receive the package name and should return the variable name to use.
+	 * Pass a function to customize the global variable name for a package.
+	 * It receives the package name and should return the variable name to use,
+	 * or undefined to use the default. It is only called for externalizable
+	 * candidates - `@wordpress/*` packages and the known browser globals
+	 * (`NON_WP_PACKAGES`), minus the bundled ones (`BUNDLED_WP_PACKAGES`).
+	 *
+	 * @default true
 	 */
-	externalizeWpPackages?: boolean | ((name: string) => string);
+	externals?: boolean | ((name: string) => string | undefined);
 
 	/**
 	 * Whether to extract WordPress dependencies.
 	 * If enabled, a `dependencies.json` file will be generated in the `outDir` directory,
-	 * containing a list of all WordPress dependencies used in the bundle.
+	 * containing a list of all WordPress dependencies used by each entry.
+	 *
+	 * @default true
 	 */
-	extractWpDependencies?: Partial<ExtractWpDependenciesOptions> | boolean;
+	wpDependencies?: boolean | WpDependenciesOptions;
 
 	/**
 	 * Whether to generate a POT file from your React components.
+	 *
+	 * @default false
 	 */
-	makePot?: ReactMakePotOptions | boolean;
-
-	/**
-	 * Whether to enable React support.
-	 */
-	enableReact?: boolean;
+	makePot?: boolean | MakePotOptions;
 
 	/**
 	 * cors.origin value for the dev server.
 	 */
-	corsOrigin?: DevServerOptions['corsOrigin'];
+	corsOrigin?: boolean | Array<string>;
 };
 
-export function viteWpReact(
-	{
-		input = 'js/main.js',
-		outDir = 'build',
-		assetsDir,
-	}: ViteWpReactOptions = {},
-	config: ViteWpReactConfig = {},
-): PluginOption {
+export function viteWpReact({
+	input = 'js/main.js',
+	outDir = 'build',
+	assetsDir,
+	externals = true,
+	wpDependencies = true,
+	makePot,
+	corsOrigin,
+}: ViteWpReactOptions = {}): PluginOption {
 	const mainPlugin: Plugin = {
 		name: 'vwpr:config',
 		enforce: 'pre',
@@ -90,51 +103,40 @@ export function viteWpReact(
 		},
 	};
 
-	const plugins: PluginOption = [
-		mainPlugin,
-		devServer({ corsOrigin: config.corsOrigin }),
-	];
+	const plugins: PluginOption = [mainPlugin, devServer({ corsOrigin })];
 
-	if (config.externalizeWpPackages) {
-		const callback =
-			'function' === typeof config.externalizeWpPackages
-				? config.externalizeWpPackages
-				: undefined;
-
-		plugins.push(externalizeWpPackages(callback));
+	if (externals) {
+		plugins.push(
+			externalsPlugin(
+				typeof externals === 'function' ? externals : undefined,
+			),
+		);
 	}
 
-	if (config.extractWpDependencies) {
-		// If `extractWpDependencies` is a boolean, use the default options.
-		const extractDepsConfig =
-			typeof config.extractWpDependencies === 'boolean'
-				? { outDir }
-				: {
-						outDir,
-						...config.extractWpDependencies,
-					};
-
-		plugins.push(extractWpDependencies(extractDepsConfig));
+	if (wpDependencies) {
+		plugins.push(
+			wpDependenciesPlugin({
+				outDir,
+				...(typeof wpDependencies === 'object' ? wpDependencies : {}),
+			}),
+		);
 	}
 
-	const makePot = config.makePot
-		? typeof config.makePot === 'boolean'
+	const makePotOptions = makePot
+		? makePot === true
 			? {}
-			: config.makePot
+			: makePot
 		: undefined;
 
-	if (config.enableReact ?? true) {
-		plugins.push(
-			viteReact(makePot ? getMakePotReactConfig(makePot) : undefined),
-		);
-	} else if (makePot) {
-		plugins.push(reactMakePot(makePot));
-	}
+	plugins.push(
+		viteReact(
+			makePotOptions && {
+				babel: {
+					plugins: [['@wordpress/babel-plugin-makepot', makePotOptions]],
+				},
+			},
+		),
+	);
 
 	return plugins;
 }
-
-/**
- * @deprecated Use the named `viteWpReact` export instead.
- */
-export default viteWpReact;

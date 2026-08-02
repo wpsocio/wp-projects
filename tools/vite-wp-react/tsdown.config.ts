@@ -20,14 +20,4 @@ export default defineConfig([
 		...commonConfig,
 		name: 'config',
 	},
-	{
-		entry: ['src/utils/index.ts'],
-		...commonConfig,
-		outDir: 'dist/utils',
-	},
-	{
-		entry: ['src/plugins/index.ts'],
-		...commonConfig,
-		outDir: 'dist/plugins',
-	},
 ]);
