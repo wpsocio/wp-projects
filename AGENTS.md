@@ -463,9 +463,9 @@ export default defineConfig(
 
 **`@wpsocio/vite-wp-react`** provides:
 
-1. **`externalizeWpPackages`** — Maps `@wordpress/*` imports to `window.wp.*` globals (e.g., `@wordpress/data` → `wp.data`). Also maps `react` → `React`, `jquery` → `jQuery`, etc.
-2. **`extractWpDependencies`** — Scans imports and generates `dependencies.json` listing WordPress script handles needed
-3. **`reactMakePot`** — Generates `.pot` files for i18n via `@wordpress/babel-plugin-makepot`
+1. **`externals`** (default on) — Maps `@wordpress/*` imports to `window.wp.*` globals (e.g., `@wordpress/data` → `wp.data`), except the `BUNDLED_WP_PACKAGES` not provided by WordPress. Also maps `react` → `React`, `jquery` → `jQuery`, etc. Implemented via `resolve.alias` pointing to generated CJS shims, which works in both build and dev (the dev dependency optimizer provides the CJS interop)
+2. **`wpDependencies`** (default on) — Generates `dependencies.json` listing WordPress script handles needed per entry (derived from the module graph in build, scanned with rolldown in dev)
+3. **`makePot`** (default off) — Generates `.pot` files for i18n via `@wordpress/babel-plugin-makepot`
 4. **`devServer`** — Finds available port, writes `dev-server.json` for PHP to detect HMR mode, configures CORS
 
 **Build output:** `src/assets/build/` containing `manifest.json`, hashed JS/CSS files, and `dependencies.json`
