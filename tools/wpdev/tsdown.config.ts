@@ -1,13 +1,14 @@
-import { type Options, defineConfig } from 'tsup';
+import { defineConfig, type UserConfig } from 'tsdown';
 
-const commonConfig: Options = {
+const commonConfig: UserConfig = {
 	clean: true,
-	splitting: true,
 	dts: true,
 	sourcemap: true,
 	format: ['cjs'],
 	outDir: 'dist/cjs',
+	fixedExtension: true,
 };
+
 export default defineConfig([
 	{
 		entry: ['src/index.ts'],

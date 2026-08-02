@@ -1,14 +1,14 @@
 import path from 'node:path';
 import type { Plugin as EsBuildPlugin } from 'esbuild';
 import { build as esBuild } from 'esbuild';
-import type { InputOption } from 'rollup';
+import type { Rollup } from 'vite';
 
 export const IMPORTS_TO_IGNORE =
 	/\.(css|less|sass|scss|styl|stylus|pcss|postcss|sss)(?:$|\?)/;
 
 export type ScanDependenciesOptions = {
 	absWorkingDir: string;
-	input?: InputOption;
+	input?: Rollup.InputOption;
 	dependenciesToScan: RegExp;
 	normalizePath?: (path: string) => string;
 	plugins?: Array<EsBuildPlugin>;

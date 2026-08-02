@@ -1,14 +1,13 @@
 import viteReact from '@vitejs/plugin-react';
-import type { InputOption } from 'rollup';
-import type { Plugin, PluginOption } from 'vite';
+import type { Plugin, PluginOption, Rollup } from 'vite';
 import {
 	type DevServerOptions,
-	type ExtractWpDependenciesOptions,
-	type ReactMakePotOptions,
 	devServer,
+	type ExtractWpDependenciesOptions,
 	externalizeWpPackages,
 	extractWpDependencies,
 	getMakePotReactConfig,
+	type ReactMakePotOptions,
 	reactMakePot,
 } from './plugins/index.js';
 
@@ -17,7 +16,7 @@ export type ViteWpReactOptions = {
 	 * The entry point to your application. Defaults to `js/main.js`.
 	 * @default 'js/main.js'
 	 */
-	input?: InputOption;
+	input?: Rollup.InputOption;
 
 	/**
 	 * The directory to write the build to. Defaults to `build`.
@@ -135,4 +134,7 @@ export function viteWpReact(
 	return plugins;
 }
 
+/**
+ * @deprecated Use the named `viteWpReact` export instead.
+ */
 export default viteWpReact;
