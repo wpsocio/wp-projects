@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Plugin, ResolvedConfig } from 'vite';
-import { checkAvailablePort } from '../utils/check-available-port.js';
+import { findAvailablePort } from './find-available-port.js';
 
 export type DevServerOptions = {
 	outDir?: string;
@@ -11,6 +11,10 @@ export type DevServerOptions = {
 
 const TARGET_PLUGINS = ['vite:react-refresh'];
 
+/**
+ * Writes a `dev-server.json` file to the output directory, for PHP to detect
+ * dev mode and load the assets from the dev server.
+ */
 export function devServer(options: DevServerOptions = {}): Plugin {
 	let resolvedConfig: ResolvedConfig;
 
@@ -26,9 +30,8 @@ export function devServer(options: DevServerOptions = {}): Plugin {
 		apply: 'serve',
 		name: 'vwpr:dev-server',
 		async config(config) {
-			let {
-				server: { host = 'localhost', port = 5173, ...serverConfig } = {},
-			} = config;
+			let { server: { host = 'localhost', port = 5173, ...serverConfig } = {} } =
+				config;
 
 			/**
 			 * Need to set an actual host
@@ -38,10 +41,10 @@ export function devServer(options: DevServerOptions = {}): Plugin {
 				host = '0.0.0.0';
 			}
 
-			const hmrProtocol = serverConfig.https ? 'wss' : 'ws';
+			const wsProtocol = serverConfig.https ? 'wss' : 'ws';
 			const serverProtocol = serverConfig.https ? 'https' : 'http';
 
-			port = await checkAvailablePort({ host, port });
+			port = await findAvailablePort(host, port);
 
 			// This will be used by the PHP helper.
 			const origin = `${serverProtocol}://${host}:${port}`;
@@ -53,10 +56,10 @@ export function devServer(options: DevServerOptions = {}): Plugin {
 					origin,
 					port,
 					strictPort: true,
-					hmr: {
+					ws: {
 						port,
 						host,
-						protocol: hmrProtocol,
+						protocol: wsProtocol,
 					},
 					cors: {
 						origin: options.corsOrigin,
@@ -79,7 +82,6 @@ export function devServer(options: DevServerOptions = {}): Plugin {
 				),
 			});
 
-			// Ensure the directory exists
 			fs.mkdirSync(getTargetDir(), { recursive: true });
 
 			fs.writeFileSync(getManifestPath(), data, 'utf8');

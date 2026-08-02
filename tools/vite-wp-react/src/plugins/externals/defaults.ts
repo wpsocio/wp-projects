@@ -1,16 +1,10 @@
-import type { PluginOption } from 'vite';
-import viteExternalPlugin from 'vite-plugin-external';
 import {
 	BUNDLED_WP_PACKAGES,
-	NON_WP_PACKAGES,
 	dashToCamelCase,
-} from '../utils/index.js';
+	NON_WP_PACKAGES,
+} from '../../utils/wp-packages.js';
 
-const createExternal =
-	// viteExternalPlugin is not typed well
-	viteExternalPlugin as unknown as (typeof viteExternalPlugin)['default'];
-
-export function shouldExternalizePakage(name: string) {
+export function shouldExternalizePackage(name: string) {
 	if (BUNDLED_WP_PACKAGES.includes(name)) {
 		return false;
 	}
@@ -27,7 +21,7 @@ export function shouldExternalizePakage(name: string) {
  * @returns The externalized variable name or undefined.
  */
 export function defaultExternalizeCallback(name: string) {
-	if (!shouldExternalizePakage(name)) {
+	if (!shouldExternalizePackage(name)) {
 		return;
 	}
 
@@ -40,12 +34,3 @@ export function defaultExternalizeCallback(name: string) {
 		return `wp.${variable}`;
 	}
 }
-
-/**
- * Updates the vite config to externalize all WordPress packages.
- */
-export const externalizeWpPackages = (
-	callback = defaultExternalizeCallback,
-): PluginOption => {
-	return [createExternal({ interop: 'auto', externals: callback })];
-};

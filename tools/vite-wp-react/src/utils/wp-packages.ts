@@ -41,3 +41,21 @@ export const BUNDLED_WP_PACKAGES = [
 	'@wordpress/views',
 	'@wordpress/ui',
 ];
+
+/**
+ * Converts kebab-case string to camelCase.
+ */
+export function dashToCamelCase(input: string): string {
+	return input.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
+}
+
+/**
+ * Maps a package name to its WordPress script handle.
+ */
+export function getWpScriptHandle(name: string): string {
+	if (name in PACKAGE_HANDLES) {
+		return PACKAGE_HANDLES[name];
+	}
+
+	return name.replace(/^@wordpress\//, 'wp-');
+}
