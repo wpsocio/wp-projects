@@ -21,17 +21,23 @@
  * Scope TailwindCSS preflight to a specific selector.
  *
  * @param {string} $scope-to The selector(s) to scope the preflight to. Accepts a comma separated list.
+ * @param {string} $except The selector(s) to keep preflight away from, for markup that must render
+ *                         unstyled, like a preview of front end output. Accepts a comma separated list.
  */
-@mixin scope-tw-preflight($scope-to) {
+@mixin scope-tw-preflight($scope-to, $except: null) {
     @plugin "tailwindcss-scoped-preflight" {
         isolation-strategy: inside;
         selector: #{$scope-to};
+
+        @if $except {
+            except: #{$except};
+        }
     }
 
     /* Preflight resets the box model via `*`, which the plugin rewrites to zero specificity and
        so loses to the WP admin element selectors. `:where()` keeps this at (0,0,1) - a tie that
        we win on source order. */
-    :where(#{$scope-to}) :is(blockquote, code, dd, dl, fieldset, figure, h1, h2, h3, h4, h5, h6, hr, kbd, li, menu, ol, p, pre, ul) {
+    :where(#{$scope-to}) :is(blockquote, code, dd, dl, fieldset, figure, h1, h2, h3, h4, h5, h6, hr, kbd, li, menu, ol, p, pre, ul)#{if($except, ':where(:not(' + $except + ',' + $except + ' *))', '')} {
         margin: 0;
         padding: 0;
     }

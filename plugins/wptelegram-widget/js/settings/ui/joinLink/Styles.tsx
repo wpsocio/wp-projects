@@ -1,7 +1,6 @@
 import { useFormContext, useWatch } from '@wpsocio/form';
 import { FormItem } from '@wpsocio/shared-ui/form/form-item';
 import { TelegramIcon } from '@wpsocio/shared-ui/wptelegram/telegram-icon.js';
-import { Link } from '@wpsocio/ui/wrappers/link';
 import { ColorInputPicker } from '@wpsocio/ui/wrappers/color-input-picker';
 import { FormControl, FormField } from '@wpsocio/ui/wrappers/form';
 import { useEffect } from 'react';
@@ -55,7 +54,8 @@ export const Styles: React.FC = () => {
 			/>
 			{text && url && (
 				<div className="wp-block-wptelegram-widget-join-channel aligncenter">
-					<Link
+					{/* A plain anchor, not the Link wrapper, to keep Tailwind styles off the preview. */}
+					<a
 						href={url}
 						rel="noopener noreferrer"
 						className="components-button join-link is-large has-text has-icon"
@@ -66,7 +66,7 @@ export const Styles: React.FC = () => {
 					>
 						<TelegramIcon />
 						{text}
-					</Link>
+					</a>
 				</div>
 			)}
 		</>
