@@ -65,7 +65,7 @@
 		"@types/semver": "^7.7.1",
 		"oclif": "^4.22.61",
 		"rimraf": "^6.1.2",
-		"tsup": "^8.5.1",
+		"tsdown": "^0.22.14",
 		"typescript": "^5.9.3",
 		"wireit": "^0.14.12"
 	},
@@ -87,12 +87,12 @@
 	},
 	"wireit": {
 		"build": {
-			"command": "tsup && tsc --build --pretty",
+			"command": "tsdown && tsc --build --pretty",
 			"clean": "if-file-deleted",
 			"files": [
 				"src/",
 				"tsconfig.json",
-				"tsup.config.ts"
+				"tsdown.config.ts"
 			],
 			"output": [
 				"dist/**"

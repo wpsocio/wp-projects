@@ -1,5 +1,5 @@
 import type { UserConfig } from 'vite';
-import viteWpReact, { type ViteWpReactOptions } from './index.js';
+import { type ViteWpReactOptions, viteWpReact } from './index.js';
 import type { DevServerOptions } from './plugins/dev-server.js';
 import type { ReactMakePotOptions } from './plugins/react-make-pot.js';
 

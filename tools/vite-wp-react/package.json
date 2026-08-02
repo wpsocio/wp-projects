@@ -25,36 +25,60 @@
 	},
 	"type": "module",
 	"main": "./dist/index.cjs",
-	"module": "./dist/index.js",
-	"types": "./dist/index.d.ts",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.cts",
 	"exports": {
 		".": {
-			"require": "./dist/index.cjs",
-			"import": "./dist/index.js"
+			"require": {
+				"types": "./dist/index.d.cts",
+				"default": "./dist/index.cjs"
+			},
+			"import": {
+				"types": "./dist/index.d.mts",
+				"default": "./dist/index.mjs"
+			}
 		},
 		"./config": {
-			"require": "./dist/config.cjs",
-			"import": "./dist/config.js"
+			"require": {
+				"types": "./dist/config.d.cts",
+				"default": "./dist/config.cjs"
+			},
+			"import": {
+				"types": "./dist/config.d.mts",
+				"default": "./dist/config.mjs"
+			}
 		},
 		"./utils": {
-			"require": "./dist/utils/index.cjs",
-			"import": "./dist/utils/index.js"
+			"require": {
+				"types": "./dist/utils/index.d.cts",
+				"default": "./dist/utils/index.cjs"
+			},
+			"import": {
+				"types": "./dist/utils/index.d.mts",
+				"default": "./dist/utils/index.mjs"
+			}
 		},
 		"./plugins": {
-			"require": "./dist/plugins/index.cjs",
-			"import": "./dist/plugins/index.js"
+			"require": {
+				"types": "./dist/plugins/index.d.cts",
+				"default": "./dist/plugins/index.cjs"
+			},
+			"import": {
+				"types": "./dist/plugins/index.d.mts",
+				"default": "./dist/plugins/index.mjs"
+			}
 		}
 	},
 	"typesVersions": {
 		"*": {
 			"config": [
-				"./dist/config.d.ts"
+				"./dist/config.d.cts"
 			],
 			"utils": [
-				"./dist/utils/index.d.ts"
+				"./dist/utils/index.d.cts"
 			],
 			"plugins": [
-				"./dist/plugins/index.d.ts"
+				"./dist/plugins/index.d.cts"
 			]
 		}
 	},
@@ -68,7 +92,7 @@
 		"@types/node": "^25.0.3",
 		"rimraf": "^6.1.2",
 		"rollup": "^4.54.0",
-		"tsup": "^8.5.1",
+		"tsdown": "^0.22.14",
 		"typescript": "^5.9.3",
 		"wireit": "^0.14.12"
 	},
@@ -85,19 +109,18 @@
 	},
 	"wireit": {
 		"build": {
-			"command": "tsup",
+			"command": "tsdown",
 			"clean": "if-file-deleted",
 			"files": [
 				"src/",
 				"tsconfig.json",
-				"tsup.config.ts"
+				"tsdown.config.ts"
 			],
 			"output": [
 				"dist/**"
 			]
 		},
 		"build:local": {
-			"command": "tsc --emitDeclarationOnly --declaration",
 			"dependencies": [
 				"build"
 			]

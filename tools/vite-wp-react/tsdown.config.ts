@@ -1,13 +1,21 @@
-import { type Options, defineConfig } from 'tsup';
+import { defineConfig, type UserConfig } from 'tsdown';
 
-const commonConfig: Options = {
+const commonConfig: UserConfig = {
 	clean: true,
-	splitting: true,
 	dts: true,
 	sourcemap: true,
 	format: ['esm', 'cjs'],
 	outDir: 'dist',
+	fixedExtension: true,
+	/*
+	 * Pin CJS output to named exports. Entries mixing named and default exports
+	 * resolve to this anyway, so it only silences the MIXED_EXPORTS warning.
+	 */
+	cjsDefault: false,
+	/* Keep third party types imported rather than inlined into our .d.ts files. */
+	deps: { dts: { neverBundle: true } },
 };
+
 export default defineConfig([
 	{
 		entry: ['src/index.ts'],

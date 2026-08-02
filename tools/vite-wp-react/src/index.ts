@@ -3,12 +3,12 @@ import type { InputOption } from 'rollup';
 import type { Plugin, PluginOption } from 'vite';
 import {
 	type DevServerOptions,
-	type ExtractWpDependenciesOptions,
-	type ReactMakePotOptions,
 	devServer,
+	type ExtractWpDependenciesOptions,
 	externalizeWpPackages,
 	extractWpDependencies,
 	getMakePotReactConfig,
+	type ReactMakePotOptions,
 	reactMakePot,
 } from './plugins/index.js';
 
@@ -135,4 +135,7 @@ export function viteWpReact(
 	return plugins;
 }
 
+/**
+ * @deprecated Use the named `viteWpReact` export instead.
+ */
 export default viteWpReact;
