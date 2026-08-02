@@ -54,6 +54,7 @@
 		"@types/wordpress__edit-post": "^8.4.2",
 		"@wpsocio/vite-wp-react": "workspace:*",
 		"tailwindcss": "^4.1.18",
+		"tailwindcss-scoped-preflight": "^4.0.6",
 		"typescript": "^5.9.3",
 		"vite": "^7.3.0",
 		"wireit": "^0.14.12"
