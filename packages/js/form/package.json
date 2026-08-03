@@ -13,7 +13,8 @@
 		"@wpsocio/utilities": "workspace:*",
 		"classnames": "^2.5.1",
 		"ramda": "^0.32.0",
-		"react-hook-form": "^7.69.0"
+		"react-hook-form": "^7.69.0",
+		"zod": "^4.4.3"
 	},
 	"peerDependencies": {
 		"react": "^18.3.1",

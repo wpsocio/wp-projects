@@ -16,7 +16,7 @@ inputs:
 
   pnpm-version:
     description: "The version of pnpm to use."
-    default: ""
+    default: "11"
 
   lockfile:
     description: "The lockfile to use."
@@ -34,7 +34,7 @@ runs:
       with:
         node-version: ${{ inputs.node-version }}
 
-    - uses: pnpm/action-setup@v4
+    - uses: pnpm/action-setup@v6
       with:
         version: ${{ inputs.pnpm-version }}
         run_install: false
