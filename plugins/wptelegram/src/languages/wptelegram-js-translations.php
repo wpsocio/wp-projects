@@ -263,7 +263,7 @@ $generated_i18n_strings = array(
 	__( 'Before the Text', 'wptelegram' ),
 
 	// Reference: ../../packages/js/shared-ui/wptelegram/image-settings.tsx:28
-	// Reference: ../../packages/js/shared-ui/wptelegram/single-message.tsx:52
+	// Reference: ../../packages/js/shared-ui/wptelegram/single-message.tsx:49
 	__( 'After the Text', 'wptelegram' ),
 
 	// Reference: ../../packages/js/shared-ui/wptelegram/image-settings.tsx:43
@@ -386,7 +386,7 @@ $generated_i18n_strings = array(
 	__( 'Enable this option if you use a plugin to generate posts.', 'wptelegram' ),
 
 	// Reference: ../../packages/js/shared-ui/wptelegram/parse-mode-field.tsx:18
-	// Reference: ../../packages/js/shared-ui/wptelegram/single-message.tsx:71
+	// Reference: ../../packages/js/shared-ui/wptelegram/single-message.tsx:66
 	__( 'None', 'wptelegram' ),
 
 	// Reference: ../../packages/js/shared-ui/wptelegram/parse-mode-field.tsx:22
@@ -490,20 +490,23 @@ $generated_i18n_strings = array(
 	// Reference: ../../packages/js/shared-ui/wptelegram/rules/rule-set-values.tsx:21
 	__( 'No options available', 'wptelegram' ),
 
-	// Reference: ../../packages/js/shared-ui/wptelegram/single-message.tsx:100
-	__( 'Send both text and image in single message.', 'wptelegram' ),
+	// Reference: ../../packages/js/shared-ui/wptelegram/single-message.tsx:37
+	__( 'Alert!', 'wptelegram' ),
 
-	// Reference: ../../packages/js/shared-ui/wptelegram/single-message.tsx:46
+	// Reference: ../../packages/js/shared-ui/wptelegram/single-message.tsx:43
 	/* translators: 1 - field name, 2 - value */
 	__( 'When %1$s is set to %2$s:', 'wptelegram' ),
 
-	// Reference: ../../packages/js/shared-ui/wptelegram/single-message.tsx:65
+	// Reference: ../../packages/js/shared-ui/wptelegram/single-message.tsx:60
 	/* translators: 1 - field name, 2 - value */
 	__( '%1$s should not be %2$s.', 'wptelegram' ),
 
-	// Reference: ../../packages/js/shared-ui/wptelegram/single-message.tsx:81
+	// Reference: ../../packages/js/shared-ui/wptelegram/single-message.tsx:76
 	/* translators: 1 - field name */
 	__( '%s should not be enabled.', 'wptelegram' ),
+
+	// Reference: ../../packages/js/shared-ui/wptelegram/single-message.tsx:95
+	__( 'Send both text and image in single message.', 'wptelegram' ),
 
 	// Reference: ../../packages/js/shared-ui/wptelegram/template-info.tsx:120
 	__( 'Collapse', 'wptelegram' ),

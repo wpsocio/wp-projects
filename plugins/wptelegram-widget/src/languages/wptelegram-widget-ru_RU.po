@@ -22,7 +22,7 @@ msgstr ""
 msgid "Telegram Widget"
 msgstr "Telegram виджет"
 
-#: includes/AssetManager.php:205
+#: includes/AssetManager.php:189
 msgid "With this plugin, you can let the users widget to your website with their Telegram and make it simple for them to get connected."
 msgstr ""
 

@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.9
+
+### Patch Changes
+
+- [#330](https://github.com/wpsocio/wp-projects/pull/330) [`cd28957`](https://github.com/wpsocio/wp-projects/commit/cd2895707bb8349d6c7270e15dd068879313777e) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Smaller builds and performance improvements.
+
 ## 1.0.8
 
 ### Patch Changes
