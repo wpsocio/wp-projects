@@ -7,9 +7,14 @@ import { FormItem } from '../form/form-item.js';
 import { getFieldLabel } from './fields.js';
 import type { CommonProps } from './types.js';
 
-export type MessageTemplateProps = CommonProps;
+export type MessageTemplateProps = CommonProps & {
+	placeholder?: string;
+};
 
-export const MessageTemplate: React.FC<MessageTemplateProps> = ({ prefix }) => {
+export const MessageTemplate: React.FC<MessageTemplateProps> = ({
+	prefix,
+	placeholder,
+}) => {
 	return (
 		<FormField
 			name={prefixName('message_template', prefix)}
@@ -21,6 +26,7 @@ export const MessageTemplate: React.FC<MessageTemplateProps> = ({ prefix }) => {
 				>
 					<FormControl>
 						<Textarea
+							placeholder={placeholder}
 							rows={10}
 							spellCheck={false}
 							className="h-auto"
