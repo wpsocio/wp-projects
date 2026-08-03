@@ -2,10 +2,10 @@
 Contributors: wpsocio, irshadahmad21
 Donate link: https://wpsocio.com/donate
 Tags: telegram, comments, discuss, social, widget
-Requires at least: 6.6
+Requires at least: 6.7
 Requires PHP: 8.0
-Tested up to: 6.9
-Stable tag: 1.2.8
+Tested up to: 7.0.2
+Stable tag: 1.2.9
 License: GPL-3.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -76,7 +76,7 @@ Automatic updates should work smoothly, but we still recommend you back up your 
 
 == Changelog ==
 
-= 1.2.8 =
-- Drop support for PHP 7.x, making PHP 8 the minimum required version.
+= 1.2.9 =
+- Fix other conflicting plugins breaking the settings page UI.
 
 [See full changelog](https://github.com/wpsocio/wptelegram-comments/blob/main/CHANGELOG.md)
