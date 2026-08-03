@@ -1,3 +1,4 @@
+import { createRequire } from 'node:module';
 import viteReact from '@vitejs/plugin-react';
 import type { Plugin, PluginOption, Rollup } from 'vite';
 import { devServer } from './plugins/dev-server/index.js';
@@ -132,7 +133,15 @@ export function viteWpReact({
 		viteReact(
 			makePotOptions && {
 				babel: {
-					plugins: [['@wordpress/babel-plugin-makepot', makePotOptions]],
+					plugins: [
+						[
+							/* Resolve from this package - the consumer project doesn't declare it. */
+							createRequire(import.meta.url).resolve(
+								'@wordpress/babel-plugin-makepot',
+							),
+							makePotOptions,
+						],
+					],
 				},
 			},
 		),

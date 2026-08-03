@@ -1,9 +1,78 @@
 packages:
-    - "packages/js/*"
-    - "!packages/js/shared"
-    - "packages/js/shared/*"
-    - "packages/php/*" # Just for running PHP tests via pnpm
-    - "plugins/*"
-    - "premium"
-    - "premium/plugins/*"
-    - "tools/*"
+  - "packages/js/*"
+  - "!packages/js/shared"
+  - "packages/js/shared/*"
+  - "packages/php/*" # Just for running PHP tests via pnpm
+  - "plugins/*"
+  - "premium"
+  - "premium/plugins/*"
+  - "tools/*"
+
+# --- toolchain reproducibility ---
+engineStrict: true
+preferWorkspacePackages: true
+
+# --- strict peer deps ---
+autoInstallPeers: false
+dedupePeerDependents: true
+strictPeerDependencies: true
+peerDependencyRules:
+  ignoreMissing:
+    # shadcn CLI ships @hono/node-server without hono; that code path is unused here.
+    - hono
+
+# --- no runtime hoisting: a workspace may import only what it declares.
+# Only @types/* are hoisted (internally), because many libraries reference
+# react types in their .d.ts files without declaring @types/react. ---
+nodeLinker: isolated
+hoistPattern:
+  - "@types/*"
+publicHoistPattern: []
+
+# --- dependency patches ---
+# @hookform/resolvers/zod imports zod at runtime but does not declare it
+# (phantom peer); under hoist:false that fails to resolve. Declare the missing edge.
+packageExtensions:
+  "@hookform/resolvers":
+    peerDependencies:
+      zod: "*"
+    peerDependenciesMeta:
+      zod:
+        optional: true
+
+# --- security / supply-chain ---
+# Let new releases age before they are considered at resolution time.
+# 3 days; use minimumReleaseAgeExclude for surgical exceptions when a
+# fresh security patch can't wait out the window.
+minimumReleaseAge: 4320
+
+# Don't allow trust downgrades (e.g. a package dropping provenance/attestations).
+trustPolicy: no-downgrade
+trustPolicyExclude:
+  # Older pinned versions published without provenance; newer releases have it.
+  - "semver@5.7.2 || 6.3.1"
+  # https://github.com/paulmillr/chokidar/issues/1440
+  - "chokidar@4.0.3"
+  # Pinned via @types/node; published without provenance unlike sibling releases.
+  - "undici-types@6.21.0"
+
+# Block odd protocols (git:, http:, etc.) in transitive deps.
+blockExoticSubdeps: true
+
+overrides:
+  # shadcn resolves zod 3.24.x, below the ^3.25 floor its own MCP SDK needs.
+  "shadcn>zod": ">=3.25 <4"
+
+# No dep build scripts by default: fail install if an unlisted dep wants to run one.
+strictDepBuilds: true
+# node_modules must match the lockfile before any `pnpm run`.
+verifyDepsBeforeRun: error
+# Build-script policy: matchers -> allow (true) / deny (false).
+allowBuilds:
+  # Postinstall only prints a funding message.
+  core-js: false
+  core-js-pure: false
+  # Postinstall only prints a "support us" message.
+  msw: false
+  # Loads prebuilt binaries via platform optional deps; build script not needed.
+  unrs-resolver: false

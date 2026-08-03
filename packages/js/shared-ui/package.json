@@ -11,19 +11,21 @@
 		"@wpsocio/ui": "workspace:*",
 		"@wpsocio/utilities": "workspace:*",
 		"ramda": "^0.32.0",
-		"zod": "^4.2.1"
+		"use-debounce": "^10.0.6",
+		"zod": "^4.4.3"
 	},
 	"peerDependencies": {
 		"react": "^18.3.1",
-		"react-dom": "^18.3.1",
-		"use-debounce": "^10.0.4"
+		"react-dom": "^18.3.1"
 	},
 	"devDependencies": {
 		"@types/node": "^25.0.3",
 		"@types/ramda": "^0.31.1",
 		"@types/react": "^18.3.27",
 		"@types/react-dom": "^18.3.7",
-		"typescript": "^5.9.3",
-		"tailwindcss": "^4.3.3"
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1",
+		"tailwindcss": "^4.3.3",
+		"typescript": "^5.9.3"
 	}
 }
