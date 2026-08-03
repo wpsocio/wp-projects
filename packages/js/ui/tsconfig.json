@@ -7,7 +7,6 @@
 		"allowSyntheticDefaultImports": true,
 		"moduleResolution": "NodeNext",
 		"module": "NodeNext",
-		"baseUrl": ".",
 		"paths": {
 			"@wpsocio/ui/*": ["./src/*"]
 		}
