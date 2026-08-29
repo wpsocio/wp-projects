@@ -1,7 +1,7 @@
 {
 	"extends": "../../../config/tsconfig.react.json",
 	"exclude": ["**/node_modules"],
-	"include": ["components", "form", "wptelegram"],
+	"include": ["definitions.d.ts", "components", "form", "wp", "wptelegram"],
 	"compilerOptions": {
 		// "jsx": "react-jsx",
 		"esModuleInterop": true,

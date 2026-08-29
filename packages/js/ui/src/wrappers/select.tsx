@@ -1,6 +1,4 @@
 import * as React from 'react';
-
-import { cn } from '../lib/utils.js';
 import {
 	SelectContent,
 	SelectGroup,
@@ -10,6 +8,7 @@ import {
 	Select as SelectUI,
 	SelectValue,
 } from '../components/select.js';
+import { cn } from '../lib/utils.js';
 import { Spinner } from './spinner.js';
 import type { OptionProps } from './types.js';
 
@@ -75,7 +74,7 @@ const Select = React.forwardRef(
 					portalContainer={portalContainer || getPortalContainer()}
 				>
 					{options.map((option) => (
-						<React.Fragment key={option.label}>
+						<React.Fragment key={JSON.stringify(option)}>
 							{(() => {
 								if ('options' in option && Array.isArray(option.options)) {
 									return (

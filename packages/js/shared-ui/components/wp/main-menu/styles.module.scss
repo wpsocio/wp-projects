@@ -1,0 +1,26 @@
+@use '@wpsocio/ui/wp-base-styles.scss' as wp;
+
+.container {
+    div[role="group"] {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem
+    }
+
+    :global(.components-menu-item__button) {
+        height: auto;
+        padding: 0;
+    }
+
+    :global(.components-menu-item__item) {
+        @include wp.body-x-large();
+    }
+
+    :global(.components-menu-item__info) {
+        @include wp.body-large();
+    }
+
+    :global(.components-menu-item__info) {
+        text-align: start;
+    }
+}
