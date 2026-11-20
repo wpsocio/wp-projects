@@ -20,6 +20,9 @@ peerDependencyRules:
   ignoreMissing:
     # shadcn CLI ships @hono/node-server without hono; that code path is unused here.
     - hono
+  allowedVersions:
+    # Optional peer; @wordpress/scripts 31 works with wp-env 11, which fixes the zip extraction hang.
+    "@wordpress/scripts>@wordpress/env": "11"
 
 # --- no runtime hoisting: a workspace may import only what it declares.
 # Only @types/* are hoisted (internally), because many libraries reference
@@ -55,6 +58,11 @@ trustPolicyExclude:
   - "chokidar@4.0.3"
   # Pinned via @types/node; published without provenance unlike sibling releases.
   - "undici-types@6.21.0"
+  # octokit@3.1.2 (pinned by @wp-playground via wp-env) resolves to older-line security
+  # backports published by octokitbot without provenance.
+  - "@octokit/endpoint@9.0.6"
+  - "@octokit/plugin-paginate-rest@9.2.2"
+  - "@octokit/webhooks@12.3.2"
 
 # Block odd protocols (git:, http:, etc.) in transitive deps.
 blockExoticSubdeps: true
