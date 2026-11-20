@@ -35,12 +35,11 @@ jobs:
           git config user.email "${{ secrets.GIT_USER_EMAIL_IR }}"
 
       - name: Create Release Pull Request or Publish
-        uses: changesets/action@v1
+        uses: changesets/action@v2
         with:
-          publish: pnpm release
-          version: pnpm prep-release
-          title: Prepare for next release
-          commit: Prepare for next release
-          setupGitUser: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN_IR }}
+          github-token: ${{ secrets.ACCESS_TOKEN_IR }}
+          publish-script: pnpm release
+          version-script: pnpm prep-release
+          pr-title: Prepare for next release
+          commit-message: Prepare for next release
+          push-with-git-cli: true
