@@ -180,6 +180,19 @@ class Utils {
 	}
 
 	/**
+	 * Check whether the given value is a valid Telegram username.
+	 *
+	 * @since x.y.z
+	 *
+	 * @param mixed $username The username to check.
+	 *
+	 * @return bool
+	 */
+	public static function is_valid_tg_username( $username ) {
+		return is_string( $username ) && (bool) preg_match( '/\A[a-zA-Z]\w{3,30}[^\W_]\z/', $username );
+	}
+
+	/**
 	 * Send request to t.me/... and cache the result.
 	 *
 	 * @since  2.1.9

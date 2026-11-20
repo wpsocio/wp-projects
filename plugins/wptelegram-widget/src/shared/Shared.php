@@ -77,14 +77,14 @@ class Shared extends BaseClass {
 		add_rewrite_tag( '%core%', '([^&]+)' );
 		add_rewrite_tag( '%module%', '([^&]+)' );
 		add_rewrite_tag( '%action%', '([^&]+)' );
-		add_rewrite_tag( '%username%', '([^&]+)' );
-		add_rewrite_tag( '%message_id%', '([^&]+)' );
+		add_rewrite_tag( '%username%', '([a-zA-Z]\w{3,30}[^\W_])' );
+		add_rewrite_tag( '%message_id%', '([0-9]+)' );
 
 		// For embedded post (legacy widget).
-		add_rewrite_rule( '^wptelegram/widget/view/@([a-zA-Z]\w{3,30}[^\W_])/([0-9]+)/?', 'index.php?core=wptelegram&module=widget&action=view&username=$matches[1]&message_id=$matches[2]', 'top' );
+		add_rewrite_rule( '^wptelegram/widget/view/@([a-zA-Z]\w{3,30}[^\W_])/([0-9]+)/?$', 'index.php?core=wptelegram&module=widget&action=view&username=$matches[1]&message_id=$matches[2]', 'top' );
 
 		// For embedded widget.
-		add_rewrite_rule( '^wptelegram/widget/view/@([a-zA-Z]\w{3,30}[^\W_])/?', 'index.php?core=wptelegram&module=widget&action=view&username=$matches[1]', 'top' );
+		add_rewrite_rule( '^wptelegram/widget/view/@([a-zA-Z]\w{3,30}[^\W_])/?$', 'index.php?core=wptelegram&module=widget&action=view&username=$matches[1]', 'top' );
 	}
 
 	/**
@@ -104,6 +104,13 @@ class Shared extends BaseClass {
 			) {
 
 			if ( 'view' === $qvs['action'] ) {
+
+				$is_valid_message_id = ! isset( $qvs['message_id'] ) || preg_match( '/\A[0-9]+\z/', (string) $qvs['message_id'] );
+
+				if ( ! Utils::is_valid_tg_username( $qvs['username'] ) || ! $is_valid_message_id ) {
+					status_header( 404 );
+					exit;
+				}
 
 				$saved_usernames = [
 					strtolower( WPTG_Widget()->options()->get_path( 'ajax_widget.username' ) ),

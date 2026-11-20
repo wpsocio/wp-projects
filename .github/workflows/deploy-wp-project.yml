@@ -14,7 +14,7 @@ jobs:
   deploy:
     name: Deploy WP Project
     needs: [details]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     if: ${{ fromJson(needs.details.outputs.result).shouldDeploy }}
     steps:
       - name: Checkout
@@ -71,7 +71,7 @@ jobs:
 
   details:
     name: Get details
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     outputs:
       result: ${{ steps.details.outputs.result }}
     steps:

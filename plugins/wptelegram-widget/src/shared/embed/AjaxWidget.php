@@ -37,7 +37,7 @@ class AjaxWidget {
 
 			$url = sanitize_text_field( wp_unslash( $_GET['url'] ) );
 
-			if ( ! preg_match( '/\Ahttps:\/\/t\.me\/s\/' . preg_quote( $username, '/' ) . '.*/i', $url ) ) {
+			if ( ! preg_match( '/\Ahttps:\/\/t\.me\/s\/' . preg_quote( $username, '/' ) . '(?:\?.*)?\z/i', $url ) ) {
 				exit;
 			}
 
@@ -146,7 +146,7 @@ class AjaxWidget {
 		$content = preg_replace_callback(
 			$pattern,
 			function ( $matches ) use ( $username ) {
-				return add_query_arg( 'url', rawurlencode( 'https://t.me' . $matches[0] ), AjaxWidgetShortcode::get_ajax_widget_embed_url( $username ) );
+				return esc_url( add_query_arg( 'url', rawurlencode( 'https://t.me' . $matches[0] ), AjaxWidgetShortcode::get_ajax_widget_embed_url( $username ) ) );
 			},
 			$content
 		);
@@ -159,7 +159,7 @@ class AjaxWidget {
 			function ( $matches ) use ( $username ) {
 
 				// Append the fields to the <form> tag if needed.
-				return str_replace( $matches[1], AjaxWidgetShortcode::get_ajax_widget_embed_url( $username ), $matches[0] ) . self::get_injected_form_fields( $username );
+				return str_replace( $matches[1], esc_url( AjaxWidgetShortcode::get_ajax_widget_embed_url( $username ) ), $matches[0] ) . self::get_injected_form_fields( $username );
 			},
 			$content
 		);
@@ -217,7 +217,7 @@ class AjaxWidget {
 	 */
 	public static function get_channel_cors_url( $username ) {
 
-		$url = "https://t.me/s/{$username}";
+		$url = 'https://t.me/s/' . rawurlencode( $username );
 
 		if ( isset( $_GET['q'] ) ) {
 			$url = add_query_arg( 'q', sanitize_text_field( wp_unslash( $_GET['q'] ) ), $url );

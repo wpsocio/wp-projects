@@ -10,7 +10,7 @@ export const phpVersions = ['8.0', '8.1', '8.2', '8.3', '8.4', '8.5'];
  * WordPress versions the CI matrices run against.
  * The first one is the minimum required.
  */
-export const wpVersions = ['6.7', 'master'];
+export const wpVersions = ['6.8', 'master'];
 
 /**
  * @type {import("@wpsocio/wpdev").ProjectConfig['getBundleConfig']}
@@ -32,7 +32,7 @@ export const getBundleConfig = ({ slug, key, version, textDomain }) => {
 					requirements: {
 						requiresPHP: phpVersions[0],
 						requiresAtLeast: wpVersions[0],
-						testedUpTo: '7.0.2',
+						testedUpTo: '7.1.5',
 					},
 					target: {
 						files: [

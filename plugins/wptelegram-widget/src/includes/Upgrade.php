@@ -76,6 +76,12 @@ class Upgrade extends BaseClass {
 			}
 		}
 
+		/**
+		 * Regenerate rewrite rules on next load, after the plugin rules are registered.
+		 * Must run after the upgrades above, as they may flush the rules too early.
+		 */
+		delete_option( 'rewrite_rules' );
+
 		do_action( 'wptelegram_widget_after_do_upgrade', $current_version );
 	}
 

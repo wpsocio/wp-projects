@@ -9,7 +9,7 @@ jobs:
     name: "Read the requirements"
     if: github.repository == 'wpsocio/wp-projects'
     timeout-minutes: 5
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     outputs:
       php-all: ${{ steps.read.outputs.php-all }}
       php-min: ${{ steps.read.outputs.php-min }}
@@ -28,7 +28,7 @@ jobs:
     name: "PHP ${{ matrix.php }}: Lint, Test"
     if: github.repository == 'wpsocio/wp-projects'
     timeout-minutes: 15
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: requirements
     strategy:
       matrix:
@@ -99,7 +99,7 @@ jobs:
     name: "JS: Lint, Build and Test"
     if: github.repository == 'wpsocio/wp-projects'
     timeout-minutes: 15
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout this repo
@@ -140,7 +140,7 @@ jobs:
     name: "E2E Tests - PHP: ${{ matrix.php }}, WP: ${{ matrix.wp }}"
     if: github.repository == 'wpsocio/wp-projects'
     timeout-minutes: 15
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: requirements
     strategy:
       matrix:

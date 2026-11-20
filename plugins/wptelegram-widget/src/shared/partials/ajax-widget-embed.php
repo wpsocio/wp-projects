@@ -11,11 +11,9 @@
 
 $username = get_query_var( 'username', false );
 
-if ( ! $username ) {
+if ( ! WPTelegram\Widget\includes\Utils::is_valid_tg_username( $username ) ) {
 	status_header( 404 );
 	exit;
 }
-
-$username = sanitize_text_field( $username );
 
 do_action( 'wptelegram_widget_ajax_widget_embed', $username );
