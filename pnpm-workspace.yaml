@@ -84,3 +84,5 @@ allowBuilds:
   msw: false
   # Loads prebuilt binaries via platform optional deps; build script not needed.
   unrs-resolver: false
+  # Ships prebuilt binaries; install script only falls back to node-gyp. Used by wp-env's unused Playground runtime.
+  fs-ext-extra-prebuilt: false
