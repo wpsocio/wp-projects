@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.2.17
+
+### Patch Changes
+
+- [#333](https://github.com/wpsocio/wp-projects/pull/333) [`e16675c`](https://github.com/wpsocio/wp-projects/commit/e16675ca9dd2cc8211d1c1b427622948b98d40cf) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Fixed channel embed view handling of invalid usernames.
+
+- [#324](https://github.com/wpsocio/wp-projects/pull/324) [`72e894b`](https://github.com/wpsocio/wp-projects/commit/72e894bc591f0c8f56a9e5fdb1737854c561f485) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Fix other conflicting plugins breaking the settings page UI.
+
 ## 2.2.16
 
 ### Patch Changes
