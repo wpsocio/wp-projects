@@ -37,7 +37,7 @@ class AjaxWidget {
 
 			$url = sanitize_text_field( wp_unslash( $_GET['url'] ) );
 
-			if ( ! preg_match( '/\Ahttps:\/\/t\.me\/s\/' . preg_quote( $username, '/' ) . '.*/i', $url ) ) {
+			if ( ! preg_match( '/\Ahttps:\/\/t\.me\/s\/' . preg_quote( $username, '/' ) . '(?:\?.*)?\z/i', $url ) ) {
 				exit;
 			}
 

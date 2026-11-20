@@ -81,10 +81,10 @@ class Shared extends BaseClass {
 		add_rewrite_tag( '%message_id%', '([0-9]+)' );
 
 		// For embedded post (legacy widget).
-		add_rewrite_rule( '^wptelegram/widget/view/@([a-zA-Z]\w{3,30}[^\W_])/([0-9]+)/?', 'index.php?core=wptelegram&module=widget&action=view&username=$matches[1]&message_id=$matches[2]', 'top' );
+		add_rewrite_rule( '^wptelegram/widget/view/@([a-zA-Z]\w{3,30}[^\W_])/([0-9]+)/?$', 'index.php?core=wptelegram&module=widget&action=view&username=$matches[1]&message_id=$matches[2]', 'top' );
 
 		// For embedded widget.
-		add_rewrite_rule( '^wptelegram/widget/view/@([a-zA-Z]\w{3,30}[^\W_])/?', 'index.php?core=wptelegram&module=widget&action=view&username=$matches[1]', 'top' );
+		add_rewrite_rule( '^wptelegram/widget/view/@([a-zA-Z]\w{3,30}[^\W_])/?$', 'index.php?core=wptelegram&module=widget&action=view&username=$matches[1]', 'top' );
 	}
 
 	/**
