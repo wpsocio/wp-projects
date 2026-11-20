@@ -113,14 +113,14 @@ class AjaxWidget {
 				'core'     => 'wptelegram',
 				'module'   => 'widget',
 				'action'   => 'view',
-				'username' => $username,
+				'username' => rawurlencode( $username ),
 			];
 
 			$url = add_query_arg( $args, site_url() );
 
 		} else {
 
-			$url = site_url( "/wptelegram/widget/view/@{$username}/" );
+			$url = site_url( '/wptelegram/widget/view/@' . rawurlencode( $username ) . '/' );
 		}
 
 		return (string) apply_filters( 'wptelegram_widget_ajax_widget_url', $url, $username );
