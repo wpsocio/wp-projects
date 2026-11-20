@@ -12,6 +12,9 @@ jobs:
     name: Prepare or publish release
     if: github.repository == 'wpsocio/wp-projects'
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      id-token: write # Required for npm trusted publishing (OIDC)
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -41,4 +44,3 @@ jobs:
           setupGitUser: false
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN_IR }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN_IR }}
