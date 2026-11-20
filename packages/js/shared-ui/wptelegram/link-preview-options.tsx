@@ -11,10 +11,20 @@ import { FormItem } from '../form/form-item.js';
 import { getFieldLabel } from './fields.js';
 import type { CommonProps } from './types.js';
 
-export const LinkPreviewOptions: React.FC<CommonProps> = ({ prefix }) => {
+export type LinkPreviewOptionsProps = CommonProps & {
+	disabled?: boolean;
+	disabledReason?: React.ReactNode;
+};
+
+export const LinkPreviewOptions: React.FC<LinkPreviewOptionsProps> = ({
+	prefix,
+	disabled = false,
+	disabledReason,
+}) => {
 	const link_preview_disabled = useWatch({
 		name: prefixName('link_preview_disabled', prefix),
 	});
+	const areDependentFieldsDisabled = disabled || link_preview_disabled;
 
 	return (
 		<div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-2 my-6">
@@ -25,7 +35,17 @@ export const LinkPreviewOptions: React.FC<CommonProps> = ({ prefix }) => {
 						<FormItem
 							className="md:flex-col"
 							label={getFieldLabel('link_preview_disabled')}
-							description={__('Disables previews for links in the messages.')}
+							description={
+								<>
+									{__('Disables previews for links in the messages.')}
+									{disabled && disabledReason ? (
+										<span className="block text-destructive">
+											{disabledReason}
+										</span>
+									) : null}
+								</>
+							}
+							isDisabled={disabled}
 						>
 							<FormControl>
 								<Switch
@@ -33,6 +53,8 @@ export const LinkPreviewOptions: React.FC<CommonProps> = ({ prefix }) => {
 									value={undefined}
 									checked={field.value}
 									onCheckedChange={field.onChange}
+									disabled={disabled}
+									aria-readonly={disabled}
 								/>
 							</FormControl>
 						</FormItem>
@@ -64,12 +86,12 @@ export const LinkPreviewOptions: React.FC<CommonProps> = ({ prefix }) => {
 									</span>
 								</>
 							}
-							isDisabled={link_preview_disabled}
+							isDisabled={areDependentFieldsDisabled}
 						>
 							<FormControl className="max-w-[200px]">
 								<Input
 									autoComplete="off"
-									disabled={link_preview_disabled}
+									disabled={areDependentFieldsDisabled}
 									placeholder="{full_url}"
 									{...field}
 								/>
@@ -88,7 +110,7 @@ export const LinkPreviewOptions: React.FC<CommonProps> = ({ prefix }) => {
 							description={__(
 								'Whether the link preview must be shown above the message text.',
 							)}
-							isDisabled={link_preview_disabled}
+							isDisabled={areDependentFieldsDisabled}
 						>
 							<FormControl>
 								<Switch
@@ -96,8 +118,8 @@ export const LinkPreviewOptions: React.FC<CommonProps> = ({ prefix }) => {
 									value={undefined}
 									checked={field.value}
 									onCheckedChange={field.onChange}
-									disabled={link_preview_disabled}
-									aria-readonly={link_preview_disabled}
+									disabled={areDependentFieldsDisabled}
+									aria-readonly={areDependentFieldsDisabled}
 								/>
 							</FormControl>
 						</FormItem>

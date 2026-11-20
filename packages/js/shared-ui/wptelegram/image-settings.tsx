@@ -11,25 +11,35 @@ import { getFieldLabel } from './fields.js';
 import { SingleMessage } from './single-message.js';
 import type { CommonProps } from './types.js';
 
-export const ImageSettings: React.FC<CommonProps> = ({ prefix }) => {
-	const isDisabled = !useWatch({
+export type ImageSettingsProps = CommonProps & {
+	disabled?: boolean;
+	disabledReason?: React.ReactNode;
+};
+
+export const ImageSettings: React.FC<ImageSettingsProps> = ({
+	prefix,
+	disabled = false,
+	disabledReason,
+}) => {
+	const sendFeaturedImage = useWatch({
 		name: prefixName('send_featured_image', prefix),
 	});
+	const areDependentFieldsDisabled = disabled || !sendFeaturedImage;
 
 	const image_position_options = useMemo(
 		() => [
 			{
 				value: 'before',
 				label: __('Before the Text'),
-				isDisabled,
+				isDisabled: areDependentFieldsDisabled,
 			},
 			{
 				value: 'after',
 				label: __('After the Text'),
-				isDisabled,
+				isDisabled: areDependentFieldsDisabled,
 			},
 		],
-		[isDisabled],
+		[areDependentFieldsDisabled],
 	);
 	return (
 		<div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-2 my-6">
@@ -40,7 +50,17 @@ export const ImageSettings: React.FC<CommonProps> = ({ prefix }) => {
 						<FormItem
 							className="md:flex-col"
 							label={getFieldLabel('send_featured_image')}
-							description={__('Send Featured Image (if exists).')}
+							description={
+								<>
+									{__('Send Featured Image (if exists).')}
+									{disabled && disabledReason ? (
+										<span className="block text-destructive">
+											{disabledReason}
+										</span>
+									) : null}
+								</>
+							}
+							isDisabled={disabled}
 						>
 							<FormControl>
 								<Switch
@@ -48,6 +68,8 @@ export const ImageSettings: React.FC<CommonProps> = ({ prefix }) => {
 									value={undefined}
 									checked={field.value}
 									onCheckedChange={field.onChange}
+									disabled={disabled}
+									aria-readonly={disabled}
 								/>
 							</FormControl>
 						</FormItem>
@@ -61,7 +83,7 @@ export const ImageSettings: React.FC<CommonProps> = ({ prefix }) => {
 						<FormItem
 							label={getFieldLabel('image_position')}
 							className="md:flex-col"
-							isDisabled={isDisabled}
+							isDisabled={areDependentFieldsDisabled}
 						>
 							<FormControl>
 								<RadioGroup
@@ -69,7 +91,7 @@ export const ImageSettings: React.FC<CommonProps> = ({ prefix }) => {
 									onValueChange={field.onChange}
 									defaultValue={field.value}
 									options={image_position_options}
-									disabled={isDisabled}
+									disabled={areDependentFieldsDisabled}
 								/>
 							</FormControl>
 						</FormItem>
@@ -77,7 +99,7 @@ export const ImageSettings: React.FC<CommonProps> = ({ prefix }) => {
 				/>
 			</div>
 			<div>
-				<SingleMessage prefix={prefix} disabled={isDisabled} />
+				<SingleMessage prefix={prefix} disabled={areDependentFieldsDisabled} />
 			</div>
 		</div>
 	);

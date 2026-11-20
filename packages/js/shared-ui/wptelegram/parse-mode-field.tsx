@@ -2,6 +2,7 @@ import { __ } from '@wpsocio/i18n';
 import { FormControl } from '@wpsocio/ui/components/form';
 import { Link } from '@wpsocio/ui/wrappers/link';
 import { RadioGroup } from '@wpsocio/ui/wrappers/radio-group';
+import type { OptionsType } from '@wpsocio/ui/wrappers/types';
 import { prefixName } from '@wpsocio/utilities/misc.js';
 import { FormField } from '../form/form-field.js';
 import { FormItem } from '../form/form-item.js';
@@ -10,6 +11,8 @@ import type { CommonProps } from './types.js';
 
 export type ParseModeFieldProps = CommonProps & {
 	asColumn?: boolean;
+	docsLink?: string;
+	options?: OptionsType;
 };
 
 export const getParseModeOptions = () => [
@@ -26,6 +29,8 @@ export const getParseModeOptions = () => [
 export const ParseModeField: React.FC<ParseModeFieldProps> = ({
 	prefix,
 	asColumn = true,
+	docsLink = 'https://core.telegram.org/bots/api#html-style',
+	options = getParseModeOptions(),
 }) => {
 	return (
 		<FormField
@@ -35,10 +40,7 @@ export const ParseModeField: React.FC<ParseModeFieldProps> = ({
 					className={asColumn ? 'md:flex-col' : ''}
 					label={getFieldLabel('parse_mode')}
 					description={
-						<Link
-							href="https://core.telegram.org/bots/api#html-style"
-							isExternal
-						>
+						<Link href={docsLink} isExternal>
 							{__('Learn more')}
 						</Link>
 					}
@@ -48,7 +50,7 @@ export const ParseModeField: React.FC<ParseModeFieldProps> = ({
 							{...field}
 							onValueChange={field.onChange}
 							defaultValue={field.value}
-							options={getParseModeOptions()}
+							options={options}
 						/>
 					</FormControl>
 				</FormItem>

@@ -29,6 +29,7 @@ export const SingleMessage: React.FC<SingleMessageProps> = ({
 		});
 
 	const showWarning =
+		!disabled &&
 		single_message &&
 		image_position === 'after' &&
 		(parse_mode === 'none' || link_preview_disabled);
