@@ -182,7 +182,7 @@ class Utils {
 	/**
 	 * Check whether the given value is a valid Telegram username.
 	 *
-	 * @since x.y.z
+	 * @since 2.2.17
 	 *
 	 * @param mixed $username The username to check.
 	 *

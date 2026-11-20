@@ -22,7 +22,7 @@ msgstr ""
 msgid "Settings"
 msgstr "تنظیمات"
 
-#: includes/AssetManager.php:164
+#: includes/AssetManager.php:148
 msgid "With this plugin, you can send posts to Telegram and receive notifications and do lot more :)"
 msgstr "با این افزونه، شما می توانید نوشته‌ها را به تلگرام بفرستید و اعلان دریافت کنید و کلی کارهای دیگه انجام بدید :)"
 
@@ -554,7 +554,7 @@ msgid "Before the Text"
 msgstr "قبل از متن"
 
 #: ../../packages/js/shared-ui/wptelegram/image-settings.tsx:28
-#: ../../packages/js/shared-ui/wptelegram/single-message.tsx:52
+#: ../../packages/js/shared-ui/wptelegram/single-message.tsx:49
 #: languages/wptelegram-js-translations.php:267
 msgid "After the Text"
 msgstr "بعد از متن"
@@ -717,7 +717,7 @@ msgid "Enable this option if you use a plugin to generate posts."
 msgstr ""
 
 #: ../../packages/js/shared-ui/wptelegram/parse-mode-field.tsx:18
-#: ../../packages/js/shared-ui/wptelegram/single-message.tsx:71
+#: ../../packages/js/shared-ui/wptelegram/single-message.tsx:66
 #: languages/wptelegram-js-translations.php:390
 msgid "None"
 msgstr "هیچ کدام"
@@ -739,14 +739,14 @@ msgstr "بیشتر بدانید"
 msgid "Protects the contents of sent messages from forwarding and saving."
 msgstr ""
 
-#: ../../packages/js/shared-ui/wptelegram/single-message.tsx:100
+#: ../../packages/js/shared-ui/wptelegram/single-message.tsx:95
 #: languages/wptelegram-js-translations.php:494
 msgid "Send both text and image in single message."
 msgstr "متن و تصویر را در یک پیام ارسال کنید۔"
 
 #. 1 - field name, 2 - value
 #. translators: 1 - field name, 2 - value
-#: ../../packages/js/shared-ui/wptelegram/single-message.tsx:46
+#: ../../packages/js/shared-ui/wptelegram/single-message.tsx:43
 #: languages/wptelegram-js-translations.php:498
 #, php-format
 msgid "When %1$s is set to %2$s:"
@@ -754,7 +754,7 @@ msgstr ""
 
 #. 1 - field name, 2 - value
 #. translators: 1 - field name, 2 - value
-#: ../../packages/js/shared-ui/wptelegram/single-message.tsx:65
+#: ../../packages/js/shared-ui/wptelegram/single-message.tsx:60
 #: languages/wptelegram-js-translations.php:502
 #, php-format
 msgid "%1$s should not be %2$s."
@@ -762,7 +762,7 @@ msgstr "%1$s نباید %2$s باشد۔"
 
 #. 1 - field name
 #. translators: 1 - field name
-#: ../../packages/js/shared-ui/wptelegram/single-message.tsx:81
+#: ../../packages/js/shared-ui/wptelegram/single-message.tsx:76
 #: languages/wptelegram-js-translations.php:506
 #, php-format
 msgid "%s should not be enabled."
@@ -1485,4 +1485,8 @@ msgstr ""
 #: languages/wptelegram-js-translations.php:117
 #, php-format
 msgid "Otherwise, you may install the %s plugin."
+msgstr ""
+
+#: ../../packages/js/shared-ui/wptelegram/single-message.tsx:37
+msgid "Alert!"
 msgstr ""

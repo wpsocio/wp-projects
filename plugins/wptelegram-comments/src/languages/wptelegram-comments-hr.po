@@ -21,7 +21,7 @@ msgstr ""
 msgid "Telegram Comments"
 msgstr "Telegram Komentari"
 
-#: includes/AssetManager.php:157
+#: includes/AssetManager.php:141
 msgid "With this plugin, you can add comments to posts/pages on your WordPress website by using Telegram Comments Widget."
 msgstr "S ovim dodatkom, možete omogućiti komentare na vaše WordPress postove i stranice koristeći Telegram Comments Widget."
 

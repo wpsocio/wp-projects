@@ -21,7 +21,7 @@ msgstr ""
 msgid "Telegram Widget"
 msgstr "Telegram Widget"
 
-#: includes/AssetManager.php:205
+#: includes/AssetManager.php:189
 msgid "With this plugin, you can let the users widget to your website with their Telegram and make it simple for them to get connected."
 msgstr ""
 
@@ -609,7 +609,7 @@ msgstr "%s wird benötigt."
 msgid "Changes could not be saved."
 msgstr "Die Änderungen konnten nicht gespeichert werden."
 
-#: shared/Shared.php:237
+#: shared/Shared.php:244
 msgid "Every 5 Minutes"
 msgstr "Alle 5 Minuten"
 
@@ -674,8 +674,8 @@ msgid "Please reload the page."
 msgstr ""
 
 #: admin/Admin.php:57
-#: includes/Utils.php:279
-#: includes/Utils.php:280
+#: includes/Utils.php:292
+#: includes/Utils.php:293
 msgid "WP Telegram"
 msgstr ""
 

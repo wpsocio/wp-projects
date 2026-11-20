@@ -169,33 +169,6 @@ Source: [src/shared/LoginHandler.php](../src/shared/LoginHandler.php), [line 663
 
 ## Filters
 
-### `wptelegram_login_web_app_login_data`
-
-*Filters the data for the web app login.*
-
-This can be used to customize the messages etc. for the web app login UI.
-
-**Arguments**
-
-Argument | Type | Description
--------- | ---- | -----------
-`$data` | `array` | The data for the web app login.
-
-Source: [src/includes/AssetManager.php](../src/includes/AssetManager.php), [line 290](../src/includes/AssetManager.php#L290-L297)
-
-### `wptelegram_login_language_options`
-
-*Filters the language options for the settings page.*
-
-**Arguments**
-
-Argument | Type | Description
--------- | ---- | -----------
-`$data` | `array` | The language options.
-`$translations` | `array` | The available translations.
-
-Source: [src/includes/AssetManager.php](../src/includes/AssetManager.php), [line 426](../src/includes/AssetManager.php#L426-L432)
-
 ### `wptelegram_login_get_user_by_telegram_id`
 
 *Filter the user found by its Telegram ID.*
@@ -222,6 +195,33 @@ Argument | Type | Description
 `$hook_and_priority` | `array` | A tuple containing the hook name and priority.
 
 Source: [src/includes/Utils.php](../src/includes/Utils.php), [line 131](../src/includes/Utils.php#L131-L138)
+
+### `wptelegram_login_web_app_login_data`
+
+*Filters the data for the web app login.*
+
+This can be used to customize the messages etc. for the web app login UI.
+
+**Arguments**
+
+Argument | Type | Description
+-------- | ---- | -----------
+`$data` | `array` | The data for the web app login.
+
+Source: [src/includes/AssetManager.php](../src/includes/AssetManager.php), [line 274](../src/includes/AssetManager.php#L274-L281)
+
+### `wptelegram_login_language_options`
+
+*Filters the language options for the settings page.*
+
+**Arguments**
+
+Argument | Type | Description
+-------- | ---- | -----------
+`$data` | `array` | The language options.
+`$translations` | `array` | The available translations.
+
+Source: [src/includes/AssetManager.php](../src/includes/AssetManager.php), [line 410](../src/includes/AssetManager.php#L410-L416)
 
 ### `wptelegram_login_redirect_to`
 
