@@ -6,7 +6,7 @@ runs:
     - name: Extract Playwright version
       id: playwright-version
       shell: bash
-      run: echo "PLAYWRIGHT_VERSION=$(jq -r '.devDependencies["@wordpress/scripts"]' package.json)" >> $GITHUB_ENV
+      run: echo "PLAYWRIGHT_VERSION=$(pnpm exec playwright --version | awk '{print $2}')" >> $GITHUB_ENV
 
     - name: Cache Playwright
       id: playwright-cache
@@ -15,7 +15,13 @@ runs:
         path: ~/.cache/ms-playwright
         key: playwright-${{ runner.os }}-${{ env.PLAYWRIGHT_VERSION }}
 
-    - name: Install Playwright dependencies
+    - name: Install Playwright browsers and dependencies
       shell: bash
       if: steps.playwright-cache.outputs.cache-hit != 'true'
       run: pnpm exec playwright install --with-deps --only-shell
+
+    # The cache only holds the browsers, not the system dependencies.
+    - name: Install Playwright dependencies
+      shell: bash
+      if: steps.playwright-cache.outputs.cache-hit == 'true'
+      run: pnpm exec playwright install-deps chromium-headless-shell
